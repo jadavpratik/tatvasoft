@@ -54,10 +54,11 @@ footer{
     }
     div{
         input{
+            background-color: transparent;
             width:233px;
             height: 40px;
             padding-left: 20px;
-            border:0.5px solid gray;
+            border:0.5px solid #565656;
             border-radius: 20px;
             outline: none;
         }
@@ -170,7 +171,7 @@ footer{
         padding:$side_padding_r;
         padding-top: 100px;
         padding-bottom:50px;
-        .get_our_newsletter{
+        .get_our_newsletter{            
             width:100%;
             div{
                 display: flex;
@@ -181,11 +182,14 @@ footer{
     .footer_first_div{
         padding:$side_padding_r;
         padding-top: 20px;
-        padding-bottom: 40px;
+        & > div:first-child{
+            flex-direction: column;
+            div{
+                margin:10px 0;
+            }
+        }
     }
     .footer_logo{
-        width:30%;
-        height: 50%;
         overflow: hidden;
         @include center;
         img{
@@ -196,7 +200,7 @@ footer{
     }
     .footer_links{
         @include flex_column;
-        align-items: flex-start;
+        align-items: center;
         margin-left: 10px;
         a{
             font-size: 12px;

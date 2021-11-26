@@ -5,7 +5,8 @@
     position: absolute;
     top:0;
     z-index: 1;
-    background-color:gray;
+    background-color: $navbar_color;
+    opacity: 0.8;
 }
 
 .logo{
@@ -51,6 +52,7 @@
         position: absolute;
         top:0;
         padding:$side_padding_r;
+        height:$navbar_height_r;
     }
     .logo{
         width:100px;
@@ -63,9 +65,10 @@
         position: absolute;
         top:0;
         left:-300px;
-        background-color: gray;
+        background-color: $navbar_color;
         transition: all 0.5s;
         @include flex_column;
+        z-index: 5;
         a{
             width: 100%;
             margin-top: 5px;

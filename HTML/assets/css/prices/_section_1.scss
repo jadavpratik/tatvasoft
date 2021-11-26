@@ -1,0 +1,109 @@
+.prices_s1{
+    padding:$side_padding;
+    padding-top: 30px;
+}
+
+.prices_div{
+    @include flex_column;
+    align-items: center;
+}
+
+.prices_card{
+    margin-top: 42px;
+    width:552px;
+    height: 304px;
+    border:1px solid #B0C9CE;
+    & > p{
+        height: 59px;
+        line-height: 59px;
+        text-align: center;                
+        background-color: #1D7A8C;
+        color:white;
+        font-size: 28px;
+        font-weight: bold;
+    }
+    & > div{
+        &:nth-child(2){
+            padding-top: 30px;
+            p{
+                text-align: center;
+                font-size: 48px;
+                color:#646464;
+            }
+            span{
+                font-size: 30px;
+                color:#646464;
+            }
+        }
+        &:nth-child(3){
+            div{
+                padding-top: 19px;
+                padding-left: 151px;
+                @include v_center;
+                img{
+                    width:24px;
+                    height: 24px;
+                }
+                p{
+                    padding-left: 8px;
+                    color:#646464;
+                }
+            }
+        }
+    }
+}
+
+
+.extra_servies{
+    padding-top: 92px;
+}
+
+.extra_servies_card_container{
+    padding-top: 39px;
+    @include center;
+}
+
+.extra_servies_card{
+    div{
+        margin:0 54px;
+        width:108px;
+        height: 108px;
+        border:0.5px solid #B0C9CE;
+        border-radius: 50%;
+        @include center;
+    }
+    p{
+        margin-top: 14px;
+        text-align: center;
+        &:nth-child(3){
+            margin-top:5px;
+            font-size: 18px;
+            font-weight: bold;
+            color:#1D7A8C;
+        }
+    }
+}
+
+@media screen and (max-width:550px) {
+    .prices_card{
+        width:100%;
+        margin:30px;
+        & > div{
+            &:nth-child(3){
+                div{
+                    padding-left: 50px;
+                }
+            }
+        }
+    }    
+    .extra_servies{
+        flex-direction: column;
+    }
+    .extra_servies_card_container{
+        flex-direction: column;
+        align-items: center;
+    }
+    .extra_servies_card{
+        margin:20px 0;
+    }
+}

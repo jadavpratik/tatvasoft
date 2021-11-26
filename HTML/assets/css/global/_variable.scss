@@ -1,8 +1,17 @@
+// SIDE_PADDING
 $side_padding:0 100px;
 $side_padding_r:0 20px;
+
+// COLORS
 $blue:#006072;
 $title_color:#4F4F4F;
 $paragraph_color:#565656;
+$navbar_color:#525252;
+
+// NAVBAR_HEIGHT
+$navbar_height:64px;
+$navbar_height_r:70px;
+
+// FOOTER_HEIGHT
 $footer_height:350px;
-$navbar_height_r:100px;
-// navbar_zindex:5;
+$last_section_bottom_padding: 50px + $footer_height;
