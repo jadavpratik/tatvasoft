@@ -1,0 +1,101 @@
+$section_4_bgcolor:#F4F5F8;
+.home_s4{
+    background-color: $section_4_bgcolor;
+    padding:$side_padding;
+    padding-top: 50px;
+    padding-bottom: 50px + $footer_height;
+}
+
+.home_s4_title{
+    @include section_title;
+}
+
+.home_s4_card_container{
+    padding-top: 56px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.home_s4_card{
+    width: 350px;
+    height: 350px;
+    padding:30px;
+    background-color: white;
+    border-left: 4px solid $blue;
+    border-radius: 4px;
+    position: relative;
+    @include flex_column;
+    @include shadow;
+    & > img{// MESSAGE ICON
+        width:30px;
+        height: 30px;
+        position: absolute;
+        right:20px;
+        top:20px;
+    }
+    .home_s4_profile{//PERSON NAME IMAGE
+        @include v_center;
+        img{
+            padding-right:20px;
+        }
+        div{
+            padding-bottom: 10px;
+        }
+    }
+    p{
+        padding-top: 25px;
+        color:$paragraph_color;
+        line-height: 22px;
+    }
+    a{
+        margin-top: 25px;
+        color:$paragraph_color;
+        i{
+            padding-left: 5px;
+        }
+    }
+}
+
+
+
+.profile{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    img{
+        padding-right: 20px;
+    }
+    div{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-bottom: 20px;
+        p{
+            font-weight: bold;
+            color:#4F4F4F;
+            margin:0;
+        }
+        span{
+            opacity: 0.5;
+        }
+    }
+}
+
+
+@media screen and (max-width:550px) {
+    .home_s4{
+        height:100%;
+        width:100%;
+        padding:$side_padding_r;
+        padding-top: 50px;
+    }
+    .home_s4_card_container{
+        flex-direction: column;
+        align-items: center;
+    }
+    .home_s4_card{
+        margin:30px 0;
+        width:100%;
+        height: auto;
+    }
+}

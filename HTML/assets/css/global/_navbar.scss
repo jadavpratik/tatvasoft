@@ -1,0 +1,80 @@
+.navbar{
+    width:100%;
+    @include between_v_center;
+    padding:0 15px;
+    position: absolute;
+    top:0;
+    z-index: 1;
+    background-color:gray;
+}
+
+.logo{
+    width: 175px;
+    height: 130px;
+    overflow: hidden;        
+    img{
+        width:100%;
+        height: 100%;
+        object-fit: contain;
+    }
+}
+
+.nav_menu{
+    @include v_center;
+    a{
+        height: 40px;
+        line-height: 40px;
+        color:white;
+        margin:0 15px;
+        &:last-of-type{
+            @include v_center;
+            i{
+                margin-left:8px;
+            }
+        }
+    }
+}
+
+.nav_btn{
+    display: none;
+    background-color: transparent;
+    border:0;
+    i{
+        font-size: 20px;
+        color:white;
+    }
+}
+
+@media screen and (max-width:550px){
+    .navbar{
+        @include between;
+        position: absolute;
+        top:0;
+        padding:$side_padding_r;
+    }
+    .logo{
+        width:100px;
+        height:$navbar_height_r;
+    }
+    .nav_menu{
+        height:100vh;
+        padding:20px;
+        border-radius: 8px;
+        position: absolute;
+        top:0;
+        left:-300px;
+        background-color: gray;
+        transition: all 0.5s;
+        @include flex_column;
+        a{
+            width: 100%;
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+    }
+    .nav_btn{
+        display:block;
+    }    
+}
+
+

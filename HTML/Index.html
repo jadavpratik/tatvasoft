@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Home Page</title>
+	<!-- CSS -->
+	<link rel="stylesheet" href="./assets/css/index.css">
+	<!-- FONT-AWESOME -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+	<!-- JQUERY -->
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+
+	<!-- --------------------------------------------------- -->
+						<!-- NAVBAR -->
+	<!-- --------------------------------------------------- -->
+	<nav class="navbar">
+	
+		<!-- LOGO -->
+		<div class="logo">
+			<a href=""><img src="./assets/img/navbar/logo.png" alt=""></a>
+		</div>
+	
+		<!-- NAV_BTN_RESPONSIVE -->
+		<button class="nav_btn"><i class="fas fa-bars"></i></button>
+		
+		<!-- NAV_MENU -->
+		<div class="nav_menu">
+			<a class="rounded_btn" href="">Book a Cleaner</a>
+			<a href="">Prices</a>
+			<a href="">Our Gurantee</a>
+			<a href="">Blog</a>
+			<a href="">Contact US</a>
+			<a class="rounded_btn" href="">Login</a>
+			<a class="rounded_btn" href="">Become a Helper</a>
+			<a href=""><img src="./assets/img/navbar/flag.png" alt=""><i class="fas fa-angle-down"></i></a>
+		</div>
+	</nav>
+
+	<script>
+		var show = 0;
+		const nav_btn = $('.nav_btn');
+		const nav_menu = $('.nav_menu')[0];
+		$('.nav_btn').click(()=>{
+			if(show == 0){
+				$('.nav_btn').html(`<i class="fas fa-times"></i>`);
+				show = 1;
+				nav_menu.style.left = 0;
+			}
+			else{
+				$('.nav_btn').html(`<i class="fas fa-bars"></i>`);
+				show = 0;
+				nav_menu.style.left = '-300px';
+			}
+		});
+	</script>
+
+
+	<!-- --------------------------------------------------- -->
+						<!-- SECTION_1 -->
+	<!-- --------------------------------------------------- -->
+	<div class="home_s1">
+
+		<!-- BACKGROUND_IMG -->
+		<img class="home_s1_bg" src="./assets/img/home/section_1/langing_page.png" alt="">
+
+		<!-- INTRO_CARD -->
+		<div class="home_s1_intro_card">
+			<p>Lorem ipsum Text</p>
+			<p><i class="fas fa-check"></i>	Lorem ipsum dolor sit amet, consectetur adipiscing</p>
+			<p><i class="fas fa-check"></i>	Lorem ipsum dolor sit amet, consectetur adipiscing</p>
+			<p><i class="fas fa-check"></i>	Lorem ipsum dolor sit amet, consectetur adipiscing</p>
+		</div>
+
+		<!-- LET'S BOOKS A CLEANER -->
+		<a class="rounded_btn home_s1_main_btn" href="">Let's Book a Cleaner</a>
+
+		<!-- SECTION_1_CARD_CONTAINER -->
+		<div class="home_s1_card_container">
+			<div class="home_s1_card">
+				<img src="./assets/img/home/section_1/step_1.png" alt="">
+				<p>Enter your postcode</p>
+			</div>
+			<img src="./assets/img/home/section_1/up_curve.png" alt="">
+			<div class="home_s1_card">
+				<img src="./assets/img/home/section_1/step_2.png" alt="">
+				<p>Select your plan</p>
+			</div>
+			<img src="./assets/img/home/section_1/down_curve.png" alt="">
+			<div class="home_s1_card">
+				<img src="./assets/img/home/section_1/step_3.png" alt="">
+				<p>Pay securely online</p>
+			</div>
+			<img src="./assets/img/home/section_1/up_curve.png" alt="">
+			<div class="home_s1_card">
+				<img src="./assets/img/home/section_1/step_4.png" alt="">
+				<p>Enjoy amazing service</p>
+			</div>
+		</div><!-- END_SECTION_1_CARD_CONTAINER -->
+
+		<!-- DOWN_BTN -->
+		<button class="home_s1_down_btn"><img src="./assets/img/home/section_1/down_btn.png" alt=""></button>
+
+	</div><!-- END_SECTION_1 -->
+
+
+	<!-- --------------------------------------------------- -->
+						<!-- SECTION_2 -->
+	<!-- --------------------------------------------------- -->
+	<div class="home_s2">
+
+		<!-- SECTION_2_TITLE -->
+		<p class="home_s2_title">Why Helperland</p>
+
+		<!-- SECTION_2_CARD_CONTAINER -->
+		<div class="home_s2_card_container">
+			<div class="home_s2_card">
+				<img src="./assets/img/home/section_2/helper.png" alt="">
+				<div>
+					<p>Experience & Vetted Professionals</p>
+					<p>dominate the industry in scale and scope with an adaptable, extensive network that consistently delivers exceptional results.</p>
+				</div>
+			</div>
+			<div class="home_s2_card">
+				<img src="./assets/img/home/section_2/laptop.png" alt="">
+				<div>
+					<p>Secure Online Payment</p>
+					<p>Payment is processed securely online. Customers pay safely online and manage the booking.</p>
+				</div>
+			</div>
+			<div class="home_s2_card">
+				<img src="./assets/img/home/section_2/custom_service.png" alt="">
+				<div>
+					<p>Dedicated Customer Service</p>
+					<p>to our customers and are guided in all we do by their needs. The team is always happy to support you and offer all the information.</p>
+				</div>
+			</div>
+		</div><!-- END_SECTION_2_CARD_CONTAIENR -->
+
+		<!-- SECTION_2_INTRO -->
+		<div class="home_s2_intro">
+			<div>
+				<p>Lorem ipsum dolor sit amet, consectetur</p>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nisi sapien, suscipit ut accumsan vitae, pulvinar ac libero. Aliquam erat volutpat. Nullam quis ex odio. Nam bibendum cursus purus, vel efficitur urna finibus vitae. Nullam finibus aliquet pharetra. Morbi in sem dolor. Integer pretium hendrerit ante quis vehicula. Mauris consequat ornare enim, sed lobortis quam ultrices sed.</p>	
+			</div>
+			<img src="./assets/img/home/section_2/intro_img.png" alt="">
+		</div>		
+		
+	</div><!-- END_SECTION_2 -->
+
+	<!-- --------------------------------------------------- -->
+						<!-- SECTION_3 -->
+	<!-- --------------------------------------------------- -->
+	<div class="home_s3">
+		<!-- SECTION_3_BACKGROUND -->
+		<img class="home_s3_bg_left" src="./assets/img/home/section_3/bg_left.png" alt="">
+		<img class="home_s3_bg_right" src="./assets/img/home/section_3/bg_right.png" alt="">
+
+		<!-- SECTION_3_BLOG_TITILE -->
+		<p class="home_s3_title">Our Blog</p>
+
+		<!-- SECTION_3_CARD_CONTAINER -->
+		<div class="home_s3_card_container">
+			<div class="home_s3_card">
+				<img src="./assets/img/home/section_3/blog_1.png" alt="">
+				<div>
+					<p>Lorem ipsum dolor sit amet</p>
+					<span>January 28, 2019</span>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed fermentum metus pulvinar aliquet.</p>
+				</div>
+				<a href="">Read the Post <i class="fas fa-long-arrow-alt-right"></i></a>
+			</div>
+			<div class="home_s3_card">
+				<img src="./assets/img/home/section_3/blog_2.png" alt="">
+				<div>
+					<p>Lorem ipsum dolor sit amet</p>
+					<span>January 28, 2019</span>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed fermentum metus pulvinar aliquet.</p>
+				</div>
+				<a href="">Read the Post <i class="fas fa-long-arrow-alt-right"></i></a>
+			</div>
+			<div class="home_s3_card">
+				<img src="./assets/img/home/section_3/blog_3.png" alt="">
+				<div>
+					<p>Lorem ipsum dolor sit amet</p>
+					<span>January 28, 2019</span>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed fermentum metus pulvinar aliquet.</p>
+				</div>
+				<a href="">Read the Post <i class="fas fa-long-arrow-alt-right"></i></a>
+			</div>
+		</div>
+
+	</div>
+
+	<!-- --------------------------------------------------- -->
+						<!-- SECTION_4 -->
+	<!-- --------------------------------------------------- -->
+	<div class="home_s4">
+
+		<!-- SECTION_4_TITLE -->
+		<p class="home_s4_title">What Our Customers Say</p>
+
+		<!-- SECTION_4_CARD_CONTAINER -->
+		<div class="home_s4_card_container"> 
+
+			<div class="home_s4_card">
+				<img src="./assets/img/home/section_4/message.png" alt="">
+				<div class="home_s4_profile">
+					<img src="./assets/img/home/section_4/person_1.png" alt="">
+					<div>
+						<p>Lary Watson</p>
+						<span>Manchester</span>
+					</div>
+				</div>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed fermentum metus pulvinar aliquet consequat. Praesent nec malesuada nibh. Nullam et metus congue, auctor augue sit amet, consectetur tortor.</p>
+				<a href="">Read More <i class="fas fa-long-arrow-alt-right"></i></a>
+			</div>			
+
+			<div class="home_s4_card">
+				<img src="./assets/img/home/section_4/message.png" alt="">
+				<div class="home_s4_profile">
+					<img src="./assets/img/home/section_4/person_2.png" alt="">
+					<div>
+						<p>John Smith</p>
+						<span>Manchester</span>
+					</div>
+				</div>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed fermentum metus pulvinar aliquet consequat. Praesent nec malesuada nibh. Nullam et metus congue, auctor augue sit amet, consectetur tortor.</p>
+				<a href="">Read More <i class="fas fa-long-arrow-alt-right"></i></a>
+			</div>			
+
+			<div class="home_s4_card">
+				<img src="./assets/img/home/section_4/message.png" alt="">
+				<div class="home_s4_profile">
+					<img src="./assets/img/home/section_4/person_3.png" alt="">
+					<div>
+						<p>Lars Johnson</p>
+						<span>Manchester</span>
+					</div>
+				</div>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed fermentum metus pulvinar aliquet consequat. Praesent nec malesuada nibh. Nullam et metus congue, auctor augue sit amet, consectetur tortor.</p>
+				<a href="">Read More <i class="fas fa-long-arrow-alt-right"></i></a>
+			</div>			
+
+		</div>
+
+	</div><!-- END_SECTION_4 -->
+
+
+	<!-- --------------------------------------------------- -->
+						<!-- FOOTER -->
+	<!-- --------------------------------------------------- -->
+	<footer>
+
+		<!-- FIXED BUTTONS -->
+		<!-- GO_TO_TOP_BTN -->
+		<button class="go_top_btn"><i class="fas fa-angle-up"></i></button>
+
+		<!-- CHAT -->
+		<button class="chat"><img src="./assets/img/footer/time.png" alt=""></button>
+
+		<!-- FOOTER_TRANSPARENT_DIV -->
+		<div class="footer_transparent_div">
+			<!-- GET_OUR_NEWSLETTERS -->
+			<form class="get_our_newsletter" action="">
+				<p>GET OUR NEWSLETTER</p>
+				<div>
+					<input type="text" placeholder="YOUR EMAIL">
+					<button>Submit</button>
+				</div>
+			</form>
+		</div><!-- END_FOOTER_TRANSPARENT_DIV -->
+
+		<!-- FOOTER_FIRST_DIV -->
+		<div class="footer_first_div">
+
+			<div>
+				<!-- FOOTER_LOGO -->
+				<div class="footer_logo">
+					<a href=""><img src="./assets/img/footer/logo.png" alt=""></a>
+				</div>
+				<!-- FOOTER_LINKS -->
+				<div class="footer_links">
+					<a href="">HOME</a>
+					<a href="">ABOUT</a>
+					<a href="">TESTIMONIALS</a>
+					<a href="">FAQS</a>
+					<a href="">INSURANCE POLICY</a>
+					<a href="">IMPRESSUM</a>
+				</div>
+				<!-- SOCIAL_MEDIA_LINKS -->
+				<div class="social_media_links">
+					<a href=""><img src="./assets/img/footer/facebook.png" alt=""></a>
+					<a href=""><img src="./assets/img/footer/instagram.png" alt=""></a>
+				</div>
+			</div>
+
+			<!-- COPYRIGHT_SECTION -->
+			<div>
+				<p class="copyright_section">©2018 Helperland. All rights reserved. Terms and Conditions | <a href="">Privacy Policy</a></p>
+			</div>
+
+		</div><!-- END_FOOTER_FIRST_DIV -->
+		
+	</footer>
+
+	<!-- PRIVACY_POLICY -->
+	<div class="privacy_policy">
+		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut feugiat nunc libero, ac malesuada ligula aliquam ac. <a href="">Privacy Policy</a></p>
+		<button>OK!</button>
+	</div>
+
+
+</body>
+</html>

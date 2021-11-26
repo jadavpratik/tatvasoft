@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Home Page</title>
+	<!-- CSS -->
+	<link rel="stylesheet" href="./assets/css/index.css">
+	<!-- FONT-AWESOME -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+	<!-- JQUERY -->
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+
+	<!-- --------------------------------------------------- -->
+						<!-- NAVBAR -->
+	<!-- --------------------------------------------------- -->
+	<nav class="navbar">
+	
+		<!-- LOGO -->
+		<div class="logo">
+			<a href=""><img src="./assets/img/navbar/logo.png" alt=""></a>
+		</div>
+	
+		<!-- NAV_BTN_RESPONSIVE -->
+		<button class="nav_btn"><i class="fas fa-bars"></i></button>
+		
+		<!-- NAV_MENU -->
+		<div class="nav_menu">
+			<a class="rounded_btn fill_color" href="">Book now</a>
+			<a class="rounded_btn" href="">Prices & Services</a>
+			<a href="">Warranty</a>
+			<a href="">Blog</a>
+			<a href="">Contact</a>
+			<a class="rounded_btn fill_color" href="">Login</a>
+			<a class="rounded_btn fill_color" href="">Become a Helper</a>
+		</div>
+	</nav>
+
+	<script>
+		var show = 0;
+		const nav_btn = $('.nav_btn');
+		const nav_menu = $('.nav_menu')[0];
+		$('.nav_btn').click(()=>{
+			if(show == 0){
+				$('.nav_btn').html(`<i class="fas fa-times"></i>`);
+				show = 1;
+				nav_menu.style.left = 0;
+			}
+			else{
+				$('.nav_btn').html(`<i class="fas fa-bars"></i>`);
+				show = 0;
+				nav_menu.style.left = '-300px';
+			}
+		});
+	</script>
+
+
+
+	<!-- MAIN_FAQ -->
+	<main>
+
+		<!-- FAQ_BANNER -->
+		<div class="faq_banner">
+			<img src="./assets/img/faq-banner.png" alt="">
+		</div>	
+
+		<!-- FAQ_TITLE -->
+		<div class="faq_title">
+			<p>FAQs</p>
+			<img src="./assets/img/separator.png" alt="">
+		</div>
+
+		<!-- FAQ_INTRO -->
+		<div class="faq_intro">
+			<p>Whether you are Customer or Service provider, We have tried our best to solve all your queries and questions.</p>
+		</div>
+
+		<div class="customer_faq">
+			<div class="faq_switch">
+				<button>FOR CUSTOMER</button>
+				<button>FOR SERVICE PROVIDER</button>
+			</div>
+			<div class="reviews">
+				<div class="review">
+					<button><img src="./assets/img/down-arrow.png" alt=""><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nisl nunc, iaculis mattis tellus ac ut non imperdiet velit?</p></button>
+					<div>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id diam tincidunt, fringilla ante vitae, dapibus velit. Vivamus id tortor rhoncus, efficitur quam at, suscipit tortor. Integer fermentum convallis eros vel semper. Ut non imperdiet velit. Praesent eu dui vel lacus porta eleifend eget quis dui. Integer tempus massa in gravida tincidunt. Fusce in libero tristique, euismod nisi vel, luctus urna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Donec et placerat arcu. Suspendisse lacinia tristique massa. Etiam risus justo, scelerisque id arcu eu, sodales tempor eros. Aliquam efficitur pretium urna, sit amet congue risus malesuada rutrum. Donec id massa vel velit ullamcorper accumsan ut eget nisl. Fusce viverra commodo lacus, sit amet facilisis leo luctus dictum.</p>
+					</div>
+				</div>
+				<div class="review">
+					<button><img src="./assets/img/right-arrow.png" alt=""><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nisl nunc, iaculis mattis tellus ac ut non imperdiet velit?</p></button>
+				</div>
+				<div class="review">
+					<button><img src="./assets/img/right-arrow.png" alt=""><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nisl nunc, iaculis mattis tellus ac ut non imperdiet velit?</p></button>
+				</div>
+				<div class="review">
+					<button><img src="./assets/img/right-arrow.png" alt=""><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nisl nunc, iaculis mattis tellus ac ut non imperdiet velit?</p></button>
+				</div>
+				<div class="review">
+					<button><img src="./assets/img/right-arrow.png" alt=""><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nisl nunc, iaculis mattis tellus ac ut non imperdiet velit?</p></button>
+				</div>
+				<div class="review">
+					<button><img src="./assets/img/right-arrow.png" alt=""><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nisl nunc, iaculis mattis tellus ac ut non imperdiet velit?</p></button>
+				</div>
+				<div class="review">
+					<button><img src="./assets/img/right-arrow.png" alt=""><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nisl nunc, iaculis mattis tellus ac ut non imperdiet velit?</p></button>
+				</div>
+				<div class="review">
+					<button><img src="./assets/img/right-arrow.png" alt=""><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nisl nunc, iaculis mattis tellus ac ut non imperdiet velit?</p></button>
+				</div>
+				<div class="review">
+					<button><img src="./assets/img/right-arrow.png" alt=""><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nisl nunc, iaculis mattis tellus ac ut non imperdiet velit?</p></button>
+				</div>
+			</div>
+		</div>
+
+	</main>
+
+
+	<!-- --------------------------------------------------- -->
+						<!-- FOOTER -->
+	<!-- --------------------------------------------------- -->
+	<footer>
+
+		<!-- FIXED BUTTONS -->
+		<!-- GO_TO_TOP_BTN -->
+		<button class="go_top_btn"><i class="fas fa-angle-up"></i></button>
+
+		<!-- CHAT -->
+		<button class="chat"><img src="./assets/img/footer/time.png" alt=""></button>
+
+		<!-- FOOTER_TRANSPARENT_DIV -->
+		<div class="footer_transparent_div">
+			<!-- GET_OUR_NEWSLETTERS -->
+			<form class="get_our_newsletter" action="">
+				<p>GET OUR NEWSLETTER</p>
+				<div>
+					<input type="text" placeholder="YOUR EMAIL">
+					<button>Submit</button>
+				</div>
+			</form>
+		</div><!-- END_FOOTER_TRANSPARENT_DIV -->
+
+		<!-- FOOTER_FIRST_DIV -->
+		<div class="footer_first_div">
+
+			<div>
+				<!-- FOOTER_LOGO -->
+				<div class="footer_logo">
+					<a href=""><img src="./assets/img/footer/logo.png" alt=""></a>
+				</div>
+				<!-- FOOTER_LINKS -->
+				<div class="footer_links">
+					<a href="">HOME</a>
+					<a href="">ABOUT</a>
+					<a href="">TESTIMONIALS</a>
+					<a href="">FAQS</a>
+					<a href="">INSURANCE POLICY</a>
+					<a href="">IMPRESSUM</a>
+				</div>
+				<!-- SOCIAL_MEDIA_LINKS -->
+				<div class="social_media_links">
+					<a href=""><img src="./assets/img/footer/facebook.png" alt=""></a>
+					<a href=""><img src="./assets/img/footer/instagram.png" alt=""></a>
+				</div>
+			</div>
+
+			<!-- COPYRIGHT_SECTION -->
+			<div>
+				<p class="copyright_section">©2018 Helperland. All rights reserved. Terms and Conditions | <a href="">Privacy Policy</a></p>
+			</div>
+
+		</div><!-- END_FOOTER_FIRST_DIV -->
+		
+	</footer>
+
+</body>
+</html>
