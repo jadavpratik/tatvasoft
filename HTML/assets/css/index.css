@@ -1345,20 +1345,32 @@ footer {
 }
 
 @media screen and (max-width: 550px) {
+  .prices_s1 {
+    padding: 0 20px;
+  }
   .prices_card {
     width: 100%;
-    margin: 30px;
   }
   .prices_card > div:nth-child(3) div {
     padding-left: 50px;
   }
   .extra_servies {
+    padding-top: 50px;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
   }
   .extra_servies_card_container {
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+  }
+  .extra_servies_card {
+    margin: 14px 0;
+    width: 150px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
@@ -1366,9 +1378,6 @@ footer {
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
-  }
-  .extra_servies_card {
-    margin: 20px 0;
   }
 }
 
@@ -1425,27 +1434,24 @@ footer {
 }
 
 @media screen and (max-width: 550px) {
-  .section_2_title {
-    text-align: center;
-  }
-  .section_2 {
+  .prices_s2 {
     height: auto;
+    padding: 0 20px;
   }
-  .section_2_card_container {
+  .prices_s2_card_container {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
-    padding: 0 20px;
   }
-  .section_2_card {
-    margin: 30px 0;
+  .prices_s2_card {
+    margin: 20px 0;
     width: 100%;
   }
-  .section_2_card > img {
+  .prices_s2_card > img {
     width: 100%;
   }
-  .section_2_card div img {
+  .prices_s2_card div img {
     height: 100%;
   }
 }
@@ -1514,7 +1520,16 @@ footer {
 }
 
 @media screen and (max-width: 550px) {
+  .prices_s3 {
+    width: 100%;
+    padding: 0 20px;
+    padding-bottom: 50px;
+  }
   .prices_s3_text_card_container {
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
@@ -1523,20 +1538,23 @@ footer {
         -ms-flex-align: center;
             align-items: center;
   }
+  .prices_s3_text_card {
+    width: 100%;
+  }
+  .prices_s3_text_card p {
+    white-space: normal !important;
+  }
   .prices_s3_text_card_div_2 {
-    width: 100% !important;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
+    margin: 30px 0;
+    width: 200px;
+    height: 150px;
   }
   .prices_s3_text_card_div_2 img {
-    width: 200px;
+    width: 100%;
+    height: 100%;
   }
-  .prices_s3_text_card {
-    padding: 10px 20px;
+  .prices_s3_text_card_div_1 div p {
+    text-align: left;
   }
 }
 /*# sourceMappingURL=index.css.map */

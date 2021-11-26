@@ -85,9 +85,11 @@
 }
 
 @media screen and (max-width:550px) {
+    .prices_s1{
+        padding:$side_padding_r;
+    }
     .prices_card{
         width:100%;
-        margin:30px;
         & > div{
             &:nth-child(3){
                 div{
@@ -97,13 +99,16 @@
         }
     }    
     .extra_servies{
+        padding-top: 50px;
         flex-direction: column;
     }
     .extra_servies_card_container{
-        flex-direction: column;
-        align-items: center;
+        flex-wrap: wrap;
     }
     .extra_servies_card{
-        margin:20px 0;
+        margin:14px 0;
+        width:150px;
+        @include flex_column;
+        align-items: center;
     }
 }
