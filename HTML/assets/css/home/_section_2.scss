@@ -29,6 +29,9 @@ $home_s2_card_para:#565656;
         height: 250px;
     }
     div{
+        @include flex_column;
+        justify-content: space-between;
+        height:200px;
         p{
             &:nth-child(1){
                 padding-top:32px;
