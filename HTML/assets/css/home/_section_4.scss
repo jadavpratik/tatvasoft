@@ -21,13 +21,13 @@ $home_s4_card_left_border:#006072;
     justify-content: space-between;
 }
 
+// ALL SECTION CARD WIDTH MUST BE THE SAME
 .home_s4_card{
-    width: 350px;
-    height: 350px;
-    padding:30px;
+    width: $home_card_width;
+    height: 370px;
+    padding:38px 35px;
     background-color: white;
-    border-left: 4px solid $home_s4_card_left_border
-;
+    border-left: 4px solid $home_s4_card_left_border;
     border-radius: 4px;
     position: relative;
     @include flex_column;
@@ -42,7 +42,9 @@ $home_s4_card_left_border:#006072;
     .home_s4_profile{//PERSON NAME IMAGE
         @include v_center;
         img{
-            padding-right:20px;
+            width:70px;
+            height: 70px;
+            margin-right:20px;
         }
         div{
             p{
@@ -62,13 +64,13 @@ $home_s4_card_left_border:#006072;
     }
     p{
         padding-top: 25px;
+        line-height:20px;
         color:$home_s4_card_para;
-        line-height: 22px;
     }
     a{
         margin-top: 25px;
         color:$home_s4_card_para;
-        i{
+        img{
             padding-left: 5px;
         }
     }

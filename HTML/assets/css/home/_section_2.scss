@@ -18,9 +18,10 @@ $home_s2_card_para:#565656;
     @include between;
 }
 
+// ALL SECTION CARD WIDTH MUST BE THE SAME
 .home_s2_card{
     border:2px solid white;
-    width:320px;
+    width:$home_card_width;
     @include v_center;
     flex-direction: column;
     img{
