@@ -1343,6 +1343,7 @@ footer {
   border-radius: 4px;
   color: #A0A0A0;
   padding-left: 15px;
+  background-color: transparent;
 }
 
 .get_in_touch form div input {
