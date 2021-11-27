@@ -127,6 +127,7 @@ footer{
     background-color: $cookie_bg;
     position:fixed;
     bottom:0;
+    left:0;
     @include center;
     p{
         text-align: center;
@@ -208,10 +209,20 @@ footer{
         }
     }
     .privacy_policy{
+        width:100%;
+        padding:$side_padding_r;
+        padding-top: 15px;
+        padding-bottom:50px;
+        p{
+            line-height: 18px;
+        }
         button{
-            right:5px;
-            bottom:5px;
-            width:70px;
+            right:0;
+            left:50%;
+            transform: translateX(-50%);
+            bottom:15px;
+            margin:0;
+            width:60px;
             height:30px;
             @include center;
         }

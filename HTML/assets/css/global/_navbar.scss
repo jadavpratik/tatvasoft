@@ -71,9 +71,9 @@
         background-color: $navbar_bg_opacity;
         border-radius: 0;
         transition: all 0.8s;
-        position: absolute;
+        position: fixed;
         top:0px;
-        right:-500px;
+        right:-3000px;
         a{
             width: 100%;
             margin-top: 5px;

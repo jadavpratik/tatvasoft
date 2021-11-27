@@ -222,9 +222,9 @@ input, textarea, select {
     border-radius: 0;
     -webkit-transition: all 0.8s;
     transition: all 0.8s;
-    position: absolute;
+    position: fixed;
     top: 0px;
-    right: -500px;
+    right: -3000px;
   }
   .nav_menu a {
     width: 100%;
@@ -436,6 +436,7 @@ footer {
   background-color: #292929;
   position: fixed;
   bottom: 0;
+  left: 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -552,10 +553,23 @@ footer {
     font-size: 12px;
     margin: 4px 0;
   }
+  .privacy_policy {
+    width: 100%;
+    padding: 0 20px;
+    padding-top: 15px;
+    padding-bottom: 50px;
+  }
+  .privacy_policy p {
+    line-height: 18px;
+  }
   .privacy_policy button {
-    right: 5px;
-    bottom: 5px;
-    width: 70px;
+    right: 0;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+    bottom: 15px;
+    margin: 0;
+    width: 60px;
     height: 30px;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -789,6 +803,7 @@ footer {
             align-items: center;
   }
   .home_s2_card {
+    width: 100%;
     margin-bottom: 50px;
   }
   .home_s2_card img {
