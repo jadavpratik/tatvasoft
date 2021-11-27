@@ -1,6 +1,3 @@
-$footer_color_1:#111111;
-$footer_color_2:#292929;
-
 footer{
     width:100%;
     height: $footer_height;
@@ -21,7 +18,7 @@ footer{
     border:0;
     border-radius: 50%;
     color:white;
-    background-color: #525252;
+    background-color: $footer_up_btn;
     position: absolute;
     top:70px;
     left:100px;
@@ -46,7 +43,7 @@ footer{
 
 .get_our_newsletter{
     p{
-        color:#353548;
+        color:$footer_form_title;
         font-size: 17px;
         margin-bottom: 16px;
         text-align: center;
@@ -58,13 +55,13 @@ footer{
             width:233px;
             height: 40px;
             padding-left: 20px;
-            border:0.5px solid #565656;
+            border:0.5px solid $footer_form_border;
             border-radius: 20px;
             outline: none;
         }
         button{
             margin-left:20px;
-            background-color: #FF7B6D;
+            background-color: $footer_orange;
             color:white;
             width:88px;
             height: 40px;
@@ -79,7 +76,7 @@ footer{
     padding:0 100px;
     padding-top:30px;
     padding-bottom: 20px;
-    background-color: $footer_color_1;
+    background-color: $footer_bg;
     & > div:first-child{
         @include between_v_center;
     }
@@ -107,7 +104,7 @@ footer{
 .copyright_section{
     padding-top: 20px;
     padding-bottom: 20px;
-    background-color: $footer_color_1;
+    background-color: $footer_bg;
     color:white;
     text-align: center;    
     font-size: 12px;
@@ -127,7 +124,7 @@ footer{
 .privacy_policy{
     width:100%;
     padding:20px;
-    background-color: $footer_color_2;
+    background-color: $cookie_bg;
     position:fixed;
     bottom:0;
     @include center;
@@ -136,7 +133,7 @@ footer{
         color:white;
         font-size: 14px;
         a{
-            color:#6EABEF;
+            color:$privacy_policy_text;
         }
     }
     button{
@@ -144,7 +141,7 @@ footer{
         width:100px;
         height: 40px;
         border-radius: 20px;
-        background-color: #EED507;
+        background-color: $cookie_btn;
         padding:10px;
         font-weight: bold;
         border:0;

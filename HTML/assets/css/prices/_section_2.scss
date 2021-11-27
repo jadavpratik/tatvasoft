@@ -1,9 +1,13 @@
+$prices_s2_bg:#F6F6F6;
+$prices_s2_card_title:#4F4F4F;
+$prices_s2_card_line:#4F4F4F;
+
 .prices_s2{
     height:707px;
     padding:$side_padding;
     margin-top: 56px;
     padding-top: 72px;
-    background-color: #F6F6F6;
+    background-color: $prices_s2_bg;
 }
 
 .prices_s2_card_container{
@@ -23,7 +27,7 @@
             }
             p{
                 padding-top: 20px;
-                color:#4F4F4F;
+                color:$prices_s2_card_title;
                 font-size: 20px;
                 font-weight: bold;
             }
@@ -35,7 +39,7 @@
                 p{
                     padding-left: 8px;
                     font-size: 16px;
-                    color:#4F4F4F;
+                    color:$prices_s2_card_line;
                 }
             }
         }

@@ -3,13 +3,6 @@
     flex-direction: column;
 }
 
-@mixin section_title {
-    font-size: 40px;
-    color:$title_color;
-    font-weight: bold;
-    text-align: center;
-}
-
 @mixin between{
     display: flex;
     justify-content: space-between;

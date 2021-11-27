@@ -1,3 +1,10 @@
+$prices_s1_card_bg:#1D7A8C;
+$prices_s1_card_text:#646464;
+$prices_s1_card_border:#B0C9CE;
+$prices_s1_extra_servies_light:#646464;
+$prices_s1_extra_servies_bold:#1D7A8C;
+$prices_s1_extra_servies_border:#B0C9CE;
+
 .prices_s1{
     padding:$side_padding;
     padding-top: 30px;
@@ -12,12 +19,12 @@
     margin-top: 42px;
     width:552px;
     height: 304px;
-    border:1px solid #B0C9CE;
+    border:1px solid $prices_s1_card_border;
     & > p{
         height: 59px;
         line-height: 59px;
         text-align: center;                
-        background-color: #1D7A8C;
+        background-color: $prices_s1_card_bg;
         color:white;
         font-size: 28px;
         font-weight: bold;
@@ -28,11 +35,11 @@
             p{
                 text-align: center;
                 font-size: 48px;
-                color:#646464;
+                color:$prices_s1_card_text;
             }
             span{
                 font-size: 30px;
-                color:#646464;
+                color:$prices_s1_card_text;
             }
         }
         &:nth-child(3){
@@ -46,7 +53,7 @@
                 }
                 p{
                     padding-left: 8px;
-                    color:#646464;
+                    color:$prices_s1_card_text;
                 }
             }
         }
@@ -68,18 +75,21 @@
         margin:0 54px;
         width:108px;
         height: 108px;
-        border:0.5px solid #B0C9CE;
+        border:0.5px solid $prices_s1_extra_servies_border;
         border-radius: 50%;
         @include center;
     }
     p{
         margin-top: 14px;
         text-align: center;
+        &:nth-child(2){
+            color:$prices_s1_extra_servies_light;
+        }
         &:nth-child(3){
             margin-top:5px;
             font-size: 18px;
             font-weight: bold;
-            color:#1D7A8C;
+            color:$prices_s1_extra_servies_bold;
         }
     }
 }

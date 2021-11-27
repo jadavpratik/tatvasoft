@@ -1,3 +1,9 @@
+@mixin section_title {
+    font-size: 40px;
+    font-weight: bold;
+    text-align: center;
+}
+
 @import "./section_1";
 @import "./section_2";
 @import "./section_3";

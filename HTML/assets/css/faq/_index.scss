@@ -1,3 +1,8 @@
+$faq_intro:#646464;
+$faq_btn:#1D7A8C;
+$faq_line_bold:#646464;
+$faq_para_light:#646464;
+
 .user_faq{
     padding-top: 35px;
     padding-bottom: $last_section_bottom_padding;
@@ -9,7 +14,7 @@
     p{
         width: 498px;
         text-align:center;
-        color:$paragraph_color;
+        color:$faq_intro;
         font-size: 18px;
         line-height: 26px;
     }
@@ -22,9 +27,9 @@
         height: 66px;
         font-size: 24px;
         border:0;
-        border-bottom: 3px solid #1D7A8C;
+        border-bottom: 3px solid $faq_btn;
         &:first-of-type{
-            background-color: #1D7A8C;
+            background-color: $faq_btn;
             color:white;
         }
     }
@@ -42,16 +47,11 @@
         @include center;
         background-color: transparent;
         border:0;
-        // i{
-        //     font-size: 22px;
-        //     color:#646464;
-        //     opacity:0.8;
-        // }
         p{
             margin:0;
             padding-left:15px;
             font-weight: bold;
-            color:#646464;
+            color:$faq_line_bold;
             font-size: 16px;
         }
     }
@@ -59,7 +59,7 @@
         padding-top:10px;
         padding-left:36px;
         line-height: 24px;
-        color:#646464;
+        color:$faq_para_light;
     }
 }
 
