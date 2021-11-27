@@ -28,6 +28,7 @@
 		
 		<!-- NAV_MENU -->
 		<div class="nav_menu">
+			<button class="nav_menu_close_btn"><i class="fas fa-times"></i></button>
             <a class="rounded_btn navbar_btn_color" href="">Book now</a>
             <a class="rounded_btn" href="">Prices & Services</a>
             <a href="">Warranty</a>
@@ -40,21 +41,23 @@
 
 	<script>
 		var show = 0;
-		const nav_btn = $('.nav_btn');
 		const nav_menu = $('.nav_menu')[0];
+
 		$('.nav_btn').click(()=>{
 			if(show == 0){
-				$('.nav_btn').html(`<i class="fas fa-times"></i>`);
+				nav_menu.style.right = 0;
 				show = 1;
-				nav_menu.style.left = 0;
-			}
-			else{
-				$('.nav_btn').html(`<i class="fas fa-bars"></i>`);
-				show = 0;
-				nav_menu.style.left = '-300px';
 			}
 		});
+
+		$('.nav_menu_close_btn').click(()=>{
+			if(show == 1){
+				nav_menu.style.right = '-500px';
+				show = 0;
+			}
+		})
 	</script>
+
 
     <!-- PRICES_BANNER -->
     <div class="banner">

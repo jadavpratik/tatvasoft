@@ -186,6 +186,10 @@ input, textarea, select {
   color: white;
 }
 
+.nav_menu_close_btn {
+  display: none;
+}
+
 @media screen and (max-width: 992px) {
   .navbar {
     display: -webkit-box;
@@ -204,15 +208,9 @@ input, textarea, select {
     height: 70px;
   }
   .nav_menu {
+    width: 100%;
     height: 100vh;
-    padding: 20px;
-    border-radius: 8px;
-    position: absolute;
-    top: 0;
-    left: -300px;
-    background-color: #525252;
-    -webkit-transition: all 0.5s;
-    transition: all 0.5s;
+    padding: 50px;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -220,12 +218,43 @@ input, textarea, select {
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
-    z-index: 5;
+    background-color: #757575;
+    border-radius: 0;
+    -webkit-transition: all 0.8s;
+    transition: all 0.8s;
+    position: absolute;
+    top: 0px;
+    right: -500px;
   }
   .nav_menu a {
     width: 100%;
     margin-top: 5px;
     margin-bottom: 5px;
+    padding: 0;
+    border: 0;
+    background-color: transparent;
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: 500;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    text-align: center;
+  }
+  .nav_menu_close_btn {
+    display: block;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    background-color: transparent;
+    border: 0;
+  }
+  .nav_menu_close_btn i {
+    color: white;
+    font-size: 20px;
   }
   .nav_btn {
     display: block;
@@ -1418,6 +1447,339 @@ footer {
   }
   .about_s2 {
     padding-bottom: 0px;
+  }
+}
+
+.prices_s1 {
+  padding: 0 100px;
+  padding-top: 30px;
+}
+
+.prices_div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.prices_card {
+  margin-top: 42px;
+  width: 552px;
+  height: 304px;
+  border: 1px solid #B0C9CE;
+}
+
+.prices_card > p {
+  height: 59px;
+  line-height: 59px;
+  text-align: center;
+  background-color: #1D7A8C;
+  color: white;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.prices_card > div:nth-child(2) {
+  padding-top: 30px;
+}
+
+.prices_card > div:nth-child(2) p {
+  text-align: center;
+  font-size: 48px;
+  color: #646464;
+}
+
+.prices_card > div:nth-child(2) span {
+  font-size: 30px;
+  color: #646464;
+}
+
+.prices_card > div:nth-child(3) div {
+  padding-top: 19px;
+  padding-left: 151px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.prices_card > div:nth-child(3) div img {
+  width: 24px;
+  height: 24px;
+}
+
+.prices_card > div:nth-child(3) div p {
+  padding-left: 8px;
+  color: #646464;
+}
+
+.extra_servies {
+  padding-top: 92px;
+}
+
+.extra_servies_card_container {
+  padding-top: 39px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.extra_servies_card div {
+  margin: 0 54px;
+  width: 108px;
+  height: 108px;
+  border: 0.5px solid #B0C9CE;
+  border-radius: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.extra_servies_card p {
+  margin-top: 14px;
+  text-align: center;
+}
+
+.extra_servies_card p:nth-child(2) {
+  color: #646464;
+}
+
+.extra_servies_card p:nth-child(3) {
+  margin-top: 5px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #1D7A8C;
+}
+
+@media screen and (max-width: 992px) {
+  .prices_s1 {
+    padding: 0 20px;
+  }
+  .prices_card {
+    width: 100%;
+  }
+  .prices_card > div:nth-child(3) div {
+    padding-left: 50px;
+  }
+  .extra_servies {
+    padding-top: 50px;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .extra_servies_card_container {
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+  }
+  .extra_servies_card {
+    margin: 14px 0;
+    width: 150px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+}
+
+.prices_s2 {
+  height: 707px;
+  padding: 0 100px;
+  margin-top: 56px;
+  padding-top: 72px;
+  background-color: #F6F6F6;
+}
+
+.prices_s2_card_container {
+  padding-top: 42px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.prices_s2_card {
+  margin: 0 15px;
+  width: 360px;
+}
+
+.prices_s2_card > div:first-child {
+  overflow: hidden;
+}
+
+.prices_s2_card > div:first-child img {
+  width: 100%;
+  height: 100%;
+}
+
+.prices_s2_card > div:first-child p {
+  padding-top: 20px;
+  color: #4F4F4F;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.prices_s2_card > div:last-child div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 14px 0;
+}
+
+.prices_s2_card > div:last-child div p {
+  padding-left: 8px;
+  font-size: 16px;
+  color: #4F4F4F;
+}
+
+@media screen and (max-width: 992px) {
+  .prices_s2 {
+    height: auto;
+    padding: 0 20px;
+  }
+  .prices_s2_card_container {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .prices_s2_card {
+    margin: 20px 0;
+    width: 100%;
+  }
+  .prices_s2_card > img {
+    width: 100%;
+  }
+  .prices_s2_card div img {
+    height: 100%;
+  }
+}
+
+.prices_s3 {
+  padding: 0 100px;
+  padding-bottom: 400px;
+  padding-top: 70px;
+}
+
+.prices_s3_text_card_container {
+  padding-top: 40px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.prices_s3_text_card_div_1,
+.prices_s3_text_card_div_3 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.prices_s3_text_card_div_2 {
+  width: 375px;
+  height: 240px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.prices_s3_text_card_div_1 div p {
+  text-align: right;
+}
+
+.prices_s3_text_card {
+  width: 337px;
+  padding-top: 14px;
+}
+
+.prices_s3_text_card p:nth-child(1) {
+  font-size: 20px;
+  font-weight: bold;
+  white-space: nowrap;
+  color: #646464;
+}
+
+.prices_s3_text_card p:nth-child(2) {
+  padding-top: 9px;
+  font-size: 14px;
+  line-height: 20px;
+  color: #646464;
+}
+
+@media screen and (max-width: 992px) {
+  .prices_s3 {
+    width: 100%;
+    padding: 0 20px;
+    padding-bottom: 50px;
+  }
+  .prices_s3_text_card_container {
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .prices_s3_text_card {
+    width: 100%;
+  }
+  .prices_s3_text_card p {
+    white-space: normal !important;
+  }
+  .prices_s3_text_card_div_2 {
+    margin: 30px 0;
+    width: 200px;
+    height: 150px;
+  }
+  .prices_s3_text_card_div_2 img {
+    width: 100%;
+    height: 100%;
+  }
+  .prices_s3_text_card_div_1 div p {
+    text-align: left;
   }
 }
 /*# sourceMappingURL=index.css.map */
