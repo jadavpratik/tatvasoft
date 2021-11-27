@@ -53,7 +53,7 @@ $prices_s3_card_para:#646464;
     }
 }
 
-@media screen and (max-width:550px) {
+@media screen and (max-width:$responsive_max_width) {
     .prices_s3{
         width:100%;
         padding:$side_padding_r;

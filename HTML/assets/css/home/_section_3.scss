@@ -102,7 +102,7 @@ $home_s3_shadow:#E4EBF0;
     }
 }
 
-@media screen and (max-width:550px) {
+@media screen and (max-width:$responsive_max_width) {
     .home_s3{
         height: auto;
         padding:$side_padding_r;

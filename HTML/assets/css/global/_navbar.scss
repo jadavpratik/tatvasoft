@@ -6,7 +6,6 @@
     top:0;
     z-index: 1;
     background-color: $navbar_bg_opacity;
-    // opacity: 0.8;
     z-index: 10;
 }
 
@@ -47,7 +46,7 @@
     }
 }
 
-@media screen and (max-width:550px){
+@media screen and (max-width:$responsive_max_width){
     .navbar{
         @include between;
         position: absolute;

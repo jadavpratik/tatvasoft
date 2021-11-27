@@ -94,22 +94,22 @@ footer{
 .footer_links{
     @include center;
     a{
-        color:white;
+        color:$footer_links_color;
         margin: 0 14px;
         font-size: 14px;
-        font-weight: 500;
     }
 }
 
 .copyright_section{
+    margin-top:20px;
     padding-top: 20px;
-    padding-bottom: 20px;
     background-color: $footer_bg;
-    color:white;
+    color:$footer_copyright_text;
     text-align: center;    
-    font-size: 12px;
+    font-size: 14px;
+    border-top:0.5px solid gray;
     a{
-        color:white;
+        color:$footer_copyright_text;
     }
 }
 
@@ -150,7 +150,7 @@ footer{
     }
 }
 
-@media screen and (max-width:550px) {
+@media screen and (max-width:$responsive_max_width) {
     footer{
         width:100%;
         height: auto;
@@ -168,12 +168,12 @@ footer{
         padding:$side_padding_r;
         padding-top: 100px;
         padding-bottom:50px;
-        .get_our_newsletter{            
-            width:100%;
-            div{
-                display: flex;
-                @include h_center;
-            }
+    }
+    .get_our_newsletter{            
+        width:100%;
+        div{
+            display: flex;
+            @include h_center;
         }
     }
     .footer_first_div{
@@ -185,6 +185,9 @@ footer{
                 margin:10px 0;
             }
         }
+    }
+    .copyright_section{
+        padding-bottom: 20px;
     }
     .footer_logo{
         overflow: hidden;

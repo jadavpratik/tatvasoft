@@ -48,7 +48,7 @@ $home_s2_card_para:#565656;
 }
 
 
-@media screen and (max-width:550px){
+@media screen and (max-width:$responsive_max_width){
     .home_s2{
         height: auto;
         padding:$side_padding_r;

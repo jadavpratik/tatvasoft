@@ -74,7 +74,7 @@ $home_s4_card_left_border:#006072;
     }
 }
 
-@media screen and (max-width:550px) {
+@media screen and (max-width:$responsive_max_width) {
     .home_s4{
         height:100%;
         width:100%;

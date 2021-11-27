@@ -46,7 +46,7 @@ $prices_s2_card_line:#4F4F4F;
     }
 }
 
-@media screen and (max-width:550px) {
+@media screen and (max-width:$responsive_max_width) {
     .prices_s2{
         height: auto;
         padding:$side_padding_r;

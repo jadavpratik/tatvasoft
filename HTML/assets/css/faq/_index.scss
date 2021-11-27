@@ -63,7 +63,7 @@ $faq_para_light:#646464;
     }
 }
 
-@media screen and (max-width:550px) {
+@media screen and (max-width:$responsive_max_width) {
     .faq{
         padding:$side_padding_r;
     }

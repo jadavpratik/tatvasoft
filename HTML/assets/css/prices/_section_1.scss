@@ -94,7 +94,7 @@ $prices_s1_extra_servies_border:#B0C9CE;
     }
 }
 
-@media screen and (max-width:550px) {
+@media screen and (max-width:$responsive_max_width) {
     .prices_s1{
         padding:$side_padding_r;
     }
