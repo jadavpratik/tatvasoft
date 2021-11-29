@@ -1,0 +1,79 @@
+$get_in_touch_border:#C8C8C8;
+$get_in_touch_title:#4F4F4F;
+$input_text:#A0A0A0;
+$get_in_touch_btn:#1D7A8C;
+
+
+.get_in_touch{
+    padding-top: 96px;
+    @include flex_column;
+    align-items: center;
+}
+
+.get_in_touch_title{
+    color:$get_in_touch_title;
+    font-size: 28px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.get_in_touch{
+    form{
+        padding-top: 22px;
+        @include flex_column;
+        align-items: center;
+        div{
+            width:100%;
+            @include between;
+            padding-bottom: 15px;
+            input,select,textarea{
+                border:1px solid $get_in_touch_border;
+                border-radius: 4px;
+                color:$input_text;
+                padding-left: 15px;
+                background-color: white;
+            }
+            input{
+                width:300px;
+                height: 46px;
+            }
+            select{
+                width:614px;
+                height: 46px;
+            }
+            textarea{
+                padding-top: 15px;
+                width:614px;
+                height: 146px;
+            }
+        }
+        button{
+            width:162px;
+            height: 46px;
+            background-color: $get_in_touch_btn;
+            font-size: 20px;
+            font-weight: bold;
+            color:white;
+            border:0;
+            border-radius: 23px;                
+        }
+    }
+}
+
+@media screen and (max-width:$responsive_max_width) {
+    .get_in_touch{
+        padding-left:20px;
+        padding-right:20px;
+        form{
+            width:100%;
+            div{
+                @include flex_column;
+                padding:0;
+                input,select, textarea{
+                    width:100%;
+                    margin-bottom: 20px;
+                }
+            }
+        }
+    }
+}
