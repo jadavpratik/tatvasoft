@@ -1,0 +1,36 @@
+.dropdown{
+    position: relative;
+    button{
+        cursor: pointer;
+        background-color: transparent;
+        border:0;
+        @include v_center;
+        i{
+            margin-left: 10px;
+            color:white;
+        }
+    }
+}
+
+.dropdown_content{
+    padding:7px 20px;
+    @include flex_column;
+    position: absolute;
+    top:40px;
+    right:-2px;
+    width:auto;
+    background-color: white;
+    border-radius: 4px;
+    transition: all 0.5s;
+    a{
+        padding:7px 0;
+        @include v_center;
+        color:black;
+        width:100%;
+        text-align: center;
+        white-space: nowrap;
+        img{
+            margin-right: 7px;
+        }
+    }
+}

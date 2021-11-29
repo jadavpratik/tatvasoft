@@ -7,6 +7,9 @@
     border-radius: 50px;
 }
 
+.d_none{
+    display: none !important;
+}
 
 .navbar_btn_color{
     background-color:$navbar_btn;
@@ -56,6 +59,8 @@
     }
     img{
         margin-top: 9px;
+        padding:0 7px;
+        background-color: white;
         z-index: 1;
     }
 }

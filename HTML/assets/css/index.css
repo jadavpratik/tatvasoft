@@ -8,7 +8,7 @@
 }
 
 a {
-  text-decoration: none;
+  text-decoration: none !important;
 }
 
 body {
@@ -23,6 +23,7 @@ body {
           flex-direction: column;
   overflow-x: hidden;
   position: relative;
+  scroll-behavior: smooth;
 }
 
 input, textarea, select {
@@ -41,6 +42,10 @@ input, textarea, select {
   padding-left: 20px;
   padding-right: 20px;
   border-radius: 50px;
+}
+
+.d_none {
+  display: none !important;
 }
 
 .navbar_btn_color {
@@ -105,12 +110,100 @@ input, textarea, select {
 
 .title_with_img img {
   margin-top: 9px;
+  padding: 0 7px;
+  background-color: white;
   z-index: 1;
 }
 
 @media screen and (max-width: 992px) {
   .title_with_img {
     padding-top: 50px;
+  }
+}
+
+.dropdown {
+  position: relative;
+}
+
+.dropdown button {
+  cursor: pointer;
+  background-color: transparent;
+  border: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.dropdown button i {
+  margin-left: 10px;
+  color: white;
+}
+
+.dropdown_content {
+  padding: 7px 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  position: absolute;
+  top: 40px;
+  right: -2px;
+  width: auto;
+  background-color: white;
+  border-radius: 4px;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+.dropdown_content a {
+  padding: 7px 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: black;
+  width: 100%;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.dropdown_content a img {
+  margin-right: 7px;
+}
+
+.nav_tabs button {
+  cursor: pointer;
+}
+
+.tab_content {
+  -webkit-animation: fadeEffect 1s;
+          animation: fadeEffect 1s;
+  /* Fading effect takes 1 second */
+}
+
+/* Go from zero to full opacity */
+@-webkit-keyframes fadeEffect {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fadeEffect {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }
 
@@ -155,14 +248,14 @@ input, textarea, select {
           align-items: center;
 }
 
-.nav_menu a {
+.nav_menu > a {
   height: 40px;
   line-height: 40px;
   color: white;
   margin: 0 15px;
 }
 
-.nav_menu a:last-of-type {
+.nav_menu > a:last-of-type {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -171,7 +264,7 @@ input, textarea, select {
           align-items: center;
 }
 
-.nav_menu a:last-of-type i {
+.nav_menu > a:last-of-type i {
   margin-left: 8px;
 }
 
@@ -225,8 +318,9 @@ input, textarea, select {
     position: fixed;
     top: 0px;
     right: -3000px;
+    overflow-y: auto;
   }
-  .nav_menu a {
+  .nav_menu > a {
     width: 100%;
     margin-top: 5px;
     margin-bottom: 5px;
@@ -827,7 +921,7 @@ footer {
 }
 
 .home_s3_intro {
-  padding-top: 200px;
+  padding-top: 170px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1181,12 +1275,12 @@ footer {
   border-bottom: 3px solid #1D7A8C;
 }
 
-.faq_switch button:first-of-type {
+.active_tab {
   background-color: #1D7A8C;
   color: white;
 }
 
-.reviews {
+.questions {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1199,12 +1293,12 @@ footer {
           align-items: center;
 }
 
-.review {
+.question {
   padding-top: 37px;
   width: 931px;
 }
 
-.review button {
+.question button {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1218,7 +1312,7 @@ footer {
   border: 0;
 }
 
-.review button p {
+.question button p {
   margin: 0;
   padding-left: 15px;
   font-weight: bold;
@@ -1226,11 +1320,26 @@ footer {
   font-size: 16px;
 }
 
-.review > p {
+.answer {
   padding-top: 10px;
   padding-left: 36px;
   line-height: 24px;
   color: #646464;
+  -webkit-transition: all 1s;
+  transition: all 1s;
+  -webkit-animation: fadeEffect 1s;
+          animation: fadeEffect 1s;
+  /* Fading effect takes 1 second */
+}
+
+/* Go from zero to full opacity */
+@keyframes fadeEffect {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 @media screen and (max-width: 992px) {
@@ -1241,13 +1350,13 @@ footer {
     width: 200px;
     font-size: 16px;
   }
-  .review {
+  .question {
     width: 100%;
   }
-  .review button p {
+  .question button p {
     text-align: left;
   }
-  .review > p {
+  .question > p {
     padding-left: 0;
     font-size: 14px;
   }

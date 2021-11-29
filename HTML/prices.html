@@ -255,7 +255,7 @@
 
 		<!-- FIXED BUTTONS -->
 		<!-- GO_TO_TOP_BTN -->
-		<button class="go_top_btn"><i class="fas fa-angle-up"></i></button>
+		<button class="go_top_btn"><img src="./assets/img/footer/up_arrow.png" alt=""></button>
 
 		<!-- CHAT -->
 		<button class="chat"><img src="./assets/img/footer/time.png" alt=""></button>
@@ -305,6 +305,12 @@
 		
 	</footer>
 
+
+    <script>
+		$('.go_top_btn').click(()=>{
+			$("html, body").animate({scrollTop:0},1500);
+		});
+	</script>
 
 </body>
 </html>

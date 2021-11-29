@@ -24,7 +24,7 @@
 
 .nav_menu{
     @include v_center;
-    a{
+    & > a{
         height: 40px;
         line-height: 40px;
         color:white;
@@ -76,7 +76,8 @@
         position: fixed;
         top:0px;
         right:-3000px;
-        a{
+        overflow-y: auto;
+        & > a{
             width: 100%;
             margin-top: 5px;
             margin-bottom: 5px;

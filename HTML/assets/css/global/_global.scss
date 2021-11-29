@@ -8,7 +8,7 @@
 }
 
 a{
-    text-decoration: none;
+    text-decoration: none !important;
 }
 
 body{
@@ -18,6 +18,7 @@ body{
     flex-direction: column;
     overflow-x: hidden;
     position: relative;
+    scroll-behavior: smooth;
 }
 
 input, textarea, select{

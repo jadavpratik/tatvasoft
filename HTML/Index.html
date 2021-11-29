@@ -36,11 +36,24 @@
 			<a href="">Contact US</a>
 			<a class="rounded_btn" href="">Login</a>
 			<a class="rounded_btn" href="">Become a Helper</a>
-			<a href=""><img src="./assets/img/navbar/flag.png" alt=""><i class="fas fa-angle-down"></i></a>
-		</div>
-	</nav>
+			<div class="dropdown">
+				<button class="dropdown_btn"><img src="./assets/img/navbar/flag.png" alt=""><i class="fas fa-angle-down"></i></button>
+				<div class="dropdown_content d_none">
+				  <a href="#"><img src="./assets/img/navbar/flag.png" alt="">&nbsp;Link 1</a>
+				  <a href="#"><img src="./assets/img/navbar/flag.png" alt="">&nbsp;Link 2</a>
+				  <a href="#"><img src="./assets/img/navbar/flag.png" alt="">&nbsp;Link 3</a>
+				</div>
+			</div><!-- END DROPDOWN -->
+		</div><!-- END NAV_MENU -->
+	</nav><!-- END NAVBAR -->
 
-	<script>
+<script>
+		// DROPDOWN
+		$('.dropdown_btn').click(()=>{
+			$('.dropdown_content').toggleClass('d_none');
+		});
+
+		// RESPONSIVE NAVBAR
 		var show = 0;
 		const nav_menu = $('.nav_menu')[0];
 
@@ -252,7 +265,7 @@
 
 		<!-- FIXED BUTTONS -->
 		<!-- GO_TO_TOP_BTN -->
-		<button class="go_top_btn"><i class="fas fa-angle-up"></i></button>
+		<button class="go_top_btn"><img src="./assets/img/footer/up_arrow.png" alt=""></button>
 
 		<!-- CHAT -->
 		<button class="chat"><img src="./assets/img/footer/time.png" alt=""></button>
@@ -310,6 +323,11 @@
 	</footer>
 
 
+	<script>
+		$('.go_top_btn').click(()=>{
+			$("html, body").animate({scrollTop:0},1500);
+		});
+	</script>
 
 </body>
 </html>
