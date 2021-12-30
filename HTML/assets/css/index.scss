@@ -1,3 +1,4 @@
+// GLOBAL THINGS
 @import "./global/variable";
 @import "./global/mixin";
 @import "./global/global";
@@ -5,12 +6,14 @@
 @import "./global/dropdown";
 @import "./global/navtabs";
 
+// NAVBAR + FOOTER
 @import "./global/navbar";
 @import "./global/footer";
 
+// PAGES
 @import "./home/index";
 @import "./faq/index";
 @import "./prices/index";
 @import "./contact/index";
 @import "./about/index";
-
+@import "./service_provider/become_a_pro/index";

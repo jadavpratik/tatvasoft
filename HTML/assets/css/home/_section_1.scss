@@ -36,7 +36,9 @@ $home_s1_btn:#006072;
 
 .home_s1_card_container{
     padding-top: 160px;
-    @include top_h_center;
+    display: flex;    
+    align-items: flex-start;
+    justify-content: center;
     img{
         margin-top: 15px;
         width:85px;

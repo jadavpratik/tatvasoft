@@ -31,7 +31,7 @@ $home_s4_card_left_border:#006072;
     border-radius: 4px;
     position: relative;
     @include flex_column;
-    @include shadow;
+    box-shadow: 0px 0px 30px #E4EBF0;       
     & > img{// MESSAGE ICON
         width:30px;
         height: 30px;

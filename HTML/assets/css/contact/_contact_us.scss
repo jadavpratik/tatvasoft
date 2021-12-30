@@ -6,7 +6,9 @@ $contact_text_color:#4F4F4F;
 
 .contact_card_container{
     padding-top: 52px;
-    @include top_h_center;
+    display: flex;    
+    align-items: flex-start;
+    justify-content: center;
 }
 
 .contact_card{
