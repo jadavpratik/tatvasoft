@@ -16,39 +16,53 @@ $home_s1_btn:#006072;
 }
 
 .home_s1_intro_card{
-    padding-top: 318px;// BECAUSE NAVBAR ON POSITION_ABSOLUTE
+    padding-top: 318px;// BECAUSE NAVBAR ON POSITION_FIXED
     p{
         color:white;
         padding: 6px 0;
-        &:nth-child(1){ //BIG TEXT
-            font-size: 40px;
+        font-size: 40px;
+    }
+    ul{
+        list-style: none;
+        li{
+            color:white;
+            padding: 6px 0;    
+            i{
+                margin-right: 12px;
+            }
         }
     }
 }
 
 .home_s1_main_btn{
+    width:225px;
+    height: 54px;
+    @include center;
     margin:0 auto;
     background-color: $home_s1_btn;
     color:white;
-    padding-top: 14px;
-    padding-bottom: 14px;
+    border:0.5px solid whitesmoke;
+    border-radius: 54px;
+    transition: all 0.3s;
+    &:hover{
+        color: $home_s1_btn;
+        background-color: whitesmoke;
+    }
 }
 
 .home_s1_card_container{
-    padding-top: 160px;
-    display: flex;    
-    align-items: flex-start;
-    justify-content: center;
-    img{
-        margin-top: 15px;
+    margin-top: 158.99px;
+    & > img{// FOR CURVY ARROWS...
+        margin-top: 21px;
         width:85px;
         height: 23px;
     }
 }
 
 .home_s1_card{
+    width:178px;
+    height: 119.01px;
     img{
-        margin:0;
         width:51px;
         height: 55px;            
     }
@@ -62,6 +76,7 @@ $home_s1_btn:#006072;
 .home_s1_down_btn{
     margin:0 auto;
     margin-top: 42px;
+    overflow: hidden;
     background-color: transparent;
     border:0;
 }
@@ -78,23 +93,22 @@ $home_s1_btn:#006072;
     .home_s1_intro_card{
         width:100%;
         padding:0;
-        padding-top:$navbar_height_r + 50px;
+        padding-top:$navbar_height + 50px;
         p{
             text-align: center;
-            &:nth-child(2),
-            &:nth-child(3),
-            &:nth-child(4){
-                font-size: 14px;
-            }
+        }
+        ul li{
+            font-size: 14px;
+            text-align: center;
         }
     }
     .home_s1_main_btn{
-        margin:50px auto;
+        margin: 50px auto;
     }
     .home_s1_card_container{
-        padding-top:20px;
+        margin-top: 20px;
         flex-wrap: wrap;
-        & > img{
+        & > img{// FOR CURVY ARROW...
             display: none;
         }
     }

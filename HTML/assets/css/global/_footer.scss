@@ -134,7 +134,7 @@ footer{
     }
 }
 
-.privacy_policy{
+.cookie{
     width:100%;
     padding:20px;
     background-color: $cookie_bg;
@@ -161,6 +161,7 @@ footer{
         border:0;
         position: absolute;
         right: 30px;
+        cursor: pointer;
     }
 }
 
@@ -221,7 +222,7 @@ footer{
             margin:4px 0;
         }
     }
-    .privacy_policy{
+    .cookie{
         width:100%;
         padding:$side_padding_r;
         padding-top: 15px;
@@ -237,6 +238,7 @@ footer{
             margin:0;
             width:60px;
             height:30px;
+            cursor: pointer;
             @include center;
         }
     }

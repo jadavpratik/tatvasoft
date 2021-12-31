@@ -27,7 +27,7 @@ $title_with_img:#4F4F4F;
 
 @media screen and (max-width:$responsive_max_width) {
     .banner{
-        margin-top: $navbar_height_r;
+        margin-top: $navbar_height;
         width:100%;
         height:200px;
         img{

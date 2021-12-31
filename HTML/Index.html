@@ -58,7 +58,7 @@
 		const logo = document.getElementsByClassName('logo')[0];
 		if (document.documentElement.scrollTop > 150) {
 			navbar.style.height = '64px';
-			navbar.style.backgroundColor = '#525252';
+			navbar.style.backgroundColor = 'rgba(82,82,82,0.8)';
 			logo.style.width = '73px';
 			logo.style.height = '54px';
 			logo.style.paddingTop = '6px';
@@ -69,7 +69,6 @@
 			navbar.style.height = '130px';
 			logo.style.width = '175px';
 			logo.style.height = '130px';
-			logo.style.paddingTop = '10px';
 		}
 	}
 	// DROPDOWN
@@ -108,35 +107,45 @@
 	<!-- INTRO_CARD -->
 	<div class="home_s1_intro_card">
 		<p>Lorem ipsum Text</p>
-		<p><i class="fas fa-check"></i>	Lorem ipsum dolor sit amet, consectetur adipiscing</p>
-		<p><i class="fas fa-check"></i>	Lorem ipsum dolor sit amet, consectetur adipiscing</p>
-		<p><i class="fas fa-check"></i>	Lorem ipsum dolor sit amet, consectetur adipiscing</p>
+		<ul>
+			<li><i class="fas fa-check"></i>Lorem ipsum dolor sit amet, consectetur adipiscing</li>
+			<li><i class="fas fa-check"></i>Lorem ipsum dolor sit amet, consectetur adipiscing</li>
+			<li><i class="fas fa-check"></i>Lorem ipsum dolor sit amet, consectetur adipiscing</li>
+		</ul>
 	</div>
 
 	<!-- LET'S BOOKS A CLEANER -->
-	<a class="rounded_btn home_s1_main_btn" href="">Let's Book a Cleaner</a>
+	<a class="home_s1_main_btn" href="">Let's Book a Cleaner</a>
 
 	<!-- SECTION_1_CARD_CONTAINER -->
-	<div class="home_s1_card_container">
+	<div class="home_s1_card_container d_flex jc_center ai_start">
+	
 		<div class="home_s1_card d_flex_column ai_center">
 			<img src="./assets/img/home/section_1/step_1.png" alt="">
 			<p>Enter your postcode</p>
 		</div>
+	
 		<img src="./assets/img/home/section_1/up_curve.png" alt="">
+	
 		<div class="home_s1_card d_flex_column ai_center">
 			<img src="./assets/img/home/section_1/step_2.png" alt="">
 			<p>Select your plan</p>
 		</div>
+	
 		<img src="./assets/img/home/section_1/down_curve.png" alt="">
+	
 		<div class="home_s1_card d_flex_column ai_center">
 			<img src="./assets/img/home/section_1/step_3.png" alt="">
 			<p>Pay securely online</p>
 		</div>
+	
 		<img src="./assets/img/home/section_1/up_curve.png" alt="">
+	
 		<div class="home_s1_card d_flex_column ai_center">
 			<img src="./assets/img/home/section_1/step_4.png" alt="">
 			<p>Enjoy amazing service</p>
 		</div>
+	
 	</div><!-- END_SECTION_1_CARD_CONTAINER -->
 
 	<!-- DOWN_BTN -->
@@ -154,7 +163,7 @@
 	<p class="home_section_title">Why Helperland</p>
 
 	<!-- SECTION_2_CARD_CONTAINER -->
-	<div class="home_s2_card_container">
+	<div class="home_s2_card_container d_flex jc_between">
 		<div class="home_s2_card">
 			<div class="circle">
 				<img src="./assets/img/home/section_2/helper.jpg" alt="">
@@ -190,12 +199,13 @@
 					<!-- SECTION_3 -->
 <!-- --------------------------------------------------- -->
 <div class="home_s3">
+
 	<!-- SECTION_3_BACKGROUND -->
 	<img class="home_s3_bg_left" src="./assets/img/home/section_3/bg_left.png" alt="">
 	<img class="home_s3_bg_right" src="./assets/img/home/section_3/bg_right.png" alt="">
 
 	<!-- SECTION_3_INTRO -->
-	<div class="home_s3_intro">
+	<div class="home_s3_intro d_flex ai_center jc_between">
 		<div>
 			<p>Lorem ipsum dolor sit amet, consectetur</p>
 			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nisi sapien, suscipit ut accumsan vitae, pulvinar ac libero. Aliquam erat volutpat. Nullam quis ex odio. Nam bibendum cursus purus, vel efficitur urna finibus vitae. Nullam finibus aliquet pharetra. Morbi in sem dolor. Integer pretium hendrerit ante quis vehicula. Mauris consequat ornare enim, sed lobortis quam ultrices sed.</p>	
@@ -207,7 +217,7 @@
 	<p class="home_section_title">Our Blog</p>
 
 	<!-- SECTION_3_CARD_CONTAINER -->
-	<div class="home_s3_card_container">
+	<div class="home_s3_card_container d_flex jc_between">
 		<div class="home_s3_card">
 			<img src="./assets/img/home/section_3/blog_1.png" alt="">
 			<div>
@@ -248,7 +258,7 @@
 	<p class="home_section_title">What Our Customers Say</p>
 
 	<!-- SECTION_4_CARD_CONTAINER -->
-	<div class="home_s4_card_container"> 
+	<div class="home_s4_card_container d_flex jc_between"> 
 
 		<div class="home_s4_card">
 			<img src="./assets/img/home/section_4/message.png" alt="">
@@ -345,9 +355,9 @@
 	
 			
 	<!-- PRIVACY_POLICY -->
-	<div class="privacy_policy">
+	<div class="cookie">
 		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut feugiat nunc libero, ac malesuada ligula aliquam ac. <a href="">Privacy Policy</a></p>
-		<button>OK!</button>
+		<button id="cookie_submit_btn">OK!</button>
 	</div>
 
 </footer>
@@ -357,6 +367,10 @@
 	$('.go_top_btn').click(()=>{
 		$("html, body").animate({scrollTop:0},1500);
 	});
+	$('#cookie_submit_btn').click(()=>{
+		$('.cookie').hide();
+	});
+	
 </script>
 
 </body>

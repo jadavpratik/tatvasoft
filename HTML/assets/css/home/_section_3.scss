@@ -1,35 +1,11 @@
-$home_s3_title:#4F4F4F;
 $home_s3_card_title:#3D4046;
 $home_s3_card_para:#565656;
 $home_s3_shadow:#E4EBF0;
 
-.home_s3_intro{
-    padding-top: 170px;
-    display: flex;
-    div{
-        p{
-            color:$home_s3_title;
-            &:nth-child(1){
-                font-size: 30px;
-                padding-bottom: 20px;
-            }
-            &:nth-child(2){
-                font-size: 18px;
-                line-height: 30px;
-            }
-        }
-    }
-    img{
-        margin-left: 85px;
-        width:400px;
-        height: 250px;
-    }
-}
-
 .home_s3{
     padding:$side_padding;
-    padding-top: 100px;
-    padding-bottom: 100px;
+    padding-top: 170px;
+    padding-bottom: 43.97px;
     @include flex_column;
     position: relative;
 }
@@ -38,7 +14,7 @@ $home_s3_shadow:#E4EBF0;
     position: absolute;
     left:0;
     bottom:0;
-    width:150px;
+    width:131px;
     z-index: -1;
 }
 
@@ -46,13 +22,34 @@ $home_s3_shadow:#E4EBF0;
     position: absolute;
     right:0;
     bottom:0;
-    width:150px;
+    width:131px;
     z-index: -1;
 }
 
+.home_s3_intro{
+    & > img{
+        width:403px;
+        height: 336px;
+    }
+    div{
+        width:641px;
+        p{
+            color:$home_section_title;
+            &:nth-child(1){
+                font-size: 30px;
+                font-weight: bold;
+                padding-bottom: 20px;
+            }
+            &:nth-child(2){
+                font-size: 18px;
+                line-height: 30px;
+            }
+        }
+    }
+}
+
 .home_s3_card_container{
-    padding-top: 60px;
-    @include between;
+    padding-top: 63.98px;
 }
 
 // ALL SECTION CARD WIDTH MUST BE THE SAME
@@ -108,16 +105,18 @@ $home_s3_shadow:#E4EBF0;
     }
     .home_s3_intro{
         padding-top: 0;
+        padding-bottom: 50px;
         @include flex_column;
         align-items: center;
-        img{
+        & > img{
             margin:0;
             object-fit: contain;
-            width:200px;
-            height:200px;
+            width:260px;
+            height:260px;
             order:1;
         }
         div{
+            width:100%;
             order:2;
             p{
                 text-align: center;

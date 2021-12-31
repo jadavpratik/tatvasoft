@@ -3,54 +3,46 @@ $home_s2_card_para:#565656;
 
 .home_s2{
     padding:$side_padding;
-    padding-top: 80px;
+    padding-top: 79px;
 }
 
 .home_s2_card_container{
-    padding-top: 80px;
-    @include between;
+    padding-top: 82.5px;
 }
 
 // ALL SECTION CARD WIDTH MUST BE THE SAME
 .home_s2_card{
-    border:2px solid white;
     width:$home_card_width;
-    @include v_center;
-    flex-direction: column;
-    div{
-        &:nth-child(1){
-            width: 250px;
-            height: 250px;
-            overflow: hidden;
-            img{
-                object-fit: contain;
-                transition: all 0.3s;
-                &:hover{
-                    transform: scale(1.1);
-                }
+    div:nth-child(1){//FOR BIG IMAGES...
+        overflow: hidden;
+        img{
+            object-fit: contain;
+            transition: all 0.3s;
+            &:hover{
+                transform: scale(1.1);
             }
         }
-        &:nth-child(2){
-            @include flex_column;
-            justify-content: space-between;
-            height:200px;
-            p{
-                &:nth-child(1){
-                    padding-top:32px;
-                    font-size: 30px;
-                    font-weight: bold;
-                    text-align: center;
-                    border:2px solid white;
-                    color:$home_s2_card_title;
-                }
-                &:nth-child(2){
-                    line-height: 24px;
-                    padding-top:20px;
-                    text-align: center;
-                    color:$home_s2_card_para;
-                }
-            }    
-        }
+    }
+    div:nth-child(2){
+        border:0.5px solid transparent;
+        @include flex_column;
+        justify-content: space-between;
+        p{
+            &:nth-child(1){
+                padding-top:32.5px;
+                font-size: 30px;
+                font-weight: bold;
+                text-align: center;
+                border:2px solid white;
+                color:$home_s2_card_title;
+            }
+            &:nth-child(2){
+                line-height: 24px;
+                padding-top:20px;
+                text-align: center;
+                color:$home_s2_card_para;
+            }
+        }    
     }
 }
 
@@ -68,16 +60,17 @@ $home_s2_card_para:#565656;
     .home_s2_card{
         width:100%;
         margin-bottom: 50px;
+        @include flex_column;
+        align-items: center;
         div{
             &:first-child{
-                width: 230px;
-                height: 230px;
+                width: 260px;
+                height: 260px;
             }
             &:nth-child(2){
                 height: auto;
             }
         }
     }
-
 }
 

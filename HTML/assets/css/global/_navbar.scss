@@ -1,5 +1,5 @@
 // ---------------NAVBAR_COLORS------------------
-$navbar_bg_opacity:#757575;
+$navbar_bg:#525252;
 $navbar_btn:#29626D;
 
 .navbar_btn_color{
@@ -14,7 +14,7 @@ $navbar_btn:#29626D;
     top:0;
     z-index: 10;
     transition: all 0.4s;
-    background-color:#525252;
+    background-color:rgba(82,82,82,0.8);
 }
 
 .logo{
@@ -42,16 +42,18 @@ $navbar_btn:#29626D;
         padding-left: 20px;
         padding-right: 20px;
         border-radius: 50px;
-        transition: all 0.5s;
+        transition: all 0.3s;
         &:hover{
-            border: 0.5px solid white;
+            border: 0.1px solid white;
+            background-color: white;
+            color: $navbar_btn;
         }
     }
 }
 
 .nav_focus_btn{
     border:0.5px solid white !important;
-    background-color: #29626D;
+    background-color: $navbar_btn;
 }
 
 .nav_btn{
@@ -71,21 +73,22 @@ $navbar_btn:#29626D;
 @media screen and (max-width:$responsive_max_width){
     .navbar{
         @include between;
-        position: absolute;
-        top:0;
         padding:$side_padding_r;
-        height:$navbar_height_r;
+        height: 64px !important;
     }
     .logo{
-        width:100px;
-        height:$navbar_height_r;
-    }
+        width:73px !important;
+        height: 54px !important;
+        padding-top: 6px;
+        padding-bottom: 4px;
+    }    
     .nav_menu{
         width:100%;
         height:100vh;
         padding:50px;
         @include flex_column;
-        background-color: $navbar_bg_opacity;
+        // background-color:rgba(82,82,82,0.8);
+        background-color: $navbar_bg;
         border-radius: 0;
         transition: all 0.8s;
         position: fixed;
