@@ -1,7 +1,10 @@
-@mixin section_title {
+$home_s_title:#4F4F4F;
+
+.home_section_title {
     font-size: 40px;
     font-weight: bold;
     text-align: center;
+    color: $home_s_title;
 }
 
 $home_card_width:350px;

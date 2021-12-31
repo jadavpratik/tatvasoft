@@ -4,6 +4,8 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>About</title>
+	<!-- FAVICON -->
+	<link rel="icon" href="./assets/img/global/favicon_img.png" sizes="16x16" type="image/png">	
 	<!-- CSS -->
 	<link rel="stylesheet" href="./assets/css/index.css">
 	<!-- FONT-AWESOME -->
@@ -13,33 +15,41 @@
 </head>
 <body>
 
-	<!-- --------------------------------------------------- -->
-						<!-- NAVBAR -->
-	<!-- --------------------------------------------------- -->
-	<nav class="navbar">
-	
-		<!-- LOGO -->
-		<div class="logo" style="height:64px;">
-			<a href=""><img  src="./assets/img/navbar/logo.png" alt=""></a>
-		</div>
-	
-		<!-- NAV_BTN_RESPONSIVE -->
-		<button class="nav_btn"><i class="fas fa-bars"></i></button>
-		
-		<!-- NAV_MENU -->
-		<div class="nav_menu">
-			<button class="nav_menu_close_btn"><i class="fas fa-times"></i></button>
-			<a class="rounded_btn navbar_btn_color" href="">Book now</a>
-			<a class="rounded_btn" href="">Prices & Services</a>
-			<a href="">Warranty</a>
-			<a href="">Blog</a>
-			<a href="">Contact</a>
-			<a class="rounded_btn navbar_btn_color" href="">Login</a>
-			<a class="rounded_btn navbar_btn_color" href="">Become a Helper</a>
-		</div>
-	</nav>
+<!-- --------------------------------------------------- -->
+					<!-- NAVBAR -->
+<!-- --------------------------------------------------- -->
+<nav class="navbar d_flex jc_between ai_center">
 
-	<script>
+	<!-- LOGO -->
+	<div class="logo">
+		<a href=""><img src="./assets/img/navbar/logo.png" alt=""></a>
+	</div>
+
+	<!-- NAV_BTN_RESPONSIVE -->
+	<button class="nav_btn"><i class="fas fa-bars"></i></button>
+	
+	<!-- NAV_MENU -->
+	<div class="nav_menu d_flex ai_center">
+		<button class="nav_menu_close_btn"><i class="fas fa-times"></i></button>
+		<a class="nav_focus_btn" href="">Book a Cleaner</a>
+		<a href="">Prices</a>
+		<a href="">Our Gurantee</a>
+		<a href="">Blog</a>
+		<a href="">Contact US</a>
+		<a class="nav_focus_btn" href="">Login</a>
+		<a class="nav_focus_btn" href="">Become a Helper</a>
+		<div class="dropdown" style="margin-left:8px;">
+			<button class="dropdown_btn"><img src="./assets/img/navbar/flag.png" alt=""><i class="fas fa-angle-down"></i></button>
+			<div class="dropdown_content d_none">
+				<a href="#"><img src="./assets/img/navbar/flag.png" alt="">&nbsp;Link 1</a>
+				<a href="#"><img src="./assets/img/navbar/flag.png" alt="">&nbsp;Link 2</a>
+				<a href="#"><img src="./assets/img/navbar/flag.png" alt="">&nbsp;Link 3</a>
+			</div>
+		</div><!-- END DROPDOWN -->
+	</div><!-- END NAV_MENU -->
+</nav><!-- END NAVBAR -->
+
+<script>
 		var show = 0;
 		const nav_menu = $('.nav_menu')[0];
 

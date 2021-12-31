@@ -50,13 +50,6 @@ $home_s3_shadow:#E4EBF0;
     z-index: -1;
 }
 
-
-.home_s3_title{
-    @include section_title;
-    color:$home_s3_title;
-}
-
-
 .home_s3_card_container{
     padding-top: 60px;
     @include between;

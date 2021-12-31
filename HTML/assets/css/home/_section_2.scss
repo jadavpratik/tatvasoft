@@ -1,16 +1,9 @@
-$home_s2_title:#4F4F4F;
 $home_s2_card_title:#565656;
 $home_s2_card_para:#565656;
 
 .home_s2{
     padding:$side_padding;
     padding-top: 80px;
-    @include flex_column;
-}
-
-.home_s2_title{
-    @include section_title;
-    color:$home_s2_title;
 }
 
 .home_s2_card_container{
@@ -24,30 +17,40 @@ $home_s2_card_para:#565656;
     width:$home_card_width;
     @include v_center;
     flex-direction: column;
-    img{
-        width: 250px;
-        height: 250px;
-    }
     div{
-        @include flex_column;
-        justify-content: space-between;
-        height:200px;
-        p{
-            &:nth-child(1){
-                padding-top:32px;
-                font-size: 30px;
-                font-weight: bold;
-                text-align: center;
-                border:2px solid white;
-                color:$home_s2_card_title;
+        &:nth-child(1){
+            width: 250px;
+            height: 250px;
+            overflow: hidden;
+            img{
+                object-fit: contain;
+                transition: all 0.3s;
+                &:hover{
+                    transform: scale(1.1);
+                }
             }
-            &:nth-child(2){
-                line-height: 24px;
-                padding-top:20px;
-                text-align: center;
-                color:$home_s2_card_para;
-            }
-        }    
+        }
+        &:nth-child(2){
+            @include flex_column;
+            justify-content: space-between;
+            height:200px;
+            p{
+                &:nth-child(1){
+                    padding-top:32px;
+                    font-size: 30px;
+                    font-weight: bold;
+                    text-align: center;
+                    border:2px solid white;
+                    color:$home_s2_card_title;
+                }
+                &:nth-child(2){
+                    line-height: 24px;
+                    padding-top:20px;
+                    text-align: center;
+                    color:$home_s2_card_para;
+                }
+            }    
+        }
     }
 }
 
@@ -65,9 +68,14 @@ $home_s2_card_para:#565656;
     .home_s2_card{
         width:100%;
         margin-bottom: 50px;
-        img{
-            width: 150px;
-            height: 150px;
+        div{
+            &:first-child{
+                width: 230px;
+                height: 230px;
+            }
+            &:nth-child(2){
+                height: auto;
+            }
         }
     }
 

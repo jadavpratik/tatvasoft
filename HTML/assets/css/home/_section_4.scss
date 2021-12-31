@@ -11,10 +11,6 @@ $home_s4_card_left_border:#006072;
     padding-bottom:$last_section_bottom_padding;
 }
 
-.home_s4_title{
-    @include section_title;
-}
-
 .home_s4_card_container{
     padding-top: 56px;
     display: flex;
@@ -27,7 +23,7 @@ $home_s4_card_left_border:#006072;
     height: 370px;
     padding:38px 35px;
     background-color: white;
-    border-left: 4px solid $home_s4_card_left_border;
+    border-left: 3px solid $home_s4_card_left_border;
     border-radius: 4px;
     position: relative;
     @include flex_column;
