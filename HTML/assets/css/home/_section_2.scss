@@ -4,15 +4,23 @@ $home_s2_card_para:#565656;
 .home_s2{
     padding:$side_padding;
     padding-top: 79px;
+    display: flex;
+    flex-direction: column;
 }
 
 .home_s2_card_container{
     padding-top: 82.5px;
+    display: flex;
+    justify-content: center;
 }
 
 // ALL SECTION CARD WIDTH MUST BE THE SAME
 .home_s2_card{
     width:$home_card_width;
+    margin:0 35px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     div:nth-child(1){//FOR BIG IMAGES...
         overflow: hidden;
         img{
@@ -25,8 +33,9 @@ $home_s2_card_para:#565656;
     }
     div:nth-child(2){
         border:0.5px solid transparent;
-        @include flex_column;
-        justify-content: space-between;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
         p{
             &:nth-child(1){
                 padding-top:32.5px;
@@ -46,31 +55,4 @@ $home_s2_card_para:#565656;
     }
 }
 
-
-@media screen and (max-width:$responsive_max_width){
-    .home_s2{
-        height: auto;
-        padding:$side_padding_r;
-        padding-top:50px;
-    }
-    .home_s2_card_container{
-        flex-direction: column;
-        align-items: center;
-    }
-    .home_s2_card{
-        width:100%;
-        margin-bottom: 50px;
-        @include flex_column;
-        align-items: center;
-        div{
-            &:first-child{
-                width: 260px;
-                height: 260px;
-            }
-            &:nth-child(2){
-                height: auto;
-            }
-        }
-    }
-}
 

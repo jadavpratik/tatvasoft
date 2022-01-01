@@ -1,14 +1,15 @@
 $home_section_title:#4F4F4F;
 $home_card_width:320px;
 
-@import "./section_1";
-@import "./section_2";
-@import "./section_3";
-@import "./section_4";
-
 .home_section_title {
     font-size: 40px;
     font-weight: bold;
     text-align: center;
     color: $home_section_title;
 }
+
+@import "./section_1";
+@import "./section_2";
+@import "./section_3";
+@import "./section_4";
+

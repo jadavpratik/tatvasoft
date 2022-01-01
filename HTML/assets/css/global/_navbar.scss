@@ -1,10 +1,8 @@
 // ---------------NAVBAR_COLORS------------------
 $navbar_bg:#525252;
 $navbar_btn:#29626D;
-
-.navbar_btn_color{
-    background-color:$navbar_btn;
-}
+$footer_bg:#111111;
+$navbar_btn_border:#ffffff80;
 
 .navbar{
     width:100%;
@@ -12,9 +10,12 @@ $navbar_btn:#29626D;
     padding:0 15px;
     position:fixed;
     top:0;
-    z-index: 10;
+    z-index: $navbar_z_index;
     transition: all 0.4s;
     background-color:rgba(82,82,82,0.8);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .logo{
@@ -32,98 +33,46 @@ $navbar_btn:#29626D;
 }
 
 .nav_menu{
+    display: flex;
+    align-items: center;
     transition: all 0.4s;
     & > a{
         height: 40px;
         line-height: 40px;
         color:white;
         margin:0 5px;
+        padding:0 20px;
         border: 0.5px solid transparent;
-        padding-left: 20px;
-        padding-right: 20px;
         border-radius: 50px;
         transition: all 0.3s;
         &:hover{
-            border: 0.1px solid white;
-            background-color: white;
-            color: $navbar_btn;
+            border: 0.5px solid $navbar_btn_border;
         }
     }
 }
 
-.nav_focus_btn{
-    border:0.5px solid white !important;
-    background-color: $navbar_btn;
+.navbar_focus_btn{
+    border:0.5px solid $navbar_btn_border !important;
+    &:hover{
+        border: 0.5px solid $navbar_btn_border;
+        background-color: white;
+        color: $navbar_btn;
+    }
 }
 
-.nav_btn{
+.navbar_colored_btn{
+    background-color:$navbar_btn;
+}
+
+
+.nav_menu_btn{
     display: none;
     background-color: transparent;
     border:0;
+    z-index: $nav_menu_btn_z_index;
     i{
         font-size: 20px;
         color:white;
     }
 }
-
-.nav_menu_close_btn{
-    display: none;
-}
-
-@media screen and (max-width:$responsive_max_width){
-    .navbar{
-        @include between;
-        padding:$side_padding_r;
-        height: 64px !important;
-    }
-    .logo{
-        width:73px !important;
-        height: 54px !important;
-        padding-top: 6px;
-        padding-bottom: 4px;
-    }    
-    .nav_menu{
-        width:100%;
-        height:100vh;
-        padding:50px;
-        @include flex_column;
-        // background-color:rgba(82,82,82,0.8);
-        background-color: $navbar_bg;
-        border-radius: 0;
-        transition: all 0.8s;
-        position: fixed;
-        top:0px;
-        right:-3000px;
-        overflow-y: auto;
-        & > a{
-            width: 100%;
-            margin-top: 5px;
-            margin-bottom: 5px;
-            padding:0;
-            border:0;
-            background-color:transparent;
-            text-transform: uppercase;
-            font-size: 14px;
-            font-weight: 500;
-            @include h_center;
-            text-align: center;
-        }
-    }
-    .nav_menu_close_btn{
-        display: block;
-        position: absolute;
-        right:20px;
-        top:20px;
-        background-color: transparent;
-        border:0;
-        i{
-            color:white;
-            font-size:20px;
-        }
-    }
-    .nav_btn{
-        display:block;
-    }    
-}
-
 

@@ -12,6 +12,8 @@ $home_s4_card_left_border:#006072;
 }
 
 .home_s4_card_container{
+    display: flex;
+    justify-content: center;
     padding-top: 56px;
 }
 
@@ -20,11 +22,13 @@ $home_s4_card_left_border:#006072;
     width: $home_card_width;
     height: 370px;
     padding:38px 35px;
+    margin:0 22.5px;
     background-color: white;
     border-left: 3px solid $home_s4_card_left_border;
     border-radius: 4px;
     position: relative;
-    @include flex_column;
+    display: flex;
+    flex-direction: column;
     box-shadow: 0px 0px 30px #E4EBF0;       
     & > img{// MESSAGE ICON
         width:30px;
@@ -34,7 +38,8 @@ $home_s4_card_left_border:#006072;
         top:20px;
     }
     .home_s4_profile{//PERSON NAME IMAGE
-        @include v_center;
+        display: flex;
+        align-items: center;
         img{
             width:70px;
             height: 70px;
@@ -67,23 +72,5 @@ $home_s4_card_left_border:#006072;
         img{
             padding-left: 5px;
         }
-    }
-}
-
-@media screen and (max-width:$responsive_max_width) {
-    .home_s4{
-        height:100%;
-        width:100%;
-        padding:$side_padding_r;
-        padding-top: 50px;
-    }
-    .home_s4_card_container{
-        flex-direction: column;
-        align-items: center;
-    }
-    .home_s4_card{
-        margin:30px 0;
-        width:100%;
-        height: auto;
     }
 }

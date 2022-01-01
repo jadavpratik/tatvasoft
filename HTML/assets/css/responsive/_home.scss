@@ -1,0 +1,189 @@
+
+// @media screen and (max-width:1200px){
+//     .home_s1{
+//         height: auto;
+//         padding :0 50px;
+//     }
+//     .home_s1_bg{
+//         height: 100%;
+//         object-fit: cover;
+//     }
+//     .home_s1_intro_card{
+//         width:100%;
+//         padding:0;
+//         padding-top:$navbar_height + 50px;
+//         p{
+//             text-align: center;
+//         }
+//         ul li{
+//             font-size: 14px;
+//             text-align: center;
+//         }
+//     }
+//     .home_s1_main_btn{
+//         margin: 50px auto;
+//     }
+//     .home_s1_card_container{
+//         margin-top: 20px;
+//         flex-wrap: wrap;
+//         & > img{// FOR CURVY ARROW...
+//             display: none;
+//         }
+//     }
+//     .home_s1_card{
+//         width:150px;
+//         height:130px;
+//         margin:10px 0px;
+//         p{
+//             font-size: 14px;
+//             text-align: center;
+//         }
+//     }
+//     .home_s1_down_btn{
+//         margin:20px;
+//     }
+// }
+
+// @media screen and (max-width:1200px){
+//     .home_s2{
+//         height: auto;
+//         padding:0 50px;
+//         padding-top:50px;
+//     }
+//     .home_s2_card_container{
+//         display: flex;
+//         justify-content: space-between;
+//     }
+//     .home_s2_card{
+//         margin:0;
+//         margin-bottom: 50px;
+//     }
+// }
+
+// @media screen and (max-width:1200px) {
+//     .home_s3{
+//         height: auto;
+//         padding:0 50px;
+//         padding-top: 50px;
+//         padding-bottom: 50px;
+//     }
+//     .home_s3_bg_left,
+//     .home_s3_bg_right{
+//         display: none;
+//     }
+//     .home_s3_intro{
+//         padding-top: 0;
+//         padding-bottom: 50px;
+//         & > img{
+//             margin:0;
+//             object-fit: contain;
+//         }
+//         div{
+//             width:100%;
+//             margin-right: 50px;
+//         }
+//     }
+//     .home_s3_card_container{
+//         display: flex;
+//         justify-content: space-between;
+//     }
+//     .home_s3_card{
+//         margin:0;
+//     }
+// }
+
+// @media screen and (max-width:1200px) {
+//     .home_s4{
+//         height:100%;
+//         padding:0 50px;
+//         padding-top: 50px;
+//         padding-bottom: $last_section_bottom_padding;
+//     }
+//     .home_s4_card_container{
+//         display: flex;
+//         justify-content:space-between;
+//     }
+//     .home_s4_card{
+//         margin:30px 0;
+//         height: auto;
+//     }
+// }
+
+// // ------------------------RESPONSIVE_BELOW_1200px--------------------------
+// @media screen and (max-width:1140px) {
+//     .home_s2_card, 
+//     .home_s3_card, 
+//     .home_s4_card{
+//         width:310px;
+//         overflow-x: hidden;
+//     }
+//     .home_s2_card{
+//         div:nth-child(1){
+//             width:280px;
+//             height: 280px;
+//         }
+//     }
+// }
+
+// @media screen and (max-width:1100px) {
+//     .home_s2_card, 
+//     .home_s3_card, 
+//     .home_s4_card{
+//         width:290px;
+//     }
+// }
+
+// @media screen and (max-width:1050px) {
+//     .home_s2_card_container, 
+//     .home_s3_card_container, 
+//     .home_s4_card_container{
+//         display: flex;
+//         justify-content: center;
+//         flex-wrap: wrap;
+//     }
+//     .home_s3_intro{
+//         display: flex;
+//         flex-direction: column;
+//         & > img{
+//             order:1;
+//         }
+//         div{
+//             order:2;
+//             margin:0;
+//             padding-top: 25px;
+//             p{
+//                 text-align: center;
+//             }
+//         }
+//     }
+// }
+
+// @media screen and (max-width:992px){
+//     .home_s4{
+//         padding-bottom: $last_section_bottom_padding;
+//     }
+// }
+
+// @media screen and (max-width:600px) {
+//     .home_s2, 
+//     .home_s3, 
+//     .home_s4{
+//         padding:0 20px;
+//         padding-top: 50px;
+//         padding-bottom:50px;
+//     }
+//     .home_s4{
+//         padding-bottom: $last_section_bottom_padding;
+//     }
+//     .home_s2_card, 
+//     .home_s3_card, 
+//     .home_s4_card{
+//         width:100%;
+//         margin:25px 0;
+//     }    
+//     .home_s3_intro{
+//         & > img{
+//             width:100%;
+//         }
+//     }
+// }

@@ -2,6 +2,7 @@
 $footer_bg:#111111;
 $footer_orange:#FF7B6D;
 $footer_up_btn:#525252;
+$footer_up_btn_hover:#29626D;
 $footer_form_title:#353548;
 $footer_form_border:#565656;
 $footer_copyright_text:#9BA0A3;
@@ -16,41 +17,46 @@ footer{
     height: $footer_height;
     position: absolute;
     bottom:0;
-    @include between;
-    flex-direction: column
 }
 
 .footer_transparent_div{
-    @include center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     padding:50px 100px;
 }
 
-.go_top_btn{
+@mixin fixed_btn{
     width:48px;
     height: 48px;
     border:0;
     border-radius: 50%;
-    color:white;
+    position: fixed;
+    bottom:70px;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.go_top_btn{
+    @include fixed_btn;
     background-color: $footer_up_btn;
-    position: absolute;
-    top:70px;
     left:100px;
+    &:hover{
+        background-color: $footer_up_btn_hover;
+    }
 }
 
 .chat{
-    width:48px;
-    height: 48px;
-    border-radius: 50%;
-    overflow: hidden;
-    background-color: transparent;
-    border:0;
-    position: absolute;
+    @include fixed_btn;
     right:100px;
-    top:70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     img{
         width:100%;
         height: 100%;
-        object-fit: contain;
+        object-fit: cover;
+        transform: scale(1.1);
     }
 }
 
@@ -85,13 +91,16 @@ footer{
 }
 
 .footer_first_div{
-    @include flex_column;
+    display: flex;
+    flex-direction: column;
     padding:0 100px;
     padding-top:30px;
     padding-bottom: 20px;
     background-color: $footer_bg;
     & > div:first-child{
-        @include between_v_center;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
     }
 }
 
@@ -105,7 +114,9 @@ footer{
 }        
 
 .footer_links{
-    @include center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     a{
         color:$footer_links_color;
         margin: 0 14px;
@@ -127,7 +138,9 @@ footer{
 }
 
 .social_media_links{
-    @include center;   
+    display: flex;
+    align-items: center;
+    justify-content: center;
     a{
         color:white;
         margin: 0 10px;
@@ -141,7 +154,9 @@ footer{
     position:fixed;
     bottom:0;
     left:0;
-    @include center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     p{
         text-align: center;
         color:white;
@@ -165,81 +180,3 @@ footer{
     }
 }
 
-@media screen and (max-width:$responsive_max_width) {
-    footer{
-        width:100%;
-        height: auto;
-        position: relative;
-    }
-    .go_top_btn{
-        left:20px;
-        top:20px;
-    }
-    .chat{
-        right:20px;
-        top:20px;
-    }
-    .footer_transparent_div{
-        padding:$side_padding_r;
-        padding-top: 100px;
-        padding-bottom:50px;
-    }
-    .get_our_newsletter{            
-        width:100%;
-        div{
-            display: flex;
-            @include h_center;
-        }
-    }
-    .footer_first_div{
-        padding:$side_padding_r;
-        padding-top: 20px;
-        & > div:first-child{
-            flex-direction: column;
-            div{
-                margin:10px 0;
-            }
-        }
-    }
-    .copyright_section{
-        padding-bottom: 20px;
-    }
-    .footer_logo{
-        overflow: hidden;
-        @include center;
-        img{
-            width:100%;
-            height:100%;
-            object-fit: contain;
-        }
-    }
-    .footer_links{
-        @include flex_column;
-        align-items: center;
-        margin-left: 10px;
-        a{
-            font-size: 12px;
-            margin:4px 0;
-        }
-    }
-    .cookie{
-        width:100%;
-        padding:$side_padding_r;
-        padding-top: 15px;
-        padding-bottom:50px;
-        p{
-            line-height: 18px;
-        }
-        button{
-            right:0;
-            left:50%;
-            transform: translateX(-50%);
-            bottom:15px;
-            margin:0;
-            width:60px;
-            height:30px;
-            cursor: pointer;
-            @include center;
-        }
-    }
-}

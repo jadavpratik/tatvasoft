@@ -18,7 +18,7 @@
 <!-- --------------------------------------------------- -->
 					<!-- NAVBAR -->
 <!-- --------------------------------------------------- -->
-<nav class="navbar d_flex jc_between ai_center" style="background-color:transparent;height:130px">
+<nav class="navbar" style="background-color:transparent;height:130px">
 
 	<!-- LOGO -->
 	<div class="logo" style="width:175px; height:130px;">
@@ -26,80 +26,24 @@
 	</div>
 
 	<!-- NAV_BTN_RESPONSIVE -->
-	<button class="nav_btn"><i class="fas fa-bars"></i></button>
+	<button class="nav_menu_btn"><i class="fas fa-bars"></i></button>
 	
 	<!-- NAV_MENU -->
-	<div class="nav_menu d_flex ai_center">
-		<button class="nav_menu_close_btn"><i class="fas fa-times"></i></button>
-		<a class="nav_focus_btn" href="">Book a Cleaner</a>
+	<div class="nav_menu">
+		<a class="navbar_focus_btn" href="">Book a Cleaner</a>
 		<a href="">Prices</a>
 		<a href="">Our Gurantee</a>
 		<a href="">Blog</a>
 		<a href="">Contact US</a>
-		<a class="nav_focus_btn" href="">Login</a>
-		<a class="nav_focus_btn" href="">Become a Helper</a>
-		<div class="dropdown" style="margin-left:8px;">
-			<button class="dropdown_btn"><img src="./assets/img/navbar/flag.png" alt=""><i class="fas fa-angle-down"></i></button>
-			<div class="dropdown_content d_none">
-				<a href="#"><img src="./assets/img/navbar/flag.png" alt="">&nbsp;Link 1</a>
-				<a href="#"><img src="./assets/img/navbar/flag.png" alt="">&nbsp;Link 2</a>
-				<a href="#"><img src="./assets/img/navbar/flag.png" alt="">&nbsp;Link 3</a>
-			</div>
-		</div><!-- END DROPDOWN -->
+		<a class="navbar_focus_btn" href="">Login</a>
+		<a class="navbar_focus_btn" href="">Become a Helper</a>
 	</div><!-- END NAV_MENU -->
 </nav><!-- END NAVBAR -->
-
-<script>
-
-	window.onscroll = function() {scrollFunction()};
-
-	function scrollFunction() {
-		const navbar = document.getElementsByClassName('navbar')[0];			
-		const logo = document.getElementsByClassName('logo')[0];
-		if (document.documentElement.scrollTop > 150) {
-			navbar.style.height = '64px';
-			navbar.style.backgroundColor = 'rgba(82,82,82,0.8)';
-			logo.style.width = '73px';
-			logo.style.height = '54px';
-			logo.style.paddingTop = '6px';
-			logo.style.paddingBottom = '4px';
-		} 
-		else {
-			navbar.style.backgroundColor = 'transparent';
-			navbar.style.height = '130px';
-			logo.style.width = '175px';
-			logo.style.height = '130px';
-		}
-	}
-	// DROPDOWN
-	$('.dropdown_btn').click(()=>{
-		$('.dropdown_content').toggleClass('d_none');
-	});
-
-	// RESPONSIVE NAVBAR
-	var show = 0;
-	const nav_menu = $('.nav_menu')[0];
-
-	$('.nav_btn').click(()=>{
-		if(show == 0){
-			nav_menu.style.right = 0;
-			show = 1;
-		}
-	});
-
-	$('.nav_menu_close_btn').click(()=>{
-		if(show == 1){
-			nav_menu.style.right = '-3000px';
-			show = 0;
-		}
-	})
-</script>
-
 
 <!-- --------------------------------------------------- -->
 					<!-- SECTION_1 -->
 <!-- --------------------------------------------------- -->
-<div class="home_s1 d_flex_column">
+<div class="home_s1">
 
 	<!-- BACKGROUND_IMG -->
 	<img class="home_s1_bg" src="./assets/img/home/section_1/langing_page.png" alt="">
@@ -118,30 +62,30 @@
 	<a class="home_s1_main_btn" href="">Let's Book a Cleaner</a>
 
 	<!-- SECTION_1_CARD_CONTAINER -->
-	<div class="home_s1_card_container d_flex jc_center ai_start">
+	<div class="home_s1_card_container">
 	
-		<div class="home_s1_card d_flex_column ai_center">
+		<div class="home_s1_card">
 			<img src="./assets/img/home/section_1/step_1.png" alt="">
 			<p>Enter your postcode</p>
 		</div>
 	
 		<img src="./assets/img/home/section_1/up_curve.png" alt="">
 	
-		<div class="home_s1_card d_flex_column ai_center">
+		<div class="home_s1_card">
 			<img src="./assets/img/home/section_1/step_2.png" alt="">
 			<p>Select your plan</p>
 		</div>
 	
 		<img src="./assets/img/home/section_1/down_curve.png" alt="">
 	
-		<div class="home_s1_card d_flex_column ai_center">
+		<div class="home_s1_card">
 			<img src="./assets/img/home/section_1/step_3.png" alt="">
 			<p>Pay securely online</p>
 		</div>
 	
 		<img src="./assets/img/home/section_1/up_curve.png" alt="">
 	
-		<div class="home_s1_card d_flex_column ai_center">
+		<div class="home_s1_card">
 			<img src="./assets/img/home/section_1/step_4.png" alt="">
 			<p>Enjoy amazing service</p>
 		</div>
@@ -149,7 +93,7 @@
 	</div><!-- END_SECTION_1_CARD_CONTAINER -->
 
 	<!-- DOWN_BTN -->
-	<button class="home_s1_down_btn"><img src="./assets/img/home/section_1/down_btn.png" alt=""></button>
+	<button class="home_s1_down_btn circle" target="#home_s2"><img src="./assets/img/home/section_1/down_btn.png" alt=""></button>
 
 </div><!-- END_SECTION_1 -->
 
@@ -157,13 +101,13 @@
 <!-- --------------------------------------------------- -->
 					<!-- SECTION_2 -->
 <!-- --------------------------------------------------- -->
-<div class="home_s2 d_flex_column">
+<div class="home_s2" id="home_s2">
 
 	<!-- SECTION_2_TITLE -->
 	<p class="home_section_title">Why Helperland</p>
 
 	<!-- SECTION_2_CARD_CONTAINER -->
-	<div class="home_s2_card_container d_flex jc_between">
+	<div class="home_s2_card_container">
 		<div class="home_s2_card">
 			<div class="circle">
 				<img src="./assets/img/home/section_2/helper.jpg" alt="">
@@ -205,7 +149,7 @@
 	<img class="home_s3_bg_right" src="./assets/img/home/section_3/bg_right.png" alt="">
 
 	<!-- SECTION_3_INTRO -->
-	<div class="home_s3_intro d_flex ai_center jc_between">
+	<div class="home_s3_intro">
 		<div>
 			<p>Lorem ipsum dolor sit amet, consectetur</p>
 			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec nisi sapien, suscipit ut accumsan vitae, pulvinar ac libero. Aliquam erat volutpat. Nullam quis ex odio. Nam bibendum cursus purus, vel efficitur urna finibus vitae. Nullam finibus aliquet pharetra. Morbi in sem dolor. Integer pretium hendrerit ante quis vehicula. Mauris consequat ornare enim, sed lobortis quam ultrices sed.</p>	
@@ -217,7 +161,7 @@
 	<p class="home_section_title">Our Blog</p>
 
 	<!-- SECTION_3_CARD_CONTAINER -->
-	<div class="home_s3_card_container d_flex jc_between">
+	<div class="home_s3_card_container">
 		<div class="home_s3_card">
 			<img src="./assets/img/home/section_3/blog_1.png" alt="">
 			<div>
@@ -258,7 +202,7 @@
 	<p class="home_section_title">What Our Customers Say</p>
 
 	<!-- SECTION_4_CARD_CONTAINER -->
-	<div class="home_s4_card_container d_flex jc_between"> 
+	<div class="home_s4_card_container"> 
 
 		<div class="home_s4_card">
 			<img src="./assets/img/home/section_4/message.png" alt="">
@@ -352,26 +296,16 @@
 		</div>
 
 	</div><!-- END_FOOTER_FIRST_DIV -->
-	
-			
+				
 	<!-- PRIVACY_POLICY -->
 	<div class="cookie">
 		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut feugiat nunc libero, ac malesuada ligula aliquam ac. <a href="">Privacy Policy</a></p>
 		<button id="cookie_submit_btn">OK!</button>
 	</div>
-
 </footer>
 
-
-<script>
-	$('.go_top_btn').click(()=>{
-		$("html, body").animate({scrollTop:0},1500);
-	});
-	$('#cookie_submit_btn').click(()=>{
-		$('.cookie').hide();
-	});
-	
-</script>
+<script src="./assets/js/navbar.js"></script>
+<script src="./assets/js/footer.js"></script>
 
 </body>
 </html>

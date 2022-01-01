@@ -1,14 +1,16 @@
-// ---------------SIDE_PADDING_FROM_DISPLAY------------------
-$side_padding:0 100px;
-$side_padding_r:0 20px;
-
 // ---------------NAVBAR_HEIGHT------------------
-// HOME PAGE NAVBAR HEIGHT:AUTO;
-// OTHER PAGE NAVBAR HEIGHT:64PX; AND ALSO LOGO HEIGHT 64PX
-$navbar_height:64px;
+$navbar_height:64px;// HOME PAGE NAVBAR HEIGHT:AUTO;
 
 // ---------------FOOTER_HEIGHT------------------
 $footer_height:350px;
 $last_section_bottom_padding: 50px + $footer_height;
 
+// ---------------SIDE_PADDING------------------
+$side_padding:0 100px;
+$side_padding_r:0 50px;
+
 $responsive_max_width:1200px;
+
+// ------------------Z_INDEX-------------------
+$navbar_z_index:1;
+$nav_menu_btn_z_index:2;

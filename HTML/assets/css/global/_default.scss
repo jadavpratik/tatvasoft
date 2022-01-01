@@ -7,10 +7,6 @@
     font-family: 'Roboto', sans-serif;
 }
 
-a{
-    text-decoration: none !important;
-}
-
 body{
     width:100%;
     min-height: 100vh;
@@ -19,6 +15,10 @@ body{
     overflow-x: hidden;
     position: relative;
     scroll-behavior: smooth;
+}
+
+a{
+    text-decoration: none !important;
 }
 
 input, textarea, select, button{
