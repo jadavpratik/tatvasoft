@@ -61,8 +61,9 @@ $home_s3_shadow:#E4EBF0;
 // ALL SECTION CARD WIDTH MUST BE THE SAME
 .home_s3_card{
     width: $home_card_width;
-    height: 366px;
-    margin:0 22.5px;
+    // height: 366px; FIXED HEIGHT PROBLEM IN RESPONSIVE...
+    margin:$home_card_margin;
+    padding-bottom: 26px;
     background-color: white;
     box-shadow: 0px 0px 30px $home_s3_shadow;       
     overflow: hidden;

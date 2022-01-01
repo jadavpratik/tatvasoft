@@ -2,7 +2,6 @@ $home_s2_card_title:#565656;
 $home_s2_card_para:#565656;
 
 .home_s2{
-    padding:$side_padding;
     padding-top: 79px;
     display: flex;
     flex-direction: column;
@@ -10,6 +9,7 @@ $home_s2_card_para:#565656;
 
 .home_s2_card_container{
     padding-top: 82.5px;
+    width:100%;
     display: flex;
     justify-content: center;
 }
@@ -17,7 +17,7 @@ $home_s2_card_para:#565656;
 // ALL SECTION CARD WIDTH MUST BE THE SAME
 .home_s2_card{
     width:$home_card_width;
-    margin:0 35px;
+    margin:$home_card_margin;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -54,5 +54,3 @@ $home_s2_card_para:#565656;
         }    
     }
 }
-
-

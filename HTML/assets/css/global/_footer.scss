@@ -1,63 +1,25 @@
 // ---------------FOOTER_COLORS------------------
 $footer_bg:#111111;
 $footer_orange:#FF7B6D;
-$footer_up_btn:#525252;
-$footer_up_btn_hover:#29626D;
 $footer_form_title:#353548;
 $footer_form_border:#565656;
 $footer_copyright_text:#9BA0A3;
 $footer_links_color:#F1F1F1;
-
-$cookie_bg:#292929;
-$cookie_btn:#EED507;
-$privacy_policy_text:#6EABEF;
 
 footer{
     width:100%;
     height: $footer_height;
     position: absolute;
     bottom:0;
+    overflow: hidden;
 }
 
 .footer_transparent_div{
     display: flex;
     justify-content: center;
     align-items: center;
-    padding:50px 100px;
-}
-
-@mixin fixed_btn{
-    width:48px;
-    height: 48px;
-    border:0;
-    border-radius: 50%;
-    position: fixed;
-    bottom:70px;
-    cursor: pointer;
-    overflow: hidden;
-}
-
-.go_top_btn{
-    @include fixed_btn;
-    background-color: $footer_up_btn;
-    left:100px;
-    &:hover{
-        background-color: $footer_up_btn_hover;
-    }
-}
-
-.chat{
-    @include fixed_btn;
-    right:100px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    img{
-        width:100%;
-        height: 100%;
-        object-fit: cover;
-        transform: scale(1.1);
-    }
+    padding-bottom: 53px;
+    padding-top: 9px;
 }
 
 .get_our_newsletter{
@@ -90,7 +52,7 @@ footer{
     }
 }
 
-.footer_first_div{
+.footer_main_div{
     display: flex;
     flex-direction: column;
     padding:0 100px;
@@ -144,39 +106,6 @@ footer{
     a{
         color:white;
         margin: 0 10px;
-    }
-}
-
-.cookie{
-    width:100%;
-    padding:20px;
-    background-color: $cookie_bg;
-    position:fixed;
-    bottom:0;
-    left:0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    p{
-        text-align: center;
-        color:white;
-        font-size: 14px;
-        a{
-            color:$privacy_policy_text;
-        }
-    }
-    button{
-        margin-left: 100px;
-        width:100px;
-        height: 40px;
-        border-radius: 20px;
-        background-color: $cookie_btn;
-        padding:10px;
-        font-weight: bold;
-        border:0;
-        position: absolute;
-        right: 30px;
-        cursor: pointer;
     }
 }
 

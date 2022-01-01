@@ -1,18 +1,7 @@
-@media screen and (max-width:992px) {
-    .go_top_btn{
-        left:40px;
-        bottom:100px;
-    }
-    .chat{
-        right:40px;
-        bottom:100px;
-    }
-    .footer_transparent_div{
-        padding-top: 100px;
-        padding-bottom:50px;
-    }
-    .copyright_section{
-        padding-bottom: 20px;
+@media screen and (max-width:1150px) {
+    .footer_main_div{
+        padding-left: 50px;
+        padding-right: 50px;
     }
     .footer_logo{
         overflow: hidden;
@@ -25,35 +14,76 @@
             object-fit: contain;
         }
     }
-    .footer_links{
-        display: flex;
+    .copyright_section{
+        padding-bottom: 20px;
+    }
+    // .cookie{
+    //     width:100%;
+    //     padding:$side_padding_r;
+    //     padding-top: 15px;
+    //     padding-bottom:50px;
+    //     p{
+    //         line-height: 18px;
+    //     }
+    //     button{
+    //         right:0;
+    //         left:50%;
+    //         transform: translateX(-50%);
+    //         bottom:15px;
+    //         margin:0;
+    //         width:60px;
+    //         height:30px;
+    //         cursor: pointer;
+    //         display: flex;
+    //         justify-content: center;
+    //         align-items: center;
+    //     }
+    // }
+}
+
+@media screen and (max-width:992px) {
+    footer{
+        height: auto;
+        position: relative;
+    }
+    .footer_transparent_div{
+        padding-top:50px;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    .footer_main_div{
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    .footer_main_div > div:first-child{
         flex-direction: column;
-        margin-left: 10px;
+    }
+    .footer_links{
+        padding:20px 0 40px;
+    }
+}
+
+@media screen and (max-width:709px) {
+    .footer_links{
+        flex-direction: column;
+        padding-bottom: 20px;
         a{
-            font-size: 12px;
-            margin:4px 0;
+            margin-bottom: 10px;
         }
     }
-    .cookie{
+}
+
+@media screen and (max-width:388px) {
+    .get_our_newsletter{
         width:100%;
-        padding:$side_padding_r;
-        padding-top: 15px;
-        padding-bottom:50px;
-        p{
-            line-height: 18px;
-        }
-        button{
-            right:0;
-            left:50%;
-            transform: translateX(-50%);
-            bottom:15px;
-            margin:0;
-            width:60px;
-            height:30px;
-            cursor: pointer;
+        div{
             display: flex;
-            justify-content: center;
-            align-items: center;
+            input{
+                width:100%;
+            }
+            button{
+                width:100px;
+            }
         }
     }
 }

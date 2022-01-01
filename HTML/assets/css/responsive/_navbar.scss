@@ -1,7 +1,7 @@
-@media screen and (max-width:1200px){
+@media screen and (max-width:1150px){
     .navbar{
         height: 64px !important;
-        padding:0 20px;
+        padding:0 50px;
         display: flex;
         justify-content: space-between;
     }
@@ -43,4 +43,8 @@
     }    
 }
 
-
+@media screen and (max-width:709px) {
+    .navbar{
+        padding:0 20px;
+    }
+}
