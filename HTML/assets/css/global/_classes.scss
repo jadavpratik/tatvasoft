@@ -12,6 +12,7 @@ $title_with_icon_border:#CCCCCC;
 
 .banner{
     margin-top:$navbar_height;
+    width:100%;
     overflow: hidden;
     img{
         width: 100%;
@@ -31,52 +32,53 @@ $title_with_icon_border:#CCCCCC;
 
 
 .title_with_icon{
-    width:100%;
-    display: flex;
-    justify-content: center;
-    & > div{
-         /* 
-            width of border of one side = 62px;
-            margin between icon and border = 9px;
-            width of icon = 24px
-            width of div = 62*2 + 9*2 + 24 = 166px
+    /* 
+        width of border of one side = 62px;
+        margin between icon and border = 9px;
+        width of icon = 24px
+        width of div = 62*2 + 9*2 + 24 = 166px
 
-            font height = 43, 
-            margin between icon and font = 9, 
-            icon height = 24 // icon i half cover in div... so that we take 12px
-            height = 43 + 9 + 12px = 64px
-        */
+        font height = 43, 
+        margin between icon and font = 9, 
+        icon height = 24 // icon i half cover in div... so that we take 12px
+        height = 43 + 9 + 12px = 64px
+    */
+    width:100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    p{        
+        width:100%;
+        text-align: center;
+        color:$title_with_icon;
+        font-weight: bold;
+        font-size: 35px;
+        margin:0 0 9px;
+    }
+    & > div{
+        margin-top: -12px;
         width:166px;
-        height: 64px;
+        height: 24px;
         border-bottom:1px solid $title_with_icon_border;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        position:relative;
-        p{        
-            text-align: center;
-            color:$title_with_icon;
-            font-weight: bold;
-            font-size: 35px;
-            margin:0 0 9px;
-        }
-        div{
+        background-color: white;
+        position: relative;
+        & > div{
             width:24px + 18px;
-            height: 24px;
-            background-color: white;
+            height:24px;
             position: absolute;
-            bottom:-12.3px;
+            left:50%;
+            transform: translateX(-50%);
+            bottom:-12.5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: white;
             img{
-                width:100%;
-                height:100%;
-                object-fit: contain;
-            }
+                width:24px;
+                height:24px;
+                object-fit: cover;
+            }    
         }
     }
 }
-
-// @media screen and (max-width:$responsive_max_width) {
-//     .title_with_img{
-//         padding-top: 50px;
-//     }    
-// }
