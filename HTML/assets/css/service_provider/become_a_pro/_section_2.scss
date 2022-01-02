@@ -1,12 +1,12 @@
 $become_a_pro_s2_title:#4F4F4F;
 
 .become_a_pro_s2{
+    padding-top: 61px;
     padding-bottom: $last_section_bottom_padding;
     position: relative;
 }
 
 .become_a_pro_s2_title{
-    padding-top: 61px;
     font-size: 40px;
     font-weight: bold;
     color:$become_a_pro_s2_title;
@@ -17,7 +17,7 @@ $become_a_pro_s2_title:#4F4F4F;
     position: absolute;
     left:0;
     top:20px;
-    width:150px;
+    width:165px;
     z-index: -1;
 }
 
@@ -25,13 +25,14 @@ $become_a_pro_s2_title:#4F4F4F;
     position: absolute;
     right:0;
     top:20px;
-    width:150px;
+    width:165px;
     z-index: -1;
 }
 
 .become_a_pro_s2_card_container{
     padding-top: 62px;
-    @include flex_column;
+    display: flex;
+    flex-direction: column;
     align-items: center;
 }
 
@@ -39,57 +40,18 @@ $become_a_pro_s2_title:#4F4F4F;
     width:750px;
     height: 286px;
     padding-bottom: 26px;
-    @include between_v_center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     & > img{
         width:260px;
         height: 260px;
         object-fit: cover;
         border-radius: 50%;
     }
-}
-
-@media screen and (max-width:$responsive_max_width) {
-    .become_a_pro_s2{
-        height: 100%;
-        padding-bottom:0;
-    }
-    .become_a_pro_s2_bg_right,
-    .become_a_pro_s2_bg_left{
-        display: none;
-    }
-    .become_a_pro_s2_card_container{
-        padding:$side_padding_r;
-        padding-top: 62px;
-    }
-    .become_a_pro_s2_card{
-        width:100%;
-        height: 100%;
-        padding-bottom: 50px;
-        @include flex_column;
-        & > img{
-            width:200px;
-            height: 200px;
-            order:1;
-        }
-        div{
-            order:2;
-            p{
-                text-align: center;
-                padding-bottom:0;
-            }
-            a{
-                padding-top:0;
-                text-align: center;
-            }
-        }
-    }
-}
-
-
-
-.become_a_pro_s2_card{
     div{
-        @include flex_column;
+        display: flex;
+        flex-direction: column;
         width:280px;
         p{
             padding-bottom: 10px;

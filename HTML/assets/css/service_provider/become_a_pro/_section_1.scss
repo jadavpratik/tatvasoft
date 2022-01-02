@@ -8,7 +8,8 @@ $registration_term:#1FB6FF;
 
 .become_a_pro_s1{
     height: 930px;
-    @include flex_column;
+    display: flex;
+    flex-direction: column;
     align-items: center;
     position: relative;
 }
@@ -40,12 +41,10 @@ $registration_term:#1FB6FF;
     }
 }
 
-
 .registration_form > form{
-
-    @include flex_column;
+    display: flex;
+    flex-direction: column;
     align-items: center;    
-
     input[type="text"], input[type="password"]{
         color:$registration_input;
         width:100%;
@@ -61,19 +60,26 @@ $registration_term:#1FB6FF;
         font-weight: bold;
         width:166px;
         height: 46px;
+        border-radius: 40px;
+        border:0;
         img{
             margin-left: 8px;
         }
     }
-}
-
-.registration_form > form{
     div{
         width:100%;
         display: flex;
         flex-direction: row;
         align-items: center;
         margin-bottom: 11px;
+        label{
+            width:46px;
+            height: 46px;
+            background-color: #F4F4F4;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
         p{
             color:$registration_title;
         }
@@ -116,29 +122,3 @@ $registration_term:#1FB6FF;
         }
     }
 }
-
-@media screen and (max-width:$responsive_max_width){
-    .become_a_pro_s1{
-        height: 100%;
-    }
-    .registration_form{
-        margin:$side_padding_r;
-        margin-top: 152px;
-        width:auto;
-        height: auto;
-        padding:$side_padding_r;
-        padding-top: 19px;
-        padding-bottom: 19px;
-        form{
-            div{
-                &:last-of-type{
-                    width:100%;
-                }
-            }
-        }
-    }
-}
-
-
-
-
