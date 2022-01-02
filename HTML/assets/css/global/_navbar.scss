@@ -53,6 +53,7 @@ $navbar_btn_border:#ffffff80;
 
 .navbar_focus_btn{
     border:0.5px solid $navbar_btn_border !important;
+    background-color:$navbar_btn;
     &:hover{
         border: 0.5px solid $navbar_btn_border;
         background-color: white;
@@ -60,10 +61,13 @@ $navbar_btn_border:#ffffff80;
     }
 }
 
-.navbar_colored_btn{
-    background-color:$navbar_btn;
+.navbar_non_colored_btn{
+    background-color: transparent;
 }
 
+.navbar_active_btn{
+    border: 0.5px solid $navbar_btn_border !important;
+}
 
 .nav_menu_btn{
     display: none;

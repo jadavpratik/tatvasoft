@@ -1,25 +1,13 @@
 // --------------GLOBAL-----------------
-@import "./global/variable";
-@import "./global/default";
-@import "./global/navtabs";
-@import "./global/fixed_btns";
-
-// --------------CUSTOM_CLASSES-----------------
-@import "./global/general_class";
-
-// --------------NAVBAR_FOOTER-----------------
-@import "./global/navbar";
-@import "./global/footer";
+@import "./global/index";
 
 // --------------PAGES-----------------
 @import "./home/index";
-// @import "./faq/index";
+@import "./faq/index";
 // @import "./prices/index";
 // @import "./contact/index";
 // @import "./about/index";
 // @import "./service_provider/become_a_pro/index";
 
 // --------------RESPONSIVE_STYLE-----------------
-@import "./responsive/navbar";
-@import "./responsive/footer";
-@import "./responsive/home";
+@import "./responsive/index";

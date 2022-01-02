@@ -1,43 +1,51 @@
-$faq_intro:#646464;
-$faq_btn:#1D7A8C;
-$faq_line_bold:#646464;
-$faq_para_light:#646464;
+$faq_active_tab:#1D7A8C;
+$faq_normal_tab:#F6F6F6;
+$faq_text:#646464;
 
-.user_faq{
-    padding-top: 35px;
+.faq{
+    padding-top: 32px;
     padding-bottom: $last_section_bottom_padding;
 }
 
 .faq_intro{
     padding-top: 34px;
-    @include h_center;
+    display: flex;
+    justify-content: center;
     p{
         width: 498px;
         text-align:center;
-        color:$faq_intro;
+        color:$faq_text;
         font-size: 18px;
         line-height: 26px;
     }
 }
 
-.faq_switch{
-    @include h_center;
+.faq_container{
+    padding-top: 35px;
+}
+
+.faq_tab{
+    display: flex;
+    justify-content: center;
     button{
         width:472px;
         height: 66px;
         font-size: 24px;
+        background-color: $faq_normal_tab;
         border:0;
-        border-bottom: 3px solid $faq_btn;
+        border-bottom: 3px solid $faq_active_tab;
+        cursor: pointer;
     }
 }
 
 .active_tab{
-    background-color: $faq_btn;
+    background-color: $faq_active_tab !important;
     color:white;
 }
 
 .questions{
-    @include flex_column;
+    display: flex;
+    flex-direction: column;
     align-items: center;
 }
 
@@ -45,14 +53,16 @@ $faq_para_light:#646464;
     padding-top: 37px;
     width:931px;    
     button{
-        @include center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         background-color: transparent;
         border:0;
         p{
             margin:0;
             padding-left:15px;
             font-weight: bold;
-            color:$faq_line_bold;
+            color:$faq_text;
             font-size: 16px;
         }
     }
@@ -62,40 +72,12 @@ $faq_para_light:#646464;
     padding-top:10px;
     padding-left:36px;
     line-height: 24px;
-    color:$faq_para_light;
+    color:$faq_text;
     transition: all 1s;
-    animation: fadeEffect 1s; /* Fading effect takes 1 second */
+    animation: fadeEffect 1s;
 }
   
-/* Go from zero to full opacity */
 @keyframes fadeEffect {
     from {opacity: 0;}
     to {opacity: 1;}
-}
-
-@media screen and (max-width:$responsive_max_width) {
-    .faq{
-        padding:$side_padding_r;
-    }
-    .faq_switch{
-        button{
-            width:200px;
-            font-size: 16px;
-        }
-    }
-    .question{
-        width:100%;
-        button{
-            p{
-                text-align: left;
-            }
-        }
-        & > p{
-            padding-left:0;
-            font-size: 14px;
-        }
-    }
-    .user_faq{
-        padding-bottom:50px;
-    }
 }

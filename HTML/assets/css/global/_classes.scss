@@ -1,0 +1,82 @@
+// ---------------SECTION_TITLE_COLORS------------------
+$title_with_icon:#4F4F4F;
+$title_with_icon_border:#CCCCCC;
+
+.circle{
+    border-radius: 50%;
+}
+
+.d_none{
+    display: none !important;
+}
+
+.banner{
+    margin-top:$navbar_height;
+    overflow: hidden;
+    img{
+        width: 100%;
+        height: 370px;
+    }
+}
+
+@media screen and (max-width:992px) {
+    .banner{
+        img{
+            height:200px;
+            object-fit: cover;
+        }
+    }
+}
+
+
+
+.title_with_icon{
+    width:100%;
+    display: flex;
+    justify-content: center;
+    & > div{
+         /* 
+            width of border of one side = 62px;
+            margin between icon and border = 9px;
+            width of icon = 24px
+            width of div = 62*2 + 9*2 + 24 = 166px
+
+            font height = 43, 
+            margin between icon and font = 9, 
+            icon height = 24 // icon i half cover in div... so that we take 12px
+            height = 43 + 9 + 12px = 64px
+        */
+        width:166px;
+        height: 64px;
+        border-bottom:1px solid $title_with_icon_border;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position:relative;
+        p{        
+            text-align: center;
+            color:$title_with_icon;
+            font-weight: bold;
+            font-size: 35px;
+            margin:0 0 9px;
+        }
+        div{
+            width:24px + 18px;
+            height: 24px;
+            background-color: white;
+            position: absolute;
+            bottom:-12.3px;
+            img{
+                width:100%;
+                height:100%;
+                object-fit: contain;
+            }
+        }
+    }
+}
+
+// @media screen and (max-width:$responsive_max_width) {
+//     .title_with_img{
+//         padding-top: 50px;
+//     }    
+// }
