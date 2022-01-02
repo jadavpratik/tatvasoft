@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>FAQ Page</title>
+	<title>Contact Page</title>
 	<!-- FAVICON -->
 	<link rel="icon" href="./assets/img/global/favicon_img.png" sizes="16x16" type="image/png">	
 	<!-- CSS -->
@@ -15,59 +15,30 @@
 </head>
 <body>
 
-<!-- --------------------------------------------------- -->
-					<!-- NAVBAR -->
-<!-- --------------------------------------------------- -->
-<nav class="navbar d_flex jc_between ai_center">
+	<!-- --------------------------------------------------- -->
+						<!-- NAVBAR -->
+	<!-- --------------------------------------------------- -->
+	<nav class="navbar">
 
-	<!-- LOGO -->
-	<div class="logo">
-		<a href=""><img src="./assets/img/navbar/logo.png" alt=""></a>
-	</div>
+		<!-- LOGO -->
+		<div class="logo">
+			<a href=""><img src="./assets/img/navbar/logo.png" alt=""></a>
+		</div>
 
-	<!-- NAV_BTN_RESPONSIVE -->
-	<button class="nav_btn"><i class="fas fa-bars"></i></button>
-	
-	<!-- NAV_MENU -->
-	<div class="nav_menu d_flex ai_center">
-		<button class="nav_menu_close_btn"><i class="fas fa-times"></i></button>
-		<a class="nav_focus_btn" href="">Book a Cleaner</a>
-		<a href="">Prices</a>
-		<a href="">Our Gurantee</a>
-		<a href="">Blog</a>
-		<a href="">Contact US</a>
-		<a class="nav_focus_btn" href="">Login</a>
-		<a class="nav_focus_btn" href="">Become a Helper</a>
-		<div class="dropdown" style="margin-left:8px;">
-			<button class="dropdown_btn"><img src="./assets/img/navbar/flag.png" alt=""><i class="fas fa-angle-down"></i></button>
-			<div class="dropdown_content d_none">
-				<a href="#"><img src="./assets/img/navbar/flag.png" alt="">&nbsp;Link 1</a>
-				<a href="#"><img src="./assets/img/navbar/flag.png" alt="">&nbsp;Link 2</a>
-				<a href="#"><img src="./assets/img/navbar/flag.png" alt="">&nbsp;Link 3</a>
-			</div>
-		</div><!-- END DROPDOWN -->
-	</div><!-- END NAV_MENU -->
-</nav><!-- END NAVBAR -->
-
-	<script>
-		var show = 0;
-		const nav_menu = $('.nav_menu')[0];
-
-		$('.nav_btn').click(()=>{
-			if(show == 0){
-				nav_menu.style.right = 0;
-				show = 1;
-			}
-		});
-
-		$('.nav_menu_close_btn').click(()=>{
-			if(show == 1){
-				nav_menu.style.right = '-3000px';
-				show = 0;
-			}
-		})
-	</script>
-
+		<!-- NAV_BTN_RESPONSIVE -->
+		<button class="nav_menu_btn"><i class="fas fa-bars"></i></button>
+		
+		<!-- NAV_MENU -->
+		<div class="nav_menu">
+			<a class="navbar_focus_btn" href="">Book Now</a>
+			<a class="navbar_active_btn" href="">Prices & Services</a>
+			<a href="">Warranty</a>
+			<a href="">Blog</a>
+			<a href="">Contact</a>
+			<a class="navbar_focus_btn" href="">Login</a>
+			<a class="navbar_focus_btn" href="">Become a Helper</a>
+		</div><!-- END NAV_MENU -->
+	</nav><!-- END NAVBAR -->
 
 	<!-- --------------------------------------------------- -->
 						<!-- CONTACT_MAIN -->
@@ -86,10 +57,11 @@
 		<div class="contact">
             
 			<!-- SECTION_1_TITLE -->
-            <div class="title_with_img">
+            <div class="title_with_icon">
                 <p>Contact us</p>
-				<hr>
-                <img src="./assets/img/global/separator.png" alt="">
+				<div>
+					<div><img src="./assets/img/global/separator.png" alt=""></div>
+				</div>
             </div>
 
 			<div class="contact_card_container">
@@ -112,6 +84,7 @@
 
         </div><!-- END_CONTACT_US -->
 		
+		<hr class="contact_hr">
 
 		<!-- --------------------------------------------------- -->
 							<!-- GET_IN_TOUCH -->
@@ -124,7 +97,10 @@
 					<input type="text" placeholder="Last Name">
 				</div>
 				<div>
-					<input type="text" placeholder="Mobile Number">
+					<div>
+						<label for="">+46</label>
+						<input type="text" placeholder="Mobile Number">
+					</div>
 					<input type="text" placeholder="Email Address">
 				</div>
 				<div>
@@ -152,14 +128,6 @@
 						<!-- FOOTER -->
 	<!-- --------------------------------------------------- -->
 	<footer>
-
-		<!-- FIXED BUTTONS -->
-		<!-- GO_TO_TOP_BTN -->
-		<!-- <button class="go_top_btn"><i class="fas fa-angle-up"></i></button> -->
-
-		<!-- CHAT -->
-		<!-- <button class="chat"><img src="./assets/img/footer/time.png" alt=""></button> -->
-
 		<!-- FOOTER_TRANSPARENT_DIV -->
 		<div class="footer_transparent_div">
 			<!-- GET_OUR_NEWSLETTERS -->
@@ -172,15 +140,13 @@
 			</form>
 		</div><!-- END_FOOTER_TRANSPARENT_DIV -->
 
-		<!-- FOOTER_FIRST_DIV -->
-		<div class="footer_first_div">
-
+		<!-- FOOTER_MAIN_DIV -->
+		<div class="footer_main_div">
+			<!-- LOGO + LINKS -->
 			<div>
-				<!-- FOOTER_LOGO -->
 				<div class="footer_logo">
 					<a href=""><img src="./assets/img/footer/logo.png" alt=""></a>
 				</div>
-				<!-- FOOTER_LINKS -->
 				<div class="footer_links">
 					<a href="">HOME</a>
 					<a href="">ABOUT</a>
@@ -189,21 +155,22 @@
 					<a href="">INSURANCE POLICY</a>
 					<a href="">IMPRESSUM</a>
 				</div>
-				<!-- SOCIAL_MEDIA_LINKS -->
 				<div class="social_media_links">
 					<a href=""><img src="./assets/img/footer/facebook.png" alt=""></a>
 					<a href=""><img src="./assets/img/footer/instagram.png" alt=""></a>
 				</div>
 			</div>
-
 			<!-- COPYRIGHT_SECTION -->
 			<div>
 				<p class="copyright_section">©2018 Helperland. All rights reserved. Terms and Conditions | <a href="">Privacy Policy</a></p>
 			</div>
+		</div><!-- END_FOOTER_MAIN_DIV -->
 
-		</div><!-- END_FOOTER_FIRST_DIV -->
-		
 	</footer>
 
+	<script src="./assets/js/navbar.js"></script>
+	<script src="./assets/js/footer.js"></script>
+	
+	
 </body>
 </html>

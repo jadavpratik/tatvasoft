@@ -5,8 +5,8 @@ $get_in_touch_btn:#1D7A8C;
 
 
 .get_in_touch{
-    padding-top: 96px;
-    @include flex_column;
+    display: flex;
+    flex-direction: column;
     align-items: center;
 }
 
@@ -20,11 +20,13 @@ $get_in_touch_btn:#1D7A8C;
 .get_in_touch{
     form{
         padding-top: 22px;
-        @include flex_column;
+        display: flex;
+        flex-direction: column;
         align-items: center;
-        div{
+        & > div{
             width:100%;
-            @include between;
+            display: flex;
+            justify-content: space-between;
             padding-bottom: 15px;
             input,select,textarea{
                 border:1px solid $get_in_touch_border;
@@ -46,6 +48,25 @@ $get_in_touch_btn:#1D7A8C;
                 width:614px;
                 height: 146px;
             }
+            div{
+                border:1px solid $get_in_touch_border;
+                border-radius: 4px;
+                width:300px;
+                display: flex;
+                align-items: center;
+                overflow: hidden;
+                label{
+                    width:57px;
+                    height:46px;
+                    background-color: #f3f3f3;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+                input{
+                    border:0;
+                }
+            }
         }
         button{
             width:162px;
@@ -56,24 +77,6 @@ $get_in_touch_btn:#1D7A8C;
             color:white;
             border:0;
             border-radius: 23px;                
-        }
-    }
-}
-
-@media screen and (max-width:$responsive_max_width) {
-    .get_in_touch{
-        padding-left:20px;
-        padding-right:20px;
-        form{
-            width:100%;
-            div{
-                @include flex_column;
-                padding:0;
-                input,select, textarea{
-                    width:100%;
-                    margin-bottom: 20px;
-                }
-            }
         }
     }
 }

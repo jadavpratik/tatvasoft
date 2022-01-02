@@ -1,4 +1,5 @@
-$contact_text_color:#4F4F4F;
+$contact_text:#4F4F4F;
+$contact_horizontal_line:#E1E1E1;
 
 .contact{
     padding-top: 30px;
@@ -14,36 +15,31 @@ $contact_text_color:#4F4F4F;
 .contact_card{
     margin:0 71px;
     width:238px;
-    @include flex_column;
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    div{
-        &:first-child{
-            height: 54px;// HIGHEST IMAGE HEIGHT
-            img{
-                width:100%;
-                height:auto;
-                // WE GIVE WIDTH AND HEIGHT ON HTML PAGE
-                // BECAUSE ALL IMG HAVE DIFFERENT HEIGTH AND WIDTH
-            }
+    div:first-child{
+        height: 54px;// HIGHEST IMAGE HEIGHT
+        img{
+            width:100%;
+            height:auto;
+            // WE GIVE WIDTH AND HEIGHT ON HTML PAGE
+            // BECAUSE ALL IMG HAVE DIFFERENT HEIGTH AND WIDTH
         }
-        &:last-child{
-            padding-top: 20px;
-            height:72px;
-            p{
-                padding-bottom:8px;
-                text-align: center;
-                color:$contact_text_color;
-            }    
-        }
+    }
+    div:last-child{
+        padding-top: 20px;
+        height:72px;
+        p{
+            padding-bottom:8px;
+            text-align: center;
+            color:$contact_text;
+        }    
     }
 }
 
-@media screen and (max-width:$responsive_max_width) {
-    .contact_card_container{
-        @include flex_column;
-        align-items: center;
-    }
-    .contact_card{
-        margin-bottom: 34px;
-    }
+.contact_hr{
+    width:1140px;
+    margin:48px auto 74px;
+    background-color: $contact_horizontal_line;
 }

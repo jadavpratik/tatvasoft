@@ -10,7 +10,6 @@ $prices_s3_text:#646464;
     display: grid;
     grid-template-columns: 1fr 375px 1fr;
     grid-template-rows: 1fr 1fr;
-    // border:2px solid black;
 }
 
 .prices_s3_img_card{
@@ -24,7 +23,6 @@ $prices_s3_text:#646464;
 // TEXT DIV CONTAINER
 .prices_s3_text_card{
     padding-top: 14px;
-    // border:2px solid black;
     p{
         max-width: 337px;
         color:$prices_s3_text;

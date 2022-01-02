@@ -1,0 +1,37 @@
+@media screen and (max-width:1200px) {
+    .contact_hr{
+        width:80%;
+    }
+}
+
+@media screen and (max-width:992px) {
+    .map{
+        padding-bottom: 50px;
+    }
+    .contact_card_container{
+        flex-wrap: wrap;
+    }
+    .contact_card{
+        margin-bottom: 50px;
+    }
+    .get_in_touch{
+        padding-left: 20px;
+        padding-right: 20px;
+        form{
+            width:100%;
+            & > div{
+                flex-direction: column;
+                padding:0;
+                input,select,textarea,div{
+                    width:100%;
+                    margin-bottom: 20px;
+                }
+                div{
+                    input{
+                        margin-bottom: 0;
+                    }
+                }
+            }
+        }
+    }
+}

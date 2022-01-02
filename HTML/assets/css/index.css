@@ -1275,6 +1275,220 @@ footer {
   text-align: right;
 }
 
+.contact {
+  padding-top: 30px;
+}
+
+.contact_card_container {
+  padding-top: 52px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.contact_card {
+  margin: 0 71px;
+  width: 238px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.contact_card div:first-child {
+  height: 54px;
+}
+
+.contact_card div:first-child img {
+  width: 100%;
+  height: auto;
+}
+
+.contact_card div:last-child {
+  padding-top: 20px;
+  height: 72px;
+}
+
+.contact_card div:last-child p {
+  padding-bottom: 8px;
+  text-align: center;
+  color: #4F4F4F;
+}
+
+.contact_hr {
+  width: 1140px;
+  margin: 48px auto 74px;
+  background-color: #E1E1E1;
+}
+
+.get_in_touch {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.get_in_touch_title {
+  color: #4F4F4F;
+  font-size: 28px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.get_in_touch form {
+  padding-top: 22px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.get_in_touch form > div {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding-bottom: 15px;
+}
+
+.get_in_touch form > div input, .get_in_touch form > div select, .get_in_touch form > div textarea {
+  border: 1px solid #C8C8C8;
+  border-radius: 4px;
+  color: #A0A0A0;
+  padding-left: 15px;
+  background-color: white;
+}
+
+.get_in_touch form > div input {
+  width: 300px;
+  height: 46px;
+}
+
+.get_in_touch form > div select {
+  width: 614px;
+  height: 46px;
+}
+
+.get_in_touch form > div textarea {
+  padding-top: 15px;
+  width: 614px;
+  height: 146px;
+}
+
+.get_in_touch form > div div {
+  border: 1px solid #C8C8C8;
+  border-radius: 4px;
+  width: 300px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  overflow: hidden;
+}
+
+.get_in_touch form > div div label {
+  width: 57px;
+  height: 46px;
+  background-color: #f3f3f3;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.get_in_touch form > div div input {
+  border: 0;
+}
+
+.get_in_touch form button {
+  width: 162px;
+  height: 46px;
+  background-color: #1D7A8C;
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+  border: 0;
+  border-radius: 23px;
+}
+
+.map {
+  padding-top: 80px;
+  padding-bottom: 384px;
+}
+
+.map img {
+  width: 100%;
+  height: 100%;
+}
+
+.about_s2 {
+  padding-top: 40px;
+  padding-bottom: 384px;
+}
+
+.about_s1,
+.about_s2 {
+  padding-top: 32px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.about_s1_para_container,
+.about_s2_para_container {
+  width: 991px;
+  padding-top: 35px;
+}
+
+.about_s1_para_container p,
+.about_s2_para_container p {
+  color: #646464;
+  line-height: 24px;
+  padding-bottom: 50px;
+  text-align: center;
+}
+
 @media screen and (max-width: 1150px) {
   .navbar {
     height: 64px !important;
@@ -1668,6 +1882,61 @@ footer {
   }
   .prices_s3_text_card p {
     white-space: pre-wrap !important;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .contact_hr {
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .map {
+    padding-bottom: 50px;
+  }
+  .contact_card_container {
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+  }
+  .contact_card {
+    margin-bottom: 50px;
+  }
+  .get_in_touch {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .get_in_touch form {
+    width: 100%;
+  }
+  .get_in_touch form > div {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    padding: 0;
+  }
+  .get_in_touch form > div input, .get_in_touch form > div select, .get_in_touch form > div textarea, .get_in_touch form > div div {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  .get_in_touch form > div div input {
+    margin-bottom: 0;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .about_s1_para_container,
+  .about_s2_para_container {
+    padding-left: 20px;
+    padding-right: 20px;
+    width: 100%;
+  }
+  .about_s1, .about_s2 {
+    height: auto;
+  }
+  .about_s2 {
+    padding-bottom: 0px;
   }
 }
 /*# sourceMappingURL=index.css.map */
