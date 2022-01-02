@@ -20,7 +20,11 @@
             order:1;
         }
         div{
+            padding-top:20px;
             order:2;
+            p,a{
+                text-align: center;
+            }
         }
     }
 }

@@ -2220,9 +2220,13 @@ footer {
             order: 1;
   }
   .become_a_pro_s2_card div {
+    padding-top: 20px;
     -webkit-box-ordinal-group: 3;
         -ms-flex-order: 2;
             order: 2;
+  }
+  .become_a_pro_s2_card div p, .become_a_pro_s2_card div a {
+    text-align: center;
   }
 }
 
