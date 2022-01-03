@@ -1,0 +1,28 @@
+@import url(//db.onlinewebfonts.com/c/80aced0dbab505bad4295765ce0158d6?family=Switzerland);
+
+$navbar_bg:#1FB6FF;
+
+.navbar{
+    width:100%;
+    height: 60px;  
+    background-color: $navbar_bg;
+    display: flex;
+    justify-content: space-between;
+}
+
+.logo{
+    display: flex;
+    align-items: center;
+    justify-content:center;
+    padding-left: 11px;
+    p{
+        font-size: 38px;
+        color:white;
+        font-family: 'SwitzeraADF-Bold', sans-serif;
+    }
+}
+
+.nav_menu{
+    width:auto;
+    border:2px solid black;
+}

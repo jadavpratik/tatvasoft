@@ -8,6 +8,26 @@ $service_history_table_border:#E1E1E1;
 $service_history_table_text:#646464;
 $service_history_table_thead_bg:#f9f9f9;
 $service_history_table_th_text:#646464;
+$export_button:#146371;
+.export_service_history{
+    height:50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    p{
+        color:$service_history_table_text;
+        font-weight: bold;
+        font-size: 22px;
+    }
+    button{
+        width:70px;
+        height: 34px;
+        border:0;
+        border-radius: 17px;
+        background-color: $export_button;
+        color:white;
+    }
+}
 
 .service_history_table{
     width:100%;

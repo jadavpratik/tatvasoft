@@ -1,0 +1,23 @@
+$sidenav_text:#646464;
+$sidenav_active_text:#1FB6FF;
+$sidenav_shadow:#0000001A;
+.admin_sidenav{
+    width:272px;
+    height:100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    box-shadow: 2px 0px 6px $sidenav_shadow;
+    a{
+        width:100%;
+        height:80px;
+        display: flex;
+        align-items: center;
+        padding-left: 13px;
+        color:$sidenav_text;
+        border-bottom: 1px solid #E5E5E5;
+        &:hover{
+            background-color: whitesmoke;
+        }
+    }
+}
