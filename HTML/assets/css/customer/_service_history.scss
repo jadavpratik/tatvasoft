@@ -1,0 +1,88 @@
+$rated_star:#ECB91C;
+$unrated_star:#D4D4D4;
+$payment_text:#1D7A8C;
+$success_status:#67B644;
+$cancel_status:#FF6B6B;
+$rate_sp:#6DA9B5;
+$service_history_table_border:#E1E1E1;
+$service_history_table_text:#646464;
+$service_history_table_thead_bg:#f9f9f9;
+$service_history_table_th_text:#646464;
+
+.service_history_table{
+    width:100%;
+    border-collapse: collapse;
+    border:1px solid $service_history_table_border;    
+    th,td{
+        padding-left: 18px;        
+        border:1px solid $service_history_table_border;
+    }
+    th,td,p{
+        text-align: left;
+    }
+    th{
+        color :$service_history_table_th_text;
+    }
+    thead{
+        height: 49px;
+        background-color: $service_history_table_thead_bg;
+    }
+    tbody{
+        tr{
+            height: 71px;
+        }
+    }
+}
+
+.hat_style{
+    width:44px;
+    height:44px;
+    padding:7px;
+    margin-right: 6px;
+    border:1px solid #AAAAAA;
+    border-radius:50%;
+    object-fit: contain;
+}
+
+.rated_star{
+    color:$rated_star;
+}
+
+.unrated_star{
+    color:$unrated_star;
+}
+
+.payment_text{
+    color:$payment_text;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.completed_status,
+.cancel_status{
+    width:82px;
+    height: 22px;
+    font-size: 13px;
+    display: flex;
+    justify-content:center;
+    align-items:center;
+    color:white;
+}
+
+.completed_status{
+    background-color: $success_status;
+}
+
+.cancel_status{
+    background-color: $cancel_status;
+}
+
+.rate_sp{
+    width:70px;
+    height:34px;
+    background-color: $rate_sp;
+    border:0;
+    border-radius: 17px;
+    font-size: 14px;
+    color:white;
+}

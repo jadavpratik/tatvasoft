@@ -1,25 +1,24 @@
-@import "./become_a_pro/index";
-@import "./upcoming_service/index";
+@import "./service_history";
 
-$service_provider_left:#1D7A8C;
-$service_provider_left_hover:#146371;
+$customer_left:#1D7A8C;
+$customer_left_hover:#146371;
 
-.service_provider{
+.customer{
     padding-top: 64px;
     padding-bottom: $last_section_bottom_padding;
 }
 
-.service_provider_container{
+.customer_container{
     padding-top: 30px;
     width:1140px;
     margin:0 auto;
     display: flex;
 }
 
-.service_provider_left{
+.customer_left{
     width:261px;
     margin-right: 31px;
-    background-color:$service_provider_left;
+    background-color:$customer_left;
     display: flex;
     flex-direction: column;
     a{
@@ -31,12 +30,11 @@ $service_provider_left_hover:#146371;
         color:white;
         font-size: 18px;
         &:hover{
-            background-color: $service_provider_left_hover;
+            background-color: $customer_left_hover;
         }
     }
 }
 
-.service_provider_right{
+.customer_right{
     width:calc(100% - 261px);
 }
-

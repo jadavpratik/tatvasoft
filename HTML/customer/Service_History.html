@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Service History</title>
+	<!-- FAVICON -->
+	<link rel="icon" href="../assets/img/global/favicon_img.png" sizes="16x16" type="image/png">	
+	<!-- CSS -->
+	<link rel="stylesheet" href="../assets/css/index.css">
+	<!-- FONT-AWESOME -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+	<!-- JQUERY -->
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+
+	<!-- --------------------------------------------------- -->
+						<!-- NAVBAR -->
+	<!-- --------------------------------------------------- -->
+	<nav class="navbar">
+
+		<!-- LOGO -->
+		<div class="logo">
+			<a href=""><img src="../assets/img/navbar/logo.png" alt=""></a>
+		</div>
+
+		<!-- NAV_BTN_RESPONSIVE -->
+		<button class="nav_menu_btn"><i class="fas fa-bars"></i></button>
+		
+		<!-- NAV_MENU -->
+		<div class="nav_menu">
+			<a href="">Prices & Services</a>
+			<a href="">Warranty</a>
+			<a href="">Blog</a>
+			<a href="">Contact</a>
+            <div class="dropdown">
+                <button class="dropdown_btn"><img src="../assets/img/navbar/notification.png" alt=""></button>
+                <div class="dropdown_menu d_none">
+                    <div class="drowpdown_nortification">
+                        <p>Cancellation! You have canceled the order, Service ID: 8503</p>
+                        <p>30/12/2021 11:43</p>
+                    </div>
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="dropdown_btn" style="display:flex;justify-content:space-between">
+                    <img src="../assets/img/navbar/user.png" alt="">
+                    <img style="margin-left:10px;" src="../assets/img/navbar/dropdown_down.png" alt="">
+                </button>
+                <div class="dropdown_menu d_none">
+                    <div>
+                        <p>Welcome</p>
+                        <p>Guest</p>
+                    </div>
+                    <hr>
+                    <a href="">To Overview</a>
+                    <a href="">My Setting</a>
+                    <a href="">Logout</a>
+                </div>
+            </div>
+        </div><!-- END NAV_MENU -->
+	</nav><!-- END NAVBAR -->
+
+    <script>
+        const dropdown_btn = document.getElementsByClassName('dropdown_btn');
+        for(let i = 0; i < dropdown_btn.length; i++){
+            dropdown_btn[i].addEventListener('click', ()=>{
+                $('.dropdown_menu').addClass('d_none');
+                dropdown_btn[i].nextElementSibling.classList.toggle('d_none');
+            });
+        }
+    </script>
+
+	<!-- --------------------------------------------------- -->
+						<!-- SERVICE_PROVIDER -->
+	<!-- --------------------------------------------------- -->
+
+    <main class="customer">
+
+        <div class="welcome_message">
+            <p>Welcome, <span>Gaurang!</span></p>
+        </div>
+    
+        <div class="customer_container">
+            <div class="customer_left">
+                <a href="">Dashboard</a>
+                <a href="">Service History</a>
+                <a href="">Service Schedule</a>
+                <a href="">Favourite Pros</a>
+                <a href="">Invoices</a>
+                <a href="">Nortifications</a>
+            </div>
+            <div class="customer_right">
+                <table class="service_history_table">
+                    <thead>
+                        <tr>
+                            <th>Service Details</th>
+                            <th>Service Provider</th>
+                            <th>Payment</th>
+                            <th>Status</th>
+                            <th>Rate SP</th>    
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- SINGLE_ROW -->
+                        <tr>
+                            <td>
+                                <div class="d_flex" style="margin-bottom:8px;">
+                                    <img style="margin-right:6px" src="../assets/img/table/calendar_black.png" alt="">
+                                    <p>31/03/2018</p>
+                                </div>
+                                <div>
+                                    <p>12:00 - 18:00</p>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="d_flex ai_center" style="margin-bottom: 8px;">
+                                    <img class="hat_style" src="../assets/img/table/hat.png" alt="">
+                                    <div class="d_flex_column" style="margin-left: 6px;">
+                                        <p style="margin-bottom:6px">Lyum Watson</p>    
+                                        <div class="d_flex">
+                                            <i class="fas fa-star rated_star"></i>
+                                            <i class="fas fa-star rated_star"></i>
+                                            <i class="fas fa-star rated_star"></i>
+                                            <i class="fas fa-star rated_star"></i>
+                                            <i class="fas fa-star unrated_star"></i>
+                                            <p style="margin-left:3px">4</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <p class="payment_text">€<span>63</span></p>                            </td>
+                            <td>
+                                <p class="completed_status">Completed</p>
+                            </td>
+                            <td>
+                                <button class="rate_sp">Rate SP</button>
+                            </td>
+                        </tr>
+                        <!-- END_SINGLE_ROW -->
+                        <!-- SINGLE_ROW -->
+                        <tr>
+                            <td>
+                                <div class="d_flex" style="margin-bottom:8px;">
+                                    <img style="margin-right:6px" src="../assets/img/table/calendar_black.png" alt="">
+                                    <p>31/03/2018</p>
+                                </div>
+                                <div>
+                                    <p>12:00 - 18:00</p>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="d_flex ai_center" style="margin-bottom: 8px;">
+                                    <img class="hat_style" src="../assets/img/table/hat.png" alt="">
+                                    <div class="d_flex_column" style="margin-left: 6px;">
+                                        <p style="margin-bottom:6px">Lyum Watson</p>    
+                                        <div class="d_flex">
+                                            <i class="fas fa-star rated_star"></i>
+                                            <i class="fas fa-star rated_star"></i>
+                                            <i class="fas fa-star rated_star"></i>
+                                            <i class="fas fa-star rated_star"></i>
+                                            <i class="fas fa-star unrated_star"></i>
+                                            <p style="margin-left:3px">4</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <p class="payment_text">€<span>63</span></p>                            </td>
+                            <td>
+                                <p class="cancel_status">Cancelled</p>
+                            </td>
+                            <td>
+                                <button class="rate_sp">Rate SP</button>
+                            </td>
+                        </tr>
+                        <!-- END_SINGLE_ROW -->
+                        <!-- SINGLE_ROW -->
+                        <tr>
+                            <td>
+                                <div class="d_flex" style="margin-bottom:8px;">
+                                    <img style="margin-right:6px" src="../assets/img/table/calendar_black.png" alt="">
+                                    <p>31/03/2018</p>
+                                </div>
+                                <div>
+                                    <p>12:00 - 18:00</p>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="d_flex ai_center" style="margin-bottom: 8px;">
+                                    <img class="hat_style" src="../assets/img/table/hat.png" alt="">
+                                    <div class="d_flex_column" style="margin-left: 6px;">
+                                        <p style="margin-bottom:6px">Lyum Watson</p>    
+                                        <div class="d_flex">
+                                            <i class="fas fa-star rated_star"></i>
+                                            <i class="fas fa-star rated_star"></i>
+                                            <i class="fas fa-star rated_star"></i>
+                                            <i class="fas fa-star rated_star"></i>
+                                            <i class="fas fa-star unrated_star"></i>
+                                            <p style="margin-left:3px">4</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <p class="payment_text">€<span>63</span></p>                            </td>
+                            <td>
+                                <p class="completed_status">Completed</p>
+                            </td>
+                            <td>
+                                <button class="rate_sp">Rate SP</button>
+                            </td>
+                        </tr>
+                        <!-- END_SINGLE_ROW -->
+                        <!-- SINGLE_ROW -->
+                        <tr>
+                            <td>
+                                <div class="d_flex" style="margin-bottom:8px;">
+                                    <img style="margin-right:6px" src="../assets/img/table/calendar_black.png" alt="">
+                                    <p>31/03/2018</p>
+                                </div>
+                                <div>
+                                    <p>12:00 - 18:00</p>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="d_flex ai_center" style="margin-bottom: 8px;">
+                                    <img class="hat_style" src="../assets/img/table/hat.png" alt="">
+                                    <div class="d_flex_column" style="margin-left: 6px;">
+                                        <p style="margin-bottom:6px">Lyum Watson</p>    
+                                        <div class="d_flex">
+                                            <i class="fas fa-star rated_star"></i>
+                                            <i class="fas fa-star rated_star"></i>
+                                            <i class="fas fa-star rated_star"></i>
+                                            <i class="fas fa-star rated_star"></i>
+                                            <i class="fas fa-star unrated_star"></i>
+                                            <p style="margin-left:3px">4</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <p class="payment_text">€<span>63</span></p>                            </td>
+                            <td>
+                                <p class="cancel_status">Cancelled</p>
+                            </td>
+                            <td>
+                                <button class="rate_sp">Rate SP</button>
+                            </td>
+                        </tr>
+                        <!-- END_SINGLE_ROW -->
+                        <!-- SINGLE_ROW -->
+                        <tr>
+                            <td>
+                                <div class="d_flex" style="margin-bottom:8px;">
+                                    <img style="margin-right:6px" src="../assets/img/table/calendar_black.png" alt="">
+                                    <p>31/03/2018</p>
+                                </div>
+                                <div>
+                                    <p>12:00 - 18:00</p>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="d_flex ai_center" style="margin-bottom: 8px;">
+                                    <img class="hat_style" src="../assets/img/table/hat.png" alt="">
+                                    <div class="d_flex_column" style="margin-left: 6px;">
+                                        <p style="margin-bottom:6px">Lyum Watson</p>    
+                                        <div class="d_flex">
+                                            <i class="fas fa-star rated_star"></i>
+                                            <i class="fas fa-star rated_star"></i>
+                                            <i class="fas fa-star rated_star"></i>
+                                            <i class="fas fa-star rated_star"></i>
+                                            <i class="fas fa-star unrated_star"></i>
+                                            <p style="margin-left:3px">4</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <p class="payment_text">€<span>63</span></p>                            </td>
+                            <td>
+                                <p class="completed_status">Completed</p>
+                            </td>
+                            <td>
+                                <button class="rate_sp">Rate SP</button>
+                            </td>
+                        </tr>
+                        <!-- END_SINGLE_ROW -->
+                        <!-- SINGLE_ROW -->
+                        <tr>
+                            <td>
+                                <div class="d_flex" style="margin-bottom:8px;">
+                                    <img style="margin-right:6px" src="../assets/img/table/calendar_black.png" alt="">
+                                    <p>31/03/2018</p>
+                                </div>
+                                <div>
+                                    <p>12:00 - 18:00</p>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="d_flex ai_center" style="margin-bottom: 8px;">
+                                    <img class="hat_style" src="../assets/img/table/hat.png" alt="">
+                                    <div class="d_flex_column" style="margin-left: 6px;">
+                                        <p style="margin-bottom:6px">Lyum Watson</p>    
+                                        <div class="d_flex">
+                                            <i class="fas fa-star rated_star"></i>
+                                            <i class="fas fa-star rated_star"></i>
+                                            <i class="fas fa-star rated_star"></i>
+                                            <i class="fas fa-star rated_star"></i>
+                                            <i class="fas fa-star unrated_star"></i>
+                                            <p style="margin-left:3px">4</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <p class="payment_text">€<span>63</span></p>                            </td>
+                            <td>
+                                <p class="completed_status">Completed</p>
+                            </td>
+                            <td>
+                                <button class="rate_sp">Rate SP</button>
+                            </td>
+                        </tr>
+                        <!-- END_SINGLE_ROW -->
+                        <!-- SINGLE_ROW -->
+                        <tr>
+                            <td>
+                                <div class="d_flex" style="margin-bottom:8px;">
+                                    <img style="margin-right:6px" src="../assets/img/table/calendar_black.png" alt="">
+                                    <p>31/03/2018</p>
+                                </div>
+                                <div>
+                                    <p>12:00 - 18:00</p>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="d_flex ai_center" style="margin-bottom: 8px;">
+                                    <img class="hat_style" src="../assets/img/table/hat.png" alt="">
+                                    <div class="d_flex_column" style="margin-left: 6px;">
+                                        <p style="margin-bottom:6px">Lyum Watson</p>    
+                                        <div class="d_flex">
+                                            <i class="fas fa-star rated_star"></i>
+                                            <i class="fas fa-star rated_star"></i>
+                                            <i class="fas fa-star rated_star"></i>
+                                            <i class="fas fa-star rated_star"></i>
+                                            <i class="fas fa-star unrated_star"></i>
+                                            <p style="margin-left:3px">4</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <p class="payment_text">€<span>63</span></p>                            </td>
+                            <td>
+                                <p class="completed_status">Completed</p>
+                            </td>
+                            <td>
+                                <button class="rate_sp">Rate SP</button>
+                            </td>
+                        </tr>
+                        <!-- END_SINGLE_ROW -->
+                        <!-- SINGLE_ROW -->
+                        <tr>
+                            <td>
+                                <div class="d_flex" style="margin-bottom:8px;">
+                                    <img style="margin-right:6px" src="../assets/img/table/calendar_black.png" alt="">
+                                    <p>31/03/2018</p>
+                                </div>
+                                <div>
+                                    <p>12:00 - 18:00</p>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="d_flex ai_center" style="margin-bottom: 8px;">
+                                    <img class="hat_style" src="../assets/img/table/hat.png" alt="">
+                                    <div class="d_flex_column" style="margin-left: 6px;">
+                                        <p style="margin-bottom:6px">Lyum Watson</p>    
+                                        <div class="d_flex">
+                                            <i class="fas fa-star rated_star"></i>
+                                            <i class="fas fa-star rated_star"></i>
+                                            <i class="fas fa-star rated_star"></i>
+                                            <i class="fas fa-star rated_star"></i>
+                                            <i class="fas fa-star unrated_star"></i>
+                                            <p style="margin-left:3px">4</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <p class="payment_text">€<span>63</span></p>                            </td>
+                            <td>
+                                <p class="completed_status">Completed</p>
+                            </td>
+                            <td>
+                                <button class="rate_sp">Rate SP</button>
+                            </td>
+                        </tr>
+                        <!-- END_SINGLE_ROW -->
+
+                    </tbody>
+                </table><!-- END_SERVICE_HISTORY_TABLE -->
+            </div><!-- END_CUSTOMER_RIGHT -->
+        </div><!-- END_CUSTOMER_CONTAINER -->
+    </main><!-- END_CUSTOMER -->
+
+
+	<!-- --------------------------------------------------- -->
+						<!-- FOOTER -->
+	<!-- --------------------------------------------------- -->
+	<footer>
+		<!-- FOOTER_TRANSPARENT_DIV -->
+		<div class="footer_transparent_div">
+			<!-- GET_OUR_NEWSLETTERS -->
+			<form class="get_our_newsletter" action="">
+				<p>GET OUR NEWSLETTER</p>
+				<div>
+					<input type="text" placeholder="YOUR EMAIL">
+					<button>Submit</button>
+				</div>
+			</form>
+		</div><!-- END_FOOTER_TRANSPARENT_DIV -->
+
+		<!-- FOOTER_MAIN_DIV -->
+		<div class="footer_main_div">
+			<!-- LOGO + LINKS -->
+			<div>
+				<div class="footer_logo">
+					<a href=""><img src="../assets/img/footer/logo.png" alt=""></a>
+				</div>
+				<div class="footer_links">
+					<a href="">HOME</a>
+					<a href="">ABOUT</a>
+					<a href="">TESTIMONIALS</a>
+					<a href="">FAQS</a>
+					<a href="">INSURANCE POLICY</a>
+					<a href="">IMPRESSUM</a>
+				</div>
+				<div class="social_media_links">
+					<a href=""><img src="../assets/img/footer/facebook.png" alt=""></a>
+					<a href=""><img src="../assets/img/footer/instagram.png" alt=""></a>
+				</div>
+			</div>
+			<!-- COPYRIGHT_SECTION -->
+			<div>
+				<p class="copyright_section">©2018 Helperland. All rights reserved. Terms and Conditions | <a href="">Privacy Policy</a></p>
+			</div>
+		</div><!-- END_FOOTER_MAIN_DIV -->
+
+	</footer>
+
+	<!-- --------------------------------------------------- -->
+						<!-- FIXED BUTTON -->
+	<!-- --------------------------------------------------- -->
+
+	<!-- GO_TO_TOP_BTN -->
+	<!-- <button class="go_top_btn"><img src="./assets/img/footer/up_arrow.png" alt=""></button> -->
+
+	<!-- CHAT -->
+	<!-- <button class="chat"><img src="./assets/img/footer/time.png" alt=""></button> -->
+
+	<!-- PRIVACY_POLICY -->
+	<!-- <div class="cookie">
+		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut feugiat nunc libero, ac malesuada ligula aliquam ac. <a href="">Privacy Policy</a></p>
+		<button id="cookie_submit_btn">OK!</button>
+	</div> -->
+
+
+<script src="../assets/js/navbar.js"></script>
+<script src="../assets/js/footer.js"></script>
+
+</body>
+</html>

@@ -1,43 +1,6 @@
-$service_provider_left:#1D7A8C;
-$service_provider_left_hover:#146371;
 $cancel_btn:#FF6B6B;
-$table_text:#646464;
-
-.service_provider{
-    padding-top: 64px;
-    padding-bottom: $last_section_bottom_padding;
-}
-
-.service_provider_container{
-    padding-top: 30px;
-    width:1140px;
-    margin:0 auto;
-    display: flex;
-}
-
-.service_provider_left{
-    width:261px;
-    margin-right: 31px;
-    background-color:$service_provider_left;
-    display: flex;
-    flex-direction: column;
-    a{
-        width:100%;
-        height:55px;
-        padding-left: 15px;
-        display: flex;
-        align-items: center;
-        color:white;
-        font-size: 18px;
-        &:hover{
-            background-color: $service_provider_left_hover;
-        }
-    }
-}
-
-.service_provider_right{
-    width:calc(100% - 261px);
-}
+$upcoming_service_table_text:#646464;
+$upcoming_service_table_thead:#f9f9f9;
 
 .upcoming_service_table{
     width:100%;
@@ -48,11 +11,11 @@ $table_text:#646464;
     }
     thead{
         padding:15px 0;
-        background-color:#f9f9f9;
+        background-color:$upcoming_service_table_thead;
         height:49px;
     }
     th, tr, tr > p{
-        color:$table_text;
+        color:$upcoming_service_table_text;
         text-align: left;
     }
     th, td{
