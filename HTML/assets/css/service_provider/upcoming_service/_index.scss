@@ -1,0 +1,76 @@
+$service_provider_left:#1D7A8C;
+$service_provider_left_hover:#146371;
+$cancel_btn:#FF6B6B;
+$table_text:#646464;
+
+.service_provider{
+    padding-top: 64px;
+    padding-bottom: $last_section_bottom_padding;
+}
+
+.service_provider_container{
+    padding-top: 30px;
+    width:1140px;
+    margin:0 auto;
+    display: flex;
+}
+
+.service_provider_left{
+    width:261px;
+    margin-right: 31px;
+    background-color:$service_provider_left;
+    display: flex;
+    flex-direction: column;
+    a{
+        width:100%;
+        height:55px;
+        padding-left: 15px;
+        display: flex;
+        align-items: center;
+        color:white;
+        font-size: 18px;
+        &:hover{
+            background-color: $service_provider_left_hover;
+        }
+    }
+}
+
+
+.service_provider_right{
+    width:calc(100% - 261px);
+    table,th,td{
+        border:1px solid lightgray;
+    }
+    table{
+        width:100%;
+        border-collapse: collapse;
+        thead{
+            padding:15px 0;
+            background-color:#f9f9f9;
+            height:49px;
+        }
+        th, tr, tr > p{
+            color:$table_text;
+            text-align: left;
+        }
+        th, td{
+            padding-left: 17px;    
+            font-size: 16px;
+        }
+        tbody{
+            tr{
+                height:71px;
+            }
+        }
+    }
+}
+
+.cancel_btn{
+    width:80px;
+    height: 34px;
+    border:0;
+    border-radius: 17px;
+    background-color: $cancel_btn;
+    color:white;
+    cursor: pointer;
+}

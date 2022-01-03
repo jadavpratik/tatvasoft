@@ -1,6 +1,26 @@
 // ---------------SECTION_TITLE_COLORS------------------
 $title_with_icon:#4F4F4F;
 $title_with_icon_border:#CCCCCC;
+$welcome_message_bg:#F9F9F9;
+$welcome_message_text:#4F4F4F;
+$welcome_message_border:#E1E1E1;
+
+.welcome_message{
+    font-size: 30px;
+    height:119px;
+    background-color: $welcome_message_bg;
+    border-bottom:1px solid $welcome_message_border;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    p{
+        font-size: 30px;
+        color:$welcome_message_text;
+        span{
+            font-weight: bold;
+        }
+    }
+}
 
 .circle{
     border-radius: 50%;

@@ -32,7 +32,7 @@ function scrollFunction() {
             logo.style.height = '54px';
             logo.style.paddingTop = '6px';
             logo.style.paddingBottom = '4px';
-            $('.navbar_focus_btn').removeClass('navbar_non_colored_btn');
+            $('.navbar_focus_btn').removeClass('transparent');
         } 
         else {
             // WHEN WE GO TOP...
@@ -40,7 +40,7 @@ function scrollFunction() {
             navbar.style.height = '130px';
             logo.style.width = '175px';
             logo.style.height = '130px';
-            $('.navbar_focus_btn').addClass('navbar_non_colored_btn');
+            $('.navbar_focus_btn').addClass('transparent');
         }    
     }
 }
