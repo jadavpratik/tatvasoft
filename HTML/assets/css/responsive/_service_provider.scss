@@ -1,0 +1,28 @@
+@media screen and (max-width:1200px) {
+    .service_provider{
+        padding-left: 20px;        
+        padding-right: 20px;
+    }
+    .service_provider_container{
+        width:100%;
+    }
+    .service_provider_left{
+        display: none;
+    }
+    .service_provider_right{
+        width: 100%;
+    }
+}
+
+@media screen and (max-width:992px) {
+    .service_provider{
+        padding-bottom: 50px;
+    }    
+    .service_provider_right{
+        width:100%;
+        overflow-x: auto;
+    }
+    .upcoming_service_table{
+        min-width:1000px;
+    }
+}

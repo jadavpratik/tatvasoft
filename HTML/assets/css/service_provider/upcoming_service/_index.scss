@@ -35,32 +35,33 @@ $table_text:#646464;
     }
 }
 
-
 .service_provider_right{
     width:calc(100% - 261px);
-    table,th,td{
+}
+
+.upcoming_service_table{
+    width:100%;
+    border-collapse: collapse;
+    border:1px solid lightgray;
+    tr, td{
         border:1px solid lightgray;
     }
-    table{
-        width:100%;
-        border-collapse: collapse;
-        thead{
-            padding:15px 0;
-            background-color:#f9f9f9;
-            height:49px;
-        }
-        th, tr, tr > p{
-            color:$table_text;
-            text-align: left;
-        }
-        th, td{
-            padding-left: 17px;    
-            font-size: 16px;
-        }
-        tbody{
-            tr{
-                height:71px;
-            }
+    thead{
+        padding:15px 0;
+        background-color:#f9f9f9;
+        height:49px;
+    }
+    th, tr, tr > p{
+        color:$table_text;
+        text-align: left;
+    }
+    th, td{
+        padding-left: 17px;    
+        font-size: 16px;
+    }
+    tbody{
+        tr{
+            height:71px;
         }
     }
 }
