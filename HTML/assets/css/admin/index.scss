@@ -24,5 +24,8 @@ a{
 input, textarea, select, button{
     outline: none;
 }
+
 @import "./navbar";
 @import "./sidenav";
+@import "./admin_panel";
+@import "./user_management";

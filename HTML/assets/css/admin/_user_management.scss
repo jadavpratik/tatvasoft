@@ -1,0 +1,146 @@
+$user_management_text:#646464;
+$user_management_add_btn:#1FB6FF;
+$input_border:#DEDDDD;
+$input_text:#A0A0A0;
+$search_btn:#1FB6FF;
+$user_management_table_border:#E1E1E1;
+$active_status:#67B644;
+$inactive_status:#FF6B6B;
+
+.user_management_search_button{
+    background-color: $search_btn;
+    color:white !important;
+}
+
+.user_management{
+    display: flex;
+    flex-direction: column;
+    div:first-child{
+        padding-top: 24px;
+        padding-bottom:10px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        p{
+            font-size: 22px;
+            font-weight: bold;
+            color:$user_management_text;
+        }
+        button{
+            width:132px;
+            height:36px;
+            display: flex;
+            justify-content:center;
+            align-items: center;
+            border:0;
+            border-radius: 4px;
+            background-color: $user_management_add_btn;
+            color:white;
+            font-size: 14px;
+            img{
+                object-fit: contain;
+                margin-right: 7px;
+            }
+        }
+    }
+    div:last-child{
+        padding:20px 15px;
+        display: flex;
+        background-color: white;
+        input,select,button{
+            height: 46px;
+            border:1px solid $input_border;
+            border-radius: 4px;
+            margin-right: 15px;
+            padding:0 10px;
+            color:$input_text;
+        }
+        select{
+            width:215px;
+        }
+        input{
+            width:140px;
+        }
+        button{
+            width:84px;
+        }
+        div{
+            width:219px;
+            border:1px solid $input_border;
+            border-radius: 4px;
+            margin-right: 15px;
+            overflow:hidden;
+            display: flex;
+            align-items: center;
+            label{
+                width:46px;
+                height: 46px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-color: lightgray;
+                color:$user_management_text;
+            }
+            input{
+                border:0;
+                margin:0;
+                border-radius: 0;
+            }
+        }
+    }
+}
+
+.active_status{
+    width:58px;
+    height:24px;
+    padding:5px 11px;
+    background-color: $active_status;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color:white !important;
+}
+
+.inactive_status{
+    width:62px;
+    height: 24px;
+    padding:5px 11px;
+    background-color: $inactive_status;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color:white !important;
+}
+
+.user_management_table{
+    margin-top: 20px;
+    width:100%;
+    border:1px solid $user_management_table_border;
+    th{
+        background-color:#f9f9f9;
+    }
+    th,td,p{
+        text-align: left;
+        padding:20px 15px;
+        color:$user_management_text;
+    }
+    td{
+        background-color: white;
+        button{
+            width:36px;
+            height:36px;
+            border:0;
+            border-radius: 50%;
+            background-color:transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            &:hover{
+                background-color:lightgray;
+            }
+        }
+    }
+}
+

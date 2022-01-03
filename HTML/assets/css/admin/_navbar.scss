@@ -8,6 +8,7 @@ $navbar_bg:#1FB6FF;
     background-color: $navbar_bg;
     display: flex;
     justify-content: space-between;
+    padding:0 18px;
 }
 
 .logo{
@@ -24,5 +25,23 @@ $navbar_bg:#1FB6FF;
 
 .nav_menu{
     width:auto;
-    border:2px solid black;
+    display: flex;
+    align-items: center;
+    p, img, button{
+        margin:0 5px;
+    }
+    p{
+        color:white;
+    }
+    button{
+        padding:5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: transparent;
+        border:0;
+        img{
+            object-fit: contain;
+        }
+    }
 }
