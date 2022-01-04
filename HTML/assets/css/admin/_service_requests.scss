@@ -1,0 +1,123 @@
+$service_requests_text:#646464;
+$service_requests_table_border:#E1E1E1;
+$new_status:#F2BB37;
+$pending_status:#1FB6FF;
+$completed_status:#67B644;
+$cancel_status:#FF6B6B;
+$input_text:#A0A0A0;
+$input_border:#DEDDDD;
+$search_btn:#1FB6FF;
+
+.new_status,
+.cancel_status,
+.pending_status,
+.completed_status{
+    text-align: center;
+    font-size: 13px;
+    color:white;
+    padding:7px 5px;
+}
+
+.new_status{
+    background-color:$new_status;
+}
+
+.completed_status{
+    background-color: $completed_status;
+}
+
+.cancel_status{
+    background-color: $cancel_status;
+}
+
+.pending_status{
+    background-color:$pending_status;
+}
+
+
+.service_requests{
+    div:first-child{
+        padding-top: 30px;
+        p{
+            font-size: 22px;
+            font-weight: bold;
+            color:$service_requests_text;
+        }
+    }
+    div:last-child{
+        margin-top: 14px;
+        background-color: white;
+        padding:20px 15px;
+        display: flex;
+        input,button,select,option,button{
+            height:46px;
+            padding-left: 11px;
+            font-size: 16px;
+            border:1px solid $input_border;
+            border-radius: 4px;
+            margin-right: 10px;
+            color:$input_text;
+        }
+        div{
+            border:1px solid $input_border;
+            margin-right: 10px;
+            padding-left: 11px;
+            border-radius: 4px;
+            input{
+                border:0;
+                margin:0;
+            }
+        }
+        input{
+            width:110px;
+        }
+        select{
+            width:127px;
+        }
+        button{
+            padding-left: 0;
+            min-width:70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+}
+
+.search_btn{
+    background-color: $search_btn;
+    color:white !important;
+}
+
+.service_requests_table{
+    margin-top: 20px;
+    width:100%;
+    border-collapse: collapse;
+    border:1px solid $service_requests_table_border;
+    th{
+        background-color:#f9f9f9;
+    }
+    th,td{
+        text-align: left;
+        padding:20px 15px;
+        color:$service_requests_text;
+        border:1px solid $service_requests_table_border;
+    }
+    td{
+        background-color: white;
+        button{
+            width:36px;
+            height:36px;
+            border:0;
+            border-radius: 50%;
+            background-color:transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            &:hover{
+                background-color:lightgray;
+            }
+        }
+    }
+}

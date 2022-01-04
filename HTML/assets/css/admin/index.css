@@ -118,10 +118,17 @@ input, textarea, select, button {
   right: 0px;
   top: 0px;
   background-color: transparent;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
 }
 
 .navbar_toggle_btn i {
   font-size: 24px;
+}
+
+.accordion {
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
 }
 
 .accordion_btn {
@@ -208,6 +215,32 @@ input, textarea, select, button {
 
 .admin_sidenav_active_tab {
   color: #1FB6FF;
+}
+
+.d_flex {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.d_flex_column {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.ai_center {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .admin_panel {
@@ -442,6 +475,144 @@ input, textarea, select, button {
   background-color: lightgray;
 }
 
+.new_status,
+.cancel_status,
+.pending_status,
+.completed_status {
+  text-align: center;
+  font-size: 13px;
+  color: white;
+  padding: 7px 5px;
+}
+
+.new_status {
+  background-color: #F2BB37;
+}
+
+.completed_status {
+  background-color: #67B644;
+}
+
+.cancel_status {
+  background-color: #FF6B6B;
+}
+
+.pending_status {
+  background-color: #1FB6FF;
+}
+
+.service_requests div:first-child {
+  padding-top: 30px;
+}
+
+.service_requests div:first-child p {
+  font-size: 22px;
+  font-weight: bold;
+  color: #646464;
+}
+
+.service_requests div:last-child {
+  margin-top: 14px;
+  background-color: white;
+  padding: 20px 15px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.service_requests div:last-child input, .service_requests div:last-child button, .service_requests div:last-child select, .service_requests div:last-child option, .service_requests div:last-child button {
+  height: 46px;
+  padding-left: 11px;
+  font-size: 16px;
+  border: 1px solid #DEDDDD;
+  border-radius: 4px;
+  margin-right: 10px;
+  color: #A0A0A0;
+}
+
+.service_requests div:last-child div {
+  border: 1px solid #DEDDDD;
+  margin-right: 10px;
+  padding-left: 11px;
+  border-radius: 4px;
+}
+
+.service_requests div:last-child div input {
+  border: 0;
+  margin: 0;
+}
+
+.service_requests div:last-child input {
+  width: 110px;
+}
+
+.service_requests div:last-child select {
+  width: 127px;
+}
+
+.service_requests div:last-child button {
+  padding-left: 0;
+  min-width: 70px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.search_btn {
+  background-color: #1FB6FF;
+  color: white !important;
+}
+
+.service_requests_table {
+  margin-top: 20px;
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #E1E1E1;
+}
+
+.service_requests_table th {
+  background-color: #f9f9f9;
+}
+
+.service_requests_table th, .service_requests_table td {
+  text-align: left;
+  padding: 20px 15px;
+  color: #646464;
+  border: 1px solid #E1E1E1;
+}
+
+.service_requests_table td {
+  background-color: white;
+}
+
+.service_requests_table td button {
+  width: 36px;
+  height: 36px;
+  border: 0;
+  border-radius: 50%;
+  background-color: transparent;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  cursor: pointer;
+}
+
+.service_requests_table td button:hover {
+  background-color: lightgray;
+}
+
 @media screen and (max-width: 1200px) {
   .admin_right {
     width: 100%;
@@ -462,10 +633,11 @@ input, textarea, select, button {
 @media screen and (max-width: 1200px) {
   .nav_menu {
     display: none;
-    border: 2px solid green;
   }
   .navbar_toggle_btn {
     display: block !important;
+    -webkit-transition: all 0.5s;
+    transition: all 0.5s;
   }
   .responsive_sidenav_menu {
     width: 250px;
@@ -482,6 +654,8 @@ input, textarea, select, button {
             flex-direction: column;
     background-color: white;
     overflow-y: auto !important;
+    -webkit-transition: all 0.5s;
+    transition: all 0.5s;
   }
   .responsive_sidenav_menu div:first-child {
     display: -webkit-box;

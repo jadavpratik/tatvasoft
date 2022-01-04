@@ -1,6 +1,10 @@
 $accordion_btn:#4F4F4F;
 $sidenav_text:#646464;
 
+.accordion{
+    transition: all 0.5s;
+}
+
 .accordion_btn{
     width:100%;
     height:60px;

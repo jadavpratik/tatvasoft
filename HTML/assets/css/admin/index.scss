@@ -33,8 +33,10 @@ input, textarea, select, button{
 @import "./navbar";
 @import "./accordion";
 @import "./sidenav";
+@import "./display_flex";
 @import "./admin_panel";
 @import "./user_management";
+@import "./service_requests";
 
 // -----------RESPONSIVE_CSS--------------
 @import "./responsive/admin_panel";
