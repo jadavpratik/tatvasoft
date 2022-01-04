@@ -29,6 +29,12 @@ a {
 
 input, textarea, select, button {
   outline: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.d_none {
+  display: none !important;
 }
 
 .navbar {
@@ -101,6 +107,72 @@ input, textarea, select, button {
      object-fit: contain;
 }
 
+.navbar_toggle_btn {
+  width: 60px;
+  height: 60px;
+  background-color: transparent;
+  border: 0;
+  color: white;
+  display: none;
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  background-color: transparent;
+}
+
+.navbar_toggle_btn i {
+  font-size: 24px;
+}
+
+.accordion_btn {
+  width: 100%;
+  height: 60px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding-left: 13px;
+  border: 0;
+  border-bottom: 1px solid #E5E5E5;
+  background-color: transparent;
+  color: #646464;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.accordion_btn i {
+  margin-right: 15px;
+}
+
+.accordion_btn:hover {
+  background-color: whitesmoke;
+}
+
+.accordion_content {
+  background-color: #F9F9F9;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+.accordion_content a {
+  width: 100%;
+  padding-left: 34px !important;
+  font-size: 14px;
+}
+
 .admin_sidenav {
   width: 100%;
   height: 100%;
@@ -118,7 +190,7 @@ input, textarea, select, button {
 
 .admin_sidenav a {
   width: 100%;
-  height: 80px;
+  height: 60px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -134,17 +206,21 @@ input, textarea, select, button {
   background-color: whitesmoke;
 }
 
+.admin_sidenav_active_tab {
+  color: #1FB6FF;
+}
+
 .admin_panel {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   background-color: #f2f4f5;
-  height: auto;
+  height: 100%;
 }
 
 .admin_left {
   width: 272px;
-  height: 100%;
+  height: auto;
 }
 
 .admin_right {
@@ -364,5 +440,67 @@ input, textarea, select, button {
 
 .user_management_table td button:hover {
   background-color: lightgray;
+}
+
+@media screen and (max-width: 1200px) {
+  .admin_right {
+    width: 100%;
+    overflow: auto;
+    padding: 0;
+  }
+  .user_management,
+  .user_management_table {
+    min-width: 1000px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .admin_left {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .nav_menu {
+    display: none;
+    border: 2px solid green;
+  }
+  .navbar_toggle_btn {
+    display: block !important;
+  }
+  .responsive_sidenav_menu {
+    width: 250px;
+    height: auto;
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    background-color: white;
+    overflow-y: auto !important;
+  }
+  .responsive_sidenav_menu div:first-child {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    background-color: lightgray;
+    height: 60px;
+    padding: 8px 15px;
+  }
+  .responsive_sidenav_menu div:first-child p, .responsive_sidenav_menu div:first-child button {
+    text-align: left;
+    background-color: transparent;
+    border: 0;
+  }
 }
 /*# sourceMappingURL=index.css.map */

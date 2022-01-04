@@ -4,12 +4,12 @@ $admin_panel_bg:#f2f4f5;
 .admin_panel{
     display: flex;
     background-color:$admin_panel_bg;
-    height: auto;
+    height:100%;
 }
 
 .admin_left{
     width:272px;
-    height:100%;
+    height:auto;
 }
 
 .admin_right{

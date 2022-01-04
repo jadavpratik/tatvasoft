@@ -23,9 +23,19 @@ a{
 
 input, textarea, select, button{
     outline: none;
+    box-shadow: none;
+}
+
+.d_none{
+    display: none !important;
 }
 
 @import "./navbar";
+@import "./accordion";
 @import "./sidenav";
 @import "./admin_panel";
 @import "./user_management";
+
+// -----------RESPONSIVE_CSS--------------
+@import "./responsive/admin_panel";
+@import "./responsive/navbar";

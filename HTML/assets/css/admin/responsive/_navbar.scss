@@ -1,0 +1,33 @@
+@media screen and (max-width:1200px) {
+    .nav_menu{
+        display:none;
+        border:2px solid green;
+    }
+    .navbar_toggle_btn{
+        display: block !important;
+    }
+    .responsive_sidenav_menu{
+        width:250px;
+        height: auto;
+        position: absolute;
+        top:0;
+        right:0;
+        display: flex;
+        flex-direction: column;
+        background-color: white;
+        overflow-y: auto !important;
+        div:first-child{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: lightgray;
+            height: 60px;
+            padding:8px 15px;
+            p,button{
+                text-align: left;
+                background-color: transparent;
+                border:0;
+            }
+        }
+    }
+}
