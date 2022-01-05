@@ -135,6 +135,14 @@
         margin-left:0;
         margin-right:0;
     }
+    .home_s2_card{
+        div{
+            &:first-child{
+                width:260px;
+                height:260px;
+            }
+        }
+    }
     .home_s3_bg_left,
     .home_s3_bg_right{
         display: none;

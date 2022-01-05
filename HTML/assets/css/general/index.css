@@ -1621,6 +1621,171 @@ footer {
   text-align: center;
 }
 
+.export_service_history {
+  height: 50px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.export_service_history p {
+  color: #646464;
+  font-weight: bold;
+  font-size: 22px;
+}
+
+.export_service_history button {
+  width: 70px;
+  height: 34px;
+  border: 0;
+  border-radius: 17px;
+  background-color: #146371;
+  color: white;
+}
+
+.service_history_table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #E1E1E1;
+}
+
+.service_history_table th, .service_history_table td {
+  padding-left: 18px;
+  border: 1px solid #E1E1E1;
+}
+
+.service_history_table th, .service_history_table td, .service_history_table p {
+  text-align: left;
+}
+
+.service_history_table th {
+  color: #646464;
+}
+
+.service_history_table thead {
+  height: 49px;
+  background-color: #f9f9f9;
+}
+
+.service_history_table tbody tr {
+  height: 71px;
+}
+
+.hat_style {
+  width: 44px;
+  height: 44px;
+  padding: 7px;
+  margin-right: 6px;
+  border: 1px solid #AAAAAA;
+  border-radius: 50%;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+
+.rated_star {
+  color: #ECB91C;
+}
+
+.unrated_star {
+  color: #D4D4D4;
+}
+
+.payment_text {
+  color: #1D7A8C;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.completed_status,
+.cancel_status {
+  width: 82px;
+  height: 22px;
+  font-size: 13px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: white;
+}
+
+.completed_status {
+  background-color: #67B644;
+}
+
+.cancel_status {
+  background-color: #FF6B6B;
+}
+
+.rate_sp {
+  width: 70px;
+  height: 34px;
+  background-color: #6DA9B5;
+  border: 0;
+  border-radius: 17px;
+  font-size: 14px;
+  color: white;
+}
+
+.customer {
+  padding-top: 64px;
+  padding-bottom: 384px;
+}
+
+.customer_container {
+  padding-top: 30px;
+  width: 1140px;
+  margin: 0 auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.customer_left {
+  width: 261px;
+  margin-right: 31px;
+  background-color: #1D7A8C;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.customer_left a {
+  width: 100%;
+  height: 55px;
+  padding-left: 15px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: white;
+  font-size: 18px;
+}
+
+.customer_left a:hover {
+  background-color: #146371;
+}
+
+.customer_right {
+  width: calc(100% - 261px);
+}
+
 .become_a_pro_s1 {
   height: 930px;
   display: -webkit-box;
@@ -1960,171 +2125,6 @@ footer {
   width: calc(100% - 261px);
 }
 
-.export_service_history {
-  height: 50px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-}
-
-.export_service_history p {
-  color: #646464;
-  font-weight: bold;
-  font-size: 22px;
-}
-
-.export_service_history button {
-  width: 70px;
-  height: 34px;
-  border: 0;
-  border-radius: 17px;
-  background-color: #146371;
-  color: white;
-}
-
-.service_history_table {
-  width: 100%;
-  border-collapse: collapse;
-  border: 1px solid #E1E1E1;
-}
-
-.service_history_table th, .service_history_table td {
-  padding-left: 18px;
-  border: 1px solid #E1E1E1;
-}
-
-.service_history_table th, .service_history_table td, .service_history_table p {
-  text-align: left;
-}
-
-.service_history_table th {
-  color: #646464;
-}
-
-.service_history_table thead {
-  height: 49px;
-  background-color: #f9f9f9;
-}
-
-.service_history_table tbody tr {
-  height: 71px;
-}
-
-.hat_style {
-  width: 44px;
-  height: 44px;
-  padding: 7px;
-  margin-right: 6px;
-  border: 1px solid #AAAAAA;
-  border-radius: 50%;
-  -o-object-fit: contain;
-     object-fit: contain;
-}
-
-.rated_star {
-  color: #ECB91C;
-}
-
-.unrated_star {
-  color: #D4D4D4;
-}
-
-.payment_text {
-  color: #1D7A8C;
-  font-size: 20px;
-  font-weight: bold;
-}
-
-.completed_status,
-.cancel_status {
-  width: 82px;
-  height: 22px;
-  font-size: 13px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  color: white;
-}
-
-.completed_status {
-  background-color: #67B644;
-}
-
-.cancel_status {
-  background-color: #FF6B6B;
-}
-
-.rate_sp {
-  width: 70px;
-  height: 34px;
-  background-color: #6DA9B5;
-  border: 0;
-  border-radius: 17px;
-  font-size: 14px;
-  color: white;
-}
-
-.customer {
-  padding-top: 64px;
-  padding-bottom: 384px;
-}
-
-.customer_container {
-  padding-top: 30px;
-  width: 1140px;
-  margin: 0 auto;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-.customer_left {
-  width: 261px;
-  margin-right: 31px;
-  background-color: #1D7A8C;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-}
-
-.customer_left a {
-  width: 100%;
-  height: 55px;
-  padding-left: 15px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  color: white;
-  font-size: 18px;
-}
-
-.customer_left a:hover {
-  background-color: #146371;
-}
-
-.customer_right {
-  width: calc(100% - 261px);
-}
-
 @media screen and (max-width: 1200px) {
   .navbar {
     height: 64px !important;
@@ -2409,6 +2409,10 @@ footer {
     width: 100%;
     margin-left: 0;
     margin-right: 0;
+  }
+  .home_s2_card div:first-child {
+    width: 260px;
+    height: 260px;
   }
   .home_s3_bg_left,
   .home_s3_bg_right {
