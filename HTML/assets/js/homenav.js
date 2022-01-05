@@ -1,23 +1,7 @@
-var show_nav_menu = 0;
-const nav_menu = $('.nav_menu')[0];
 const navbar = $('#home_navbar')[0];			
 const logo = $('.logo')[0];
 
-//--------------RESPONSIVE NAVBAR-------------------
-$('.nav_menu_btn').click(()=>{
-    if(show_nav_menu == 0){
-        nav_menu.style.right = 0;
-        show_nav_menu = 1;
-        $('.nav_menu_btn').html(`<i class="fas fa-times"></i>`);
-    }
-    else if(show_nav_menu == 1){
-        nav_menu.style.right = '-3000px';
-        show_nav_menu = 0;
-        $('.nav_menu_btn').html(`<i class="fas fa-bars"></i>`);
-    }
-});
-
-//--------------ON SCROLL SET NAVBAR HEIGHT------------------
+//--------------HOME PAGE > NAVBAR_SCROLL_EVENT------------------
 window.onscroll = function() {
     scrollFunction()
 };

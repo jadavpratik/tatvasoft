@@ -1,26 +1,3 @@
-function showContent(id){
-	// HIDE ALL TAB_CONTENT...
-	$('.tab_content').addClass('d_none');
-	// SHOW PERTICULAR CONTENT...
-	$(`#${id}`).removeClass('d_none');
-}
-
-$('.left_tab').click(()=>{
-	$('.left_tab').addClass('active_tab');
-	$('.right_tab').removeClass('active_tab');
-	showContent('left');
-});
-
-$('.right_tab').click(()=>{
-	$('.right_tab').addClass('active_tab');
-	$('.left_tab').removeClass('active_tab');
-	showContent('right');
-});
-
-// BY DEFAULT LEFT CONTENT...
-showContent('left');
-
-
 // ACCORDION IMPLEMENTATION...
 var acc = document.getElementsByClassName("accordion");
 

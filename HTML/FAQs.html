@@ -31,7 +31,7 @@
 		</div>
 
 		<!-- NAV_BTN_RESPONSIVE -->
-		<button class="nav_menu_btn"><i class="fas fa-bars"></i></button>
+		<button class="sidenav_btn"><i class="fas fa-bars"></i></button>
 		
 		<!-- NAV_MENU -->
 		<div class="nav_menu">
@@ -44,6 +44,75 @@
 			<a class="navbar_focus_btn" href="">Become a Helper</a>
 		</div><!-- END NAV_MENU -->
 	</nav><!-- END NAVBAR -->
+
+	<!-- --------------------------------------------------- -->
+						<!-- FOR_BACKLIGHT_CONTAIN -->
+	<!-- --------------------------------------------------- -->
+	<div class="backlight_container"></div>
+
+	<!-- --------------------------------------------------- -->
+						<!-- SIDE_NAVBAR -->
+	<!-- --------------------------------------------------- -->
+	<aside class="sidenav d_none">
+		<!-- FOR_LOGGED_USER -->
+		<div class="sidenav_header">
+			<p>Warm Welcome</p>
+			<p class="sidenav_logged_username">Kavan Patel</p>
+		</div>
+		<hr>
+		<div class="sidenav_main">
+			<!-- GUEST_USER -->
+			<a href="">Book Now</a>
+			<a href="">Prices & Services</a>
+			<a href="">Gurantee</a>
+			<a href="">Blog</a>
+			<a href="">Contact</a>
+			<a href="">Register</a>
+			<a href="">Become a Helper!</a>
+
+			<!-- CUSTOMER -->
+			<!-- <a href="">Overview</a>
+			<a href="">Completed Service Orders</a>
+			<a href="">Calander view</a>
+			<a href="">My Favorites</a>
+			<a href="">Bills</a>
+			<a href="">My Setting</a>
+			<a href="">Logout</a> -->
+
+			<!-- SERVICE_PROVIDER -->
+			<!-- <a href="">Overview</a>
+			<a href="">New Inquiries</a>
+			<a href="">Accepted Requests</a>
+			<a href="">Calander view</a>
+			<a href="">Completed Service Orders</a>
+			<a href="">My Reviews</a>
+			<a href="">Block Customer</a>
+			<a href="">Bills</a>
+			<a href="">My Setting</a>
+			<a href="">Logout</a> -->
+
+			<!-- ADMIN -->
+			<!-- <a href="">My Setting</a>
+			<a href="">Logout</a> -->
+
+		</div>
+		<hr>
+		<!-- COMMAN_LINKS_AFTER_LOGIN_OF_USER -->
+		<!-- <div class="sidenav_comman_links">
+			BOOK NOW FOR CUSTOMER
+			<a href="">Book Now</a>
+			<a href="">Prices & Services</a>
+			<a href="">Gurantee</a>
+			<a href="">Blog</a>
+			<a href="">Contact</a>
+		</div>
+		<hr> -->
+		<div class="sidenav_footer">
+			<a href=""><i class="fab fa-facebook-f"></i></a>
+			<a href=""><i class="fab fa-instagram"></i></a>
+		</div>
+	</aside>
+
 
 
 	<!-- --------------------------------------------------- -->
@@ -72,66 +141,67 @@
 		<div class="faq_container">
 
 			<div class="faq_tab nav_tabs">
-				<button class="left_tab active_tab">FOR CUSTOMER</button>
-				<button class="right_tab">FOR SERVICE PROVIDER</button>
+				<button class="nav_tab faq_active_tab">FOR CUSTOMER</button>
+				<button class="nav_tab">FOR SERVICE PROVIDER</button>
 			</div>
 
-			<div id="left" class="tab_content">
+			<div class="nav_tab_content">
 				<div class="questions">
 					<div class="question">
-						<button class="accordion close_accordion"><img src="./assets/img/general/static/faq/right_arrow.png" alt=""><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nisl nunc, iaculis mattis tellus ac ut non imperdiet velit?</p></button>
+						<button class="accordion"><img src="./assets/img/general/static/faq/right_arrow.png" alt=""><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nisl nunc, iaculis mattis tellus ac ut non imperdiet velit?</p></button>
 						<p class="answer accordion_content d_none">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id diam tincidunt, fringilla ante vitae, dapibus velit. Vivamus id tortor rhoncus, efficitur quam at, suscipit tortor. Integer fermentum convallis eros vel semper. Ut non imperdiet velit. Praesent eu dui vel lacus porta eleifend eget quis dui. Integer tempus massa in gravida tincidunt. Fusce in libero tristique, euismod nisi vel, luctus urna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Donec et placerat arcu. Suspendisse lacinia tristique massa. Etiam risus justo, scelerisque id arcu eu, sodales tempor eros. Aliquam efficitur pretium urna, sit amet congue risus malesuada rutrum. Donec id massa vel velit ullamcorper accumsan ut eget nisl. Fusce viverra commodo lacus, sit amet facilisis leo luctus dictum.</p>
 					</div>
 					<div class="question">
-						<button class="accordion close_accordion"><img src="./assets/img/general/static/faq/right_arrow.png" alt=""><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nisl nunc, iaculis mattis tellus ac ut non imperdiet velit?</p></button>
+						<button class="accordion"><img src="./assets/img/general/static/faq/right_arrow.png" alt=""><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nisl nunc, iaculis mattis tellus ac ut non imperdiet velit?</p></button>
 						<p class="answer accordion_content d_none">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id diam tincidunt, fringilla ante vitae, dapibus velit. Vivamus id tortor rhoncus, efficitur quam at, suscipit tortor. Integer fermentum convallis eros vel semper. Ut non imperdiet velit. Praesent eu dui vel lacus porta eleifend eget quis dui. Integer tempus massa in gravida tincidunt. Fusce in libero tristique, euismod nisi vel, luctus urna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Donec et placerat arcu. Suspendisse lacinia tristique massa. Etiam risus justo, scelerisque id arcu eu, sodales tempor eros. Aliquam efficitur pretium urna, sit amet congue risus malesuada rutrum. Donec id massa vel velit ullamcorper accumsan ut eget nisl. Fusce viverra commodo lacus, sit amet facilisis leo luctus dictum.</p>
 					</div>
 					<div class="question">
-						<button class="accordion close_accordion"><img src="./assets/img/general/static/faq/right_arrow.png" alt=""><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nisl nunc, iaculis mattis tellus ac ut non imperdiet velit?</p></button>
+						<button class="accordion"><img src="./assets/img/general/static/faq/right_arrow.png" alt=""><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nisl nunc, iaculis mattis tellus ac ut non imperdiet velit?</p></button>
 						<p class="answer accordion_content d_none">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id diam tincidunt, fringilla ante vitae, dapibus velit. Vivamus id tortor rhoncus, efficitur quam at, suscipit tortor. Integer fermentum convallis eros vel semper. Ut non imperdiet velit. Praesent eu dui vel lacus porta eleifend eget quis dui. Integer tempus massa in gravida tincidunt. Fusce in libero tristique, euismod nisi vel, luctus urna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Donec et placerat arcu. Suspendisse lacinia tristique massa. Etiam risus justo, scelerisque id arcu eu, sodales tempor eros. Aliquam efficitur pretium urna, sit amet congue risus malesuada rutrum. Donec id massa vel velit ullamcorper accumsan ut eget nisl. Fusce viverra commodo lacus, sit amet facilisis leo luctus dictum.</p>
 					</div>
 					<div class="question">
-						<button class="accordion close_accordion"><img src="./assets/img/general/static/faq/right_arrow.png" alt=""><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nisl nunc, iaculis mattis tellus ac ut non imperdiet velit?</p></button>
+						<button class="accordion"><img src="./assets/img/general/static/faq/right_arrow.png" alt=""><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nisl nunc, iaculis mattis tellus ac ut non imperdiet velit?</p></button>
 						<p class="answer accordion_content d_none">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id diam tincidunt, fringilla ante vitae, dapibus velit. Vivamus id tortor rhoncus, efficitur quam at, suscipit tortor. Integer fermentum convallis eros vel semper. Ut non imperdiet velit. Praesent eu dui vel lacus porta eleifend eget quis dui. Integer tempus massa in gravida tincidunt. Fusce in libero tristique, euismod nisi vel, luctus urna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Donec et placerat arcu. Suspendisse lacinia tristique massa. Etiam risus justo, scelerisque id arcu eu, sodales tempor eros. Aliquam efficitur pretium urna, sit amet congue risus malesuada rutrum. Donec id massa vel velit ullamcorper accumsan ut eget nisl. Fusce viverra commodo lacus, sit amet facilisis leo luctus dictum.</p>
 					</div>
 					<div class="question">
-						<button class="accordion close_accordion"><img src="./assets/img/general/static/faq/right_arrow.png" alt=""><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nisl nunc, iaculis mattis tellus ac ut non imperdiet velit?</p></button>
+						<button class="accordion"><img src="./assets/img/general/static/faq/right_arrow.png" alt=""><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nisl nunc, iaculis mattis tellus ac ut non imperdiet velit?</p></button>
 						<p class="answer accordion_content d_none">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id diam tincidunt, fringilla ante vitae, dapibus velit. Vivamus id tortor rhoncus, efficitur quam at, suscipit tortor. Integer fermentum convallis eros vel semper. Ut non imperdiet velit. Praesent eu dui vel lacus porta eleifend eget quis dui. Integer tempus massa in gravida tincidunt. Fusce in libero tristique, euismod nisi vel, luctus urna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Donec et placerat arcu. Suspendisse lacinia tristique massa. Etiam risus justo, scelerisque id arcu eu, sodales tempor eros. Aliquam efficitur pretium urna, sit amet congue risus malesuada rutrum. Donec id massa vel velit ullamcorper accumsan ut eget nisl. Fusce viverra commodo lacus, sit amet facilisis leo luctus dictum.</p>
 					</div>
 					<div class="question">
-						<button class="accordion close_accordion"><img src="./assets/img/general/static/faq/right_arrow.png" alt=""><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nisl nunc, iaculis mattis tellus ac ut non imperdiet velit?</p></button>
+						<button class="accordion"><img src="./assets/img/general/static/faq/right_arrow.png" alt=""><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nisl nunc, iaculis mattis tellus ac ut non imperdiet velit?</p></button>
 						<p class="answer accordion_content d_none">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id diam tincidunt, fringilla ante vitae, dapibus velit. Vivamus id tortor rhoncus, efficitur quam at, suscipit tortor. Integer fermentum convallis eros vel semper. Ut non imperdiet velit. Praesent eu dui vel lacus porta eleifend eget quis dui. Integer tempus massa in gravida tincidunt. Fusce in libero tristique, euismod nisi vel, luctus urna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Donec et placerat arcu. Suspendisse lacinia tristique massa. Etiam risus justo, scelerisque id arcu eu, sodales tempor eros. Aliquam efficitur pretium urna, sit amet congue risus malesuada rutrum. Donec id massa vel velit ullamcorper accumsan ut eget nisl. Fusce viverra commodo lacus, sit amet facilisis leo luctus dictum.</p>
 					</div>
 					<div class="question">
-						<button class="accordion close_accordion"><img src="./assets/img/general/static/faq/right_arrow.png" alt=""><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nisl nunc, iaculis mattis tellus ac ut non imperdiet velit?</p></button>
+						<button class="accordion"><img src="./assets/img/general/static/faq/right_arrow.png" alt=""><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nisl nunc, iaculis mattis tellus ac ut non imperdiet velit?</p></button>
 						<p class="answer accordion_content d_none">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id diam tincidunt, fringilla ante vitae, dapibus velit. Vivamus id tortor rhoncus, efficitur quam at, suscipit tortor. Integer fermentum convallis eros vel semper. Ut non imperdiet velit. Praesent eu dui vel lacus porta eleifend eget quis dui. Integer tempus massa in gravida tincidunt. Fusce in libero tristique, euismod nisi vel, luctus urna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Donec et placerat arcu. Suspendisse lacinia tristique massa. Etiam risus justo, scelerisque id arcu eu, sodales tempor eros. Aliquam efficitur pretium urna, sit amet congue risus malesuada rutrum. Donec id massa vel velit ullamcorper accumsan ut eget nisl. Fusce viverra commodo lacus, sit amet facilisis leo luctus dictum.</p>
 					</div>
 					<div class="question">
-						<button class="accordion close_accordion"><img src="./assets/img/general/static/faq/right_arrow.png" alt=""><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nisl nunc, iaculis mattis tellus ac ut non imperdiet velit?</p></button>
+						<button class="accordion"><img src="./assets/img/general/static/faq/right_arrow.png" alt=""><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nisl nunc, iaculis mattis tellus ac ut non imperdiet velit?</p></button>
 						<p class="answer accordion_content d_none">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id diam tincidunt, fringilla ante vitae, dapibus velit. Vivamus id tortor rhoncus, efficitur quam at, suscipit tortor. Integer fermentum convallis eros vel semper. Ut non imperdiet velit. Praesent eu dui vel lacus porta eleifend eget quis dui. Integer tempus massa in gravida tincidunt. Fusce in libero tristique, euismod nisi vel, luctus urna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Donec et placerat arcu. Suspendisse lacinia tristique massa. Etiam risus justo, scelerisque id arcu eu, sodales tempor eros. Aliquam efficitur pretium urna, sit amet congue risus malesuada rutrum. Donec id massa vel velit ullamcorper accumsan ut eget nisl. Fusce viverra commodo lacus, sit amet facilisis leo luctus dictum.</p>
 					</div>
 					<div class="question">
-						<button class="accordion close_accordion"><img src="./assets/img/general/static/faq/right_arrow.png" alt=""><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nisl nunc, iaculis mattis tellus ac ut non imperdiet velit?</p></button>
+						<button class="accordion"><img src="./assets/img/general/static/faq/right_arrow.png" alt=""><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nisl nunc, iaculis mattis tellus ac ut non imperdiet velit?</p></button>
 						<p class="answer accordion_content d_none">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id diam tincidunt, fringilla ante vitae, dapibus velit. Vivamus id tortor rhoncus, efficitur quam at, suscipit tortor. Integer fermentum convallis eros vel semper. Ut non imperdiet velit. Praesent eu dui vel lacus porta eleifend eget quis dui. Integer tempus massa in gravida tincidunt. Fusce in libero tristique, euismod nisi vel, luctus urna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Donec et placerat arcu. Suspendisse lacinia tristique massa. Etiam risus justo, scelerisque id arcu eu, sodales tempor eros. Aliquam efficitur pretium urna, sit amet congue risus malesuada rutrum. Donec id massa vel velit ullamcorper accumsan ut eget nisl. Fusce viverra commodo lacus, sit amet facilisis leo luctus dictum.</p>
 					</div><!-- END_QUESTION -->
 				</div><!-- END_QUESTIONS -->
 			</div><!-- END_LEFT_TAB_CONTENT -->
-			<div id="right" class="tab_content">
+
+			<div class="nav_tab_content d_none">
 				<div class="questions">
 					<div class="question">
-						<button class="accordion close_accordion"><img src="./assets/img/general/static/faq/right_arrow.png" alt=""><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nisl nunc, iaculis mattis tellus ac ut non imperdiet velit?</p></button>
+						<button class="accordion"><img src="./assets/img/general/static/faq/right_arrow.png" alt=""><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nisl nunc, iaculis mattis tellus ac ut non imperdiet velit?</p></button>
 						<p class="answer accordion_content d_none">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id diam tincidunt, fringilla ante vitae, dapibus velit. Vivamus id tortor rhoncus, efficitur quam at, suscipit tortor. Integer fermentum convallis eros vel semper. Ut non imperdiet velit. Praesent eu dui vel lacus porta eleifend eget quis dui. Integer tempus massa in gravida tincidunt. Fusce in libero tristique, euismod nisi vel, luctus urna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Donec et placerat arcu. Suspendisse lacinia tristique massa. Etiam risus justo, scelerisque id arcu eu, sodales tempor eros. Aliquam efficitur pretium urna, sit amet congue risus malesuada rutrum. Donec id massa vel velit ullamcorper accumsan ut eget nisl. Fusce viverra commodo lacus, sit amet facilisis leo luctus dictum.</p>
 					</div>
 					<div class="question">
-						<button class="accordion close_accordion"><img src="./assets/img/general/static/faq/right_arrow.png" alt=""><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nisl nunc, iaculis mattis tellus ac ut non imperdiet velit?</p></button>
+						<button class="accordion"><img src="./assets/img/general/static/faq/right_arrow.png" alt=""><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nisl nunc, iaculis mattis tellus ac ut non imperdiet velit?</p></button>
 						<p class="answer accordion_content d_none">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id diam tincidunt, fringilla ante vitae, dapibus velit. Vivamus id tortor rhoncus, efficitur quam at, suscipit tortor. Integer fermentum convallis eros vel semper. Ut non imperdiet velit. Praesent eu dui vel lacus porta eleifend eget quis dui. Integer tempus massa in gravida tincidunt. Fusce in libero tristique, euismod nisi vel, luctus urna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Donec et placerat arcu. Suspendisse lacinia tristique massa. Etiam risus justo, scelerisque id arcu eu, sodales tempor eros. Aliquam efficitur pretium urna, sit amet congue risus malesuada rutrum. Donec id massa vel velit ullamcorper accumsan ut eget nisl. Fusce viverra commodo lacus, sit amet facilisis leo luctus dictum.</p>
 					</div>
 					<div class="question">
-						<button class="accordion close_accordion"><img src="./assets/img/general/static/faq/right_arrow.png" alt=""><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nisl nunc, iaculis mattis tellus ac ut non imperdiet velit?</p></button>
+						<button class="accordion"><img src="./assets/img/general/static/faq/right_arrow.png" alt=""><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nisl nunc, iaculis mattis tellus ac ut non imperdiet velit?</p></button>
 						<p class="answer accordion_content d_none">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id diam tincidunt, fringilla ante vitae, dapibus velit. Vivamus id tortor rhoncus, efficitur quam at, suscipit tortor. Integer fermentum convallis eros vel semper. Ut non imperdiet velit. Praesent eu dui vel lacus porta eleifend eget quis dui. Integer tempus massa in gravida tincidunt. Fusce in libero tristique, euismod nisi vel, luctus urna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Donec et placerat arcu. Suspendisse lacinia tristique massa. Etiam risus justo, scelerisque id arcu eu, sodales tempor eros. Aliquam efficitur pretium urna, sit amet congue risus malesuada rutrum. Donec id massa vel velit ullamcorper accumsan ut eget nisl. Fusce viverra commodo lacus, sit amet facilisis leo luctus dictum.</p>
 					</div>
 					<div class="question">
-						<button class="accordion close_accordion"><img src="./assets/img/general/static/faq/right_arrow.png" alt=""><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nisl nunc, iaculis mattis tellus ac ut non imperdiet velit?</p></button>
+						<button class="accordion"><img src="./assets/img/general/static/faq/right_arrow.png" alt=""><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nisl nunc, iaculis mattis tellus ac ut non imperdiet velit?</p></button>
 						<p class="answer accordion_content d_none">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id diam tincidunt, fringilla ante vitae, dapibus velit. Vivamus id tortor rhoncus, efficitur quam at, suscipit tortor. Integer fermentum convallis eros vel semper. Ut non imperdiet velit. Praesent eu dui vel lacus porta eleifend eget quis dui. Integer tempus massa in gravida tincidunt. Fusce in libero tristique, euismod nisi vel, luctus urna. Interdum et malesuada fames ac ante ipsum primis in faucibus. Donec et placerat arcu. Suspendisse lacinia tristique massa. Etiam risus justo, scelerisque id arcu eu, sodales tempor eros. Aliquam efficitur pretium urna, sit amet congue risus malesuada rutrum. Donec id massa vel velit ullamcorper accumsan ut eget nisl. Fusce viverra commodo lacus, sit amet facilisis leo luctus dictum.</p>
 					</div><!-- END_QUESTION -->
 				</div><!-- END_QUESTIONS -->
@@ -199,9 +269,12 @@
 		<button id="cookie_submit_btn">OK!</button>
 	</div>
 
-<script src="./assets/js/general/navbar.js"></script>
-<script src="./assets/js/general/footer.js"></script>
-<script src="./assets/js/general/accordion.js"></script>
+	<!-- CUSTOM_JAVASCRIPT -->
+	<script src="./assets/js/homenav.js"></script>
+	<script src="./assets/js/sidenav.js"></script>
+	<script src="./assets/js/navtabs.js"></script>
+	<script src="./assets/js/footer.js"></script>
+	<script src="./assets/js/accordion.js"></script>
 
 </body>
 </html>
