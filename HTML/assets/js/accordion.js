@@ -1,19 +1,23 @@
-// ACCORDION IMPLEMENTATION...
-var acc = document.getElementsByClassName("accordion");
+const right_arrow = './assets/img/general/static/faq/right_arrow.png';
+const down_arrow = './assets/img/general/static/faq/down_arrow.png';
 
-for (let i = 0; i < acc.length; i++) {
-	acc[i].addEventListener("click", function() {
-		var panel = this.nextElementSibling;
-		const close_img = './assets/img/general/static/faq/right_arrow.png';
-		const open_img = './assets/img/general/static/faq/down_arrow.png';
-		if(this.classList.contains('close_accordion')){
-			this.firstChild.src = open_img;
-			this.classList.remove('close_accordion');
+// ACCORDION IMPLEMENTATION...
+var acc_btn = document.getElementsByClassName("accordion_btn");
+
+for (let i = 0; i < acc_btn.length; i++) {
+
+	acc_btn[i].addEventListener("click", function() {
+		
+		var acc_content = this.nextElementSibling;
+		if(acc_content.classList.contains('d_none')){
+			// CHANGE RIGHT_ARROW -> DOWN_ARROW
+			acc_btn[i].children[0].src = down_arrow;
+			acc_content.classList.remove('d_none');
 		}
 		else{
-			this.firstChild.src = close_img;
-			this.classList.add('close_accordion');
+			// CHANGE DOWN_ARROW -> RIGHT_ARROW
+			acc_btn[i].children[0].src = right_arrow;
+			acc_content.classList.add('d_none');
 		}
-		panel.classList.toggle('d_none');
 	});
 }

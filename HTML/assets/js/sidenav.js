@@ -1,9 +1,11 @@
 $('.sidenav_btn').click(()=>{
     $('.backlight_container').addClass('backlight');
-    $('.sidenav').removeClass('d_none').animate({'right':'0px'});
+    $('.sidenav').animate({'right':'0px'}, 500);
+    $('body').css({'overflow':'hidden'});
 });
 
 $('.backlight_container').click(()=>{
     $('.backlight_container').removeClass('backlight');
-    $('.sidenav').addClass('d_none').animate({'right':'-250px'});
+    $('.sidenav').animate({'right':'-250px'}, 500);
+    $('body').css({'overflow-y':'auto'});
 });

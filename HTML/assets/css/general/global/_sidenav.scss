@@ -4,13 +4,14 @@ $sidenav_active_text:#1FB6FF;
 .sidenav{
     width:250px;
     height:100%;
-    position:absolute;
+    position:fixed;
     top:0;
     right: -250px;
     background-color: white;
     z-index: 2;
     box-shadow: 4px 4px 10px lightgray;
     transition: all 0.1s;
+    overflow-y: auto;
     a, i{
         color:$sidenav_text;
         &:hover{

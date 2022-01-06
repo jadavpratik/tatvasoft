@@ -177,7 +177,7 @@ input, textarea, select, button {
 
 .dropdown_menu {
   min-width: 200px;
-  padding-top: 10px;
+  padding: 10px 0;
   position: absolute;
   top: 70px;
   right: 0;
@@ -195,23 +195,6 @@ input, textarea, select, button {
   background-color: white;
 }
 
-.dropdown_menu hr {
-  margin: 8px 16px;
-}
-
-.dropdown_menu p {
-  padding: 8px 16px;
-}
-
-.dropdown_menu a {
-  color: black;
-  padding: 12px 16px;
-}
-
-.dropdown_menu a:hover {
-  background-color: whitesmoke;
-}
-
 .dropdown_menu::after {
   content: "";
   position: absolute;
@@ -223,6 +206,68 @@ input, textarea, select, button {
   border-top: 8px solid lightgray;
   border-right: 8px solid transparent;
   border-bottom: 8px solid transparent;
+}
+
+.dropdown_menu hr {
+  margin: 8px 0px;
+  background-color: whitesmoke;
+}
+
+.dropdown_menu p {
+  color: #646464;
+  padding: 8px 16px 0;
+}
+
+.dropdown_menu p:last-child {
+  padding-top: 0;
+  font-weight: bold;
+}
+
+.dropdown_menu a {
+  color: #646464;
+  padding: 8px 16px;
+}
+
+.dropdown_menu a:hover {
+  background-color: whitesmoke;
+}
+
+.drowpdown_nortification_container {
+  width: 300px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.drowpdown_nortification_container a {
+  width: auto;
+  margin: 0 auto;
+  color: #1D7A8C;
+}
+
+.drowpdown_nortification {
+  border-bottom: 0.5px solid lightgray;
+  padding: 10px 0;
+}
+
+.drowpdown_nortification:last-of-type {
+  border: 0;
+}
+
+.drowpdown_nortification p {
+  color: #646464;
+}
+
+.drowpdown_nortification p:last-child {
+  margin-top: 4px;
+  font-size: 14px;
 }
 
 .welcome_message {
@@ -263,6 +308,14 @@ input, textarea, select, button {
   z-index: 1;
 }
 
+.border_left {
+  border-left: 1px solid white;
+}
+
+.border_right {
+  border-right: 1px solid white;
+}
+
 .banner {
   margin-top: 64px;
   width: 100%;
@@ -272,6 +325,8 @@ input, textarea, select, button {
 .banner img {
   width: 100%;
   height: 370px;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 @media screen and (max-width: 992px) {
@@ -482,7 +537,7 @@ input, textarea, select, button {
 .sidenav {
   width: 250px;
   height: 100%;
-  position: absolute;
+  position: fixed;
   top: 0;
   right: -250px;
   background-color: white;
@@ -491,6 +546,7 @@ input, textarea, select, button {
           box-shadow: 4px 4px 10px lightgray;
   -webkit-transition: all 0.1s;
   transition: all 0.1s;
+  overflow-y: auto;
 }
 
 .sidenav a, .sidenav i {
@@ -1233,6 +1289,7 @@ footer {
           align-items: center;
   background-color: transparent;
   border: 0;
+  cursor: pointer;
 }
 
 .question button p {
@@ -1248,28 +1305,6 @@ footer {
   padding-left: 36px;
   line-height: 24px;
   color: #646464;
-  -webkit-transition: all 1s;
-  transition: all 1s;
-  -webkit-animation: fadeEffect 1s;
-          animation: fadeEffect 1s;
-}
-
-@-webkit-keyframes fadeEffect {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes fadeEffect {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
 }
 
 .prices_s1 {

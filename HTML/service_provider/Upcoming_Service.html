@@ -26,7 +26,7 @@
 		</div>
 
 		<!-- NAV_BTN_RESPONSIVE -->
-		<button class="nav_menu_btn"><i class="fas fa-bars"></i></button>
+		<button class="sidenav_btn"><i class="fas fa-bars"></i></button>
 		
 		<!-- NAV_MENU -->
 		<div class="nav_menu">
@@ -34,12 +34,28 @@
 			<a href="">Warranty</a>
 			<a href="">Blog</a>
 			<a href="">Contact</a>
-            <div class="dropdown">
+            <div class="dropdown border_left border_right">
                 <button class="dropdown_btn"><img src="../assets/img/general/navbar/notification.png" alt=""></button>
-                <div class="dropdown_menu d_none">
-                    <div class="drowpdown_nortification">
-                        <p>Cancellation! You have canceled the order, Service ID: 8503</p>
-                        <p>30/12/2021 11:43</p>
+                <div class="dropdown_menu">
+                    <div class="drowpdown_nortification_container">
+                        <div class="drowpdown_nortification">
+                            <p>Cancellation! You have canceled the order, Service ID: 8503</p>
+                            <p>30/12/2021 11:43</p>    
+                        </div>
+                        <div class="drowpdown_nortification">
+                            <p>Cancellation! You have canceled the order, Service ID: 8503</p>
+                            <p>30/12/2021 11:43</p>    
+                        </div>
+                        <div class="drowpdown_nortification">
+                            <p>Cancellation! You have canceled the order, Service ID: 8503</p>
+                            <p>30/12/2021 11:43</p>    
+                        </div>
+                        <div class="drowpdown_nortification">
+                            <p>Cancellation! You have canceled the order, Service ID: 8503</p>
+                            <p>30/12/2021 11:43</p>    
+                        </div>
+                        <hr>
+                        <a href="">Show All</a>
                     </div>
                 </div>
             </div>
@@ -62,15 +78,73 @@
         </div><!-- END NAV_MENU -->
 	</nav><!-- END NAVBAR -->
 
-    <script>
-        const dropdown_btn = document.getElementsByClassName('dropdown_btn');
-        for(let i = 0; i < dropdown_btn.length; i++){
-            dropdown_btn[i].addEventListener('click', ()=>{
-                $('.dropdown_menu').addClass('d_none');
-                dropdown_btn[i].nextElementSibling.classList.toggle('d_none');
-            });
-        }
-    </script>
+    	<!-- --------------------------------------------------- -->
+						<!-- FOR_BACKLIGHT_CONTAIN -->
+	<!-- --------------------------------------------------- -->
+	<div class="backlight_container"></div>
+
+	<!-- --------------------------------------------------- -->
+						<!-- SIDE_NAVBAR -->
+	<!-- --------------------------------------------------- -->
+	<aside class="sidenav">
+		<!-- FOR_LOGGED_USER -->
+		<div class="sidenav_header">
+			<p>Warm Welcome</p>
+			<p class="sidenav_logged_username">Kavan Patel</p>
+		</div>
+		<hr>
+		<div class="sidenav_main">
+			<!-- GUEST_USER -->
+			<a href="">Book Now</a>
+			<a href="">Prices & Services</a>
+			<a href="">Gurantee</a>
+			<a href="">Blog</a>
+			<a href="">Contact</a>
+			<a href="">Register</a>
+			<a href="">Become a Helper!</a>
+
+			<!-- CUSTOMER -->
+			<!-- <a href="">Overview</a>
+			<a href="">Completed Service Orders</a>
+			<a href="">Calander view</a>
+			<a href="">My Favorites</a>
+			<a href="">Bills</a>
+			<a href="">My Setting</a>
+			<a href="">Logout</a> -->
+
+			<!-- SERVICE_PROVIDER -->
+			<!-- <a href="">Overview</a>
+			<a href="">New Inquiries</a>
+			<a href="">Accepted Requests</a>
+			<a href="">Calander view</a>
+			<a href="">Completed Service Orders</a>
+			<a href="">My Reviews</a>
+			<a href="">Block Customer</a>
+			<a href="">Bills</a>
+			<a href="">My Setting</a>
+			<a href="">Logout</a> -->
+
+			<!-- ADMIN -->
+			<!-- <a href="">My Setting</a>
+			<a href="">Logout</a> -->
+
+		</div>
+		<hr>
+		<!-- COMMAN_LINKS_AFTER_LOGIN_OF_USER -->
+		<!-- <div class="sidenav_comman_links">
+			BOOK NOW FOR CUSTOMER
+			<a href="">Book Now</a>
+			<a href="">Prices & Services</a>
+			<a href="">Gurantee</a>
+			<a href="">Blog</a>
+			<a href="">Contact</a>
+		</div>
+		<hr> -->
+		<div class="sidenav_footer">
+			<a href=""><i class="fab fa-facebook-f"></i></a>
+			<a href=""><i class="fab fa-instagram"></i></a>
+		</div>
+	</aside>
 
 	<!-- --------------------------------------------------- -->
 						<!-- SERVICE_PROVIDER -->
@@ -388,8 +462,13 @@
 	</div>
 
 
-<script src="../assets/js/general/navbar.js"></script>
-<script src="../assets/js/general/footer.js"></script>
+	<!-- CUSTOM_JAVASCRIPT -->
+	<script src="../assets/js/homenav.js"></script>
+	<script src="../assets/js/sidenav.js"></script>
+	<script src="../assets/js/navtabs.js"></script>
+	<script src="../assets/js/footer.js"></script>
+	<script src="../assets/js/accordion.js"></script>
+	<script src="../assets/js/dropdown.js"></script>
 
 </body>
 </html>

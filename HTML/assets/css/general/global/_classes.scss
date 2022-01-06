@@ -35,6 +35,13 @@ $welcome_message_border:#E1E1E1;
     z-index: 1;
 }
 
+.border_left{
+    border-left:1px solid white;
+}
+.border_right{
+    border-right:1px solid white;
+}
+
 .banner{
     margin-top:$navbar_height;
     width:100%;
@@ -42,6 +49,7 @@ $welcome_message_border:#E1E1E1;
     img{
         width: 100%;
         height: 370px;
+        object-fit: cover;
     }
 }
 
