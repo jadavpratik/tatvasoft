@@ -6,8 +6,15 @@ $footer_height:334px;
 $last_section_bottom_padding: $footer_height + 50px;
 
 // ------------------Z_INDEX-------------------
+// NAVBAR
 $navbar_z_index:1;
-$sidenav_btn_z_index:2;
-$sidenav_z_index:2;
+
+// BUTTON & DROPDOWN
 $dropdown_z_index:1;
-// responsive_sidePadding:20px
+$sidenav_btn_z_index:1;
+$admin_dashboard_btn_z_index:1;
+
+// SIDE CONTAINER & BACKLIGHT
+$backlight_z_index:2;
+$admin_left_z_index:2;
+$sidenav_z_index:2;

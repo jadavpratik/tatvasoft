@@ -4,8 +4,15 @@ $('.sidenav_btn').click(()=>{
     $('body').css({'overflow':'hidden'});
 });
 
+$('.admin_dashboard_btn').click(()=>{
+    $('.backlight_container').addClass('backlight');
+    $('.admin_left').animate({'left':'0px'}, 500);
+    $('body').css({'overflow':'hidden'});
+});
+
 $('.backlight_container').click(()=>{
     $('.backlight_container').removeClass('backlight');
     $('.sidenav').animate({'right':'-250px'}, 500);
+    $('.admin_left').animate({'left':'-272px'}, 500);
     $('body').css({'overflow-y':'auto'});
 });

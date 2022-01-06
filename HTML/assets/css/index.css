@@ -151,6 +151,7 @@ button {
 .dropdown {
   position: relative;
   margin-left: 8px;
+  max-width: 100px;
   width: auto;
   height: auto;
   display: -webkit-box;
@@ -186,7 +187,7 @@ button {
   padding: 10px 0;
   position: absolute;
   top: 130%;
-  right: 4%;
+  right: 0%;
   border: 0.5px solid lightgray;
   border-radius: 8px;
   -webkit-box-shadow: 1px 1px 2px lightgray;
@@ -312,7 +313,7 @@ button {
   width: 100%;
   height: 100%;
   opacity: 0.6;
-  z-index: 1;
+  z-index: 2;
 }
 
 .border_left {
@@ -533,7 +534,7 @@ button {
   display: none;
   background-color: transparent;
   border: 0;
-  z-index: 2;
+  z-index: 1;
 }
 
 .sidenav_btn i {
@@ -1298,6 +1299,38 @@ footer {
   padding: 0 18px;
 }
 
+.admin_navbar_toggle_btn_container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.admin_navbar_toggle_btn_container button {
+  margin-left: 10px;
+}
+
+.admin_dashboard_btn {
+  font-size: 16px;
+  padding: 0 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border: 0;
+  background-color: transparent;
+  z-index: 1;
+}
+
+.admin_dashboard_btn i {
+  color: white;
+  font-size: 16px;
+}
+
 .admin_logo {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1355,12 +1388,6 @@ footer {
      object-fit: contain;
 }
 
-@media screen and (max-width: 1200px) {
-  .admin_nav_menu {
-    display: none;
-  }
-}
-
 .admin_panel {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1372,6 +1399,17 @@ footer {
 .admin_left {
   width: 272px;
   height: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  background-color: white;
+  -webkit-box-shadow: 2px 0px 6px #0000001A;
+          box-shadow: 2px 0px 6px #0000001A;
+  z-index: 2;
 }
 
 .admin_tab_list {
@@ -1385,12 +1423,10 @@ footer {
       -ms-flex-direction: column;
           flex-direction: column;
   background-color: white;
-  -webkit-box-shadow: 2px 0px 6px #0000001A;
-          box-shadow: 2px 0px 6px #0000001A;
 }
 
 .admin_tab_list > a,
-.admin_tab_list .admin_accordion > button {
+.admin_accordion > button {
   width: 100%;
   height: 56px;
   display: -webkit-box;
@@ -1411,7 +1447,7 @@ footer {
 }
 
 .admin_tab_list > a i,
-.admin_tab_list .admin_accordion > button i {
+.admin_accordion > button i {
   margin-right: 20px;
   width: 20px;
   height: 20px;
@@ -1429,7 +1465,7 @@ footer {
 }
 
 .admin_tab_list > a:hover,
-.admin_tab_list .admin_accordion > button:hover {
+.admin_accordion > button:hover {
   background-color: whitesmoke;
 }
 
@@ -3349,5 +3385,38 @@ footer {
   .customer {
     padding-bottom: 50px;
   }
+}
+
+@media screen and (max-width: 1200px) {
+  .admin_navbar {
+    width: 100%;
+  }
+  .admin_logo {
+    padding-left: 0;
+  }
+  .admin_logo p {
+    font-size: 26px;
+  }
+  .admin_nav_menu {
+    display: none;
+  }
+}
+
+.admin_left {
+  position: fixed;
+  left: -272px;
+  top: 0;
+  overflow: auto !important;
+  width: 260px;
+  height: auto;
+}
+
+.admin_right {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.admin_right_container {
+  min-width: 1000px;
 }
 /*# sourceMappingURL=index.css.map */

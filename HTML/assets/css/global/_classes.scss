@@ -32,12 +32,13 @@ $welcome_message_border:#E1E1E1;
     width:100%;
     height: 100%;
     opacity: 0.6;
-    z-index: 1;
+    z-index: $backlight_z_index;
 }
 
 .border_left{
     border-left:1px solid white;
 }
+
 .border_right{
     border-right:1px solid white;
 }

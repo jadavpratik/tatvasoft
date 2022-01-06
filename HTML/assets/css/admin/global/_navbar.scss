@@ -9,6 +9,28 @@ $navbar_bg:#1FB6FF;
     padding:0 18px;
 }
 
+.admin_navbar_toggle_btn_container{
+    display: flex;
+    button{
+        margin-left: 10px;
+    }
+}
+
+.admin_dashboard_btn{
+    font-size: 16px;
+    padding:0 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border:0;
+    background-color: transparent;
+    z-index: $admin_dashboard_btn_z_index;
+    i{
+        color:white;
+        font-size: 16px;
+    }
+}
+
 .admin_logo{
     display: flex;
     align-items: center;
@@ -41,12 +63,5 @@ $navbar_bg:#1FB6FF;
         img{
             object-fit: contain;
         }
-    }
-}
-
-
-@media screen and (max-width:1200px) {
-    .admin_nav_menu{
-        display: none;
     }
 }

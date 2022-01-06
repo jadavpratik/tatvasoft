@@ -1,0 +1,17 @@
+.admin_left{
+    position: fixed;
+    left:-272px;
+    top:0;
+    overflow: auto !important;
+    width:260px;
+    height:auto;
+}
+
+.admin_right{
+    width:100%;
+    overflow-x: auto;
+}
+
+.admin_right_container{
+    min-width:1000px;        
+}

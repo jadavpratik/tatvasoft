@@ -3,6 +3,7 @@ $dropdown_text:#646464;
 .dropdown{
     position: relative;
     margin-left: 8px;
+    max-width:100px;
     width:auto;
     height: auto;
     display: flex;
@@ -26,7 +27,7 @@ $dropdown_text:#646464;
     padding:10px 0;
     position: absolute;
     top:130%;
-    right:4%;
+    right:0%;
     border:0.5px solid lightgray;
     border-radius: 8px;
     box-shadow: 1px 1px 2px lightgray;
