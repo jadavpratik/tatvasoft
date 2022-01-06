@@ -1914,6 +1914,10 @@ footer {
   background-color: #146371;
 }
 
+.customer_active_tab {
+  background-color: #146371;
+}
+
 .customer_right {
   width: calc(100% - 261px);
 }
@@ -2251,6 +2255,10 @@ footer {
 
 .service_provider_left a:hover {
   background-color: #146371;
+}
+
+.service_provider_active_tab {
+  background-color: #146371 !important;
 }
 
 .service_provider_right {

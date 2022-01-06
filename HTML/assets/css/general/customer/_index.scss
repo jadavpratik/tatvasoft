@@ -1,7 +1,7 @@
 @import "./service_history";
 
 $customer_left:#1D7A8C;
-$customer_left_hover:#146371;
+$customer_active_tab:#146371;
 
 .customer{
     padding-top: 64px;
@@ -30,9 +30,13 @@ $customer_left_hover:#146371;
         color:white;
         font-size: 18px;
         &:hover{
-            background-color: $customer_left_hover;
+            background-color: $customer_active_tab;
         }
     }
+}
+
+.customer_active_tab{
+    background-color: $customer_active_tab;
 }
 
 .customer_right{

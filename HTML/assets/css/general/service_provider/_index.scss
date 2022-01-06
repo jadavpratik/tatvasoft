@@ -2,7 +2,7 @@
 @import "./upcoming_service/index";
 
 $service_provider_left:#1D7A8C;
-$service_provider_left_hover:#146371;
+$service_provider_active_tab:#146371;
 
 .service_provider{
     padding-top: 64px;
@@ -31,9 +31,13 @@ $service_provider_left_hover:#146371;
         color:white;
         font-size: 18px;
         &:hover{
-            background-color: $service_provider_left_hover;
+            background-color: $service_provider_active_tab;
         }
     }
+}
+
+.service_provider_active_tab{
+    background-color: $service_provider_active_tab !important;
 }
 
 .service_provider_right{
