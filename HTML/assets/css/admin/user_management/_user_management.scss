@@ -38,7 +38,7 @@ $inactive_status:#FF6B6B;
             background-color: $user_management_add_btn;
             color:white;
             font-size: 14px;
-            img{
+            img, i{
                 object-fit: contain;
                 margin-right: 7px;
             }
@@ -91,26 +91,25 @@ $inactive_status:#FF6B6B;
     }
 }
 
-.active_status{
-    width:58px;
-    height:24px;
+.active_status,
+.inactive_status{
+    width:auto;
+    width:62px;
+    height: 24px;
     padding:5px 11px;
-    background-color: $active_status;
+    border-radius: 2px;
     display: flex;
     align-items: center;
     justify-content: center;
     color:white !important;
 }
 
+.active_status{
+    background-color: $active_status;
+}
+
 .inactive_status{
-    width:62px;
-    height: 24px;
-    padding:5px 11px;
     background-color: $inactive_status;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color:white !important;
 }
 
 .user_management_table{
@@ -128,6 +127,7 @@ $inactive_status:#FF6B6B;
     td{
         background-color: white;
         button{
+
             width:36px;
             height:36px;
             border:0;
@@ -137,6 +137,10 @@ $inactive_status:#FF6B6B;
             align-items: center;
             justify-content: center;
             cursor: pointer;
+            i{
+                font-size: 16px;
+                color:$user_management_text;
+            }
             &:hover{
                 background-color:lightgray;
             }

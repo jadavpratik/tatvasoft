@@ -73,10 +73,14 @@ $navbar_btn_border:#ffffff80;
     display: none;
     background-color: transparent;
     border:0;
-    z-index: $nav_menu_btn_z_index;
+    z-index: $sidenav_btn_z_index;
     i{
         font-size: 20px;
         color:white;
     }
 }
 
+.nav_menu > .dropdown{
+    width:60px;
+    height:60px;
+}

@@ -19,6 +19,9 @@ $customer_active_tab:#146371;
     width:261px;
     margin-right: 31px;
     background-color:$customer_left;
+}
+
+.customer_tab_list{
     display: flex;
     flex-direction: column;
     a{

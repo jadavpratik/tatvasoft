@@ -12,6 +12,7 @@ $sidenav_active_text:#1FB6FF;
     box-shadow: 4px 4px 10px lightgray;
     transition: all 0.1s;
     overflow-y: auto;
+    z-index: $sidenav_z_index;
     a, i{
         color:$sidenav_text;
         &:hover{

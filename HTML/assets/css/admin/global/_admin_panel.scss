@@ -1,5 +1,8 @@
 $footer_text:#A2A6A8;
 $admin_panel_bg:#f2f4f5;
+$sidenav_text:#646464;
+$sidenav_active_text:#1FB6FF;
+$sidenav_shadow:#0000001A;
 
 .admin_panel{
     display: flex;
@@ -10,6 +13,60 @@ $admin_panel_bg:#f2f4f5;
 .admin_left{
     width:272px;
     height:auto;
+}
+
+.admin_tab_list{
+    width:100%;
+    height:100%;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    box-shadow: 2px 0px 6px $sidenav_shadow;
+    & > a,
+    .admin_accordion > button{
+        width:100%;
+        height:56px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-left: 13px;
+        background-color: white;
+        color:$sidenav_text;
+        border:0;
+        border-bottom: 1px solid #E5E5E5;
+        font-size: 16px;
+        i{
+            margin-right: 20px;
+            width:20px;
+            height:20px;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color:$sidenav_text;
+        }
+        &:hover{
+            background-color: whitesmoke;
+        }
+    }
+}
+
+.admin_accordion div{
+    width:100%;
+    height:auto;
+    display: flex;
+    flex-direction: column;
+    background-color: whitesmoke;
+    a{
+        padding:16px 0;
+        padding-left: 26px;
+        width:100%;
+        color:$sidenav_text;
+    }
+}
+
+.admin_sidenav_active_tab{
+    color:$sidenav_active_text;
 }
 
 .admin_right{

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin-UserManagement</title>
+    <title>User Management</title>
 	<!-- FAVICON -->
 	<link rel="icon" href="../assets/img/favicon/favicon.png" sizes="16x16" type="image/png">	
 	<!-- CSS -->
@@ -20,13 +20,18 @@
                 <!-- NAVBAR -->
     <!-- ------------------------------------ -->
     <nav class="admin_navbar">
+
         <div class="admin_logo">
             <p>Helperland</p>
         </div>
+
+        <!-- NAV_BTN_RESPONSIVE -->
+		<button class="sidenav_btn"><i class="fas fa-bars"></i></button>
+
         <div class="admin_nav_menu">
-            <img src="../assets/img/navbar/admin_user.png" alt="">
+            <img src="../assets/img/global/user.png" alt="">
             <p>James Smith</p>
-            <button><img src="../assets/img/navbar/logout.png" alt=""></button>
+            <button><img src="../assets/img/global/logout.png" alt=""></button>
         </div>
     </nav>
 
@@ -100,61 +105,15 @@
 
 
     <!-- ------------------------------------ -->
-                <!-- RESPONSIVE_NAVBAR -->
-    <!-- ------------------------------------ -->
-    <button class="navbar_toggle_btn"><i class="fas fa-bars"></i></button>
-    <div class="responsive_sidenav_menu d_none">
-        <div>
-            <img src="../assets/img/navbar/admin_user.png" alt="">
-            <p>James Smith</p>    
-            <button><img src="../assets/img/navbar/logout.png" alt=""></button>    
-        </div>
-        <div class="admin_sidenav">
-            <a href="">Service Management</a>
-            <a href="">Role Management</a>
-            <div class="accordion">
-                <button class="accordion_btn">Coupon Code Management <i class="fas fa-angle-right"></i></button>
-                <div class="accordion_content d_none">
-                    <a href="">Coupon Codes</a>
-                    <a href="">Usage History</a>
-                </div>
-            </div>
-            <a href="">Escalation Management</a>
-            <a href="">Service Requests</a>
-            <a href="">Service Providers</a>
-            <a href="">User Management</a>
-            <div class="accordion">
-                <button class="accordion_btn">Finance Module <i class="fas fa-angle-right"></i></button>  
-                <div class="accordion_content d_none">
-                    <a href="">All Transactions</a>
-                    <a href="">Generate Payment</a>
-                    <a href="">Customer Invoices</a>
-                </div>
-            </div>
-            <a href="">Zip Code Management</a>
-            <a href="">Rating Management</a>
-            <a href="">Inquiry Management</a>
-            <a href="">Newsletter Management</a>
-            <div class="accordion">
-                <button class="accordion_btn">Content Management <i class="fas fa-angle-right"></i></button>
-                <div class="accordion_content d_none">
-                    <a href="">Blog</a>
-                    <a href=""> FAQs</a>
-                </div>
-            </div>
-        </div><!-- END_ADMIN_SIDENAV -->
-    </div>
-
-    <!-- ------------------------------------ -->
                 <!-- ADMIN_PANEL -->
     <!-- ------------------------------------ -->
     <main class="admin_panel">
 
         <div class="admin_left">
-            <div class="admin_sidenav">
+            <div class="admin_tab_list">
                 <a href="">Service Management</a>
                 <a href="">Role Management</a>
-                <div class="accordion">
+                <div class="accordion admin_accordion">
                     <button class="accordion_btn">Coupon Code Management <i class="fas fa-angle-right"></i></button>
                     <div class="accordion_content d_none">
                         <a href="">Coupon Codes</a>
@@ -165,7 +124,7 @@
                 <a href="">Service Requests</a>
                 <a href="">Service Providers</a>
                 <a href="">User Management</a>
-                <div class="accordion">
+                <div class="accordion admin_accordion">
                     <button class="accordion_btn">Finance Module <i class="fas fa-angle-right"></i></button>  
                     <div class="accordion_content d_none">
                         <a href="">All Transactions</a>
@@ -177,7 +136,7 @@
                 <a href="">Rating Management</a>
                 <a href="">Inquiry Management</a>
                 <a href="">Newsletter Management</a>
-                <div class="accordion">
+                <div class="accordion admin_accordion">
                     <button class="accordion_btn">Content Management <i class="fas fa-angle-right"></i></button>
                     <div class="accordion_content d_none">
                         <a href="">Blog</a>
@@ -192,7 +151,7 @@
                 <div class="user_management">
                     <div>
                         <p>User Management</p>
-                        <button><img src="../assets/img/admin/add.png" alt=""> Add New User</button>
+                        <button><i class="fas fa-plus"></i> Add New User</button>
                     </div><!-- END_ADMIN_USER_MANAGEMENT -->
                     <div>
                         <select name="" id="">
@@ -233,7 +192,16 @@
                             <td>Berlin</td>
                             <td></td>
                             <td><p class="active_status">Active</p></td>
-                            <td><button><img src="../assets/img/admin/group_dots.png" alt=""></button></td>
+                            <td>
+                                <div class="dropdown">
+                                    <button class="dropdown_btn"><i class="fas fa-ellipsis-v"></i></button>
+                                    <div class="dropdown_menu">
+                                        <a href="">Active</a>
+                                        <a href="">Disactive</a>
+                                        <a href="">Service History</a>
+                                    </div>
+                                </div>
+                            </td>
                         </tr>
                         <!-- SINGLE_ROW -->
                         <tr>
@@ -244,7 +212,16 @@
                             <td>Berlin</td>
                             <td></td>
                             <td><p class="active_status">Active</p></td>
-                            <td><button><img src="../assets/img/admin/group_dots.png" alt=""></button></td>
+                            <td>
+                                <div class="dropdown">
+                                    <button class="dropdown_btn"><i class="fas fa-ellipsis-v"></i></button>
+                                    <div class="dropdown_menu d_none">
+                                        <a href="">Active</a>
+                                        <a href="">Disactive</a>
+                                        <a href="">Service History</a>
+                                    </div>
+                                </div>
+                            </td>
                         </tr>
                         <!-- SINGLE_ROW -->
                         <tr>
@@ -255,7 +232,16 @@
                             <td>Berlin</td>
                             <td></td>
                             <td><p class="active_status">Active</p></td>
-                            <td><button><img src="../assets/img/admin/group_dots.png" alt=""></button></td>
+                            <td>
+                                <div class="dropdown">
+                                    <button class="dropdown_btn"><i class="fas fa-ellipsis-v"></i></button>
+                                    <div class="dropdown_menu d_none">
+                                        <a href="">Active</a>
+                                        <a href="">Disactive</a>
+                                        <a href="">Service History</a>
+                                    </div>
+                                </div>
+                            </td>
                         </tr>
                         <!-- SINGLE_ROW -->
                         <tr>
@@ -266,7 +252,16 @@
                             <td>Berlin</td>
                             <td></td>
                             <td><p class="active_status">Active</p></td>
-                            <td><button><img src="../assets/img/admin/group_dots.png" alt=""></button></td>
+                            <td>
+                                <div class="dropdown">
+                                    <button class="dropdown_btn"><i class="fas fa-ellipsis-v"></i></button>
+                                    <div class="dropdown_menu d_none">
+                                        <a href="">Active</a>
+                                        <a href="">Disactive</a>
+                                        <a href="">Service History</a>
+                                    </div>
+                                </div>
+                            </td>
                         </tr>
                         <!-- SINGLE_ROW -->
                         <tr>
@@ -277,7 +272,16 @@
                             <td>Berlin</td>
                             <td></td>
                             <td><p class="active_status">Active</p></td>
-                            <td><button><img src="../assets/img/admin/group_dots.png" alt=""></button></td>
+                            <td>
+                                <div class="dropdown">
+                                    <button class="dropdown_btn"><i class="fas fa-ellipsis-v"></i></button>
+                                    <div class="dropdown_menu d_none">
+                                        <a href="">Active</a>
+                                        <a href="">Disactive</a>
+                                        <a href="">Service History</a>
+                                    </div>
+                                </div>
+                            </td>
                         </tr>
                         <!-- SINGLE_ROW -->
                         <tr>
@@ -288,7 +292,16 @@
                             <td>Berlin</td>
                             <td></td>
                             <td><p class="active_status">Active</p></td>
-                            <td><button><img src="../assets/img/admin/group_dots.png" alt=""></button></td>
+                            <td>
+                                <div class="dropdown">
+                                    <button class="dropdown_btn"><i class="fas fa-ellipsis-v"></i></button>
+                                    <div class="dropdown_menu d_none">
+                                        <a href="">Active</a>
+                                        <a href="">Disactive</a>
+                                        <a href="">Service History</a>
+                                    </div>
+                                </div>
+                            </td>
                         </tr>
                         <!-- SINGLE_ROW -->
                         <tr>
@@ -299,7 +312,16 @@
                             <td>Berlin</td>
                             <td></td>
                             <td><p class="inactive_status">Inactive</p></td>
-                            <td><button><img src="../assets/img/admin/group_dots.png" alt=""></button></td>
+                            <td>
+                                <div class="dropdown">
+                                    <button class="dropdown_btn"><i class="fas fa-ellipsis-v"></i></button>
+                                    <div class="dropdown_menu d_none">
+                                        <a href="">Active</a>
+                                        <a href="">Disactive</a>
+                                        <a href="">Service History</a>
+                                    </div>
+                                </div>
+                            </td>
                         </tr>
                         <!-- SINGLE_ROW -->
                         <tr>
@@ -310,7 +332,16 @@
                             <td>Berlin</td>
                             <td></td>
                             <td><p class="active_status">Active</p></td>
-                            <td><button><img src="../assets/img/admin/group_dots.png" alt=""></button></td>
+                            <td>
+                                <div class="dropdown">
+                                    <button class="dropdown_btn"><i class="fas fa-ellipsis-v"></i></button>
+                                    <div class="dropdown_menu d_none">
+                                        <a href="">Active</a>
+                                        <a href="">Disactive</a>
+                                        <a href="">Service History</a>
+                                    </div>
+                                </div>
+                            </td>
                         </tr>
                         <!-- SINGLE_ROW -->
                         <tr>
@@ -321,7 +352,16 @@
                             <td>Berlin</td>
                             <td></td>
                             <td><p class="active_status">Active</p></td>
-                            <td><button><img src="../assets/img/admin/group_dots.png" alt=""></button></td>
+                            <td>
+                                <div class="dropdown">
+                                    <button class="dropdown_btn"><i class="fas fa-ellipsis-v"></i></button>
+                                    <div class="dropdown_menu d_none">
+                                        <a href="">Active</a>
+                                        <a href="">Disactive</a>
+                                        <a href="">Service History</a>
+                                    </div>
+                                </div>
+                            </td>
                         </tr>
                         <!-- SINGLE_ROW -->
                         <tr>
@@ -332,7 +372,16 @@
                             <td>Berlin</td>
                             <td></td>
                             <td><p class="active_status">Active</p></td>
-                            <td><button><img src="../assets/img/admin/group_dots.png" alt=""></button></td>
+                            <td>
+                                <div class="dropdown">
+                                    <button class="dropdown_btn"><i class="fas fa-ellipsis-v"></i></button>
+                                    <div class="dropdown_menu d_none">
+                                        <a href="">Active</a>
+                                        <a href="">Disactive</a>
+                                        <a href="">Service History</a>
+                                    </div>
+                                </div>
+                            </td>
                         </tr>
                         <!-- SINGLE_ROW -->
                         <tr>
@@ -343,16 +392,33 @@
                             <td>Berlin</td>
                             <td></td>
                             <td><p class="active_status">Active</p></td>
-                            <td><button><img src="../assets/img/admin/group_dots.png" alt=""></button></td>
+                            <td>
+                                <div class="dropdown">
+                                    <button class="dropdown_btn"><i class="fas fa-ellipsis-v"></i></button>
+                                    <div class="dropdown_menu d_none">
+                                        <a href="">Active</a>
+                                        <a href="">Disactive</a>
+                                        <a href="">Service History</a>
+                                    </div>
+                                </div>
+                            </td>
                         </tr>
                     </tbody>
                 </table><!-- END_USER_MANAGEMENT_TABLE -->
             </div><!-- END_ADMIN_RIGHT_CONTAINER -->
-            <footer>
+            <div class="admin_copyright_line">
                 <p>©2018 Helperland. All rights reserved.</p>
-            </footer><!-- END_FOOTER -->        
+            </div><!-- END_FOOTER -->        
         </div><!-- END_ADMIN_RIGHT -->
     </main><!-- END_ADMIN_PANEL -->
+
+    <!-- CUSTOM_JAVASCRIPT -->
+	<script src="../assets/js/homenav.js"></script>
+	<script src="../assets/js/sidenav.js"></script>
+	<script src="../assets/js/navtabs.js"></script>
+	<script src="../assets/js/footer.js"></script>
+	<script src="../assets/js/accordion.js"></script>
+	<script src="../assets/js/dropdown.js"></script>
 
 </body>
 </html>

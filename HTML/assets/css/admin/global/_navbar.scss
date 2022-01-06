@@ -1,5 +1,3 @@
-@import url(//db.onlinewebfonts.com/c/80aced0dbab505bad4295765ce0158d6?family=Switzerland);
-
 $navbar_bg:#1FB6FF;
 
 .admin_navbar{
@@ -19,7 +17,7 @@ $navbar_bg:#1FB6FF;
     p{
         font-size: 38px;
         color:white;
-        font-family: 'SwitzeraADF-Bold', sans-serif;
+        font-family:sans-serif;
     }
 }
 
@@ -43,5 +41,12 @@ $navbar_bg:#1FB6FF;
         img{
             object-fit: contain;
         }
+    }
+}
+
+
+@media screen and (max-width:1200px) {
+    .admin_nav_menu{
+        display: none;
     }
 }
