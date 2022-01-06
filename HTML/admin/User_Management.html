@@ -5,11 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin-UserManagement</title>
-    <link rel="stylesheet" href="../assets/css/admin/index.css">
 	<!-- FAVICON -->
-	<link rel="icon" href="../assets/img/global/favicon_img.png" sizes="16x16" type="image/png">	
+	<link rel="icon" href="../assets/img/favicon/favicon.png" sizes="16x16" type="image/png">	
 	<!-- CSS -->
-    <link rel="stylesheet" href="../assets/css/admin/index.css">
+    <link rel="stylesheet" href="../assets/css/index.css">
 	<!-- FONT-AWESOME -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 	<!-- JQUERY -->
@@ -20,16 +19,85 @@
     <!-- ------------------------------------ -->
                 <!-- NAVBAR -->
     <!-- ------------------------------------ -->
-    <nav class="navbar">
-        <div class="logo">
+    <nav class="admin_navbar">
+        <div class="admin_logo">
             <p>Helperland</p>
         </div>
-        <div class="nav_menu">
+        <div class="admin_nav_menu">
             <img src="../assets/img/navbar/admin_user.png" alt="">
-            <p>James Smith</p>    
+            <p>James Smith</p>
             <button><img src="../assets/img/navbar/logout.png" alt=""></button>
         </div>
     </nav>
+
+    <!-- --------------------------------------------------- -->
+						<!-- FOR_BACKLIGHT_CONTAIN -->
+	<!-- --------------------------------------------------- -->
+	<div class="backlight_container"></div>
+
+	<!-- --------------------------------------------------- -->
+						<!-- SIDE_NAVBAR -->
+	<!-- --------------------------------------------------- -->
+	<aside class="sidenav">
+		<!-- FOR_LOGGED_USER -->
+		<div class="sidenav_header">
+			<p>Warm Welcome</p>
+			<p class="sidenav_logged_username">Kavan Patel</p>
+		</div>
+		<hr>
+		<div class="sidenav_main">
+			<!-- GUEST_USER -->
+			<a href="">Book Now</a>
+			<a href="">Prices & Services</a>
+			<a href="">Gurantee</a>
+			<a href="">Blog</a>
+			<a href="">Contact</a>
+			<a href="">Register</a>
+			<a href="">Become a Helper!</a>
+
+			<!-- CUSTOMER -->
+			<!-- <a href="">Overview</a>
+			<a href="">Completed Service Orders</a>
+			<a href="">Calander view</a>
+			<a href="">My Favorites</a>
+			<a href="">Bills</a>
+			<a href="">My Setting</a>
+			<a href="">Logout</a> -->
+
+			<!-- SERVICE_PROVIDER -->
+			<!-- <a href="">Overview</a>
+			<a href="">New Inquiries</a>
+			<a href="">Accepted Requests</a>
+			<a href="">Calander view</a>
+			<a href="">Completed Service Orders</a>
+			<a href="">My Reviews</a>
+			<a href="">Block Customer</a>
+			<a href="">Bills</a>
+			<a href="">My Setting</a>
+			<a href="">Logout</a> -->
+
+			<!-- ADMIN -->
+			<!-- <a href="">My Setting</a>
+			<a href="">Logout</a> -->
+
+		</div>
+		<hr>
+		<!-- COMMAN_LINKS_AFTER_LOGIN_OF_USER -->
+		<!-- <div class="sidenav_comman_links">
+			BOOK NOW FOR CUSTOMER
+			<a href="">Book Now</a>
+			<a href="">Prices & Services</a>
+			<a href="">Gurantee</a>
+			<a href="">Blog</a>
+			<a href="">Contact</a>
+		</div>
+		<hr> -->
+		<div class="sidenav_footer">
+			<a href=""><i class="fab fa-facebook-f"></i></a>
+			<a href=""><i class="fab fa-instagram"></i></a>
+		</div>
+	</aside>
+
 
     <!-- ------------------------------------ -->
                 <!-- RESPONSIVE_NAVBAR -->
@@ -76,7 +144,7 @@
             </div>
         </div><!-- END_ADMIN_SIDENAV -->
     </div>
-    
+
     <!-- ------------------------------------ -->
                 <!-- ADMIN_PANEL -->
     <!-- ------------------------------------ -->
@@ -285,11 +353,6 @@
             </footer><!-- END_FOOTER -->        
         </div><!-- END_ADMIN_RIGHT -->
     </main><!-- END_ADMIN_PANEL -->
-
-    <!-- ADMIN_ACCORDION -->
-    <script src="../assets/js/admin_accordion.js"></script>
-    <!-- ADMIN_NAVBAR -->
-    <script src="../assets/js/admin_navbar.js"></script>
 
 </body>
 </html>
