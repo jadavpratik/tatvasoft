@@ -1563,6 +1563,7 @@ footer {
   border-radius: 4px;
   margin-right: 10px;
   color: #A0A0A0;
+  background-color: white;
 }
 
 .service_requests div:last-child div {
@@ -1610,7 +1611,7 @@ footer {
 }
 
 .search_btn {
-  background-color: #1FB6FF;
+  background-color: #1FB6FF !important;
   color: white !important;
 }
 
@@ -1664,7 +1665,7 @@ footer {
 }
 
 .user_management_search_button {
-  background-color: #1FB6FF;
+  background-color: #1FB6FF !important;
   color: white !important;
 }
 
@@ -1742,6 +1743,7 @@ footer {
   margin-right: 15px;
   padding: 0 10px;
   color: #A0A0A0;
+  background-color: white;
 }
 
 .user_management div:last-child select {
@@ -1782,7 +1784,7 @@ footer {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  background-color: lightgray;
+  background-color: #f2f4f5;
   color: #646464;
 }
 

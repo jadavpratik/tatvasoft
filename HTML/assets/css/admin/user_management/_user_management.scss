@@ -8,7 +8,7 @@ $active_status:#67B644;
 $inactive_status:#FF6B6B;
 
 .user_management_search_button{
-    background-color: $search_btn;
+    background-color: $search_btn !important;
     color:white !important;
 }
 
@@ -55,6 +55,7 @@ $inactive_status:#FF6B6B;
             margin-right: 15px;
             padding:0 10px;
             color:$input_text;
+            background-color: white;
         }
         select{
             width:215px;
@@ -79,7 +80,7 @@ $inactive_status:#FF6B6B;
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                background-color: lightgray;
+                background-color: $admin_panel_bg;
                 color:$user_management_text;
             }
             input{

@@ -59,6 +59,7 @@ $search_btn:#1FB6FF;
             border-radius: 4px;
             margin-right: 10px;
             color:$input_text;
+            background-color: white;
         }
         div{
             border:1px solid $input_border;
@@ -94,7 +95,7 @@ $search_btn:#1FB6FF;
 }
 
 .search_btn{
-    background-color: $search_btn;
+    background-color: $search_btn !important;
     color:white !important;
 }
 
