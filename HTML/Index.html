@@ -42,9 +42,21 @@
 				</div>
 			</form>
 			<div class="login_popup_footer">
-				<a href="">Forgot Password?</a>
+				<a class="open_forgot_password_popup" href="#">Forgot Password?</a>
 				<p>Don't Have an Account? <a href="">Create an Account</a></p>
 			</div>
+		</div>
+	</div>
+
+	<div class="model">
+		<button class="model_close_btn"><i class="fas fa-times"></i></button>
+		<div class="forgot_password_popup">
+			<p class="forgot_password_popup_title">Forgot Password</p>
+			<form class="forgot_password_popup_form" action="">
+				<input type="text" placeholder="Email">
+				<button>Send</button>
+				<a href="#" class="open_login_popup">Login Now</a>
+			</form>
 		</div>
 	</div>
 
@@ -68,7 +80,7 @@
 			<a href="">Our Gurantee</a>
 			<a href="">Blog</a>
 			<a href="">Contact US</a>
-			<a class="navbar_focus_btn transparent" id="open_login_popup" href="#">Login</a>
+			<a class="navbar_focus_btn transparent open_login_popup" href="#">Login</a>
 			<a class="navbar_focus_btn transparent" href="">Become a Helper</a>
 		</div><!-- END NAV_MENU -->
 	</nav><!-- END NAVBAR -->
@@ -90,7 +102,7 @@
 			<a href="">Gurantee</a>
 			<a href="">Blog</a>
 			<a href="">Contact</a>
-			<a id="open_login_popup" href="#">Register</a>
+			<a class="open_login_popup" href="#">Register</a>
 			<a href="">Become a Helper!</a>
 
 			<!-- CUSTOMER -->
