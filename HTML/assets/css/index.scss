@@ -1,6 +1,9 @@
 // ------------------------GENERAL_CSS------------------------
 @import "./global/index";
 
+// ------------------------POPUP_MODEL------------------------
+@import "./popup_model/index";
+
 // -------ADMIN, SERVICE_PROVIDER, CUSTOMER-------------
 @import "./customer/index";
 @import "./service_provider/index";
