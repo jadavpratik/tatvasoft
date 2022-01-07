@@ -1550,12 +1550,15 @@ footer {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
 }
 
-.service_requests div:last-child input, .service_requests div:last-child button, .service_requests div:last-child select, .service_requests div:last-child option, .service_requests div:last-child button {
+.service_requests div:last-child input, .service_requests div:last-child button, .service_requests div:last-child select, .service_requests div:last-child div {
+  margin-bottom: 16px;
   height: 46px;
   padding-left: 11px;
-  font-size: 16px;
+  font-size: 14px;
   border: 1px solid #DEDDDD;
   border-radius: 4px;
   margin-right: 10px;
@@ -1567,11 +1570,21 @@ footer {
   margin-right: 10px;
   padding-left: 11px;
   border-radius: 4px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  overflow: hidden;
+}
+
+.service_requests div:last-child div label {
+  font-size: 14px;
+  color: #646464;
 }
 
 .service_requests div:last-child div input {
+  width: auto;
   border: 0;
-  margin: 0;
+  margin: 0 !important;
 }
 
 .service_requests div:last-child input {
@@ -1579,7 +1592,7 @@ footer {
 }
 
 .service_requests div:last-child select {
-  width: 127px;
+  width: 136px;
 }
 
 .service_requests div:last-child button {
@@ -1639,6 +1652,11 @@ footer {
       -ms-flex-pack: center;
           justify-content: center;
   cursor: pointer;
+}
+
+.service_requests_table td button i {
+  font-size: 16px;
+  color: #646464;
 }
 
 .service_requests_table td button:hover {

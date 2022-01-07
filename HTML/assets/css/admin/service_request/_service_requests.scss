@@ -49,10 +49,12 @@ $search_btn:#1FB6FF;
         background-color: white;
         padding:20px 15px;
         display: flex;
-        input,button,select,option,button{
+        flex-wrap: wrap;
+        input,button,select,div{
+            margin-bottom: 16px;
             height:46px;
             padding-left: 11px;
-            font-size: 16px;
+            font-size: 14px;
             border:1px solid $input_border;
             border-radius: 4px;
             margin-right: 10px;
@@ -63,16 +65,23 @@ $search_btn:#1FB6FF;
             margin-right: 10px;
             padding-left: 11px;
             border-radius: 4px;
+            display: flex;
+            overflow: hidden;
+            label{
+                font-size: 14px;
+                color:$service_requests_text;
+            }
             input{
+                width:auto;
                 border:0;
-                margin:0;
+                margin:0 !important;
             }
         }
         input{
             width:110px;
         }
         select{
-            width:127px;
+            width:136px;
         }
         button{
             padding-left: 0;
@@ -115,6 +124,10 @@ $search_btn:#1FB6FF;
             align-items: center;
             justify-content: center;
             cursor: pointer;
+            i{
+                font-size:16px;
+                color:$service_requests_text;
+            }
             &:hover{
                 background-color:lightgray;
             }

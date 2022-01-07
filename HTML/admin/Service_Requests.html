@@ -8,7 +8,7 @@
 	<!-- FAVICON -->
 	<link rel="icon" href="../assets/img/favicon/favicon.png" sizes="16x16" type="image/png">	
 	<!-- CSS -->
-    <link rel="stylesheet" href="../assets/css/admin/index.css">
+    <link rel="stylesheet" href="../assets/css/index.css">
 	<!-- FONT-AWESOME -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 	<!-- JQUERY -->
@@ -19,62 +19,93 @@
     <!-- ------------------------------------ -->
                 <!-- NAVBAR -->
     <!-- ------------------------------------ -->
-    <nav class="navbar">
-        <div class="logo">
+    <nav class="admin_navbar">
+
+        <div class="admin_logo">
             <p>Helperland</p>
         </div>
-        <div class="nav_menu">
-            <img src="../assets/img/admin/navbar/admin_user.png" alt="">
-            <p>James Smith</p>    
-            <button><img src="../assets/img/admin/navbar/logout.png" alt=""></button>
+
+        <!-- NAV_BTN_RESPONSIVE -->
+        <div class="admin_navbar_toggle_btn_container">
+            <button class="admin_dashboard_btn" title="Dashboard"><i class="fas fa-tachometer-alt"></i></button>
+            <button class="sidenav_btn"><i class="fas fa-bars"></i></button>
+        </div>
+
+        <div class="admin_nav_menu">
+            <img src="../assets/img/global/user.png" alt="">
+            <p>James Smith</p>
+            <button><img src="../assets/img/global/logout.png" alt=""></button>
         </div>
     </nav>
 
-    <!-- ------------------------------------ -->
-                <!-- RESPONSIVE_NAVBAR -->
-    <!-- ------------------------------------ -->
-    <button class="navbar_toggle_btn"><i class="fas fa-bars"></i></button>
-    <div class="responsive_sidenav_menu d_none">
-        <div>
-            <img src="../assets/img/navbar/admin_user.png" alt="">
-            <p>James Smith</p>    
-            <button><img src="../assets/img/admin/navbar/logout.png" alt=""></button>    
-        </div>
-        <div class="admin_sidenav">
-            <a href="">Service Management</a>
-            <a href="">Role Management</a>
-            <div class="accordion">
-                <button class="accordion_btn">Coupon Code Management <i class="fas fa-angle-right"></i></button>
-                <div class="accordion_content d_none">
-                    <a href="">Coupon Codes</a>
-                    <a href="">Usage History</a>
-                </div>
-            </div>
-            <a href="">Escalation Management</a>
-            <a href="">Service Requests</a>
-            <a href="">Service Providers</a>
-            <a href="">User Management</a>
-            <div class="accordion">
-                <button class="accordion_btn">Finance Module <i class="fas fa-angle-right"></i></button>  
-                <div class="accordion_content d_none">
-                    <a href="">All Transactions</a>
-                    <a href="">Generate Payment</a>
-                    <a href="">Customer Invoices</a>
-                </div>
-            </div>
-            <a href="">Zip Code Management</a>
-            <a href="">Rating Management</a>
-            <a href="">Inquiry Management</a>
-            <a href="">Newsletter Management</a>
-            <div class="accordion">
-                <button class="accordion_btn">Content Management <i class="fas fa-angle-right"></i></button>
-                <div class="accordion_content d_none">
-                    <a href="">Blog</a>
-                    <a href=""> FAQs</a>
-                </div>
-            </div>
-        </div><!-- END_ADMIN_SIDENAV -->
-    </div><!-- END_RESPONSIVE_SIDENAV -->
+    <!-- --------------------------------------------------- -->
+						<!-- FOR_BACKLIGHT_CONTAIN -->
+	<!-- --------------------------------------------------- -->
+	<div class="backlight_container"></div>
+
+	<!-- --------------------------------------------------- -->
+						<!-- SIDE_NAVBAR -->
+	<!-- --------------------------------------------------- -->
+	<aside class="sidenav">
+		<!-- FOR_LOGGED_USER -->
+		<div class="sidenav_header">
+			<p>Warm Welcome</p>
+			<p class="sidenav_logged_username">Kavan Patel</p>
+		</div>
+		<hr>
+		<div class="sidenav_main">
+			<!-- GUEST_USER -->
+			<a href="">Book Now</a>
+			<a href="">Prices & Services</a>
+			<a href="">Gurantee</a>
+			<a href="">Blog</a>
+			<a href="">Contact</a>
+			<a href="">Register</a>
+			<a href="">Become a Helper!</a>
+
+			<!-- CUSTOMER -->
+			<!-- <a href="">Overview</a>
+			<a href="">Completed Service Orders</a>
+			<a href="">Calander view</a>
+			<a href="">My Favorites</a>
+			<a href="">Bills</a>
+			<a href="">My Setting</a>
+			<a href="">Logout</a> -->
+
+			<!-- SERVICE_PROVIDER -->
+			<!-- <a href="">Overview</a>
+			<a href="">New Inquiries</a>
+			<a href="">Accepted Requests</a>
+			<a href="">Calander view</a>
+			<a href="">Completed Service Orders</a>
+			<a href="">My Reviews</a>
+			<a href="">Block Customer</a>
+			<a href="">Bills</a>
+			<a href="">My Setting</a>
+			<a href="">Logout</a> -->
+
+			<!-- ADMIN -->
+			<!-- <a href="">My Setting</a>
+			<a href="">Logout</a> -->
+
+		</div>
+		<hr>
+		<!-- COMMAN_LINKS_AFTER_LOGIN_OF_USER -->
+		<!-- <div class="sidenav_comman_links">
+			BOOK NOW FOR CUSTOMER
+			<a href="">Book Now</a>
+			<a href="">Prices & Services</a>
+			<a href="">Gurantee</a>
+			<a href="">Blog</a>
+			<a href="">Contact</a>
+		</div>
+		<hr> -->
+		<div class="sidenav_footer">
+			<a href=""><i class="fab fa-facebook-f"></i></a>
+			<a href=""><i class="fab fa-instagram"></i></a>
+		</div>
+	</aside>
+
 
 
     <!-- ------------------------------------ -->
@@ -83,10 +114,10 @@
     <main class="admin_panel">
 
         <div class="admin_left">
-            <div class="admin_sidenav">
+            <div class="admin_tab_list">
                 <a href="">Service Management</a>
                 <a href="">Role Management</a>
-                <div class="accordion">
+                <div class="accordion admin_accordion">
                     <button class="accordion_btn">Coupon Code Management <i class="fas fa-angle-right"></i></button>
                     <div class="accordion_content d_none">
                         <a href="">Coupon Codes</a>
@@ -97,9 +128,9 @@
                 <a href="">Service Requests</a>
                 <a href="">Service Providers</a>
                 <a href="">User Management</a>
-                <div class="accordion">
+                <div class="accordion admin_accordion">
                     <button class="accordion_btn">Finance Module <i class="fas fa-angle-right"></i></button>  
-                    <div class="accorsdion_content d_none">
+                    <div class="accordion_content d_none">
                         <a href="">All Transactions</a>
                         <a href="">Generate Payment</a>
                         <a href="">Customer Invoices</a>
@@ -109,14 +140,14 @@
                 <a href="">Rating Management</a>
                 <a href="">Inquiry Management</a>
                 <a href="">Newsletter Management</a>
-                <div class="accordion">
+                <div class="accordion admin_accordion">
                     <button class="accordion_btn">Content Management <i class="fas fa-angle-right"></i></button>
                     <div class="accordion_content d_none">
                         <a href="">Blog</a>
                         <a href=""> FAQs</a>
                     </div>
                 </div>
-            </div><!-- END_ADMIN_SIDENAV -->
+            </div><!-- END_ADMIN_TAB_LIST -->
         </div><!-- END_ADMIN_LEFT -->
 
         <div class="admin_right">
@@ -185,7 +216,18 @@
                             <td></td>
                             <td><p class="new_status">New</p></td>
                             <td>
-                                <button><img src="../assets/img/admin/group_dots.png" alt=""></button>
+                                <div class="dropdown">
+                                    <button class="dropdown_btn"><i class="fas fa-ellipsis-v"></i></button>
+                                    <div class="dropdown_menu d_none">
+                                        <a href="">Edit</a>
+                                        <a href="">Reschedule</a>
+                                        <a href="">Cancel</a>
+                                        <a href="">Change SP</a>
+                                        <a href="">Escalate</a>
+                                        <a href="">History Log</a>
+                                        <a href="">Download Invoice</a>
+                                    </div>
+                                </div>
                             </td>
                         </tr>
 
@@ -214,7 +256,18 @@
                             <td></td>
                             <td><p class="new_status">New</p></td>
                             <td>
-                                <button><img src="../assets/img/admin/group_dots.png" alt=""></button>
+                                <div class="dropdown">
+                                    <button class="dropdown_btn"><i class="fas fa-ellipsis-v"></i></button>
+                                    <div class="dropdown_menu d_none">
+                                        <a href="">Edit</a>
+                                        <a href="">Reschedule</a>
+                                        <a href="">Cancel</a>
+                                        <a href="">Change SP</a>
+                                        <a href="">Escalate</a>
+                                        <a href="">History Log</a>
+                                        <a href="">Download Invoice</a>
+                                    </div>
+                                </div>
                             </td>
                         </tr>
                         <!-- SINGLE_ROW -->
@@ -239,10 +292,36 @@
                                     </div>
                                 </div>
                             </td>
-                            <td></td>
+                            <td>
+                                <div class="d_flex ai_center" style="margin-bottom: 8px;">
+                                    <img class="hat_style" src="../assets/img/table/hat.png" alt="">
+                                    <div class="d_flex_column" style="margin-left: 6px;">
+                                        <p style="margin-bottom:6px">Lyum Watson</p>    
+                                        <div class="d_flex">
+                                            <i class="fas fa-star rated_star"></i>
+                                            <i class="fas fa-star rated_star"></i>
+                                            <i class="fas fa-star rated_star"></i>
+                                            <i class="fas fa-star rated_star"></i>
+                                            <i class="fas fa-star unrated_star"></i>
+                                            <p style="margin-left:3px">4</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
                             <td><p class="pending_status">Pending</p></td>
                             <td>
-                                <button><img src="../assets/img/admin/group_dots.png" alt=""></button>
+                                <div class="dropdown">
+                                    <button class="dropdown_btn"><i class="fas fa-ellipsis-v"></i></button>
+                                    <div class="dropdown_menu d_none">
+                                        <a href="">Edit</a>
+                                        <a href="">Reschedule</a>
+                                        <a href="">Cancel</a>
+                                        <a href="">Change SP</a>
+                                        <a href="">Escalate</a>
+                                        <a href="">History Log</a>
+                                        <a href="">Download Invoice</a>
+                                    </div>
+                                </div>
                             </td>
                         </tr>
                         <!-- SINGLE_ROW -->
@@ -267,10 +346,36 @@
                                     </div>
                                 </div>
                             </td>
-                            <td></td>
+                            <td>
+                                <div class="d_flex ai_center" style="margin-bottom: 8px;">
+                                    <img class="hat_style" src="../assets/img/table/hat.png" alt="">
+                                    <div class="d_flex_column" style="margin-left: 6px;">
+                                        <p style="margin-bottom:6px">Lyum Watson</p>    
+                                        <div class="d_flex">
+                                            <i class="fas fa-star rated_star"></i>
+                                            <i class="fas fa-star rated_star"></i>
+                                            <i class="fas fa-star rated_star"></i>
+                                            <i class="fas fa-star rated_star"></i>
+                                            <i class="fas fa-star unrated_star"></i>
+                                            <p style="margin-left:3px">4</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
                             <td><p class="pending_status">Pending</p></td>
                             <td>
-                                <button><img src="../assets/img/admin/group_dots.png" alt=""></button>
+                                <div class="dropdown">
+                                    <button class="dropdown_btn"><i class="fas fa-ellipsis-v"></i></button>
+                                    <div class="dropdown_menu d_none">
+                                        <a href="">Edit</a>
+                                        <a href="">Reschedule</a>
+                                        <a href="">Cancel</a>
+                                        <a href="">Change SP</a>
+                                        <a href="">Escalate</a>
+                                        <a href="">History Log</a>
+                                        <a href="">Download Invoice</a>
+                                    </div>
+                                </div>
                             </td>
                         </tr>
                         <!-- SINGLE_ROW -->
@@ -295,10 +400,36 @@
                                     </div>
                                 </div>
                             </td>
-                            <td></td>
+                            <td>
+                                <div class="d_flex ai_center" style="margin-bottom: 8px;">
+                                    <img class="hat_style" src="../assets/img/table/hat.png" alt="">
+                                    <div class="d_flex_column" style="margin-left: 6px;">
+                                        <p style="margin-bottom:6px">Lyum Watson</p>    
+                                        <div class="d_flex">
+                                            <i class="fas fa-star rated_star"></i>
+                                            <i class="fas fa-star rated_star"></i>
+                                            <i class="fas fa-star rated_star"></i>
+                                            <i class="fas fa-star rated_star"></i>
+                                            <i class="fas fa-star unrated_star"></i>
+                                            <p style="margin-left:3px">4</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
                             <td><p class="completed_status">Complted</p></td>
                             <td>
-                                <button><img src="../assets/img/admin/group_dots.png" alt=""></button>
+                                <div class="dropdown">
+                                    <button class="dropdown_btn"><i class="fas fa-ellipsis-v"></i></button>
+                                    <div class="dropdown_menu d_none">
+                                        <a href="">Edit</a>
+                                        <a href="">Reschedule</a>
+                                        <a href="">Cancel</a>
+                                        <a href="">Change SP</a>
+                                        <a href="">Escalate</a>
+                                        <a href="">History Log</a>
+                                        <a href="">Download Invoice</a>
+                                    </div>
+                                </div>
                             </td>
                         </tr>
                         <!-- SINGLE_ROW -->
@@ -323,10 +454,36 @@
                                     </div>
                                 </div>
                             </td>
-                            <td></td>
+                            <td>
+                                <div class="d_flex ai_center" style="margin-bottom: 8px;">
+                                    <img class="hat_style" src="../assets/img/table/hat.png" alt="">
+                                    <div class="d_flex_column" style="margin-left: 6px;">
+                                        <p style="margin-bottom:6px">Lyum Watson</p>    
+                                        <div class="d_flex">
+                                            <i class="fas fa-star rated_star"></i>
+                                            <i class="fas fa-star rated_star"></i>
+                                            <i class="fas fa-star rated_star"></i>
+                                            <i class="fas fa-star rated_star"></i>
+                                            <i class="fas fa-star unrated_star"></i>
+                                            <p style="margin-left:3px">4</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
                             <td><p class="completed_status">Completed</p></td>
                             <td>
-                                <button><img src="../assets/img/admin/group_dots.png" alt=""></button>
+                                <div class="dropdown">
+                                    <button class="dropdown_btn"><i class="fas fa-ellipsis-v"></i></button>
+                                    <div class="dropdown_menu d_none">
+                                        <a href="">Edit</a>
+                                        <a href="">Reschedule</a>
+                                        <a href="">Cancel</a>
+                                        <a href="">Change SP</a>
+                                        <a href="">Escalate</a>
+                                        <a href="">History Log</a>
+                                        <a href="">Download Invoice</a>
+                                    </div>
+                                </div>
                             </td>
                         </tr>
                         <!-- SINGLE_ROW -->
@@ -351,10 +508,36 @@
                                     </div>
                                 </div>
                             </td>
-                            <td></td>
+                            <td>
+                                <div class="d_flex ai_center" style="margin-bottom: 8px;">
+                                    <img class="hat_style" src="../assets/img/table/hat.png" alt="">
+                                    <div class="d_flex_column" style="margin-left: 6px;">
+                                        <p style="margin-bottom:6px">Lyum Watson</p>    
+                                        <div class="d_flex">
+                                            <i class="fas fa-star rated_star"></i>
+                                            <i class="fas fa-star rated_star"></i>
+                                            <i class="fas fa-star rated_star"></i>
+                                            <i class="fas fa-star rated_star"></i>
+                                            <i class="fas fa-star unrated_star"></i>
+                                            <p style="margin-left:3px">4</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
                             <td><p class="cancel_status">Cancled</p></td>
                             <td>
-                                <button><img src="../assets/img/admin/group_dots.png" alt=""></button>
+                                <div class="dropdown">
+                                    <button class="dropdown_btn"><i class="fas fa-ellipsis-v"></i></button>
+                                    <div class="dropdown_menu d_none">
+                                        <a href="">Edit</a>
+                                        <a href="">Reschedule</a>
+                                        <a href="">Cancel</a>
+                                        <a href="">Change SP</a>
+                                        <a href="">Escalate</a>
+                                        <a href="">History Log</a>
+                                        <a href="">Download Invoice</a>
+                                    </div>
+                                </div>
                             </td>
                         </tr>
                         <!-- SINGLE_ROW -->
@@ -379,10 +562,36 @@
                                     </div>
                                 </div>
                             </td>
-                            <td></td>
+                            <td>
+                                <div class="d_flex ai_center" style="margin-bottom: 8px;">
+                                    <img class="hat_style" src="../assets/img/table/hat.png" alt="">
+                                    <div class="d_flex_column" style="margin-left: 6px;">
+                                        <p style="margin-bottom:6px">Lyum Watson</p>    
+                                        <div class="d_flex">
+                                            <i class="fas fa-star rated_star"></i>
+                                            <i class="fas fa-star rated_star"></i>
+                                            <i class="fas fa-star rated_star"></i>
+                                            <i class="fas fa-star rated_star"></i>
+                                            <i class="fas fa-star unrated_star"></i>
+                                            <p style="margin-left:3px">4</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
                             <td><p class="completed_status">Completed</p></td>
                             <td>
-                                <button><img src="../assets/img/admin/group_dots.png" alt=""></button>
+                                <div class="dropdown">
+                                    <button class="dropdown_btn"><i class="fas fa-ellipsis-v"></i></button>
+                                    <div class="dropdown_menu d_none">
+                                        <a href="">Edit</a>
+                                        <a href="">Reschedule</a>
+                                        <a href="">Cancel</a>
+                                        <a href="">Change SP</a>
+                                        <a href="">Escalate</a>
+                                        <a href="">History Log</a>
+                                        <a href="">Download Invoice</a>
+                                    </div>
+                                </div>
                             </td>
                         </tr>
                         <!-- SINGLE_ROW -->
@@ -407,10 +616,36 @@
                                     </div>
                                 </div>
                             </td>
-                            <td></td>
+                            <td>
+                                <div class="d_flex ai_center" style="margin-bottom: 8px;">
+                                    <img class="hat_style" src="../assets/img/table/hat.png" alt="">
+                                    <div class="d_flex_column" style="margin-left: 6px;">
+                                        <p style="margin-bottom:6px">Lyum Watson</p>    
+                                        <div class="d_flex">
+                                            <i class="fas fa-star rated_star"></i>
+                                            <i class="fas fa-star rated_star"></i>
+                                            <i class="fas fa-star rated_star"></i>
+                                            <i class="fas fa-star rated_star"></i>
+                                            <i class="fas fa-star unrated_star"></i>
+                                            <p style="margin-left:3px">4</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
                             <td><p class="cancel_status">Canceled</p></td>
                             <td>
-                                <button><img src="../assets/img/admin/group_dots.png" alt=""></button>
+                                <div class="dropdown">
+                                    <button class="dropdown_btn"><i class="fas fa-ellipsis-v"></i></button>
+                                    <div class="dropdown_menu d_none">
+                                        <a href="">Edit</a>
+                                        <a href="">Reschedule</a>
+                                        <a href="">Cancel</a>
+                                        <a href="">Change SP</a>
+                                        <a href="">Escalate</a>
+                                        <a href="">History Log</a>
+                                        <a href="">Download Invoice</a>
+                                    </div>
+                                </div>
                             </td>
                         </tr>
                         <!-- SINGLE_ROW -->
@@ -435,25 +670,55 @@
                                     </div>
                                 </div>
                             </td>
-                            <td></td>
+                            <td>
+                                <div class="d_flex ai_center" style="margin-bottom: 8px;">
+                                    <img class="hat_style" src="../assets/img/table/hat.png" alt="">
+                                    <div class="d_flex_column" style="margin-left: 6px;">
+                                        <p style="margin-bottom:6px">Lyum Watson</p>    
+                                        <div class="d_flex">
+                                            <i class="fas fa-star rated_star"></i>
+                                            <i class="fas fa-star rated_star"></i>
+                                            <i class="fas fa-star rated_star"></i>
+                                            <i class="fas fa-star rated_star"></i>
+                                            <i class="fas fa-star unrated_star"></i>
+                                            <p style="margin-left:3px">4</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
                             <td><p class="completed_status">Completed</p></td>
                             <td>
-                                <button><img src="../assets/img/admin/group_dots.png" alt=""></button>
+                                <div class="dropdown">
+                                    <button class="dropdown_btn"><i class="fas fa-ellipsis-v"></i></button>
+                                    <div class="dropdown_menu d_none">
+                                        <a href="">Edit</a>
+                                        <a href="">Reschedule</a>
+                                        <a href="">Cancel</a>
+                                        <a href="">Change SP</a>
+                                        <a href="">Escalate</a>
+                                        <a href="">History Log</a>
+                                        <a href="">Download Invoice</a>
+                                    </div>
+                                </div>
                             </td>
                         </tr>
                     </tbody>
                 </table>
             </div><!-- END_ADMIN_RIGHT_CONTAINER -->
-            <footer>
+            <div class="admin_copyright_line">
                 <p>©2018 Helperland. All rights reserved.</p>
-            </footer><!-- END_FOOTER -->        
+            </div><!-- END_FOOTER -->        
         </div><!-- END_ADMIN_RIGHT -->
     </main><!-- END_ADMIN_PANEL -->
 
 
-    <!-- ACCORDION -->
-    <script src="../assets/js/admin/admin_accordion.js"></script>
-    <script src="../assets/js/admin/admin_navbar.js"></script>
+    <!-- CUSTOM_JAVASCRIPT -->
+	<script src="../assets/js/homenav.js"></script>
+	<script src="../assets/js/sidenav.js"></script>
+	<script src="../assets/js/navtabs.js"></script>
+	<script src="../assets/js/footer.js"></script>
+	<script src="../assets/js/accordion.js"></script>
+	<script src="../assets/js/dropdown.js"></script>
 
 </body>
 </html>
