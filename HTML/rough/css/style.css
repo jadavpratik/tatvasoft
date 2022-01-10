@@ -1,0 +1,98 @@
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.accordion-btn {
+  width: 100%;
+  padding: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  cursor: pointer;
+}
+
+.accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+
+.accordion-content p {
+  margin: 0;
+  background-color: gray;
+  padding: 10px;
+}
+
+.nav-tabs {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.tab-indicator {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.nav-tab {
+  width: 100%;
+  padding: 10px 0;
+  font-size: 18px;
+}
+
+.tab-body {
+  overflow: hidden;
+}
+
+.d-none {
+  display: none;
+}
+
+.nav-tab-content {
+  width: 100%;
+  opacity: 0;
+  -webkit-transition: visibility 0s, opacity 0.5s linear;
+  transition: visibility 0s, opacity 0.5s linear;
+}
+
+.nav-tab-content p {
+  width: 100%;
+  padding: 10px 0;
+  line-height: 38px;
+}
+
+.nav-tab-content:nth-child(1) p {
+  background-color: red;
+}
+
+.nav-tab-content:nth-child(2) p {
+  background-color: gray;
+}
+
+.nav-tab-content:nth-child(3) p {
+  background-color: green;
+}
+
+.nav-tab-content:nth-child(4) p {
+  background-color: blue;
+}
+
+.active-nav-tab-content {
+  opacity: 1;
+}
+/*# sourceMappingURL=style.css.map */

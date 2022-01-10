@@ -5,34 +5,123 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./css/style.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 
-    <!-- ACCORDION -->
-    <div class="accordion">
-        <button class="accordion-btn">What is Thoughts?<i class="fas fa-angle-down"></i></button>
-        <div class="accordion-content">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde enim similique earum architecto natus! Aperiam, vitae eum. Ut, suscipit atque quo nesciunt quisquam nobis in sit temporibus voluptatum optio natus?</p>
+    <div style="width:500px;margin:50px auto;">
+        <p style="margin:10px 0;">ACCORDION</p>
+        <!-- ACCORDION -->
+        <div class="accordion">
+            <button class="accordion-btn">What is Thoughts?<i class="fas fa-angle-down"></i></button>
+            <div class="accordion-content">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde enim similique earum architecto natus! Aperiam, vitae eum. Ut, suscipit atque quo nesciunt quisquam nobis in sit temporibus voluptatum optio natus?</p>
+            </div>
         </div>
-    </div>
-    <div class="accordion">
-        <button class="accordion-btn">What is Thoughts?<i class="fas fa-angle-down"></i></button>
-        <div class="accordion-content">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde enim similique earum architecto natus! Aperiam, vitae eum. Ut, suscipit atque quo nesciunt quisquam nobis in sit temporibus voluptatum optio natus?</p>
+        <div class="accordion">
+            <button class="accordion-btn">What is Thoughts?<i class="fas fa-angle-down"></i></button>
+            <div class="accordion-content">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde enim similique earum architecto natus! Aperiam, vitae eum. Ut, suscipit atque quo nesciunt quisquam nobis in sit temporibus voluptatum optio natus?</p>
+            </div>
         </div>
-    </div>
-    <div class="accordion">
-        <button class="accordion-btn">What is Thoughts?<i class="fas fa-angle-down"></i></button>
-        <div class="accordion-content">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde enim similique earum architecto natus! Aperiam, vitae eum. Ut, suscipit atque quo nesciunt quisquam nobis in sit temporibus voluptatum optio natus?</p>
+        <div class="accordion">
+            <button class="accordion-btn">What is Thoughts?<i class="fas fa-angle-down"></i></button>
+            <div class="accordion-content">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde enim similique earum architecto natus! Aperiam, vitae eum. Ut, suscipit atque quo nesciunt quisquam nobis in sit temporibus voluptatum optio natus?</p>
+            </div>
         </div>
     </div>
 
+    <div style="width:500px;margin:50px auto;">
+        <p style="margin:10px 0;">NAVTABS</p>
+        <div class="nav-tabs">
+            <div class="tab-indicator">
+                <button class="nav-tab active-nav-tab">tab1</button>
+                <button class="nav-tab">tab2</button>
+                <button class="nav-tab">tab3</button>
+                <button class="nav-tab">tab4</button>    
+            </div>
+            <div class="tab-body">
+                <div class="nav-tab-content active-nav-tab-content">
+                    <div class="accordion">
+                        <button class="accordion-btn">What is Thoughts?<i class="fas fa-angle-down"></i></button>
+                        <div class="accordion-content">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde enim similique earum architecto natus! Aperiam, vitae eum. Ut, suscipit atque quo nesciunt quisquam nobis in sit temporibus voluptatum optio natus?</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="nav-tab-content">
+                    <div class="accordion">
+                        <button class="accordion-btn">What is Thoughts?<i class="fas fa-angle-down"></i></button>
+                        <div class="accordion-content">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde enim similique earum architecto natus! Aperiam, vitae eum. Ut, suscipit atque quo nesciunt quisquam nobis in sit temporibus voluptatum optio natus?</p>
+                        </div>
+                    </div>
+                    <div class="accordion">
+                        <button class="accordion-btn">What is Thoughts?<i class="fas fa-angle-down"></i></button>
+                        <div class="accordion-content">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde enim similique earum architecto natus! Aperiam, vitae eum. Ut, suscipit atque quo nesciunt quisquam nobis in sit temporibus voluptatum optio natus?</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="nav-tab-content">
+                    <div class="accordion">
+                        <button class="accordion-btn">What is Thoughts?<i class="fas fa-angle-down"></i></button>
+                        <div class="accordion-content">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde enim similique earum architecto natus! Aperiam, vitae eum. Ut, suscipit atque quo nesciunt quisquam nobis in sit temporibus voluptatum optio natus?</p>
+                        </div>
+                    </div>
+                    <div class="accordion">
+                        <button class="accordion-btn">What is Thoughts?<i class="fas fa-angle-down"></i></button>
+                        <div class="accordion-content">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde enim similique earum architecto natus! Aperiam, vitae eum. Ut, suscipit atque quo nesciunt quisquam nobis in sit temporibus voluptatum optio natus?</p>
+                        </div>
+                    </div>
+                    <div class="accordion">
+                        <button class="accordion-btn">What is Thoughts?<i class="fas fa-angle-down"></i></button>
+                        <div class="accordion-content">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde enim similique earum architecto natus! Aperiam, vitae eum. Ut, suscipit atque quo nesciunt quisquam nobis in sit temporibus voluptatum optio natus?</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="nav-tab-content">
+                    <div class="accordion">
+                        <button class="accordion-btn">What is Thoughts?<i class="fas fa-angle-down"></i></button>
+                        <div class="accordion-content">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde enim similique earum architecto natus! Aperiam, vitae eum. Ut, suscipit atque quo nesciunt quisquam nobis in sit temporibus voluptatum optio natus?</p>
+                        </div>
+                    </div>
+                    <div class="accordion">
+                        <button class="accordion-btn">What is Thoughts?<i class="fas fa-angle-down"></i></button>
+                        <div class="accordion-content">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde enim similique earum architecto natus! Aperiam, vitae eum. Ut, suscipit atque quo nesciunt quisquam nobis in sit temporibus voluptatum optio natus?</p>
+                        </div>
+                    </div>
+                    <div class="accordion">
+                        <button class="accordion-btn">What is Thoughts?<i class="fas fa-angle-down"></i></button>
+                        <div class="accordion-content">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde enim similique earum architecto natus! Aperiam, vitae eum. Ut, suscipit atque quo nesciunt quisquam nobis in sit temporibus voluptatum optio natus?</p>
+                        </div>
+                    </div>
+                    <div class="accordion">
+                        <button class="accordion-btn">What is Thoughts?<i class="fas fa-angle-down"></i></button>
+                        <div class="accordion-content">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde enim similique earum architecto natus! Aperiam, vitae eum. Ut, suscipit atque quo nesciunt quisquam nobis in sit temporibus voluptatum optio natus?</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <script>
+        // ACCORDION SCRIPT....
         const acc_btn = document.getElementsByClassName('accordion-btn');
         const acc_content = document.getElementsByClassName('accordion-content');
+
         for(let i=0; i<acc_btn.length; i++){
             acc_btn[i].addEventListener('click', ()=>{
                 const panel = acc_content[i];
@@ -44,6 +133,22 @@
                 }
             });
         }
+
+        // NAVTABS SCRIPT...
+        const nav_tab_btn = document.getElementsByClassName('nav-tab');
+        const nav_tab_content = document.getElementsByClassName('nav-tab-content');
+
+        for(let i=0; i<nav_tab_btn.length; i++){
+            nav_tab_btn[i].addEventListener('click', ()=>{
+                $('.nav-tab-content').addClass('d-none');
+                $('.nav-tab-content').removeClass('active-nav-tab-content');
+                nav_tab_content[i].classList.remove('d-none');
+                setTimeout(()=>{
+                    nav_tab_content[i].classList.add('active-nav-tab-content');
+                }, 10);
+            });
+        }
+
     </script>
 
 </body>

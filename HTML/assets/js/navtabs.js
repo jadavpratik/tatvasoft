@@ -1,14 +1,19 @@
-const nav_tab = document.getElementsByClassName('nav_tab');
-const nav_tab_content = document.getElementsByClassName('nav_tab_content');
+const tab_btn = document.getElementsByClassName('tab_btn');
+const tab_content = document.getElementsByClassName('tab_content');
 
-for(let i=0; i<nav_tab.length; i++){
-	nav_tab[i].addEventListener('click', ()=>{
+for(let i=0; i<tab_btn.length; i++){
 
-		$('.nav_tab').removeClass('faq_active_tab');
-		nav_tab[i].classList.add('faq_active_tab');
+	tab_btn[i].addEventListener('click', ()=>{
 
-		$('.nav_tab_content').addClass('d_none');
-		nav_tab_content[i].classList.remove('d_none');
+		$('.tab_btn').removeClass('faq_active_tab');
+		$('.tab_content').removeClass('active_tab_content');
+		$('.tab_content').addClass('d_none');
+		tab_content[i].classList.remove('d_none');
+		setTimeout(()=>{
+			tab_content[i].classList.add('active_tab_content');
+			tab_btn[i].classList.add('faq_active_tab');
+		}, 20);
 
 	});
+
 }

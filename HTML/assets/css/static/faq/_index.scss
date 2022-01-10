@@ -26,9 +26,11 @@ $faq_text:#646464;
 .faq_container{
     padding-top: 35px;
     width:931px;
+    min-height: 100px;
+    height:auto;
 }
 
-.faq_tab{
+.faq_tabs{
     display: flex;
     justify-content: center;
     button{
