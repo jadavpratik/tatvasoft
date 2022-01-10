@@ -4,7 +4,7 @@ $faq_text:#646464;
 
 .faq{
     padding-top: 32px;
-    padding-bottom: $last_section_bottom_padding;
+    padding-bottom: 50px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -26,8 +26,6 @@ $faq_text:#646464;
 .faq_container{
     padding-top: 35px;
     width:931px;
-    min-height: 100px;
-    height:auto;
 }
 
 .faq_tabs{
@@ -66,13 +64,13 @@ $faq_text:#646464;
         align-items: center;
         background-color: transparent;
         border:0;
-    }
-    p{
-        margin:0;
-        padding-left:15px;
-        font-weight: bold;
-        color:$faq_text;
-        font-size: 16px;
+        p{
+            margin:0;
+            padding-left:15px;
+            font-weight: bold;
+            color:$faq_text;
+            font-size: 16px;
+        }    
     }
 }
 
