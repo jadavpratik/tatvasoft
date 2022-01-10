@@ -325,6 +325,18 @@ button {
   }
 }
 
+.accordion_btn {
+  -webkit-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+}
+
+.accordion_content {
+  max-height: 0;
+  overflow: hidden;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+
 .welcome_message {
   font-size: 30px;
   height: 119px;
@@ -1627,8 +1639,7 @@ footer {
   z-index: 2;
 }
 
-.admin_tab_list > a,
-.admin_accordion > button {
+.admin_tab_list > a {
   width: 100%;
   height: 56px;
   display: -webkit-box;
@@ -1649,8 +1660,41 @@ footer {
   font-size: 16px;
 }
 
-.admin_tab_list > a i,
-.admin_accordion > button i {
+.admin_tab_list > a:hover {
+  background-color: whitesmoke;
+}
+
+.admin_accordion div:first-of-type {
+  width: 100%;
+  height: 56px;
+  padding: 18px 0;
+  padding-left: 13px;
+  background-color: white;
+  color: #646464;
+  border: 0;
+  border-bottom: 1px solid #E5E5E5;
+  font-size: 16px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.admin_accordion div:first-of-type:hover {
+  background-color: whitesmoke;
+}
+
+.admin_accordion div:first-of-type button {
+  background-color: transparent;
+  border: 0;
+}
+
+.admin_accordion div:first-of-type button i {
   margin-right: 20px;
   width: 20px;
   height: 20px;
@@ -1667,16 +1711,11 @@ footer {
   color: #646464;
 }
 
-.admin_tab_list > a:hover,
-.admin_accordion > button:hover {
-  background-color: whitesmoke;
+.admin_accordion div:last-of-type {
+  padding: 0;
 }
 
-.admin_sidenav_active_tab {
-  color: #1FB6FF;
-}
-
-.admin_accordion > div {
+.admin_accordion div:last-of-type div {
   width: 100%;
   height: auto;
   display: -webkit-box;
@@ -1689,11 +1728,15 @@ footer {
   background-color: whitesmoke;
 }
 
-.admin_accordion > div a {
+.admin_accordion div:last-of-type div a {
+  width: 100%;
   padding: 16px 0;
   padding-left: 26px;
-  width: 100%;
   color: #646464;
+}
+
+.admin_sidenav_active_tab {
+  color: #1FB6FF;
 }
 
 .admin_right {
@@ -2538,6 +2581,16 @@ footer {
 .faq {
   padding-top: 32px;
   padding-bottom: 384px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .faq_intro {
@@ -2560,6 +2613,7 @@ footer {
 
 .faq_container {
   padding-top: 35px;
+  width: 931px;
 }
 
 .faq_tab {
@@ -2600,8 +2654,14 @@ footer {
 }
 
 .question {
+  width: 100%;
   padding-top: 37px;
-  width: 931px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .question button {
@@ -2616,10 +2676,9 @@ footer {
           align-items: center;
   background-color: transparent;
   border: 0;
-  cursor: pointer;
 }
 
-.question button p {
+.question p {
   margin: 0;
   padding-left: 15px;
   font-weight: bold;

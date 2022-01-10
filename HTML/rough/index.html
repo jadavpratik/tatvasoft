@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+    <!-- ACCORDION -->
+    <div class="accordion">
+        <button class="accordion-btn">What is Thoughts?<i class="fas fa-angle-down"></i></button>
+        <div class="accordion-content">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde enim similique earum architecto natus! Aperiam, vitae eum. Ut, suscipit atque quo nesciunt quisquam nobis in sit temporibus voluptatum optio natus?</p>
+        </div>
+    </div>
+    <div class="accordion">
+        <button class="accordion-btn">What is Thoughts?<i class="fas fa-angle-down"></i></button>
+        <div class="accordion-content">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde enim similique earum architecto natus! Aperiam, vitae eum. Ut, suscipit atque quo nesciunt quisquam nobis in sit temporibus voluptatum optio natus?</p>
+        </div>
+    </div>
+    <div class="accordion">
+        <button class="accordion-btn">What is Thoughts?<i class="fas fa-angle-down"></i></button>
+        <div class="accordion-content">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde enim similique earum architecto natus! Aperiam, vitae eum. Ut, suscipit atque quo nesciunt quisquam nobis in sit temporibus voluptatum optio natus?</p>
+        </div>
+    </div>
+
+    <script>
+        const acc_btn = document.getElementsByClassName('accordion-btn');
+        const acc_content = document.getElementsByClassName('accordion-content');
+        for(let i=0; i<acc_btn.length; i++){
+            acc_btn[i].addEventListener('click', ()=>{
+                const panel = acc_content[i];
+                if(panel.style.maxHeight){
+                    panel.style.maxHeight = null;
+                }
+                else{
+                    panel.style.maxHeight = panel.scrollHeight + 'px';
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>

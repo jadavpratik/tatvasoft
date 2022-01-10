@@ -5,6 +5,9 @@ $faq_text:#646464;
 .faq{
     padding-top: 32px;
     padding-bottom: $last_section_bottom_padding;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .faq_intro{
@@ -22,6 +25,7 @@ $faq_text:#646464;
 
 .faq_container{
     padding-top: 35px;
+    width:931px;
 }
 
 .faq_tab{
@@ -50,22 +54,23 @@ $faq_text:#646464;
 }
 
 .question{
+    width:100%;
     padding-top: 37px;
-    width:931px;    
+    display: flex;
+    align-items: center;
     button{
         display: flex;
         justify-content: center;
         align-items: center;
         background-color: transparent;
         border:0;
-        cursor: pointer;
-        p{
-            margin:0;
-            padding-left:15px;
-            font-weight: bold;
-            color:$faq_text;
-            font-size: 16px;
-        }
+    }
+    p{
+        margin:0;
+        padding-left:15px;
+        font-weight: bold;
+        color:$faq_text;
+        font-size: 16px;
     }
 }
 

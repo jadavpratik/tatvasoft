@@ -1,27 +1,19 @@
-const angle_right_circle = './assets/img/buttons/angle/angle_right_circle.png';
-const angle_down_circle = './assets/img/buttons/angle/angle_down_circle.png';
-const angle_right_icon = `<i class="fas fa-angle-right"></i>`;
-const angle_down_icon = `<i class="fas fa-angle-down"></i>`;
-
 // ACCORDION IMPLEMENTATION...
-var acc_btn = document.getElementsByClassName("accordion_btn");
+const acc_btn = document.getElementsByClassName("accordion_btn");
+const acc_content = document.getElementsByClassName("accordion_content");
 
 for (let i = 0; i < acc_btn.length; i++) {
 
 	acc_btn[i].addEventListener("click", function() {
 		
-		var acc_content = this.nextElementSibling;
-		if(acc_content.classList.contains('d_none')){
-			// CHANGE RIGHT_ARROW -> DOWN_ARROW
-			acc_btn[i].children[0].outerHTML = angle_down_icon;
-			acc_btn[i].children[0].src = angle_down_circle;
-			acc_content.classList.remove('d_none');
+		const panel = acc_content[i];
+		if(panel.style.maxHeight){//close
+			acc_btn[i].children[0].style = 'transform:rotate(0deg)';
+			panel.style.maxHeight = null;
 		}
-		else{
-			// CHANGE DOWN_ARROW -> RIGHT_ARROW
-			acc_btn[i].children[0].outerHTML = angle_right_icon;
-			acc_btn[i].children[0].src = angle_right_circle;
-			acc_content.classList.add('d_none');
+		else{//open
+			acc_btn[i].children[0].style = 'transform:rotate(90deg)';
+			panel.style.maxHeight = panel.scrollHeight + 'px';
 		}
 	});
 }
