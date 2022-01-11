@@ -6,6 +6,7 @@ $welcome_message_text:#4F4F4F;
 $welcome_message_border:#E1E1E1;
 
 .welcome_message{
+    margin-top: $navbar_height;
     font-size: 30px;
     height:119px;
     background-color: $welcome_message_bg;

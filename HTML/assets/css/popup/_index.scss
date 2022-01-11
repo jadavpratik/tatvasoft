@@ -7,6 +7,7 @@ $popup_border:lightgray;
 @import "./login";
 @import "./success";
 @import "./fail";
+@import "./service_details";
 
 // IT'S TEMPORARY...
 .model_btn{
@@ -17,3 +18,22 @@ $popup_border:lightgray;
         padding:4px 10px;
     }
 }
+
+.temp_popup_container{
+    padding:50px;
+    border:2px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login_popup_title,
+.forgot_password_popup_title,
+.service_details_popup_title{
+    text-align: center;
+    font-size:28px;
+    font-weight: bold;
+    padding:10px 0;
+    color:$popup_text;
+}
+

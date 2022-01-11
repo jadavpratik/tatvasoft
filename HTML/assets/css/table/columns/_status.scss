@@ -1,0 +1,23 @@
+$success_status:#67B644;
+$cancel_status:#FF6B6B;
+
+.completed_status,
+.cancelled_status{
+    width:82px;
+    height: 28px;
+    border-radius: 2px;
+    font-size: 13px;
+    display: flex;
+    justify-content:center;
+    align-items:center;
+    color:white;
+}
+
+.completed_status{
+    background-color: $success_status;
+}
+
+.cancelled_status{
+    background-color: $cancel_status;
+}
+

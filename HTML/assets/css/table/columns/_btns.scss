@@ -1,0 +1,51 @@
+$rate_sp:#6DA9B5;
+$reschedule_btn:#1D7A8C;
+$cancel_btn:#ff6b6b;
+$export_button:#1D7A8C;
+
+@mixin btn{
+    margin:0 3px;
+    width:fit-content;
+    height:34px;
+    padding:0 14px;
+    font-size: 14px;
+    border:0;
+    border-radius: 34px;
+    color:white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    i{
+        padding-right: 5px;
+    }
+}
+
+.table_btn_container{
+    display: flex;
+}
+
+.export_btn{
+    @include btn;
+    background-color: $export_button;
+}
+
+.add_new_service_request_btn{
+    @include btn;
+    background-color: $export_button;
+}
+
+.reschedule_btn{
+    @include btn;
+    width:100px;
+    background-color: $reschedule_btn;
+}
+
+.cancel_btn{
+    @include btn;
+    background-color: $cancel_btn;
+}
+
+.rate_sp_btn{
+    @include btn;
+    background-color: $rate_sp;
+}

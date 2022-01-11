@@ -15,6 +15,9 @@
     <!-- AOS -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- DATATABLE -->
+    <link rel="stylesheet" href="//cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
+    <script src="//cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
 </head>
 <body>
 
@@ -154,342 +157,548 @@
 						<!-- CUSTOMER -->
 	<!-- --------------------------------------------------- -->
 
-    <main class="customer">
+    <main>
 
+        <!-- WELCOME_MESSAGE -->
         <div class="welcome_message">
             <p>Welcome, <span>Gaurang!</span></p>
         </div>
     
-        <div class="customer_container">
-            <div class="customer_left">
-                <div class="customer_tab_list">
-                    <a href="">Dashboard</a>
-                    <a class="customer_active_tab" href="">Service History</a>
-                    <a href="">Service Schedule</a>
-                    <a href="">Favourite Pros</a>
-                    <a href="">Invoices</a>
-                    <a href="">Nortifications</a>    
+        <!-- TAB AND TABLE -->
+        <div class="table_tab">
+            <!-- LEFT -->
+            <div class="table_tab_left">
+                <!-- TAB AND TABLE LIST -->
+                <div class="table_tab_list">
+                    <a href="#" class="table_tab_btn active_table_tab">Dashboard</a>
+                    <a href="#" class="table_tab_btn " >Service History</a>
+                    <a href="#" class="table_tab_btn">Service Schedule</a>
+                    <a href="#" class="table_tab_btn">Favourite Pros</a>
+                    <a href="#" class="table_tab_btn">Invoices</a>
+                    <a href="#" class="table_tab_btn">Nortifications</a>    
                 </div>
             </div>
-            <div class="customer_right">
-                <div class="export_service_history">
-                    <p>Service Hisotry</p>
-                    <button>Export</button>
-                </div>
-                <table class="service_history_table">
-                    <thead>
-                        <tr>
-                            <th>Service Details</th>
-                            <th>Service Provider</th>
-                            <th>Payment</th>
-                            <th>Status</th>
-                            <th>Rate SP</th>    
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!-- SINGLE_ROW -->
-                        <tr>
-                            <td>
-                                <div class="d_flex" style="margin-bottom:8px;">
-                                    <img style="margin-right:6px" src="../assets/img/table/calendar_black.png" alt="">
-                                    <p>31/03/2018</p>
-                                </div>
-                                <div>
-                                    <p>12:00 - 18:00</p>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="d_flex ai_center" style="margin-bottom: 8px;">
-                                    <img class="hat_style" src="../assets/img/table/hat.png" alt="">
-                                    <div class="d_flex_column" style="margin-left: 6px;">
-                                        <p style="margin-bottom:6px">Lyum Watson</p>    
-                                        <div class="d_flex">
-                                            <i class="fas fa-star rated_star"></i>
-                                            <i class="fas fa-star rated_star"></i>
-                                            <i class="fas fa-star rated_star"></i>
-                                            <i class="fas fa-star rated_star"></i>
-                                            <i class="fas fa-star unrated_star"></i>
-                                            <p style="margin-left:3px">4</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <p class="payment_text">€<span>63</span></p>                            </td>
-                            <td>
-                                <p class="completed_status">Completed</p>
-                            </td>
-                            <td>
-                                <button class="rate_sp">Rate SP</button>
-                            </td>
-                        </tr>
-                        <!-- END_SINGLE_ROW -->
-                        <!-- SINGLE_ROW -->
-                        <tr>
-                            <td>
-                                <div class="d_flex" style="margin-bottom:8px;">
-                                    <img style="margin-right:6px" src="../assets/img/table/calendar_black.png" alt="">
-                                    <p>31/03/2018</p>
-                                </div>
-                                <div>
-                                    <p>12:00 - 18:00</p>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="d_flex ai_center" style="margin-bottom: 8px;">
-                                    <img class="hat_style" src="../assets/img/table/hat.png" alt="">
-                                    <div class="d_flex_column" style="margin-left: 6px;">
-                                        <p style="margin-bottom:6px">Lyum Watson</p>    
-                                        <div class="d_flex">
-                                            <i class="fas fa-star rated_star"></i>
-                                            <i class="fas fa-star rated_star"></i>
-                                            <i class="fas fa-star rated_star"></i>
-                                            <i class="fas fa-star rated_star"></i>
-                                            <i class="fas fa-star unrated_star"></i>
-                                            <p style="margin-left:3px">4</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <p class="payment_text">€<span>63</span></p>                            </td>
-                            <td>
-                                <p class="cancel_status">Cancelled</p>
-                            </td>
-                            <td>
-                                <button class="rate_sp">Rate SP</button>
-                            </td>
-                        </tr>
-                        <!-- END_SINGLE_ROW -->
-                        <!-- SINGLE_ROW -->
-                        <tr>
-                            <td>
-                                <div class="d_flex" style="margin-bottom:8px;">
-                                    <img style="margin-right:6px" src="../assets/img/table/calendar_black.png" alt="">
-                                    <p>31/03/2018</p>
-                                </div>
-                                <div>
-                                    <p>12:00 - 18:00</p>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="d_flex ai_center" style="margin-bottom: 8px;">
-                                    <img class="hat_style" src="../assets/img/table/hat.png" alt="">
-                                    <div class="d_flex_column" style="margin-left: 6px;">
-                                        <p style="margin-bottom:6px">Lyum Watson</p>    
-                                        <div class="d_flex">
-                                            <i class="fas fa-star rated_star"></i>
-                                            <i class="fas fa-star rated_star"></i>
-                                            <i class="fas fa-star rated_star"></i>
-                                            <i class="fas fa-star rated_star"></i>
-                                            <i class="fas fa-star unrated_star"></i>
-                                            <p style="margin-left:3px">4</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <p class="payment_text">€<span>63</span></p>                            </td>
-                            <td>
-                                <p class="completed_status">Completed</p>
-                            </td>
-                            <td>
-                                <button class="rate_sp">Rate SP</button>
-                            </td>
-                        </tr>
-                        <!-- END_SINGLE_ROW -->
-                        <!-- SINGLE_ROW -->
-                        <tr>
-                            <td>
-                                <div class="d_flex" style="margin-bottom:8px;">
-                                    <img style="margin-right:6px" src="../assets/img/table/calendar_black.png" alt="">
-                                    <p>31/03/2018</p>
-                                </div>
-                                <div>
-                                    <p>12:00 - 18:00</p>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="d_flex ai_center" style="margin-bottom: 8px;">
-                                    <img class="hat_style" src="../assets/img/table/hat.png" alt="">
-                                    <div class="d_flex_column" style="margin-left: 6px;">
-                                        <p style="margin-bottom:6px">Lyum Watson</p>    
-                                        <div class="d_flex">
-                                            <i class="fas fa-star rated_star"></i>
-                                            <i class="fas fa-star rated_star"></i>
-                                            <i class="fas fa-star rated_star"></i>
-                                            <i class="fas fa-star rated_star"></i>
-                                            <i class="fas fa-star unrated_star"></i>
-                                            <p style="margin-left:3px">4</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <p class="payment_text">€<span>63</span></p>                            
-                            </td>
-                            <td>
-                                <p class="cancel_status">Cancelled</p>
-                            </td>
-                            <td>
-                                <button class="rate_sp">Rate SP</button>
-                            </td>
-                        </tr>
-                        <!-- END_SINGLE_ROW -->
-                        <!-- SINGLE_ROW -->
-                        <tr>
-                            <td>
-                                <div class="d_flex" style="margin-bottom:8px;">
-                                    <img style="margin-right:6px" src="../assets/img/table/calendar_black.png" alt="">
-                                    <p>31/03/2018</p>
-                                </div>
-                                <div>
-                                    <p>12:00 - 18:00</p>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="d_flex ai_center" style="margin-bottom: 8px;">
-                                    <img class="hat_style" src="../assets/img/table/hat.png" alt="">
-                                    <div class="d_flex_column" style="margin-left: 6px;">
-                                        <p style="margin-bottom:6px">Lyum Watson</p>    
-                                        <div class="d_flex">
-                                            <i class="fas fa-star rated_star"></i>
-                                            <i class="fas fa-star rated_star"></i>
-                                            <i class="fas fa-star rated_star"></i>
-                                            <i class="fas fa-star rated_star"></i>
-                                            <i class="fas fa-star unrated_star"></i>
-                                            <p style="margin-left:3px">4</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <p class="payment_text">€<span>63</span></p>                            </td>
-                            <td>
-                                <p class="completed_status">Completed</p>
-                            </td>
-                            <td>
-                                <button class="rate_sp">Rate SP</button>
-                            </td>
-                        </tr>
-                        <!-- END_SINGLE_ROW -->
-                        <!-- SINGLE_ROW -->
-                        <tr>
-                            <td>
-                                <div class="d_flex" style="margin-bottom:8px;">
-                                    <img style="margin-right:6px" src="../assets/img/table/calendar_black.png" alt="">
-                                    <p>31/03/2018</p>
-                                </div>
-                                <div>
-                                    <p>12:00 - 18:00</p>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="d_flex ai_center" style="margin-bottom: 8px;">
-                                    <img class="hat_style" src="../assets/img/table/hat.png" alt="">
-                                    <div class="d_flex_column" style="margin-left: 6px;">
-                                        <p style="margin-bottom:6px">Lyum Watson</p>    
-                                        <div class="d_flex">
-                                            <i class="fas fa-star rated_star"></i>
-                                            <i class="fas fa-star rated_star"></i>
-                                            <i class="fas fa-star rated_star"></i>
-                                            <i class="fas fa-star rated_star"></i>
-                                            <i class="fas fa-star unrated_star"></i>
-                                            <p style="margin-left:3px">4</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <p class="payment_text">€<span>63</span></p>                            </td>
-                            <td>
-                                <p class="completed_status">Completed</p>
-                            </td>
-                            <td>
-                                <button class="rate_sp">Rate SP</button>
-                            </td>
-                        </tr>
-                        <!-- END_SINGLE_ROW -->
-                        <!-- SINGLE_ROW -->
-                        <tr>
-                            <td>
-                                <div class="d_flex" style="margin-bottom:8px;">
-                                    <img style="margin-right:6px" src="../assets/img/table/calendar_black.png" alt="">
-                                    <p>31/03/2018</p>
-                                </div>
-                                <div>
-                                    <p>12:00 - 18:00</p>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="d_flex ai_center" style="margin-bottom: 8px;">
-                                    <img class="hat_style" src="../assets/img/table/hat.png" alt="">
-                                    <div class="d_flex_column" style="margin-left: 6px;">
-                                        <p style="margin-bottom:6px">Lyum Watson</p>    
-                                        <div class="d_flex">
-                                            <i class="fas fa-star rated_star"></i>
-                                            <i class="fas fa-star rated_star"></i>
-                                            <i class="fas fa-star rated_star"></i>
-                                            <i class="fas fa-star rated_star"></i>
-                                            <i class="fas fa-star unrated_star"></i>
-                                            <p style="margin-left:3px">4</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <p class="payment_text">€<span>63</span></p>                            </td>
-                            <td>
-                                <p class="completed_status">Completed</p>
-                            </td>
-                            <td>
-                                <button class="rate_sp">Rate SP</button>
-                            </td>
-                        </tr>
-                        <!-- END_SINGLE_ROW -->
-                        <!-- SINGLE_ROW -->
-                        <tr>
-                            <td>
-                                <div class="d_flex" style="margin-bottom:8px;">
-                                    <img style="margin-right:6px" src="../assets/img/table/calendar_black.png" alt="">
-                                    <p>31/03/2018</p>
-                                </div>
-                                <div>
-                                    <p>12:00 - 18:00</p>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="d_flex ai_center" style="margin-bottom: 8px;">
-                                    <img class="hat_style" src="../assets/img/table/hat.png" alt="">
-                                    <div class="d_flex_column" style="margin-left: 6px;">
-                                        <p style="margin-bottom:6px">Lyum Watson</p>    
-                                        <div class="d_flex">
-                                            <i class="fas fa-star rated_star"></i>
-                                            <i class="fas fa-star rated_star"></i>
-                                            <i class="fas fa-star rated_star"></i>
-                                            <i class="fas fa-star rated_star"></i>
-                                            <i class="fas fa-star unrated_star"></i>
-                                            <p style="margin-left:3px">4</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <p class="payment_text">€<span>63</span></p>                            </td>
-                            <td>
-                                <p class="completed_status">Completed</p>
-                            </td>
-                            <td>
-                                <button class="rate_sp">Rate SP</button>
-                            </td>
-                        </tr>
-                        <!-- END_SINGLE_ROW -->
 
-                    </tbody>
-                </table><!-- END_SERVICE_HISTORY_TABLE -->
-            </div><!-- END_CUSTOMER_RIGHT -->
-        </div><!-- END_CUSTOMER_CONTAINER -->
-    </main><!-- END_CUSTOMER -->
+            <!-- RIGHT -->
+            <div class="table_tab_right">
+
+                <div class="table_tab_content">
+                    <div class="current_service_requests">
+                        <p>Current Service Requests</p>
+                        <button class="add_new_service_request_btn">Add New Service Request</button>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Service Id</th>
+                                <th>Service Date</th>
+                                <th>Service Provider</th>
+                                <th>Payment</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><p class="service_id">8485</p></td>
+                                <td>
+                                    <div class="service_date">
+                                        <div>
+                                            <img src="../assets/img/table/calendar.png" alt="">
+                                            <p>05/10/2021</p>
+                                        </div>
+                                        <div>
+                                            <img src="../assets/img/table/time.png" alt="">
+                                            <p><span>08:00</span> - <span>11:30</span></p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="service_provider"></div>
+                                </td>
+                                <td>
+                                    <p class="payment_text"><span>87,50</span>€</p>
+                                </td>
+                                <td>
+                                    <div class="table_btn_container">
+                                        <button class="reschedule_btn">Reschedule</button>
+                                        <button class="cancel_btn">Cancel</button>    
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><p class="service_id">8479</p></td>
+                                <td>
+                                    <div class="service_date">
+                                        <div>
+                                            <img src="../assets/img/table/calendar.png" alt="">
+                                            <p>05/10/2021</p>
+                                        </div>
+                                        <div>
+                                            <img src="../assets/img/table/time.png" alt="">
+                                            <p><span>08:00</span> - <span>11:30</span></p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="service_provider">
+                                        <img class="hat_style" src="../assets/img/table/hat.png" alt="">
+                                        <div>
+                                            <p>Lyum Watson</p>    
+                                            <div>
+                                                <i class="fas fa-star rated_star"></i>
+                                                <i class="fas fa-star rated_star"></i>
+                                                <i class="fas fa-star rated_star"></i>
+                                                <i class="fas fa-star rated_star"></i>
+                                                <i class="fas fa-star unrated_star"></i>
+                                                <span>4</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <p class="payment_text"><span>75,00</span>€</p>
+                                </td>
+                                <td>
+                                    <div class="table_btn_container">
+                                        <button class="reschedule_btn">Reschedule</button>
+                                        <button class="cancel_btn">Cancel</button>    
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- SERVICE_HISTORY -->
+                <div class="table_tab_content d_none">
+                    <div class="service_history">
+                        <p>Service History</p>
+                        <button class="export_btn">Export</button>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Service Details</th>
+                                <th>Service Provider</th>
+                                <th>Payment</th>
+                                <th>Status</th>
+                                <th>Rate SP</th>    
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="service_details">
+                                        <div>
+                                            <img src="../assets/img/table/calendar_black.png" alt="">
+                                            <p>31/03/2018</p>
+                                        </div>
+                                        <div>
+                                            <p>12:00 - 18:00</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="service_provider">
+                                        <img class="hat_style" src="../assets/img/table/hat.png" alt="">
+                                        <div>
+                                            <p>Lyum Watson</p>    
+                                            <div>
+                                                <i class="fas fa-star rated_star"></i>
+                                                <i class="fas fa-star rated_star"></i>
+                                                <i class="fas fa-star rated_star"></i>
+                                                <i class="fas fa-star rated_star"></i>
+                                                <i class="fas fa-star unrated_star"></i>
+                                                <span>4</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <p class="payment_text">€<span>63</span></p>                            </td>
+                                <td>
+                                    <p class="completed_status">Completed</p>
+                                </td>
+                                <td>
+                                    <button class="rate_sp_btn">Rate SP</button>
+                                </td>
+                            </tr><!-- END_SINGLE_ROW -->
+                            <tr>
+                                <td>
+                                    <div class="service_details">
+                                        <div>
+                                            <img src="../assets/img/table/calendar_black.png" alt="">
+                                            <p>31/03/2018</p>
+                                        </div>
+                                        <div>
+                                            <p>12:00 - 18:00</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="service_provider">
+                                        <img class="hat_style" src="../assets/img/table/hat.png" alt="">
+                                        <div>
+                                            <p>Lyum Watson</p>    
+                                            <div>
+                                                <i class="fas fa-star rated_star"></i>
+                                                <i class="fas fa-star rated_star"></i>
+                                                <i class="fas fa-star rated_star"></i>
+                                                <i class="fas fa-star rated_star"></i>
+                                                <i class="fas fa-star unrated_star"></i>
+                                                <span>4</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <p class="payment_text">€<span>63</span></p>                            </td>
+                                <td>
+                                    <p class="cancelled_status">Cancelled</p>
+                                </td>
+                                <td>
+                                    <button class="rate_sp_btn">Rate SP</button>
+                                </td>
+                            </tr><!-- END_SINGLE_ROW -->
+                            <tr>
+                                <td>
+                                    <div class="service_details">
+                                        <div>
+                                            <img src="../assets/img/table/calendar_black.png" alt="">
+                                            <p>31/03/2018</p>
+                                        </div>
+                                        <div>
+                                            <p>12:00 - 18:00</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="service_provider">
+                                        <img class="hat_style" src="../assets/img/table/hat.png" alt="">
+                                        <div>
+                                            <p>Lyum Watson</p>    
+                                            <div>
+                                                <i class="fas fa-star rated_star"></i>
+                                                <i class="fas fa-star rated_star"></i>
+                                                <i class="fas fa-star rated_star"></i>
+                                                <i class="fas fa-star rated_star"></i>
+                                                <i class="fas fa-star unrated_star"></i>
+                                                <span>4</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <p class="payment_text">€<span>63</span></p>                            </td>
+                                <td>
+                                    <p class="completed_status">Completed</p>
+                                </td>
+                                <td>
+                                    <button class="rate_sp_btn">Rate SP</button>
+                                </td>
+                            </tr><!-- END_SINGLE_ROW -->
+                            <tr>
+                                <td>
+                                    <div class="service_details">
+                                        <div>
+                                            <img src="../assets/img/table/calendar_black.png" alt="">
+                                            <p>31/03/2018</p>
+                                        </div>
+                                        <div>
+                                            <p>12:00 - 18:00</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="service_provider">
+                                        <img class="hat_style" src="../assets/img/table/hat.png" alt="">
+                                        <div>
+                                            <p>Lyum Watson</p>    
+                                            <div>
+                                                <i class="fas fa-star rated_star"></i>
+                                                <i class="fas fa-star rated_star"></i>
+                                                <i class="fas fa-star rated_star"></i>
+                                                <i class="fas fa-star rated_star"></i>
+                                                <i class="fas fa-star unrated_star"></i>
+                                                <span>4</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <p class="payment_text">€<span>63</span></p>                            </td>
+                                <td>
+                                    <p class="cancelled_status">Cancelled</p>
+                                </td>
+                                <td>
+                                    <button class="rate_sp_btn">Rate SP</button>
+                                </td>
+                            </tr><!-- END_SINGLE_ROW -->
+                            <tr>
+                                <td>
+                                    <div class="service_details">
+                                        <div>
+                                            <img src="../assets/img/table/calendar_black.png" alt="">
+                                            <p>31/03/2018</p>
+                                        </div>
+                                        <div>
+                                            <p>12:00 - 18:00</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="service_provider">
+                                        <img class="hat_style" src="../assets/img/table/hat.png" alt="">
+                                        <div>
+                                            <p>Lyum Watson</p>    
+                                            <div>
+                                                <i class="fas fa-star rated_star"></i>
+                                                <i class="fas fa-star rated_star"></i>
+                                                <i class="fas fa-star rated_star"></i>
+                                                <i class="fas fa-star rated_star"></i>
+                                                <i class="fas fa-star unrated_star"></i>
+                                                <span>4</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <p class="payment_text">€<span>63</span></p>                            </td>
+                                <td>
+                                    <p class="completed_status">Completed</p>
+                                </td>
+                                <td>
+                                    <button class="rate_sp_btn">Rate SP</button>
+                                </td>
+                            </tr><!-- END_SINGLE_ROW -->
+                            <tr>
+                                <td>
+                                    <div class="service_details">
+                                        <div>
+                                            <img src="../assets/img/table/calendar_black.png" alt="">
+                                            <p>31/03/2018</p>
+                                        </div>
+                                        <div>
+                                            <p>12:00 - 18:00</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="service_provider">
+                                        <img class="hat_style" src="../assets/img/table/hat.png" alt="">
+                                        <div>
+                                            <p>Lyum Watson</p>    
+                                            <div>
+                                                <i class="fas fa-star rated_star"></i>
+                                                <i class="fas fa-star rated_star"></i>
+                                                <i class="fas fa-star rated_star"></i>
+                                                <i class="fas fa-star rated_star"></i>
+                                                <i class="fas fa-star unrated_star"></i>
+                                                <span>4</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <p class="payment_text">€<span>63</span></p>                            </td>
+                                <td>
+                                    <p class="completed_status">Completed</p>
+                                </td>
+                                <td>
+                                    <button class="rate_sp_btn">Rate SP</button>
+                                </td>
+                            </tr><!-- END_SINGLE_ROW -->
+                            <tr>
+                                <td>
+                                    <div class="service_details">
+                                        <div>
+                                            <img src="../assets/img/table/calendar_black.png" alt="">
+                                            <p>31/03/2018</p>
+                                        </div>
+                                        <div>
+                                            <p>12:00 - 18:00</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="service_provider">
+                                        <img class="hat_style" src="../assets/img/table/hat.png" alt="">
+                                        <div>
+                                            <p>Lyum Watson</p>    
+                                            <div>
+                                                <i class="fas fa-star rated_star"></i>
+                                                <i class="fas fa-star rated_star"></i>
+                                                <i class="fas fa-star rated_star"></i>
+                                                <i class="fas fa-star rated_star"></i>
+                                                <i class="fas fa-star unrated_star"></i>
+                                                <span>4</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <p class="payment_text">€<span>63</span></p>                            </td>
+                                <td>
+                                    <p class="completed_status">Completed</p>
+                                </td>
+                                <td>
+                                    <button class="rate_sp_btn">Rate SP</button>
+                                </td>
+                            </tr><!-- END_SINGLE_ROW -->
+                            <tr>
+                                <td>
+                                    <div class="service_details">
+                                        <div>
+                                            <img src="../assets/img/table/calendar_black.png" alt="">
+                                            <p>31/03/2018</p>
+                                        </div>
+                                        <div>
+                                            <p>12:00 - 18:00</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="service_provider">
+                                        <img class="hat_style" src="../assets/img/table/hat.png" alt="">
+                                        <div>
+                                            <p>Lyum Watson</p>    
+                                            <div>
+                                                <i class="fas fa-star rated_star"></i>
+                                                <i class="fas fa-star rated_star"></i>
+                                                <i class="fas fa-star rated_star"></i>
+                                                <i class="fas fa-star rated_star"></i>
+                                                <i class="fas fa-star unrated_star"></i>
+                                                <span>4</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <p class="payment_text">€<span>63</span></p>                            </td>
+                                <td>
+                                    <p class="completed_status">Completed</p>
+                                </td>
+                                <td>
+                                    <button class="rate_sp_btn">Rate SP</button>
+                                </td>
+                            </tr><!-- END_SINGLE_ROW -->
+                            <tr>
+                                <td>
+                                    <div class="service_details">
+                                        <div>
+                                            <img src="../assets/img/table/calendar_black.png" alt="">
+                                            <p>31/03/2018</p>
+                                        </div>
+                                        <div>
+                                            <p>12:00 - 18:00</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="service_provider">
+                                        <img class="hat_style" src="../assets/img/table/hat.png" alt="">
+                                        <div>
+                                            <p>Lyum Watson</p>    
+                                            <div>
+                                                <i class="fas fa-star rated_star"></i>
+                                                <i class="fas fa-star rated_star"></i>
+                                                <i class="fas fa-star rated_star"></i>
+                                                <i class="fas fa-star rated_star"></i>
+                                                <i class="fas fa-star unrated_star"></i>
+                                                <span>4</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <p class="payment_text">€<span>63</span></p>                            </td>
+                                <td>
+                                    <p class="completed_status">Completed</p>
+                                </td>
+                                <td>
+                                    <button class="rate_sp_btn">Rate SP</button>
+                                </td>
+                            </tr><!-- END_SINGLE_ROW -->
+                            <tr>
+                                <td>
+                                    <div class="service_details">
+                                        <div>
+                                            <img src="../assets/img/table/calendar_black.png" alt="">
+                                            <p>31/03/2018</p>
+                                        </div>
+                                        <div>
+                                            <p>12:00 - 18:00</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="service_provider">
+                                        <img class="hat_style" src="../assets/img/table/hat.png" alt="">
+                                        <div>
+                                            <p>Lyum Watson</p>    
+                                            <div>
+                                                <i class="fas fa-star rated_star"></i>
+                                                <i class="fas fa-star rated_star"></i>
+                                                <i class="fas fa-star rated_star"></i>
+                                                <i class="fas fa-star rated_star"></i>
+                                                <i class="fas fa-star unrated_star"></i>
+                                                <span>4</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <p class="payment_text">€<span>63</span></p>                            </td>
+                                <td>
+                                    <p class="completed_status">Completed</p>
+                                </td>
+                                <td>
+                                    <button class="rate_sp_btn">Rate SP</button>
+                                </td>
+                            </tr><!-- END_SINGLE_ROW -->
+                            <tr>
+                                <td>
+                                    <div class="service_details">
+                                        <div>
+                                            <img src="../assets/img/table/calendar_black.png" alt="">
+                                            <p>31/03/2018</p>
+                                        </div>
+                                        <div>
+                                            <p>12:00 - 18:00</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="service_provider">
+                                        <img class="hat_style" src="../assets/img/table/hat.png" alt="">
+                                        <div>
+                                            <p>Lyum Watson</p>    
+                                            <div>
+                                                <i class="fas fa-star rated_star"></i>
+                                                <i class="fas fa-star rated_star"></i>
+                                                <i class="fas fa-star rated_star"></i>
+                                                <i class="fas fa-star rated_star"></i>
+                                                <i class="fas fa-star unrated_star"></i>
+                                                <span>4</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <p class="payment_text">€<span>63</span></p>                            </td>
+                                <td>
+                                    <p class="completed_status">Completed</p>
+                                </td>
+                                <td>
+                                    <button class="rate_sp_btn">Rate SP</button>
+                                </td>
+                            </tr><!-- END_SINGLE_ROW -->
+                        </tbody><!-- END TBODY -->
+                    </table><!-- END_SERVICE_HISTORY_TABLE -->
+                </div><!-- END_TABLE_TAB_CONTENT -->
+            </div><!-- END_TABLE_TAB_RIGHT -->
+        </div><!-- END_TABLE_TAB -->
+    </main><!-- END_MAIN -->
 
 
 	<!-- --------------------------------------------------- -->
@@ -559,6 +768,21 @@
 	<script src="../assets/js/footer.js"></script>
 	<script src="../assets/js/accordion.js"></script>
 	<script src="../assets/js/dropdown.js"></script>
+
+
+    <script>
+        const table_tab_btn = $('.table_tab_btn');
+        const table_tab_content = $('.table_tab_content');
+
+        for(let i=0; i<table_tab_btn.length; i++){
+            table_tab_btn[i].addEventListener('click', ()=>{
+                $('.table_tab_btn').removeClass('active_table_tab');
+                $('.table_tab_content').addClass('d_none');
+                table_tab_btn[i].classList.add('active_table_tab');
+                table_tab_content[i].classList.remove('d_none');
+            });
+        }
+    </script>
 
 </body>
 </html>
