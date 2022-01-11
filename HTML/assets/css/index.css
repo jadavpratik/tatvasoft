@@ -488,7 +488,7 @@ button {
 }
 
 .phone_number {
-  border: 0.5px solid #C8C8C8;
+  border: 1px solid #C8C8C8;
   border-radius: 4px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -505,6 +505,7 @@ button {
 .phone_number label {
   width: 46px !important;
   height: 100%;
+  color: #4F4F4F;
   background-color: whitesmoke;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -515,7 +516,7 @@ button {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  border-right: 0.5px solid #C8C8C8;
+  border-right: 1px solid #C8C8C8;
 }
 
 .phone_number input {
@@ -887,39 +888,30 @@ footer {
           transform: translate(-50%, -50%);
   border-radius: 4px;
   overflow: hidden;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
   z-index: 4;
   -webkit-transition: all 0.5s;
   transition: all 0.5s;
 }
 
 .model_close_btn {
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
   position: absolute;
-  right: 4px;
-  top: 4px;
+  right: 0px;
+  top: 0px;
   border: 0;
   background-color: transparent;
-  font-size: 30px;
   font-size: 30px;
   color: #9BA0A3;
 }
 
-.login_popup,
-.forgot_password_popup {
+.model_close_btn:hover {
+  color: black;
+}
+
+.login_popup {
   width: 330px;
   height: auto;
   background-color: white;
@@ -981,8 +973,12 @@ footer {
   color: gray;
 }
 
+.login_popup_form div:nth-child(2) {
+  margin-bottom: 0px;
+}
+
 .login_popup_form div:nth-child(3) {
-  margin-bottom: 10px;
+  margin: 7px 0;
   border: 0;
   -webkit-box-pack: start;
       -ms-flex-pack: start;
@@ -1035,7 +1031,18 @@ footer {
   color: #006072;
 }
 
+.forgot_password_popup {
+  width: 330px;
+  height: auto;
+  background-color: white;
+  padding: 20px;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+  border: 2px solid black;
+}
+
 .forgot_password_popup_form {
+  width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1046,10 +1053,10 @@ footer {
 }
 
 .forgot_password_popup_form input, .forgot_password_popup_form button {
-  padding-left: 15px;
   width: 100%;
   height: 40px;
-  margin-bottom: 20px;
+  padding-left: 15px;
+  margin-bottom: 15px;
   font-size: 16px;
   border: 1px solid lightgray;
   border-radius: 4px;
@@ -1156,11 +1163,12 @@ footer {
     margin: auto;
     width: calc(100% - 40px);
     background-color: white;
-    overflow: auto;
+    overflow-y: auto;
   }
   .login_popup,
   .forgot_password_popup,
-  .service_details_popup {
+  .service_details_popup,
+  .success_popup {
     width: 100%;
   }
 }
@@ -1346,6 +1354,10 @@ footer {
 
 .service_date div img {
   margin-right: 8px;
+}
+
+.service_id {
+  font-size: 16px;
 }
 
 .table_btn_container {
@@ -1568,6 +1580,43 @@ footer {
   margin-right: 6px;
 }
 
+.customer_details {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.customer_details > p {
+  margin-bottom: 4px;
+}
+
+.customer_details div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.customer_details div p {
+  height: auto;
+  padding-top: 3px;
+  margin: 0;
+}
+
+.customer_details div img {
+  margin-right: 6px;
+}
+
 .customer_signup {
   margin: auto;
   margin-top: 114px;
@@ -1763,6 +1812,7 @@ footer {
 
 .registration_form > form div p {
   color: #4F4F4F;
+  width: calc(100% - 16px);
 }
 
 .registration_form > form div a {
@@ -1774,15 +1824,6 @@ footer {
   height: 16px;
   border: 2px solid yellow;
   margin-right: 7px;
-}
-
-.registration_form > form div:last-of-type {
-  width: 302px;
-  height: 76px;
-  padding: 0 15px;
-  background-color: #f9f9f9;
-  border: 1px solid lightgray;
-  border-radius: 4px;
 }
 
 .become_a_pro_s2 {
@@ -1875,102 +1916,6 @@ footer {
 .become_a_pro_s2_card div a {
   padding-top: 25px;
   color: #4F4F4F;
-}
-
-.upcoming_service_table {
-  width: 100%;
-  border-collapse: collapse;
-  border: 1px solid lightgray;
-}
-
-.upcoming_service_table tr, .upcoming_service_table td {
-  border: 1px solid lightgray;
-}
-
-.upcoming_service_table thead {
-  padding: 15px 0;
-  background-color: #f9f9f9;
-  height: 49px;
-}
-
-.upcoming_service_table th, .upcoming_service_table tr, .upcoming_service_table tr > p {
-  color: #646464;
-  text-align: left;
-}
-
-.upcoming_service_table th, .upcoming_service_table td {
-  padding-left: 17px;
-  font-size: 16px;
-}
-
-.upcoming_service_table tbody tr {
-  height: 71px;
-}
-
-.cancel_btn {
-  width: 80px;
-  height: 34px;
-  border: 0;
-  border-radius: 17px;
-  background-color: #FF6B6B;
-  color: white;
-  cursor: pointer;
-}
-
-.service_provider {
-  padding-top: 64px;
-  padding-bottom: 50px;
-}
-
-.service_provider_container {
-  padding-top: 30px;
-  width: 1140px;
-  margin: 0 auto;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-.service_provider_left {
-  width: 261px;
-  margin-right: 31px;
-  background-color: #1D7A8C;
-}
-
-.service_provider_tab_list {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-}
-
-.service_provider_tab_list a {
-  width: 100%;
-  height: 55px;
-  padding-left: 15px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  color: white;
-  font-size: 18px;
-}
-
-.service_provider_tab_list a:hover {
-  background-color: #146371;
-}
-
-.service_provider_active_tab {
-  background-color: #146371 !important;
-}
-
-.service_provider_right {
-  width: calc(100% - 261px);
 }
 
 .admin_navbar {
@@ -4020,12 +3965,29 @@ footer {
 @media screen and (max-width: 500px) {
   .become_a_pro_s1,
   .become_a_pro_s2 {
+    height: auto;
     padding-left: 20px;
     padding-right: 20px;
   }
   .registration_form {
+    margin-top: 94px;
     width: 100%;
     height: auto;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .registration_form > form > div {
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+  }
+  .registration_form > form > div label, .registration_form > form > div p {
+    font-size: 14px;
+  }
+  .registration_form > form > .phone_number {
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
   }
 }
 

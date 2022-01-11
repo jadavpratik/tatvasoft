@@ -1,0 +1,17 @@
+$table_text:#646464;
+
+.service_history{
+    height:50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    p{
+        color:$table_text;
+        font-weight: bold;
+        font-size: 22px;
+    }
+}
+
+.current_service_requests{
+    @extend .service_history;
+}

@@ -5,6 +5,7 @@ $popup_border:lightgray;
 
 @import "./model";
 @import "./login";
+@import "./forgot_password";
 @import "./success";
 @import "./fail";
 @import "./service_details";
@@ -26,11 +27,12 @@ $popup_border:lightgray;
         margin:auto;
         width:calc(100% - 40px);
         background-color: white;
-        overflow: auto;
+        overflow-y: auto;
     }
     .login_popup,
     .forgot_password_popup,
-    .service_details_popup{
+    .service_details_popup,
+    .success_popup{
         width:100%;
     }
 }
