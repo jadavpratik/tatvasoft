@@ -2,13 +2,14 @@ $dropdown_text:#646464;
 
 .dropdown{
     position: relative;
-    margin-left: 8px;
+    margin-left: 10px;
     max-width:100px;
     width:auto;
     height: auto;
     display: flex;
     align-items: center;
     justify-content: center;
+    // border:2px solid black;
 }
 
 .dropdown_btn{
@@ -31,7 +32,8 @@ $dropdown_text:#646464;
     border:0.5px solid lightgray;
     border-radius: 8px;
     box-shadow: 1px 1px 2px lightgray;
-    display: flex;
+    // display: flex;
+    display: none;
     flex-direction: column;
     background-color: white;
     z-index: $dropdown_z_index;
@@ -66,6 +68,10 @@ $dropdown_text:#646464;
             background-color: whitesmoke;
         }
     }
+}
+
+.dropdown_btn:focus + .dropdown_menu{
+    display: flex;
 }
 
 .drowpdown_nortification_container{
