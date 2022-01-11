@@ -92,26 +92,6 @@ $registration_term:#1FB6FF;
             border:2px solid yellow;
             margin-right: 7px;
         }
-        &:first-of-type{
-            border:1px solid $registration_input_border;
-            border-radius: 4px;
-            margin-bottom: 15px;
-            overflow: hidden;
-            select{
-                height: 46px;
-                background-color: $registration_select;           
-                margin-bottom: 15px;
-                border:0;
-                border-radius:0;
-                color:$registration_title;
-                margin-bottom: 0;
-            }   
-            input[type="text"]{
-                border-radius:0;
-                border:0;
-                margin-bottom: 0;
-            }
-        }    
         &:last-of-type{
             width:302px;
             height: 76px;

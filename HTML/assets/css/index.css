@@ -497,6 +497,45 @@ button {
      object-fit: cover;
 }
 
+.phone_number {
+  border: 0.5px solid #C8C8C8;
+  border-radius: 4px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  overflow: hidden;
+}
+
+.phone_number label {
+  width: 46px !important;
+  height: 100%;
+  background-color: whitesmoke;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border-right: 0.5px solid #C8C8C8;
+}
+
+.phone_number input {
+  width: calc(100% - 46px) !important;
+  height: 100% !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  margin: 0 !important;
+}
+
 .d_flex {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1128,6 +1167,88 @@ footer {
   color: white;
 }
 
+.customer_signup {
+  margin: auto;
+  margin-top: 114px;
+  margin-bottom: 100px;
+  background-color: white;
+  width: 614px;
+}
+
+.customer_signup form {
+  padding-top: 50px;
+  width: 100%;
+  overflow: hidden;
+}
+
+.customer_signup form > div {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 300px 300px;
+      grid-template-columns: 300px 300px;
+  grid-column-gap: 14px;
+  padding-bottom: 15px;
+}
+
+.customer_signup form > div input[type="text"],
+.customer_signup form > div input[type="password"] {
+  width: 300px;
+  height: 46px;
+  border: 1px solid #C8C8C8;
+  border-radius: 4px;
+  color: #A0A0A0;
+  padding-left: 15px;
+  background-color: white;
+}
+
+.customer_signup form > div button {
+  margin: 0 auto;
+  width: 162px;
+  height: 46px;
+  background-color: #1D7A8C;
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+  border: 0;
+  border-radius: 23px;
+}
+
+.customer_signup form > div a {
+  color: #1D7A8C;
+}
+
+.customer_signup form > div:nth-child(4) {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 15px 0;
+}
+
+.customer_signup form > div:nth-child(5) {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.customer_signup form > div:nth-child(6) {
+  padding: 15px 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
 .customer {
   padding-top: 64px;
   padding-bottom: 50px;
@@ -1308,29 +1429,6 @@ footer {
   height: 16px;
   border: 2px solid yellow;
   margin-right: 7px;
-}
-
-.registration_form > form div:first-of-type {
-  border: 1px solid #C8C8C8;
-  border-radius: 4px;
-  margin-bottom: 15px;
-  overflow: hidden;
-}
-
-.registration_form > form div:first-of-type select {
-  height: 46px;
-  background-color: #F4F4F4;
-  margin-bottom: 15px;
-  border: 0;
-  border-radius: 0;
-  color: #4F4F4F;
-  margin-bottom: 0;
-}
-
-.registration_form > form div:first-of-type input[type="text"] {
-  border-radius: 0;
-  border: 0;
-  margin-bottom: 0;
 }
 
 .registration_form > form div:last-of-type {
@@ -2029,39 +2127,8 @@ footer {
 }
 
 .user_management div:last-child div {
-  width: 219px;
-  border: 1px solid #DEDDDD;
-  border-radius: 4px;
   margin-right: 15px;
-  overflow: hidden;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-.user_management div:last-child div label {
-  width: 46px;
-  height: 46px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  background-color: #f2f4f5;
-  color: #646464;
-}
-
-.user_management div:last-child div input {
-  border: 0;
-  margin: 0;
-  border-radius: 0;
+  border: 0.5px solid #E1E1E1;
 }
 
 .active_status,
@@ -3034,13 +3101,13 @@ footer {
 
 .get_in_touch form > div {
   width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 300px 300px;
+      grid-template-columns: 300px 300px;
+  grid-column-gap: 14px;
   padding-bottom: 15px;
+  overflow: hidden;
 }
 
 .get_in_touch form > div input, .get_in_touch form > div select, .get_in_touch form > div textarea {
@@ -3065,38 +3132,6 @@ footer {
   padding-top: 15px;
   width: 614px;
   height: 146px;
-}
-
-.get_in_touch form > div div {
-  border: 1px solid #C8C8C8;
-  border-radius: 4px;
-  width: 300px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  overflow: hidden;
-}
-
-.get_in_touch form > div div label {
-  width: 57px;
-  height: 46px;
-  background-color: #f3f3f3;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-}
-
-.get_in_touch form > div div input {
-  border: 0;
 }
 
 .get_in_touch form button {

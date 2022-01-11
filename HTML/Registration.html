@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Contact Page</title>
+	<title>Customer Signup</title>
 	<!-- FAVICON -->
 	<link rel="icon" href="./assets/img/favicon/favicon.png" sizes="16x16" type="image/png">	
 	<!-- CSS -->
@@ -15,8 +15,55 @@
     <!-- AOS -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+	<!-- TITL-JS -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/tilt.js/1.0.3/tilt.jquery.min.js"></script>
 </head>
 <body>
+
+	<!-- --------------------------------------------------- -->
+						<!-- FOR_BACKLIGHT_CONTAIN -->
+	<!-- --------------------------------------------------- -->
+	<div class="backlight_container"></div>
+
+	<div class="model d_none">
+		<button class="model_close_btn"><i class="fas fa-times"></i></button>
+		<div class="login_popup d_none">
+			<p class="login_popup_title">Login</p>
+			<form class="login_popup_form" action="">
+				<div>
+					<input type="text" placeholder="Email">
+					<label for=""><i class="fas fa-user"></i></label>
+				</div>
+				<div>
+					<input type="password" placeholder="Password">
+					<label for=""><i class="fas fa-lock"></i></label>
+				</div>
+				<div>
+					<input type="checkbox">
+					<label for="">Remember Me</label>
+				</div>
+				<div>
+					<button>Login</button>
+				</div>
+			</form>
+			<div class="login_popup_footer">
+				<a class="open_forgot_password_popup" href="#">Forgot Password?</a>
+				<p>Don't Have an Account? <a href="">Create an Account</a></p>
+			</div>
+		</div>
+	</div>
+
+	<div class="model d_none">
+		<button class="model_close_btn"><i class="fas fa-times"></i></button>
+		<div class="forgot_password_popup d_none">
+			<p class="forgot_password_popup_title">Forgot Password</p>
+			<form class="forgot_password_popup_form" action="">
+				<input type="text" placeholder="Email">
+				<button>Send</button>
+				<a href="#" class="open_login_popup">Login Now</a>
+			</form>
+		</div>
+	</div>
 
 	<!-- --------------------------------------------------- -->
 						<!-- NAVBAR -->
@@ -33,20 +80,15 @@
 		
 		<!-- NAV_MENU -->
 		<div class="nav_menu">
-			<a class="navbar_focus_btn" href="">Book Now</a>
-			<a class="navbar_active_btn" href="">Prices & Services</a>
-			<a href="">Warranty</a>
+			<a class="navbar_focus_btn transparent" href="">Book a Cleaner</a>
+			<a href="">Prices</a>
+			<a href="">Our Gurantee</a>
 			<a href="">Blog</a>
-			<a href="">Contact</a>
-			<a class="navbar_focus_btn" href="">Login</a>
-			<a class="navbar_focus_btn" href="">Become a Helper</a>
+			<a href="">Contact US</a>
+			<a class="navbar_focus_btn transparent open_login_popup" href="#">Login</a>
+			<a class="navbar_focus_btn transparent" href="">Become a Helper</a>
 		</div><!-- END NAV_MENU -->
 	</nav><!-- END NAVBAR -->
-
-	<!-- --------------------------------------------------- -->
-						<!-- FOR_BACKLIGHT_CONTAIN -->
-	<!-- --------------------------------------------------- -->
-	<div class="backlight_container"></div>
 
 	<!-- --------------------------------------------------- -->
 						<!-- SIDE_NAVBAR -->
@@ -65,7 +107,7 @@
 			<a href="">Gurantee</a>
 			<a href="">Blog</a>
 			<a href="">Contact</a>
-			<a href="">Register</a>
+			<a class="open_login_popup" href="#">Register</a>
 			<a href="">Become a Helper!</a>
 
 			<!-- CUSTOMER -->
@@ -113,95 +155,50 @@
 
 
 
-	<!-- --------------------------------------------------- -->
-						<!-- CONTACT_MAIN -->
-	<!-- --------------------------------------------------- -->
-
-	<!-- CONTACT_PAGE_BANNER -->
-	<div class="banner">
-		<img src="./assets/img/banner/contact.png" alt="">
-	</div>
-
-	<main>
-
-		<!-- --------------------------------------------------- -->
-							<!-- CONTACT_US -->
-		<!-- --------------------------------------------------- -->
-		<div class="contact">
-            
-			<!-- SECTION_1_TITLE -->
-            <div class="title_with_icon">
-                <p>Contact us</p>
-				<div>
-					<div><img src="./assets/img/global/separator.png" alt=""></div>
-				</div>
-            </div>
-
-			<div class="contact_card_container">
-				<div class="contact_card">
-					<!-- style="width:34px;height:54px" -->
-					<div><img src="./assets/img/static/contact/section_1/location.png" alt="" ></div>
-					<div><p>1111 Lorem ipsum text 100,</p><p>Lorem ipsum AB</p></div>
-				</div>
-				<div class="contact_card">
-					<!-- style="width:44px;height:50px" -->
-					<div><img src="./assets/img/static/contact/section_1/phone.png" alt="" ></div>
-					<div><p>+49 (40) 123 56 7890</p><p>+49 (40) 987 56 0000</p></div>
-				</div>
-				<div class="contact_card">
-					<!-- style="width:60px;height:36px" -->
-					<div><img src="./assets/img/static/contact/section_1/envelope.png" alt="" ></div>
-					<div><p>info@helperland.com</p></div>
-				</div>
-			</div><!-- END_SECTION_1_CARD_CONTAINER -->
-
-        </div><!-- END_CONTACT_US -->
-		
-		<hr class="contact_hr">
-
-		<!-- --------------------------------------------------- -->
-							<!-- GET_IN_TOUCH -->
-		<!-- --------------------------------------------------- -->
-		<div class="get_in_touch">
-			<p class="get_in_touch_title">Get in touch with us</p>
-			<form action="">
-				<div>
-					<input type="text" placeholder="First Name">
-					<input type="text" placeholder="Last Name">
-				</div>
-				<div>
-					<div class="phone_number">
-						<label for="">+46</label>
-						<input type="text" placeholder="Phone Number">
-					</div>
-					<input type="text" placeholder="Email Address">
-				</div>
-				<div>
-					<!-- <input type="text" placeholder="Subject"> -->
-					<select name="" id="">
-						<option value="">Suject</option>
-					</select>
-				</div>
-				<div>
-					<textarea name="" placeholder="Message"></textarea>
-				</div>
-				<button>Submit</button>
-			</form>
-		</div><!-- END_GET_IN_TOUCH -->
-
-		<!-- MAP -->
-		<div class="map">
-			<img src="./assets/img/static/contact/section_2/map.png" alt="">
+    <div class="customer_signup">
+    
+        <div class="title_with_icon">
+			<p>Create an Account</p>
+			<div>
+				<div><img src="./assets/img/global/separator.png" alt=""></div>
+			</div>
 		</div>
+        <form action="">
+            <div>
+                <input type="text" placeholder="First Name">
+                <input type="text" placeholder="Last Name">
+            </div>
+            <div>
+                <input type="text" placeholder="Email Address">
+                <div class="phone_number">
+                    <label for="">+46</label>
+                    <input type="text" placeholder="Phone Number">
+                </div>
+            </div>
+            <div>
+                <input type="text" placeholder="Password">
+                <input type="text" placeholder="Confirm Password">
+            </div>
+            <div>
+                <input type="checkbox">
+                <label for="">I have read the <a href="">privacy policy</a></label>
+            </div>
+            <div>
+                <button>Register</button>
+            </div>
+            <div>
+                <p>Already Register? <a href="">Login Now</a></p>
+            </div>
+        </form>
 
-	<main>
+    </div>
 
-
-	<!-- --------------------------------------------------- -->
+    <!-- --------------------------------------------------- -->
 						<!-- FOOTER -->
 	<!-- --------------------------------------------------- -->
 	<footer>
 		<!-- FOOTER_TRANSPARENT_DIV -->
+		<!-- IF HOME PAGE THEN TRANSPARENT-DIV HAVE DIFFERNT COLOR -->
 		<div class="footer_transparent_div">
 			<!-- GET_OUR_NEWSLETTERS -->
 			<form class="get_our_newsletter" action="">
@@ -264,6 +261,15 @@
 	<script src="./assets/js/footer.js"></script>
 	<script src="./assets/js/accordion.js"></script>
 	<script src="./assets/js/dropdown.js"></script>
+	<script src="./assets/js/model.js"></script>
+
+<script>
+        AOS.init();
+		$('.home_s3_intro > img').tilt({
+			glare: true,
+			maxGlare: .5
+		});
+    </script>
 
 </body>
 </html>

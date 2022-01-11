@@ -63,8 +63,6 @@ $welcome_message_border:#E1E1E1;
     }
 }
 
-
-
 .title_with_icon{
     /* 
         width of border of one side = 62px;
@@ -114,5 +112,33 @@ $welcome_message_border:#E1E1E1;
                 object-fit: cover;
             }    
         }
+    }
+}
+
+
+$phone_border:#C8C8C8;
+
+.phone_number{
+    border:0.5px solid $phone_border;
+    border-radius: 4px;
+    display: flex; 
+    align-items:center;
+    justify-content: center;
+    overflow: hidden;
+    label{
+        width:46px !important;
+        height:100%;
+        background-color: whitesmoke;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-right: 0.5px solid $phone_border;
+    }
+    input{
+        width:calc(100% - 46px) !important;
+        height: 100% !important; 
+        border:0 !important;
+        border-radius: 0 !important;
+        margin:0 !important;
     }
 }
