@@ -9,8 +9,9 @@
     border-radius: 4px;
     overflow: hidden;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
+    justify-content: center;
     z-index:$model_z_index;
     transition: all 0.5s;
 }
@@ -19,18 +20,11 @@
     width:50px;
     height:50px;
     position: absolute;
-    top:0px;
-    right:0px;
+    right:4px;
+    top:4px;
     border:0;
     background-color: transparent;
     font-size: 30px;
     font-size: 30px;
     color:$model_close_btn;
-}
-
-@media screen and (max-width:700px) {
-    .model{
-        width:calc(100% - 40px);
-        background-color: white;
-    }
 }

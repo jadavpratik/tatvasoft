@@ -8,7 +8,35 @@ $popup_border:lightgray;
 @import "./success";
 @import "./fail";
 @import "./service_details";
+@import "./reschedule_service";
 
+.login_popup_title,
+.forgot_password_popup_title,
+.service_details_popup_title,
+.reschedule_service_request_popup_title{
+    text-align: center;
+    font-size:28px;
+    font-weight: bold;
+    padding:10px 0;
+    color:$popup_text;
+}
+
+@media screen and (max-width:700px) {
+    .model{
+        margin:auto;
+        width:calc(100% - 40px);
+        background-color: white;
+        overflow: auto;
+    }
+    .login_popup,
+    .forgot_password_popup,
+    .service_details_popup{
+        width:100%;
+    }
+}
+
+
+// ------------------DELETE SOON---------------------------
 // IT'S TEMPORARY...
 .model_btn{
     margin-top: $navbar_height+50px;
@@ -26,14 +54,4 @@ $popup_border:lightgray;
     justify-content: center;
     align-items: center;
 }
-
-.login_popup_title,
-.forgot_password_popup_title,
-.service_details_popup_title{
-    text-align: center;
-    font-size:28px;
-    font-weight: bold;
-    padding:10px 0;
-    color:$popup_text;
-}
-
+// -------------------------------------------------------

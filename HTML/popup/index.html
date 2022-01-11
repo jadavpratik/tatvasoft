@@ -114,7 +114,7 @@
         <button onclick="open_model('fail')">FAIL</button>
         <button onclick="open_model('login')">LOGIN</button>
         <button onclick="open_model('forgot_password')">FORGOT_PASSOWORD</button>
-        <button onclick="open_model('service_details')">FORGOT_PASSOWORD</button>
+        <button onclick="open_model('service_details')">Service Details</button>
     </div>
 
     <!-- --------------------------------------------------- -->
@@ -135,12 +135,25 @@
 
 	<div class="temp_popup_container">
 
+		<!-- RESCHEDULE_SERVICE_REQUEST -->
+		<div class="reschedule_service_request_popup">
+			<p class="reschedule_service_request_popup_title">Reschedule Service Request</p>
+			<div>
+				<label for="">Select New Date & Time</label>
+				<div>
+					<input type="date">
+					<input type="time">
+				</div>
+				<button>Update</button>
+			</div>
+		</div>
+		
 		<!-- SERVICE_DETAILS -->
-		<div class="service_details_popup">
+		<div class="service_details_popup d_none">
 			<p class="service_details_popup_title">Service Details</p>
 			<div>
 				<p>05/10/2021 | 08:00 - 11:30</p>
-				<p>Duration : <span>3.5</span>Hours</p>
+				<p>Duration : <span>3.5Hours</span></p>
 			</div>
 			<div>
 				<p>Service Id : <span>8485</span></p>
@@ -150,8 +163,8 @@
 			<div>
 				<p>Service Address : <span>Koenigstrasse 112, 99897 Tambach-Dietharz </span></p>			
 				<p>Billing Address : <span>Same as Cleaning Address</span></p>
-				<p>Phone : +49 9955648797</p>
-				<p>Email : patel2128@gmail.com</p>
+				<p>Phone : <span>+49 9955648797</span></p>
+				<p>Email : <span>patel2128@gmail.com</span></p>
 			</div>
 			<div>
 				<p>Conmments</p>

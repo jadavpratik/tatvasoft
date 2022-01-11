@@ -890,12 +890,16 @@ footer {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   z-index: 4;
   -webkit-transition: all 0.5s;
   transition: all 0.5s;
@@ -905,8 +909,8 @@ footer {
   width: 50px;
   height: 50px;
   position: absolute;
-  top: 0px;
-  right: 0px;
+  right: 4px;
+  top: 4px;
   border: 0;
   background-color: transparent;
   font-size: 30px;
@@ -914,19 +918,12 @@ footer {
   color: #9BA0A3;
 }
 
-@media screen and (max-width: 700px) {
-  .model {
-    width: calc(100% - 40px);
-    background-color: white;
-  }
-}
-
 .login_popup,
 .forgot_password_popup {
   width: 330px;
   height: auto;
   background-color: white;
-  padding: 25px;
+  padding: 20px;
   -webkit-transition: all 0.5s;
   transition: all 0.5s;
 }
@@ -1070,13 +1067,6 @@ footer {
   color: #006072;
 }
 
-@media screen and (max-width: 700px) {
-  .login_popup,
-  .forgot_password_popup {
-    width: 100%;
-  }
-}
-
 .success_popup {
   width: 350px;
   padding: 20px 10px;
@@ -1121,8 +1111,58 @@ footer {
 }
 
 .service_details_popup {
-  border: 2px solid black;
   width: 600px;
+  height: auto;
+  border-radius: 4px;
+}
+
+.service_details_popup div {
+  padding: 15px 20px;
+  border-bottom: 0.5px solid lightgray;
+}
+
+.service_details_popup div:last-of-type {
+  border: 0;
+}
+
+.service_details_popup div p {
+  font-size: 16px;
+  font-weight: bold;
+  color: gray;
+  padding-bottom: 6px;
+}
+
+.service_details_popup div p span {
+  font-weight: normal;
+}
+
+.reschedule_service_request_popup {
+  border: 2px solid black;
+}
+
+.login_popup_title,
+.forgot_password_popup_title,
+.service_details_popup_title,
+.reschedule_service_request_popup_title {
+  text-align: center;
+  font-size: 28px;
+  font-weight: bold;
+  padding: 10px 0;
+  color: gray;
+}
+
+@media screen and (max-width: 700px) {
+  .model {
+    margin: auto;
+    width: calc(100% - 40px);
+    background-color: white;
+    overflow: auto;
+  }
+  .login_popup,
+  .forgot_password_popup,
+  .service_details_popup {
+    width: 100%;
+  }
 }
 
 .model_btn {
@@ -1147,16 +1187,6 @@ footer {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-}
-
-.login_popup_title,
-.forgot_password_popup_title,
-.service_details_popup_title {
-  text-align: center;
-  font-size: 28px;
-  font-weight: bold;
-  padding: 10px 0;
-  color: gray;
 }
 
 .service_history, .current_service_requests {
@@ -3999,60 +4029,6 @@ footer {
   }
 }
 
-@media screen and (max-width: 1200px) {
-  .service_provider {
-    padding-left: 20px;
-    padding-right: 20px;
-  }
-  .service_provider_container {
-    width: 100%;
-  }
-  .service_provider_left {
-    display: none;
-  }
-  .service_provider_right {
-    width: 100%;
-  }
-}
-
-@media screen and (max-width: 992px) {
-  .service_provider {
-    padding-bottom: 50px;
-  }
-  .service_provider_right {
-    width: 100%;
-    overflow-x: auto;
-  }
-  .upcoming_service_table {
-    min-width: 1000px;
-  }
-}
-
-@media screen and (max-width: 1200px) {
-  .customer_left {
-    display: none;
-    border: 2px solid black;
-  }
-  .customer {
-    padding-left: 20px;
-    padding-right: 20px;
-  }
-  .customer_container {
-    width: 100%;
-    overflow-x: auto;
-  }
-  .customer_right {
-    min-width: 1000px;
-    width: 100%;
-  }
-}
-
-@media screen and (max-width: 992px) {
-  .customer {
-    padding-bottom: 50px;
-  }
-}
-
 @media screen and (max-width: 768px) {
   .customer_signup {
     width: 100%;
@@ -4109,6 +4085,72 @@ footer {
   }
   .customer_signup form .phone_number input {
     margin: 0;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .table_tab {
+    width: 100%;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .table_tab_left {
+    width: 100%;
+    overflow-x: auto;
+  }
+  .table_tab_right {
+    width: 100%;
+    margin-top: 30px;
+    overflow-x: auto;
+  }
+  .table_tab_list {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    overflow-x: auto;
+  }
+  .table_tab_list a {
+    white-space: nowrap;
+    padding-right: 20px;
+    padding-right: 20px;
+    border-right: 0.5px solid whitesmoke;
+  }
+  .table_tab_content {
+    min-width: 1000px;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .service_provider {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .service_provider_container {
+    width: 100%;
+  }
+  .service_provider_left {
+    display: none;
+  }
+  .service_provider_right {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .service_provider {
+    padding-bottom: 50px;
+  }
+  .service_provider_right {
+    width: 100%;
+    overflow-x: auto;
+  }
+  .upcoming_service_table {
+    min-width: 1000px;
   }
 }
 
