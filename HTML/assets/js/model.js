@@ -1,35 +1,38 @@
-// --------------OPEN_MODEL------------------
-$('.open_login_popup').click(()=>{
-    $('.model').fadeIn(100, ()=>{
-        $('.model').removeClass('d_none');
-        $('.sidenav').animate({'right':'-250px'}, 500);
-        $('.forgot_password_popup').addClass('d_none');
-        $('.login_popup').removeClass('d_none');
-        $('.backlight_container').addClass('backlight');
-        $('body').css({'overflow-y':'hidden'});
-    });
-});
+// ---------------OPEN_MODEL------------------
+function open_model(popup_name){
+    // SELECT THE POPUP CLASS
+    const popup_class = `${popup_name}_popup`;
+    // GET THE HTML OF POPUP 
+    const popup_html = $(`.${popup_class}`).removeClass('d_none').prop('outerHTML');
+    // AGAIN ADD D_NONE CLASS ON POPUP 
+    $(`.${popup_class}`).addClass('d_none');
 
-$('.open_forgot_password_popup').click(()=>{
-    $('.model').fadeIn(100, ()=>{
-        $('.model').removeClass('d_none');
-        $('.sidenav').animate({'right':'-250px'}, 500);
-        $('.forgot_password_popup').removeClass('d_none');
-        $('.login_popup').addClass('d_none');
-        $('.backlight_container').addClass('backlight');
-        $('body').css({'overflow-y':'hidden'});
-    });
-});
+    // FOR SHOWING MODEL AND POPUP
+    $('.model').removeClass('d_none');
+    $('.popup_container').html(popup_html);
+    $('.backlight_container').addClass('backlight');
+    $('body').css({'overflow-y':'hidden'});
+
+}
 
 // ---------------CLOSE_MODEL------------------
+function close_model(){
+    $('.backlight_container').removeClass('backlight');
+    $('.model').addClass('d_none');
+    $('.popup_container').html(``);
+    $('body').css({'overflow-y':'auto'});
+}
+
 $('.model_close_btn').click(()=>{
     $('.backlight_container').removeClass('backlight');
     $('.model').addClass('d_none');
+    $('.popup_container').html(``);
     $('body').css({'overflow-y':'auto'});
 })
 
 $('.backlight_container').click(()=>{
     $('.backlight_container').removeClass('backlight');
     $('.model').addClass('d_none');
+    $('.popup_container').html(``);
     $('body').css({'overflow-y':'auto'});
 });

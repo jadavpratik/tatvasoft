@@ -1,0 +1,19 @@
+$model_close_btn:#9BA0A3;
+$popup_btn:#006072;
+$popup_text:gray;
+$popup_border:lightgray;
+
+@import "./model";
+@import "./login";
+@import "./success";
+@import "./fail";
+
+// IT'S TEMPORARY...
+.model_btn{
+    margin-top: $navbar_height+50px;
+    button{
+        height: 40px;
+        font-size: 16px;
+        padding:4px 10px;
+    }
+}
