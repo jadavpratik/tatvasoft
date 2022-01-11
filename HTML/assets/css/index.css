@@ -1192,7 +1192,7 @@ footer {
 
 .customer_signup form > div input[type="text"],
 .customer_signup form > div input[type="password"] {
-  width: 300px;
+  width: 100%;
   height: 46px;
   border: 1px solid #C8C8C8;
   border-radius: 4px;
@@ -3575,6 +3575,9 @@ footer {
   .contact_card {
     margin-bottom: 50px;
   }
+}
+
+@media screen and (max-width: 768px) {
   .get_in_touch {
     padding-left: 20px;
     padding-right: 20px;
@@ -3582,18 +3585,33 @@ footer {
   .get_in_touch form {
     width: 100%;
   }
-  .get_in_touch form > div {
+  .get_in_touch form div {
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
     padding: 0;
   }
-  .get_in_touch form > div input, .get_in_touch form > div select, .get_in_touch form > div textarea, .get_in_touch form > div div {
+  .get_in_touch form div input, .get_in_touch form div select, .get_in_touch form div textarea {
     width: 100%;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
   }
-  .get_in_touch form > div div input {
+  .get_in_touch form .phone_number {
+    height: 46px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    margin-bottom: 15px;
+  }
+  .get_in_touch form .phone_number input {
     margin-bottom: 0;
   }
 }
@@ -3716,6 +3734,65 @@ footer {
 @media screen and (max-width: 992px) {
   .customer {
     padding-bottom: 50px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .customer_signup {
+    width: 100%;
+    padding: 0 20px;
+  }
+  .customer_signup form {
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .customer_signup form div {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    width: 100%;
+    padding: 0;
+  }
+  .customer_signup form div input {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+  .customer_signup form div:nth-child(4) {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+  }
+  .customer_signup form div:nth-child(4) input {
+    width: auto;
+    margin: 0;
+  }
+  .customer_signup form .phone_number {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    margin-bottom: 15px;
+    height: 46px;
+  }
+  .customer_signup form .phone_number input {
+    margin: 0;
   }
 }
 
