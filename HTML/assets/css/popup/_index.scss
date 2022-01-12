@@ -16,16 +16,20 @@
 
 // ------------------RESPONSIVE---------------------------
 @media screen and (max-width:768px) {
-    .popup_main{
-        width:300px;
-    }
-    #service_details_popup,
-    #edit_address_popup{
-        width:300px;
-    }
     .popup_container{
         max-height: calc(100vh - 80px);
         overflow-y: auto;
+    }
+    .popup_main{
+        width:300px;
+    }
+    #service_details_popup{
+        width:300px;
+    }
+    #edit_address_popup{
+        width:300px;
+        display: flex;
+        flex-direction: column;
     }
 }
 
