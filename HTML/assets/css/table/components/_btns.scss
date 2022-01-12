@@ -4,6 +4,7 @@ $cancel_btn:#ff6b6b;
 $export_button:#1D7A8C;
 $remove_btn:#1D7A8C;
 $block_btn:#ff6b6b;
+$accept_btn:#1D7A8C;
 
 @mixin btn{
     margin:0 3px;
@@ -56,6 +57,11 @@ $block_btn:#ff6b6b;
 .block_btn{
     @include btn;
     background-color: $block_btn;
+}
+
+.accept_btn{
+    @include btn;
+    background-color: $accept_btn;
 }
 
 .table_btn_container{

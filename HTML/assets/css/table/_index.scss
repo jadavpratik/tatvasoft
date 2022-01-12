@@ -1,7 +1,11 @@
-
+// TABLE TOP SECTION...
 @import "./top_section/customer";
+@import "./top_section/service_provider";
+@import "./top_section/admin";
+
 @import "./table_tab";
 
+// TABLE COMPONENTS...
 @import "./components/status";
 @import "./components/service_date";
 @import "./components/service_id";
@@ -11,6 +15,8 @@
 @import "./components/service_details";
 @import "./components/customer_details";
 @import "./components/favourite_pros";
+@import "./components/sp_my_rating";
+@import "./components/block_customer";
 
 
 

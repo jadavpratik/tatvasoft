@@ -1,6 +1,6 @@
 $table_text:#646464;
 
-.service_history{
+.customer_service_history{
     height:50px;
     display: flex;
     align-items: center;
@@ -12,6 +12,6 @@ $table_text:#646464;
     }
 }
 
-.current_service_requests{
-    @extend .service_history;
+.customer_current_service_requests{
+    @extend .customer_service_history;
 }

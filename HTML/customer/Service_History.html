@@ -43,20 +43,20 @@
             <div class="dropdown border_left border_right">
                 <button class="dropdown_btn"><span class="badge">10</span><img src="../assets/img/global/notification.png" alt=""></button>
                 <div class="dropdown_menu">
-                    <div class="drowpdown_nortification_container">
-                        <div class="drowpdown_nortification">
+                    <div class="drowpdown_notification_container">
+                        <div class="drowpdown_notification">
                             <p>Cancellation! You have canceled the order, Service ID: 8503</p>
                             <p>30/12/2021 11:43</p>    
                         </div>
-                        <div class="drowpdown_nortification">
+                        <div class="drowpdown_notification">
                             <p>Cancellation! You have canceled the order, Service ID: 8503</p>
                             <p>30/12/2021 11:43</p>    
                         </div>
-                        <div class="drowpdown_nortification">
+                        <div class="drowpdown_notification">
                             <p>Cancellation! You have canceled the order, Service ID: 8503</p>
                             <p>30/12/2021 11:43</p>    
                         </div>
-                        <div class="drowpdown_nortification">
+                        <div class="drowpdown_notification">
                             <p>Cancellation! You have canceled the order, Service ID: 8503</p>
                             <p>30/12/2021 11:43</p>    
                         </div>
@@ -161,7 +161,7 @@
 
         <!-- WELCOME_MESSAGE -->
         <div class="welcome_message">
-            <p>Welcome, <span>Gaurang!</span></p>
+            <p>Welcome, <span>Pratik</span></p>
         </div>
     
         <!-- TAB AND TABLE -->
@@ -175,7 +175,7 @@
                     <a href="#" class="table_tab_btn">Service Schedule</a>
                     <a href="#" class="table_tab_btn">Favourite Pros</a>
                     <a href="#" class="table_tab_btn">Invoices</a>
-                    <a href="#" class="table_tab_btn">Nortifications</a>    
+                    <a href="#" class="table_tab_btn">Notifications</a>    
                 </div>
             </div>
 
@@ -183,7 +183,7 @@
             <div class="table_tab_right">
 
                 <div class="table_tab_content">
-                    <div class="current_service_requests">
+                    <div class="customer_current_service_requests">
                         <p>Current Service Requests</p>
                         <button class="add_new_service_request_btn">Add New Service Request</button>
                     </div>
@@ -271,7 +271,7 @@
 
                 <!-- SERVICE_HISTORY -->
                 <div class="table_tab_content d_none">
-                    <div class="service_history">
+                    <div class="customer_service_history">
                         <p>Service History</p>
                         <button class="export_btn">Export</button>
                     </div>
@@ -983,21 +983,7 @@
 	<script src="../assets/js/footer.js"></script>
 	<script src="../assets/js/accordion.js"></script>
 	<script src="../assets/js/dropdown.js"></script>
-
-
-    <script>
-        const table_tab_btn = $('.table_tab_btn');
-        const table_tab_content = $('.table_tab_content');
-
-        for(let i=0; i<table_tab_btn.length; i++){
-            table_tab_btn[i].addEventListener('click', ()=>{
-                $('.table_tab_btn').removeClass('active_table_tab');
-                $('.table_tab_content').addClass('d_none');
-                table_tab_btn[i].classList.add('active_table_tab');
-                table_tab_content[i].classList.remove('d_none');
-            });
-        }
-    </script>
+    <script src="../assets/js/tabletab.js"></script>
 
 </body>
 </html>
