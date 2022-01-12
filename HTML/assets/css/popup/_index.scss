@@ -17,10 +17,11 @@
 // ------------------RESPONSIVE---------------------------
 @media screen and (max-width:768px) {
     .popup_main{
-        width:280px;
+        width:300px;
     }
-    #service_details_popup{
-        width:280px;
+    #service_details_popup,
+    #edit_address_popup{
+        width:300px;
     }
     .popup_container{
         max-height: calc(100vh - 80px);
