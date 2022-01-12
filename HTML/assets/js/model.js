@@ -1,11 +1,11 @@
 // ---------------OPEN_MODEL------------------
 function open_model(popup_name){
     // SELECT THE POPUP CLASS
-    const popup_class = `${popup_name}_popup`;
+    const popup_id = `${popup_name}_popup`;
     // GET THE HTML OF POPUP 
-    const popup_html = $(`.${popup_class}`).removeClass('d_none').prop('outerHTML');
+    const popup_html = $(`#${popup_id}`).removeClass('d_none').prop('outerHTML');
     // AGAIN ADD D_NONE CLASS ON POPUP 
-    $(`.${popup_class}`).addClass('d_none');
+    $(`#${popup_id}`).addClass('d_none');
 
     // FOR SHOWING MODEL AND POPUP
     $('.model').removeClass('d_none');

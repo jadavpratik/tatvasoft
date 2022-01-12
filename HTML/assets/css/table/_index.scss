@@ -2,14 +2,15 @@
 @import "./top_section/customer";
 @import "./table_tab";
 
-@import "./columns/status";
-@import "./columns/service_date";
-@import "./columns/service_id";
-@import "./columns/btns";
-@import "./columns/payment";
-@import "./columns/service_provider";
-@import "./columns/service_details";
-@import "./columns/customer_details";
+@import "./components/status";
+@import "./components/service_date";
+@import "./components/service_id";
+@import "./components/btns";
+@import "./components/payment";
+@import "./components/service_provider";
+@import "./components/service_details";
+@import "./components/customer_details";
+@import "./components/favourite_pros";
 
 
 

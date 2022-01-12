@@ -1,59 +1,53 @@
-$model_close_btn:#9BA0A3;
-$popup_btn:#006072;
-$popup_text:gray;
-$popup_border:lightgray;
-
+// REQUIRE
+@import "./classes";
 @import "./model";
-@import "./login";
-@import "./forgot_password";
-@import "./success";
-@import "./fail";
-@import "./service_details";
-@import "./reschedule_service";
 
-.login_popup_title,
-.forgot_password_popup_title,
-.service_details_popup_title,
-.reschedule_service_request_popup_title{
-    text-align: center;
-    font-size:28px;
-    font-weight: bold;
-    padding:10px 0;
-    color:$popup_text;
-}
+// COMPONENTS
+@import "./components/login";
+@import "./components/forgot_password";
+@import "./components/success";
+@import "./components/fail";
+@import "./components/service_details";
+@import "./components/reschedule_service";
+@import "./components/cancel_service_request";
+@import "./components/rating_popup";
 
-@media screen and (max-width:700px) {
-    .model{
-        margin:auto;
-        width:calc(100% - 40px);
-        background-color: white;
+
+// ------------------RESPONSIVE---------------------------
+@media screen and (max-width:768px) {
+    .popup_main{
+        width:280px;
+    }
+    #service_details_popup{
+        width:280px;
+    }
+    .popup_container{
+        max-height: calc(100vh - 80px);
         overflow-y: auto;
     }
-    .login_popup,
-    .forgot_password_popup,
-    .service_details_popup,
-    .success_popup{
-        width:100%;
-    }
 }
 
-
 // ------------------DELETE SOON---------------------------
-// IT'S TEMPORARY...
 .model_btn{
     margin-top: $navbar_height+50px;
+    display: flex;
+    padding:0 20px;
+    overflow-x: auto;
     button{
-        height: 40px;
-        font-size: 16px;
+        margin:5px;
+        height: 30px;
+        font-size: 14px;
+        white-space: nowrap;
         padding:4px 10px;
+        text-transform: uppercase;
     }
 }
 
 .temp_popup_container{
     padding:50px;
-    border:2px solid black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap:40px;
+    overflow-x: auto;
 }
 // -------------------------------------------------------

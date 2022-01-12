@@ -877,6 +877,64 @@ footer {
   margin: 0 10px;
 }
 
+.popup_main {
+  width: 320px;
+  height: auto;
+  padding: 20px;
+  border-radius: 4px;
+}
+
+.popup_main label {
+  padding-bottom: 10px;
+  font-size: 14px;
+  color: #646464;
+}
+
+.popup_main input, .popup_main select, .popup_main textarea {
+  width: 100%;
+  height: 40px;
+  margin-bottom: 15px;
+  padding-left: 15px;
+  border: 0.5px solid #C8C8C8;
+  color: #646464;
+  border-radius: 4px;
+}
+
+.popup_main textarea {
+  padding-top: 15px;
+}
+
+.popup_main p {
+  color: #646464;
+}
+
+.popup_main a {
+  width: 100%;
+  font-size: 14px;
+  color: #1D7A8C;
+  text-align: center;
+}
+
+.popup_title {
+  text-align: center;
+  font-size: 20px;
+  font-weight: 500;
+  padding: 10px 0 20px;
+  color: #4F4F4F;
+}
+
+.popup_btn {
+  width: 100%;
+  height: 40px;
+  padding: 0;
+  border: 0;
+  border-radius: 40px;
+  font-size: 16px;
+  font-weight: 500;
+  background-color: #1D7A8C;
+  color: white;
+}
+
 .model {
   width: auto;
   height: auto;
@@ -891,6 +949,8 @@ footer {
   z-index: 4;
   -webkit-transition: all 0.5s;
   transition: all 0.5s;
+  -webkit-box-shadow: 0.5px 0.5px 10px gray;
+          box-shadow: 0.5px 0.5px 10px gray;
 }
 
 .model_close_btn {
@@ -911,13 +971,9 @@ footer {
   color: black;
 }
 
-.login_popup {
-  width: 330px;
+.popup_container {
+  width: auto;
   height: auto;
-  background-color: white;
-  padding: 20px;
-  -webkit-transition: all 0.5s;
-  transition: all 0.5s;
 }
 
 .login_popup_form {
@@ -925,7 +981,7 @@ footer {
 }
 
 .login_popup_form div {
-  border: 1px solid lightgray;
+  border: 1px solid #C8C8C8;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -947,11 +1003,13 @@ footer {
   border: 0;
   padding-left: 15px;
   font-size: 16px;
+  margin-bottom: 0;
 }
 
 .login_popup_form div input[type="checkbox"] {
   width: 15px;
   height: 15px;
+  margin-bottom: 0;
 }
 
 .login_popup_form div label {
@@ -966,19 +1024,19 @@ footer {
       -ms-flex-align: center;
           align-items: center;
   padding: 0 15px;
-  color: gray;
+  color: #646464;
 }
 
 .login_popup_form div label i {
-  color: gray;
+  color: #646464;
 }
 
 .login_popup_form div:nth-child(2) {
-  margin-bottom: 0px;
+  margin: 0;
 }
 
 .login_popup_form div:nth-child(3) {
-  margin: 7px 0;
+  margin: 6px 0;
   border: 0;
   -webkit-box-pack: start;
       -ms-flex-pack: start;
@@ -990,20 +1048,7 @@ footer {
 }
 
 .login_popup_form div:nth-child(4) {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
   border: 0;
-}
-
-.login_popup_form div:nth-child(4) button {
-  width: 100%;
-  height: 40px;
-  border: 0;
-  border-radius: 40px;
-  font-size: 16px;
-  background-color: #006072;
-  color: white;
 }
 
 .login_popup_footer {
@@ -1020,25 +1065,6 @@ footer {
   text-align: center;
   font-size: 14px;
   margin: 5px 0;
-  color: gray;
-}
-
-.login_popup_footer p > a {
-  margin-left: 5px;
-}
-
-.login_popup_footer a {
-  color: #006072;
-}
-
-.forgot_password_popup {
-  width: 330px;
-  height: auto;
-  background-color: white;
-  padding: 20px;
-  -webkit-transition: all 0.5s;
-  transition: all 0.5s;
-  border: 2px solid black;
 }
 
 .forgot_password_popup_form {
@@ -1052,33 +1078,11 @@ footer {
           flex-direction: column;
 }
 
-.forgot_password_popup_form input, .forgot_password_popup_form button {
-  width: 100%;
-  height: 40px;
-  padding-left: 15px;
-  margin-bottom: 15px;
-  font-size: 16px;
-  border: 1px solid lightgray;
-  border-radius: 4px;
-}
-
-.forgot_password_popup_form button {
-  padding: 0;
-  border-radius: 40px;
-  background-color: #006072;
-  color: white;
-}
-
 .forgot_password_popup_form a {
-  text-align: center;
-  color: #006072;
+  margin-top: 15px;
 }
 
-.success_popup {
-  width: 350px;
-  padding: 20px 10px;
-  height: auto;
-  border-radius: 4px;
+#success_popup {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1091,110 +1095,177 @@ footer {
           align-items: center;
 }
 
-.success_popup i {
+#success_popup i {
   margin: 20px 0;
   color: #3fa848;
   font-size: 70px;
 }
 
-.success_popup p {
+#success_popup p {
   font-size: 18px;
   text-align: center;
-  margin: 10px 0;
-  color: gray;
+  margin: 5px 0;
+  color: #646464;
 }
 
-.success_popup p:last-of-type {
+#success_popup p:last-of-type {
   font-size: 14px;
 }
 
-.success_popup button {
-  width: 50px;
+#success_popup button {
+  margin-top: 10px;
+  width: auto;
   padding: 10px;
-  border: 0;
-  border-radius: 40px;
-  background-color: #006072;
-  color: white;
 }
 
-.service_details_popup {
+#service_details_popup {
   width: 600px;
-  height: auto;
-  border-radius: 4px;
 }
 
-.service_details_popup div {
-  padding: 15px 20px;
-  border-bottom: 0.5px solid lightgray;
+#service_details_popup div {
+  padding: 15px 0;
+  border-bottom: 0.5px solid #C8C8C8;
 }
 
-.service_details_popup div:last-of-type {
+#service_details_popup div:last-of-type {
   border: 0;
 }
 
-.service_details_popup div p {
-  font-size: 16px;
+#service_details_popup div p {
   font-weight: bold;
-  color: gray;
+  color: #646464;
   padding-bottom: 6px;
 }
 
-.service_details_popup div p span {
+#service_details_popup div p span {
   font-weight: normal;
 }
 
-.reschedule_service_request_popup {
-  border: 2px solid black;
+#reschedule_service_request_popup > div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
-.login_popup_title,
-.forgot_password_popup_title,
-.service_details_popup_title,
-.reschedule_service_request_popup_title {
-  text-align: center;
-  font-size: 28px;
-  font-weight: bold;
-  padding: 10px 0;
-  color: gray;
+#reschedule_service_request_popup > div div {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[2];
+      grid-template-columns: repeat(2, 1fr);
+  grid-column-gap: 10px;
+  padding-bottom: 15px;
 }
 
-@media screen and (max-width: 700px) {
-  .model {
-    margin: auto;
-    width: calc(100% - 40px);
-    background-color: white;
-    overflow-y: auto;
+#reschedule_service_request_popup > div div input, #reschedule_service_request_popup > div div select {
+  padding: 5px 10px;
+  margin-bottom: 0px;
+}
+
+#cancel_service_request_popup div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+#cancel_service_request_popup div textarea {
+  height: 100px;
+}
+
+#rating_popup .popup_title {
+  padding-bottom: 10px;
+  border-bottom: 1px solid #C8C8C8;
+}
+
+#rating_popup > div:last-child {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding-top: 10px;
+}
+
+#rating_popup > div:last-child label {
+  padding-bottom: 10px;
+  font-size: 16px;
+}
+
+#rating_popup > div:last-child textarea {
+  height: 80px;
+}
+
+.rate_type {
+  padding-top: 10px;
+}
+
+.rate_type div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding-bottom: 6px;
+}
+
+.rate_type div p {
+  width: 140px;
+  color: #646464;
+}
+
+.rate_type div i {
+  margin: 0 2px;
+}
+
+@media screen and (max-width: 768px) {
+  .popup_main {
+    width: 280px;
   }
-  .login_popup,
-  .forgot_password_popup,
-  .service_details_popup,
-  .success_popup {
-    width: 100%;
+  #service_details_popup {
+    width: 280px;
+  }
+  .popup_container {
+    max-height: calc(100vh - 80px);
+    overflow-y: auto;
   }
 }
 
 .model_btn {
   margin-top: 114px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 0 20px;
+  overflow-x: auto;
 }
 
 .model_btn button {
-  height: 40px;
-  font-size: 16px;
+  margin: 5px;
+  height: 30px;
+  font-size: 14px;
+  white-space: nowrap;
   padding: 4px 10px;
+  text-transform: uppercase;
 }
 
 .temp_popup_container {
   padding: 50px;
-  border: 2px solid black;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[3];
+      grid-template-columns: repeat(3, 1fr);
+  grid-gap: 40px;
+  overflow-x: auto;
 }
 
 .service_history, .current_service_requests {
@@ -1360,12 +1431,6 @@ footer {
   font-size: 16px;
 }
 
-.table_btn_container {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-}
-
 .export_btn {
   margin: 0 3px;
   width: -webkit-fit-content;
@@ -1502,6 +1567,66 @@ footer {
   padding-right: 5px;
 }
 
+.remove_btn {
+  margin: 0 3px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: 34px;
+  padding: 0 14px;
+  font-size: 14px;
+  border: 0;
+  border-radius: 34px;
+  color: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: #1D7A8C;
+}
+
+.remove_btn i {
+  padding-right: 5px;
+}
+
+.block_btn {
+  margin: 0 3px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: 34px;
+  padding: 0 14px;
+  font-size: 14px;
+  border: 0;
+  border-radius: 34px;
+  color: white;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: #ff6b6b;
+}
+
+.block_btn i {
+  padding-right: 5px;
+}
+
+.table_btn_container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
 .payment_text {
   color: #1D7A8C;
   font-size: 20px;
@@ -1615,6 +1740,60 @@ footer {
 
 .customer_details div img {
   margin-right: 6px;
+}
+
+.favourite_pros {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.favourite_pros_card {
+  margin: 0 15px 15px;
+  width: 250px;
+  border: 0.5px solid lightgray;
+  border-radius: 4px;
+  padding: 15px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.favourite_pros_card p {
+  color: #646464;
+}
+
+.favourite_pros_card .service_provider {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.favourite_pros_card .service_provider img {
+  margin: 15px auto;
+}
+
+.favourite_pros_card .service_provider p {
+  text-align: center;
+}
+
+.favourite_pros_card > div:nth-child(2) {
+  padding: 15px 0;
+}
+
+.favourite_pros_card > div:last-of-type button {
+  margin: 0 10px;
 }
 
 .customer_signup {
@@ -1774,6 +1953,7 @@ footer {
   height: 46px;
   border-radius: 40px;
   border: 0;
+  margin-top: 40px;
 }
 
 .registration_form > form button img {
@@ -2495,6 +2675,235 @@ footer {
   background-color: lightgray;
 }
 
+.profile {
+  padding: 0 15px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.profile_tabs {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.profile_tabs button {
+  width: 250px;
+  height: 55px;
+  border: 0;
+  color: #646464;
+  border-bottom: 3px solid #C8C8C8;
+  background-color: white;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.active_profile_tab {
+  color: #1D7A8C !important;
+  border-bottom: 3px solid #1D7A8C !important;
+}
+
+.my_details {
+  padding: 20px 0;
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.my_details_inner_div_1 {
+  padding-bottom: 30px;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[3];
+      grid-template-columns: repeat(3, 1fr);
+  grid-gap: 20px;
+}
+
+.my_details_inner_div_1 > div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.my_details_inner_div_1 > div label {
+  padding-bottom: 10px;
+  color: #646464;
+  font-weight: 500;
+}
+
+.my_details_inner_div_1 > div input, .my_details_inner_div_1 > div select {
+  width: 100%;
+  height: 40px;
+  padding-left: 10px;
+  border: 1px solid #C8C8C8;
+  border-radius: 4px;
+  color: #646464;
+}
+
+.my_details_inner_div_1 > div .phone_number {
+  height: 40px;
+}
+
+.my_details_inner_div_1 > div .phone_number label {
+  padding-bottom: 0;
+  font-weight: normal;
+}
+
+.my_details_inner_div_1 > div:last-of-type div {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[3];
+      grid-template-columns: repeat(3, 1fr);
+  grid-column-gap: 10px;
+}
+
+.my_details_inner_div_2 {
+  padding-top: 30px;
+  border-top: 1px solid #C8C8C8;
+}
+
+.my_details_inner_div_2 div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.my_details_inner_div_2 div label {
+  color: #646464;
+  font-weight: 500;
+  padding-bottom: 10px;
+}
+
+.my_details_inner_div_2 div select {
+  width: 150px;
+  height: 40px;
+  border: 1px solid #C8C8C8;
+  color: #646464;
+  border-radius: 4px;
+}
+
+.my_details_inner_div_2 button {
+  margin-top: 15px;
+  height: 40px;
+  font-weight: 500;
+  color: white;
+  background-color: #1D7A8C;
+  border: 0;
+  padding: 0 20px;
+  border-radius: 40px;
+}
+
+.my_addresses {
+  padding: 20px 0;
+  width: 100%;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.my_addresses > button {
+  margin-top: 14px;
+  height: 40px;
+  color: white;
+  background-color: #1D7A8C;
+  font-weight: 500;
+  border: 0;
+  border-radius: 40px;
+  padding: 0 14px;
+}
+
+.my_addresses table {
+  width: 100%;
+}
+
+.my_addresses table tr {
+  border: 1px solid #C8C8C8;
+}
+
+.my_addresses table td {
+  padding: 10px;
+}
+
+.my_addresses table td div p {
+  color: #646464;
+  padding-bottom: 6px;
+}
+
+.my_addresses table td div p span {
+  font-weight: bold;
+}
+
+.my_addresses table td div button {
+  margin: 5px;
+  background-color: transparent;
+  border: 0;
+  width: 30px;
+  height: 30px;
+}
+
+.my_addresses table td div button i {
+  font-size: 18px;
+  color: #646464;
+}
+
+.change_password {
+  padding: 20px 0;
+}
+
+.change_password div {
+  width: 280px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.change_password div label {
+  color: #646464;
+  padding-bottom: 6px;
+  font-weight: 500;
+}
+
+.change_password div input {
+  color: #646464;
+  padding-left: 15px;
+  height: 40px;
+  border: 1px solid #C8C8C8;
+  border-radius: 4px;
+}
+
+.change_password button {
+  width: 100px;
+  height: 40px;
+  background-color: #1D7A8C;
+  color: white;
+  border: 0;
+  border-radius: 40px;
+  font-weight: 500;
+}
+
 .home_section_title {
   font-size: 40px;
   font-weight: bold;
@@ -3007,7 +3416,7 @@ footer {
   cursor: pointer;
 }
 
-.faq_active_tab {
+.active_faq_tab {
   background-color: #1D7A8C !important;
   color: white;
 }
@@ -3988,6 +4397,9 @@ footer {
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
+  }
+  .registration_form > form > button {
+    margin-top: 0;
   }
 }
 

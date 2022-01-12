@@ -1,3 +1,6 @@
+$model_close_btn:#9BA0A3;
+$model_shadow:gray;
+
 .model{
     width:auto;
     height:auto;
@@ -10,6 +13,7 @@
     overflow: hidden;
     z-index:$model_z_index;
     transition: all 0.5s;
+    box-shadow: 0.5px 0.5px 10px $model_shadow;
 }
 
 .model_close_btn{
@@ -28,3 +32,9 @@
         color:black;
     }
 }
+
+.popup_container{
+    width:auto;
+    height: auto;
+}
+

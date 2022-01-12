@@ -2,6 +2,8 @@ $rate_sp:#6DA9B5;
 $reschedule_btn:#1D7A8C;
 $cancel_btn:#ff6b6b;
 $export_button:#1D7A8C;
+$remove_btn:#1D7A8C;
+$block_btn:#ff6b6b;
 
 @mixin btn{
     margin:0 3px;
@@ -18,10 +20,6 @@ $export_button:#1D7A8C;
     i{
         padding-right: 5px;
     }
-}
-
-.table_btn_container{
-    display: flex;
 }
 
 .export_btn{
@@ -49,3 +47,18 @@ $export_button:#1D7A8C;
     @include btn;
     background-color: $rate_sp;
 }
+
+.remove_btn{
+    @include btn;
+    background-color: $remove_btn;
+}
+
+.block_btn{
+    @include btn;
+    background-color: $block_btn;
+}
+
+.table_btn_container{
+    display: flex;
+}
+

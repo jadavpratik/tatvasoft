@@ -1,10 +1,6 @@
 $success:#3fa848;
 
-.success_popup{
-    width:350px;
-    padding:20px 10px;
-    height: auto;
-    border-radius: 4px;
+#success_popup{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -16,18 +12,15 @@ $success:#3fa848;
     p{
         font-size: 18px;
         text-align: center;
-        margin: 10px 0;
+        margin:5px 0;
         color:$popup_text;
         &:last-of-type{
             font-size: 14px;
         }
     }
     button{
-        width:50px;
+        margin-top: 10px;
+        width:auto;
         padding:10px;
-        border:0;
-        border-radius: 40px;
-        background-color: $popup_btn;
-        color:white;
     }
 }
