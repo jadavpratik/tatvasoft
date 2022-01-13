@@ -1,0 +1,66 @@
+@mixin profile_input_select {
+    color:$profile_text;
+    height: 40px;
+    border:0.5px solid $profile_input_border;
+    border-radius: 4px;
+    padding-left: 10px;
+}
+@mixin for_label_div{
+    display: flex;
+    flex-direction: column;
+    & > label{
+        color:$profile_text;
+        padding-bottom: 8px;
+    }
+    & > select, & > input{
+        @include profile_input_select;
+    }
+}
+
+.label_input,
+.label_select{
+    @include for_label_div;
+}
+
+.label_phone_number{
+    @include for_label_div;
+    .phone_number{
+        height: 40px;
+    }
+}
+
+.date_of_birth{
+    @include for_label_div;
+    div{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: 1fr;
+        grid-column-gap: 10px;
+        select{
+            @include profile_input_select;
+        }
+    }
+}
+
+.change_password{
+    padding:20px 0;
+    div{
+        width:280px;
+        margin-bottom: 15px;
+    }
+}
+
+.gender_div{
+    display: flex;
+    div{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin-right: 20px;
+        label{
+            padding:0;
+            padding-left:6px;
+            color:$profile_text;
+        }
+    }
+}

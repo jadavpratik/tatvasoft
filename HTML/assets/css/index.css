@@ -151,7 +151,6 @@ button {
 .dropdown {
   position: relative;
   margin-left: 10px;
-  max-width: 100px;
   width: auto;
   height: auto;
   display: -webkit-box;
@@ -193,7 +192,9 @@ button {
   border-radius: 8px;
   -webkit-box-shadow: 1px 1px 2px lightgray;
           box-shadow: 1px 1px 2px lightgray;
-  display: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
@@ -205,19 +206,23 @@ button {
 .dropdown_menu::after {
   content: "";
   position: absolute;
-  top: -8px;
+  width: 12px;
+  height: 12px;
+  background-color: white;
+  top: -7.1px;
   right: 20px;
   -webkit-transform: rotate(45deg);
           transform: rotate(45deg);
-  border-left: 8px solid lightgray;
-  border-top: 8px solid lightgray;
-  border-right: 8px solid transparent;
-  border-bottom: 8px solid transparent;
+  border-left: 1px solid lightgray;
+  border-top: 1px solid lightgray;
+  border-right: 1px solid transparent;
+  border-bottom: 1px solid transparent;
 }
 
 .dropdown_menu hr {
   margin: 8px 0px;
   background-color: whitesmoke;
+  border: 1px solid lightgray;
 }
 
 .dropdown_menu p {
@@ -239,12 +244,6 @@ button {
   background-color: whitesmoke;
 }
 
-.dropdown_btn:focus + .dropdown_menu {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-}
-
 .drowpdown_notification_container {
   width: 300px;
   display: -webkit-box;
@@ -260,7 +259,9 @@ button {
 }
 
 .drowpdown_notification_container a {
-  width: auto;
+  padding-top: 15px;
+  width: 100%;
+  text-align: center;
   margin: 0 auto;
   color: #1D7A8C;
 }
@@ -268,10 +269,6 @@ button {
 .drowpdown_notification {
   border-bottom: 0.5px solid lightgray;
   padding: 10px 0;
-}
-
-.drowpdown_notification:last-of-type {
-  border: 0;
 }
 
 .drowpdown_notification p {
@@ -525,6 +522,7 @@ button {
   border: 0 !important;
   border-radius: 0 !important;
   margin: 0 !important;
+  padding-left: 10px;
 }
 
 .d_flex {
@@ -882,6 +880,7 @@ footer {
   height: auto;
   padding: 20px;
   border-radius: 4px;
+  z-index: 5;
 }
 
 .popup_main label {
@@ -2897,7 +2896,6 @@ footer {
 .user_management_table td button {
   width: 36px;
   height: 36px;
-  border: 0;
   border-radius: 50%;
   background-color: transparent;
   display: -webkit-box;
@@ -2918,7 +2916,7 @@ footer {
 }
 
 .user_management_table td button:hover {
-  background-color: lightgray;
+  background-color: whitesmoke;
 }
 
 .profile {
@@ -2954,6 +2952,146 @@ footer {
   border-bottom: 3px solid #1D7A8C !important;
 }
 
+.profile_save_btn {
+  width: 100px;
+  height: 40px;
+  border: 0;
+  border-radius: 40px;
+  background-color: #1D7A8C;
+  color: white;
+  font-weight: 500;
+}
+
+.label_input,
+.label_select {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.label_input > label,
+.label_select > label {
+  color: #646464;
+  padding-bottom: 8px;
+}
+
+.label_input > select, .label_input > input,
+.label_select > select,
+.label_select > input {
+  color: #646464;
+  height: 40px;
+  border: 0.5px solid #C8C8C8;
+  border-radius: 4px;
+  padding-left: 10px;
+}
+
+.label_phone_number {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.label_phone_number > label {
+  color: #646464;
+  padding-bottom: 8px;
+}
+
+.label_phone_number > select, .label_phone_number > input {
+  color: #646464;
+  height: 40px;
+  border: 0.5px solid #C8C8C8;
+  border-radius: 4px;
+  padding-left: 10px;
+}
+
+.label_phone_number .phone_number {
+  height: 40px;
+}
+
+.date_of_birth {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.date_of_birth > label {
+  color: #646464;
+  padding-bottom: 8px;
+}
+
+.date_of_birth > select, .date_of_birth > input {
+  color: #646464;
+  height: 40px;
+  border: 0.5px solid #C8C8C8;
+  border-radius: 4px;
+  padding-left: 10px;
+}
+
+.date_of_birth div {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[3];
+      grid-template-columns: repeat(3, 1fr);
+  -ms-grid-rows: 1fr;
+      grid-template-rows: 1fr;
+  grid-column-gap: 10px;
+}
+
+.date_of_birth div select {
+  color: #646464;
+  height: 40px;
+  border: 0.5px solid #C8C8C8;
+  border-radius: 4px;
+  padding-left: 10px;
+}
+
+.change_password {
+  padding: 20px 0;
+}
+
+.change_password div {
+  width: 280px;
+  margin-bottom: 15px;
+}
+
+.gender_div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.gender_div div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-right: 20px;
+}
+
+.gender_div div label {
+  padding: 0;
+  padding-left: 6px;
+  color: #646464;
+}
+
 .my_details {
   padding: 20px 0;
   width: 100%;
@@ -2976,86 +3114,14 @@ footer {
   grid-gap: 20px;
 }
 
-.my_details_inner_div_1 > div {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-}
-
-.my_details_inner_div_1 > div label {
-  padding-bottom: 10px;
-  color: #646464;
-  font-weight: 500;
-}
-
-.my_details_inner_div_1 > div input, .my_details_inner_div_1 > div select {
-  width: 100%;
-  height: 40px;
-  padding-left: 10px;
-  border: 1px solid #C8C8C8;
-  border-radius: 4px;
-  color: #646464;
-}
-
-.my_details_inner_div_1 > div .phone_number {
-  height: 40px;
-}
-
-.my_details_inner_div_1 > div .phone_number label {
-  padding-bottom: 0;
-  font-weight: normal;
-}
-
-.my_details_inner_div_1 > div:last-of-type div {
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-columns: (1fr)[3];
-      grid-template-columns: repeat(3, 1fr);
-  grid-column-gap: 10px;
-}
-
 .my_details_inner_div_2 {
   padding-top: 30px;
   border-top: 1px solid #C8C8C8;
 }
 
 .my_details_inner_div_2 div {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-}
-
-.my_details_inner_div_2 div label {
-  color: #646464;
-  font-weight: 500;
-  padding-bottom: 10px;
-}
-
-.my_details_inner_div_2 div select {
-  width: 150px;
-  height: 40px;
-  border: 1px solid #C8C8C8;
-  color: #646464;
-  border-radius: 4px;
-}
-
-.my_details_inner_div_2 button {
-  margin-top: 15px;
-  height: 40px;
-  font-weight: 500;
-  color: white;
-  background-color: #1D7A8C;
-  border: 0;
-  padding: 0 20px;
-  border-radius: 40px;
+  width: 200px;
+  margin-bottom: 20px;
 }
 
 .my_addresses {
@@ -3110,12 +3176,8 @@ footer {
   color: #646464;
 }
 
-.change_password {
-  padding: 20px 0;
-}
-
-.change_password div {
-  width: 280px;
+.sp_my_details {
+  padding: 15px 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -3123,30 +3185,132 @@ footer {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  margin-bottom: 15px;
 }
 
-.change_password div label {
+.sp_account_status {
   color: #646464;
-  padding-bottom: 6px;
+  font-size: 18px;
   font-weight: 500;
 }
 
-.change_password div input {
-  color: #646464;
-  padding-left: 15px;
-  height: 40px;
-  border: 1px solid #C8C8C8;
-  border-radius: 4px;
+.sp_account_status span {
+  color: green;
+  font-weight: normal;
 }
 
-.change_password button {
-  width: 100px;
+.sp_basic_details_container {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[3];
+      grid-template-columns: repeat(3, 1fr);
+  grid-gap: 20px;
+}
+
+.sp_basic_details_container > div:nth-child(1),
+.sp_basic_details_container > div:nth-child(8),
+.sp_basic_details_container > div:nth-child(9) {
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 3;
+  grid-column: 1/4;
+}
+
+.sp_basic_details_container > div:nth-child(8) {
+  padding: 10px 0;
+}
+
+.sp_basic_details_container > div:nth-child(1) {
+  padding: 25px 0;
+  margin-bottom: 5px;
+}
+
+.sp_basic_details_title_avatar {
+  padding: 20px 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   height: 40px;
-  background-color: #1D7A8C;
-  color: white;
-  border: 0;
-  border-radius: 40px;
+  overflow: visible;
+  position: relative;
+  border-bottom: 0.5px solid #C8C8C8;
+}
+
+.sp_basic_details_title_avatar p {
+  color: #646464;
+  font-weight: 500;
+}
+
+.sp_basic_details_title_avatar img {
+  width: 80px;
+  height: 80px;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
+.select_avatar_container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.select_avatar_container p {
+  color: #646464;
+  padding-bottom: 10px;
+}
+
+.select_avatar_container > div > button {
+  border: 2px solid #C8C8C8;
+  overflow: hidden;
+  border-radius: 50%;
+  margin-right: 16px;
+}
+
+.select_avatar_container > div > button:hover, .select_avatar_container > div > button:focus {
+  border: 2px solid #1D7A8C;
+}
+
+.select_avatar_container > div > button img {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+
+.sp_my_address_container {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[3];
+      grid-template-columns: repeat(3, 1fr);
+  grid-gap: 20px;
+  padding-bottom: 24px;
+}
+
+.sp_my_address_container > div:nth-child(1) {
+  padding: 30px 0 15px 0;
+  margin-bottom: 5px;
+  border-bottom: 0.5px solid #C8C8C8;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 3;
+  grid-column: 1/4;
+}
+
+.sp_my_address_container > div:nth-child(1) p {
+  color: #646464;
   font-weight: 500;
 }
 

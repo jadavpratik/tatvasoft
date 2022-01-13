@@ -2,14 +2,9 @@
 function open_model(popup_name){
     // SELECT THE POPUP CLASS
     const popup_id = `${popup_name}_popup`;
-    // GET THE HTML OF POPUP 
-    const popup_html = $(`#${popup_id}`).removeClass('d_none').prop('outerHTML');
-    // AGAIN ADD D_NONE CLASS ON POPUP 
-    $(`#${popup_id}`).addClass('d_none');
-
     // FOR SHOWING MODEL AND POPUP
     $('.model').removeClass('d_none');
-    $('.popup_container').html(popup_html);
+    $(`#${popup_id}`).removeClass('d_none');
     $('.backlight_container').addClass('backlight');
     $('body').css({'overflow-y':'hidden'});
 
@@ -19,13 +14,14 @@ function open_model(popup_name){
 function close_model(){
     $('.backlight_container').removeClass('backlight');
     $('.model').addClass('d_none');
-    $('.popup_container').html(``);
+    $('.popup_main').addClass('d_none');
     $('body').css({'overflow-y':'auto'});
 }
 
 $('.model_close_btn').click(()=>{
     $('.backlight_container').removeClass('backlight');
     $('.model').addClass('d_none');
+    $('.popup_main').addClass('d_none');
     $('.popup_container').html(``);
     $('body').css({'overflow-y':'auto'});
 })
@@ -33,6 +29,6 @@ $('.model_close_btn').click(()=>{
 $('.backlight_container').click(()=>{
     $('.backlight_container').removeClass('backlight');
     $('.model').addClass('d_none');
-    $('.popup_container').html(``);
+    $('.popup_main').addClass('d_none');
     $('body').css({'overflow-y':'auto'});
 });

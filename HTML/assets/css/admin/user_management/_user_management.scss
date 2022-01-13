@@ -109,10 +109,9 @@ $inactive_status:#FF6B6B;
     td{
         background-color: white;
         button{
-
             width:36px;
             height:36px;
-            border:0;
+            // border:1px solid black;
             border-radius: 50%;
             background-color:transparent;
             display: flex;
@@ -124,7 +123,7 @@ $inactive_status:#FF6B6B;
                 color:$user_management_text;
             }
             &:hover{
-                background-color:lightgray;
+                background-color:whitesmoke;
             }
         }
     }

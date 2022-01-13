@@ -111,17 +111,6 @@
 	<!-- --------------------------------------------------- -->
 	<div class="backlight_container"></div>
 
-    <!-- MODEL -->
-	<div class="model">
-        <!-- MODEL_CLOSE -->
-        <button class="model_close_btn">&times;</button>
-        <!-- MODEL_CONTAINER -->
-        <div class="popup_container">
-				<!-- BY JAVASCRIPT THE POPUP MODEL WILL BE RENDER -->
-        </div><!-- END_MODEL_CONTAINER -->
-	</div><!-- END_MODEL -->
-
-
 	<div class="model_btn">
         <button onclick="open_model('success')">SUCCESS</button>
         <button onclick="open_model('login')">LOGIN</button>
@@ -134,8 +123,10 @@
         <!-- <button onclick="open_model('fail')">FAIL</button> -->
     </div>
 
-	<div class="temp_popup_container">
-
+	<div class="model d_none">
+        <!-- MODEL_CLOSE -->
+        <button class="model_close_btn">&times;</button>
+		<!-- EDIT_ADDRESS -->
 		<div class="popup_main d_none" id="edit_address_popup">
 			<p class="popup_title">Edit Address</p>
 			<div>
@@ -163,8 +154,12 @@
 			</div>
 			<button class="popup_btn">Edit</button>
 		</div>
+	</div>
 
-		<!-- RATING POPUP -->
+	<div class="model d_none">
+        <!-- MODEL_CLOSE -->
+        <button class="model_close_btn">&times;</button>
+		<!-- RATING_POPUP -->
 		<div class="popup_main d_none" id="rating_popup">
 			<div class="service_provider">
 				<img class="hat_style" src="../assets/img/table/hat.png" alt="">
@@ -214,7 +209,11 @@
 				<button class="popup_btn">Submit</button>
 			</div>
 		</div><!-- RATING POPUP -->
+	</div>
 
+	<div class="model d_none">
+        <!-- MODEL_CLOSE -->
+        <button class="model_close_btn">&times;</button>
 		<!-- CANCEL_SERVICE_REQUEST -->
 		<div class="popup_main d_none" id="cancel_service_request_popup">
 			<p class="popup_title">Cancel Service Request</p>
@@ -224,7 +223,11 @@
 				<button class="popup_btn">Cancel Now</button>
 			</div>
 		</div>
+	</div>
 
+	<div class="model d_none">
+        <!-- MODEL_CLOSE -->
+        <button class="model_close_btn">&times;</button>
 		<!-- RESCHEDULE_SERVICE_REQUEST -->
 		<div class="popup_main d_none" id="reschedule_service_request_popup">
 			<p class="popup_title">Reschedule Service Request</p>
@@ -237,7 +240,11 @@
 				<button class="popup_btn">Update</button>
 			</div>
 		</div>
+	</div>
 		
+	<div class="model d_none">
+        <!-- MODEL_CLOSE -->
+        <button class="model_close_btn">&times;</button>
 		<!-- SERVICE_DETAILS -->
 		<div  class="popup_main d_none" id="service_details_popup">
 			<p class="popup_title">Service Details</p>
@@ -264,7 +271,13 @@
 				<button class="cancel_btn"><i class="fas fa-times"></i> Cancel</button>
 			</div>
 		</div>
+	</div>
 
+
+
+	<div class="model d_none">
+        <!-- MODEL_CLOSE -->
+        <button class="model_close_btn">&times;</button>
 		<!-- SUCCESS -->
 		<div class="popup_main d_none" id="success_popup">
 			<i class="fas fa-check-circle"></i>
@@ -272,7 +285,11 @@
 			<p>Service Request Id : <span>8488</span></p>
 			<button class="popup_btn" onclick="close_model()">OK</button>
 		</div>
+	</div>
 
+	<div class="model d_none">
+        <!-- MODEL_CLOSE -->
+        <button class="model_close_btn">&times;</button>
 		<!-- LOGIN -->
 		<div class="popup_main d_none" id="login_popup">
 			<p class="popup_title">Login</p>
@@ -298,7 +315,11 @@
 				<p>Don't Have an Account? <a href="/customer/Registration.html">Create an Account</a></p>
 			</div><!-- END_LOGIN_POPUP_FOOTER -->
 		</div><!-- END_LOGIN_POPUP -->
+	</div>
 
+	<div class="model d_none">
+        <!-- MODEL_CLOSE -->
+        <button class="model_close_btn">&times;</button>
 		<!-- FORGOT_PASSOWORD -->
 		<div class="popup_main d_none" id="forgot_password_popup">
 			<p class="popup_title">Forgot Password</p>
@@ -308,9 +329,7 @@
 				<a href="#" onclick="open_model('login')">Login Now</a>
 			</form>
 		</div>
-
-	</div><!-- TEMP_POPUP_CONTAINER -->
-
+	</div>
 
 
 	<!-- --------------------------------------------------- -->
