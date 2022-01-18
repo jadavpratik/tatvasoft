@@ -7,18 +7,21 @@
 @import "./components/forgot_password";
 @import "./components/success";
 @import "./components/fail";
-@import "./components/service_details";
-@import "./components/reschedule_service";
+
 @import "./components/cancel_service_request";
-@import "./components/rating_popup";
+@import "./components/accept_service_request";
+@import "./components/edit_service_request";
+@import "./components/reschedule_service";
+@import "./components/service_details";
+
+@import "./components/rating";
 @import "./components/edit_address";
 
 
 // ------------------RESPONSIVE---------------------------
 @media screen and (max-width:768px) {
-    .popup_container{
-        max-height: calc(100vh - 80px);
-        overflow-y: auto;
+    .model{
+        max-height: 500px;
     }
     .popup_main{
         width:300px;

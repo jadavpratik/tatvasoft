@@ -113,15 +113,153 @@
 
 	<div class="model_btn">
         <button onclick="open_model('success')">SUCCESS</button>
+        <!-- <button onclick="open_model('fail')">FAIL</button> -->
         <button onclick="open_model('login')">LOGIN</button>
         <button onclick="open_model('forgot_password')">FORGOT PASSOWORD</button>
-        <button onclick="open_model('service_details')">Service Details</button>
+        <button onclick="open_model('set_new_password')">SET NEW PASSOWORD</button>
+        <button onclick="open_model('accept_service_request')">Accept Service</button>
+        <button onclick="open_model('edit_service_request')">Edit Service</button>
+        <button onclick="open_model('cancel_service_request')">Cancel Service</button>
         <button onclick="open_model('reschedule_service_request')">Reschedule Service Request</button>
-        <button onclick="open_model('cancel_service_request')">Cancel Service Request</button>
-        <button onclick="open_model('rating')">Rating</button>
         <button onclick="open_model('edit_address')">Edit Address</button>
-        <!-- <button onclick="open_model('fail')">FAIL</button> -->
+        <button onclick="open_model('service_details')">Service Details</button>
+        <button onclick="open_model('rating')">Rating</button>
     </div>
+
+
+	<!-- SET NEW PASSWORD -->
+	<div class="model d_none">
+        <!-- MODEL_CLOSE -->
+        <button class="model_close_btn">&times;</button>
+		<!-- SET_NEW_PASSOWORD -->
+		<div class="popup_main d_none" id="set_new_password_popup">
+			<p class="popup_title">SET NEW PASSWORD</p>
+			<form class="" action="">
+				<div class="label_input">
+					<label class="label" for="">New Password</label>
+					<input class="input" type="password">
+				</div>
+				<div class="label_input">
+					<label class="label" for="">Confirm Password</label>
+					<input class="input" type="password">					
+				</div>
+				<button class="popup_btn">Save</button>
+			</form>
+		</div>
+	</div>
+
+
+	<!-- EDIT_SERVICE_DETAILS -->
+	<div class="model d_none">
+        <!-- MODEL_CLOSE -->
+        <button class="model_close_btn">&times;</button>
+		<!-- SERVICE_DETAILS -->
+		<div  class="popup_main d_none" id="edit_service_request_popup">
+			<p class="popup_title">Edit Service Request</p>
+			<!-- DATE AND TIME -->
+			<div>
+				<div class="label_input">
+					<label class="label" for="">Date</label>
+					<input class="input" type="date">
+				</div>
+				<div class="label_input">
+					<label class="label" for="">Time</label>
+					<input class="input" type="time">
+				</div>
+			</div>
+			<!-- SERVICE ADDRESS -->
+			<div>
+				<p>Service Address</p>
+				<div class="label_input">
+					<label class="label" for="">Street Name</label>
+					<input class="input" type="text">
+				</div>
+				<div class="label_input">
+					<label class="label" for="">House Number</label>
+					<input class="input" type="text">
+				</div>
+				<div class="label_input">
+					<label class="label" for="">Postal Code</label>
+					<input class="input" type="text">
+				</div>
+				<div class="label_select">
+					<label class="label" for="">City</label>
+					<select class="select" name="" id="">
+						<option value="">Select</option>
+					</select>
+				</div>
+			</div>
+			<!-- INVOICE ADDRESS -->
+			<div>
+				<p>Invoice Address</p>
+				<div class="label_input">
+					<label class="label" for="">Street Name</label>
+					<input class="input" type="text">
+				</div>
+				<div class="label_input">
+					<label class="label" for="">House Number</label>
+					<input class="input" type="text">
+				</div>
+				<div class="label_input">
+					<label class="label" for="">Postal Code</label>
+					<input class="input" type="text">
+				</div>
+				<div class="label_select">
+					<label class="label" for="">City</label>
+					<select class="select" name="" id="">
+						<option value="">Select</option>
+					</select>
+				</div>
+			</div>
+			<!-- TEXTAREA -->
+			<div>
+				<p>What do you want to reschedule service request?</p>
+				<textarea class="textarea" placeholder="What do you want to reschedule service request?" name=""></textarea>
+			</div>
+			<!-- TEXTAREA -->
+			<div>
+				<p>Call center EMP Notes</p>
+				<textarea class="textarea" placeholder="Enter Notes" name=""></textarea>
+			</div>
+			<button class="update_btn">Update</button>
+		</div>
+	</div>
+
+
+	<!-- ACCEPT_SERVICE_DETAILS -->
+	<div class="model d_none">
+        <!-- MODEL_CLOSE -->
+        <button class="model_close_btn">&times;</button>
+		<!-- SERVICE_DETAILS -->
+		<div  class="popup_main d_none" id="accept_service_request_popup">
+			<p class="popup_title">Service Details</p>
+			<div class=""><!-- FIRST DIV -->
+				<div>
+					<p>05/10/2021 | 08:00 - 11:30</p>
+					<p>Duration : <span>3.5Hours</span></p>
+				</div>
+				<div>
+					<p>Service Id : <span>8485</span></p>
+					<p>Extras : <span>Inside Cabinats</span></p>
+					<p>Total Amount : <span class="payment_text">87,50$</span></p>
+				</div>
+				<div>
+					<p>Customer Name : <span>Gaurang Patel</span></p>
+					<p>Service Address : <span>Koenigstrasse 112, 99897 Tambach-Dietharz </span></p>			
+					<p>Distance : <span>296km</span></p>
+				</div>
+				<div>
+					<p>Conmments : <span>I don't have pets</span></p>
+				</div>
+				<div class="table_btn_container">
+					<button class="reschedule_btn"><i class="fas fa-check"></i>Accept</button>
+				</div>		
+			</div>
+			<div><!-- SECOND DIV FOR MAP -->
+				<img src="../assets/img/static/contact/section_2/map.png" alt="">
+			</div>
+		</div>
+	</div>
 
 	<div class="model d_none">
         <!-- MODEL_CLOSE -->
