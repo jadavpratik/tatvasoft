@@ -1284,6 +1284,26 @@ footer {
   #edit_service_request_popup {
     width: 300px;
   }
+  #edit_service_request_popup > div:first-of-type {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  #edit_service_request_popup > div:nth-child(3),
+  #edit_service_request_popup > div:nth-child(4) {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    margin-bottom: 20px;
+  }
   #accept_service_request_popup {
     width: 340px;
   }
