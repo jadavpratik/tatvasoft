@@ -3,7 +3,8 @@
 @import "./top_section/service_provider";
 @import "./top_section/admin";
 
-@import "./table_tab";
+@import "./table_tab";// FOR CUSTOMER AND SERVICE PROVIDER...
+@import "./admin_tab";// FOR ADMIN...
 
 // TABLE COMPONENTS...
 @import "./components/status";

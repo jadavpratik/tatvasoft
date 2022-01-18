@@ -1,51 +1,51 @@
-$pagination_btn_border:#E1E1E1;
-$active_paginate_btn:#1D7A8C;
-$paginate_btn_text:#777777;
+// $pagination_btn_border:#E1E1E1;
+// $active_paginate_btn:#1D7A8C;
+// $paginate_btn_text:#777777;
 
-// LENGTH OF TABLE MEANS HOW MANY PAGE CONTAIN...
-.dataTables_length{
-    position: absolute;
-    bottom:0;
-}
-
-// INPUT SEARCH FILTER
-.dataTables_filter{
-    display: none;
-}
-
-// ENTRY NUMBER OF TABLE
-.dataTables_info{
-    display: none;
-}
-
-//CONTAINER OF PAGINATION...
-.paging_simple_numbers{
-    // border:2px solid green;
-}
-
-// PAGINATE BUTTON...
-// .paginate_button{
-//     width:50px;
-//     height: 50px;
-//     line-height: 50px !important;
-//     padding:0 !important;
-//     background-color: white !important;
-//     border:0.5px solid $pagination_btn_border !important;
-//     border-radius: 50% !important;
-//     font-size: 14px !important;
-//     color:$paginate_btn_text !important;
-//     i{
-//         padding:0;
-//         margin:0;
-//         color:$paginate_btn_text;
-//     }
+// // LENGTH OF TABLE MEANS HOW MANY PAGE CONTAIN...
+// .dataTables_length{
+//     position: absolute;
+//     bottom:0;
 // }
 
-// // PREV, CURRENT, NEXT
-// .current{
-//     background-color: $active_paginate_btn !important;
+// // INPUT SEARCH FILTER
+// .dataTables_filter{
+//     display: none;
 // }
 
-// .previous{}
+// // ENTRY NUMBER OF TABLE
+// .dataTables_info{
+//     display: none;
+// }
 
-// .next{}
+// //CONTAINER OF PAGINATION...
+// .paging_simple_numbers{
+//     // border:2px solid green;
+// }
+
+// // PAGINATE BUTTON...
+// // .paginate_button{
+// //     width:50px;
+// //     height: 50px;
+// //     line-height: 50px !important;
+// //     padding:0 !important;
+// //     background-color: white !important;
+// //     border:0.5px solid $pagination_btn_border !important;
+// //     border-radius: 50% !important;
+// //     font-size: 14px !important;
+// //     color:$paginate_btn_text !important;
+// //     i{
+// //         padding:0;
+// //         margin:0;
+// //         color:$paginate_btn_text;
+// //     }
+// // }
+
+// // // PREV, CURRENT, NEXT
+// // .current{
+// //     background-color: $active_paginate_btn !important;
+// // }
+
+// // .previous{}
+
+// // .next{}

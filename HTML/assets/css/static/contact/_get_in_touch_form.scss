@@ -30,25 +30,11 @@ $get_in_touch_btn:#1D7A8C;
             grid-column-gap:14px;
             padding-bottom: 15px;
             overflow: hidden;
-            input,select,textarea{
-                border:1px solid $get_in_touch_border;
-                border-radius: 4px;
-                color:$input_text;
-                padding-left: 15px;
-                background-color: white;
-            }
-            input{
-                width:300px;
-                height: 46px;
-            }
-            select{
+            select, textarea{
                 width:614px;
-                height: 46px;
             }
             textarea{
-                padding-top: 15px;
-                width:614px;
-                height: 146px;
+                height:146px;
             }
         }
         button{

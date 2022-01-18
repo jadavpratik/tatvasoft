@@ -1,6 +1,4 @@
 $registration_title:#4F4F4F;
-$registration_input:#A0A0A0;
-$registration_input_border:#C8C8C8;
 $registration_submit:#1D7A8C;
 $registration_shadow:#00000026;
 $registration_select:#F4F4F4;
@@ -46,13 +44,7 @@ $registration_term:#1FB6FF;
     flex-direction: column;
     align-items: center;    
     input[type="text"], input[type="password"]{
-        color:$registration_input;
-        width:100%;
-        height: 46px;
         margin-bottom: 15px;
-        padding-left: 15px;
-        border:1px solid $registration_input_border;
-        border-radius: 4px;
     }
     button{
         background-color: $registration_submit;

@@ -1,7 +1,9 @@
+// ------------------HORIZONTAL NAVTABS--------------------------
 const tab_btn = document.getElementsByClassName('tab_btn');
 const tab_content = document.getElementsByClassName('tab_content');
 var   faq_tabs = document.getElementsByClassName('faq_tabs');
 var   faq_tab;
+
 if(faq_tabs.length){
 	faq_tab = document.getElementsByClassName('faq_tabs')[0].children;
 }

@@ -20,16 +20,6 @@ $input_text:#A0A0A0;
             grid-template-columns: 300px 300px;
             grid-column-gap: 14px;
             padding-bottom: 15px;
-            input[type="text"],
-            input[type="password"]{
-                width:100%;
-                height: 46px;
-                border:1px solid $signup_border;
-                border-radius: 4px;
-                color:$input_text;
-                padding-left: 15px;
-                background-color: white;
-            }
             button{
                 margin:0 auto;
                 width:162px;

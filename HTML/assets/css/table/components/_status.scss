@@ -1,12 +1,20 @@
 $success_status:#67B644;
 $cancel_status:#FF6B6B;
+$active_status:#67B644;
+$inactive_status:#FF6B6B;
+$new_status:#F2BB37;
+$pending_status:#1FB6FF;
 
 .completed_status,
-.cancelled_status{
+.cancelled_status,
+.active_status,
+.inactive_status,
+.pending_status,
+.new_status{
     width:82px;
-    height: 28px;
+    height:30px;
     border-radius: 2px;
-    font-size: 13px;
+    font-size: 14px;
     display: flex;
     justify-content:center;
     align-items:center;
@@ -21,3 +29,18 @@ $cancel_status:#FF6B6B;
     background-color: $cancel_status;
 }
 
+.active_status{
+    background-color: $active_status;
+}
+
+.inactive_status{
+    background-color: $inactive_status;
+}
+
+.new_status{
+    background-color: $new_status;
+}
+
+.pending_status{
+    background-color: $pending_status;
+}
