@@ -18,6 +18,7 @@ $label_text:#4F4F4F;
 
 .select{
     background-color: white !important;
+    appearance: none;
 }
 
 .textarea{
@@ -100,15 +101,29 @@ $label_text:#4F4F4F;
 .to_date{
     display: flex;
     align-items: center;
+    border:1px solid $input_border;
+    height:46px;
+    border-radius: 4px;
+    padding-left: 15px;
+    margin-right: 15px;
     label{
         color:$label_text;
-        margin-right: 5px;
+        display: flex;
+        align-items: center;
+        margin-right: 10px;
+        img{
+            margin-right: 5px;
+        }
     }
     input{
-        border:1px solid $input_border;
-        height:46px;
-        border-radius: 4px;
+        width:120px !important;
+        height: 100%;
         color:$input_text;
-        padding-left: 15px;
+        background-color: white;
+        border:0;
+        &:hover,
+        &:focus{
+            border:0 !important;
+        }
     }
 }
