@@ -1,51 +1,19 @@
 .login_popup_form{
     padding-top:10px;
     div{
-        border:1px solid $popup_input_border;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        border-radius: 4px;
         margin-bottom: 20px;
-        overflow: hidden;
-        input[type="text"],
-        input[type="password"]{
-            width:100%;
-            height:40px;
-            border:0;
-            padding-left: 15px;
-            font-size: 16px;
-            margin-bottom: 0;
-        }
-        input[type="checkbox"]{
-            width:15px;
-            height: 15px;
-            margin-bottom: 0;
-        }
-        label{// FOR USER ICON AND LOCK ICON
-            height:40px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding:0 15px;
-            color:$popup_text;
-            i{
-                color:$popup_text;
-            }
-        }
-        &:nth-child(2){// INPUT PASSWORD DIV...
-            margin:0;
-        }
         &:nth-child(3){//REMEMBER ME
-            margin:6px 0;
-            border:0;
+            display: flex;
+            align-items: center;
             justify-content: flex-start;
             label{
                 padding:0 10px;
             }
-        }
-        &:nth-child(4){
-            border:0;
+            input[type="checkbox"]{
+                width:15px;
+                height: 15px;
+                margin-bottom: 0;
+            }
         }
     }
 }

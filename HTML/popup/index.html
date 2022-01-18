@@ -129,24 +129,24 @@
 		<!-- EDIT_ADDRESS -->
 		<div class="popup_main d_none" id="edit_address_popup">
 			<p class="popup_title">Edit Address</p>
-			<div>
-				<label for="">Steet Name</label>
-				<input type="text">
+			<div class="label_input">
+				<label class="label" for="">Steet Name</label>
+				<input class="input" type="text">
 			</div>
-			<div>
-				<label for="">House Name</label>
-				<input type="text">
+			<div class="label_input">
+				<label class="label" for="">House Name</label>
+				<input class="input" type="text">
 			</div>
-			<div>
-				<label for="">Postal Code</label>
-				<input type="text">
+			<div class="label_input">
+				<label class="label" for="">Postal Code</label>
+				<input class="input" type="text">
 			</div>
-			<div>
-				<label for="">City</label>
-				<input type="text">
+			<div class="label_input">
+				<label class="label" for="">City</label>
+				<input class="input" type="text">
 			</div>
-			<div>
-				<label for="">Phone Number</label>
+			<div class="label_input">
+				<label class="label" for="">Phone Number</label>
 				<div class="phone_number">
 					<label for="">+49</label>
 					<input type="text">
@@ -204,8 +204,8 @@
 				</div>
 			</div><!-- RATE TYPE -->
 			<div>
-				<label for="">Feedback on service provider</label>
-				<textarea name=""></textarea>
+				<label class="label" for="">Feedback on service provider</label>
+				<textarea class="textarea" name=""></textarea>
 				<button class="popup_btn">Submit</button>
 			</div>
 		</div><!-- RATING POPUP -->
@@ -218,8 +218,8 @@
 		<div class="popup_main d_none" id="cancel_service_request_popup">
 			<p class="popup_title">Cancel Service Request</p>
 			<div>
-				<label for="">Why you want to cancel the service request?</label>
-				<textarea name=""></textarea>
+				<label class="label" for="">Why you want to cancel the service request?</label>
+				<textarea class="textarea" name=""></textarea>
 				<button class="popup_btn">Cancel Now</button>
 			</div>
 		</div>
@@ -231,11 +231,11 @@
 		<!-- RESCHEDULE_SERVICE_REQUEST -->
 		<div class="popup_main d_none" id="reschedule_service_request_popup">
 			<p class="popup_title">Reschedule Service Request</p>
-			<div>
-				<label for="">Select New Date & Time</label>
+			<div class="label_input">
+				<label class="label" for="">Select New Date & Time</label>
 				<div>
-					<input type="date">
-					<input type="time">
+					<input class="input" type="date">
+					<input class="input" type="time">
 				</div>
 				<button class="popup_btn">Update</button>
 			</div>
@@ -294,17 +294,17 @@
 		<div class="popup_main d_none" id="login_popup">
 			<p class="popup_title">Login</p>
 			<form class="login_popup_form" action="">
-				<div>
-					<input type="text" placeholder="Email">
+				<div class="input_icon">
+					<input class="input" type="text" placeholder="Email">
 					<label for=""><i class="fas fa-user"></i></label>
 				</div>
-				<div>
-					<input type="password" placeholder="Password">
+				<div class="input_icon">
+					<input class="input" type="password" placeholder="Password">
 					<label for=""><i class="fas fa-lock"></i></label>
 				</div>
 				<div>
 					<input type="checkbox">
-					<label for="">Remember Me</label>
+					<label class="label" for="">Remember Me</label>
 				</div>
 				<div>
 					<button class="popup_btn">Login</button>
@@ -324,7 +324,7 @@
 		<div class="popup_main d_none" id="forgot_password_popup">
 			<p class="popup_title">Forgot Password</p>
 			<form class="forgot_password_popup_form" action="">
-				<input type="text" placeholder="Email">
+				<input class="input" type="text" placeholder="Email">
 				<button class="popup_btn">Send</button>
 				<a href="#" onclick="open_model('login')">Login Now</a>
 			</form>

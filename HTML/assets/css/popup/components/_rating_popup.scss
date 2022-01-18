@@ -1,7 +1,7 @@
 #rating_popup{
     .popup_title{
         padding-bottom: 10px;
-        border-bottom: 1px solid $popup_input_border;
+        border-bottom: 1px solid lightgray;
     }
     & > div:last-child{
         display: flex;

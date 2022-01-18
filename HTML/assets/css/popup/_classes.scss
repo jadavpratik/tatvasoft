@@ -1,7 +1,6 @@
 $popup_btn:#1D7A8C;
 $popup_title:#4F4F4F;
 $popup_text:#646464;
-$popup_input_border:#C8C8C8;
 $popup_link:#1D7A8C;
 
 .popup_main{
@@ -9,22 +8,11 @@ $popup_link:#1D7A8C;
     height: auto;
     padding:20px;
     border-radius: 4px;
-    label{
-        padding-bottom: 10px;
-        font-size: 14px;
-        color:$popup_text;
-    }
-    input, select, textarea{
-        width:100%;
-        height: 40px;
+    .label_input{
         margin-bottom: 15px;
-        padding-left: 15px;
-        border:0.5px solid $popup_input_border;
-        color:$popup_text;
-        border-radius: 4px;
     }
     textarea{
-        padding-top: 15px;
+        margin-bottom: 15px;
     }
     p{
         color:$popup_text;
