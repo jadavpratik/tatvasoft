@@ -10,6 +10,7 @@ $model_shadow:gray;
     left:50%;
     transform: translate(-50%, -50%);
     border-radius: 4px;
+    overflow-x: hidden;
     overflow-y: auto;
     z-index:$model_z_index;
     transition: all 0.5s;
