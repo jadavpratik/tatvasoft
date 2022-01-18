@@ -1268,9 +1268,6 @@ footer {
   .popup_main {
     width: 300px;
   }
-  #service_details_popup {
-    width: 300px;
-  }
   #edit_address_popup {
     width: 300px;
     display: -webkit-box;
@@ -1280,6 +1277,12 @@ footer {
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
+  }
+  #service_details_popup {
+    width: 300px;
+  }
+  #edit_service_request_popup {
+    width: 300px;
   }
   #accept_service_request_popup {
     width: 340px;
