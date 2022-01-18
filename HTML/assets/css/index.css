@@ -4488,6 +4488,10 @@ footer {
   .home_s1_intro_card p, .home_s1_intro_card ul li {
     text-align: center;
   }
+  .home_s1_bg {
+    -o-object-fit: cover;
+       object-fit: cover;
+  }
   .home_s1_card_container {
     -ms-flex-wrap: wrap;
         flex-wrap: wrap;
