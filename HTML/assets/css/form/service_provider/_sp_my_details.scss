@@ -1,9 +1,11 @@
+// SERVICE PROVIDER MY DETAILS TAB CONTENT CONTAINER
 .sp_my_details{
     padding:15px 0;
     display: flex;
     flex-direction: column;
 }
 
+// ACTIVE OR DISACTIVE
 .sp_account_status{
     color:$profile_text;
     font-size: 18px;
@@ -14,6 +16,7 @@
     }
 }
 
+// BASIC DETAILS & ADDRESS CONTAINER
 .sp_basic_details_container{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -32,6 +35,8 @@
     }
 }
 
+
+// TITLE : BASIC DETAILS & AVATAR
 .sp_basic_details_title_avatar{
     padding: 20px 0;
     display: flex;
@@ -58,24 +63,36 @@
 .select_avatar_container{
     display: flex;
     flex-direction:column;
-    p{
+    p{// TITLE 
         color:$profile_text;
         padding-bottom: 10px;
     }
-    & > div > button{
-        border:2px solid $profile_input_border;
-        overflow: hidden;
-        border-radius: 50%;
-        margin-right: 16px;
-        &:hover,
-        &:focus{
-            border:2px solid $active_profile_tab;
-        }
-        img{
-            width:70px;
-            height:70px;
-            border-radius:50%;
-            object-fit: contain;
+    & > div{// AVATART CONTAINER
+        display: flex;
+        div{// LABEL AND INPUT
+            input[type="radio"]{// RADIO BUTTONS
+                display: none;
+                &:checked + label{
+                    border:2px solid $active_profile_tab;
+                }
+            }
+            label{
+                margin-right: 16px;
+                width:70px;
+                height:70px;
+                border-radius:50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                overflow: hidden;
+                cursor: pointer;
+                img{
+                    width:70px;
+                    height:70px;
+                    border-radius:50%;
+                    object-fit: contain;
+                }
+            }
         }
     }
 }

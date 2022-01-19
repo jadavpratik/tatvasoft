@@ -191,7 +191,7 @@
                                             <!-- TITLE -->
                                             <div class="sp_basic_details_title_avatar">
                                                 <p>Basic Details</p>
-                                                <div><img src="../assets/img/avatar/car.png" alt=""></div>
+                                                <div><img class="avatar" src="../assets/img/avatar/car.png" alt=""></div>
                                             </div>
                                             <div class="label_input">
                                                 <label class="label" for="">First Name</label>
@@ -254,24 +254,30 @@
                                             <div class="select_avatar_container">
                                                 <p>Select Avatar</p>
                                                 <div>
-                                                    <button>
-                                                        <img src="../assets/img/avatar/car.png" alt="">
-                                                    </button>
-                                                    <button>
-                                                        <img src="../assets/img/avatar/female.png" alt="">
-                                                    </button>
-                                                    <button>
-                                                        <img src="../assets/img/avatar/hat.png" alt="">
-                                                    </button>
-                                                    <button>
-                                                        <img src="../assets/img/avatar/iron.png" alt="">
-                                                    </button>
-                                                    <button>
-                                                        <img src="../assets/img/avatar/male.png" alt="">
-                                                    </button>
-                                                    <button>
-                                                        <img src="../assets/img/avatar/ship.png" alt="">
-                                                    </button>    
+                                                    <div>
+                                                        <input type="radio" name="avatar" value="car" checked id="avatar_car">
+                                                        <label for="avatar_car"><img src="../assets/img/avatar/car.png" alt=""></label>
+                                                    </div>
+                                                    <div>
+                                                        <input type="radio" name="avatar" value="female" id="avatar_female">
+                                                        <label for="avatar_female"><img src="../assets/img/avatar/female.png" alt=""></label>
+                                                    </div>
+                                                    <div>
+                                                        <input type="radio" name="avatar" value="hat" id="avatar_hat">
+                                                        <label for="avatar_hat"><img src="../assets/img/avatar/hat.png" alt=""></label>
+                                                    </div>
+                                                    <div>
+                                                        <input type="radio" name="avatar" value="iron" id="avatar_iron">
+                                                        <label for="avatar_iron"><img src="../assets/img/avatar/iron.png" alt=""></label>
+                                                    </div>
+                                                    <div>
+                                                        <input type="radio" name="avatar" value="male" id="avatar_male">
+                                                        <label for="avatar_male"><img src="../assets/img/avatar/male.png" alt=""></label>
+                                                    </div>
+                                                    <div>
+                                                        <input type="radio" name="avatar" value="ship" id="avatar_ship">
+                                                        <label for="avatar_ship"><img src="../assets/img/avatar/ship.png" alt=""></label>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div><!-- END BASIC DETAILS CONTAINER -->
@@ -1800,6 +1806,7 @@
 	<script src="../assets/js/accordion.js"></script>
 	<script src="../assets/js/dropdown.js"></script>
     <script src="../assets/js/tabletab.js"></script>
+    <script src="../assets/js/avatar.js"></script>
 
 
 </body>

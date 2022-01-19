@@ -3078,6 +3078,15 @@ footer {
   border: 0 !important;
 }
 
+.change_password {
+  padding: 20px 0;
+}
+
+.change_password div {
+  width: 280px;
+  margin-bottom: 20px;
+}
+
 .my_details {
   padding: 20px 0;
   width: 100%;
@@ -3258,18 +3267,39 @@ footer {
   padding-bottom: 10px;
 }
 
-.select_avatar_container > div > button {
-  border: 2px solid #C8C8C8;
-  overflow: hidden;
-  border-radius: 50%;
-  margin-right: 16px;
+.select_avatar_container > div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 
-.select_avatar_container > div > button:hover, .select_avatar_container > div > button:focus {
+.select_avatar_container > div div input[type="radio"] {
+  display: none;
+}
+
+.select_avatar_container > div div input[type="radio"]:checked + label {
   border: 2px solid #1D7A8C;
 }
 
-.select_avatar_container > div > button img {
+.select_avatar_container > div div label {
+  margin-right: 16px;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.select_avatar_container > div div label img {
   width: 70px;
   height: 70px;
   border-radius: 50%;
@@ -3298,15 +3328,6 @@ footer {
 .sp_my_address_container > div:nth-child(1) p {
   color: #646464;
   font-weight: 500;
-}
-
-.change_password {
-  padding: 20px 0;
-}
-
-.change_password div {
-  width: 280px;
-  margin-bottom: 20px;
 }
 
 .home_section_title {
