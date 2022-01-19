@@ -1,0 +1,45 @@
+$book_service_main:#1D7A8C;
+$book_service_title:#4F4F4F;
+$book_service_para:#646464;
+$book_service_btn:#1D7A8C;
+$book_service_tab:#F3F3F3;
+$book_service_active_tab:#1D7A8C;
+
+@import "./left";
+@import "./right";
+
+.book_service{
+    padding-top:40px;
+    padding-bottom: 50px;
+}
+
+.book_service_container{
+    padding-top: 49px;
+    display: flex;
+    flex-direction:row;
+    justify-content: center;
+    label{
+        padding-bottom: 10px;
+        font-size: 16px;
+        font-weight:500;
+        color:$book_service_title;
+    }
+}
+
+.book_service_tabs{
+    & > div:last-of-type{// TAB BODY 
+        padding-top:34px;
+    }
+}
+
+.book_service_btn{
+    width:auto;
+    height:46px;
+    padding:0 18px;
+    background-color: $book_service_btn;
+    color:white;
+    font-size: 20px;
+    font-weight: 500;
+    border:0;
+    border-radius: 46px;
+}

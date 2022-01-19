@@ -2365,6 +2365,385 @@ footer {
           justify-content: center;
 }
 
+.book_service_tabs {
+  width: 800px;
+}
+
+.book_service_tabs > div:first-of-type {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background-color: #F3F3F3;
+}
+
+.book_service_tabs > div:first-of-type button {
+  width: 200px;
+  height: 67px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background-color: transparent;
+  border: 0;
+}
+
+.book_service_tabs > div:first-of-type button p {
+  color: #646464;
+  font-size: 18px;
+  margin: 0;
+}
+
+.book_service_tabs > div:first-of-type button div {
+  margin-right: 7.5px;
+  position: relative;
+  width: 32px;
+  height: 32px;
+  overflow: hidden;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+}
+
+.book_service_tabs > div:first-of-type button div img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  position: absolute;
+  width: 32px;
+  height: 64px;
+  top: 0;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+}
+
+.active_book_service_tab {
+  background-color: #1D7A8C !important;
+  position: relative;
+}
+
+.active_book_service_tab p {
+  color: white !important;
+}
+
+.active_book_service_tab > div img {
+  top: unset !important;
+  bottom: 0 !important;
+}
+
+.active_book_service_tab::after {
+  content: "";
+  position: absolute;
+  bottom: -15px;
+  left: 45%;
+  -webkit-transform: translateX(-45%);
+          transform: translateX(-45%);
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+  width: 32px;
+  height: 32px;
+  background-color: #1D7A8C;
+}
+
+.setup_service {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+}
+
+.setup_service div {
+  width: 300px;
+  padding-right: 20px;
+}
+
+.schedule_plan {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.schedule_plan button {
+  margin-top: 30px;
+  margin-left: auto;
+}
+
+.schedule_plan > div {
+  padding: 28px 0;
+  border-bottom: 1px solid #DCDCDC;
+}
+
+.schedule_plan > div:nth-child(1) div {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (101px)[2];
+      grid-template-columns: repeat(2, 101px);
+  grid-column-gap: 10px;
+}
+
+.schedule_plan > div:nth-child(2) {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.schedule_plan > div:nth-child(2) > div {
+  width: 100%;
+  margin-right: 70px;
+}
+
+.schedule_plan > div:nth-child(2) > div:last-of-type {
+  margin-right: 0;
+}
+
+.schedule_plan > div:nth-child(2) > div select {
+  width: 156px;
+}
+
+.schedule_plan > div:nth-child(2) > div > div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.schedule_plan > div:nth-child(3) > div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.schedule_plan > div:nth-child(3) > div div {
+  padding-top: 20px;
+}
+
+.schedule_plan > div:nth-child(3) > div div input {
+  display: none;
+}
+
+.schedule_plan > div:nth-child(3) > div div input:checked + label div {
+  border: 3px solid #1D7A8C;
+}
+
+.schedule_plan > div:nth-child(3) > div div input:checked + label div img {
+  left: unset;
+  right: 22.5%;
+}
+
+.schedule_plan > div:nth-child(3) > div div label {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  cursor: pointer;
+}
+
+.schedule_plan > div:nth-child(3) > div div label p {
+  text-align: center;
+  padding-top: 10px;
+}
+
+.schedule_plan > div:nth-child(3) > div div label div {
+  width: 108px;
+  height: 108px;
+  border-radius: 50%;
+  border: 1px solid #C8C8C8;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  position: relative;
+  overflow: hidden;
+  -webkit-transition: all 0.1s;
+  transition: all 0.1s;
+}
+
+.schedule_plan > div:nth-child(3) > div div label div img {
+  position: absolute;
+  top: 50%;
+  left: 24%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  z-index: -1;
+  -webkit-transition: left right 0.5s;
+  transition: left right 0.5s;
+}
+
+.schedule_plan > div:nth-child(3) > div div label div::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 100%;
+  background-color: white;
+}
+
+.schedule_plan > div:nth-child(3) > div div label div::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 20px;
+  height: 100%;
+  background-color: white;
+}
+
+.schedule_plan > div:nth-child(4) div:first-of-type textarea {
+  height: 70px;
+}
+
+.schedule_plan > div:nth-child(4) div:last-of-type {
+  padding-top: 14px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.schedule_plan > div:nth-child(4) div:last-of-type label {
+  padding: 0 10px;
+}
+
+.book_service_right {
+  width: 360px;
+  margin-left: 30px;
+}
+
+.payment_summary > p {
+  height: 67px;
+  line-height: 67px;
+  color: white;
+  background-color: #1D7A8C;
+  font-size: 18px;
+  padding-left: 22px;
+}
+
+.book_service_right > div:last-of-type > p {
+  padding: 26px 0 22px;
+  color: #4F4F4F;
+  font-size: 20px;
+  font-weight: 500;
+  text-align: center;
+}
+
+.book_service_right > div:last-of-type .accordion {
+  border-bottom: 0.5px solid lightgray;
+  margin-bottom: 20px;
+}
+
+.book_service_right > div:last-of-type .accordion_btn {
+  width: 100%;
+  height: 36px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  background-color: transparent;
+  font-size: 14px;
+  color: #4F4F4F;
+  border: 0;
+}
+
+.book_service_right > div:last-of-type .accordion_btn i {
+  font-size: 16px;
+  color: #4F4F4F;
+  margin-right: 10px;
+}
+
+.book_service_right > div:last-of-type .accordion_content p {
+  padding: 6px 0;
+  color: #646464;
+  line-height: 24px;
+}
+
+.book_service_right > div:last-of-type a {
+  font-size: 16px;
+  font-weight: 500;
+  color: #1D7A8C;
+}
+
+.book_service {
+  padding-top: 40px;
+  padding-bottom: 50px;
+}
+
+.book_service_container {
+  padding-top: 49px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.book_service_container label {
+  padding-bottom: 10px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #4F4F4F;
+}
+
+.book_service_tabs > div:last-of-type {
+  padding-top: 34px;
+}
+
+.book_service_btn {
+  width: auto;
+  height: 46px;
+  padding: 0 18px;
+  background-color: #1D7A8C;
+  color: white;
+  font-size: 20px;
+  font-weight: 500;
+  border: 0;
+  border-radius: 46px;
+}
+
 .become_a_pro_s1 {
   height: 930px;
   display: -webkit-box;
