@@ -72,9 +72,9 @@
                         <p>Guest</p>
                     </div>
                     <hr>
-                    <a href="">To Overview</a>
-                    <a href="">My Setting</a>
-                    <a href="">Logout</a>
+                    <a href="#">To Overview</a>
+                    <a href="#" class="table_tab_btn">My Setting</a>
+                    <a href="#">Logout</a>
                 </div>
             </div>
         </div><!-- END NAV_MENU -->
@@ -167,12 +167,160 @@
                     <a href="#" class="table_tab_btn">Service Schedule</a>
                     <a href="#" class="table_tab_btn">Service History</a>
                     <a href="#" class="table_tab_btn">My Rating</a>
-                    <a href="#" class="table_tab_btn active_table_tab">Block Customer</a>
+                    <a href="#" class="table_tab_btn">Block Customer</a>
                     <a href="#" class="table_tab_btn">Invoice</a>
                     <a href="#" class="table_tab_btn">Notification</a>
                 </div>
             </div>
             <div class="table_tab_right">
+
+                <!-- PROFILE -->
+                <div class="table_tab_content">
+                    <div class="profile">
+                        <div class="tab_container">
+                            <div class="tab_indicator profile_tabs">
+                                <button class="tab_btn active_profile_tab">My Details</button>
+                                <button class="tab_btn ">Change Password</button>
+                            </div>
+                            <div class="tab_body">
+                                <div class="tab_content active_tab_content">
+                                    <div class="sp_my_details">
+                                        <p class="sp_account_status">Account Status : <span>Active</span></p>
+                                        <!-- BASIC DETAILS -->
+                                        <div class="sp_basic_details_container">
+                                            <!-- TITLE -->
+                                            <div class="sp_basic_details_title_avatar">
+                                                <p>Basic Details</p>
+                                                <div><img src="../assets/img/avatar/car.png" alt=""></div>
+                                            </div>
+                                            <div class="label_input">
+                                                <label class="label" for="">First Name</label>
+                                                <input class="input" type="text">
+                                            </div>
+                                            <div class="label_input">
+                                                <label class="label" for="">Last Name</label>
+                                                <input class="input" type="text">
+                                            </div>
+                                            <div class="label_input">
+                                                <label class="label" for="">Email Address</label>
+                                                <input class="input" type="text">
+                                            </div>
+                                            <div class="label_phone_number">
+                                                <label class="label" for="">Phone Number</label>
+                                                <div class="phone_number">
+                                                    <label for="">+49</label>
+                                                    <input type="text">
+                                                </div>
+                                            </div>
+                                            <div class="date_of_birth">
+                                                <label class="label" for="">Date of Birth</label>
+                                                <div>
+                                                    <select class="select" name="" id="">
+                                                        <option value="">02</option>
+                                                    </select>
+                                                    <select class="select" name="" id="">
+                                                        <option value="">April</option>
+                                                    </select>
+                                                    <select class="select" name="" id="">
+                                                        <option value="">1962</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="label_select">
+                                                <label class="label" for="">Nationality</label>
+                                                <select class="select" name="" id="">
+                                                    <option value="">German</option>
+                                                </select>
+                                            </div>
+                                            <!-- GENDER -->
+                                            <div class="gender_div">
+                                                <!-- MALE -->
+                                                <div>
+                                                    <input type="radio">
+                                                    <label for="">Male</label>
+                                                </div>
+                                                <!-- FEMALE -->
+                                                <div>
+                                                    <input type="radio">
+                                                    <label for="">Female</label>
+                                                </div>
+                                                <!-- NOT SAY -->
+                                                <div>
+                                                    <input type="radio">
+                                                    <label for="">Rather not to say</label>
+                                                </div>
+                                            </div>
+                                            <!-- SELECT AVATAR -->
+                                            <div class="select_avatar_container">
+                                                <p>Select Avatar</p>
+                                                <div>
+                                                    <button>
+                                                        <img src="../assets/img/avatar/car.png" alt="">
+                                                    </button>
+                                                    <button>
+                                                        <img src="../assets/img/avatar/female.png" alt="">
+                                                    </button>
+                                                    <button>
+                                                        <img src="../assets/img/avatar/hat.png" alt="">
+                                                    </button>
+                                                    <button>
+                                                        <img src="../assets/img/avatar/iron.png" alt="">
+                                                    </button>
+                                                    <button>
+                                                        <img src="../assets/img/avatar/male.png" alt="">
+                                                    </button>
+                                                    <button>
+                                                        <img src="../assets/img/avatar/ship.png" alt="">
+                                                    </button>    
+                                                </div>
+                                            </div>
+                                        </div><!-- END BASIC DETAILS CONTAINER -->
+                                        <!-- MY ADDRESS -->
+                                        <div class="sp_my_address_container">
+                                            <div>
+                                                <p>My Address</p>
+                                            </div>
+                                            <div class="label_input">
+                                                <label class="label" for="">Street Name</label>
+                                                <input class="input" type="text">
+                                            </div>
+                                            <div class="label_input">
+                                                <label class="label" for="">House Number</label>
+                                                <input class="input" type="text">
+                                            </div>
+                                            <div class="label_input">
+                                                <label class="label" for="">Postal Code</label>
+                                                <input class="input" type="text">
+                                            </div>
+                                            <div class="label_input">
+                                                <label class="label" for="">City</label>
+                                                <input class="input" type="text">
+                                            </div>
+                                        </div><!-- END BASIC DETAILS CONTAINER -->
+                                        <button class="profile_save_btn">Save</button>
+                                    </div><!-- END SP MY DETAILS -->
+                                </div><!-- END TAB CONTENT -->
+                                <div class="tab_content">
+                                    <form class="change_password">
+                                        <div class="label_input">
+                                            <label class="label" for="">Old Password</label>
+                                            <input class="input" type="text" placeholder="Current Password">
+                                        </div>
+                                        <div class="label_input">
+                                            <label class="label" for="">New Password</label>
+                                            <input class="input" type="text" placeholder="Password">                                            
+                                        </div>
+                                        <div class="label_input">
+                                            <label class="label" for="">Confirm Password</label>
+                                            <input class="input" type="text" placeholder="Confirm Password">
+                                        </div>
+                                        <button class="profile_save_btn">Save</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
                 <!-- DASHBOARD -->
                 <div class="table_tab_content d_none"></div>
@@ -566,10 +714,8 @@
                                     </div>
                                 </td>
                             </tr>
-
                         </tbody>
                     </table>
-
                 </div>
 
                 <!-- UPCOMING SERVICES -->
@@ -895,7 +1041,7 @@
                             </tr><!-- END_SINGLE_ROW -->
                         </tbody>
                     </table><!-- END_UPCOMING_SERVICE -->
-                </div><!-- END_TABLE_TAB_CONTENT -->
+                </div>
 
                 <!-- SERVICE SCHEDULE -->
                 <div class="table_tab_content d_none"></div>
@@ -1580,152 +1726,8 @@
                 <div class="table_tab_content d_none"></div>
 
                 <!-- NORTIFICATIONS -->
-                <div class="table_tab_content">
-                    <div class="profile">
-                        <div class="tab_container">
-                            <div class="tab_indicator profile_tabs">
-                                <button class="tab_btn active_profile_tab">My Details</button>
-                                <button class="tab_btn ">Change Password</button>
-                            </div>
-                            <div class="tab_body">
-                                <div class="tab_content active_tab_content">
-                                    <div class="sp_my_details">
-                                        <p class="sp_account_status">Account Status : <span>Active</span></p>
-                                        <!-- BASIC DETAILS -->
-                                        <div class="sp_basic_details_container">
-                                            <!-- TITLE -->
-                                            <div class="sp_basic_details_title_avatar">
-                                                <p>Basic Details</p>
-                                                <div><img src="../assets/img/avatar/car.png" alt=""></div>
-                                            </div>
-                                            <div class="label_input">
-                                                <label class="label" for="">First Name</label>
-                                                <input class="input" type="text">
-                                            </div>
-                                            <div class="label_input">
-                                                <label class="label" for="">Last Name</label>
-                                                <input class="input" type="text">
-                                            </div>
-                                            <div class="label_input">
-                                                <label class="label" for="">Email Address</label>
-                                                <input class="input" type="text">
-                                            </div>
-                                            <div class="label_phone_number">
-                                                <label class="label" for="">Phone Number</label>
-                                                <div class="phone_number">
-                                                    <label for="">+49</label>
-                                                    <input type="text">
-                                                </div>
-                                            </div>
-                                            <div class="date_of_birth">
-                                                <label class="label" for="">Date of Birth</label>
-                                                <div>
-                                                    <select class="select" name="" id="">
-                                                        <option value="">02</option>
-                                                    </select>
-                                                    <select class="select" name="" id="">
-                                                        <option value="">April</option>
-                                                    </select>
-                                                    <select class="select" name="" id="">
-                                                        <option value="">1962</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="label_select">
-                                                <label class="label" for="">Nationality</label>
-                                                <select class="select" name="" id="">
-                                                    <option value="">German</option>
-                                                </select>
-                                            </div>
-                                            <!-- GENDER -->
-                                            <div class="gender_div">
-                                                <!-- MALE -->
-                                                <div>
-                                                    <input type="radio">
-                                                    <label for="">Male</label>
-                                                </div>
-                                                <!-- FEMALE -->
-                                                <div>
-                                                    <input type="radio">
-                                                    <label for="">Female</label>
-                                                </div>
-                                                <!-- NOT SAY -->
-                                                <div>
-                                                    <input type="radio">
-                                                    <label for="">Rather not to say</label>
-                                                </div>
-                                            </div>
-                                            <!-- SELECT AVATAR -->
-                                            <div class="select_avatar_container">
-                                                <p>Select Avatar</p>
-                                                <div>
-                                                    <button>
-                                                        <img src="../assets/img/avatar/car.png" alt="">
-                                                    </button>
-                                                    <button>
-                                                        <img src="../assets/img/avatar/female.png" alt="">
-                                                    </button>
-                                                    <button>
-                                                        <img src="../assets/img/avatar/hat.png" alt="">
-                                                    </button>
-                                                    <button>
-                                                        <img src="../assets/img/avatar/iron.png" alt="">
-                                                    </button>
-                                                    <button>
-                                                        <img src="../assets/img/avatar/male.png" alt="">
-                                                    </button>
-                                                    <button>
-                                                        <img src="../assets/img/avatar/ship.png" alt="">
-                                                    </button>    
-                                                </div>
-                                            </div>
-                                        </div><!-- END BASIC DETAILS CONTAINER -->
-                                        <!-- MY ADDRESS -->
-                                        <div class="sp_my_address_container">
-                                            <div>
-                                                <p>My Address</p>
-                                            </div>
-                                            <div class="label_input">
-                                                <label class="label" for="">Street Name</label>
-                                                <input class="input" type="text">
-                                            </div>
-                                            <div class="label_input">
-                                                <label class="label" for="">House Number</label>
-                                                <input class="input" type="text">
-                                            </div>
-                                            <div class="label_input">
-                                                <label class="label" for="">Postal Code</label>
-                                                <input class="input" type="text">
-                                            </div>
-                                            <div class="label_input">
-                                                <label class="label" for="">City</label>
-                                                <input class="input" type="text">
-                                            </div>
-                                        </div><!-- END BASIC DETAILS CONTAINER -->
-                                        <button class="profile_save_btn">Save</button>
-                                    </div><!-- END SP MY DETAILS -->
-                                </div><!-- END TAB CONTENT -->
-                                <div class="tab_content">
-                                    <form class="change_password">
-                                        <div class="label_input">
-                                            <label class="label" for="">Old Password</label>
-                                            <input class="input" type="text" placeholder="Current Password">
-                                        </div>
-                                        <div class="label_input">
-                                            <label class="label" for="">New Password</label>
-                                            <input class="input" type="text" placeholder="Password">                                            
-                                        </div>
-                                        <div class="label_input">
-                                            <label class="label" for="">Confirm Password</label>
-                                            <input class="input" type="text" placeholder="Confirm Password">
-                                        </div>
-                                        <button class="profile_save_btn">Save</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <div class="table_tab_content d_none"></div>
+
             </div><!-- END_TABLE_TAB_RIGHT -->
         </div><!-- END_TABLE_TAB -->
     </main><!-- END_MAIN -->
