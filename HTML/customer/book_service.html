@@ -143,7 +143,7 @@
 						</div> 
 						<p>Setup Service</p>
 					</button>
-					<button class="tab_btn active_book_service_tab">
+					<button class="tab_btn">
 						<div>
 							<img src="../assets/img/customer/book_service/schedule_plan.png" alt="">
 						</div>
@@ -155,7 +155,7 @@
 						</div>
 						<p>Your Details</p>
 					</button>
-					<button class="tab_btn">
+					<button class="tab_btn active_book_service_tab">
 						<div>
 							<img src="../assets/img/customer/book_service/payment.png" alt="">
 						</div> 
@@ -165,6 +165,7 @@
 
 				<!-- TAB BODY FOR CONTENTS -->
 				<div>
+
 					<!-- SETUP_SERVICE -->
 					<div class="tab_content d_none">
 						<div class="setup_service">
@@ -177,7 +178,7 @@
 					</div>
 
 					<!-- SCHEDULE_PLAN -->
-					<div class="tab_content active_tab_content">
+					<div class="tab_content d_none">
 						<div class="schedule_plan">
 							<!-- FIRST DIV... -->
 							<div class="label_select">
@@ -271,12 +272,116 @@
 
 					<!-- YOUR DETAILS -->
 					<div class="tab_content d_none">
-
+						<div class="your_details">
+							<!-- ADDRESS INFORM OF RADIO BUTTON -->
+							<div class="label_input">
+								<label class="label" for="">Enter your contact details so we can serve you in better way!</label>
+								<!-- ADDRESS_1 -->
+								<div class="radio_address">
+									<input type="radio" id="booking_address_1" name="address">
+									<label for="booking_address_1">
+										<div>
+											<p><span>Address</span> : Koenigstrasse 112, 99897 Tambach-Dietharz</p>
+											<p><span>Phone Number</span> : 9955648797</p>
+										</div>
+									</label>
+								</div>
+								<!-- ADDRESS_2 -->
+								<div class="radio_address">
+									<input type="radio" id="booking_address_2" name="address">
+									<label for="booking_address_2">
+										<div>
+											<p><span>Address</span> : Koenigstrasse 112, 99897 Tambach-Dietharz</p>
+											<p><span>Phone Number</span> : 9955648797</p>
+										</div>
+									</label>
+								</div>
+								<!-- ADDRESS FORM AUTOMETIC FILL BY CHOOSE A RADIO BUTTON -->
+								<div>
+									<div class="label_input">
+										<label class="label" for="">Street Name</label>
+										<input class="input" type="text">
+									</div>
+									<div class="label_input">
+										<label class="label" for="">House Number</label>
+										<input class="input" type="text">
+									</div>
+									<div class="label_input">
+										<label class="label" for="">Postal Code</label>
+										<input class="input" type="text">
+									</div>
+									<div class="label_input">
+										<label class="label" for="">City</label>
+										<input class="input" type="text">
+									</div>
+									<div class="label_input">
+										<label class="label" for="">Phone Number</label>
+										<div class="phone_number">
+											<label for="">+49</label>
+											<input type="text">
+										</div>
+									</div>
+									<div>
+										<button class="book_service_btn">Save</button>
+										<button>Cancel</button>
+									</div>
+								</div>
+								
+							</div>
+							<div>
+								<label class="label" for="">Your Favourite Service Providers</label>
+								<p>You can choose your favourite service provider from the below list</p>
+								<!-- LIST OF SERVICE PROVIDER -->
+								<div>
+									<div>
+										<img src="../assets/img/avatar/hat.png" alt="">
+										<p>Ram Patel</p>
+										<button>Select</button>
+									</div>
+									<div>
+										<img src="../assets/img/avatar/hat.png" alt="">
+										<p>Laxman Chaudhari</p>
+										<button>Select</button>
+									</div>
+								</div>
+							</div>
+							<button class="book_service_btn">Continue</button>
+						</div>
 					</div>
 
-					<!-- PAYMENT -->
-					<div class="tab_content">
-
+					<!-- MAKE_PAYMENT -->
+					<div class="tab_content active_tab_content">
+						<div class="make_payment">
+							<div>
+								<p>Pay Securely with Helperland payment gateway!</p>
+								<div>
+									<div class="label_input">
+										<label class="label" for="">Promo Code (Optional)</label>
+										<input class="input" type="text">
+									</div>
+									<button>Apply</button>	
+								</div>
+							</div>
+							<div class="label_input">
+								<div>
+									<input type="text" placeholder="Card Number">
+									<input type="text" placeholder="MM / YY CVC">	
+								</div>
+								<div>
+									<p>Accepeted Card</p>
+									<div>
+										<img src="../assets/img/customer/book_service/visa.png" alt="">
+										<img src="../assets/img/customer/book_service/master_card.png" alt="">
+										<img src="../assets/img/customer/book_service/american_express.png" alt="">
+									</div>
+								</div>
+							</div>
+							<div>
+								<input type="checkbox">
+								<label for="">I accept the <a href="#">term and condition</a>. the <a href="#">cancellation policy</a> and the <a href="#">privacy policy</a>. i confirm that helperland start to execute that contract before the expiry of the withdrawal period and i lose my right of withdrawal as consumer with full performance of the contract.</label>
+							</div>
+							<button class="book_service_btn">Complete Booking</button>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -292,7 +397,7 @@
 
 				<!-- QUESTIONS -->
 				<div>
-					<p>Questons?</p>
+					<p>Questions?</p>
 					<div class="accordion">
 						<button class="accordion_btn"><i class="fas fa-angle-right"></i> What's including in a Cleaning?</button>
 						<div class="accordion_content">
