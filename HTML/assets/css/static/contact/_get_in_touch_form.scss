@@ -1,8 +1,4 @@
-$get_in_touch_border:#C8C8C8;
 $get_in_touch_title:#4F4F4F;
-$input_text:#A0A0A0;
-$get_in_touch_btn:#1D7A8C;
-
 
 .get_in_touch{
     display: flex;
@@ -39,13 +35,6 @@ $get_in_touch_btn:#1D7A8C;
         }
         button{
             width:162px;
-            height: 46px;
-            background-color: $get_in_touch_btn;
-            font-size: 20px;
-            font-weight: bold;
-            color:white;
-            border:0;
-            border-radius: 23px;                
         }
     }
 }

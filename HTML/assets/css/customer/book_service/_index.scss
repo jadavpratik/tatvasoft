@@ -1,7 +1,6 @@
 $book_service_main:#1D7A8C;
 $book_service_title:#4F4F4F;
 $book_service_para:#646464;
-$book_service_btn:#1D7A8C;
 $book_service_tab:#F3F3F3;
 $book_service_active_tab:#1D7A8C;
 
@@ -32,14 +31,3 @@ $book_service_active_tab:#1D7A8C;
     }
 }
 
-.book_service_btn{
-    width:auto;
-    height:40px;
-    padding:0 18px;
-    background-color: $book_service_btn;
-    color:white;
-    font-size: 18px;
-    font-weight: 500;
-    border:0;
-    border-radius: 46px;
-}

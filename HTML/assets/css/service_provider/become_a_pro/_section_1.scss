@@ -1,5 +1,4 @@
 $registration_title:#4F4F4F;
-$registration_submit:#1D7A8C;
 $registration_shadow:#00000026;
 $registration_select:#F4F4F4;
 $registration_term:#1FB6FF;
@@ -47,14 +46,9 @@ $registration_term:#1FB6FF;
         margin-bottom: 15px;
     }
     button{
-        background-color: $registration_submit;
-        color:white;
-        font-weight: bold;
-        width:166px;
-        height: 46px;
-        border-radius: 40px;
-        border:0;
         margin-top: 40px;
+        width:166px;
+        font-size:14px;
         img{
             margin-left: 8px;
         }
