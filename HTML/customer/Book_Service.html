@@ -137,7 +137,7 @@
 			<div class="book_service_tabs">
 				<!-- TAB BTNS CONTAINER -->
 				<div>
-					<button class="tab_btn">
+					<button class="tab_btn active_book_service_tab">
 						<div>
 							<img src="../assets/img/customer/book_service/setup_service.png" alt="">
 						</div> 
@@ -149,7 +149,7 @@
 						</div>
 						<p>Schedule & Plan</p>
 					</button>
-					<button class="tab_btn active_book_service_tab">
+					<button class="tab_btn">
 						<div>
 							<img src="../assets/img/customer/book_service/user_details.png" alt="">
 						</div>
@@ -167,7 +167,7 @@
 				<div>
 
 					<!-- SETUP_SERVICE -->
-					<div class="tab_content d_none">
+					<div class="tab_content active_tab_content">
 						<div class="setup_service">
 							<div class="label_input">
 								<label class="label" for="">Enter your Postal Code</label>
@@ -296,9 +296,9 @@
 										</div>
 									</label>
 								</div>
-								<button class="book_service_outline_btn"><i class="fas fa-plus"></i>Add Address</button>
+								<button class="book_service_outline_btn" id="open_address_form_btn"><i class="fas fa-plus"></i>Add Address</button>
 								<!-- ADDRESS FORM AUTOMETIC FILL BY CHOOSE A RADIO BUTTON -->
-								<div class="d_none">
+								<div class="d_none" id="address_form">
 									<div class="label_input">
 										<label class="label" for="">Street Name</label>
 										<input class="input" type="text">
@@ -324,7 +324,7 @@
 									</div>
 									<div>
 										<button class="book_service_btn">Save</button>
-										<button class="book_service_outline_btn">Cancel</button>
+										<button class="book_service_outline_btn" id="close_address_form_btn">Cancel</button>
 									</div>
 								</div>								
 							</div>
@@ -350,7 +350,7 @@
 					</div>
 
 					<!-- MAKE_PAYMENT -->
-					<div class="tab_content active_tab_content">
+					<div class="tab_content d_none">
 						<div class="make_payment">
 							<div>
 								<p>Pay Securely with Helperland payment gateway!</p>
@@ -547,6 +547,17 @@
 			maxGlare: .5
 		});
     </script>
+	<script>
+		$('#open_address_form_btn').click(()=>{
+			$('#address_form').toggleClass('d_none');
+			$('#open_address_form_btn').toggleClass('d_none');
+		});
+		$('#close_address_form_btn').click(()=>{
+			$('#address_form').toggleClass('d_none');
+			$('#open_address_form_btn').toggleClass('d_none');
+		});
+	</script>
+
 
 </body>
 </html>

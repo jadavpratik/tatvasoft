@@ -2968,15 +2968,13 @@ footer {
 
 .active_book_service_tab::after {
   content: "";
+  width: 18px;
+  height: 18px;
   position: absolute;
-  bottom: -10px;
-  left: 45%;
-  -webkit-transform: translateX(-45%);
-          transform: translateX(-45%);
-  -webkit-transform: rotate(-45deg);
-          transform: rotate(-45deg);
-  width: 24px;
-  height: 24px;
+  bottom: -9px;
+  left: calc(100% - (24/2)px);
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
   background-color: #1D7A8C;
 }
 
@@ -5099,7 +5097,7 @@ footer {
   }
 }
 
-@media screen and (max-width: 709px) {
+@media screen and (max-width: 768px) {
   .navbar {
     padding: 0 20px;
   }
@@ -5158,7 +5156,7 @@ footer {
   }
 }
 
-@media screen and (max-width: 709px) {
+@media screen and (max-width: 768px) {
   .footer_links {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
@@ -5308,7 +5306,7 @@ footer {
   }
 }
 
-@media screen and (max-width: 709px) {
+@media screen and (max-width: 768px) {
   .home_s1_intro_card {
     padding-left: 0;
   }
@@ -5373,13 +5371,13 @@ footer {
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 768px) {
   .faq_tabs button {
     font-size: 16px;
   }
 }
 
-@media screen and (max-width: 1183px) {
+@media screen and (max-width: 1200px) {
   .prices_s1,
   .prices_s2,
   .prices_s3 {
@@ -5433,7 +5431,7 @@ footer {
   }
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 768px) {
   .prices_card {
     width: 100%;
   }
@@ -5562,7 +5560,7 @@ footer {
   }
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 576px) {
   .become_a_pro_s1,
   .become_a_pro_s2 {
     height: auto;
@@ -5650,6 +5648,91 @@ footer {
   }
   .customer_signup form .phone_number input {
     margin: 0;
+  }
+}
+
+@media screen and (max-width: 1280px) {
+  .book_service {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .book_service_right {
+    position: absolute;
+    display: none;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .book_service_tabs {
+    width: 100%;
+  }
+  .book_service_tabs > div:first-child > button {
+    width: 100%;
+  }
+  .schedule_plan > div:nth-child(3) > div > div {
+    width: 150px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .book_service_tabs > div:first-of-type button {
+    position: relative;
+  }
+  .book_service_tabs > div:first-of-type button p {
+    display: none;
+  }
+  .book_service_tabs > div:first-of-type button div {
+    position: absolute;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+  }
+  .schedule_plan > div:nth-child(2) {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .schedule_plan > div:nth-child(2) > div:nth-child(1) {
+    padding-bottom: 20px;
+  }
+  .schedule_plan > div:nth-child(3) > div {
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .setup_service {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+  }
+  .setup_service div {
+    padding-bottom: 20px;
+  }
+  #address_form {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .your_details > div:nth-child(2) > div {
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+  }
+  .your_details > div:nth-child(2) > div > div {
+    margin-bottom: 15px;
   }
 }
 
