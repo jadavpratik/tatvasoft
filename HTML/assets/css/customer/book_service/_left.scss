@@ -57,13 +57,13 @@
     &::after{
         content: "";
         position: absolute;
-        bottom:-15px;
+        bottom:-10px;
         left:45%;
         transform: translateX(-45%);
         transform: rotate(-45deg);
-        width:32px;
-        height:32px;
-        background-color: $book_service_active_tab;
+        width:24px;
+        height:24px;
+        background-color:$book_service_active_tab;
     }
 }
 

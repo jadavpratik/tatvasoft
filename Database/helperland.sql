@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 19, 2022 at 09:51 AM
+-- Generation Time: Jan 21, 2022 at 08:39 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.12
 
@@ -31,7 +31,7 @@ CREATE TABLE `address` (
   `id` int(11) NOT NULL,
   `street` text NOT NULL,
   `house_no` int(11) NOT NULL,
-  `postcode` int(11) NOT NULL,
+  `post_code` int(11) NOT NULL,
   `city` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -67,11 +67,34 @@ CREATE TABLE `cancel_request` (
 
 CREATE TABLE `extra_services` (
   `id` int(11) NOT NULL,
-  `cabinets` tinyint(1) NOT NULL,
+  `cabinet` tinyint(1) NOT NULL,
   `fridge` tinyint(1) NOT NULL,
   `oven` tinyint(1) NOT NULL,
   `laundry` tinyint(1) NOT NULL,
   `windows` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `favourite`
+--
+
+CREATE TABLE `favourite` (
+  `c_id` int(11) NOT NULL,
+  `s_id` int(11) NOT NULL,
+  `fav` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `notifications`
+--
+
+CREATE TABLE `notifications` (
+  `id` int(11) NOT NULL,
+  `notifications` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL CHECK (json_valid(`notifications`))
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -84,15 +107,15 @@ CREATE TABLE `profile` (
   `id` int(11) NOT NULL,
   `firstname` text NOT NULL,
   `lastname` text NOT NULL,
-  `email_address` varchar(255) NOT NULL,
-  `mobile_number` int(10) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `mobile` int(10) NOT NULL,
   `password` varchar(255) NOT NULL,
   `role` text NOT NULL,
   `dob` date NOT NULL,
-  `preffered_language` text NOT NULL,
+  `language` text NOT NULL,
   `gender` varchar(255) NOT NULL,
   `nationality` varchar(255) NOT NULL,
-  `ac_status` tinyint(1) NOT NULL,
+  `status` tinyint(1) NOT NULL,
   `avatar` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -122,22 +145,11 @@ CREATE TABLE `services` (
   `date` date NOT NULL,
   `time` time NOT NULL,
   `duration` varchar(255) NOT NULL,
-  `pet_at_home` tinyint(1) NOT NULL,
+  `pet` tinyint(1) NOT NULL,
   `comments` text NOT NULL,
   `amount` int(11) NOT NULL,
-  `payment_status` tinyint(1) NOT NULL,
-  `service_request_status` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `service_history`
---
-
-CREATE TABLE `service_history` (
-  `id` int(11) NOT NULL,
-  `status` int(11) NOT NULL
+  `status` varchar(255) NOT NULL,
+  `payment_status` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -184,12 +196,6 @@ ALTER TABLE `services`
   ADD KEY `s_id` (`s_id`);
 
 --
--- Indexes for table `service_history`
---
-ALTER TABLE `service_history`
-  ADD KEY `id` (`id`);
-
---
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -234,12 +240,6 @@ ALTER TABLE `rating`
 ALTER TABLE `services`
   ADD CONSTRAINT `services_ibfk_1` FOREIGN KEY (`c_id`) REFERENCES `profile` (`id`),
   ADD CONSTRAINT `services_ibfk_2` FOREIGN KEY (`s_id`) REFERENCES `profile` (`id`);
-
---
--- Constraints for table `service_history`
---
-ALTER TABLE `service_history`
-  ADD CONSTRAINT `service_history_ibfk_1` FOREIGN KEY (`id`) REFERENCES `services` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

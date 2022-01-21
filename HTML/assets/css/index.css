@@ -2450,14 +2450,14 @@ footer {
 .active_book_service_tab::after {
   content: "";
   position: absolute;
-  bottom: -15px;
+  bottom: -10px;
   left: 45%;
   -webkit-transform: translateX(-45%);
           transform: translateX(-45%);
   -webkit-transform: rotate(-45deg);
           transform: rotate(-45deg);
-  width: 32px;
-  height: 32px;
+  width: 24px;
+  height: 24px;
   background-color: #1D7A8C;
 }
 
@@ -2950,13 +2950,116 @@ footer {
   margin-left: 30px;
 }
 
+.payment_summary {
+  -webkit-box-shadow: 1px 1px 7px #00000059;
+          box-shadow: 1px 1px 7px #00000059;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
 .payment_summary > p {
   height: 67px;
   line-height: 67px;
   color: white;
   background-color: #1D7A8C;
   font-size: 18px;
+  font-weight: 500;
   padding-left: 22px;
+}
+
+.payment_summary > div > div {
+  border-bottom: 1px solid #C8C8C8;
+  padding: 12px 19px;
+}
+
+.payment_summary > div > div p {
+  padding: 4px 0;
+  color: #4F4F4F;
+}
+
+.payment_summary > div > div > p {
+  font-weight: 500;
+}
+
+.payment_summary > div > div > div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.payment_summary > div > div:nth-child(1) {
+  padding-bottom: 8px;
+}
+
+.payment_summary > div > div:nth-child(1) p {
+  font-size: 16px;
+  font-weight: normal;
+}
+
+.payment_summary > div > div:nth-child(2) > div:last-child {
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid #C8C8C8;
+}
+
+.payment_summary > div > div:nth-child(2) > div:last-child p {
+  font-weight: 500;
+}
+
+.payment_summary > div > div:nth-child(3) div p:last-child {
+  font-weight: 500;
+}
+
+.payment_summary > div > div:nth-child(4) div:first-of-type p {
+  color: #1D7A8C;
+  font-weight: 500;
+}
+
+.payment_summary > div > div:nth-child(4) div:first-of-type p:last-child {
+  font-size: 42px;
+}
+
+.payment_summary > div > div:nth-child(4) div:last-of-type p {
+  font-size: 20px;
+  color: #646464 !important;
+  font-weight: 500;
+}
+
+.payment_summary > div > div:nth-child(4) > p {
+  padding-top: 5px;
+  font-weight: normal;
+  font-size: 14px;
+}
+
+.payment_summary > div > div:nth-child(4) > p span {
+  color: #FF0000;
+}
+
+.payment_summary > div > button {
+  width: 100%;
+  height: 46px;
+  padding: 0 19px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: #F3F3F3;
+  color: #646464;
+  font-size: 14px;
+  border: 0;
+}
+
+.payment_summary > div > button i {
+  margin-right: 6px;
+  font-size: 18px;
 }
 
 .book_service_right > div:last-of-type > p {
