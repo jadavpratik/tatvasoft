@@ -60,7 +60,16 @@ $registration_term:#1FB6FF;
         align-items: center;
         margin-bottom: 11px;
         label{
+<<<<<<< HEAD
             height: 46px;
+=======
+            width:46px;
+            height: 46px;
+            background-color: #F4F4F4;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+>>>>>>> 27cceb6b11d5659c99706de46b19adef59100699
         }
         p{
             color:$registration_title;

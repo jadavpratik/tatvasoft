@@ -27,12 +27,15 @@
         & > div{
             width:100%;
             margin-right: 70px;
+<<<<<<< HEAD
             &:first-of-type{
                 margin-right: 0;
                 .from_date{
                     overflow: hidden;
                 }
             }
+=======
+>>>>>>> 27cceb6b11d5659c99706de46b19adef59100699
             &:last-of-type{
                 margin-right: 0;
             }
@@ -77,6 +80,7 @@
                         height: 108px;
                         border-radius: 50%;
                         border:1px solid #C8C8C8;
+<<<<<<< HEAD
                         display: grid;
                         place-items: center;
                         overflow: hidden;
@@ -84,6 +88,39 @@
                         padding:0;
                         img{
                             transition:all 0.2s;
+=======
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        position: relative;
+                        overflow: hidden;
+                        transition: all 0.1s;
+                        img{
+                            position: absolute;
+                            top:50%;
+                            left:24%;
+                            transform: translateY(-50%);
+                            z-index: -1;
+                            transition: left right 0.5s;
+                        }
+                        &::before{
+                            content: "";
+                            position: absolute;
+                            top:0;
+                            left:0;
+                            width:20px;
+                            height:100%;
+                            background-color:white;
+                        }
+                        &::after{
+                            content: "";
+                            position: absolute;
+                            top:0;
+                            right:0;
+                            width:20px;
+                            height:100%;
+                            background-color: white;
+>>>>>>> 27cceb6b11d5659c99706de46b19adef59100699
                         }
                     }
                 }
