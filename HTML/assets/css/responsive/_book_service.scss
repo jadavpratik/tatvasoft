@@ -107,15 +107,20 @@
         & > div:nth-child(2){
             & > div{// FOR WRAPING A SERVICE PROVIDER...
                 flex-wrap: wrap;
+                & > div{
+                    margin-bottom: 15px;
+                }
             }
         }
     }
     .make_payment{
         & > div:nth-child(2){
-            & > div:nth-child(1){
+            & > div:first-child{// CARD_NUMBER, MM/YY, CVC/CVV
                 display: flex;
                 flex-direction: column;
             }
         }
     }
+
 }
+

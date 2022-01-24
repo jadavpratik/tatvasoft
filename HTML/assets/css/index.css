@@ -584,7 +584,7 @@ button {
   font-size: 14px;
 }
 
-.accordion_btn img, .accordion_btn i {
+.accordion_btn i, .accordion_btn img {
   -webkit-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
 }
@@ -3063,24 +3063,24 @@ footer {
           justify-content: space-between;
 }
 
-.schedule_plan > div:nth-child(3) > div div {
+.schedule_plan > div:nth-child(3) > div > div {
   padding-top: 20px;
 }
 
-.schedule_plan > div:nth-child(3) > div div input {
+.schedule_plan > div:nth-child(3) > div > div input {
   display: none;
 }
 
-.schedule_plan > div:nth-child(3) > div div input:checked + label div {
+.schedule_plan > div:nth-child(3) > div > div input:checked + label div {
   border: 3px solid #1D7A8C;
 }
 
-.schedule_plan > div:nth-child(3) > div div input:checked + label div img {
+.schedule_plan > div:nth-child(3) > div > div input:checked + label div img {
   left: unset;
   right: 22.5%;
 }
 
-.schedule_plan > div:nth-child(3) > div div label {
+.schedule_plan > div:nth-child(3) > div > div label {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -3094,12 +3094,12 @@ footer {
   cursor: pointer;
 }
 
-.schedule_plan > div:nth-child(3) > div div label p {
+.schedule_plan > div:nth-child(3) > div > div label p {
   text-align: center;
   padding-top: 10px;
 }
 
-.schedule_plan > div:nth-child(3) > div div label div {
+.schedule_plan > div:nth-child(3) > div > div label div {
   width: 108px;
   height: 108px;
   border-radius: 50%;
@@ -3116,7 +3116,6 @@ footer {
   overflow: hidden;
   -webkit-transition: all 0.1s;
   transition: all 0.1s;
-  padding: 0;
 }
 
 .schedule_plan > div:nth-child(4) div:first-of-type textarea {
@@ -3420,6 +3419,7 @@ footer {
 
 .make_payment > div:nth-child(3) label {
   margin-top: -2px;
+  padding: 0;
   font-weight: normal;
   font-size: 14px;
   line-height: 20px;
@@ -3716,6 +3716,17 @@ footer {
 
 .registration_form > form div label {
   width: 46px;
+  height: 46px;
+  background-color: #F4F4F4;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .registration_form > form div p {
@@ -5723,7 +5734,10 @@ footer {
     -ms-flex-wrap: wrap;
         flex-wrap: wrap;
   }
-  .make_payment > div:nth-child(2) > div:nth-child(1) {
+  .your_details > div:nth-child(2) > div > div {
+    margin-bottom: 15px;
+  }
+  .make_payment > div:nth-child(2) > div:first-child {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;

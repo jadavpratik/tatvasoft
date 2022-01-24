@@ -61,6 +61,11 @@ $registration_term:#1FB6FF;
         margin-bottom: 11px;
         label{
             width:46px;
+            height: 46px;
+            background-color: #F4F4F4;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         p{
             color:$registration_title;

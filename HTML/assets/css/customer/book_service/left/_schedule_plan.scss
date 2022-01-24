@@ -48,7 +48,7 @@
         & > div{// EXTRA SERVICES CONTAINER....
             display: flex;
             justify-content: space-between;
-            div{// LABEL AND INPUT CONTAINER...
+            & > div{// LABEL AND INPUT CONTAINER...
                 padding-top:20px;
                 input{
                     display: none;
@@ -81,7 +81,6 @@
                         justify-content: center;
                         overflow: hidden;
                         transition: all 0.1s;
-                        padding:0;
                     }
                 }
             }
