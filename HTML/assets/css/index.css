@@ -584,15 +584,9 @@ button {
   font-size: 14px;
 }
 
-<<<<<<< HEAD
 .accordion_btn img, .accordion_btn i {
   -webkit-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
-=======
-.accordion_btn {
-  -webkit-transition: all 0.5s ease-in-out;
-  transition: all 0.5s ease-in-out;
->>>>>>> 27cceb6b11d5659c99706de46b19adef59100699
 }
 
 .accordion_content {
@@ -3042,17 +3036,10 @@ footer {
   margin-right: 70px;
 }
 
-<<<<<<< HEAD
-.schedule_plan > div:nth-child(2) > div:first-of-type {
-  margin-right: 0;
-}
-
 .schedule_plan > div:nth-child(2) > div:first-of-type .from_date {
   overflow: hidden;
 }
 
-=======
->>>>>>> 27cceb6b11d5659c99706de46b19adef59100699
 .schedule_plan > div:nth-child(2) > div:last-of-type {
   margin-right: 0;
 }
@@ -3117,19 +3104,6 @@ footer {
   height: 108px;
   border-radius: 50%;
   border: 1px solid #C8C8C8;
-<<<<<<< HEAD
-  display: -ms-grid;
-  display: grid;
-  place-items: center;
-  overflow: hidden;
-  margin: 0;
-  padding: 0;
-}
-
-.schedule_plan > div:nth-child(3) > div div label div img {
-  -webkit-transition: all 0.2s;
-  transition: all 0.2s;
-=======
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -3139,42 +3113,10 @@ footer {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  position: relative;
   overflow: hidden;
   -webkit-transition: all 0.1s;
   transition: all 0.1s;
-}
-
-.schedule_plan > div:nth-child(3) > div div label div img {
-  position: absolute;
-  top: 50%;
-  left: 24%;
-  -webkit-transform: translateY(-50%);
-          transform: translateY(-50%);
-  z-index: -1;
-  -webkit-transition: left right 0.5s;
-  transition: left right 0.5s;
-}
-
-.schedule_plan > div:nth-child(3) > div div label div::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 20px;
-  height: 100%;
-  background-color: white;
-}
-
-.schedule_plan > div:nth-child(3) > div div label div::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 20px;
-  height: 100%;
-  background-color: white;
->>>>>>> 27cceb6b11d5659c99706de46b19adef59100699
+  padding: 0;
 }
 
 .schedule_plan > div:nth-child(4) div:first-of-type textarea {
@@ -3418,13 +3360,8 @@ footer {
 .make_payment > div:nth-child(2) > div:nth-child(1) {
   display: -ms-grid;
   display: grid;
-<<<<<<< HEAD
   -ms-grid-columns: 60% 20% 20%;
       grid-template-columns: 60% 20% 20%;
-=======
-  -ms-grid-columns: 80% 20%;
-      grid-template-columns: 80% 20%;
->>>>>>> 27cceb6b11d5659c99706de46b19adef59100699
 }
 
 .make_payment > div:nth-child(2) > div:nth-child(1) input {
@@ -3477,29 +3414,15 @@ footer {
           align-items: flex-start;
 }
 
-<<<<<<< HEAD
-.make_payment > div:nth-child(3) input[type="checkbox"] {
-  width: 16px;
-  height: 16px;
-=======
 .make_payment > div:nth-child(3) input {
->>>>>>> 27cceb6b11d5659c99706de46b19adef59100699
   margin-right: 10px;
 }
 
 .make_payment > div:nth-child(3) label {
-<<<<<<< HEAD
   margin-top: -2px;
-  width: calc(100% - 16px);
-  font-weight: normal;
-  font-size: 14px;
-  line-height: 22px;
-=======
-  padding: 0;
   font-weight: normal;
   font-size: 14px;
   line-height: 20px;
->>>>>>> 27cceb6b11d5659c99706de46b19adef59100699
 }
 
 .make_payment > div:nth-child(3) label a {
@@ -3792,22 +3715,7 @@ footer {
 }
 
 .registration_form > form div label {
-<<<<<<< HEAD
-  height: 46px;
-=======
   width: 46px;
-  height: 46px;
-  background-color: #F4F4F4;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
->>>>>>> 27cceb6b11d5659c99706de46b19adef59100699
 }
 
 .registration_form > form div p {
@@ -5815,10 +5723,6 @@ footer {
     -ms-flex-wrap: wrap;
         flex-wrap: wrap;
   }
-  .your_details > div:nth-child(2) > div > div {
-    margin-bottom: 15px;
-  }
-<<<<<<< HEAD
   .make_payment > div:nth-child(2) > div:nth-child(1) {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -5828,8 +5732,6 @@ footer {
         -ms-flex-direction: column;
             flex-direction: column;
   }
-=======
->>>>>>> 27cceb6b11d5659c99706de46b19adef59100699
 }
 
 @media screen and (max-width: 1200px) {

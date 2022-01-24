@@ -107,23 +107,15 @@
         & > div:nth-child(2){
             & > div{// FOR WRAPING A SERVICE PROVIDER...
                 flex-wrap: wrap;
-                & > div{
-                    margin-bottom: 15px;
-                }
             }
         }
     }
-<<<<<<< HEAD
     .make_payment{
         & > div:nth-child(2){
             & > div:nth-child(1){
                 display: flex;
                 flex-direction: column;
-    
             }
         }
     }
-=======
->>>>>>> 27cceb6b11d5659c99706de46b19adef59100699
 }
-
