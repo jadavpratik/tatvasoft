@@ -1,0 +1,19 @@
+// ------------------------GENERAL_CSS------------------------
+@import "./global/index";
+@import "./form/index";
+@import "./popup/index";
+@import "./table/index";
+
+// -------ADMIN, SERVICE_PROVIDER, CUSTOMER-------------
+@import "./customer/index";
+@import "./service_provider/index";
+@import "./admin/index";
+
+// -------STATIC_PAGES-------------
+@import "./static/home/index";
+@import "./static/faq/index";
+@import "./static/prices/index";
+@import "./static/contact/index";
+@import "./static/about/index";
+
+@import "./responsive/index";

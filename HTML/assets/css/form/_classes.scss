@@ -1,0 +1,156 @@
+$input_border:#C8C8C8;
+$input_text:#646464;
+$phone_label_bg:#f3f3f3;
+$label_text:#4F4F4F;
+
+.input,
+.select,
+.textarea{
+    width:100%;
+    height: 46px;
+    border:1px solid $input_border;
+    border-radius: 4px;
+    color:$input_text;
+    padding-left: 15px;
+    background-color: white !important;
+    font-size: 16px;
+}
+
+.textarea{
+    padding-top: 15px;
+}
+
+.phone_number{
+    border:1px solid $input_border;
+    border-radius: 4px;
+    display: flex; 
+    align-items:center;
+    justify-content: center;
+    overflow: hidden;
+    label{
+        width:46px !important;
+        height:100%;
+        color:$label_text;
+        background-color: $phone_label_bg;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-right: 1px solid $input_border;
+    }
+    input{
+        width:calc(100% - 46px) !important;
+        height: 100% !important; 
+        border:0 !important;
+        border-radius: 0 !important;
+        margin:0 !important;
+        padding-left: 10px;
+        font-size: 16px;
+    }
+}
+
+.label{
+    color:$label_text;
+    padding-bottom: 6px;
+}
+
+.label_input,
+.label_select,
+.label_phone_number{
+    display: flex;
+    flex-direction: column;
+}
+
+.label_phone_number{
+    .phone_number{
+        height: 46px;
+    }
+}
+
+.input_icon{
+    height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border:1px solid $input_border;
+    border-radius: 4px;
+    overflow: hidden;
+
+    input{
+        border:0;
+    }
+    label{
+        width:50px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color:$label_text;
+    }
+}
+
+.date_of_birth{
+    display: flex;
+    flex-direction: column;
+    div{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: 1fr;
+        grid-column-gap: 10px;
+    }
+}
+
+.gender_div{
+    display: flex;
+    div{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin-right: 20px;
+        label{
+            padding:0;
+            padding-left:6px;
+            color:$label_text;
+        }
+    }
+}
+
+.from_date,
+.to_date{
+    display: flex;
+    align-items: center;
+    border:1px solid $input_border;
+    height:46px;
+    border-radius: 4px;
+    padding-left: 15px;
+    margin-right: 15px;
+    // overflow: hidden;
+    label{
+        color:$label_text;
+        display: flex;
+        align-items: center;
+        margin-right: 10px;
+        img{
+            margin-right: 5px;
+        }
+    }
+    input{
+        width:120px !important;
+        height: 100%;
+        color:$input_text;
+        background-color: white;
+        border:0;
+        &:hover,
+        &:focus{
+            border:0 !important;
+        }
+    }
+}
+
+.change_password{
+    padding:20px 0;
+    div{
+        width:280px;
+        margin-bottom: 20px;
+    }
+}
+

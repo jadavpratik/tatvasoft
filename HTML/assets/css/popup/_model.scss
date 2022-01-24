@@ -1,0 +1,40 @@
+$model_close_btn:#9BA0A3;
+$model_shadow:gray;
+
+.model{
+    width:auto;
+    max-height: 550px;
+    background-color: white;
+    position: fixed;
+    top:50%;
+    left:50%;
+    transform: translate(-50%, -50%);
+    border-radius: 4px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    z-index:$model_z_index;
+    transition: all 0.5s;
+}
+
+.model_close_btn{
+    width:40px;
+    height:40px;
+    line-height: 40px;
+    text-align: center;
+    position: absolute;
+    right:0px;
+    top:0px;
+    border:0;
+    background-color: transparent;
+    font-size: 30px;
+    color:$model_close_btn;
+    &:hover{
+        color:black;
+    }
+}
+
+.popup_container{
+    width:auto;
+    height: auto;
+}
+

@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Popup</title>
+	<!-- FAVICON -->
+	<link rel="icon" href="../assets/img/favicon/favicon.png" sizes="16x16" type="image/png">	
+	<!-- CSS -->
+	<link rel="stylesheet" href="../assets/css/index.css">
+	<!-- FONT-AWESOME -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+	<!-- JQUERY -->
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- AOS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+</head>
+<body>
+
+	<!-- --------------------------------------------------- -->
+						<!-- NAVBAR -->
+	<!-- --------------------------------------------------- -->
+	<nav class="navbar">
+
+		<!-- LOGO -->
+		<div class="logo">
+			<a href=""><img src="../assets/img/global/logo.png" alt=""></a>
+		</div>
+
+		<!-- NAV_BTN_RESPONSIVE -->
+		<button class="sidenav_btn"><i class="fas fa-bars"></i></button>
+		
+		<!-- NAV_MENU -->
+		<div class="nav_menu">
+			<a class="navbar_focus_btn" href="">Book Now</a>
+			<a class="navbar_active_btn" href="">Prices & Services</a>
+			<a href="">Warranty</a>
+			<a href="">Blog</a>
+			<a href="">Contact</a>
+			<a class="navbar_focus_btn" href="">Login</a>
+			<a class="navbar_focus_btn" href="">Become a Helper</a>
+		</div><!-- END NAV_MENU -->
+	</nav><!-- END NAVBAR -->
+
+	<!-- --------------------------------------------------- -->
+						<!-- SIDE_NAVBAR -->
+	<!-- --------------------------------------------------- -->
+	<aside class="sidenav">
+		<!-- FOR_LOGGED_USER -->
+		<div class="sidenav_header">
+			<p>Warm Welcome</p>
+			<p class="sidenav_logged_username">Kavan Patel</p>
+		</div>
+		<hr>
+		<div class="sidenav_main">
+			<!-- GUEST_USER -->
+			<a href="">Book Now</a>
+			<a href="">Prices & Services</a>
+			<a href="">Gurantee</a>
+			<a href="">Blog</a>
+			<a href="">Contact</a>
+			<a href="">Register</a>
+			<a href="">Become a Helper!</a>
+
+			<!-- CUSTOMER -->
+			<!-- <a href="">Overview</a>
+			<a href="">Completed Service Orders</a>
+			<a href="">Calander view</a>
+			<a href="">My Favorites</a>
+			<a href="">Bills</a>
+			<a href="">My Setting</a>
+			<a href="">Logout</a> -->
+
+			<!-- SERVICE_PROVIDER -->
+			<!-- <a href="">Overview</a>
+			<a href="">New Inquiries</a>
+			<a href="">Accepted Requests</a>
+			<a href="">Calander view</a>
+			<a href="">Completed Service Orders</a>
+			<a href="">My Reviews</a>
+			<a href="">Block Customer</a>
+			<a href="">Bills</a>
+			<a href="">My Setting</a>
+			<a href="">Logout</a> -->
+
+			<!-- ADMIN -->
+			<!-- <a href="">My Setting</a>
+			<a href="">Logout</a> -->
+
+		</div>
+		<hr>
+		<!-- COMMAN_LINKS_AFTER_LOGIN_OF_USER -->
+		<!-- <div class="sidenav_comman_links">
+			BOOK NOW FOR CUSTOMER
+			<a href="">Book Now</a>
+			<a href="">Prices & Services</a>
+			<a href="">Gurantee</a>
+			<a href="">Blog</a>
+			<a href="">Contact</a>
+		</div>
+		<hr> -->
+		<div class="sidenav_footer">
+			<a href=""><i class="fab fa-facebook-f"></i></a>
+			<a href=""><i class="fab fa-instagram"></i></a>
+		</div>
+	</aside>
+
+    <!-- --------------------------------------------------- -->
+						<!-- FOR_BACKLIGHT_CONTAIN -->
+	<!-- --------------------------------------------------- -->
+	<div class="backlight_container"></div>
+
+	<div class="model_btn">
+        <button onclick="open_model('success')">SUCCESS</button>
+        <!-- <button onclick="open_model('fail')">FAIL</button> -->
+        <button onclick="open_model('login')">LOGIN</button>
+        <button onclick="open_model('forgot_password')">FORGOT PASSOWORD</button>
+        <button onclick="open_model('set_new_password')">SET NEW PASSOWORD</button>
+        <button onclick="open_model('accept_service_request')">Accept Service</button>
+        <button onclick="open_model('edit_service_request')">Edit Service</button>
+        <button onclick="open_model('cancel_service_request')">Cancel Service</button>
+        <button onclick="open_model('reschedule_service_request')">Reschedule Service Request</button>
+        <button onclick="open_model('edit_address')">Edit Address</button>
+        <button onclick="open_model('service_details')">Service Details</button>
+        <button onclick="open_model('rating')">Rating</button>
+    </div>
+
+    <h1 style="text-align: center;font-size: 50px;color:gray;padding:50px 0;">popup_model not Intigrated with actual page, yet</h1>
+
+	<!-- SET NEW PASSWORD -->
+	<div class="model d_none">
+        <!-- MODEL_CLOSE -->
+        <button class="model_close_btn">&times;</button>
+		<!-- SET_NEW_PASSOWORD -->
+		<div class="popup_main d_none" id="set_new_password_popup">
+			<p class="popup_title">SET NEW PASSWORD</p>
+			<form class="" action="">
+				<div class="label_input">
+					<label class="label" for="">New Password</label>
+					<input class="input" type="password">
+				</div>
+				<div class="label_input">
+					<label class="label" for="">Confirm Password</label>
+					<input class="input" type="password">					
+				</div>
+				<button class="popup_btn">Save</button>
+			</form>
+		</div>
+	</div>
+
+
+	<!-- EDIT_SERVICE_DETAILS -->
+	<div class="model d_none">
+        <!-- MODEL_CLOSE -->
+        <button class="model_close_btn">&times;</button>
+		<!-- SERVICE_DETAILS -->
+		<div  class="popup_main d_none" id="edit_service_request_popup">
+			<p class="popup_title">Edit Service Request</p>
+			<!-- DATE AND TIME -->
+			<div>
+				<div class="label_input">
+					<label class="label" for="">Date</label>
+					<input class="input" type="date">
+				</div>
+				<div class="label_input">
+					<label class="label" for="">Time</label>
+					<input class="input" type="time">
+				</div>
+			</div>
+			<!-- SERVICE ADDRESS -->
+			<div>
+				<p>Service Address</p>
+				<div class="label_input">
+					<label class="label" for="">Street Name</label>
+					<input class="input" type="text">
+				</div>
+				<div class="label_input">
+					<label class="label" for="">House Number</label>
+					<input class="input" type="text">
+				</div>
+				<div class="label_input">
+					<label class="label" for="">Postal Code</label>
+					<input class="input" type="text">
+				</div>
+				<div class="label_select">
+					<label class="label" for="">City</label>
+					<select class="select" name="" id="">
+						<option value="">Select</option>
+					</select>
+				</div>
+			</div>
+			<!-- INVOICE ADDRESS -->
+			<div>
+				<p>Invoice Address</p>
+				<div class="label_input">
+					<label class="label" for="">Street Name</label>
+					<input class="input" type="text">
+				</div>
+				<div class="label_input">
+					<label class="label" for="">House Number</label>
+					<input class="input" type="text">
+				</div>
+				<div class="label_input">
+					<label class="label" for="">Postal Code</label>
+					<input class="input" type="text">
+				</div>
+				<div class="label_select">
+					<label class="label" for="">City</label>
+					<select class="select" name="" id="">
+						<option value="">Select</option>
+					</select>
+				</div>
+			</div>
+			<!-- TEXTAREA -->
+			<div>
+				<p>What do you want to reschedule service request?</p>
+				<textarea class="textarea" placeholder="What do you want to reschedule service request?" name=""></textarea>
+			</div>
+			<!-- TEXTAREA -->
+			<div>
+				<p>Call center EMP Notes</p>
+				<textarea class="textarea" placeholder="Enter Notes" name=""></textarea>
+			</div>
+			<button class="update_btn">Update</button>
+		</div>
+	</div>
+
+
+	<!-- ACCEPT_SERVICE_DETAILS -->
+	<div class="model d_none">
+        <!-- MODEL_CLOSE -->
+        <button class="model_close_btn">&times;</button>
+		<!-- SERVICE_DETAILS -->
+		<div  class="popup_main d_none" id="accept_service_request_popup">
+			<p class="popup_title">Service Details</p>
+			<div class=""><!-- FIRST DIV -->
+				<div>
+					<p>05/10/2021 | 08:00 - 11:30</p>
+					<p>Duration : <span>3.5Hours</span></p>
+				</div>
+				<div>
+					<p>Service Id : <span>8485</span></p>
+					<p>Extras : <span>Inside Cabinats</span></p>
+					<p>Total Amount : <span class="payment_text">87,50$</span></p>
+				</div>
+				<div>
+					<p>Customer Name : <span>Gaurang Patel</span></p>
+					<p>Service Address : <span>Koenigstrasse 112, 99897 Tambach-Dietharz </span></p>			
+					<p>Distance : <span>296km</span></p>
+				</div>
+				<div>
+					<p>Conmments : <span>I don't have pets</span></p>
+				</div>
+				<div class="table_btn_container">
+					<button class="reschedule_btn"><i class="fas fa-check"></i>Accept</button>
+				</div>		
+			</div>
+			<div><!-- SECOND DIV FOR MAP -->
+				<img src="../assets/img/static/contact/section_2/map.png" alt="">
+			</div>
+		</div>
+	</div>
+
+	<div class="model d_none">
+        <!-- MODEL_CLOSE -->
+        <button class="model_close_btn">&times;</button>
+		<!-- EDIT_ADDRESS -->
+		<div class="popup_main d_none" id="edit_address_popup">
+			<p class="popup_title">Edit Address</p>
+			<div class="label_input">
+				<label class="label" for="">Steet Name</label>
+				<input class="input" type="text">
+			</div>
+			<div class="label_input">
+				<label class="label" for="">House Name</label>
+				<input class="input" type="text">
+			</div>
+			<div class="label_input">
+				<label class="label" for="">Postal Code</label>
+				<input class="input" type="text">
+			</div>
+			<div class="label_input">
+				<label class="label" for="">City</label>
+				<input class="input" type="text">
+			</div>
+			<div class="label_input">
+				<label class="label" for="">Phone Number</label>
+				<div class="phone_number">
+					<label for="">+49</label>
+					<input type="text">
+				</div>
+			</div>
+			<button class="popup_btn">Edit</button>
+		</div>
+	</div>
+
+	<div class="model d_none">
+        <!-- MODEL_CLOSE -->
+        <button class="model_close_btn">&times;</button>
+		<!-- RATING_POPUP -->
+		<div class="popup_main d_none" id="rating_popup">
+			<div class="service_provider">
+				<img class="hat_style" src="../assets/img/table/hat.png" alt="">
+				<div>
+					<p>Lyum Watson</p>    
+					<div>
+						<i class="fas fa-star rated_star"></i>
+						<i class="fas fa-star rated_star"></i>
+						<i class="fas fa-star rated_star"></i>
+						<i class="fas fa-star rated_star"></i>
+						<i class="fas fa-star unrated_star"></i>
+						<span>4</span>
+					</div>
+				</div>
+			</div>
+			<!-- NEED TO TEXT ALIGN LEFT -->
+			<p class="popup_title" style="text-align: left;">Rate your Service Provider</p>
+			<div class="rate_type">
+				<div>
+					<p>On time arrival</p>    
+					<i class="fas fa-star rated_star"></i>
+					<i class="fas fa-star rated_star"></i>
+					<i class="fas fa-star rated_star"></i>
+					<i class="fas fa-star rated_star"></i>
+					<i class="fas fa-star unrated_star"></i>
+				</div>
+				<div>
+					<p>Friendly</p>    
+					<i class="fas fa-star rated_star"></i>
+					<i class="fas fa-star rated_star"></i>
+					<i class="fas fa-star rated_star"></i>
+					<i class="fas fa-star rated_star"></i>
+					<i class="fas fa-star unrated_star"></i>
+				</div>
+				<div>
+					<p>Quality of Service</p>
+					<i class="fas fa-star rated_star"></i>
+					<i class="fas fa-star rated_star"></i>
+					<i class="fas fa-star rated_star"></i>
+					<i class="fas fa-star rated_star"></i>
+					<i class="fas fa-star unrated_star"></i>
+				</div>
+			</div><!-- RATE TYPE -->
+			<div>
+				<label class="label" for="">Feedback on service provider</label>
+				<textarea class="textarea" name=""></textarea>
+				<button class="popup_btn">Submit</button>
+			</div>
+		</div><!-- RATING POPUP -->
+	</div>
+
+	<div class="model d_none">
+        <!-- MODEL_CLOSE -->
+        <button class="model_close_btn">&times;</button>
+		<!-- CANCEL_SERVICE_REQUEST -->
+		<div class="popup_main d_none" id="cancel_service_request_popup">
+			<p class="popup_title">Cancel Service Request</p>
+			<div>
+				<label class="label" for="">Why you want to cancel the service request?</label>
+				<textarea class="textarea" name=""></textarea>
+				<button class="popup_btn">Cancel Now</button>
+			</div>
+		</div>
+	</div>
+
+	<div class="model d_none">
+        <!-- MODEL_CLOSE -->
+        <button class="model_close_btn">&times;</button>
+		<!-- RESCHEDULE_SERVICE_REQUEST -->
+		<div class="popup_main d_none" id="reschedule_service_request_popup">
+			<p class="popup_title">Reschedule Service Request</p>
+			<div class="label_input">
+				<label class="label" for="">Select New Date & Time</label>
+				<div>
+					<input class="input" type="date">
+					<input class="input" type="time">
+				</div>
+				<button class="popup_btn">Update</button>
+			</div>
+		</div>
+	</div>
+		
+	<div class="model d_none">
+        <!-- MODEL_CLOSE -->
+        <button class="model_close_btn">&times;</button>
+		<!-- SERVICE_DETAILS -->
+		<div  class="popup_main d_none" id="service_details_popup">
+			<p class="popup_title">Service Details</p>
+			<div>
+				<p>05/10/2021 | 08:00 - 11:30</p>
+				<p>Duration : <span>3.5Hours</span></p>
+			</div>
+			<div>
+				<p>Service Id : <span>8485</span></p>
+				<p>Extras : <span>Inside Cabinats</span></p>
+				<p>Net Amout : <span class="price_text">87,50$</span></p>
+			</div>
+			<div>
+				<p>Service Address : <span>Koenigstrasse 112, 99897 Tambach-Dietharz </span></p>			
+				<p>Billing Address : <span>Same as Cleaning Address</span></p>
+				<p>Phone : <span>+49 9955648797</span></p>
+				<p>Email : <span>patel2128@gmail.com</span></p>
+			</div>
+			<div>
+				<p>Conmments</p>
+			</div>
+			<div class="table_btn_container">
+				<button class="reschedule_btn"><i class="fas fa-redo-alt"></i> Reschdule</button>
+				<button class="cancel_btn"><i class="fas fa-times"></i> Cancel</button>
+			</div>
+		</div>
+	</div>
+
+
+
+	<div class="model d_none">
+        <!-- MODEL_CLOSE -->
+        <button class="model_close_btn">&times;</button>
+		<!-- SUCCESS -->
+		<div class="popup_main d_none" id="success_popup">
+			<i class="fas fa-check-circle"></i>
+			<p>Booking has been successfully submitted</p>
+			<p>Service Request Id : <span>8488</span></p>
+			<button class="popup_btn" onclick="close_model()">OK</button>
+		</div>
+	</div>
+
+	<div class="model d_none">
+        <!-- MODEL_CLOSE -->
+        <button class="model_close_btn">&times;</button>
+		<!-- LOGIN -->
+		<div class="popup_main d_none" id="login_popup">
+			<p class="popup_title">Login</p>
+			<form class="login_popup_form" action="">
+				<div class="input_icon">
+					<input class="input" type="text" placeholder="Email">
+					<label for=""><i class="fas fa-user"></i></label>
+				</div>
+				<div class="input_icon">
+					<input class="input" type="password" placeholder="Password">
+					<label for=""><i class="fas fa-lock"></i></label>
+				</div>
+				<div>
+					<input type="checkbox">
+					<label class="label" for="">Remember Me</label>
+				</div>
+				<div>
+					<button class="popup_btn">Login</button>
+				</div>
+			</form>
+			<div class="login_popup_footer">
+				<a href="#" onclick="open_model('forgot_password')">Forgot Password?</a>
+				<p>Don't Have an Account? <a href="/customer/Registration.html">Create an Account</a></p>
+			</div><!-- END_LOGIN_POPUP_FOOTER -->
+		</div><!-- END_LOGIN_POPUP -->
+	</div>
+
+	<div class="model d_none">
+        <!-- MODEL_CLOSE -->
+        <button class="model_close_btn">&times;</button>
+		<!-- FORGOT_PASSOWORD -->
+		<div class="popup_main d_none" id="forgot_password_popup">
+			<p class="popup_title">Forgot Password</p>
+			<form class="forgot_password_popup_form" action="">
+				<input class="input" type="text" placeholder="Email">
+				<button class="popup_btn">Send</button>
+				<a href="#" onclick="open_model('login')">Login Now</a>
+			</form>
+		</div>
+	</div>
+
+
+	<!-- --------------------------------------------------- -->
+						<!-- FOOTER -->
+	<!-- --------------------------------------------------- -->
+	<footer>
+		<!-- FOOTER_TRANSPARENT_DIV -->
+		<div class="footer_transparent_div">
+			<!-- GET_OUR_NEWSLETTERS -->
+			<form class="get_our_newsletter" action="">
+				<p>GET OUR NEWSLETTER</p>
+				<div>
+					<input type="text" placeholder="YOUR EMAIL">
+					<button>Submit</button>
+				</div>
+			</form>
+		</div><!-- END_FOOTER_TRANSPARENT_DIV -->
+
+		<!-- FOOTER_MAIN_DIV -->
+		<div class="footer_main_div">
+			<!-- LOGO + LINKS -->
+			<div>
+				<div class="footer_logo">
+					<a href=""><img src="../assets/img/global/logo.png" alt=""></a>
+				</div>
+				<div class="footer_links">
+					<a href="">HOME</a>
+					<a href="">ABOUT</a>
+					<a href="">TESTIMONIALS</a>
+					<a href="">FAQS</a>
+					<a href="">INSURANCE POLICY</a>
+					<a href="">IMPRESSUM</a>
+				</div>
+				<div class="social_media_links">
+					<a href=""><img src="../assets/img/global/facebook.png" alt=""></a>
+					<a href=""><img src="../assets/img/global/instagram.png" alt=""></a>
+				</div>
+			</div>
+			<!-- COPYRIGHT_SECTION -->
+			<div>
+				<p class="copyright_section">©2018 Helperland. All rights reserved. Terms and Conditions | <a href="">Privacy Policy</a></p>
+			</div>
+		</div><!-- END_FOOTER_MAIN_DIV -->
+
+	</footer>
+
+	<!-- --------------------------------------------------- -->
+						<!-- FIXED BUTTON -->
+	<!-- --------------------------------------------------- -->
+
+	<!-- GO_TO_TOP_BTN -->
+	<button class="go_top_btn"><img src="../assets/img/buttons/up_btn.png" alt=""></button>
+
+	<!-- CHAT -->
+	<button class="chat"><img src="../assets/img/global/time.png" alt=""></button>
+
+	<!-- PRIVACY_POLICY -->
+	<div class="cookie">
+		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut feugiat nunc libero, ac malesuada ligula aliquam ac. <a href="">Privacy Policy</a></p>
+		<button id="cookie_submit_btn">OK!</button>
+	</div>
+
+	<!-- CUSTOM_JAVASCRIPT -->
+	<script src="../assets/js/homenav.js"></script>
+	<script src="../assets/js/sidenav.js"></script>
+	<script src="../assets/js/navtabs.js"></script>
+	<script src="../assets/js/footer.js"></script>
+	<script src="../assets/js/accordion.js"></script>
+	<script src="../assets/js/dropdown.js"></script>
+	<script src="../assets/js/model.js"></script>
+
+</body>
+</html>

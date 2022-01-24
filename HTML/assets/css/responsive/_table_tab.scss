@@ -1,0 +1,30 @@
+@media screen and (max-width:1200px) {
+    .table_tab{
+        width:100%;
+        flex-direction: column;
+        padding-left: 20px;
+        padding-right:20px;
+    }
+    .table_tab_left{
+        width:100%;
+        overflow-x: auto;
+    }
+    .table_tab_right{
+        width:100%;
+        margin-top: 30px;
+        overflow-x: auto;
+    }
+    .table_tab_list{
+        flex-direction: row;
+        overflow-x: auto;
+        a{
+            white-space: nowrap;
+            padding-right: 20px;
+            padding-right: 20px;
+            border-right:0.5px solid whitesmoke;
+        }
+    }
+    .table_tab_content{
+        min-width: 1000px;
+    }
+}

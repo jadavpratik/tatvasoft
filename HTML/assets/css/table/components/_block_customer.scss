@@ -1,0 +1,29 @@
+$table_text:#646464;
+
+.block_customer{
+    display: flex;
+}
+
+
+.block_customer_card{
+    margin:0 20px 20px 0;
+    padding:40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border:0.5px solid lightgray;
+    border-radius: 4px;
+    div{
+        width:50px;
+        height:50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        border:0.5px solid lightgray;
+    }
+    p{
+        color:$table_text;
+        padding:20px 0;
+    }
+}

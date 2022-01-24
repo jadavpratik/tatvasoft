@@ -1,0 +1,28 @@
+$active_profile_tab:#1D7A8C;
+$profile_text:#646464;
+$profile_input_border:#C8C8C8;
+
+.profile{
+    padding:0 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.profile_tabs{
+    display: flex;
+    button{
+        width:250px;
+        height: 55px;//ACTIVE TABLE_TAB_BTN HEIGHT IS ALSO 55PX...
+        border:0;
+        color:$profile_text;
+        border-bottom:3px solid $profile_input_border;
+        background-color: white;
+        font-size: 16px;
+        font-weight: 500;
+    }
+}
+
+.active_profile_tab{
+    color:$active_profile_tab !important;
+    border-bottom: 3px solid $active_profile_tab !important;
+}

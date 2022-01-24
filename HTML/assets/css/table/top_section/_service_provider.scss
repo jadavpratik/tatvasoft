@@ -1,0 +1,49 @@
+$table_text:#646464;
+$table_border:#E1E1E1;
+
+.sp_new_service_request{
+    display: flex;
+    p,label{
+        color:$table_text;
+        padding-right: 5px;
+    }
+    div{
+        margin-right: 15px;
+        display: flex;
+        align-items: center;
+        input,select{
+            color:$table_text;
+            margin:0 5px;
+        }
+        select{
+            width:100px;
+            height:40px;
+            padding:5px;
+            border:0.5px solid $table_border;
+            border-radius: 4px;
+        }
+    }
+}
+
+.sp_service_history{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    div{
+        display: flex;
+        align-items: center;
+        p{
+            color:$table_text;
+            margin-right: 10px;
+        }
+        select{
+            width:100px;
+            height: 40px;
+            padding:6px;
+            color:$table_text;
+            border:1px solid $table_border;
+            border-radius: 4px;
+        }
+    }
+}
+

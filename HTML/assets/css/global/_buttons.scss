@@ -1,0 +1,174 @@
+$form_btn:#1D7A8C;
+$book_service_btn:#1D7A8C;
+$rate_sp:#6DA9B5;
+$reschedule_btn:#1D7A8C;
+$cancel_btn:#ff6b6b;
+$export_button:#1D7A8C;
+$remove_btn:#1D7A8C;
+$block_btn:#ff6b6b;
+$accept_btn:#1D7A8C;
+$input_border:#DEDDDD;
+$search_btn:#1FB6FF;
+$add_new_user_btn:#1FB6FF;
+
+@mixin btn{
+    width:fit-content;
+    height: 46px;
+    border-radius: 46px;
+    color:white;
+    background-color: $form_btn;
+    font-size: 20px;
+    font-weight: 500;
+    border:0;
+    transition: all 0.2s;
+}
+
+@mixin outline_btn{
+    width:fit-content;
+    height: 46px;
+    border-radius: 46px;
+    font-size: 20px;
+    font-weight: 500;
+    border:1px solid $form_btn;
+    color:$form_btn;
+    background-color: white;
+    transition: all 0.2s;
+    i{
+        margin-right: 6px;
+    }
+    &:hover{
+        color:white;
+        background-color: $form_btn;    
+    }
+}
+
+@mixin table_btn{
+    margin:0 3px;
+    width:fit-content;
+    height:34px;
+    padding:0 14px;
+    font-size: 14px;
+    font-weight: 400;
+    border:0;
+    border-radius: 34px;
+    color:white;
+    i{
+        padding-right: 5px;
+    }
+}
+
+// ---------------------FORM_BTN [CONTACT, REGISTRATION]------------------------
+.form_btn{
+    @include btn;
+}
+
+.form_outline_btn{
+    @include outline_btn;
+}
+
+// ---------------------BOOK_SERVICE_BTN------------------------
+
+.book_service_btn{
+    @include btn;
+    padding:0 18px;
+    font-size: 18px;
+
+}
+
+.book_service_outline_btn{
+    @include outline_btn;
+    padding:0 18px;
+    font-size: 18px;
+}
+
+// ---------------------BOOK_SERVICE_BTN------------------------
+.profile_save_btn{
+    @include btn;
+    min-width:100px;
+    padding:0 14px;
+    height: 40px;
+    font-size: 16px;
+}
+
+// ---------------------TABLE_BTNS------------------------
+.export_btn{
+    @include table_btn;
+    background-color: $export_button;
+}
+
+.add_new_service_request_btn{
+    @include table_btn;
+    background-color: $export_button;
+}
+
+.reschedule_btn{
+    @include table_btn;
+    background-color: $reschedule_btn;
+}
+
+.cancel_btn{
+    @include table_btn;
+    background-color: $cancel_btn;
+}
+
+.rate_sp_btn{
+    @include table_btn;
+    background-color: $rate_sp;
+}
+
+.remove_btn{
+    @include table_btn;
+    background-color: $remove_btn;
+}
+
+.block_btn{
+    @include table_btn;
+    background-color: $block_btn;
+}
+
+.accept_btn{
+    @include table_btn;
+    background-color: $accept_btn;
+}
+
+.table_btn_container{
+    display: flex;
+}
+
+// ----------------------------ADMIN TAB TOP BUTTONS-------------------
+.search_btn,
+.clear_btn{
+    width:84px !important;
+    height:46px;
+    border:0;
+    border-radius: 4px;
+    background-color: white;
+    color:#646464;
+    font-size: 16px;
+}
+
+.search_btn{
+    background-color: $search_btn;
+    color:white;
+}
+
+.clear_btn{
+    border:1px solid $input_border;
+}
+
+.add_new_user_btn{
+    width:132px;
+    height:36px;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    border:0;
+    border-radius: 4px;
+    background-color: $add_new_user_btn;
+    color:white;
+    font-size: 14px;
+    img, i{
+        object-fit: contain;
+        margin-right: 7px;
+    }
+}
