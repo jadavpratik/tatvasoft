@@ -1,0 +1,30 @@
+.login_popup_form{
+    padding-top:10px;
+    div{
+        margin-bottom: 20px;
+        &:nth-child(3){//REMEMBER ME
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            label{
+                padding:0 10px;
+            }
+            input[type="checkbox"]{
+                width:15px;
+                height: 15px;
+                margin-bottom: 0;
+            }
+        }
+    }
+}
+
+.login_popup_footer{
+    display: flex;
+    flex-direction: column;
+    p,a{
+        text-align: center;
+        font-size: 14px;
+        margin:5px 0;
+    }
+}
+

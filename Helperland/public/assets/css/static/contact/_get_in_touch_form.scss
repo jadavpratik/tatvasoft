@@ -1,0 +1,40 @@
+$get_in_touch_title:#4F4F4F;
+
+.get_in_touch{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.get_in_touch_title{
+    color:$get_in_touch_title;
+    font-size: 28px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.get_in_touch{
+    form{
+        padding-top: 22px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        & > div{
+            width:100%;
+            display: grid;
+            grid-template-columns: 300px 300px;
+            grid-column-gap:14px;
+            padding-bottom: 15px;
+            overflow: hidden;
+            select, textarea{
+                width:614px;
+            }
+            textarea{
+                height:146px;
+            }
+        }
+        button{
+            width:162px;
+        }
+    }
+}

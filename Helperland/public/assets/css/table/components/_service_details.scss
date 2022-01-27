@@ -1,0 +1,12 @@
+.service_details{
+    div{
+        &:first-child{
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+            img{
+                margin-right: 6px;
+            }
+        }
+    }
+}

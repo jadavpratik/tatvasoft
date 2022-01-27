@@ -1,0 +1,9 @@
+<?php
+
+    // LOAD REQUIRED FILES...
+    require_once "../core/autoload.php";
+
+    // LOAD ROUTES...
+    require_once "../routes/static.php";
+    
+    // IF FILE EXIST THEN REQUIRE IT...
