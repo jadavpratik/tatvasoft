@@ -1,5 +1,9 @@
 // ---------------OPEN_MODEL------------------
 function open_model(popup_name){
+    // HIDE ALL MODELS...
+    $('.model').addClass('d_none');
+    $('.popup_main').addClass('d_none');
+
     // SELECT THE POPUP CLASS
     const popup_id = `${popup_name}_popup`;
     // FOR SHOWING MODEL AND POPUP
@@ -19,16 +23,9 @@ function close_model(){
 }
 
 $('.model_close_btn').click(()=>{
-    $('.backlight_container').removeClass('backlight');
-    $('.model').addClass('d_none');
-    $('.popup_main').addClass('d_none');
-    $('.popup_container').html(``);
-    $('body').css({'overflow-y':'auto'});
+    close_model();
 })
 
 $('.backlight_container').click(()=>{
-    $('.backlight_container').removeClass('backlight');
-    $('.model').addClass('d_none');
-    $('.popup_main').addClass('d_none');
-    $('body').css({'overflow-y':'auto'});
+    close_model();
 });

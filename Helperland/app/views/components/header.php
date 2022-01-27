@@ -52,7 +52,7 @@
 			<a href="">Our Gurantee</a>
 			<a href="">Blog</a>
 			<a href="<?= url('/contact'); ?>">Contact Us</a>
-			<a class="navbar_focus_btn transparent" href="#">Login</a>
+			<a class="navbar_focus_btn transparent" href="#" onclick="open_model('login')">Login</a>
 			<a class="navbar_focus_btn transparent" href="<?= url('/service_provider/become_a_pro'); ?>">Become a Helper</a>
 		</div><!-- END NAV_MENU -->
 	</nav><!-- END NAVBAR -->
@@ -120,4 +120,9 @@
 		</div>
 	</aside>
 
+	<!-- --------------------------------------------------- -->
+						<!-- POPUP_MODEL_COMPONENTS -->
+	<!-- --------------------------------------------------- -->
+	<?= component('login'); ?>
+	<?= component('forgot_password'); ?>
 

@@ -34,10 +34,15 @@ class Route{
 		if(self::$params_value[1]!==''){
 			self::$browser_url = '/'.self::$params_value[1];			
 		}
-
 		if(self::$route_url==self::$browser_url){
 			set_page_url(self::$route_url);	
 			self::$req = new Request([self::$params_key, self::$params_value]);
+			self::$res = new Response();
+			return true;
+		}
+		else if(self::$route_url=='/*'){// PAGE_NOT_FOUND...
+			set_page_url('/*');	
+			self::$req = new Request([]);
 			self::$res = new Response();
 			return true;
 		}
