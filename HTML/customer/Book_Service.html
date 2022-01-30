@@ -404,9 +404,19 @@
 							</div>
 							<div class="label_input">
 								<div>
-									<input type="text" placeholder="Card Number">
+									<input type="text" placeholder="XXXX-XXXX-XXXX-XXXX" id="card_no" maxlength="19">
 									<input type="text" placeholder="MM/YY">	
 									<input type="text" placeholder="CVV/CVC">
+									<script>
+										// FOR SPACE BETWEEN CARD NUMBER...
+										$('#card_no').on('keyup', function() {
+											var foo = $(this).val().split(" ").join(""); 
+											if (foo.length > 0) {
+												foo = foo.match(new RegExp('.{1,4}', 'g')).join(" ");
+											}
+											$(this).val(foo);
+										});
+									</script>
 								</div>
 								<div>
 									<p>Accepeted Card</p>
