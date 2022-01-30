@@ -20,7 +20,7 @@ $get_in_touch_title:#4F4F4F;
         flex-direction: column;
         align-items: center;
         & > div{
-            width:100%;
+            width:614px;
             display: grid;
             grid-template-columns: 300px 300px;
             grid-column-gap:14px;
@@ -31,6 +31,36 @@ $get_in_touch_title:#4F4F4F;
             }
             textarea{
                 height:146px;
+            }
+            &:nth-child(5){
+                // ATTACHMENT...
+                display: flex;
+                flex-direction: column;
+                & > div{
+                    width:100px;
+                    padding:8px;
+                    text-align: center;
+                    border:0.5px solid lightgray;
+                    border-radius: 40px;
+                    color:#646464;
+                    input{
+                        display: none;
+                    }
+                }
+            }
+            &:nth-child(6){
+                // TICK CHECKBOX...
+                display: flex;
+                align-items: flex-start;
+                p{
+                    margin-top: -3px;
+                    color: #646464;;
+                    font-size: 14px;
+                    line-height: 20px;
+                    a{
+                        color:$form_btn;
+                    }
+                }
             }
         }
         button{

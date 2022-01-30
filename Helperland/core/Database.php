@@ -68,7 +68,7 @@ class Database{
             $this->query = "SELECT * FROM $this->table";
             $result = $this->conn->query($this->query);
             $data = $result->fetchAll(PDO::FETCH_ASSOC);
-            return $data;
+            return (object) json_decode(json_encode($data));
         }
         catch(Exception $e){
             echo $e->getMessage();

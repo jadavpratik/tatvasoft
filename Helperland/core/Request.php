@@ -5,12 +5,13 @@ namespace core;
 class Request{
 
 	public $params = [];
-	private $body = [];
+	public $body = [];
+	public $files = [];
 
 	public function __construct($arr){
+
 		if(!empty($arr)){
 			[$key, $value] = $arr;
-
 			if(count($key)==count($value)){
 				for($i=1; $i<count($key); $i++){
 					if(str_contains($key[$i],':')){
@@ -22,5 +23,17 @@ class Request{
 				$this->params = (object) $this->params;
 			}	
 		}
+
+		if(!empty($_POST)){
+			$this->body = (object) $_POST;
+		}
+
+		if(!empty($_FILES)){
+			$this->files = (object) $_FILES;
+		}
+
 	}
+
+
+
 }

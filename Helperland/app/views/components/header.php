@@ -20,6 +20,8 @@
 	<!-- --------------------------------------------------- -->
 	<div class="backlight_container"></div>
 
+
+
 	<!-- --------------------------------------------------- -->
 						<!-- NAVBAR -->
 	<!-- --------------------------------------------------- -->
@@ -49,24 +51,30 @@
 		<div class="nav_menu">
 			<a class="navbar_focus_btn transparent" href="<?= url('/customer/book_now'); ?>">Book a Cleaner</a>
 			<a href="<?= url('/prices'); ?>">Prices</a>
-			<a href="">Our Gurantee</a>
-			<a href="">Blog</a>
+			<a href="#">Our Gurantee</a>
+			<a href="#">Blog</a>
 			<a href="<?= url('/contact'); ?>">Contact Us</a>
 			<a class="navbar_focus_btn transparent" href="#" onclick="open_model('login')">Login</a>
 			<a class="navbar_focus_btn transparent" href="<?= url('/service_provider/become_a_pro'); ?>">Become a Helper</a>
 		</div><!-- END NAV_MENU -->
 	</nav><!-- END NAVBAR -->
 
+
+
 	<!-- --------------------------------------------------- -->
 						<!-- SIDE_NAVBAR -->
 	<!-- --------------------------------------------------- -->
 	<aside class="sidenav">
-		<!-- FOR_LOGGED_USER -->
-		<div class="sidenav_header">
-			<p>Warm Welcome</p>
-			<p class="sidenav_logged_username">Kavan Patel</p>
-		</div>
-		<hr>
+
+		<?php if(session_get('logged')==true){ ?>
+			<!-- FOR_LOGGED_USER -->
+			<div class="sidenav_header">
+				<p>Warm Welcome</p>
+				<p class="sidenav_logged_username">Kavan Patel</p>
+			</div>
+			<hr>
+		<?php } ?>
+
 		<div class="sidenav_main">
 			<!-- GUEST_USER -->
 			<a href="<?= url('/book_now'); ?>">Book Now</a>
@@ -77,51 +85,61 @@
 			<a href="<?= url('/customer/registration'); ?>">Register</a>
 			<a href="<?= url('/service_provider/become_a_pro'); ?>">Become a Helper!</a>
 
-			<!-- CUSTOMER -->
-			<!-- <a href="">Overview</a>
-			<a href="">Completed Service Orders</a>
-			<a href="">Calander view</a>
-			<a href="">My Favorites</a>
-			<a href="">Bills</a>
-			<a href="">My Setting</a>
-			<a href="">Logout</a> -->
 
-			<!-- SERVICE_PROVIDER -->
-			<!-- <a href="">Overview</a>
-			<a href="">New Inquiries</a>
-			<a href="">Accepted Requests</a>
-			<a href="">Calander view</a>
-			<a href="">Completed Service Orders</a>
-			<a href="">My Reviews</a>
-			<a href="">Block Customer</a>
-			<a href="">Bills</a>
-			<a href="">My Setting</a>
-			<a href="">Logout</a> -->
+			<?php if(session_get('logged')==true){ ?>
 
-			<!-- ADMIN -->
-			<!-- <a href="">My Setting</a>
-			<a href="">Logout</a> -->
+				<!-- CUSTOMER -->
+				<?php if(session_get('role')=='customer'){ ?>
+					<a href="">Overview</a>
+					<a href="">Completed Service Orders</a>
+					<a href="">Calander view</a>
+					<a href="">My Favorites</a>
+					<a href="">Bills</a>
+				<?php } ?>
+
+				<!-- SERVICE_PROVIDER -->
+				<?php if(session_get('role')=='service_provider'){ ?>
+					<a href="">Overview</a>
+					<a href="">New Inquiries</a>
+					<a href="">Accepted Requests</a>
+					<a href="">Calander view</a>
+					<a href="">Completed Service Orders</a>
+					<a href="">My Reviews</a>
+					<a href="">Block Customer</a>
+					<a href="">Bills</a>
+				<?php } ?>
+
+				<!-- COMMAN_LINKS FOR LOGGED_USER -->
+				<a href="">My Setting</a>
+				<a href="">Logout</a>
+
+			<?php } ?>
 
 		</div>
 		<hr>
-		<!-- COMMAN_LINKS_AFTER_LOGIN_OF_USER -->
-		<!-- <div class="sidenav_comman_links">
-			BOOK NOW FOR CUSTOMER
-			<a href="">Book Now</a>
-			<a href="">Prices & Services</a>
-			<a href="">Gurantee</a>
-			<a href="">Blog</a>
-			<a href="">Contact</a>
-		</div>
-		<hr> -->
+		<?php if(session_get('logged')==true){ ?>
+			<!-- COMMAN_LINKS FOR LOGGED_USER -->
+			<div class="sidenav_comman_links">
+				BOOK NOW FOR CUSTOMER
+				<a href="">Book Now</a>
+				<a href="">Prices & Services</a>
+				<a href="">Gurantee</a>
+				<a href="">Blog</a>
+				<a href="">Contact</a>
+			</div>
+			<hr>
+		<?php } ?>
+
 		<div class="sidenav_footer">
-			<a href=""><i class="fab fa-facebook-f"></i></a>
-			<a href=""><i class="fab fa-instagram"></i></a>
+			<a href="#"><i class="fab fa-facebook-f"></i></a>
+			<a href="#"><i class="fab fa-instagram"></i></a>
 		</div>
+
 	</aside>
 
+
 	<!-- --------------------------------------------------- -->
-						<!-- POPUP_MODEL_COMPONENTS -->
+				<!-- POPUP_MODEL -->
 	<!-- --------------------------------------------------- -->
 	<?= component('login'); ?>
 	<?= component('forgot_password'); ?>
