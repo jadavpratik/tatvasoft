@@ -4192,10 +4192,15 @@ footer {
   padding-left: 55px;
 }
 
-.home_s1_intro_card p {
+.home_s1_intro_card p:first-child {
   color: white;
   padding: 6px 0;
   font-size: 40px;
+}
+
+.home_s1_intro_card p:nth-child(2) {
+  color: white;
+  padding-bottom: 20px;
 }
 
 .home_s1_intro_card ul {
@@ -5409,9 +5414,6 @@ footer {
   .home_s1_intro_card {
     padding-left: 0;
   }
-  .home_s1_intro_card p, .home_s1_intro_card ul li {
-    text-align: center;
-  }
   .home_s1_bg {
     -o-object-fit: cover;
        object-fit: cover;
@@ -5586,6 +5588,22 @@ footer {
   .get_in_touch form div input, .get_in_touch form div select, .get_in_touch form div textarea {
     width: 100%;
     margin-bottom: 15px;
+  }
+  .get_in_touch form div:nth-child(6) {
+    margin: 15px 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+  }
+  .get_in_touch form div:nth-child(6) input {
+    width: auto;
+  }
+  .get_in_touch form div:nth-child(6) p {
+    margin-top: -3px;
   }
   .get_in_touch form .phone_number {
     height: 46px;

@@ -16,11 +16,9 @@ Route::get('/faqs', [new FAQs(), 'view']);
 Route::get('/prices', [new Prices(), 'view']);
 Route::get('/contact', [new Contact(), 'view']);
 Route::get('/about', [new About(), 'view']);
+
 // ---------------POST_METHOD-------------------
-// Route::post('/test', [new Test(), 'upload']);
-// Route::middleware('login', function(){
-Route::get('/test', [new Test(), 'view'])->middleware('login');
-// });
+Route::post('/contact', [new Contact(), 'submit']);
 
 // -----------THIS METHOD WILL BE LAST-----------------
 Route::get('/*', [new PageNotFound(), 'view']);

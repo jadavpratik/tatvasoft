@@ -21,10 +21,14 @@ $home_s1_mainbtn_border:#ffffff80;
 .home_s1_intro_card{
     padding-top: 318px;// BECAUSE NAVBAR ON POSITION_FIXED
     padding-left: 55px;
-    p{
+    p:first-child{
         color:white;
         padding: 6px 0;
         font-size: 40px;
+    }
+    p:nth-child(2){
+        color:white;
+        padding-bottom: 20px;
     }
     ul{
         list-style: none;

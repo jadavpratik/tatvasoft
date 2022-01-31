@@ -27,7 +27,7 @@
         left:50%;
         transform:translate(-50%, -50%);
         background-color: white;
-        z-index: $popup_z_index;
+        z-index: $popup_z_index - 2;
     }
     .book_service_questions{
         padding:0 19px 19px;
@@ -121,6 +121,8 @@
             }
         }
     }
-
+    .book_service_right{
+        width:90%;
+    }
 }
 

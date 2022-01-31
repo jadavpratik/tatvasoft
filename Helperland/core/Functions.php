@@ -1,5 +1,8 @@
 <?php
 
+	// FOR START THE SESSION...
+	session_start();
+
 	$title = 'Index';
 	$page_url = '/';
 
@@ -55,10 +58,14 @@
 	}
 
 	// SESSION FUNCTIONS...
-	function session_get($key){
-		return $_SESSION[$key];
-	}
-
-	function session_set($key, $value){
-		return $_SESSION[$key] = $value;
+	function session($key, $value=false){
+		if($value!==false){
+			$_SESSION["'".$key."'"] = $value;
+		}
+		else if(isset($_SESSION["'".$key."'"])){
+			return $_SESSION["'".$key."'"];
+		}
+		else{
+			return false;
+		}
 	}

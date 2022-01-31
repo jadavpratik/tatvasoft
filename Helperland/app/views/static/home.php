@@ -11,7 +11,7 @@
 	<!-- INTRO_CARD -->
 	<div class="home_s1_intro_card">
 		<p>Do not feel like housework?</p>
-		<!-- <span> Great! Book now for Helperland and enjoy the benefitss</span> -->
+		<p>Great! Book now for Helperland and enjoy the benefits</p>
 		<ul>
 			<li><i class="fas fa-check"></i>certified & insured helper</li>
 			<li><i class="fas fa-check"></i>easy booking procedure</li>

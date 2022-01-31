@@ -1,0 +1,80 @@
+Hi Guys...
+
+This is not real framework, but the project is created because...
+	-> Improving your php concepts, 
+	-> Aware about how mvc work
+	-> PREREQUISITE
+		- OOP_PHP, 
+		- HTACCESS, 
+How to Start This Framework?
+  1.goto root dir and open cmd
+  2.php -S localhost:PORT -t public/             
+  (Note : You can Use Any Port Number)
+
+Functionality which you get here are...
+	-> ✔️Routing,
+	-> ❌Model,
+	-> ✔️View,
+	-> ✔️Controller,
+	-> ❌Database,
+	-> ❌Middleware,
+	-> ❌Session,
+	-> ❌Cookie,
+	-> ✔️Access Assets Folder [Because Public Folder Served on Your Host];
+	-> ❌Template_Engine(Custom_Basic)
+	-> ❌Basic_Security,
+
+-----------------FUNCTIONALITY----------------
+	✔️REQUEST
+		- ✔️SET_PARAMS
+		- ❌SET_BODY
+	✔️RESPONSE
+		- ✔️RENDER
+		- ❌REDIRECT		
+		- ❌JSON
+		- ❌STATUS
+	✔️ROUTE
+		- ✔️GET, 
+		- ❌POST, 
+		- ❌PUT, 
+		- ❌DELETE, 
+	✔️HASH
+		- ❌MAKE
+		- ❌VERIFY
+	✔️SESSION
+		- ❌SET
+		- ❌GET
+		- ❌UNSET (DESTORY),
+	❌DATABASE
+		- ✔️CONNECTION
+		- ✔️FETCH_WITH_SPECIFIC_COLUMN
+		- ✔️FETCH_ALL
+		- ✔️INSERT
+		- ✔️WHERE
+		- ✔️UPDATE
+		- ✔️DELETE
+		- ✔️GET_LAST_INSERT_ID
+		- ✔️ORDER_BY
+		- ✔️DISTINCT
+		- ❌COUNT
+		- ❌JOIN [LEFT, RIGHT, FULL]
+	FILE_HANDLING
+		- ❌UPLOAD [ANY_PATH_YOU_CAN_CHOOSE_IN_PUBLIC_FOLDER],
+	❌COOKIES,
+	❌MIDDLEWARE,
+
+-------------------------------------------
+					IN_FUTURE_IMPLEMENTS
+-------------------------------------------
+	MAIL,
+	TEMPLATE,
+	SECURITY
+		- ❌ENV
+		- JWT, 
+		- CORS,
+		- CSRF, 
+		- XSS, 
+		- HEADERS,
+		- SQL_INJECTION
+-------------------------------------------
+

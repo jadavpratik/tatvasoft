@@ -70,8 +70,6 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 	<!-- TITL-JS -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/tilt.js/1.0.3/tilt.jquery.min.js"></script>
-	<!-- JQUERY -->
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<!-- CUSTOM_JAVASCRIPT -->
 	<script src="<?= assets('assets/js/homenav.js'); ?>"></script>
 	<script src="<?= assets('assets/js/sidenav.js'); ?>"></script>
