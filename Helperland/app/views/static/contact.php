@@ -50,18 +50,18 @@
 		<p class="get_in_touch_title">Get in touch with us</p>
 		<form id="contactUs">
 			<div>
-				<input class="input" type="text" placeholder="First Name" name="FirstName">
-				<input class="input" type="text" placeholder="Last Name" name="LastName">
+				<input class="input" type="text" placeholder="First Name" name="firstname">
+				<input class="input" type="text" placeholder="Last Name" name="lastname">
 			</div>
 			<div>
 				<div class="phone_number">
 					<label for="">+46</label>
-					<input type="text" placeholder="Phone Number" name="PhoneNumber">
+					<input type="text" placeholder="Phone Number" name="phone">
 				</div>
-				<input class="input" type="text" placeholder="Email Address" name="Email">
+				<input class="input" type="text" placeholder="Email Address" name="email">
 			</div>
 			<div>
-				<select class="select" name="Subject">
+				<select class="select" name="subject">
 					<option value="general">General</option>
 					<option value="inquiry">Inquiry</option>
 					<option value="renewal">Renewal</option>
@@ -69,17 +69,17 @@
 				</select>
 			</div>
 			<div>
-				<textarea class="textarea" name="Message" placeholder="Message"></textarea>
+				<textarea class="textarea" name="message" placeholder="Message"></textarea>
 			</div>
 			<div>
 				<label class="label" for="attachment">Attachment</label>
 				<div>
 					<label for="attachment">Upload</label>
-					<input type="file" id="attachment" name="Attachment">
+					<input type="file" id="attachment" name="attachment">
 				</div>
 			</div>
 			<div>
-				<input type="checkbox" name="TermCheckBox">
+				<input type="checkbox" name="contactCheckBox">
 				<p>Our current ones apply <a href="#">privacy policy</a> i hereby agree that my data entered into the contact form will be stored electronically and processed and used for the used for the purpose of establishing contact. the consent can be withdrawn at any time pursuant to art. 7(3) GDPR by informal notification (eg. by e-mail).</p>
 			</div>
 			<button class="form_btn" disabled>Submit</button>
@@ -87,33 +87,43 @@
 	</div><!-- END_GET_IN_TOUCH -->
 
 	<script>
-		$('.form_btn').click(function(e){
-			e.preventDefault();
-			const data = new FormData($('#contactUs')[0]);
-			$.ajax({
-				url : '/contact',
-				type : 'POST',
-				data : data,
-		        processData : false,
-		        contentType : false,
-		        success : function(result, status, xhr){
-		        	console.log(result);
-		        },
-		        error : function(xhr, status, error){
-		        	console.log(status);
-		        },
-			})
-		});
 
-
-		$('[name="TermCheckBox"]').click(()=>{
-			if($('[name="TermCheckBox"]').prop('checked')==true){
+		$('[name="contactCheckBox"]').click(()=>{
+			if($('[name="contactCheckBox"]').prop('checked')==true){
 				$('.form_btn').prop('disabled', false);
 			}
 			else{
 				$('.form_btn').prop('disabled', true);
 			}
 		});
+
+		$('.form_btn').click(function(e){
+			e.preventDefault();
+			const data = new FormData($('#contactUs')[0]);
+			$.ajax({
+				url : `${proxy_url}/contact`,
+				type : 'POST',
+				data : data,
+		        processData : false,
+		        contentType : false,
+		        success : function(res){
+					console.log(res);
+		        	// Swal.fire({
+					// 	title : 'Good job!',
+					// 	text : 'Form Submitted Successfully!',
+					// 	icon : 'success'
+					// });
+		        },
+		        error : function(xhr, status, error){
+		        	// Swal.fire({
+					// 	title : 'Error',
+					// 	text : 'Something Went Wrong!!!',
+					// 	icon : 'error'
+					// });
+		        },
+			})
+		});
+
 	</script>
 
 	<!-- MAP -->

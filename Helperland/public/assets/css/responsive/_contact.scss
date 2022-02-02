@@ -19,7 +19,7 @@
         padding-right: 20px;
         form{
             width:100%;
-            div{
+            & > div{
                 width:100%;
                 display: flex;
                 flex-direction: column;
@@ -28,25 +28,25 @@
                     width:100%;
                     margin-bottom: 15px;
                 }
+                &:nth-child(1),
+                &:nth-child(2){
+                    display: flex;
+                    flex-direction: column;
+                }
+                .phone_number{
+                    margin-bottom: 15px;
+                }
+                &:nth-child(5){
+                    // INPUT FILES UPLOAD...
+                    margin-bottom: 15px;
+                }
                 &:nth-child(6){
-                    margin:15px 0;
                     display: flex;
                     flex-direction: row;
+                    margin-bottom: 15px;
                     input{
                         width:auto;
                     }
-                    p{
-                        margin-top:-3px;
-                    }
-                }
-            }
-            .phone_number{
-                height:46px;
-                display: flex;
-                flex-direction: row;
-                margin-bottom: 15px;
-                input{
-                    margin-bottom: 0;
                 }
             }
         }

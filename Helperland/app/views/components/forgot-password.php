@@ -6,7 +6,9 @@
     <div class="popup_main d_none" id="forgot_password_popup">
         <p class="popup_title">Forgot Password</p>
         <form class="forgot_password_popup_form" action="">
-            <input class="input" type="text" placeholder="Email">
+            <div class="label_input">
+                <input class="input" type="text" placeholder="Email">
+            </div>
             <button class="popup_btn">Send</button>
             <a href="#" onclick="open_model('login')">Login Now</a>
         </form>

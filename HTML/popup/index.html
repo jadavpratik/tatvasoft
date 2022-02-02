@@ -313,7 +313,7 @@
 			<div class="label_input">
 				<label class="label" for="">Steet Name</label>
 				<input class="input" type="text">
-			</div>
+			</div>	
 			<div class="label_input">
 				<label class="label" for="">House Name</label>
 				<input class="input" type="text">
@@ -385,8 +385,10 @@
 				</div>
 			</div><!-- RATE TYPE -->
 			<div>
-				<label class="label" for="">Feedback on service provider</label>
-				<textarea class="textarea" name=""></textarea>
+				<div>
+					<label class="label" for="">Feedback on service provider</label>
+					<textarea class="textarea" name=""></textarea>
+				</div>
 				<button class="popup_btn">Submit</button>
 			</div>
 		</div><!-- RATING POPUP -->
@@ -398,11 +400,11 @@
 		<!-- CANCEL_SERVICE_REQUEST -->
 		<div class="popup_main d_none" id="cancel_service_request_popup">
 			<p class="popup_title">Cancel Service Request</p>
-			<div>
+			<div class="label_input">
 				<label class="label" for="">Why you want to cancel the service request?</label>
 				<textarea class="textarea" name=""></textarea>
-				<button class="popup_btn">Cancel Now</button>
 			</div>
+			<button class="popup_btn">Cancel Now</button>
 		</div>
 	</div>
 
@@ -505,73 +507,15 @@
 		<div class="popup_main d_none" id="forgot_password_popup">
 			<p class="popup_title">Forgot Password</p>
 			<form class="forgot_password_popup_form" action="">
-				<input class="input" type="text" placeholder="Email">
+				<div class="label_input">
+					<input class="input" type="text" placeholder="Email">
+				</div>
 				<button class="popup_btn">Send</button>
 				<a href="#" onclick="open_model('login')">Login Now</a>
 			</form>
 		</div>
 	</div>
 
-
-	<!-- --------------------------------------------------- -->
-						<!-- FOOTER -->
-	<!-- --------------------------------------------------- -->
-	<footer>
-		<!-- FOOTER_TRANSPARENT_DIV -->
-		<div class="footer_transparent_div">
-			<!-- GET_OUR_NEWSLETTERS -->
-			<form class="get_our_newsletter" action="">
-				<p>GET OUR NEWSLETTER</p>
-				<div>
-					<input type="text" placeholder="YOUR EMAIL">
-					<button>Submit</button>
-				</div>
-			</form>
-		</div><!-- END_FOOTER_TRANSPARENT_DIV -->
-
-		<!-- FOOTER_MAIN_DIV -->
-		<div class="footer_main_div">
-			<!-- LOGO + LINKS -->
-			<div>
-				<div class="footer_logo">
-					<a href=""><img src="../assets/img/global/logo.png" alt=""></a>
-				</div>
-				<div class="footer_links">
-					<a href="">HOME</a>
-					<a href="">ABOUT</a>
-					<a href="">TESTIMONIALS</a>
-					<a href="">FAQS</a>
-					<a href="">INSURANCE POLICY</a>
-					<a href="">IMPRESSUM</a>
-				</div>
-				<div class="social_media_links">
-					<a href=""><img src="../assets/img/global/facebook.png" alt=""></a>
-					<a href=""><img src="../assets/img/global/instagram.png" alt=""></a>
-				</div>
-			</div>
-			<!-- COPYRIGHT_SECTION -->
-			<div>
-				<p class="copyright_section">©2018 Helperland. All rights reserved. Terms and Conditions | <a href="">Privacy Policy</a></p>
-			</div>
-		</div><!-- END_FOOTER_MAIN_DIV -->
-
-	</footer>
-
-	<!-- --------------------------------------------------- -->
-						<!-- FIXED BUTTON -->
-	<!-- --------------------------------------------------- -->
-
-	<!-- GO_TO_TOP_BTN -->
-	<button class="go_top_btn"><img src="../assets/img/buttons/up_btn.png" alt=""></button>
-
-	<!-- CHAT -->
-	<button class="chat"><img src="../assets/img/global/time.png" alt=""></button>
-
-	<!-- PRIVACY_POLICY -->
-	<div class="cookie">
-		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut feugiat nunc libero, ac malesuada ligula aliquam ac. <a href="">Privacy Policy</a></p>
-		<button id="cookie_submit_btn">OK!</button>
-	</div>
 
 	<!-- CUSTOM_JAVASCRIPT -->
 	<script src="../assets/js/homenav.js"></script>

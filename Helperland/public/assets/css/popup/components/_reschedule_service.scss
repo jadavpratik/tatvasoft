@@ -2,14 +2,16 @@
     & > div{
         display: flex;
         flex-direction: column;
-        div{// INPUT DATE AND TIME CONTAINER...
+        & > div{
+            // INPUT DATE AND TIME CONTAINER...
             display:grid;
             grid-template-columns: repeat(2, 1fr);
             grid-column-gap: 10px;
-            padding-bottom: 15px;
+            margin-bottom: 15px;
+            overflow: hidden;
             input,select{
+                width:100%;
                 padding:8px;
-                margin-bottom: 0px;
                 font-size: 14px;
             }
         }

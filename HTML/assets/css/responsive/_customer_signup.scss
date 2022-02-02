@@ -6,31 +6,26 @@
             width:100%;
             display: flex;
             flex-direction: column;
-            div{
+            & > div{
                 display: flex;
                 flex-direction: column;
                 width:100%;
                 padding:0;
                 input{
-                    width:100%;
+                    margin-bottom: 15px;
+                }
+                .phone_number{
                     margin-bottom: 15px;
                 }
                 &:nth-child(4){
+                    // CHECKBOX-div...
                     display: flex;
                     flex-direction: row;
+                    margin-bottom: 15px;
                     input{
                         width:auto;
-                        margin:0;
+                        margin-bottom: 0;
                     }
-                }
-            }
-            .phone_number{
-                display: flex;
-                flex-direction: row;
-                margin-bottom: 15px;
-                height:46px;
-                input{
-                    margin:0;
                 }
             }
         }

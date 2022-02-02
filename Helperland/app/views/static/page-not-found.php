@@ -11,15 +11,6 @@
 </head>
 <body>
 
-    <?php 
-        foreach($data as $d){
-            echo "<pre>";
-            print_r($d->name);
-        }
-    
-    ?>
-
-
     <div class="page_not_found">
         <h1>404</h1>
         <p>Page Not Found</p>

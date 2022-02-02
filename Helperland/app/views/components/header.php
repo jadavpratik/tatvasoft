@@ -14,6 +14,11 @@
 	<link rel="stylesheet" href="<?= assets('assets/css/index.css'); ?>">
 	<!-- JQUERY -->
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<!-- SET-PROXY-URL -->
+	<script>
+		const proxy_url = `http://localhost/tatvasoft/Helperland`;
+		// const proxy_url = `http://localhost:8000`;
+	</script>
 </head>
 <body>
 
@@ -68,13 +73,13 @@
 		
 		<!-- NAV_MENU -->
 		<div class="nav_menu">
-			<a class="navbar_focus_btn <?= $home_focus_btn; ?>" href="<?= url('/customer/book_now'); ?>">Book a Cleaner</a>
+			<a class="navbar_focus_btn <?= $home_focus_btn; ?>" href="<?= url('/book-now'); ?>">Book a Cleaner</a>
 			<a class="<?= $active_link['prices']; ?>" href="<?= url('/prices'); ?>">Prices</a>
-			<a class="<?= $active_link['gaurantee']; ?>" href="#">Our Gaurantee</a>
-			<a class="<?= $active_link['blog']; ?>" href="#">Blog</a>
+			<a class="<?= $active_link['gaurantee']; ?>" href="<?= url('/gaurantee'); ?>">Our Gaurantee</a>
+			<a class="<?= $active_link['blog']; ?>" href="<?= url('/blog'); ?>">Blog</a>
 			<a class="<?= $active_link['contact']; ?>" href="<?= url('/contact'); ?>">Contact Us</a>
 			<a class="navbar_focus_btn <?= $home_focus_btn; ?>" href="#" onclick="open_model('login')">Login</a>
-			<a class="navbar_focus_btn <?= $home_focus_btn; ?>" href="<?= url('/service_provider/become_a_pro'); ?>">Become a Helper</a>
+			<a class="navbar_focus_btn <?= $home_focus_btn; ?>" href="<?= url('/service-provider/signup'); ?>">Become a Helper</a>
 		</div><!-- END NAV_MENU -->
 	</nav><!-- END NAVBAR -->
 
@@ -101,8 +106,8 @@
 			<a href="<?= url('/gurantee'); ?>">Gurantee</a>
 			<a href="<?= url('/blog'); ?>">Blog</a>
 			<a href="<?= url('/contact'); ?>">Contact</a>
-			<a href="<?= url('/customer/registration'); ?>">Register</a>
-			<a href="<?= url('/service_provider/become_a_pro'); ?>">Become a Helper!</a>
+			<a href="<?= url('/customer/signup'); ?>">Register</a>
+			<a href="<?= url('/service-provider/signup'); ?>">Become a Helper!</a>
 
 
 			<?php if(session('logged')==true){ ?>
@@ -161,5 +166,5 @@
 				<!-- POPUP_MODEL -->
 	<!-- --------------------------------------------------- -->
 	<?= component('login'); ?>
-	<?= component('forgot_password'); ?>
+	<?= component('forgot-password'); ?>
 

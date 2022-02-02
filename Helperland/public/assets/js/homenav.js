@@ -1,7 +1,15 @@
+// ---------------ONLY FOR HOME PAGE-----------------....
+AOS.init();
+$('.home_s3_intro > img').tilt({
+    glare: true,
+    maxGlare: .5
+});
+
+//--------------HOME PAGE > NAVBAR_SCROLL_EVENT------------------
+
 const navbar = $('#home_navbar')[0];			
 const logo = $('.logo')[0];
 
-//--------------HOME PAGE > NAVBAR_SCROLL_EVENT------------------
 window.onscroll = function() {
     scrollFunction()
 };
@@ -28,3 +36,4 @@ function scrollFunction() {
         }    
     }
 }
+

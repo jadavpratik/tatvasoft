@@ -20,21 +20,25 @@ $input_text:#A0A0A0;
             grid-template-columns: 300px 300px;
             grid-column-gap: 14px;
             padding-bottom: 15px;
-            button{
-                margin:0 auto;
-                width:162px;
+            .phone_number{
+                height:46px;
             }
             a{
                 color:$signup_btn;
             }
-            &:nth-child(4){//I HAVE READ
+            &:nth-child(4){
+                //I HAVE READ, CHECKBOX + LABEL
                 display: flex;
                 align-items: center; 
-                padding:15px 0;
             }
-            &:nth-child(5){//SUBMIT
+            &:nth-child(5){
+                //SUBMIT
                 display: flex;
                 align-items: center; 
+            }
+            button{
+                margin:0 auto;
+                width:162px;
             }
             &:nth-child(6){//ALREADY REGISTER?
                 padding:15px 0;

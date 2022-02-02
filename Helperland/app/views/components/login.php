@@ -27,4 +27,4 @@
             <p>Don't Have an Account? <a href="/customer/Registration.html">Create an Account</a></p>
         </div><!-- END_LOGIN_POPUP_FOOTER -->
     </div><!-- END_LOGIN_POPUP -->
-</div>
+</div><!-- END_MODEL -->

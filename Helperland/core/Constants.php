@@ -1,13 +1,13 @@
 <?php
 
-    // LOCAL ROOT PATH
+    // LOCALHOST PORT 80 PATH...
     $path1 = 'http://localhost/tatvasoft/Helperland';
-    // ROOT PATH
+    // PORT PATH
     $path2 = 'http://localhost:8000';
     // DEPLOY PATH
     $path3 = '';
 
-    define('BASE_URL', $path2);
+    define('BASE_URL', $path1);
     define('ROOT', str_replace('\core', '', __DIR__));
     define('ASSETS', str_replace('\core', '\public', __DIR__));
     define('DB_TYPE', 'mysql');

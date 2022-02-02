@@ -14,6 +14,9 @@ $label_text:#4F4F4F;
     padding-left: 15px;
     background-color: white !important;
     font-size: 16px;
+    &:focus{
+        border:1px solid #1D7A8C;
+    }
 }
 
 .textarea{
@@ -24,6 +27,7 @@ $label_text:#4F4F4F;
     border:1px solid $input_border;
     border-radius: 4px;
     display: flex; 
+    flex-direction: row !important;
     align-items:center;
     justify-content: center;
     overflow: hidden;

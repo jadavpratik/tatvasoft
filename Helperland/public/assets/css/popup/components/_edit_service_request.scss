@@ -19,7 +19,6 @@
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         grid-column-gap: 15px;
-        // display: none;
         & > p{// TITLE
             grid-column: 1/3;
             font-weight: 500;
@@ -30,17 +29,17 @@
     & > div:nth-child(6){// TEXTAREA DIV
         display: flex;
         flex-direction: column;
-        // display: none;
+        padding-bottom: 15px;
         p{
             padding-bottom: 8px;
             font-weight: 500;
         }
         textarea{
             height:100px;
+            margin-bottom: 0;
         }
     }
     button{
-        margin-top: 20px;
         width:100%;
         height: 46px;
         font-size: 16px;

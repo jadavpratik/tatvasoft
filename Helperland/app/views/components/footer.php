@@ -1,9 +1,9 @@
-<?php 
-	$home_footer_bg;
-	if(page_url()=='/'){
-		$home_footer_bg = 'background-color:#F4F5F8;';
-	}
-?>
+	<?php 
+		$home_footer_bg;
+		if(page_url()=='/'){
+			$home_footer_bg = 'background-color:#F4F5F8;';
+		}
+	?>
 
 	<!-- --------------------------------------------------- -->
 						<!-- FOOTER -->
@@ -66,10 +66,17 @@
 		<button id="cookie_submit_btn">OK!</button>
 	</div>
 
-    <!-- AOS -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+	<!-- --------------------------------------------------- -->
+					<!-- ALL SCRIPT FILES... -->
+	<!-- --------------------------------------------------- -->
+
+	<!-- AOS -->
+	<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 	<!-- TITL-JS -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/tilt.js/1.0.3/tilt.jquery.min.js"></script>
+	<!-- SWEET-ALERT -->
+	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 	<!-- CUSTOM_JAVASCRIPT -->
 	<script src="<?= assets('assets/js/homenav.js'); ?>"></script>
 	<script src="<?= assets('assets/js/sidenav.js'); ?>"></script>
@@ -78,12 +85,6 @@
 	<script src="<?= assets('assets/js/accordion.js'); ?>"></script>
 	<script src="<?= assets('assets/js/dropdown.js'); ?>"></script>
 	<script src="<?= assets('assets/js/model.js'); ?>"></script>
-	<script>
-        AOS.init();
-		$('.home_s3_intro > img').tilt({
-			glare: true,
-			maxGlare: .5
-		});
-    </script>
+
 </body>
 </html>

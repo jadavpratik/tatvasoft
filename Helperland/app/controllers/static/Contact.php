@@ -16,19 +16,19 @@ class Contact{
 	public function submit(Request $req, Response $res){
 
 		// SAVE A UPLOADED FILE PATH...
-		$filePath = File::upload($req->files->Attachment, 'upload/contact/');
+		$filePath = File::upload($req->files->attachment, 'upload/contact/');
 
-		$arr = array('Name' => $req->body->FirstName.' '.$req->body->LastName,
-					 'Email' => $req->body->Email,
-					 'PhoneNumber' => $req->body->PhoneNumber,
-					 'Subject' => $req->body->Subject,
-					 'Message' => $req->body->Message,
+		$arr = array('Name' => $req->body->firstname.' '.$req->body->lastname,
+					 'Email' => $req->body->email,
+					 'PhoneNumber' => $req->body->phone,
+					 'Subject' => $req->body->subject,
+					 'Message' => $req->body->message,
 					 'UploadFileName' => $filePath);
 
-		if(!empty($arr)){
-			$contact = new ContactModel();
-			echo $contact->create($arr);
-		}
+		$contact = new ContactModel();
+		$result = $contact->create($arr);
+
+		$res->status(200)->json(['result'=>$result]);
 	}
 
 }

@@ -11,13 +11,17 @@ class Response{
 		require_once $view_path;
 	}
 
+	public function status($status_code){
+		http_response_code(404);
+		return $this;
+	}
+
 	public function json($data){
-		echo "<pre>";
-		echo json_encode($data, JSON_PRETTY_PRINT);
+		return json_encode($data, JSON_PRETTY_PRINT);
 	}
 
 	public function redirect($path){
-		echo 'Redirect';
+		header("location:");
 	}
 
 }

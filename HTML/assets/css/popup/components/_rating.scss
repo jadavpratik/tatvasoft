@@ -4,15 +4,19 @@
         border-bottom: 1px solid lightgray;
     }
     & > div:last-child{
-        display: flex;
-        flex-direction: column;
         padding-top: 10px;
-        label{
-            padding-bottom: 10px;
-            font-size: 16px;
-        }
-        textarea{
-            height: 80px;
+        & > div{
+            display: flex;
+            flex-direction: column;
+            padding-bottom: 15px;
+            label{
+                padding-bottom: 10px;
+                font-size: 16px;
+            }
+            textarea{
+                height: 80px;
+                margin:0;
+            }    
         }
     }
 }

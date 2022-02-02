@@ -78,9 +78,5 @@ class Route{
 
 	// PUT METHOD...
 
-	// MIDDLEWARE METHOD...
-	public function middleware($name){
-		echo $name;
-	}
 
 }

@@ -1,7 +1,8 @@
 .login_popup_form{
     padding-top:10px;
-    div{
-        margin-bottom: 20px;
+    & > div{
+        // border:2px solid green;
+        margin-bottom: 15px;
         &:nth-child(3){//REMEMBER ME
             display: flex;
             align-items: center;
