@@ -42,8 +42,12 @@ $registration_term:#1FB6FF;
     display: flex;
     flex-direction: column;
     align-items: center;    
-    input{
-        margin-bottom: 15px;
+    .form_group{
+        padding-bottom: 15px;
+        .phone_number{
+            width:100%;
+            height:46px;
+        }
     }
     & > div:nth-child(7),
     & > div:nth-child(8){
@@ -51,14 +55,7 @@ $registration_term:#1FB6FF;
         display: flex;
         flex-direction: row;
         align-items: flex-start;
-        margin-bottom: 15px;
-        p{
-            color:$registration_title;
-            width:calc(100% - 16px);
-        }
-        a{
-            color:$registration_term;
-        }
+        padding-bottom: 15px;
         input[type="checkbox"]{
             width: 16px;
             height: 16px;
@@ -66,11 +63,13 @@ $registration_term:#1FB6FF;
             margin:0;
             margin-right: 7px;
         }
-    }
-    .phone_number{
-        width:100%;
-        height:46px;
-        margin-bottom: 15px;
+        p{
+            color:$registration_title;
+            width:calc(100% - 16px);
+            a{
+                color:$registration_term;
+            }
+        }
     }
     button{
         // SUBMIT BUTTON...

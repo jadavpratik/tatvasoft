@@ -131,7 +131,105 @@
     <p style="text-align: center;font-size: 24px;color:gray;padding:50px 0 10px;">Popup Model,</p>
 	<p style="text-align: center;font-size: 24px;color:gray;padding:0px 0 50px;">not Intigrated with actual page, yet</p>
 
-	<!-- INCLUDED SERVICES -->
+
+
+    <!-- --------------------------------------------------- -->
+				<!-- FORGOT-PASSWORD -->
+	<!-- --------------------------------------------------- -->
+	<div class="model d_none">
+        <!-- MODEL_CLOSE -->
+        <button class="model_close_btn">&times;</button>
+		<!-- POPUP-MAIN -->
+		<div class="popup_main d_none" id="forgot_password_popup">
+			<p class="popup_title">Forgot Password</p>
+			<form class="forgot_password_popup_form" action="">
+				<div class="form_group">
+					<input class="input" type="text" placeholder="Email">
+					<div class="validation_message">
+						<p>Please Enter your Email Address!!</p>
+					</div>
+				</div>
+				<button class="popup_btn">Send</button>
+				<a href="#" onclick="open_model('login')">Login Now</a>
+			</form>
+		</div>
+	</div>
+
+    <!-- --------------------------------------------------- -->
+				<!-- LOGIN -->
+	<!-- --------------------------------------------------- -->
+	<div class="model d_none">
+        <!-- MODEL_CLOSE -->
+        <button class="model_close_btn">&times;</button>
+		<!-- POPUP-MAIN -->
+		<div class="popup_main d_none" id="login_popup">
+			<p class="popup_title">Login</p>
+			<form class="login_popup_form" action="">
+				<div class="form_group">
+					<div class="input_icon">
+						<input class="input" type="text" placeholder="Email">
+						<label for=""><i class="fas fa-user"></i></label>
+					</div>
+					<div class="validation_message">
+						<p>Please Enter Your Email Address</p>
+					</div>
+				</div>
+				<div class="form_group">
+					<div class="input_icon">
+						<input class="input" type="password" placeholder="Password">
+						<label for=""><i class="fas fa-lock"></i></label>
+					</div>
+					<div class="validation_message">
+						<p>Please Enter Your Password</p>
+					</div>
+				</div>
+				<div>
+					<input type="checkbox">
+					<label class="label" for="">Remember Me</label>
+				</div>
+				<div>
+					<button class="popup_btn">Login</button>
+				</div>
+			</form>
+			<div class="login_popup_footer">
+				<a href="#" onclick="open_model('forgot_password')">Forgot Password?</a>
+				<p>Don't Have an Account? <a href="/customer/Registration.html">Create an Account</a></p>
+			</div><!-- END_LOGIN_POPUP_FOOTER -->
+		</div><!-- END_LOGIN_POPUP -->
+	</div>
+
+    <!-- --------------------------------------------------- -->
+				<!-- SET_NEW_PASSWORD -->
+	<!-- --------------------------------------------------- -->
+	<div class="model d_none">
+        <!-- MODEL_CLOSE -->
+        <button class="model_close_btn">&times;</button>
+		<!-- SET_NEW_PASSOWORD -->
+		<div class="popup_main d_none" id="set_new_password_popup">
+			<p class="popup_title">SET NEW PASSWORD</p>
+			<form class="" action="">
+				<div class="form_group">
+					<label class="label" for="">New Password</label>
+					<input class="input" type="password">
+					<div class="validation_message">
+						<p>Enter Your New Password</p>
+					</div>
+				</div>
+				<div class="form_group">
+					<label class="label" for="">Confirm Password</label>
+					<input class="input" type="password">					
+					<div class="validation_message">
+						<p>Enter Your New Password</p>
+					</div>
+				</div>
+				<button class="popup_btn">Save</button>
+			</form>
+		</div>
+	</div>
+
+    <!-- --------------------------------------------------- -->
+				<!-- INCLUDED SERVICES -->
+	<!-- --------------------------------------------------- -->
 	<div class="model d_none">
         <!-- MODEL_CLOSE -->
         <button class="model_close_btn">&times;</button>
@@ -170,29 +268,9 @@
 		</div>
 	</div>
 
-	<!-- SET NEW PASSWORD -->
-	<div class="model d_none">
-        <!-- MODEL_CLOSE -->
-        <button class="model_close_btn">&times;</button>
-		<!-- SET_NEW_PASSOWORD -->
-		<div class="popup_main d_none" id="set_new_password_popup">
-			<p class="popup_title">SET NEW PASSWORD</p>
-			<form class="" action="">
-				<div class="label_input">
-					<label class="label" for="">New Password</label>
-					<input class="input" type="password">
-				</div>
-				<div class="label_input">
-					<label class="label" for="">Confirm Password</label>
-					<input class="input" type="password">					
-				</div>
-				<button class="popup_btn">Save</button>
-			</form>
-		</div>
-	</div>
-
-
-	<!-- EDIT_SERVICE_DETAILS -->
+	<!-- ---------------------------------- -->
+			<!-- EDIT_SERVICE_DETAILS -->
+	<!-- ---------------------------------- -->
 	<div class="model d_none">
         <!-- MODEL_CLOSE -->
         <button class="model_close_btn">&times;</button>
@@ -201,75 +279,113 @@
 			<p class="popup_title">Edit Service Request</p>
 			<!-- DATE AND TIME -->
 			<div>
-				<div class="label_input">
+				<div class="form_group">
 					<label class="label" for="">Date</label>
 					<input class="input" type="date">
+					<div class="validation_message">
+						<p>Enter Date!</p>
+					</div>
 				</div>
-				<div class="label_input">
+				<div class="form_group">
 					<label class="label" for="">Time</label>
 					<input class="input" type="time">
+					<div class="validation_message">
+						<p>Enter Date!</p>
+					</div>
 				</div>
 			</div>
 			<!-- SERVICE ADDRESS -->
 			<div>
 				<p>Service Address</p>
-				<div class="label_input">
+				<div class="form_group">
 					<label class="label" for="">Street Name</label>
 					<input class="input" type="text">
+					<div class="validation_message">
+						<p>Enter Date!</p>
+					</div>
 				</div>
-				<div class="label_input">
+				<div class="form_group">
 					<label class="label" for="">House Number</label>
 					<input class="input" type="text">
+					<div class="validation_message">
+						<p>Enter Date!</p>
+					</div>
 				</div>
-				<div class="label_input">
+				<div class="form_group">
 					<label class="label" for="">Postal Code</label>
 					<input class="input" type="text">
+					<div class="validation_message">
+						<p>Enter Date!</p>
+					</div>
 				</div>
-				<div class="label_select">
+				<div class="form_group">
 					<label class="label" for="">City</label>
 					<select class="select" name="" id="">
 						<option value="">Select</option>
 					</select>
+					<div class="validation_message">
+						<p>Enter Date!</p>
+					</div>
 				</div>
 			</div>
 			<!-- INVOICE ADDRESS -->
 			<div>
 				<p>Invoice Address</p>
-				<div class="label_input">
+				<div class="form_group">
 					<label class="label" for="">Street Name</label>
 					<input class="input" type="text">
+					<div class="validation_message">
+						<p>Enter Date!</p>
+					</div>
 				</div>
-				<div class="label_input">
+				<div class="form_group">
 					<label class="label" for="">House Number</label>
 					<input class="input" type="text">
+					<div class="validation_message">
+						<p>Enter Date!</p>
+					</div>
 				</div>
-				<div class="label_input">
+				<div class="form_group">
 					<label class="label" for="">Postal Code</label>
 					<input class="input" type="text">
+					<div class="validation_message">
+						<p>Enter Date!</p>
+					</div>
 				</div>
-				<div class="label_select">
+				<div class="form_group">
 					<label class="label" for="">City</label>
 					<select class="select" name="" id="">
 						<option value="">Select</option>
 					</select>
+					<div class="validation_message">
+						<p>Enter Date!</p>
+					</div>
 				</div>
 			</div>
 			<!-- TEXTAREA -->
-			<div>
+			<div class="form_group">
 				<p>What do you want to reschedule service request?</p>
 				<textarea class="textarea" placeholder="What do you want to reschedule service request?" name=""></textarea>
+				<div class="validation_message">
+					<p>Enter Date!</p>
+				</div>
 			</div>
 			<!-- TEXTAREA -->
-			<div>
+			<div class="form_group">
 				<p>Call center EMP Notes</p>
 				<textarea class="textarea" placeholder="Enter Notes" name=""></textarea>
+				<div class="validation_message">
+					<p>Enter Date!</p>
+				</div>
 			</div>
 			<button class="update_btn">Update</button>
 		</div>
 	</div>
 
 
-	<!-- ACCEPT_SERVICE_DETAILS -->
+	<!-- ---------------------------------- -->
+			<!-- ACCEPT-SERVICE-DETAILS -->
+	<!-- ---------------------------------- -->
 	<div class="model d_none">
         <!-- MODEL_CLOSE -->
         <button class="model_close_btn">&times;</button>
@@ -304,39 +420,60 @@
 		</div>
 	</div>
 
+	<!-- ---------------------------------- -->
+			<!-- EDIT_ADDRESS -->
+	<!-- ---------------------------------- -->
 	<div class="model d_none">
         <!-- MODEL_CLOSE -->
         <button class="model_close_btn">&times;</button>
 		<!-- EDIT_ADDRESS -->
 		<div class="popup_main d_none" id="edit_address_popup">
 			<p class="popup_title">Edit Address</p>
-			<div class="label_input">
+			<div class="form_group">
 				<label class="label" for="">Steet Name</label>
 				<input class="input" type="text">
+				<div class="validation_message">
+					<p>Enter Stree name!</p>
+				</div>
 			</div>	
-			<div class="label_input">
+			<div class="form_group">
 				<label class="label" for="">House Name</label>
 				<input class="input" type="text">
+				<div class="validation_message">
+					<p>Enter Stree name!</p>
+				</div>
 			</div>
-			<div class="label_input">
+			<div class="form_group">
 				<label class="label" for="">Postal Code</label>
 				<input class="input" type="text">
+				<div class="validation_message">
+					<p>Enter Stree name!</p>
+				</div>
 			</div>
-			<div class="label_input">
+			<div class="form_group">
 				<label class="label" for="">City</label>
 				<input class="input" type="text">
+				<div class="validation_message">
+					<p>Enter Stree name!</p>
+				</div>
 			</div>
-			<div class="label_input">
+			<div class="form_group">
 				<label class="label" for="">Phone Number</label>
 				<div class="phone_number">
 					<label for="">+49</label>
 					<input type="text">
+				</div>
+				<div class="validation_message">
+					<p>Enter Stree name!</p>
 				</div>
 			</div>
 			<button class="popup_btn">Edit</button>
 		</div>
 	</div>
 
+	<!-- ---------------------------------- -->
+			<!-- RATING-POPUP -->
+	<!-- ---------------------------------- -->
 	<div class="model d_none">
         <!-- MODEL_CLOSE -->
         <button class="model_close_btn">&times;</button>
@@ -385,36 +522,48 @@
 				</div>
 			</div><!-- RATE TYPE -->
 			<div>
-				<div>
+				<div class="form_group">
 					<label class="label" for="">Feedback on service provider</label>
 					<textarea class="textarea" name=""></textarea>
+					<div class="validation_message">
+						<p>Enter Feedback</p>
+					</div>
 				</div>
 				<button class="popup_btn">Submit</button>
 			</div>
 		</div><!-- RATING POPUP -->
 	</div>
 
+	<!-- ---------------------------------- -->
+			<!-- CANCEL_SERVICE_REQUEST -->
+	<!-- ---------------------------------- -->
 	<div class="model d_none">
         <!-- MODEL_CLOSE -->
         <button class="model_close_btn">&times;</button>
 		<!-- CANCEL_SERVICE_REQUEST -->
 		<div class="popup_main d_none" id="cancel_service_request_popup">
 			<p class="popup_title">Cancel Service Request</p>
-			<div class="label_input">
+			<div class="form_group">
 				<label class="label" for="">Why you want to cancel the service request?</label>
 				<textarea class="textarea" name=""></textarea>
+				<div class="validation_message">
+					<p>Enter Reason1</p>
+				</div>
 			</div>
 			<button class="popup_btn">Cancel Now</button>
 		</div>
 	</div>
 
+	<!-- ---------------------------------- -->
+			<!-- RESCHEDULE SERVICE -->
+	<!-- ---------------------------------- -->
 	<div class="model d_none">
         <!-- MODEL_CLOSE -->
         <button class="model_close_btn">&times;</button>
 		<!-- RESCHEDULE_SERVICE_REQUEST -->
 		<div class="popup_main d_none" id="reschedule_service_request_popup">
 			<p class="popup_title">Reschedule Service Request</p>
-			<div class="label_input">
+			<div class="form_group">
 				<label class="label" for="">Select New Date & Time</label>
 				<div>
 					<input class="input" type="date">
@@ -425,6 +574,9 @@
 		</div>
 	</div>
 		
+	<!-- ---------------------------------- -->
+			<!-- SERVICE DETAILS -->
+	<!-- ---------------------------------- -->
 	<div class="model d_none">
         <!-- MODEL_CLOSE -->
         <button class="model_close_btn">&times;</button>
@@ -456,8 +608,9 @@
 		</div>
 	</div>
 
-
-
+	<!-- ---------------------------------- -->
+			<!-- SUCCESS -->
+	<!-- ---------------------------------- -->
 	<div class="model d_none">
         <!-- MODEL_CLOSE -->
         <button class="model_close_btn">&times;</button>
@@ -467,52 +620,6 @@
 			<p>Booking has been successfully submitted</p>
 			<p>Service Request Id : <span>8488</span></p>
 			<button class="popup_btn" onclick="close_model()">OK</button>
-		</div>
-	</div>
-
-	<div class="model d_none">
-        <!-- MODEL_CLOSE -->
-        <button class="model_close_btn">&times;</button>
-		<!-- LOGIN -->
-		<div class="popup_main d_none" id="login_popup">
-			<p class="popup_title">Login</p>
-			<form class="login_popup_form" action="">
-				<div class="input_icon">
-					<input class="input" type="text" placeholder="Email">
-					<label for=""><i class="fas fa-user"></i></label>
-				</div>
-				<div class="input_icon">
-					<input class="input" type="password" placeholder="Password">
-					<label for=""><i class="fas fa-lock"></i></label>
-				</div>
-				<div>
-					<input type="checkbox">
-					<label class="label" for="">Remember Me</label>
-				</div>
-				<div>
-					<button class="popup_btn">Login</button>
-				</div>
-			</form>
-			<div class="login_popup_footer">
-				<a href="#" onclick="open_model('forgot_password')">Forgot Password?</a>
-				<p>Don't Have an Account? <a href="/customer/Registration.html">Create an Account</a></p>
-			</div><!-- END_LOGIN_POPUP_FOOTER -->
-		</div><!-- END_LOGIN_POPUP -->
-	</div>
-
-	<div class="model d_none">
-        <!-- MODEL_CLOSE -->
-        <button class="model_close_btn">&times;</button>
-		<!-- FORGOT_PASSOWORD -->
-		<div class="popup_main d_none" id="forgot_password_popup">
-			<p class="popup_title">Forgot Password</p>
-			<form class="forgot_password_popup_form" action="">
-				<div class="label_input">
-					<input class="input" type="text" placeholder="Email">
-				</div>
-				<button class="popup_btn">Send</button>
-				<a href="#" onclick="open_model('login')">Login Now</a>
-			</form>
 		</div>
 	</div>
 

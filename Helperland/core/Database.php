@@ -55,32 +55,57 @@ class Database{
         $values .= ')';
         try{
             $this->query = "INSERT INTO $this->table $keys VALUES $values";
-            return $this->conn->exec($this->query);    
+            return $this->conn->exec($this->query);
         }
         catch(Exception $e){
             echo $e->getMessage();
         }
     }
 
+    // -----------------WHERE-------------------
+    public function where($where){
+        $this->where = $where;
+        return $this;
+    }
+
+
     // -----------------READ-------------------
     public function read(){
         try{
-            $this->query = "SELECT * FROM $this->table";
+            if($this->where!==""){
+                $this->query = "SELECT * FROM $this->table WHERE $this->where";
+            }
+            else{
+                $this->query = "SELECT * FROM $this->table";
+            }
             $result = $this->conn->query($this->query);
             $data = $result->fetchAll(PDO::FETCH_ASSOC);
-            return (object) json_decode(json_encode($data));
+            return json_decode(json_encode($data));
         }
         catch(Exception $e){
             echo $e->getMessage();
         }
     }
+
+    // -----------------EXISTS-------------------
+    public function exists(){
+        $this->query = "SELECT * FROM $this->table WHERE $this->where";
+        $result = $this->conn->query($this->query);
+        $data = $result->fetchAll(PDO::FETCH_ASSOC);
+        if(count($data) >= 1){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
 
     // -----------------UPDATE-------------------
     public function update($arr){
         // SET THE KEYS AND VALUES INTO A STRING...
         $updateString = '';
         foreach($arr as $key => $value){
-            echo "<pre>";
             if(gettype($value)=='integer'){
                 $updateString .= $key." = ".$value.", ";
             }
@@ -90,9 +115,7 @@ class Database{
         }
         $updateString = rtrim($updateString, ', ');
         try{
-            $this->query = "UPDATE $this->table SET $updateString WHERE $this->whereCond";
-            // echo $this->query;
-            // echo $this->query;
+            $this->query = "UPDATE $this->table SET $updateString WHERE $this->where";
             return $this->conn->exec($this->query);
         }
         catch(Exception $e){
@@ -103,18 +126,12 @@ class Database{
     // -----------------DELETE-------------------
     public function delete(){
         try{
-            $this->query = "DELETE FROM $this->table WHERE $this->whereCond";
+            $this->query = "DELETE FROM $this->table WHERE $this->where";
             return $this->conn->exec($this->query);    
         }
         catch(Exception $e){
             echo $e->getMessage();
         }
-    }
-
-    // -----------------WHERE-------------------
-    public function where($key, $operator, $value){
-        $this->whereCond = $key.$operator.$value;
-        return $this;
     }
 
     // -----------------JOIN-------------------

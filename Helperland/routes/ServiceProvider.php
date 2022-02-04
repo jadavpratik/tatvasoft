@@ -6,4 +6,3 @@ use core\Route;
 use app\controllers\serviceProvider\Signup as ServiceProviderSignup;
 
 Route::get('/service-provider/signup', [new ServiceProviderSignup(), 'view']);
-Route::post('/service-provider/signup', [new ServiceProviderSignup(), 'submit']);

@@ -39,18 +39,16 @@
     .registration_form{
         margin-top:$navbar_height + 30px;
         width:100%;
-        height: auto;
         padding-left: 20px;
         padding-right:20px;
     }
     .registration_form > form > div{
-        align-items: flex-start;
-        label, p{
-            font-size:14px;
+        &:nth-child(7),
+        &:nth-child(8){
+            label, p{
+                font-size:14px;
+            }
         }
-    }
-    .registration_form > form > .phone_number{
-        align-items: center;
     }
     .registration_form > form > button{
         margin-top: 0;

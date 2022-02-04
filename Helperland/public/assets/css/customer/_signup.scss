@@ -10,42 +10,51 @@ $input_text:#A0A0A0;
     width:614px;
 }
 
-.customer_signup{
-    form{
-        padding-top: 50px;
-        width:100%;
-        overflow: hidden;
-        & > div{
+.customer_signup > form{
+    padding-top: 50px;
+    width:100%;
+    overflow: hidden;
+    .form_group{
+        padding-bottom: 15px;
+    }
+    & > div{
+        &:nth-child(1),
+        &:nth-child(2),
+        &:nth-child(3){
             display: grid;
             grid-template-columns: 300px 300px;
-            grid-column-gap: 14px;
-            padding-bottom: 15px;
+            grid-column-gap: 14px;    
             .phone_number{
                 height:46px;
             }
-            a{
-                color:$signup_btn;
+        }
+        a{
+            color:$signup_btn;
+        }
+        &:nth-child(4){
+            //I HAVE READ, CHECKBOX + LABEL
+            display: flex;
+            align-items: center; 
+            padding-bottom: 15px;
+            input{
+                margin-right: 6px;
             }
-            &:nth-child(4){
-                //I HAVE READ, CHECKBOX + LABEL
-                display: flex;
-                align-items: center; 
-            }
-            &:nth-child(5){
-                //SUBMIT
-                display: flex;
-                align-items: center; 
-            }
+        }
+        &:nth-child(5){
+            //SUBMIT
+            display: flex;
+            align-items: center; 
             button{
                 margin:0 auto;
                 width:162px;
             }
-            &:nth-child(6){//ALREADY REGISTER?
-                padding:15px 0;
-                display: flex;
-                align-items: center; 
-                justify-content: center;
-            }
+        }
+        &:nth-child(6){
+            //ALREADY REGISTER?
+            padding:15px 0;
+            display: flex;
+            align-items: center; 
+            justify-content: center;
         }
     }
 }

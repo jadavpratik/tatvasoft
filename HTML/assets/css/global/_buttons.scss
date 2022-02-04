@@ -11,6 +11,10 @@ $input_border:#DEDDDD;
 $search_btn:#1FB6FF;
 $add_new_user_btn:#1FB6FF;
 
+.disabled_btn{
+    border:2px solid green;
+}
+
 @mixin btn{
     width:fit-content;
     height: 46px;

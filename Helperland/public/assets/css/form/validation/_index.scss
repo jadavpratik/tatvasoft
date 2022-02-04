@@ -1,40 +1,11 @@
 $validation_msg:#e50009;
 
-// .validation-msg{
-//     width:100%;
-//     margin:0 !important;
-//     padding:0 !important;
-//     p{
-//         padding-top: 8px;
-//         color:$validation_msg !important;
-//         font-size: 14px !important;
-//     }
-// }
-
-.error_msg{
-    margin:20px 0;
-    padding:20px;
-    background-color: #F4F5F8;
-    border-radius: 4px;
-    box-shadow: 1px 1px 10px lightgray;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+.validation_message{
+    padding:6px 0 0;
+    transition:  all 0.2s;
     p{
-        padding:8px 0;
-        // font-size: 14px;
-        color:#4F4F4F;
-        margin:0;
-        span{
-            color:$validation_msg;
-            padding-right: 4px;
-        }
+        color:$validation_msg !important;
+        transition:  all 0.2s;
+        font-size: 14px;
     }
-}
-
-.error_title{
-    text-align: center;
-    font-weight: 500;
-    color:#4F4F4F;
-    align-self: center;
 }

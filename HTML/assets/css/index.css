@@ -34,6 +34,11 @@ button {
   cursor: pointer;
 }
 
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
 .go_top_btn {
   width: 48px;
   height: 48px;
@@ -146,6 +151,10 @@ button {
     position: static;
     margin: 10px auto 0;
   }
+}
+
+.disabled_btn {
+  border: 2px solid green;
 }
 
 .form_btn {
@@ -1251,6 +1260,17 @@ footer {
   padding-bottom: 6px;
 }
 
+.form_group {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
 .label_input,
 .label_select,
 .label_phone_number {
@@ -1404,43 +1424,17 @@ footer {
   margin-bottom: 20px;
 }
 
-.error_msg {
-  margin: 20px 0;
-  padding: 20px;
-  background-color: #F4F5F8;
-  border-radius: 4px;
-  -webkit-box-shadow: 1px 1px 10px lightgray;
-          box-shadow: 1px 1px 10px lightgray;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: start;
-      -ms-flex-align: start;
-          align-items: flex-start;
+.validation_message {
+  padding: 6px 0 0;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
 }
 
-.error_msg p {
-  padding: 8px 0;
-  color: #4F4F4F;
-  margin: 0;
-}
-
-.error_msg p span {
-  color: #e50009;
-  padding-right: 4px;
-}
-
-.error_title {
-  text-align: center;
-  font-weight: 500;
-  color: #4F4F4F;
-  -ms-flex-item-align: center;
-      -ms-grid-row-align: center;
-      align-self: center;
+.validation_message p {
+  color: #e50009 !important;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+  font-size: 14px;
 }
 
 .my_details {
@@ -1684,14 +1678,12 @@ footer {
   height: auto;
   padding: 20px;
   border-radius: 4px;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
   z-index: 5;
 }
 
-.popup_main .label_input {
-  margin-bottom: 15px;
-}
-
-.popup_main textarea {
+.popup_main .form_group {
   margin-bottom: 15px;
 }
 
@@ -1761,20 +1753,12 @@ footer {
   color: black;
 }
 
-.popup_container {
-  width: auto;
-  height: auto;
-}
-
 .login_popup_form {
   padding-top: 10px;
 }
 
-.login_popup_form > div {
-  margin-bottom: 15px;
-}
-
 .login_popup_form > div:nth-child(3) {
+  margin-bottom: 15px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1797,6 +1781,7 @@ footer {
 }
 
 .login_popup_footer {
+  padding-top: 15px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1942,12 +1927,6 @@ footer {
   width: auto;
 }
 
-#edit_service_request_popup > p {
-  -ms-grid-column: 1;
-  -ms-grid-column-span: 2;
-  grid-column: 1/3;
-}
-
 #edit_service_request_popup > div:nth-child(2) {
   display: -ms-grid;
   display: grid;
@@ -1980,18 +1959,6 @@ footer {
   grid-column: 1/3;
   font-weight: 500;
   padding-bottom: 10px;
-}
-
-#edit_service_request_popup > div:nth-child(5),
-#edit_service_request_popup > div:nth-child(6) {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  padding-bottom: 15px;
 }
 
 #edit_service_request_popup > div:nth-child(5) p,
@@ -2999,30 +2966,47 @@ footer {
   width: 614px;
 }
 
-.customer_signup form {
+.customer_signup > form {
   padding-top: 50px;
   width: 100%;
   overflow: hidden;
 }
 
-.customer_signup form > div {
+.customer_signup > form .form_group {
+  padding-bottom: 15px;
+}
+
+.customer_signup > form > div:nth-child(1), .customer_signup > form > div:nth-child(2), .customer_signup > form > div:nth-child(3) {
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 300px 300px;
       grid-template-columns: 300px 300px;
   grid-column-gap: 14px;
-  padding-bottom: 15px;
 }
 
-.customer_signup form > div .phone_number {
+.customer_signup > form > div:nth-child(1) .phone_number, .customer_signup > form > div:nth-child(2) .phone_number, .customer_signup > form > div:nth-child(3) .phone_number {
   height: 46px;
 }
 
-.customer_signup form > div a {
+.customer_signup > form > div a {
   color: #1D7A8C;
 }
 
-.customer_signup form > div:nth-child(4) {
+.customer_signup > form > div:nth-child(4) {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding-bottom: 15px;
+}
+
+.customer_signup > form > div:nth-child(4) input {
+  margin-right: 6px;
+}
+
+.customer_signup > form > div:nth-child(5) {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -3031,21 +3015,12 @@ footer {
           align-items: center;
 }
 
-.customer_signup form > div:nth-child(5) {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-.customer_signup form > div button {
+.customer_signup > form > div:nth-child(5) button {
   margin: 0 auto;
   width: 162px;
 }
 
-.customer_signup form > div:nth-child(6) {
+.customer_signup > form > div:nth-child(6) {
   padding: 15px 0;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -3861,8 +3836,13 @@ footer {
           align-items: center;
 }
 
-.registration_form > form input {
-  margin-bottom: 15px;
+.registration_form > form .form_group {
+  padding-bottom: 15px;
+}
+
+.registration_form > form .form_group .phone_number {
+  width: 100%;
+  height: 46px;
 }
 
 .registration_form > form > div:nth-child(7),
@@ -3878,18 +3858,7 @@ footer {
   -webkit-box-align: start;
       -ms-flex-align: start;
           align-items: flex-start;
-  margin-bottom: 15px;
-}
-
-.registration_form > form > div:nth-child(7) p,
-.registration_form > form > div:nth-child(8) p {
-  color: #4F4F4F;
-  width: calc(100% - 16px);
-}
-
-.registration_form > form > div:nth-child(7) a,
-.registration_form > form > div:nth-child(8) a {
-  color: #1FB6FF;
+  padding-bottom: 15px;
 }
 
 .registration_form > form > div:nth-child(7) input[type="checkbox"],
@@ -3901,10 +3870,15 @@ footer {
   margin-right: 7px;
 }
 
-.registration_form > form .phone_number {
-  width: 100%;
-  height: 46px;
-  margin-bottom: 15px;
+.registration_form > form > div:nth-child(7) p,
+.registration_form > form > div:nth-child(8) p {
+  color: #4F4F4F;
+  width: calc(100% - 16px);
+}
+
+.registration_form > form > div:nth-child(7) p a,
+.registration_form > form > div:nth-child(8) p a {
+  color: #1FB6FF;
 }
 
 .registration_form > form button {
@@ -5169,9 +5143,12 @@ footer {
           align-items: center;
 }
 
+.get_in_touch form .form_group {
+  padding-bottom: 15px;
+}
+
 .get_in_touch form > div {
   width: 614px;
-  padding-bottom: 15px;
   overflow: hidden;
 }
 
@@ -5183,15 +5160,15 @@ footer {
   grid-column-gap: 14px;
 }
 
-.get_in_touch form > div .phone_number {
+.get_in_touch form > div:nth-child(1) .phone_number, .get_in_touch form > div:nth-child(2) .phone_number {
   height: 46px;
 }
 
-.get_in_touch form > div select, .get_in_touch form > div textarea {
+.get_in_touch form > div:nth-child(3) select, .get_in_touch form > div:nth-child(3) textarea, .get_in_touch form > div:nth-child(4) select, .get_in_touch form > div:nth-child(4) textarea {
   width: 614px;
 }
 
-.get_in_touch form > div textarea {
+.get_in_touch form > div:nth-child(3) textarea, .get_in_touch form > div:nth-child(4) textarea {
   height: 146px;
 }
 
@@ -5205,7 +5182,7 @@ footer {
           flex-direction: column;
 }
 
-.get_in_touch form > div:nth-child(5) > div {
+.get_in_touch form > div:nth-child(5) .file_upload {
   width: 100px;
   padding: 8px;
   text-align: center;
@@ -5214,7 +5191,7 @@ footer {
   color: #646464;
 }
 
-.get_in_touch form > div:nth-child(5) > div input {
+.get_in_touch form > div:nth-child(5) .file_upload input {
   display: none;
 }
 
@@ -5225,6 +5202,7 @@ footer {
   -webkit-box-align: start;
       -ms-flex-align: start;
           align-items: flex-start;
+  padding-bottom: 15px;
 }
 
 .get_in_touch form > div:nth-child(6) p {
@@ -5684,20 +5662,11 @@ footer {
   .get_in_touch form {
     width: 100%;
   }
+  .get_in_touch form .form_group input, .get_in_touch form .form_group select, .get_in_touch form .form_group textarea {
+    width: 100%;
+  }
   .get_in_touch form > div {
     width: 100%;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
-    padding: 0;
-  }
-  .get_in_touch form > div input, .get_in_touch form > div select, .get_in_touch form > div textarea {
-    width: 100%;
-    margin-bottom: 15px;
   }
   .get_in_touch form > div:nth-child(1), .get_in_touch form > div:nth-child(2) {
     display: -webkit-box;
@@ -5708,11 +5677,8 @@ footer {
         -ms-flex-direction: column;
             flex-direction: column;
   }
-  .get_in_touch form > div .phone_number {
-    margin-bottom: 15px;
-  }
-  .get_in_touch form > div:nth-child(5) {
-    margin-bottom: 15px;
+  .get_in_touch form > div:nth-child(3) select, .get_in_touch form > div:nth-child(3) textarea, .get_in_touch form > div:nth-child(4) select, .get_in_touch form > div:nth-child(4) textarea {
+    width: 100%;
   }
   .get_in_touch form > div:nth-child(6) {
     display: -webkit-box;
@@ -5722,7 +5688,6 @@ footer {
     -webkit-box-direction: normal;
         -ms-flex-direction: row;
             flex-direction: row;
-    margin-bottom: 15px;
   }
   .get_in_touch form > div:nth-child(6) input {
     width: auto;
@@ -5795,22 +5760,11 @@ footer {
   .registration_form {
     margin-top: 94px;
     width: 100%;
-    height: auto;
     padding-left: 20px;
     padding-right: 20px;
   }
-  .registration_form > form > div {
-    -webkit-box-align: start;
-        -ms-flex-align: start;
-            align-items: flex-start;
-  }
-  .registration_form > form > div label, .registration_form > form > div p {
+  .registration_form > form > div:nth-child(7) label, .registration_form > form > div:nth-child(7) p, .registration_form > form > div:nth-child(8) label, .registration_form > form > div:nth-child(8) p {
     font-size: 14px;
-  }
-  .registration_form > form > .phone_number {
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
   }
   .registration_form > form > button {
     margin-top: 0;
@@ -5824,44 +5778,16 @@ footer {
   }
   .customer_signup form {
     width: 100%;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
   }
-  .customer_signup form > div {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
+  .customer_signup form > div:nth-child(1), .customer_signup form > div:nth-child(2), .customer_signup form > div:nth-child(3) {
     width: 100%;
-    padding: 0;
-  }
-  .customer_signup form > div input {
-    margin-bottom: 15px;
-  }
-  .customer_signup form > div .phone_number {
-    margin-bottom: 15px;
-  }
-  .customer_signup form > div:nth-child(4) {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    -webkit-box-orient: horizontal;
+    -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
-        -ms-flex-direction: row;
-            flex-direction: row;
-    margin-bottom: 15px;
-  }
-  .customer_signup form > div:nth-child(4) input {
-    width: auto;
-    margin-bottom: 0;
+        -ms-flex-direction: column;
+            flex-direction: column;
   }
 }
 

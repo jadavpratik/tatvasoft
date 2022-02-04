@@ -5,14 +5,24 @@
     <!-- LOGIN -->
     <div class="popup_main d_none" id="login_popup">
         <p class="popup_title">Login</p>
-        <form class="login_popup_form" action="">
-            <div class="input_icon">
-                <input class="input" type="text" placeholder="Email">
-                <label for=""><i class="fas fa-user"></i></label>
+        <form class="login_popup_form">
+            <div class="form_group">
+                <div class="input_icon">
+                    <input class="input" type="text" placeholder="Email" name="login_email">
+                    <label for=""><i class="fas fa-user"></i></label>
+                </div>
+                <div class="validation_message d_none">
+                    <p>Error</p>
+                </div>
             </div>
-            <div class="input_icon">
-                <input class="input" type="password" placeholder="Password">
-                <label for=""><i class="fas fa-lock"></i></label>
+            <div class="form_group">
+                <div class="input_icon">
+                    <input class="input" type="password" placeholder="Password" name="login_password">
+                    <label for=""><i class="fas fa-lock"></i></label>
+                </div>
+                <div class="validation_message d_none">
+                    <p>Error</p>
+                </div>
             </div>
             <div>
                 <input type="checkbox">
@@ -24,7 +34,48 @@
         </form>
         <div class="login_popup_footer">
             <a href="#" onclick="open_model('forgot_password')">Forgot Password?</a>
-            <p>Don't Have an Account? <a href="/customer/Registration.html">Create an Account</a></p>
+            <p>Don't Have an Account? <a href="<?= url('/customer/signup') ?>">Create an Account</a></p>
         </div><!-- END_LOGIN_POPUP_FOOTER -->
     </div><!-- END_LOGIN_POPUP -->
 </div><!-- END_MODEL -->
+
+<script type="text/javascript">
+    $('.login_popup_form').submit((e)=>{
+        e.preventDefault();
+        $.ajax({
+            url : `${proxy_url}/login`,
+            method : 'POST',
+            data : $('.login_popup_form').serialize(),
+            success : function(res){
+                if(res!==undefined && res!==""){
+                    const message = JSON.parse(res);
+                    Swal.fire({
+                        title : 'Good job!',
+                        text : message.result,
+                        icon : 'success'
+                    });
+                }
+            },
+            error : function(obj){
+                if(obj!==undefined){
+                    const {responseText, status} = obj;
+                    const error = JSON.parse(responseText);
+                    if(status==409){
+                        Swal.fire({
+                            title : 'Something Went Wrong!',
+                            text : error.result,
+                            icon : 'warning'
+                        });
+                    }
+                    else if(status==400){
+                        Swal.fire({
+                            title : 'Something Went Wrong!',
+                            text : error.result,
+                            icon : 'error'
+                        });
+                    }
+                }
+            }
+        })
+    });
+</script>

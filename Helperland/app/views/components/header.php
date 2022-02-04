@@ -9,15 +9,14 @@
 	<!-- FONT-AWESOME -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- AOS -->
-	<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+	<!-- <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css"> -->
 	<!-- CSS -->
 	<link rel="stylesheet" href="<?= assets('assets/css/index.css'); ?>">
 	<!-- JQUERY -->
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<!-- SET-PROXY-URL -->
 	<script>
-		const proxy_url = `http://localhost/tatvasoft/Helperland`;
-		// const proxy_url = `http://localhost:8000`;
+		const proxy_url = `<?= BASE_URL; ?>`;
 	</script>
 </head>
 <body>
@@ -35,6 +34,7 @@
 		$home_header_id = '';
 		$home_header_style = '';
 		$home_header_logo_style = '';
+		$home_focus_btn = '';
 		$active_link = ['contact' => 'contact', 
 						'prices' => 'prices', 
 						'gaurantee' => 'gaurantee', 
@@ -42,10 +42,16 @@
 		switch(page_url()){
 			case '/':
 				$home_header_id = 'home_navbar';
+				$home_header_style = 'background-color:transparent;height:130px';
 				$home_header_logo_style = 'width:175px; height:130px;';
-				$home_focus_btn = 'transparent';
-				$home_footer_style = 'background-color:transparent;height:130px';
+				$home_focus_btn = 'transparent';			
 				break;
+			case '/service-provider/signup':
+				$home_header_id = 'home_navbar';
+				$home_header_style = 'background-color:transparent;height:130px';
+				$home_header_logo_style = 'width:175px; height:130px;';
+				$home_focus_btn = 'transparent';			
+				break;			
 			case '/prices':
 				$active_link['prices'] = 'navbar_focus_btn transparent';
 				break;
@@ -61,7 +67,7 @@
 		}
 	?>
 
-	<nav class="navbar" id="<?= $home_header_id; ?>" style="<?= $home_footer_style; ?>">
+	<nav class="navbar" id="<?= $home_header_id; ?>" style="<?= $home_header_style; ?>">
 
 		<!-- LOGO -->
 		<div class="logo" style="<?= $home_header_logo_style; ?>">
@@ -106,7 +112,7 @@
 			<a href="<?= url('/gurantee'); ?>">Gurantee</a>
 			<a href="<?= url('/blog'); ?>">Blog</a>
 			<a href="<?= url('/contact'); ?>">Contact</a>
-			<a href="<?= url('/customer/signup'); ?>">Register</a>
+			<a href="#" onclick="open_model('login')">Login</a>
 			<a href="<?= url('/service-provider/signup'); ?>">Become a Helper!</a>
 
 

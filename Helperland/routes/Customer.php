@@ -5,9 +5,5 @@ use core\Route;
 // CUSTOMER PAGES CONTROLLERS...
 use app\controllers\customer\Signup as CustomerSignup;
 
-Route::get('/customer/signup', [new CustomerSingup(), 'view']);
-Route::post('/customer/signup', [new CustomerSignup(), 'submit']);
+Route::get('/customer/signup', [new CustomerSignup(), 'view']);
 
-// Middleware::apply('auth', function(){
-// 	// ROUTES...
-// });

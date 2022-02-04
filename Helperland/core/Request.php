@@ -8,7 +8,7 @@ class Request{
 	public $body = [];
 	public $files = [];
 
-	public function __construct($arr){
+	public function __construct($arr=false){
 
 		if(!empty($arr)){
 			[$key, $value] = $arr;

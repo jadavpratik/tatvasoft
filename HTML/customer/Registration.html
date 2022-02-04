@@ -123,21 +123,64 @@
 				<div><img src="../assets/img/global/separator.png" alt=""></div>
 			</div>
 		</div>
-        <form action="">
-            <div>
-				<input class="input" type="text" placeholder="First Name">
-				<input class="input" type="text" placeholder="Last Name">
+		<!-- ERROR MESSAGE... -->
+		<!-- <div class="error_message_container">
+			<p class="error_message_title">Errors</p>
+			<div class="error_messages">
+				<p><span>*</span>FirstName is Empty!</p>
+				<p><span>*</span>LastName is Empty!</p>
+				<p><span>*</span>EmailAddress is Empty!</p>
+				<p><span>*</span>PhoneNumber is Empty!</p>
+				<p><span>*</span>Select is Empty!</p>
+				<p><span>*</span>Message is Empty!</p>
+				<p><span>*</span>UploadFile is Empty!</p>	
 			</div>
+		</div> -->
+		<form action="">
             <div>
-				<input class="input" type="text" placeholder="Email Address">
-				<div class="phone_number">
-					<label for="">+46</label>
-					<input type="text" placeholder="Phone Number">
+				<div class="form_group">
+					<input class="input" type="text" placeholder="First Name" name="firstname">
+					<div class="validation_message d_none">
+						<p>Please Enter First Name!</p>
+					</div>
+				</div>
+				<div class="form_group">
+					<input class="input" type="text" placeholder="Last Name" name="lastname">
+					<div class="validation_message d_none">
+						<p>Please Enter First Name!</p>
+					</div>
 				</div>
 			</div>
             <div>
-				<input class="input" type="text" placeholder="Password">
-				<input class="input" type="text" placeholder="Confirm Password">
+				<div class="form_group">
+					<input class="input" type="text" placeholder="Email Address" name="email">
+					<div class="validation_message d_none">
+						<p>Please Enter First Name!</p>
+					</div>
+				</div>
+				<div class="form_group">
+					<div class="phone_number">
+						<label for="">+46</label>
+						<input type="text" placeholder="Phone Number" name="phone">
+					</div>	
+					<div class="validation_message d_none">
+						<p>Please Enter First Name!</p>
+					</div>
+				</div>				
+			</div>
+            <div>
+				<div class="form_group">
+					<input class="input" type="text" placeholder="Password" name="password">
+					<div class="validation_message d_none">
+						<p>Please Enter First Name!</p>
+					</div>
+				</div>
+				<div class="form_group">
+					<input class="input" type="text" placeholder="Confirm Password" name="confirm_password">
+					<div class="validation_message d_none">
+						<p>Please Enter First Name!</p>
+					</div>
+				</div>
             </div>
             <div>
                 <input type="checkbox">
@@ -221,8 +264,9 @@
 	<script src="../assets/js/accordion.js"></script>
 	<script src="../assets/js/dropdown.js"></script>
 	<script src="../assets/js/model.js"></script>
+	<script src="../assets/js/validation.js"></script>
 
-<script>
+	<script>
         AOS.init();
 		$('.home_s3_intro > img').tilt({
 			glare: true,

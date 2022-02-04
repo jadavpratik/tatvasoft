@@ -18,33 +18,42 @@ class Route{
 	public static function splitUrl($route_arr){
 
 		self::$method = $_SERVER['REQUEST_METHOD'];
-		self::$params_key = filter_var(rtrim($route_arr), FILTER_SANITIZE_URL);
-		self::$params_value = filter_var(rtrim($_SERVER['REQUEST_URI']), FILTER_SANITIZE_URL);
+		self::$route_url = filter_var(rtrim($route_arr), FILTER_SANITIZE_URL);
+		self::$browser_url = filter_var(rtrim($_SERVER['REQUEST_URI']), FILTER_SANITIZE_URL);
 
 		if($_SERVER['SERVER_PORT']==80 && $_SERVER['HTTP_HOST']=='localhost'){
 			// REMOVE PREFIX = "/tatvasoft/Helperland" (BECAUSE WE RUN ON LOCALHOST )
-			self::$params_value = str_replace('/tatvasoft/Helperland', '', self::$params_value);
+			self::$browser_url = str_replace('/tatvasoft/Helperland','', self::$browser_url);
 		}
 
-		self::$params_value = explode('/', self::$params_value);
-		self::$params_key = explode('/', self::$params_key);
-
-		if(self::$params_key[1]!==''){
-			// SET THE ROUTE_URL...
-			self::$route_url = '/'.self::$params_key[1];
-		}
-		if(self::$params_value[1]!==''){
-			// SET BROWSER_URL...
-			self::$browser_url = '/'.self::$params_value[1];
-		}
-
-		self::$req = new Request([self::$params_key, self::$params_value]);
+		// SET THE ROUTE_URL...
+		self::$params_key = explode('/', self::$route_url);
+		// SET BROWSER_URL...
+		self::$params_value = explode('/', self::$browser_url);
+		
+		self::$req = new Request();
 		self::$res = new Response();
 
 		if(self::$route_url==self::$browser_url){
 			// MATCH FOUNDED PAGE...
-			set_page_url(self::$route_url);	
+			set_page_url(self::$browser_url);
 			return true;
+		}
+		else if(str_contains(self::$route_url, ':')){
+			// FOR PARAMS URL...
+			if(count(self::$params_key) && count(self::$params_value)){
+				// LOOP WILL BE RUNNING ACCORDING TO URL ROUTE FUNCTION...
+				// THAT WHY WE CHOOSE self::$params_key insted of self::$params_value...
+				for($i = 0; $i<count(self::$params_key)-1; $i++){
+					if(self::$params_value[$i]!==self::$params_key[$i]){
+						return false;
+					}
+				}
+				return true;
+			}
+			else{
+				return false;
+			}
 		}
 		else if(self::$route_url!==self::$browser_url && self::$route_url=='/*'){
 			// PAGE_NOT_FOUND...
@@ -56,8 +65,8 @@ class Route{
 
 	// GET METHOD...
 	public static function get($route_arr, $callback){
-		if(self::$method == 'GET'){
-			if(self::splitUrl($route_arr)==1){
+		if(self::splitUrl($route_arr)==1){
+			if(self::$method == 'GET'){
 				call_user_func_array($callback, [self::$req, self::$res]);
 				exit();
 			}
@@ -66,12 +75,12 @@ class Route{
 
 	// POST METHOD...
 	public static function post($route_arr, $callback){
-		if(self::$method == 'POST'){
-			if(self::splitUrl($route_arr)==1){
+		if(self::splitUrl($route_arr)==1){
+			if(self::$method == 'POST'){
 				call_user_func_array($callback, [self::$req, self::$res]);
 				exit();
-			}
-		}		
+			}		
+		}
 	}
 
 	// DELETE METHOD...

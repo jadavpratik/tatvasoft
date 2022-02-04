@@ -1,5 +1,5 @@
 	<?php 
-		$home_footer_bg;
+		$home_footer_bg = '';
 		if(page_url()=='/'){
 			$home_footer_bg = 'background-color:#F4F5F8;';
 		}
@@ -85,6 +85,7 @@
 	<script src="<?= assets('assets/js/accordion.js'); ?>"></script>
 	<script src="<?= assets('assets/js/dropdown.js'); ?>"></script>
 	<script src="<?= assets('assets/js/model.js'); ?>"></script>
+	<script src="<?= assets('assets/js/validation.js'); ?>"></script>
 
 </body>
 </html>

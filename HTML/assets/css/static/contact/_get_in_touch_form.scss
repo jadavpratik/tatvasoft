@@ -19,30 +19,36 @@ $get_in_touch_title:#4F4F4F;
         display: flex;
         flex-direction: column;
         align-items: center;
+        .form_group{
+            padding-bottom: 15px;
+        }
         & > div{
             width:614px;
-            padding-bottom: 15px;
             overflow: hidden;
             &:nth-child(1),
             &:nth-child(2){
                 display: grid;
                 grid-template-columns: 300px 300px;
                 grid-column-gap:14px;    
+                .phone_number{
+                    height:46px;
+                }
             }
-            .phone_number{
-                height:46px;
-            }
-            select, textarea{
-                width:614px;
-            }
-            textarea{
-                height:146px;
+            &:nth-child(3),
+            &:nth-child(4){
+                select, textarea{
+                    width:614px;
+                }
+                textarea{
+                    height:146px;
+                }
             }
             &:nth-child(5){
                 // ATTACHMENT...
                 display: flex;
                 flex-direction: column;
-                & > div{// FILE INPUT...
+                .file_upload{
+                    // FILE INPUT...
                     width:100px;
                     padding:8px;
                     text-align: center;
@@ -58,6 +64,7 @@ $get_in_touch_title:#4F4F4F;
                 // TICK CHECKBOX...
                 display: flex;
                 align-items: flex-start;
+                padding-bottom: 15px;
                 p{
                     padding-left: 10px;
                     margin-top: -3px;

@@ -3,6 +3,8 @@ function open_model(popup_name){
     // HIDE ALL MODELS...
     $('.model').addClass('d_none');
     $('.popup_main').addClass('d_none');
+    $('.sidenav').animate({'right':'-250px'}, 500);
+    $('.admin_tab_list').animate({'left':'-272px'}, 500);
 
     // SELECT THE POPUP CLASS
     const popup_id = `${popup_name}_popup`;

@@ -8,10 +8,8 @@ $popup_link:#1D7A8C;
     height: auto;
     padding:20px;
     border-radius: 4px;
-    .label_input{
-        margin-bottom: 15px;
-    }
-    textarea{
+    transition: all 0.5s;
+    .form_group{
         margin-bottom: 15px;
     }
     p{

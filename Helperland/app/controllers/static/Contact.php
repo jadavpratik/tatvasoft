@@ -5,6 +5,7 @@ namespace app\controllers\static;
 use core\Request;
 use core\Response;
 use core\File;
+// use core\Validation;
 use app\models\Contact as ContactModel;
 
 class Contact{
@@ -28,7 +29,12 @@ class Contact{
 		$contact = new ContactModel();
 		$result = $contact->create($arr);
 
-		$res->status(200)->json(['result'=>$result]);
+		if($result!=='' && $result!=null){
+			$res->status(200)->json(['result'=>"Form Submitted Successfully."]);			
+		}
+		else{
+			$res->status(400)->json(['error'=>'Something Went Wrong!!!']);
+		}
 	}
 
 }
