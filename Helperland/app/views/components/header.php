@@ -173,4 +173,6 @@
 	<!-- --------------------------------------------------- -->
 	<?= component('login'); ?>
 	<?= component('forgot-password'); ?>
+	<?= component('otp'); ?>
+	<?= component('set-new-password'); ?>
 

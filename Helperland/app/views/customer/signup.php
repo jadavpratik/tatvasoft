@@ -91,10 +91,10 @@
 			data : $('#customer_signup').serialize(),
 			success : function(res){
 				if(res!==undefined && res!==""){
-					const message = JSON.parse(res);
+					const result = JSON.parse(res);
 					Swal.fire({
 						title : 'Good job!',
-						text : message.result,
+						text : result.message,
 						icon : 'success'
 					});
 				}
@@ -105,15 +105,13 @@
 					const error = JSON.parse(responseText);
 					if(status==409){
 						Swal.fire({
-							title : 'Something Went Wrong!',
-							text : error.result,
+							text : error.message,
 							icon : 'warning'
 						});
 					}
 					else if(status==400){
 						Swal.fire({
-							title : 'Something Went Wrong!',
-							text : error.result,
+							text : error.message,
 							icon : 'error'
 						});
 					}

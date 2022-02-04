@@ -115,6 +115,7 @@
         <button onclick="open_model('success')">SUCCESS</button>
         <!-- <button onclick="open_model('fail')">FAIL</button> -->
         <button onclick="open_model('login')">LOGIN</button>
+        <button onclick="open_model('otp')">OTP</button>
         <button onclick="open_model('forgot_password')">FORGOT PASSOWORD</button>
         <button onclick="open_model('set_new_password')">SET NEW PASSOWORD</button>
         <button onclick="open_model('accept_service_request')">Accept Service</button>
@@ -151,6 +152,24 @@
 				</div>
 				<button class="popup_btn">Send</button>
 				<a href="#" onclick="open_model('login')">Login Now</a>
+			</form>
+		</div>
+	</div>
+
+    <!-- --------------------------------------------------- -->
+				<!-- OTP -->
+	<!-- --------------------------------------------------- -->
+	<div class="model d_none">
+        <!-- MODEL_CLOSE -->
+        <button class="model_close_btn">&times;</button>
+		<!-- POPUP-MAIN -->
+		<div class="popup_main d_none" id="otp_popup">
+			<p class="popup_title">OTP</p>
+			<form>
+				<div class="form_group">
+					<input class="input" type="text" placeholder="OTP">				
+				</div>
+				<button class="popup_btn">SUBMIT</button>
 			</form>
 		</div>
 	</div>

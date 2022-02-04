@@ -63,8 +63,21 @@ class Database{
     }
 
     // -----------------WHERE-------------------
-    public function where($where){
-        $this->where = $where;
+    public function where($key, $operator=false, $value=false){
+        if($operator!=false && $value!=false){
+            // IF WE PASS ALL THREE PARAMETERS...
+            $this->where = $key.' '.$operator.' '.$value;
+        }
+        else if(gettype($key)=='array'){
+            // IF WE PASS ARRAY...
+            for($i = 0; $i<count($where); $i++){
+                $this->where .= $where[$i];
+            }
+        }
+        else{
+            // IF WE PASS STRING...
+            $this->where = $key;
+        }
         return $this;
     }
 

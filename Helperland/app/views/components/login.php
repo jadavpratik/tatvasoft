@@ -12,7 +12,7 @@
                     <label for=""><i class="fas fa-user"></i></label>
                 </div>
                 <div class="validation_message d_none">
-                    <p>Error</p>
+                    <p>Validation Message!!!</p>
                 </div>
             </div>
             <div class="form_group">
@@ -21,7 +21,7 @@
                     <label for=""><i class="fas fa-lock"></i></label>
                 </div>
                 <div class="validation_message d_none">
-                    <p>Error</p>
+                    <p>Validation Message!!!</p>
                 </div>
             </div>
             <div>
@@ -48,10 +48,10 @@
             data : $('.login_popup_form').serialize(),
             success : function(res){
                 if(res!==undefined && res!==""){
-                    const message = JSON.parse(res);
+                    const result = JSON.parse(res);
                     Swal.fire({
                         title : 'Good job!',
-                        text : message.result,
+                        text : result.message,
                         icon : 'success'
                     });
                 }
@@ -60,17 +60,9 @@
                 if(obj!==undefined){
                     const {responseText, status} = obj;
                     const error = JSON.parse(responseText);
-                    if(status==409){
+                    if(status==401){
                         Swal.fire({
-                            title : 'Something Went Wrong!',
-                            text : error.result,
-                            icon : 'warning'
-                        });
-                    }
-                    else if(status==400){
-                        Swal.fire({
-                            title : 'Something Went Wrong!',
-                            text : error.result,
+                            text : error.message,
                             icon : 'error'
                         });
                     }

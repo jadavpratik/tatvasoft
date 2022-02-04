@@ -13,7 +13,10 @@ class Response{
 	public function status($status_code){
 		// 200 : OK
 		// 201 : CREATED
+		// 401 : WRONG CREDENTIALS
 		// 400 : BAD REQUEST
+		// 403 : RIGHT CREDENTIALS BUT NOT ALLOWED TO ACCESS RESOURCE...
+		// 404 : NOT FOUND
 		// 409 : CONFLICT		
 		// 500 : INTERNAL SERVER
 		http_response_code($status_code);

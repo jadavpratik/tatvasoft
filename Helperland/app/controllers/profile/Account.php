@@ -9,6 +9,50 @@ use app\models\User;
 
 class Account{
 
+	// -----------------------------FORGOT-PASSWORD------------------------------------
+	public function set_new_password(Request $req, Response $res){
+		if($req->body->password==$req->body->cpassword){
+			$user = new User();
+			$hash = Hash::create($req->body->password);
+			$result = $user->where('Email','=', "'".session('email')."'")->update(['Password'=>$hash]);
+			if($result!=""){
+				$res->status(200)->json(['message'=>'Password Updated Successfully.']);
+			}
+			else{
+				$res->status(401)->json(['message'=>'Something Went Wrong']);
+			}
+		}
+		else{
+			$res->status(401)->json(['message'=>'Password & Confirm Password Not Matched!!!']);			
+		}
+	}
+
+	public function check_otp(Request $req, Response $res){
+		if($req->body->otp==session('otp')){
+			$res->status(200)->json(['message'=>'OTP Matched.']);
+		}
+		else{
+			$res->status(401)->json(['message'=>'OTP Not Matched!!!']);
+		}
+	}
+
+	// -----------------------------FORGOT-PASSWORD------------------------------------
+	public function forgot_password(Request $req, Response $res){
+		$user = new User();
+		if($user->where('Email', '=', "'".$req->body->email."'")->exists()){
+			// GENERATE OTP...
+			$otp = rand(1000, 9999);
+			// STORE OTP IN SESSION...
+			session('otp', $otp);
+			session('email', $req->body->email);
+			$res->status(200)->json(['otp'=>$otp]);
+		}
+		else{
+			$res->status(401)->json(['message'=>'User not Exists in Database.']);
+		}
+	}
+
+	// -----------------------------LOGIN------------------------------------
 	public function login(Request $req, Response $res){
 		$user = new User();
 		$email = $req->body->login_email;
@@ -31,14 +75,16 @@ class Account{
 				$res->status(200)->json(['role'=>$role]);
 			}
 			else{
-				$res->status(400)->json(['result'=>"Password is Not Matched."]);
+				$res->status(401)->json(['message'=>"Password is Not Matched."]);
 			}
 		}
 		else{
-			$res->status(400)->json(['result'=>"User not Exists in Database"]);			
+			$res->status(401)->json(['message'=>"User not Exists in Database"]);			
 		}
 	}
 
+
+	// -----------------------------SIGNUP------------------------------------
 	public function signup(Request $req, Response $res){
 
 		$user = new User();
@@ -82,13 +128,13 @@ class Account{
 					$user = new User();
 					$result = $user->create($arr);
 					if($result===1){
-						$res->status(201)->json(['result'=>'Account is Created Successfully.']);
+						$res->status(201)->json(['message'=>'Account is Created Successfully.']);
 					}
 				}
 			}
 		}
 		else{
-			$res->status(409)->json(['result'=>'Email Address or Mobile Number Already Exists in Database']);
+			$res->status(409)->json(['message'=>'Email Address or Mobile Number Already Exists in Database']);
 		}
 	}
     

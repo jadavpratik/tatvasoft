@@ -21,6 +21,7 @@ class Route{
 		self::$route_url = filter_var(rtrim($route_arr), FILTER_SANITIZE_URL);
 		self::$browser_url = filter_var(rtrim($_SERVER['REQUEST_URI']), FILTER_SANITIZE_URL);
 
+		// FIX THIS PREFIX REMOVEER....
 		if($_SERVER['SERVER_PORT']==80 && $_SERVER['HTTP_HOST']=='localhost'){
 			// REMOVE PREFIX = "/tatvasoft/Helperland" (BECAUSE WE RUN ON LOCALHOST )
 			self::$browser_url = str_replace('/tatvasoft/Helperland','', self::$browser_url);
@@ -86,6 +87,15 @@ class Route{
 	// DELETE METHOD...
 
 	// PUT METHOD...
-
+	public static function put($route_arr, $callback){
+		if(self::splitUrl($route_arr)==1){
+			if(self::$method == 'PUT'){
+				$abc = file_get_contents('php://input');
+				echo json_decode($abc);
+				call_user_func_array($callback, [self::$req, self::$res]);
+				exit();
+			}		
+		}		
+	}
 
 }

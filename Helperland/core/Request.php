@@ -27,7 +27,6 @@ class Request{
 		if(!empty($_POST)){
 			$this->body = (object) $_POST;
 		}
-
 		if(!empty($_FILES)){
 			$this->files = (object) $_FILES;
 		}
