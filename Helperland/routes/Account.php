@@ -2,7 +2,7 @@
 
 use core\Route;
 
-// CUSTOMER PAGES CONTROLLERS...
+// PROFILE-ACCOUNT CONTROLLER...
 use app\controllers\profile\Account;
 
 Route::post('/signup', [new Account(), 'signup']);
