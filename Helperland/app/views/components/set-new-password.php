@@ -1,7 +1,7 @@
 <!-- --------------------------------------------------- -->
 			<!-- SET_NEW_PASSWORD -->
 <!-- --------------------------------------------------- -->
-<div class="model d_none">
+<div class="model">
     <!-- MODEL_CLOSE -->
     <button class="model_close_btn">&times;</button>
 	<!-- SET_NEW_PASSOWORD -->

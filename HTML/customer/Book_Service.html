@@ -180,7 +180,7 @@
 					<button class="tab_btn">
 						<div>
 							<img src="../assets/img/customer/book_service/setup_service.png" alt="">
-						</div> 
+						</div>
 						<p>Setup Service</p>
 					</button>
 					<button class="tab_btn">
@@ -439,7 +439,6 @@
 
 			<!-- BOOK SERVIES RIGHT -->
 			<div class="book_service_right">
-
 				<!-- PAYMENT -->
 				<div class="payment_summary">
 					<p>Payment Summary</p>
@@ -484,7 +483,7 @@
 							</div>
 							<p><span>*</span>You will save 20% according to §35a EStG.</p>
 						</div>
-						<button onclick="open_model('included_services')">
+						<button>
 							<i class="far fa-smile"></i>
 							<p>See what is always included</p>
 						</button>
@@ -520,9 +519,39 @@
 			<!-- VISIBLE BELOWER 1280PX -->
 			<button class="payment_summary_btn">Payment Summary</button>
 
+			<script>
+				// --------------FOR_PAYMENT_SUMMARY-----------------
+				if($(window).width() <= 1280){
+					$('.book_service_right').toggleClass('d_none');
+				}
+
+				$('.payment_summary_btn').click(()=>{
+					$('.book_service_right').toggleClass('d_none');
+					$('.backlight_container').toggleClass('backlight');
+					$('body').css({'overflow':'hidden'});
+				});
+
+				$('.backlight_container').click(()=>{
+					if($(window).width() <= 1280){
+						$('.book_service_right').toggleClass('d_none');
+					}
+				});
+			</script>
+
 		</div>
 
-
+		
+		<script>
+			$('#open_address_form_btn').click(()=>{
+				$('#address_form').toggleClass('d_none');
+				$('#open_address_form_btn').toggleClass('d_none');
+			});
+			$('#close_address_form_btn').click(()=>{
+				$('#address_form').toggleClass('d_none');
+				$('#open_address_form_btn').toggleClass('d_none');
+			});
+		</script>
+	
 	</main>
 
 	<!-- --------------------------------------------------- -->
@@ -603,17 +632,5 @@
 			maxGlare: .5
 		});
     </script>
-	<script>
-		$('#open_address_form_btn').click(()=>{
-			$('#address_form').toggleClass('d_none');
-			$('#open_address_form_btn').toggleClass('d_none');
-		});
-		$('#close_address_form_btn').click(()=>{
-			$('#address_form').toggleClass('d_none');
-			$('#open_address_form_btn').toggleClass('d_none');
-		});
-	</script>
-
-
 </body>
 </html>

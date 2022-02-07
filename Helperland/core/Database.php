@@ -47,7 +47,10 @@ class Database{
         $values = '(';
         foreach($arr as $key => $value){
             $keys .= $key.', ';
-            $values .= "'".$value."', ";
+            if(gettype($value)=='integer')
+                $values .= "{$value} ,";
+            else
+                $values .= "'{$value}' ,";
         }
         $keys = rtrim($keys, ', ');
         $values = rtrim($values, ', ');
@@ -83,7 +86,7 @@ class Database{
 
 
     // -----------------READ-------------------
-    public function read(){
+    public function read($columns=false){
         try{
             if($this->where!==""){
                 $this->query = "SELECT * FROM $this->table WHERE $this->where";

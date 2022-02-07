@@ -1,5 +1,10 @@
 .login_popup_form{
     padding-top:10px;
+    input{
+        &:focus{
+            border:0 !important;
+        }
+    }
     & > div:nth-child(3){
         //REMEMBER ME
         margin-bottom: 15px;

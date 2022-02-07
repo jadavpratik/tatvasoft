@@ -141,13 +141,13 @@
 				<div class="form_group">
 					<input class="input" type="text" placeholder="First Name" name="firstname">
 					<div class="validation_message d_none">
-						<p>Please Enter First Name!</p>
+						<p>Validation Message!!!</p>
 					</div>
 				</div>
 				<div class="form_group">
 					<input class="input" type="text" placeholder="Last Name" name="lastname">
 					<div class="validation_message d_none">
-						<p>Please Enter First Name!</p>
+						<p>Validation Message!!!</p>
 					</div>
 				</div>
 			</div>
@@ -155,7 +155,7 @@
 				<div class="form_group">
 					<input class="input" type="text" placeholder="Email Address" name="email">
 					<div class="validation_message d_none">
-						<p>Please Enter First Name!</p>
+						<p>Validation Message!!!</p>
 					</div>
 				</div>
 				<div class="form_group">
@@ -164,7 +164,7 @@
 						<input type="text" placeholder="Phone Number" name="phone">
 					</div>	
 					<div class="validation_message d_none">
-						<p>Please Enter First Name!</p>
+						<p>Validation Message!!!</p>
 					</div>
 				</div>				
 			</div>
@@ -172,13 +172,13 @@
 				<div class="form_group">
 					<input class="input" type="text" placeholder="Password" name="password">
 					<div class="validation_message d_none">
-						<p>Please Enter First Name!</p>
+						<p>Validation Message!!!</p>
 					</div>
 				</div>
 				<div class="form_group">
-					<input class="input" type="text" placeholder="Confirm Password" name="confirm_password">
+					<input class="input" type="text" placeholder="Confirm Password" name="cpassword">
 					<div class="validation_message d_none">
-						<p>Please Enter First Name!</p>
+						<p>Validation Message!!!</p>
 					</div>
 				</div>
             </div>
@@ -273,6 +273,26 @@
 			maxGlare: .5
 		});
     </script>
+
+
+	<script>
+		$('.form_btn').click((e)=>{
+			e.preventDefault();
+			const validation_arr = [firstname_validation(),
+									lastname_validation(),
+									email_validation(),
+									phone_validation(),
+									password_validation(),
+									cpassword_validation()];
+			for(i of validation_arr){
+				if(i!==false){
+					console.log('ajax');
+				}
+			}
+		});
+	</script>
+
+
 
 </body>
 </html>

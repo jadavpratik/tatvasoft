@@ -17,17 +17,3 @@ $('.backlight_container').click(()=>{
     $('body').css({'overflow-y':'auto'});
 });
 
-// --------------FOR_PAYMENT_SUMMARY-----------------
-if($(window). width() < 992){
-    $('.book_service_right').toggleClass('d_none');
-}
-
-$('.payment_summary_btn').click(()=>{
-    $('.book_service_right').toggleClass('d_none');
-    $('.backlight_container').toggleClass('backlight');
-    $('body').css({'overflow':'hidden'});
-});
-
-$('.backlight_container').click(()=>{
-    $('.book_service_right').toggleClass('d_none');
-});

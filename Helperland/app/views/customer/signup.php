@@ -69,11 +69,12 @@
     </form>
 </div>
 
+<?= component('footer'); ?>
+
 <!-- ---------------------------------------------------------- -->
 			<!-- SCRIPT FOR REGISTRATION... -->
 <!-- ---------------------------------------------------------- -->
 <script>
-
 	$('[name="TermCheckBox"]').click(()=>{
 		if($('[name="TermCheckBox"]').prop('checked')){
 			$('.form_btn').prop('disabled', false);
@@ -85,41 +86,55 @@
 
 	$('#customer_signup').submit((e)=>{
 		e.preventDefault();
-		$.ajax({
-			url : `${proxy_url}/signup`,
-			method : 'POST',
-			data : $('#customer_signup').serialize(),
-			success : function(res){
-				if(res!==undefined && res!==""){
-					const result = JSON.parse(res);
-					Swal.fire({
-						title : 'Good job!',
-						text : result.message,
-						icon : 'success'
-					});
-				}
-			},
-			error : function(obj){
-				if(obj!==undefined){
-					const {responseText, status} = obj;
-					const error = JSON.parse(responseText);
-					if(status==409){
-						Swal.fire({
-							text : error.message,
-							icon : 'warning'
-						});
-					}
-					else if(status==400){
-						Swal.fire({
-							text : error.message,
-							icon : 'error'
-						});
-					}
-				}
-			}
-		});
-	});
+		let validation = true;;
+		const validationArr = [firstname_validation(),
+							lastname_validation(),
+							email_validation(),
+							phone_validation(),
+							password_validation(),
+							cpassword_validation()];
 
+		for(let i=0; i<validationArr.length; i++){
+			if(validationArr[i]==false){
+				validation = false;
+				break;
+			}	
+		}
+		if(validation){
+			$.ajax({
+				url : `${proxy_url}/signup`,
+				method : 'POST',
+				data : $('#customer_signup').serialize(),
+				success : function(res){
+					if(res!==undefined && res!==""){
+						const result = JSON.parse(res);
+						Swal.fire({
+							title : 'Good job!',
+							text : result.message,
+							icon : 'success'
+						});
+					}
+				},
+				error : function(obj){
+					if(obj!==undefined){
+						const {responseText, status} = obj;
+						const error = JSON.parse(responseText);
+						if(status==409){
+							Swal.fire({
+								text : error.message,
+								icon : 'warning'
+							});
+						}
+						else if(status==400){
+							Swal.fire({
+								text : error.message,
+								icon : 'error'
+							});
+						}
+					}
+				}
+			});
+		}
+	});
 </script>
 
-<?= component('footer'); ?>

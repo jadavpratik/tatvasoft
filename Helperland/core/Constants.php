@@ -1,6 +1,6 @@
 <?php
 
-    // PATH ONE WILL BE A DOCUMENT ROOT PATH + __DIR__...[PORT:80]
+    // DIRECTORY PATH...
     $path1 = 'http://localhost/tatvasoft/Helperland';
     // PORT PATH
     $path2 = "http://localhost:".$_SERVER['SERVER_PORT'];

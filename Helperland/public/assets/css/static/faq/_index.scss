@@ -39,6 +39,7 @@ $faq_text:#646464;
         border:0;
         border-bottom: 3px solid $faq_active_tab;
         cursor: pointer;
+        // transition: background-color 300ms, color 300ms;
     }
 }
 

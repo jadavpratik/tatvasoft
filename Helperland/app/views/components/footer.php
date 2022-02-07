@@ -66,11 +66,9 @@
 		<button id="cookie_submit_btn">OK!</button>
 	</div>
 
-
 	<!-- --------------------------------------------------- -->
 					<!-- ALL SCRIPT FILES... -->
 	<!-- --------------------------------------------------- -->
-
 	<!-- AOS -->
 	<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 	<!-- TITL-JS -->

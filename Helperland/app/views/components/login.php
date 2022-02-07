@@ -1,5 +1,5 @@
 <!-- LOGIN -->
-<div class="model d_none">
+<div class="model">
     <!-- MODEL_CLOSE -->
     <button class="model_close_btn">&times;</button>
     <!-- LOGIN -->
@@ -42,32 +42,49 @@
 <script type="text/javascript">
     $('.login_popup_form').submit((e)=>{
         e.preventDefault();
-        $.ajax({
-            url : `${proxy_url}/login`,
-            method : 'POST',
-            data : $('.login_popup_form').serialize(),
-            success : function(res){
-                if(res!==undefined && res!==""){
-                    const result = JSON.parse(res);
-                    Swal.fire({
-                        title : 'Good job!',
-                        text : result.message,
-                        icon : 'success'
-                    });
-                }
-            },
-            error : function(obj){
-                if(obj!==undefined){
-                    const {responseText, status} = obj;
-                    const error = JSON.parse(responseText);
-                    if(status==401){
+        let validation = true;;
+		const validationArr = [firstname_validation(),
+							lastname_validation(),
+							email_validation(),
+							phone_validation(),
+							password_validation(),
+							cpassword_validation()];
+
+		for(let i=0; i<validationArr.length; i++){
+			if(validationArr[i]==false){
+				validation = false;
+				break;
+			}	
+		}
+
+        if(validation){
+            $.ajax({
+                url : `${proxy_url}/login`,
+                method : 'POST',
+                data : $('.login_popup_form').serialize(),
+                success : function(res){
+                    if(res!==undefined && res!==""){
+                        const result = JSON.parse(res);
                         Swal.fire({
-                            text : error.message,
-                            icon : 'error'
+                            title : 'Good job!',
+                            text : result.message,
+                            icon : 'success'
                         });
                     }
+                },
+                error : function(obj){
+                    if(obj!==undefined){
+                        const {responseText, status} = obj;
+                        const error = JSON.parse(responseText);
+                        if(status==401){
+                            Swal.fire({
+                                text : error.message,
+                                icon : 'error'
+                            });
+                        }
+                    }
                 }
-            }
-        })
+            });
+        }
     });
 </script>
