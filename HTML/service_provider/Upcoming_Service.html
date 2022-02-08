@@ -162,7 +162,7 @@
             <div class="table_tab_left">
                 <div class="table_tab_list">
                     <a href="#" class="table_tab_btn">Dashboard</a>
-                    <a href="#" class="table_tab_btn active_table_tab">New Service Request</a>
+                    <a href="#" class="table_tab_btn">New Service Request</a>
                     <a href="#" class="table_tab_btn">Upcoming Services</a>
                     <a href="#" class="table_tab_btn">Service Schedule</a>
                     <a href="#" class="table_tab_btn">Service History</a>
@@ -175,7 +175,7 @@
             <div class="table_tab_right">
 
                 <!-- PROFILE -->
-                <div class="table_tab_content d_none">
+                <div class="table_tab_content">
                     <div class="profile">
                         <div class="tab_container">
                             <div class="tab_indicator profile_tabs">
@@ -193,23 +193,35 @@
                                                 <p>Basic Details</p>
                                                 <div><img class="avatar" src="../assets/img/avatar/car.png" alt=""></div>
                                             </div>
-                                            <div class="label_input">
+                                            <div class="form_group">
                                                 <label class="label" for="">First Name</label>
                                                 <input class="input" type="text">
+                                                <div class="validation_message d_none">
+                                                    <p>Validation Message!!!</p>
+                                                </div>
                                             </div>
-                                            <div class="label_input">
+                                            <div class="form_group">
                                                 <label class="label" for="">Last Name</label>
                                                 <input class="input" type="text">
+                                                <div class="validation_message d_none">
+                                                    <p>Validation Message!!!</p>
+                                                </div>
                                             </div>
-                                            <div class="label_input">
+                                            <div class="form_group">
                                                 <label class="label" for="">Email Address</label>
                                                 <input class="input" type="text">
+                                                <div class="validation_message d_none">
+                                                    <p>Validation Message!!!</p>
+                                                </div>
                                             </div>
-                                            <div class="label_phone_number">
+                                            <div class="label_phone_number form_group">
                                                 <label class="label" for="">Phone Number</label>
                                                 <div class="phone_number">
                                                     <label for="">+49</label>
                                                     <input type="text">
+                                                </div>
+                                                <div class="validation_message d_none">
+                                                    <p>Validation Message!!!</p>
                                                 </div>
                                             </div>
                                             <div class="date_of_birth">
@@ -249,6 +261,9 @@
                                                     <input type="radio" id="no_gender" name="gender">
                                                     <label for="no_gender">Rather not to say</label>
                                                 </div>
+                                                <div class="validation_message d_none">
+                                                    <p>Validation Message!!!</p>
+                                                </div>
                                             </div>
                                             <!-- SELECT AVATAR -->
                                             <div class="select_avatar_container">
@@ -286,21 +301,33 @@
                                             <div>
                                                 <p>My Address</p>
                                             </div>
-                                            <div class="label_input">
+                                            <div class="form_group">
                                                 <label class="label" for="">Street Name</label>
                                                 <input class="input" type="text">
+                                                <div class="validation_message d_none">
+                                                    <p>Validation Message!!!</p>
+                                                </div>
                                             </div>
-                                            <div class="label_input">
+                                            <div class="form_group">
                                                 <label class="label" for="">House Number</label>
                                                 <input class="input" type="text">
+                                                <div class="validation_message d_none">
+                                                    <p>Validation Message!!!</p>
+                                                </div>
                                             </div>
-                                            <div class="label_input">
+                                            <div class="form_group">
                                                 <label class="label" for="">Postal Code</label>
                                                 <input class="input" type="text">
+                                                <div class="validation_message d_none">
+                                                    <p>Validation Message!!!</p>
+                                                </div>
                                             </div>
-                                            <div class="label_input">
+                                            <div class="form_group">
                                                 <label class="label" for="">City</label>
                                                 <input class="input" type="text">
+                                                <div class="validation_message d_none">
+                                                    <p>Validation Message!!!</p>
+                                                </div>
                                             </div>
                                         </div><!-- END BASIC DETAILS CONTAINER -->
                                         <button class="profile_save_btn">Save</button>
@@ -308,17 +335,26 @@
                                 </div><!-- END TAB CONTENT -->
                                 <div class="tab_content">
                                     <form class="change_password">
-                                        <div class="label_input">
+                                        <div class="form_group">
                                             <label class="label" for="">Old Password</label>
                                             <input class="input" type="text" placeholder="Current Password">
+                                            <div class="validation_message d_none">
+                                                <p>Validation Message!!!</p>
+                                            </div>
                                         </div>
-                                        <div class="label_input">
+                                        <div class="form_group">
                                             <label class="label" for="">New Password</label>
                                             <input class="input" type="text" placeholder="Password">                                            
+                                            <div class="validation_message d_none">
+                                                <p>Validation Message!!!</p>
+                                            </div>
                                         </div>
-                                        <div class="label_input">
+                                        <div class="form_group">
                                             <label class="label" for="">Confirm Password</label>
                                             <input class="input" type="text" placeholder="Confirm Password">
+                                            <div class="validation_message d_none">
+                                                <p>Validation Message!!!</p>
+                                            </div>
                                         </div>
                                         <button class="profile_save_btn">Save</button>
                                     </form>
@@ -332,7 +368,7 @@
                 <div class="table_tab_content d_none"></div>
 
                 <!-- NEW SERVICE REQUEST -->
-                <div class="table_tab_content">
+                <div class="table_tab_content d_none">
                     <div class="sp_new_service_request">
                         <div>
                             <p>Service Area</p>

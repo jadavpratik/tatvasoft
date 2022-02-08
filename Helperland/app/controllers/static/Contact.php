@@ -17,7 +17,10 @@ class Contact{
 	public function submit(Request $req, Response $res){
 
 		// SAVE A UPLOADED FILE PATH...
-		$filePath = File::upload($req->files->attachment, 'upload/contact/');
+		$filePath = null;
+		if($req->files->attachment['error']==0){
+			$filePath = File::upload($req->files->attachment, 'upload/contact/');
+		}
 
 		$arr = array('Name' => $req->body->firstname.' '.$req->body->lastname,
 					 'Email' => $req->body->email,
@@ -29,11 +32,11 @@ class Contact{
 		$contact = new ContactModel();
 		$result = $contact->create($arr);
 
-		if($result!=='' && $result!=null){
-			$res->status(200)->json(['result'=>"Form Submitted Successfully."]);			
+		if($result!='' && $result!=null){
+			$res->status(200)->json(['message'=>"Form Submitted Successfully."]);			
 		}
 		else{
-			$res->status(400)->json(['error'=>'Something Went Wrong!!!']);
+			$res->status(400)->json(['message'=>'Something Went Wrong!!!']);
 		}
 	}
 

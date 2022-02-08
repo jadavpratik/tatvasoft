@@ -24,17 +24,30 @@
             method : 'POST',
             data : $('.otp_popup_form').serialize(),
             success : function(res){
-                const result = JSON.parse(res);
-                Swal.fire({
-                    title : 'OTP MATCHED',
-                    text : result.message,
-                    icon : 'success'
-                }).then((res)=>{
-                    if(res.isConfirmed){
+                if(res!==undefined && res!==""){
+                    try{
+                        const result = JSON.parse(res);
+                        $('.otp_popup_form').trigger('reset');
                         close_model();
                         open_model('set_new_password');
+                        // Swal.fire({
+                        //     title : 'OTP MATCHED',
+                        //     text : result.message,
+                        //     icon : 'success'
+                        // }).then((res)=>{
+                        //     if(res.isConfirmed){
+                        //     }
+                        // });
                     }
-                });
+                    catch(e){
+                        console.log('Invalid JSON Response!!!');
+                        Swal.fire({
+                            title : 'SERVER ERROR',
+                            text : 'Invalid JSON Response!!!',
+                            icon : 'error'
+                        });
+                    }
+                }
             },
             error : function(obj){
                 if(obj!==undefined){

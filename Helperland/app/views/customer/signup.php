@@ -107,12 +107,26 @@
 				data : $('#customer_signup').serialize(),
 				success : function(res){
 					if(res!==undefined && res!==""){
-						const result = JSON.parse(res);
-						Swal.fire({
-							title : 'Good job!',
-							text : result.message,
-							icon : 'success'
-						});
+						try{
+							const result = JSON.parse(res);
+							Swal.fire({
+								title : 'Good job!',
+								text : result.message,
+								icon : 'success'
+							}).then((res)=>{
+								if(res.isConfirmed){
+									$('#customer_signup').trigger('reset');
+								}
+							});
+						}
+						catch(e){
+							console.log('Invalid Json Response!!!');
+							Swal.fire({
+								title : 'Server Error',
+								text : 'Invalid Response Coming From Server!!!',
+								icon : 'error'
+							});
+						}
 					}
 				},
 				error : function(obj){

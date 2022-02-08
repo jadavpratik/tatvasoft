@@ -150,12 +150,28 @@
 				data : $('#sp_signup').serialize(),
 				success : function(res){
 					if(res!==undefined && res!==""){
-						const result = JSON.parse(res);
-						Swal.fire({
-							title : 'Good job!',
-							text : result.message,
-							icon : 'success'
-						});
+						try{
+							if(res!==undefined && res!==""){
+							const result = JSON.parse(res);
+								Swal.fire({
+									title : 'Good job!',
+									text : result.message,
+									icon : 'success'
+								}).then((res)=>{
+									if(res.isConfirmed){
+										$('#sp_signup').trigger('reset');
+									}
+								});
+							}
+						}
+						catch(e){
+							console.log('Invalid Json Response');
+							Swal.fire({
+								title : 'Server Error',
+								text : 'Invalid JSON Response',
+								icon : 'error'
+							});
+						}
 					}
 				},
 				error : function(obj){

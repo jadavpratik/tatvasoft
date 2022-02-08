@@ -9,11 +9,11 @@ use app\models\User;
 
 class Account{
 
-	// -----------------------------FORGOT-PASSWORD------------------------------------
+	// -----------------------------SET-NEW-PASSWORD------------------------------------
 	public function set_new_password(Request $req, Response $res){
-		if($req->body->password==$req->body->cpassword){
+		if($req->body->set_new_password==$req->body->set_new_cpassword){
 			$user = new User();
-			$hash = Hash::create($req->body->password);
+			$hash = Hash::create($req->body->set_new_password);
 			$result = $user->where('Email','=', "'".session('email')."'")->update(['Password'=>$hash]);
 			if($result!=""){
 				$res->status(200)->json(['message'=>'Password Updated Successfully.']);
@@ -39,13 +39,13 @@ class Account{
 	// -----------------------------FORGOT-PASSWORD------------------------------------
 	public function forgot_password(Request $req, Response $res){
 		$user = new User();
-		if($user->where('Email', '=', "'".$req->body->email."'")->exists()){
+		if($user->where('Email', '=', "'".$req->body->forgot_password_email."'")->exists()){
 			// GENERATE OTP...
 			$otp = rand(1000, 9999);
 			// STORE OTP IN SESSION...
 			session('otp', $otp);
-			session('email', $req->body->email);
-			$res->status(200)->json(['otp'=>$otp]);
+			session('email', $req->body->forgot_password_email);
+			$res->status(200)->json(['otp'=>$otp, 'message'=>'Mail System not Implemented Yet!!!']);
 		}
 		else{
 			$res->status(401)->json(['message'=>'User not Exists in Database.']);
@@ -72,7 +72,7 @@ class Account{
 						$role = 'admin';
 						break;
 				}
-				$res->status(200)->json(['role'=>$role]);
+				$res->status(200)->json(['role'=>$role, 'message'=>"Login Successfully."]);
 			}
 			else{
 				$res->status(401)->json(['message'=>"Password is Not Matched."]);

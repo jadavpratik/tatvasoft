@@ -10,14 +10,14 @@
 		<form class="set_new_password_popup">
 			<div class="form_group">
 				<label class="label" for="">New Password</label>
-				<input class="input" type="password" name="password">
+				<input class="input" type="password" name="set_new_password">
 				<div class="validation_message d_none">
 					<p>Validation Message!!!</p>
 				</div>
 			</div>
 			<div class="form_group">
 				<label class="label" for="">Confirm Password</label>
-				<input class="input" type="password" name="cpassword">					
+				<input class="input" type="password" name="set_new_cpassword">					
 				<div class="validation_message d_none">
 					<p>Validation Message!!!</p>
 				</div>

@@ -518,37 +518,36 @@
 
 			<!-- VISIBLE BELOWER 1280PX -->
 			<button class="payment_summary_btn">Payment Summary</button>
-
-			<script>
-				// --------------FOR_PAYMENT_SUMMARY-----------------
-				if($(window).width() <= 1280){
-					$('.book_service_right').toggleClass('d_none');
-				}
-
-				$('.payment_summary_btn').click(()=>{
-					$('.book_service_right').toggleClass('d_none');
-					$('.backlight_container').toggleClass('backlight');
-					$('body').css({'overflow':'hidden'});
-				});
-
-				$('.backlight_container').click(()=>{
-					if($(window).width() <= 1280){
-						$('.book_service_right').toggleClass('d_none');
-					}
-				});
-			</script>
-
 		</div>
 
-		
 		<script>
-			$('#open_address_form_btn').click(()=>{
+			// --------------ADDRESS FORM TOGGLE-----------------
+			function addressFormToggle(){
 				$('#address_form').toggleClass('d_none');
 				$('#open_address_form_btn').toggleClass('d_none');
+			}
+			$('#open_address_form_btn').click(()=>{
+				addressFormToggle();
 			});
 			$('#close_address_form_btn').click(()=>{
-				$('#address_form').toggleClass('d_none');
-				$('#open_address_form_btn').toggleClass('d_none');
+				addressFormToggle();
+			});
+
+			// --------------FOR_PAYMENT_SUMMARY-----------------
+			if($(window).width() <= 1280){
+				$('.book_service_right').removeClass('d_none');
+			}
+
+			$('.payment_summary_btn').click(()=>{
+				$('.book_service_right').toggleClass('d_none');
+				$('.backlight_container').toggleClass('backlight');
+				$('body').css({'overflow':'hidden'});
+			});
+
+			$('.backlight_container').click(()=>{
+				if($(window).width() <= 1280){
+					$('.book_service_right').addClass('d_none');
+				}
 			});
 		</script>
 	

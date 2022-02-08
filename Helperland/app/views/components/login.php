@@ -43,12 +43,8 @@
     $('.login_popup_form').submit((e)=>{
         e.preventDefault();
         let validation = true;;
-		const validationArr = [firstname_validation(),
-							lastname_validation(),
-							email_validation(),
-							phone_validation(),
-							password_validation(),
-							cpassword_validation()];
+		const validationArr = [login_password_validation(),
+                              login_email_validation()];
 
 		for(let i=0; i<validationArr.length; i++){
 			if(validationArr[i]==false){
@@ -64,12 +60,21 @@
                 data : $('.login_popup_form').serialize(),
                 success : function(res){
                     if(res!==undefined && res!==""){
-                        const result = JSON.parse(res);
-                        Swal.fire({
-                            title : 'Good job!',
-                            text : result.message,
-                            icon : 'success'
-                        });
+                        try{
+                            const result = JSON.parse(res);
+                            Swal.fire({
+                                title : 'Good job!',
+                                text : result.message,
+                                icon : 'success'
+                            }).then((res)=>{
+                                if(res.isConfirmed){
+                                    $('.login_popup_form').trigger('reset');
+                                }
+                            });
+                        }
+                        catch(e){
+                            console.log('Invalid Json Response');
+                        }
                     }
                 },
                 error : function(obj){

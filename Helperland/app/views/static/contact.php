@@ -48,18 +48,18 @@
 	<!-- --------------------------------------------------- -->
 	<div class="get_in_touch">
 		<p class="get_in_touch_title">Get in touch with us</p>
-		<form action="">
+		<form id="contact_us">
 			<div>
 				<div class="form_group">
 					<input class="input" type="text" placeholder="First Name" name="firstname">
 					<div class="validation_message d_none">
-						<p>Please Enter First Name!</p>
+						<p>Validation Message</p>
 					</div>
 				</div>
 				<div class="form_group">
 					<input class="input" type="text" placeholder="Last Name" name="lastname">
 					<div class="validation_message d_none">
-						<p>Please Enter First Name!</p>
+						<p>Validation Message</p>
 					</div>
 				</div>
 			</div>
@@ -70,13 +70,13 @@
 						<input type="text" placeholder="Phone Number" name="phone">
 					</div>		
 					<div class="validation_message d_none">
-						<p>Please Enter First Name!</p>
+						<p>Validation Message</p>
 					</div>
 				</div>
 				<div class="form_group">
-					<input class="input" type="text" placeholder="Email Address" name="email">
+					<input class="input" type="text" placeholder="Email Address" name="email" value="Pratik@gmail.com">
 					<div class="validation_message d_none">
-						<p>Please Enter First Name!</p>
+						<p>Validation Message</p>
 					</div>
 				</div>
 			</div>
@@ -89,13 +89,13 @@
 					<option value="Revocation">Revocation</option>
 				</select>
 				<div class="validation_message d_none">
-					<p>Please Enter First Name!</p>
+					<p>Validation Message</p>
 				</div>
 			</div>
 			<div class="form_group">
 				<textarea class="textarea" name="message" placeholder="Message"></textarea>
 				<div class="validation_message d_none">
-					<p>Please Enter First Name!</p>
+					<p>Validation Message</p>
 				</div>
 			</div>
 			<div class="form_group">
@@ -127,31 +127,65 @@
 			}
 		});
 
-		$('.form_btn').click(function(e){
+		$('#contact_us').submit(function(e){
 			e.preventDefault();
-			const data = new FormData($('#contactUs')[0]);
-			$.ajax({
-				url : `${proxy_url}/contact`,
-				type : 'POST',
-				data : data,
-		        processData : false,
-		        contentType : false,
-		        success : function(res){
-		        	console.log(res);
-		        	Swal.fire({
-						title : 'Good job!',
-						text : 'Form Submitted Successfully!',
-						icon : 'success'
-					});
-		        },
-		        error : function(xhr, status, error){
-		        	Swal.fire({
-						title : 'Error',
-						text : 'Something Went Wrong!!!',
-						icon : 'error'
-					});
-		        },
-			})
+
+			let validation = true;
+
+			const validationArr = [firstname_validation(),
+									lastname_validation(),
+									email_validation(),
+									phone_validation(),
+									message_validation(),
+									subject_validation()];
+
+			for(let i=0; i<validationArr.length; i++){
+				if(validationArr[i]==false){
+					validation = false;
+					break;
+				}	
+			}
+
+			const data = new FormData($('#contact_us')[0]);
+			if(validation){
+				$.ajax({
+					url : `${proxy_url}/contact`,
+					type : 'POST',
+					data : data,
+					processData : false,
+					contentType : false,
+					success : function(res){
+						if(res!=="" || res!==undefined){
+							try{
+								const result = JSON.parse(res);
+								Swal.fire({
+									title : 'Good job!',
+									text : result.message,
+									icon : 'success'
+								}).then((res)=>{
+									if(res.isConfirmed){
+										$('#contact_us').trigger('reset');
+									}
+								});
+							}
+							catch(e){
+								Swal.fire({
+									title : 'Server Error',
+									text : 'Invalid Response Coming From Server',
+									icon : 'error'
+								});
+							}
+						}
+					},
+					error : function(xhr, status, error){
+						Swal.fire({
+							title : 'Error',
+							text : 'Something Went Wrong!!!',
+							icon : 'error'
+						});
+					},
+				});
+			}
 		});
 
 	</script>

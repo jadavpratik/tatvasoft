@@ -292,6 +292,7 @@
 	<script>
 		$('.form_btn').click((e)=>{
 			e.preventDefault();
+			let validation = true;
 			const validation_arr = [firstname_validation(),
 									lastname_validation(),
 									email_validation(),
@@ -299,12 +300,18 @@
 									password_validation(),
 									cpassword_validation()];
 			for(i of validation_arr){
-				if(i!==false){
-					console.log('ajax');
+				if(i==false){
+					validation = false;
 				}
 			}
+
+			if(validation){
+				console.log('Do Ajax');
+			}
+
 		});
 	</script>
+
 
 </body>
 </html>

@@ -59,16 +59,33 @@ function phone_validation(){
 // ------------------------EMAIL-ADDRESS-VALIDATION--------------------
 function email_validation(){
     const input_value = $('[name="email"]').val();
-    if(input_value==''){
+    if(input_value==""){
         $('[name="email"]').next().removeClass('d_none').children().html('Please Enter Email Address !');
         return false;
     }
-    else if(EmailRegEx.test(input_value)==false){
+    else if(EmailRegEx.test(input_value)==false){        
         $('[name="email"]').next().removeClass('d_none').children().html('Enter a Valid Email Address !');
         return false;
     }
     else{
         $('[name="email"]').next().addClass('d_none').children().html('');
+        return true;
+    }
+}
+
+// ------------------------FORGOT-PASSWORD-EMAIL-ADDRESS-VALIDATION--------------------
+function forgot_password_email_validation(){
+    const input_value = $('[name="forgot_password_email"]').val();
+    if(input_value==''){
+        $('[name="forgot_password_email"]').next().removeClass('d_none').children().html('Please Enter Email Address !');
+        return false;
+    }
+    else if(EmailRegEx.test(input_value)==false){
+        $('[name="forgot_password_email"]').next().removeClass('d_none').children().html('Enter a Valid Email Address !');
+        return false;
+    }
+    else{
+        $('[name="forgot_password_email"]').next().addClass('d_none').children().html('');
         return true;
     }
 }
@@ -132,6 +149,23 @@ function password_validation(){
     }
 }
 
+// ------------------------SET_NEW_PASSWORD-VALIDATON--------------------
+function set_new_password_validation(){
+    const input_value = $('[name="set_new_password"]').val();
+    if(input_value==''){
+        $('[name="set_new_password"]').next().removeClass('d_none').children().html('Please Enter Password !');
+        return false;
+    }
+    else if(PasswordRegEx.test(input_value)==false){
+        $('[name="set_new_password"]').next().removeClass('d_none').children().html('Please a Valid Password!');
+        return false;
+    }
+    else{
+        $('[name="set_new_password"]').next().addClass('d_none').children().html('');
+        return true;
+    }
+}
+
 // ------------------------LOGIN -PASSWORD-VALIDATON--------------------
 function login_password_validation(){
     const input_value = $('[name="login_password"]').val();
@@ -171,6 +205,28 @@ function cpassword_validation(){
     }
 }
 
+// ------------------------SET_NEW_CONFIRM-PASSWORD-VALIDATON--------------------
+function set_new_cpassword_validation(){
+    const password = $('[name="set_new_password"]').val();
+    const cpassword = $('[name="set_new_cpassword"]').val();
+    if(cpassword==''){
+        $('[name="set_new_cpassword"]').next().removeClass('d_none').children().html('Please Enter a Confirm Password !');
+        return false;
+    }
+    else if(PasswordRegEx.test(cpassword)==false){
+        $('[name="set_new_cpassword"]').next().removeClass('d_none').children().html('Please a Valid Password!');
+        return false;
+    }
+    else if(cpassword!==password){
+        $('[name="set_new_cpassword"]').next().removeClass('d_none').children().html('Password & Confirm Password not Matched!');
+        return false;
+    }
+    else{
+        $('[name="set_new_cpassword"]').next().addClass('d_none').children().html('');
+        return true;
+    }
+}
+
 $('[name="firstname"]').focusout(function(){
     firstname_validation();    
 });
@@ -187,12 +243,24 @@ $('[name="email"]').focusout(function(){
     email_validation();
 });
 
+$('[name="forgot_password_email"]').focusout(function(){
+    forgot_password_email_validation();
+});
+
 $('[name="password"]').focusout(function(){
     password_validation();
 });
 
 $('[name="cpassword"]').focusout(function(){
     cpassword_validation();
+});
+
+$('[name="set_new_password"]').focusout(function(){
+    set_new_password_validation();
+});
+
+$('[name="set_new_cpassword"]').focusout(function(){
+    set_new_cpassword_validation();
 });
 
 $('[name="login_email"]').focusout(function(){
@@ -210,3 +278,4 @@ $('[name="message"]').focusout(function(){
 $('[name="subject"]').focusout(function(){
     subject_validation();
 });    
+
