@@ -44,26 +44,40 @@
 			case '/contact' :
 				$title = 'Contact'; 
 				break;
-			case '/about' :
-				$title = 'About'; 
+			case '/service-provider/signup' :
+				$title = 'Service Provider Signup'; 
+				break;
+			case '/customer/signup' :
+				$title = 'Customer Signup'; 
+				break;
+			case '/book-now' :
+				$title = 'Book Now'; 
 				break;
 		}
 		echo $title;
 	}
 
-	// RETURN COMPONENTS LIKE HEADER, FOOTER ETC...
-	function component($name){
-		$component_path = ROOT.'/app/views/components/'.$name.'.php';
-		require_once $component_path;
+	// RETURN COMPONENTS LIKE HEADER, FOOTER, MODELS ETC...
+	function component($name, $path=false){
+		if($path==false){
+			$component_path = ROOT.'/app/views/components/'.$name.'.php';
+			require_once $component_path;
+		}
+		else{
+			$component_path = ROOT.'/app/views/'.$path.'/'.$name.'.php';
+			require_once $component_path;			
+		}
 	}
 
 	// SESSION FUNCTIONS...
 	function session($key, $value=false){
-		if($value!==false){
-			$_SESSION["'".$key."'"] = $value;
+		if($value!=false){
+			// SET SESSION...
+			$_SESSION[$key] = $value;
 		}
-		else if(isset($_SESSION["'".$key."'"])){
-			return $_SESSION["'".$key."'"];
+		else if(isset($_SESSION[$key])){
+			// GET SESSION...
+			return $_SESSION[$key];
 		}
 		else{
 			return false;

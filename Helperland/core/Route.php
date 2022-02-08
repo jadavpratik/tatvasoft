@@ -15,9 +15,13 @@ class Route{
 	public static $res;
 	public static $method = 'GET';
 
+	public static function setMethod(){
+		self::$method = $_SERVER['REQUEST_METHOD'];
+		return self::$method;
+	}
+
 	public static function splitUrl($route_arr){
 
-		self::$method = $_SERVER['REQUEST_METHOD'];
 		self::$route_url = filter_var(rtrim($route_arr), FILTER_SANITIZE_URL);
 		self::$browser_url = filter_var(rtrim($_SERVER['REQUEST_URI']), FILTER_SANITIZE_URL);
 
@@ -41,6 +45,7 @@ class Route{
 			return true;
 		}
 		else if(str_contains(self::$route_url, ':')){
+			set_page_url(self::$browser_url);
 			// FOR PARAMS URL...
 			if(count(self::$params_key) && count(self::$params_value)){
 				// LOOP WILL BE RUNNING ACCORDING TO URL ROUTE FUNCTION...
@@ -66,36 +71,26 @@ class Route{
 
 	// GET METHOD...
 	public static function get($route_arr, $callback){
-		if(self::splitUrl($route_arr)==1){
-			if(self::$method == 'GET'){
+		if(self::setMethod() == 'GET'){
+			if(self::splitUrl($route_arr)==1){
 				call_user_func_array($callback, [self::$req, self::$res]);
 				exit();
-			}
+			}	
 		}
 	}
 
 	// POST METHOD...
 	public static function post($route_arr, $callback){
-		if(self::splitUrl($route_arr)==1){
-			if(self::$method == 'POST'){
+		if(self::setMethod() == 'POST'){
+			if(self::splitUrl($route_arr)==1){
 				call_user_func_array($callback, [self::$req, self::$res]);
 				exit();
-			}		
+			}	
 		}
 	}
 
 	// DELETE METHOD...
 
 	// PUT METHOD...
-	public static function put($route_arr, $callback){
-		if(self::splitUrl($route_arr)==1){
-			if(self::$method == 'PUT'){
-				$abc = file_get_contents('php://input');
-				echo json_decode($abc);
-				call_user_func_array($callback, [self::$req, self::$res]);
-				exit();
-			}		
-		}		
-	}
 
 }

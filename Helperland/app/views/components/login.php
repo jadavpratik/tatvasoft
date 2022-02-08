@@ -42,7 +42,7 @@
 <script type="text/javascript">
     $('.login_popup_form').submit((e)=>{
         e.preventDefault();
-        let validation = true;;
+        let validation = true;
 		const validationArr = [login_password_validation(),
                               login_email_validation()];
 
@@ -63,7 +63,7 @@
                         try{
                             const result = JSON.parse(res);
                             Swal.fire({
-                                title : 'Good job!',
+                                title : `${result.role}`,
                                 text : result.message,
                                 icon : 'success'
                             }).then((res)=>{
@@ -83,7 +83,7 @@
                         const error = JSON.parse(responseText);
                         if(status==401){
                             Swal.fire({
-                                text : error.message,
+                                title : error.message,
                                 icon : 'error'
                             });
                         }

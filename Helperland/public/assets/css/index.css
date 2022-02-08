@@ -1175,7 +1175,7 @@ footer {
   height: 55px;
   border: 0;
   color: #646464;
-  border-bottom: 3px solid #7c6c6c;
+  border-bottom: 3px solid lightgray;
   background-color: white;
   font-size: 16px;
   font-weight: 500;
@@ -1260,20 +1260,11 @@ footer {
   padding-bottom: 6px;
 }
 
-.form_group {
-  width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-}
-
+.form_group,
 .label_input,
 .label_select,
 .label_phone_number {
+  width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1461,7 +1452,7 @@ footer {
 
 .my_details_inner_div_2 {
   padding-top: 30px;
-  border-top: 1px solid #7c6c6c;
+  border-top: 1px solid lightgray;
 }
 
 .my_details_inner_div_2 div {
@@ -1485,7 +1476,7 @@ footer {
 }
 
 .my_addresses table tr {
-  border: 1px solid #7c6c6c;
+  border: 1px solid lightgray;
 }
 
 .my_addresses table td {
@@ -1579,7 +1570,7 @@ footer {
   height: 40px;
   overflow: visible;
   position: relative;
-  border-bottom: 0.5px solid #7c6c6c;
+  border-bottom: 0.5px solid lightgray;
 }
 
 .sp_basic_details_title_avatar p {
@@ -1662,7 +1653,7 @@ footer {
 .sp_my_address_container > div:nth-child(1) {
   padding: 30px 0 15px 0;
   margin-bottom: 5px;
-  border-bottom: 0.5px solid #7c6c6c;
+  border-bottom: 0.5px solid lightgray;
   -ms-grid-column: 1;
   -ms-grid-column-span: 3;
   grid-column: 1/4;

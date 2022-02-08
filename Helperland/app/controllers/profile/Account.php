@@ -16,6 +16,8 @@ class Account{
 			$hash = Hash::create($req->body->set_new_password);
 			$result = $user->where('Email','=', "'".session('email')."'")->update(['Password'=>$hash]);
 			if($result!=""){
+				unset($_SESSION['otp']);
+				unset($_SESSION['email']);
 				$res->status(200)->json(['message'=>'Password Updated Successfully.']);
 			}
 			else{

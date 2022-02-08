@@ -149,6 +149,20 @@ function password_validation(){
     }
 }
 
+
+// ------------------------OTP-VALIDATON--------------------
+function otp_validation(){
+    const input_value = $('[name="otp"]').val();
+    if(input_value==''){
+        $('[name="otp"]').next().removeClass('d_none').children().html('Please Enter OTP !');
+        return false;
+    }
+    else{
+        $('[name="otp"]').next().addClass('d_none').children().html('');
+        return true;
+    }
+}
+
 // ------------------------SET_NEW_PASSWORD-VALIDATON--------------------
 function set_new_password_validation(){
     const input_value = $('[name="set_new_password"]').val();
@@ -264,7 +278,6 @@ $('[name="set_new_cpassword"]').focusout(function(){
 });
 
 $('[name="login_email"]').focusout(function(){
-    console.log($('[name="login_email"]').val());
     login_email_validation();
 });
 
@@ -279,4 +292,9 @@ $('[name="message"]').focusout(function(){
 $('[name="subject"]').focusout(function(){
     subject_validation();
 });    
+
+$('[name="otp"]').focusout(function(){
+    otp_validation();
+});    
+
 

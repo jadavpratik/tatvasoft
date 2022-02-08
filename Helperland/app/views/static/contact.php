@@ -74,7 +74,7 @@
 					</div>
 				</div>
 				<div class="form_group">
-					<input class="input" type="text" placeholder="Email Address" name="email" value="Pratik@gmail.com">
+					<input class="input" type="text" placeholder="Email Address" name="email">
 					<div class="validation_message d_none">
 						<p>Validation Message</p>
 					</div>

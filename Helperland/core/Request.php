@@ -10,6 +10,7 @@ class Request{
 
 	public function __construct($arr=false){
 
+		// SET PARAMS...
 		if(!empty($arr)){
 			[$key, $value] = $arr;
 			if(count($key)==count($value)){
@@ -24,9 +25,12 @@ class Request{
 			}	
 		}
 
+		// SET POST DATA...
 		if(!empty($_POST)){
 			$this->body = (object) $_POST;
 		}
+
+		// SET FILES DATA...
 		if(!empty($_FILES)){
 			$this->files = (object) $_FILES;
 		}

@@ -57,15 +57,11 @@ $label_text:#4F4F4F;
     padding-bottom: 6px;
 }
 
-.form_group{
-    width:100%;
-    display: flex;
-    flex-direction: column;
-}
-
+.form_group,
 .label_input,
 .label_select,
 .label_phone_number{
+    width:100%;
     display: flex;
     flex-direction: column;
 }
