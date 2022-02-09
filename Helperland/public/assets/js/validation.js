@@ -150,7 +150,7 @@ function password_validation(){
 }
 
 
-// ------------------------PASSWORD-VALIDATON--------------------
+// ------------------------OTP-VALIDATON--------------------
 function otp_validation(){
     const input_value = $('[name="otp"]').val();
     if(input_value==''){

@@ -27,6 +27,4 @@
 
     // DATABASE JOIN,
     // CSRF,
-    // MIDDLEWARE,
-    // GURANTEE PAGE,
     // HEADER CONTENT TYPE,

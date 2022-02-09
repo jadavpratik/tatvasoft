@@ -35,10 +35,10 @@
 		$home_header_style = '';
 		$home_header_logo_style = '';
 		$home_focus_btn = '';
-		$active_link = ['contact' => 'contact', 
-						'prices' => 'prices', 
-						'gaurantee' => 'gaurantee', 
-						'blog'=> 'blog'];
+		$active_link = ['contact' => '', 
+						'prices' => '', 
+						'guarantee' => '', 
+						'blog'=> ''];
 		switch(page_url()){
 			case '/':
 				$home_header_id = 'home_navbar';
@@ -61,8 +61,8 @@
 			case '/blog':
 				$active_link['blog'] = 'navbar_focus_btn transparent';
 				break;
-			case '/gaurantee':
-				$active_link['gaurantee'] = 'navbar_focus_btn transparent';
+			case '/guarantee':
+				$active_link['guarantee'] = 'navbar_focus_btn transparent';
 				break;
 		}
 	?>
@@ -81,7 +81,7 @@
 		<div class="nav_menu">
 			<a class="navbar_focus_btn <?= $home_focus_btn; ?>" href="<?= url('/book-now'); ?>">Book a Cleaner</a>
 			<a class="<?= $active_link['prices']; ?>" href="<?= url('/prices'); ?>">Prices</a>
-			<a class="<?= $active_link['gaurantee']; ?>" href="<?= url('/gaurantee'); ?>">Our Gaurantee</a>
+			<a class="<?= $active_link['guarantee']; ?>" href="<?= url('/guarantee'); ?>">Our Guarantee</a>
 			<a class="<?= $active_link['blog']; ?>" href="<?= url('/blog'); ?>">Blog</a>
 			<a class="<?= $active_link['contact']; ?>" href="<?= url('/contact'); ?>">Contact Us</a>
 			<a class="navbar_focus_btn <?= $home_focus_btn; ?>" href="#" onclick="open_model('login')">Login</a>
@@ -107,9 +107,9 @@
 
 		<div class="sidenav_main">
 			<!-- GUEST_USER -->
-			<a href="<?= url('/book_now'); ?>">Book Now</a>
+			<a href="<?= url('/book-now'); ?>">Book Now</a>
 			<a href="<?= url('/prices'); ?>">Prices & Services</a>
-			<a href="<?= url('/gurantee'); ?>">Gurantee</a>
+			<a href="<?= url('/guarantee'); ?>">Guarantee</a>
 			<a href="<?= url('/blog'); ?>">Blog</a>
 			<a href="<?= url('/contact'); ?>">Contact</a>
 			<a href="#" onclick="open_model('login')">Login</a>

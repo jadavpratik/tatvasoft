@@ -9,9 +9,6 @@ class Middleware{
         if(call_user_func($name)){
             call_user_func($callback);
         }       
-        else{
-            echo 'Middleware Auth Failed!!!';
-        }
     }
 
 }

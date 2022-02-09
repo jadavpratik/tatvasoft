@@ -6,7 +6,12 @@ namespace app\middleware;
 class Auth{
 
     public function user(){
-        return session('login');
+        if(session('login')){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
 }
