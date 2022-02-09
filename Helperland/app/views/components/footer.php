@@ -76,13 +76,17 @@
 	<!-- SWEET-ALERT -->
 	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 	<!-- CUSTOM_JAVASCRIPT -->
-	<script src="<?= assets('assets/js/homenav.js'); ?>"></script>
-	<script src="<?= assets('assets/js/sidenav.js'); ?>"></script>
-	<script src="<?= assets('assets/js/navtabs.js'); ?>"></script>
-	<script src="<?= assets('assets/js/footer.js'); ?>"></script>
 	<script src="<?= assets('assets/js/accordion.js'); ?>"></script>
+	<script src="<?= assets('assets/js/avatar.js'); ?>"></script>
+	<script src="<?= assets('assets/js/admintab.js'); ?>"></script>
 	<script src="<?= assets('assets/js/dropdown.js'); ?>"></script>
+	<script src="<?= assets('assets/js/footer.js'); ?>"></script>
+	<script src="<?= assets('assets/js/homenav.js'); ?>"></script>
+	<script src="<?= assets('assets/js/label.js'); ?>"></script>
 	<script src="<?= assets('assets/js/model.js'); ?>"></script>
+	<script src="<?= assets('assets/js/navtabs.js'); ?>"></script>
+	<script src="<?= assets('assets/js/sidenav.js'); ?>"></script>
+	<script src="<?= assets('assets/js/tabletab.js'); ?>"></script>
 	<script src="<?= assets('assets/js/validation.js'); ?>"></script>
 
 </body>

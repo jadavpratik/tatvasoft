@@ -2,7 +2,6 @@
 
 namespace app\middleware;
 
-
 class Auth{
 
     public function user(){
