@@ -53,6 +53,9 @@
 			case '/book-now' :
 				$title = 'Book Now'; 
 				break;
+			case '/guarantee' :
+				$title = 'Our Gurantee'; 
+				break;
 		}
 		echo $title;
 	}
@@ -64,7 +67,7 @@
 			require_once $component_path;
 		}
 		else{
-			$component_path = ROOT.'/app/views/'.$path.'/'.$name.'.php';
+			$component_path = ROOT.'/app/views/'.$path.$name.'.php';
 			require_once $component_path;			
 		}
 	}

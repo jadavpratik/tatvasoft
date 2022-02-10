@@ -1,14 +1,20 @@
 <?php
 
 namespace core;
-	
+
+use \stdClass;
+
 class Request{
 
-	public $params = [];
-	public $body = [];
-	public $files = [];
+	public $params;
+	public $body;
+	public $files;
 
 	public function __construct($arr=false){
+
+		$this->params = new stdClass();
+		$this->body = new stdClass();
+		$this->files = new stdClass();		
 
 		// SET PARAMS...
 		if(!empty($arr)){

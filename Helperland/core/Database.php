@@ -3,6 +3,7 @@
 namespace core;
 
 use \PDO;
+use \Exception;
 
 class Database{
 
@@ -26,7 +27,7 @@ class Database{
             $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } 
         catch(PDOException $e){
-            echo "Connection Failed: " . $e->getMessage();
+            echo "Connection Failed ! <br><br>".$e->getMessage();
         }
     }
 
@@ -49,15 +50,19 @@ class Database{
             $keys .= $key.', ';
             if(gettype($value)=='integer')
                 $values .= "{$value} ,";
-            else
+            else if($value!=null)
                 $values .= "'{$value}' ,";
+            else
+                $values .= 'null';
         }
         $keys = rtrim($keys, ', ');
         $values = rtrim($values, ', ');
         $keys .= ')';
         $values .= ')';
         try{
+
             $this->query = "INSERT INTO $this->table $keys VALUES $values";
+            // echo $this->query;
             return $this->conn->exec($this->query);
         }
         catch(Exception $e){
@@ -106,14 +111,20 @@ class Database{
     // -----------------EXISTS-------------------
     public function exists(){
         $this->query = "SELECT * FROM $this->table WHERE $this->where";
-        $result = $this->conn->query($this->query);
-        $data = $result->fetchAll(PDO::FETCH_ASSOC);
-        if(count($data) >= 1){
-            return true;
+        try{
+            $result = $this->conn->query($this->query);
+            $data = $result->fetchAll(PDO::FETCH_ASSOC);
+            if(count($data) >= 1){
+                return true;
+            }
+            else{
+                return false;
+            }    
         }
-        else{
-            return false;
+        catch(Exception $e){
+            echo $e->getMessage();
         }
+
     }
 
 
@@ -147,7 +158,7 @@ class Database{
         }
         catch(Exception $e){
             echo $e->getMessage();
-        }
+       }
     }
 
     // -----------------JOIN-------------------
