@@ -69,8 +69,10 @@
 	<!-- --------------------------------------------------- -->
 					<!-- ALL SCRIPT FILES... -->
 	<!-- --------------------------------------------------- -->
+
 	<!-- AOS -->
 	<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+	<script>AOS.init();</script>
 	<!-- TITL-JS -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/tilt.js/1.0.3/tilt.jquery.min.js"></script>
 	<!-- SWEET-ALERT -->
@@ -88,6 +90,18 @@
 	<script src="<?= assets('assets/js/sidenav.js'); ?>"></script>
 	<script src="<?= assets('assets/js/tabletab.js'); ?>"></script>
 	<script src="<?= assets('assets/js/validation.js'); ?>"></script>
+
+
+
+	<?php  
+		if(session('need-authentication')){
+			echo "
+			<script>
+				open_model('login');
+			</script>";
+			unset($_SESSION['need-authentication']);
+		}
+	?>
 
 </body>
 </html>

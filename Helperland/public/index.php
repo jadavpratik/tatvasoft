@@ -1,7 +1,7 @@
 <?php
 
     // LOAD REQUIRED FILES...
-    require_once __DIR__."/../core/autoload.php";
+    require_once __DIR__."/../core/Autoload.php";
 
     // LOAD ROUTES...
     require_once __DIR__."/../routes/Account.php";

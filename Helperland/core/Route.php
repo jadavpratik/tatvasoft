@@ -15,11 +15,13 @@ class Route{
 	public static $res;
 	public static $method = 'GET';
 
+	// SET METHOD...
 	public static function setMethod(){
 		self::$method = $_SERVER['REQUEST_METHOD'];
 		return self::$method;
 	}
 
+	// SPLIT URL...
 	public static function splitUrl($route_arr){
 
 		self::$route_url = filter_var(rtrim($route_arr), FILTER_SANITIZE_URL);
@@ -70,27 +72,33 @@ class Route{
 	}
 
 	// GET METHOD...
-	public static function get($route_arr, $callback){
+	public static function get($route_arr, $callback, $middleware=false){
 		if(self::setMethod() == 'GET'){
 			if(self::splitUrl($route_arr)==1){
-				call_user_func_array($callback, [self::$req, self::$res]);
-				exit();
+				if($middleware!=false){
+					call_user_func($middleware);
+				}
+				else{
+					call_user_func_array($callback, [self::$req, self::$res]);
+				}
+				exit();	
 			}	
 		}
 	}
 
 	// POST METHOD...
-	public static function post($route_arr, $callback){
+	public static function post($route_arr, $callback, $middleware=false){
 		if(self::setMethod() == 'POST'){
 			if(self::splitUrl($route_arr)==1){
-				call_user_func_array($callback, [self::$req, self::$res]);
-				exit();
+				if($middleware!=false){
+					call_user_func($middleware);
+				}
+				else{
+					call_user_func_array($callback, [self::$req, self::$res]);
+				}
+				exit();	
 			}	
 		}
 	}
-
-	// DELETE METHOD...
-
-	// PUT METHOD...
 
 }

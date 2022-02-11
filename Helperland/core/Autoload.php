@@ -7,9 +7,17 @@
     require_once ROOT.'/core/Functions.php';
 
     spl_autoload_register(function($class){
-        // FILE NAME AND CLASS NAME MUST BE SAME OTHERWISE NOT BE LOADED...
-        $class_path = ROOT.'/'.$class.'.php';
-        if(file_exists($class_path)){
-            require_once $class_path;
+        // THIS IS ONLY FOR PHPMailer CLASS...
+        $mail1 = 'PHPMailer\PHPMailer\PHPMailer';
+        $mail2 = 'PHPMailer\PHPMailer\SMTP';
+        $mail3 = 'PHPMailer\PHPMailer\Exception';
+
+        if($class!=$mail1 && $class!=$mail2 && $class!=$mail3){
+            $class_path = ROOT.'/'.$class.'.php';
+            // FILE NAME AND CLASS NAME MUST BE SAME OTHERWISE FILE NOT BE LOADED...
+            if(file_exists($class_path)){
+                require_once $class_path;
+            }
         }
+
     });

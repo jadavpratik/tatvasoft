@@ -9,7 +9,9 @@ class Auth{
             return true;
         }
         else{
-            return false;
+            session('need-authentication', true);
+            $base_url = BASE_URL;
+            header("location:{$base_url}");
         }
     }
 

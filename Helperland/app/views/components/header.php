@@ -9,15 +9,13 @@
 	<!-- FONT-AWESOME -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- AOS -->
-	<!-- <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css"> -->
+	<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">	
 	<!-- CSS -->
 	<link rel="stylesheet" href="<?= assets('assets/css/index.css'); ?>">
 	<!-- JQUERY -->
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<!-- SET-PROXY-URL -->
-	<script>
-		const proxy_url = `<?= BASE_URL; ?>`;
-	</script>
+	<script> const proxy_url = `<?= BASE_URL; ?>`; </script>
 </head>
 <body>
 
