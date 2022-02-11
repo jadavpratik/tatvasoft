@@ -39,19 +39,20 @@
     </div><!-- END_LOGIN_POPUP -->
 </div><!-- END_MODEL -->
 
-<script type="text/javascript">
+<script>
+
     $('.login_popup_form').submit((e)=>{
         e.preventDefault();
         let validation = true;
-		const validationArr = [login_password_validation(),
-                              login_email_validation()];
+        const validationArr = [login_password_validation(),
+                            login_email_validation()];
 
-		for(let i=0; i<validationArr.length; i++){
-			if(validationArr[i]==false){
-				validation = false;
-				break;
-			}	
-		}
+        for(let i=0; i<validationArr.length; i++){
+            if(validationArr[i]==false){
+                validation = false;
+                break;
+            }	
+        }
 
         if(validation){
             $.ajax({

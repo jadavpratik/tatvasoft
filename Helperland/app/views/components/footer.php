@@ -69,8 +69,6 @@
 	<!-- --------------------------------------------------- -->
 					<!-- ALL SCRIPT FILES... -->
 	<!-- --------------------------------------------------- -->
-	<!-- JQUERY -->
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<!-- AOS -->
 	<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 	<!-- TITL-JS -->
