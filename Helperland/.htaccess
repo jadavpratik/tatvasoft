@@ -1,12 +1,2 @@
-#-----------------COMMENTS-------------------
-#RewriteEngine on
-#RewriteCond %{REQUEST_URI} !^public
-#RewriteRule ^(.*)$ public/$1 [L]
-#-----------------COMMENTS-------------------
-
-
-RewriteEngine On
-RewriteCond %{THE_REQUEST} public/([^\s?]*) [NC]
-RewriteRule ^ %1 [L,NE,R=302]
-RewriteRule ^(.*)$ public/index.php?$1 [L,QSA]
-
+RewriteEngine on
+RewriteRule ^(.*)$ public/$1 [L]
