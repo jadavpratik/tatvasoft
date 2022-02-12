@@ -63,15 +63,20 @@
                     if(res!==undefined && res!==""){
                         try{
                             const result = JSON.parse(res);
-                            Swal.fire({
-                                title : `${result.role}`,
-                                text : result.message,
-                                icon : 'success'
-                            }).then((res)=>{
-                                if(res.isConfirmed){
-                                    $('.login_popup_form').trigger('reset');
+                            if(result.role!="" && result.message!=""){
+                                $('.login_popup_form').trigger('reset');
+                                switch(result.role){
+                                    case 'customer':
+                                        window.location.replace(`${proxy_url}/customer`);
+                                        break;
+                                    case 'service-provider':
+                                        window.location.replace(`${proxy_url}/service-provider`);
+                                        break;
+                                    case 'admin':
+                                        window.location.replace(`${proxy_url}/admin`);
+                                        break;
                                 }
-                            });
+                            }
                         }
                         catch(e){
                             console.log('Invalid Json Response');

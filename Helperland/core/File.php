@@ -6,8 +6,8 @@ namespace core;
 class File{
 
 	public static function upload($file, $path){
-		$uploadPath = ASSETS.'/'.$path;
-		$fileName = basename($file['name']);	
+		$uploadPath = ROOT.'/public/'.$path;
+		$fileName = $file['name'];	
 		if(!file_exists($uploadPath)){
 			mkdir($uploadPath, 0777, true);
 		}
@@ -17,8 +17,5 @@ class File{
 			return $destination;
 		}
 	}
-	// header pass in ajax,
-	// how to auto create dir in php
-
 
 }

@@ -66,10 +66,9 @@
 		<button id="cookie_submit_btn">OK!</button>
 	</div>
 
-	<!-- --------------------------------------------------- -->
+		<!-- --------------------------------------------------- -->
 					<!-- ALL SCRIPT FILES... -->
 	<!-- --------------------------------------------------- -->
-
 	<!-- AOS -->
 	<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 	<script>AOS.init();</script>
@@ -91,17 +90,24 @@
 	<script src="<?= assets('assets/js/tabletab.js'); ?>"></script>
 	<script src="<?= assets('assets/js/validation.js'); ?>"></script>
 
+	<!-- NEED AUTHENTICATION -->
+	<?php if(session('need-authentication')){ ?>
+		<script>
+			open_model('login');
+		</script>";
+		<?php unset($_SESSION['need-authentication']); ?>
+	<?php } ?>
 
-
-	<?php  
-		if(session('need-authentication')){
-			echo "
-			<script>
-				open_model('login');
-			</script>";
-			unset($_SESSION['need-authentication']);
-		}
-	?>
+	<!-- LOGOUT -->
+	<?php if(session('logout')){ ?>
+		<script>
+			Swal.fire({
+				title : `Logout Successfully`,
+				icon : 'success'
+			});
+		</script>
+		<?php unset($_SESSION['logout']); ?>
+	<?php } ?>
 
 </body>
 </html>

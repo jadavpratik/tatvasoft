@@ -29,7 +29,8 @@ class Response{
 	}
 
 	public function redirect($path){
-		header("location:");
+		$redirect_path = BASE_URL.$path;
+		header("location:{$redirect_path}");
 	}
 
 }

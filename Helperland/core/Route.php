@@ -43,11 +43,11 @@ class Route{
 
 		if(self::$route_url==self::$browser_url){
 			// MATCH FOUNDED PAGE...
-			set_page_url(self::$browser_url);
+			page_url(self::$browser_url);
 			return true;
 		}
 		else if(str_contains(self::$route_url, ':')){
-			set_page_url(self::$browser_url);
+			page_url(self::$browser_url);
 			// FOR PARAMS URL...
 			if(count(self::$params_key) && count(self::$params_value)){
 				// LOOP WILL BE RUNNING ACCORDING TO URL ROUTE FUNCTION...
@@ -65,21 +65,27 @@ class Route{
 		}
 		else if(self::$route_url!==self::$browser_url && self::$route_url=='/*'){
 			// PAGE_NOT_FOUND...
-			set_page_url('/*');	
+			page_url('/*');	
 			return true;
 		}
 
 	}
 
 	// GET METHOD...
-	public static function get($route_arr, $callback, $middleware=false){
+	public static function get($route_arr, $callback1, $callback2=false){
 		if(self::setMethod() == 'GET'){
-			if(self::splitUrl($route_arr)==1){
-				if($middleware!=false){
-					call_user_func($middleware);
+			if(self::splitUrl($route_arr)){
+				if($callback2!=false){
+					$middleware = $callback1;
+					$controller = $callback2;
+					if(call_user_func($middleware)){
+						// IF MIDDLEWARE RETURN TRUE THEN CALL CONTROLLER...
+						call_user_func_array($controller, [self::$req, self::$res]);
+					}
 				}
 				else{
-					call_user_func_array($callback, [self::$req, self::$res]);
+					$controller = $callback1;
+					call_user_func_array($controller, [self::$req, self::$res]);
 				}
 				exit();	
 			}	
@@ -87,14 +93,20 @@ class Route{
 	}
 
 	// POST METHOD...
-	public static function post($route_arr, $callback, $middleware=false){
+	public static function post($route_arr, $callback1, $callback2=false){
 		if(self::setMethod() == 'POST'){
-			if(self::splitUrl($route_arr)==1){
-				if($middleware!=false){
-					call_user_func($middleware);
+			if(self::splitUrl($route_arr)){
+				if($callback2!=false){
+					$middleware = $callback1;
+					$controller = $callback2;
+					if(call_user_func($middleware)){
+						// IF MIDDLEWARE RETURN TRUE THEN CALL CONTROLLER...
+						call_user_func_array($controller, [self::$req, self::$res]);
+					}
 				}
 				else{
-					call_user_func_array($callback, [self::$req, self::$res]);
+					$controller = $callback1;
+					call_user_func_array($controller, [self::$req, self::$res]);
 				}
 				exit();	
 			}	

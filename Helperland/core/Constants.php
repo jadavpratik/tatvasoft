@@ -17,6 +17,7 @@
     define('DB_PASSWORD', '');
     
     // CONFIG OF MAIL...
+    define('SMTP_HOST', 'smtp.gmail.com');
     define('EMAIL_ADDRESS', '');
     define('EMAIL_PASSWORD', '');
     

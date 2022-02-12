@@ -59,7 +59,7 @@
                         const error = JSON.parse(responseText);
                         if(status==401){
                             Swal.fire({
-                                text : error.message,
+                                title : error.message,
                                 icon : 'error',
                             });
                         }

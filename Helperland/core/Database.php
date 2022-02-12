@@ -60,9 +60,7 @@ class Database{
         $keys .= ')';
         $values .= ')';
         try{
-
             $this->query = "INSERT INTO $this->table $keys VALUES $values";
-            // echo $this->query;
             return $this->conn->exec($this->query);
         }
         catch(Exception $e){
@@ -134,10 +132,10 @@ class Database{
         $updateString = '';
         foreach($arr as $key => $value){
             if(gettype($value)=='integer'){
-                $updateString .= $key." = ".$value.", ";
+                $updateString .= $key." = {$value}, ";
             }
             else if(gettype($value)=='string'){
-                $updateString .= $key." = '".$value."', ";
+                $updateString .= $key." = '{$value}', ";
             }
         }
         $updateString = rtrim($updateString, ', ');

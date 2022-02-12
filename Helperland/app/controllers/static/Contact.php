@@ -6,6 +6,7 @@ use core\Request;
 use core\Response;
 use core\File;
 use core\Validation;
+use core\Mail;
 use app\models\Contact as ContactModel;
 
 class Contact{
@@ -14,20 +15,19 @@ class Contact{
 		$res->render('static/contact');	
 	}
 
+	
 	public function submit(Request $req, Response $res){
 
-		$validation_arr = [
+		$validation = Validation::check($req->body, [
 			'firstname' => ['text', 'min:3', 'max:10'],
 			'lastname' => ['text', 'min:3', 'max:10'],
 			'phone' => ['phone', 'length:10'],
 			'email' => ['email'],
 			'message' => ['text'],
 			'subject' => ['text'],
-		];
+		]);
 
-		$validation_response = Validation::check($req->body, $validation_arr);
-
-		if($validation_response==1 && gettype($validation_response)!='array'){
+		if($validation==1){
 			// SAVE A UPLOADED FILE PATH...
 			$filePath = null;
 			if(isset($req->files->attachment)){
@@ -47,14 +47,21 @@ class Contact{
 			$result = $contact->create($arr);
 
 			if($result!='' && $result!=null){
-				$res->status(200)->json(['message'=>"Form Submitted Successfully."]);			
+				$emailBody = $req->body->message;
+				$emailSubject = $req->body->subject;
+				$recipient = '';
+				// if(Mail::send($recipient, $emailSubject, $emailBody)){
+				// 	$res->status(200)->json(['message'=>"Form Submitted Successfully."]);
+				// }
+				$res->status(200)->json(['message'=>"Form Submitted Successfully."]);
+				// $res->status(200)->json(['message'=>$contact->read()]);
 			}
 			else{
 				$res->status(500)->json(['message'=>'Internal Server Error']);
 			}	
 		}
 		else{
-			$res->status(400)->json(['error'=>$validation_response]);
+			$res->status(400)->json(['message'=>$validation]);
 		}
 	}
 

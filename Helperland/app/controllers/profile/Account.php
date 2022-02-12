@@ -20,9 +20,9 @@ class Account{
 			if($req->body->set_new_password==$req->body->set_new_cpassword){
 				$user = new User();
 				$hash = Hash::create($req->body->set_new_password);
-				$result = $user->where('Email','=', "'{session('email')}'")->update(['Password'=>$hash]);
+				$email = session('email');
+				$result = $user->where('Email','=', "'{$email}'")->update(['Password'=>$hash]);
 				if($result!=""){
-					unset($_SESSION['otp']);
 					unset($_SESSION['email']);
 					$res->status(200)->json(['message'=>'Password Updated Successfully.']);
 				}
@@ -35,7 +35,7 @@ class Account{
 			}	
 		}
 		else{
-			$res->status(400)->json(['error'=>$validation]);			
+			$res->status(400)->json(['message'=>$validation]);			
 		}
 	}
 
@@ -45,6 +45,7 @@ class Account{
 		]);
 		if($validation==1){
 			if($req->body->otp==session('otp')){
+				unset($_SESSION['otp']);
 				$res->status(200)->json(['message'=>'OTP Matched.']);
 			}
 			else{
@@ -52,7 +53,7 @@ class Account{
 			}	
 		}
 		else{
-			$res->status(400)->json(['error'=>$validation]);			
+			$res->status(400)->json(['message'=>$validation]);			
 		}
 	}
 
@@ -76,8 +77,18 @@ class Account{
 			}	
 		}
 		else{
-			$res->status(400)->json(['error'=>$validation]);			
+			$res->status(400)->json(['message'=>$validation]);			
 		}
+	}
+
+	// -----------------------------LOGOUT------------------------------------
+	public function logout(Request $req, Response $res){
+		// DESTORY THE SESSION...
+		unset($_SESSION['isLogged']);
+		unset($_SESSION['userRole']);
+		unset($_SESSION['userName']);
+		session('logout', true);
+		$res->redirect('/');
 	}
 
 	// -----------------------------LOGIN------------------------------------
@@ -105,6 +116,12 @@ class Account{
 							$role = 'admin';
 							break;
 					}
+					// SET THE SESSION...
+					session('isLogged', true);
+					session('userRole', $role);
+					session('userName', $result[0]->FirstName.' '.$result[0]->LastName);
+					// WE NEED TO REDIRECT BY JAVASCRIPT...
+					// $res->redirect('/');
 					$res->status(200)->json(['role'=>$role, 'message'=>"Login Successfully."]);
 				}
 				else{
@@ -116,7 +133,7 @@ class Account{
 			}	
 		}
 		else{
-			$res->status(400)->json(['error'=>$validation]);			
+			$res->status(400)->json(['message'=>$validation]);			
 		}
 	}
 
@@ -154,31 +171,32 @@ class Account{
 					case 'admin':
 						$role = 3;
 						break;
-					default:
-						$role = 1;
-						break;
 				}
-	
-				// PASSWORD === CONFIRM-PASSOWRD
-				if($req->body->password===$req->body->cpassword){
-	
-					// PASSWORD -> HASH
-					$hash = Hash::create($req->body->password);
-	
-					$arr = ['FirstName' => $req->body->firstname,
-							'LastName' => $req->body->lastname,
-							'Email' => $req->body->email,
-							'Mobile' => $req->body->phone,
-							'Password'=> $hash,
-							'RoleId' => $role];
-	
-					if(!empty($arr)){
-						$user = new User();
-						$result = $user->create($arr);
-						if($result===1){
-							$res->status(201)->json(['message'=>'Account is Created Successfully.']);
+				if($role!=null && ($role==1 || $role==2 || $role==3)){
+					// PASSWORD === CONFIRM-PASSOWRD
+					if($req->body->password===$req->body->cpassword){
+		
+						// PASSWORD -> HASH
+						$hash = Hash::create($req->body->password);
+		
+						$arr = ['FirstName' => $req->body->firstname,
+								'LastName' => $req->body->lastname,
+								'Email' => $req->body->email,
+								'Mobile' => $req->body->phone,
+								'Password'=> $hash,
+								'RoleId' => $role];
+		
+						if(!empty($arr)){
+							$user = new User();
+							$result = $user->create($arr);
+							if($result===1){
+								$res->status(201)->json(['message'=>'Account is Created Successfully.']);
+							}
 						}
 					}
+				}
+				else{
+					$res->status(401)->json(['message'=>'Role Id Not Matched!']);
 				}
 			}
 			else{
@@ -186,7 +204,7 @@ class Account{
 			}	
 		}
 		else{
-			$res->status(400)->json(['error'=>$validation]);
+			$res->status(400)->json(['message'=>$validation]);
 		}
 	}
     

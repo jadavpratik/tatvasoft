@@ -2,13 +2,17 @@
 
 	// FOR START THE SESSION...
 	session_start();
-
-	$title = 'Index';
 	$page_url = '/';
 
-	// FOR PUBLIC FOLDER ACCESS...
-	function assets($path){
-		return BASE_URL.'/'.$path;
+	// RETURN & STORE CURRENT URL...
+	function page_url($url=false){
+		global $page_url;
+		if($url!=false){
+			$page_url = $url;
+		}
+		else{
+			return $page_url;
+		}
 	}
 
 	// FOR ANCHOR TAG...
@@ -16,59 +20,25 @@
 		return BASE_URL.$path;
 	}
 
-	// FOR STORING WHICH URL WE HIT...
-	function set_page_url($url){
-		global $page_url;
-		$page_url = $url;
-	}
-
-	// RETURN CURRENT URL...
-	function page_url(){
-		global $page_url;
-		return $page_url;
-	}
-
-	// RETURN CURRENT PAGE_TITLE...
-	function title(){
-		global $title, $page_url;
-		switch($page_url){
-			case '/' :
-				$title = 'Home'; 
-				break;
-			case '/faqs' :
-				$title = 'FAQs'; 
-				break;
-			case '/prices' :
-				$title = 'Prices'; 
-				break;
-			case '/contact' :
-				$title = 'Contact'; 
-				break;
-			case '/service-provider/signup' :
-				$title = 'Service Provider Signup'; 
-				break;
-			case '/customer/signup' :
-				$title = 'Customer Signup'; 
-				break;
-			case '/book-now' :
-				$title = 'Book Now'; 
-				break;
-			case '/guarantee' :
-				$title = 'Our Gurantee'; 
-				break;
-		}
-		echo $title;
+	// FOR PUBLIC FOLDER ACCESS...
+	function assets($path){
+		return BASE_URL.'/'.$path;
 	}
 
 	// RETURN COMPONENTS LIKE HEADER, FOOTER, MODELS ETC...
-	function component($name, $path=false){
-		if($path==false){
-			$component_path = ROOT.'/app/views/components/'.$name.'.php';
-			require_once $component_path;
-		}
-		else{
+	function component($parameter1, $parameter2=false){
+		if($parameter2!=false){
+			// WE CAN CHANGE THE COMPONENT PATH IN VIEWS Directory...
+			$path = $parameter1;
+			$name = $parameter2;
 			$component_path = ROOT.'/app/views/'.$path.$name.'.php';
 			require_once $component_path;			
+		}
+		else{
+			// BY DEFAULT ALL COMPOENTS LOADED FROM VIEWS/COMPONENTS/...
+			$name = $parameter1;
+			$component_path = ROOT.'/app/views/components/'.$name.'.php';
+			require_once $component_path;
 		}
 	}
 
@@ -86,3 +56,4 @@
 			return false;
 		}
 	}
+

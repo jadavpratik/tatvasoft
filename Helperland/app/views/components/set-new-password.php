@@ -35,16 +35,28 @@
 			method : 'POST',
 			data : $('.set_new_password_popup').serialize(),
 			success : function(res){
-				const result = JSON.parse(res);
-                Swal.fire({
-                    title : 'Good Job',
-                    text : result.message,
-                    icon : 'success'
-                }).then((res)=>{
-                	if(res.isConfirmed){
-                		close_model();
-                	}
-                })
+				if(res!=undefined && res!=""){
+					try{
+						const result = JSON.parse(res);
+						Swal.fire({
+							title : 'Good Job',
+							text : result.message,
+							icon : 'success'
+						}).then((res)=>{
+							if(res.isConfirmed){
+								close_model();
+							}
+						});
+					}
+					catch(e){
+						console.log('Invalid Json Response!');
+						Swal.fire({
+							title : 'SERVER ERROR',
+							text : 'Invalid JSON Response!!!',
+							icon : 'error'
+						});
+					}
+				}
 			},
 			error : function(obj){
                 const {responseText, status} = obj;
