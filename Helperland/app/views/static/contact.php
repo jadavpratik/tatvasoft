@@ -165,6 +165,7 @@
 								}).then((res)=>{
 									if(res.isConfirmed){
 										$('#contact_us').trigger('reset');
+										$('.form_btn').prop('disabled', true);
 									}
 								});
 							}

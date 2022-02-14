@@ -160,6 +160,7 @@
 								}).then((res)=>{
 									if(res.isConfirmed){
 										$('#sp_signup').trigger('reset');
+										$('.form_btn').prop('disabled', true);
 									}
 								});
 							}
@@ -196,5 +197,3 @@
 		}
 	});
 </script>
-
-

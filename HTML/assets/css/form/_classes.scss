@@ -122,34 +122,58 @@ $label_text:#4F4F4F;
 
 .from_date,
 .to_date{
+    width:fit-content;
     display: flex;
     align-items: center;
     border:1px solid $input_border;
     height:46px;
     border-radius: 4px;
-    padding-left: 15px;
     margin-right: 15px;
-    // overflow: hidden;
+    overflow: hidden;
+    position: relative;
     label{
+        width:46px;
+        height:100%;
         color:$label_text;
         display: flex;
         align-items: center;
-        margin-right: 10px;
+        justify-content: center;
+        position: absolute;
         img{
-            margin-right: 5px;
+            object-fit: contain;
         }
     }
     input{
-        width:120px !important;
+        width:fit-content;
         height: 100%;
         color:$input_text;
-        background-color: white;
+        background-color: transparent;
         border:0;
+        padding-left: 50px;
         &:hover,
         &:focus{
             border:0 !important;
         }
+        position:relative;
+        &::-webkit-calendar-picker-indicator{
+            width:46px;
+            height:46px;
+            left:-32px;
+            position:absolute;
+            background:transparent;
+            // border:0.5px solid red;
+        }
     }
+}
+
+.input_time{
+    width:fit-content;
+    display: flex;
+    align-items: center;
+    border:1px solid $input_border;
+    height:46px;
+    border-radius: 4px;
+    padding:0 20px;
 }
 
 .change_password{

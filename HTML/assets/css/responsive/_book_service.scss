@@ -28,6 +28,9 @@
         transform:translate(-50%, -50%);
         background-color: white;
         z-index: $popup_z_index - 2;
+        .model_close_btn{
+            display: block;
+        }
     }
     .book_service_questions{
         padding:0 19px 19px;
@@ -48,9 +51,11 @@
         }
     }
     .schedule_plan{
-        & > div:nth-child(3){// EXTRA SERVICES DIV...
+        & > div:nth-child(3){
+            // EXTRA SERVICES DIV...
             & > div{
-                & > div{// CONTAINER OF ALL EXTRA SERVICES...
+                & > div{
+                    // CONTAINER OF ALL EXTRA SERVICES...
                     width:150px;
                 }
             }
@@ -60,13 +65,15 @@
 
 @media screen and (max-width:768px) {
     .book_service_tabs{
-        & > div:first-of-type{// TAB BUTTONS
+        & > div:first-of-type{
+            // TAB BUTTONS
             button{
                 position: relative;
                 p{
                     display: none;
                 }
-                div{// IMAGE MOVER DIV[top <-> bottom]...
+                div{
+                    // IMAGE MOVER DIV[top <-> bottom]...
                     position: absolute;
                     left:50%;
                     transform: translateX(-50%);
@@ -75,13 +82,22 @@
         }
     }
     .schedule_plan{
-        & > div:nth-child(2){// SELECT DATE AND TIME DIV...
+        & > div:nth-child(2){
+            // SELECT DATE AND TIME DIV...
             flex-direction: column;
             & > div:nth-child(1){
-                padding-bottom: 20px;
+                & > div{
+                    // flex-direction: column;
+                    & > div{
+                        // THIS IS A FORM GROUP DIV...
+                        width:fit-content;
+                        padding-bottom: 20px;
+                    }
+                }
             }
         }
-        & > div:nth-child(3){// EXTRA SERVICES DIV...
+        & > div:nth-child(3){
+            // EXTRA SERVICES DIV...
             & > div{
                 justify-content:center;
                 flex-wrap: wrap;
@@ -94,24 +110,26 @@
     .setup_service{
         flex-direction: column;
         align-items: flex-start;
-        div{
+        & > div{
             padding-bottom: 20px;
-        }
-    }
-    // ----------------ID WILL BE USED HERE...---------------------
-    #address_form{
-        display: flex;
-        flex-direction: column;
-    }
-    .your_details{
-        & > div:nth-child(2){
-            & > div{// FOR WRAPING A SERVICE PROVIDER...
-                flex-wrap: wrap;
-                & > div{
-                    margin-bottom: 15px;
+            &:nth-child(2){
+                label{
+                    display: none;
                 }
             }
         }
+    }
+    .your_details{
+        & > div:nth-child(2){
+            & > div{
+                // FOR WRAPING A SERVICE PROVIDER...
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        .address_form{
+            display: flex;
+            flex-direction: column;
+        }    
     }
     .make_payment{
         & > div:nth-child(2){
@@ -126,3 +144,17 @@
     }
 }
 
+@media screen and (max-width:340px) {
+    .schedule_plan{
+        & > div:nth-child(2){
+            & > div:first-child{
+                & > div{
+                    // .from_date,
+                    .input_time{
+                        width:140px;
+                    }
+                }
+            }
+        }
+    }    
+}

@@ -116,6 +116,7 @@
 							}).then((res)=>{
 								if(res.isConfirmed){
 									$('#customer_signup').trigger('reset');
+									$('.form_btn').prop('disabled', true);
 								}
 							});
 						}

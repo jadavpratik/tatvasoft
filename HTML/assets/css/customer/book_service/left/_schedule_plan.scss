@@ -14,7 +14,9 @@
     }
 
     & > div:nth-child(1){
-        padding-top: 0;
+        // padding-top: 0;
+        border:2px solid green;
+        // IN SRS FIRST DIV NOT THERE [BED, BATHROOM]...
         div{
             display: grid;
             grid-template-columns: repeat(2, 101px);
@@ -23,23 +25,23 @@
     }
 
     & > div:nth-child(2){
+        padding-top: 0;
         display: flex;
         & > div{
             width:100%;
-            margin-right: 70px;
             &:first-of-type{
-                .from_date{
-                    overflow: hidden;
+                margin-right: 70px;
+                & > div{
+                    // DATE & TIME INPUT CONTAINER DIV...
+                    display: flex;
+                    flex-direction: row;    
+                    .from_date{
+                        overflow: hidden;
+                    }
                 }
-            }
-            &:last-of-type{
-                margin-right: 0;
             }
             select{
                 width:156px;
-            }
-            & > div{
-                display: flex;
             }
         }
     }
