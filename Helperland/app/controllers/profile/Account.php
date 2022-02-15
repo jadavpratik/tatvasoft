@@ -118,6 +118,7 @@ class Account{
 					}
 					// SET THE SESSION...
 					session('isLogged', true);
+					session('userId', $result[0]->UserId);
 					session('userRole', $role);
 					session('userName', $result[0]->FirstName.' '.$result[0]->LastName);
 					// WE NEED TO REDIRECT BY JAVASCRIPT...

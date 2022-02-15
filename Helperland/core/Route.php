@@ -37,9 +37,10 @@ class Route{
 		self::$params_key = explode('/', self::$route_url);
 		// SET BROWSER_URL...
 		self::$params_value = explode('/', self::$browser_url);
-		
+
 		self::$req = new Request();
 		self::$res = new Response();
+	
 
 		if(self::$route_url==self::$browser_url){
 			// MATCH FOUNDED PAGE...
@@ -57,6 +58,8 @@ class Route{
 						return false;
 					}
 				}
+				// IF URL HAS A PARAMS THEN REINITIATE REQ OBJECT...
+				self::$req = new Request([self::$params_key, self::$params_value]);
 				return true;
 			}
 			else{

@@ -1,9 +1,12 @@
+// ----------------------------RegEx---------------------------
 const NameRegEx = /^[A-Za-z]/;
 const EmailRegEx = /^[a-zA-Z0-9.]+@[a-zA-Z0-9]+(\.[a-zA-Z]{2,})+$/;
 const PasswordRegEx = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/;
 const PhoneRegEx = /^[0-9]{10}$/;
 const PostalCodeRegEx = /^[0-9]{5,10}$/;
+
 // --------------FOR DATE VALIDATION---------
+
 let date = new Date();
 let currentYear = date.getFullYear();
 let currentMonth = date.getMonth()+1;
@@ -12,6 +15,8 @@ if(currentMonth<10){
 }
 let currentDate = date.getDate();
 let today = `${currentYear}-${currentMonth}-${currentDate}`;
+
+
 
 // ------------------------FIRST-NAME-VALIDATION--------------------
 function firstname_validation(){
@@ -116,6 +121,8 @@ function login_email_validation(){
         return true;
     }
 }
+
+
 // ------------------------MESSAGE-VALIDATON--------------------
 function message_validation(){
     const input_value = $('[name="message"]').val();
@@ -403,6 +410,19 @@ function address_form_phone_validation(){
     }
 }
 
+// ------------------------ADDRESS-FORM-PHONE-VALIDATON--------------------
+function book_service_address_validation(){
+    const input_value = $('[name="service_booking_address"]:checked').val();
+    if(input_value==undefined || input_value==""){
+        $('#your_details_submit_btn').prev().removeClass('d_none').children().html('Please Add or Select Address !');
+        return false;
+    }
+    else{
+        $('#your_details_submit_btn').prev().addClass('d_none').children().html('');
+        return true;
+    }
+}
+
 
 $('[name="firstname"]').focusout(function(){
     firstname_validation();    
@@ -499,3 +519,13 @@ $('[name="address_form_phone"]').focusout(function(){
 });
 
 // ----------------------BOOK-SERVICE-S4-VALIDATION----------------------
+
+
+// FOR SPACE BETWEEN CARD NUMBER...
+$('#card_no').on('keyup', function() {
+    var foo = $(this).val().split(" ").join(""); 
+    if (foo.length > 0) {
+        foo = foo.match(new RegExp('.{1,4}', 'g')).join(" ");
+    }
+    $(this).val(foo);
+});

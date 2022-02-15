@@ -45,7 +45,7 @@
         e.preventDefault();
         let validation = true;
         const validationArr = [login_password_validation(),
-                            login_email_validation()];
+                               login_email_validation()];
 
         for(let i=0; i<validationArr.length; i++){
             if(validationArr[i]==false){
@@ -87,7 +87,7 @@
                     if(obj!==undefined){
                         const {responseText, status} = obj;
                         const error = JSON.parse(responseText);
-                        if(status==401){
+                        if(status==401 || status==400){
                             Swal.fire({
                                 title : error.message,
                                 icon : 'error'

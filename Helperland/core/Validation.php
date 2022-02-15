@@ -9,6 +9,8 @@ class Validation{
 	const EmailRegEx = '/^[a-zA-Z0-9.]+@[a-zA-Z0-9]+(\.[a-zA-Z]{2,})+$/';
 	const PhoneRegEx = '/^[0-9]{10}$/';
 	const PasswordRegEx = '/(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/';
+	const PostalCodeRegEx = '/^[0-9]{5,10}$/';
+
 
 	private static $password = '';
 
@@ -90,6 +92,13 @@ class Validation{
 						}
 						if(self::$password != $body->$key){
 							$error_messages[$temp++] = 'Password & Confirm Password Not Same';
+						}
+					}
+
+					// POSTAL CODE VALIDATION...
+					if($i=='postal-code'){
+						if(!preg_match(Validation::PostalCodeRegEx, $body->$key)){
+							$error_messages[$temp++] = 'Postal Code Should be a Min:5 or Max:10 Digits Only !';
 						}
 					}
 				}

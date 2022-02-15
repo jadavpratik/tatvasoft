@@ -76,8 +76,8 @@ class Database{
         }
         else if(gettype($key)=='array'){
             // IF WE PASS ARRAY...
-            for($i = 0; $i<count($where); $i++){
-                $this->where .= $where[$i];
+            for($i = 0; $i<count($key); $i++){
+                $this->where .= $key[$i];
             }
         }
         else{
@@ -85,25 +85,6 @@ class Database{
             $this->where = $key;
         }
         return $this;
-    }
-
-
-    // -----------------READ-------------------
-    public function read($columns=false){
-        try{
-            if($this->where!==""){
-                $this->query = "SELECT * FROM $this->table WHERE $this->where";
-            }
-            else{
-                $this->query = "SELECT * FROM $this->table";
-            }
-            $result = $this->conn->query($this->query);
-            $data = $result->fetchAll(PDO::FETCH_ASSOC);
-            return json_decode(json_encode($data));
-        }
-        catch(Exception $e){
-            echo $e->getMessage();
-        }
     }
 
     // -----------------EXISTS-------------------
@@ -122,7 +103,25 @@ class Database{
         catch(Exception $e){
             echo $e->getMessage();
         }
+    }
+    
 
+    // -----------------READ-------------------
+    public function read($columns=false){
+        try{
+            if($this->where!==""){
+                $this->query = "SELECT * FROM $this->table WHERE $this->where";
+            }
+            else{
+                $this->query = "SELECT * FROM $this->table";
+            }
+            $result = $this->conn->query($this->query);
+            $data = $result->fetchAll(PDO::FETCH_ASSOC);
+            return json_decode(json_encode($data));
+        }
+        catch(Exception $e){
+            echo $e->getMessage();
+        }
     }
 
 

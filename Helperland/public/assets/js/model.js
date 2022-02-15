@@ -60,12 +60,14 @@ $('.included_services_close_btn').click(()=>{
 
 // --------------ADDRESS FORM TOGGLE-----------------
 function addressFormToggle(){
-    $('#address_form').toggleClass('d_none');
+    $('.address_form').toggleClass('d_none');
     $('#open_address_form_btn').toggleClass('d_none');
 }
+
 $('#open_address_form_btn').click(()=>{
     addressFormToggle();
 });
+
 $('#close_address_form_btn').click(()=>{
     addressFormToggle();
 });

@@ -15,5 +15,4 @@ for(let i=0; i<input_arr.length; i++){
                 label_div_img.src = `${img_path}/${input_arr[i]}.png`;
         });
     }
-
 }

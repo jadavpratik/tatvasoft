@@ -1361,6 +1361,9 @@ footer {
 
 .from_date,
 .to_date {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1370,12 +1373,15 @@ footer {
   border: 1px solid #C8C8C8;
   height: 46px;
   border-radius: 4px;
-  padding-left: 15px;
   margin-right: 15px;
+  overflow: hidden;
+  position: relative;
 }
 
 .from_date label,
 .to_date label {
+  width: 46px;
+  height: 100%;
   color: #4F4F4F;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1383,27 +1389,60 @@ footer {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  margin-right: 10px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  position: absolute;
 }
 
 .from_date label img,
 .to_date label img {
-  margin-right: 5px;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 
 .from_date input,
 .to_date input {
-  width: 120px !important;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
   height: 100%;
   color: #646464;
-  background-color: white;
+  background-color: transparent;
   border: 0;
+  padding-left: 50px;
+  position: relative;
 }
 
 .from_date input:hover, .from_date input:focus,
 .to_date input:hover,
 .to_date input:focus {
   border: 0 !important;
+}
+
+.from_date input::-webkit-calendar-picker-indicator,
+.to_date input::-webkit-calendar-picker-indicator {
+  width: 46px;
+  height: 46px;
+  left: -32px;
+  position: absolute;
+  background: transparent;
+}
+
+.input_time {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border: 1px solid #C8C8C8;
+  height: 46px;
+  border-radius: 4px;
+  padding: 0 20px;
 }
 
 .change_password {
@@ -1740,24 +1779,7 @@ footer {
   transition: opacity 200ms ease-in-out,  transform 200ms ease-in-out,  -webkit-transform 200ms ease-in-out;
 }
 
-.model_close_btn {
-  width: 40px;
-  height: 40px;
-  line-height: 40px;
-  text-align: center;
-  position: absolute;
-  right: 0px;
-  top: 0px;
-  border: 0;
-  background-color: transparent;
-  font-size: 30px;
-  color: #9BA0A3;
-}
-
-.model_close_btn:hover {
-  color: black;
-}
-
+.model_close_btn,
 .included_services_close_btn {
   width: 40px;
   height: 40px;
@@ -1772,6 +1794,7 @@ footer {
   color: #9BA0A3;
 }
 
+.model_close_btn:hover,
 .included_services_close_btn:hover {
   color: black;
 }
@@ -3159,14 +3182,18 @@ footer {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: end;
-      -ms-flex-align: end;
-          align-items: flex-end;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
 }
 
 .setup_service div {
   width: 300px;
   padding-right: 20px;
+}
+
+.setup_service div:nth-child(2) label {
+  color: white;
 }
 
 .schedule_plan {
@@ -3190,7 +3217,7 @@ footer {
 }
 
 .schedule_plan > div:nth-child(1) {
-  padding-top: 0;
+  border: 2px solid green;
 }
 
 .schedule_plan > div:nth-child(1) div {
@@ -3202,6 +3229,7 @@ footer {
 }
 
 .schedule_plan > div:nth-child(2) {
+  padding-top: 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -3209,25 +3237,28 @@ footer {
 
 .schedule_plan > div:nth-child(2) > div {
   width: 100%;
+}
+
+.schedule_plan > div:nth-child(2) > div:first-of-type {
   margin-right: 70px;
 }
 
-.schedule_plan > div:nth-child(2) > div:first-of-type .from_date {
-  overflow: hidden;
+.schedule_plan > div:nth-child(2) > div:first-of-type > div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
 }
 
-.schedule_plan > div:nth-child(2) > div:last-of-type {
-  margin-right: 0;
+.schedule_plan > div:nth-child(2) > div:first-of-type > div .from_date {
+  overflow: hidden;
 }
 
 .schedule_plan > div:nth-child(2) > div select {
   width: 156px;
-}
-
-.schedule_plan > div:nth-child(2) > div > div {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
 }
 
 .schedule_plan > div:nth-child(3) > div {
@@ -3331,69 +3362,43 @@ footer {
   padding-top: 0;
 }
 
-.your_details > div:nth-child(1) > div:last-of-type {
-  padding: 20px;
-  background-color: #F3F3F3;
-  border: 1px solid #DCDCDC;
-  border-radius: 4px;
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-columns: (1fr)[2];
-      grid-template-columns: repeat(2, 1fr);
-  grid-gap: 20px 25px;
-}
-
-.your_details > div:nth-child(1) > div:last-of-type div label {
-  padding-bottom: 4px;
-}
-
-.your_details > div:nth-child(1) > div:last-of-type .phone_number {
-  height: 46px;
-}
-
-.your_details > div:nth-child(1) > div:last-of-type .phone_number label {
-  font-weight: normal;
-  padding: 0;
-}
-
-.your_details > div:nth-child(1) > div:last-of-type > :last-of-type {
-  -ms-grid-column: 1;
-  -ms-grid-column-span: 2;
-  grid-column: 1/3;
-}
-
-.your_details > div:nth-child(1) > div:last-of-type > :last-of-type button {
-  height: 40px;
-  margin-right: 15px;
-  font-size: 16px;
-}
-
-.your_details > div:nth-child(1) > div:last-of-type > :last-of-type button:nth-child(2) {
-  color: #646464;
-  border: 1px solid #646464;
-  background-color: white;
-}
-
-.your_details > div:nth-child(1) > div:last-of-type > :last-of-type button:nth-child(2):hover {
-  color: white;
-  background-color: #1D7A8C;
-  border: 1px solid transparent;
-}
-
 .your_details > div:nth-child(2) p {
   padding: 16px 0;
   color: #646464;
 }
 
 .your_details > div:nth-child(2) > div {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (180px)[auto-fill];
+      grid-template-columns: repeat(auto-fill, 180px);
+  grid-gap: 20px;
 }
 
-.your_details > div:nth-child(2) > div div {
-  width: 180px;
-  margin-right: 20px;
+.your_details > div:nth-child(2) > div .form_group {
+  height: auto;
+}
+
+.your_details > div:nth-child(2) > div .form_group input {
+  display: none;
+}
+
+.your_details > div:nth-child(2) > div .form_group input:checked ~ .your_details_sp_card p:last-of-type {
+  color: white;
+  background-color: #1D7A8C;
+  border: 1px solid transparent;
+}
+
+.your_details .validation_message {
+  border: 0;
+}
+
+.your_details > button {
+  margin-top: 20px;
+  margin-left: auto;
+}
+
+.your_details_sp_card {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -3407,23 +3412,35 @@ footer {
   border: 0.5px solid lightgray;
   border-radius: 4px;
   padding: 14px;
+  cursor: pointer;
 }
 
-.your_details > div:nth-child(2) > div div img {
+.your_details_sp_card img {
   width: 80px;
   height: 80px;
   border: 2px solid #646464;
   border-radius: 50%;
 }
 
-.your_details > div:nth-child(2) > div div p {
+.your_details_sp_card p:first-of-type {
   padding: 8px 0;
   color: #4F4F4F;
   font-weight: 500;
+  text-align: center;
 }
 
-.your_details > div:nth-child(2) > div div button {
+.your_details_sp_card p:last-of-type {
+  width: 80px;
   height: 40px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   border-radius: 4px;
   font-size: 16px;
   color: #4F4F4F;
@@ -3431,15 +3448,10 @@ footer {
   background-color: white;
 }
 
-.your_details > div:nth-child(2) > div div button:hover {
+.your_details_sp_card p:last-of-type:hover {
   color: white;
   background-color: #1D7A8C;
   border: 1px solid transparent;
-}
-
-.your_details > button {
-  margin-top: 20px;
-  margin-left: auto;
 }
 
 .radio_address {
@@ -3482,6 +3494,56 @@ footer {
 
 .radio_address label p span {
   font-weight: 500;
+}
+
+.address_form {
+  margin: 10px 0;
+  padding: 20px;
+  background-color: #F3F3F3;
+  border: 1px solid #DCDCDC;
+  border-radius: 4px;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[2];
+      grid-template-columns: repeat(2, 1fr);
+  grid-gap: 20px 25px;
+}
+
+.address_form div label {
+  padding-bottom: 4px;
+}
+
+.address_form .phone_number {
+  height: 46px;
+}
+
+.address_form .phone_number label {
+  font-weight: normal;
+  padding: 0;
+}
+
+.address_form > :last-of-type {
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 2;
+  grid-column: 1/3;
+}
+
+.address_form > :last-of-type button {
+  height: 40px;
+  margin-right: 15px;
+  font-size: 16px;
+}
+
+.address_form > :last-of-type button:nth-child(2) {
+  color: #646464;
+  border: 1px solid #646464;
+  background-color: white;
+}
+
+.address_form > :last-of-type button:nth-child(2):hover {
+  color: white;
+  background-color: #1D7A8C;
+  border: 1px solid transparent;
 }
 
 .make_payment {
@@ -3613,6 +3675,11 @@ footer {
 .book_service_right {
   width: 360px;
   margin-left: 30px;
+  position: relative;
+}
+
+.book_service_right .model_close_btn {
+  display: none;
 }
 
 .payment_summary {
@@ -3686,24 +3753,12 @@ footer {
   font-weight: 500;
 }
 
+.payment_summary > div > div:nth-child(4) div:first-of-type p:first-child {
+  font-size: 20px;
+}
+
 .payment_summary > div > div:nth-child(4) div:first-of-type p:last-child {
   font-size: 42px;
-}
-
-.payment_summary > div > div:nth-child(4) div:last-of-type p {
-  font-size: 20px;
-  color: #646464 !important;
-  font-weight: 500;
-}
-
-.payment_summary > div > div:nth-child(4) > p {
-  padding-top: 5px;
-  font-weight: normal;
-  font-size: 14px;
-}
-
-.payment_summary > div > div:nth-child(4) > p span {
-  color: #FF0000;
 }
 
 .payment_summary > div > button {
@@ -6116,6 +6171,9 @@ footer {
     background-color: white;
     z-index: 3;
   }
+  .book_service_right .model_close_btn {
+    display: block;
+  }
   .book_service_questions {
     padding: 0 19px 19px;
   }
@@ -6155,7 +6213,10 @@ footer {
         -ms-flex-direction: column;
             flex-direction: column;
   }
-  .schedule_plan > div:nth-child(2) > div:nth-child(1) {
+  .schedule_plan > div:nth-child(2) > div:nth-child(1) > div > div {
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
     padding-bottom: 20px;
   }
   .schedule_plan > div:nth-child(3) > div {
@@ -6177,10 +6238,17 @@ footer {
         -ms-flex-align: start;
             align-items: flex-start;
   }
-  .setup_service div {
+  .setup_service > div {
     padding-bottom: 20px;
   }
-  #address_form {
+  .setup_service > div:nth-child(2) label {
+    display: none;
+  }
+  .your_details > div:nth-child(2) > div {
+    -ms-grid-columns: (1fr)[2];
+        grid-template-columns: repeat(2, 1fr);
+  }
+  .your_details .address_form {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -6188,13 +6256,6 @@ footer {
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
-  }
-  .your_details > div:nth-child(2) > div {
-    -ms-flex-wrap: wrap;
-        flex-wrap: wrap;
-  }
-  .your_details > div:nth-child(2) > div > div {
-    margin-bottom: 15px;
   }
   .make_payment > div:nth-child(2) > div:first-child {
     display: -webkit-box;
@@ -6207,6 +6268,12 @@ footer {
   }
   .book_service_right {
     width: 90%;
+  }
+}
+
+@media screen and (max-width: 340px) {
+  .schedule_plan > div:nth-child(2) > div:first-child > div .input_time {
+    width: 140px;
   }
 }
 

@@ -54,19 +54,21 @@
 						<!-- FIXED BUTTON -->
 	<!-- --------------------------------------------------- -->
 
-	<!-- GO_TO_TOP_BTN -->
-	<button class="go_top_btn"><img src="<?= assets('assets/img/buttons/up_btn.png'); ?>" alt=""></button>
+	<?php if(false){ ?>
+		<!-- GO_TO_TOP_BTN -->
+		<button class="go_top_btn"><img src="<?= assets('assets/img/buttons/up_btn.png'); ?>" alt=""></button>
 
-	<!-- CHAT -->
-	<button class="chat"><img src="<?= assets('assets/img/global/time.png'); ?>" alt=""></button>
+		<!-- CHAT -->
+		<button class="chat"><img src="<?= assets('assets/img/global/time.png'); ?>" alt=""></button>
 
-	<!-- PRIVACY_POLICY -->
-	<div class="cookie">
-		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut feugiat nunc libero, ac malesuada ligula aliquam ac. <a href="">Privacy Policy</a></p>
-		<button id="cookie_submit_btn">OK!</button>
-	</div>
+		<!-- PRIVACY_POLICY -->
+		<div class="cookie">
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut feugiat nunc libero, ac malesuada ligula aliquam ac. <a href="">Privacy Policy</a></p>
+			<button id="cookie_submit_btn">OK!</button>
+		</div>
+	<?php } ?>
 
-		<!-- --------------------------------------------------- -->
+	<!-- --------------------------------------------------- -->
 					<!-- ALL SCRIPT FILES... -->
 	<!-- --------------------------------------------------- -->
 	<!-- AOS -->

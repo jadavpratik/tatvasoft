@@ -3375,6 +3375,20 @@ footer {
   grid-gap: 20px;
 }
 
+.your_details > div:nth-child(2) > div .form_group {
+  height: auto;
+}
+
+.your_details > div:nth-child(2) > div .form_group input {
+  display: none;
+}
+
+.your_details > div:nth-child(2) > div .form_group input:checked ~ .your_details_sp_card p:last-of-type {
+  color: white;
+  background-color: #1D7A8C;
+  border: 1px solid transparent;
+}
+
 .your_details .validation_message {
   border: 0;
 }
@@ -3398,6 +3412,7 @@ footer {
   border: 0.5px solid lightgray;
   border-radius: 4px;
   padding: 14px;
+  cursor: pointer;
 }
 
 .your_details_sp_card img {
@@ -3407,15 +3422,25 @@ footer {
   border-radius: 50%;
 }
 
-.your_details_sp_card p {
+.your_details_sp_card p:first-of-type {
   padding: 8px 0;
   color: #4F4F4F;
   font-weight: 500;
   text-align: center;
 }
 
-.your_details_sp_card button {
+.your_details_sp_card p:last-of-type {
+  width: 80px;
   height: 40px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   border-radius: 4px;
   font-size: 16px;
   color: #4F4F4F;
@@ -3423,7 +3448,7 @@ footer {
   background-color: white;
 }
 
-.your_details_sp_card button:hover {
+.your_details_sp_card p:last-of-type:hover {
   color: white;
   background-color: #1D7A8C;
   border: 1px solid transparent;

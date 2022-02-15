@@ -263,3 +263,4 @@
 	<?= component('forgot-password'); ?>
 	<?= component('otp'); ?>
 	<?= component('set-new-password'); ?>
+	<?= component('included-services'); ?>

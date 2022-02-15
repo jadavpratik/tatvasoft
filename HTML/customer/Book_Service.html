@@ -167,7 +167,7 @@
 				<div>
 
 					<!-- SETUP_SERVICE -->
-					<div class="tab_content d_none">
+					<div class="tab_content active_tab_content">
 						<div class="setup_service">
 							<div class="form_group">
 								<label class="label" for="">Enter your Postal Code</label>
@@ -291,14 +291,14 @@
 					</div>
 
 					<!-- YOUR DETAILS -->
-					<div class="tab_content active_tab_content">
+					<div class="tab_content d_none">
 						<div class="your_details">
 							<!-- ADDRESS INFORM OF RADIO BUTTON -->
 							<div class="label_input">
 								<label class="label" for="">Enter your contact details so we can serve you in better way!</label>
 								<!-- ADDRESS_1 -->
 								<div class="radio_address">
-									<input type="radio" id="booking_address_1" name="book_service_address">
+									<input type="radio" id="booking_address_1" name="service_booking_address" value="address_1">
 									<label for="booking_address_1">
 										<div>
 											<p><span>Address</span> : Koenigstrasse 112, 99897 Tambach-Dietharz</p>
@@ -308,7 +308,7 @@
 								</div>
 								<!-- ADDRESS_2 -->
 								<div class="radio_address">
-									<input type="radio" id="booking_address_2" name="book_service_address">
+									<input type="radio" id="booking_address_2" name="service_booking_address" value="address_2">
 									<label for="booking_address_2">
 										<div>
 											<p><span>Address</span> : Koenigstrasse 112, 99897 Tambach-Dietharz</p>
@@ -368,25 +368,37 @@
 								<p>You can choose your favourite service provider from the below list</p>
 								<!-- LIST OF SERVICE PROVIDER -->
 								<div>
-									<div class="your_details_sp_card">
-										<img src="../assets/img/avatar/hat.png" alt="">
-										<p>Ram Patel</p>
-										<button class="book_service_outline_btn">Select</button>
+									<div class="form_group">
+										<input type="radio" id="favourite_sp1" name="favourite_sp">
+										<label class="your_details_sp_card" for="favourite_sp1">
+											<img src="../assets/img/avatar/hat.png" alt="">
+											<p>Ram Patel</p>
+											<p class="book_service_outline_btn">Select</p>
+										</label>	
 									</div>
-									<div class="your_details_sp_card">
-										<img src="../assets/img/avatar/hat.png" alt="">
-										<p>Laxman Chaudhari</p>
-										<button class="book_service_outline_btn">Select</button>
+									<div class="form_group">
+										<input type="radio" name="favourite_sp" id="favourite_sp2">
+										<label class="your_details_sp_card" for="favourite_sp2">
+											<img src="../assets/img/avatar/hat.png" alt="">
+											<p>Laxman Chaudhari</p>
+											<p class="book_service_outline_btn">Select</p>
+										</label>	
 									</div>
-									<div class="your_details_sp_card">
-										<img src="../assets/img/avatar/hat.png" alt="">
-										<p>Laxman Chaudhari</p>
-										<button class="book_service_outline_btn">Select</button>
+									<div class="form_group">
+										<input type="radio" name="favourite_sp" id="favourite_sp3">
+										<label class="your_details_sp_card" for="favourite_sp3">
+											<img src="../assets/img/avatar/hat.png" alt="">
+											<p>Laxman Chaudhari</p>
+											<p class="book_service_outline_btn">Select</p>
+										</label>
 									</div>
-									<div class="your_details_sp_card">
-										<img src="../assets/img/avatar/hat.png" alt="">
-										<p>Laxman Chaudhari</p>
-										<button class="book_service_outline_btn">Select</button>
+									<div class="form_group">
+										<input type="radio" name="favourite_sp" id="favourite_sp4">
+										<label class="your_details_sp_card" for="favourite_sp4">
+											<img src="../assets/img/avatar/hat.png" alt="">
+											<p>Laxman Chaudhari</p>
+											<p class="book_service_outline_btn">Select</p>
+										</label>
 									</div>
 								</div>
 							</div>
@@ -679,7 +691,11 @@
 		});
 
 		$('#your_details_submit_btn').click(function(){			
-			console.log($('.service_booking_address')[0].checked);
+			// SERVICE BOOKING ADDRESS...
+			let validation = book_service_address_validation();
+			if(validation){
+				change_book_service_tabs(3);
+			}
 		});
 
 		$('#confirm_booking_submit_btn').click(function(){
