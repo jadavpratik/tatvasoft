@@ -155,7 +155,6 @@
             service_request_obj.comments = comments;
             service_request_obj.has_pets = has_pets;
             change_book_service_tabs(2);
-            // console.log(service_request_obj);
         }
         else{
             // SCROLL THE PAGE WHERE ERROR COMES...

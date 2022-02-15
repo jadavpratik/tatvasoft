@@ -15,6 +15,7 @@ class Database{
     private $conn = null;
     
     private $query = '';
+    private $columns = '';
     protected $table = '';
     private $where = '';
 
@@ -104,15 +105,34 @@ class Database{
             echo $e->getMessage();
         }
     }
-    
+
+    public function column($columns){
+        if(isset($columns) && !empty($columns)){
+            foreach($columns as $column){
+                $this->columns .= $column.', ';
+            }
+            $this->columns = rtrim($this->columns, ', ');
+        }
+        return $this;
+    }
 
     // -----------------READ-------------------
-    public function read($columns=false){
+    public function read(){
         try{
-            if($this->where!==""){
+            if($this->columns!=="" && $this->where!==""){
+                // WITH SELECTED COLUMNS & WITH WHERE CONDITION...
+                $this->query = "SELECT $this->columns FROM $this->table WHERE $this->where";
+            }                
+            else if($this->columns!=="" && $this->where==""){
+                // WITH SELECTED COLUMNS & WITHOUT WHERE CONDITION...
+                $this->query = "SELECT $this->columns FROM $this->table";
+            }
+            else if($this->columns=="" && $this->where!==""){
+                // WITH ALL COLUMNS & WITH WHERE CONDITION...
                 $this->query = "SELECT * FROM $this->table WHERE $this->where";
             }
             else{
+                // WITH ALL COLUMNS & WITHOUT WHERE CONDITION...
                 $this->query = "SELECT * FROM $this->table";
             }
             $result = $this->conn->query($this->query);

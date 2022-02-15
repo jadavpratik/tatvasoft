@@ -1,9 +1,10 @@
 // ----------------------------RegEx---------------------------
-const NameRegEx = /^[A-Za-z]/;
+const TextRegEx = /^[A-Za-z]/;
 const EmailRegEx = /^[a-zA-Z0-9.]+@[a-zA-Z0-9]+(\.[a-zA-Z]{2,})+$/;
 const PasswordRegEx = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/;
 const PhoneRegEx = /^[0-9]{10}$/;
 const PostalCodeRegEx = /^[0-9]{5,10}$/;
+const HouseNumberRegEx = /^[0-9]{1,4}$/;
 
 // --------------FOR DATE VALIDATION---------
 
@@ -25,7 +26,7 @@ function firstname_validation(){
         $('[name="firstname"]').next().removeClass('d_none').children().html('Please Enter First Name !');
         return false;
     }
-    else if(NameRegEx.test(input_value)==false){
+    else if(TextRegEx.test(input_value)==false){
         $('[name="firstname"]').next().removeClass('d_none').children().html('Numbers Not Allowed !');
         return false;
     }
@@ -43,7 +44,7 @@ function lastname_validation(){
         $('[name="lastname"]').next().removeClass('d_none').children().html('Please Enter Last Name !');
         return false;
     }
-    else if(NameRegEx.test(input_value)==false){
+    else if(TextRegEx.test(input_value)==false){
         $('[name="lastname"]').next().removeClass('d_none').children().html('Numbers Not Allowed !');
         return false;
     }
@@ -519,8 +520,6 @@ $('[name="address_form_phone"]').focusout(function(){
 });
 
 // ----------------------BOOK-SERVICE-S4-VALIDATION----------------------
-
-
 // FOR SPACE BETWEEN CARD NUMBER...
 $('#card_no').on('keyup', function() {
     var foo = $(this).val().split(" ").join(""); 

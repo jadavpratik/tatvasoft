@@ -25,7 +25,8 @@ session('userName', 'Gaurav Barai');
 // -------------SERVICE-BOOKING-ROUTES--------------------
 Route::get('/book-now', [new Auth(), 'isLogged'], [new BookNow(), 'view']);
 Route::post('/check-postal-code', [new BookNow(), 'check_postal_code']);
-Route::get('/get-user-address/:id', [new BookNow(), 'get_user_address']);
+Route::get('/get-address/:id', [new BookNow(), 'get_address']);
+Route::post('/add-address/:id', [new BookNow(), 'add_address']);
 
 
 

@@ -178,12 +178,16 @@
 							}
 						}
 					},
-					error : function(xhr, status, error){
-						Swal.fire({
-							title : 'Error',
-							text : 'Something Went Wrong!!!',
-							icon : 'error'
-						});
+					error : function(obj){
+						if(obj!==undefined || obj!==""){
+							const {status, responseText} = obj;
+							const error = JSON.parse(responseText);
+							Swal.fire({
+								title : 'Error',
+								text : error.message,
+								icon : 'error'
+							});
+						}
 					},
 				});
 			}

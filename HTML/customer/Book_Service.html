@@ -137,25 +137,25 @@
 			<div class="book_service_tabs">
 				<!-- TAB BTNS CONTAINER -->
 				<div>
-					<button class="tab_btn active_book_service_tab">
+					<button class="tab_btn">
 						<div>
 							<img src="../assets/img/customer/book_service/setup_service.png" alt="">
 						</div>
 						<p>Setup Service</p>
 					</button>
-					<button class="tab_btn" disabled>
+					<button class="tab_btn">
 						<div>
 							<img src="../assets/img/customer/book_service/schedule_plan.png" alt="">
 						</div>
 						<p>Schedule & Plan</p>
 					</button>
-					<button class="tab_btn" disabled>
+					<button class="tab_btn active_book_service_tab">
 						<div>
 							<img src="../assets/img/customer/book_service/user_details.png" alt="">
 						</div>
 						<p>Your Details</p>
 					</button>
-					<button class="tab_btn" disabled>
+					<button class="tab_btn">
 						<div>
 							<img src="../assets/img/customer/book_service/payment.png" alt="">
 						</div> 
@@ -167,7 +167,7 @@
 				<div>
 
 					<!-- SETUP_SERVICE -->
-					<div class="tab_content active_tab_content">
+					<div class="tab_content d_none">
 						<div class="setup_service">
 							<div class="form_group">
 								<label class="label" for="">Enter your Postal Code</label>
@@ -291,34 +291,36 @@
 					</div>
 
 					<!-- YOUR DETAILS -->
-					<div class="tab_content d_none">
+					<div class="tab_content active_tab_content">
 						<div class="your_details">
 							<!-- ADDRESS INFORM OF RADIO BUTTON -->
 							<div class="label_input">
 								<label class="label" for="">Enter your contact details so we can serve you in better way!</label>
-								<!-- ADDRESS_1 -->
-								<div class="radio_address">
-									<input type="radio" id="booking_address_1" name="service_booking_address" value="address_1">
-									<label for="booking_address_1">
-										<div>
-											<p><span>Address</span> : Koenigstrasse 112, 99897 Tambach-Dietharz</p>
-											<p><span>Phone Number</span> : 9955648797</p>
-										</div>
-									</label>
-								</div>
-								<!-- ADDRESS_2 -->
-								<div class="radio_address">
-									<input type="radio" id="booking_address_2" name="service_booking_address" value="address_2">
-									<label for="booking_address_2">
-										<div>
-											<p><span>Address</span> : Koenigstrasse 112, 99897 Tambach-Dietharz</p>
-											<p><span>Phone Number</span> : 9955648797</p>
-										</div>
-									</label>
+								<div id="user_address_container">
+									<!-- ADDRESS_1 -->
+									<div class="radio_address">
+										<input type="radio" id="booking_address_1" name="service_booking_address" value="address_1">
+										<label for="booking_address_1">
+											<div>
+												<p><span>Address</span> : Koenigstrasse 112, 99897 Tambach-Dietharz</p>
+												<p><span>Phone Number</span> : 9955648797</p>
+											</div>
+										</label>
+									</div>
+									<!-- ADDRESS_2 -->
+									<div class="radio_address">
+										<input type="radio" id="booking_address_2" name="service_booking_address" value="address_2">
+										<label for="booking_address_2">
+											<div>
+												<p><span>Address</span> : Koenigstrasse 112, 99897 Tambach-Dietharz</p>
+												<p><span>Phone Number</span> : 9955648797</p>
+											</div>
+										</label>
+									</div>	
 								</div>
 								<button class="book_service_outline_btn" id="open_address_form_btn"><i class="fas fa-plus"></i>Add Address</button>
 								<!-- ADDRESS FORM AUTOMETIC FILL BY CHOOSE A RADIO BUTTON -->
-								<div class="address_form">
+								<form class="address_form d_none">
 									<div class="label_input">
 										<label class="label" for="">Street Name</label>
 										<input class="input" type="text" name="address_form_street_name">
@@ -361,7 +363,7 @@
 										<button class="book_service_btn">Save</button>
 										<button class="book_service_outline_btn" id="close_address_form_btn">Cancel</button>
 									</div>
-								</div>								
+								</form>								
 							</div>
 							<div>
 								<label class="label" for="">Your Favourite Service Providers</label>
@@ -417,16 +419,16 @@
 								<div>
 									<div class="label_input">
 										<label class="label" for="">Promo Code (Optional)</label>
-										<input class="input" type="text">
+										<input class="input" type="text" placeholder="Optional">
 									</div>
 									<button class="book_service_outline_btn">Apply</button>	
 								</div>
 							</div>
 							<div class="label_input">
 								<div>
-									<input type="text" placeholder="XXXX-XXXX-XXXX-XXXX" id="card_no" maxlength="19">
-									<input type="text" placeholder="MM/YY">	
-									<input type="text" placeholder="CVV/CVC">
+									<input type="text" placeholder="XXXX-XXXX-XXXX-XXXX" id="card_no" maxlength="19" value="1111-1111-1111-1111">
+									<input type="text" placeholder="MM/YY" value="12/26">	
+									<input type="text" placeholder="CVV/CVC" value="111">
 									<script>
 										// FOR SPACE BETWEEN CARD NUMBER...
 										$('#card_no').on('keyup', function() {
@@ -467,6 +469,7 @@
 					<div>
 						<div>
 							<p>07/10/2021 08:00</p>
+							<!-- NOT INCLUDED IN SRS -->
 							<!-- <p><span>1 bed</span> <span>1 bath</span></p>	 -->
 						</div>
 						<div>
@@ -487,8 +490,10 @@
 						<div>
 							<div>
 								<p>Per Cleaning</p>	
-								<p>$87</p>
+								<p>₹70</p>
+								<!-- $ -->
 							</div>
+							<!-- NOT INCLUDED IN SRS -->
 							<!-- <div>
 								<p>Discount</p>	
 								<p>-$27</p>
@@ -497,8 +502,10 @@
 						<div>
 							<div>
 								<p>Total Payment</p>
-								<p>$63</p>	
+								<p>₹210</p>	
+								<!-- $ -->
 							</div>
+							<!-- NOT INCLUDED IN SRS -->
 							<!-- <div>
 								<p>Effective Price</p>
 								<p>$50.4</p>

@@ -87,12 +87,10 @@
                     if(obj!==undefined){
                         const {responseText, status} = obj;
                         const error = JSON.parse(responseText);
-                        if(status==401 || status==400){
-                            Swal.fire({
-                                title : error.message,
-                                icon : 'error'
-                            });
-                        }
+                        Swal.fire({
+                            title : error.message,
+                            icon : 'error'
+                        });
                     }
                 }
             });

@@ -4,16 +4,16 @@
         <div>
             <div class="label_input">
                 <label class="label" for="">Promo Code (Optional)</label>
-                <input class="input" type="text">
+                <input class="input" type="text" placeholder="Optional">
             </div>
             <button class="book_service_outline_btn">Apply</button>	
         </div>
     </div>
     <div class="label_input">
         <div>
-            <input type="text" placeholder="XXXX-XXXX-XXXX-XXXX" id="card_no" maxlength="19">
-            <input type="text" placeholder="MM/YY">	
-            <input type="text" placeholder="CVV/CVC">
+            <input type="text" placeholder="XXXX-XXXX-XXXX-XXXX" id="card_no" maxlength="19" value="1111-1111-1111-1111">
+            <input type="text" placeholder="MM/YY" value="11/24">	
+            <input type="text" placeholder="CVV/CVC" value="123">
         </div>
         <div>
             <p>Accepeted Card</p>

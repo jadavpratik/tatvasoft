@@ -170,10 +170,12 @@ $label_text:#4F4F4F;
     width:fit-content;
     display: flex;
     align-items: center;
+    background-color: white;
     border:1px solid $input_border;
     height:46px;
     border-radius: 4px;
     padding:0 20px;
+    color:$input_text;
 }
 
 .change_password{

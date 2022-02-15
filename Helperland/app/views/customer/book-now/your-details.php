@@ -38,9 +38,9 @@
             </div>
             <div class="label_input">
                 <label class="label" for="">Phone Number</label>
-                <div class="phone_number" name="address_form_phone">
+                <div class="phone_number">
                     <label for="">+49</label>
-                    <input type="text">
+                    <input type="text" name="address_form_phone">
                 </div>
                 <div class="validation_message d_none">
                     <p>Validation Message</p>
@@ -56,7 +56,8 @@
         <label class="label" for="">Your Favourite Service Providers</label>
         <p>You can choose your favourite service provider from the below list</p>
         <!-- LIST OF SERVICE PROVIDER -->
-        <div>
+        <?php if(false){ ?>
+        <div id="favourite_sp_container">
             <div class="form_group">
                 <input type="radio" id="favourite_sp1" name="favourite_sp">
                 <label class="your_details_sp_card" for="favourite_sp1">
@@ -90,6 +91,7 @@
                 </label>
             </div>
         </div>
+        <?php } ?>
     </div>
     <div class="validation_message d_none">
         <p>Validation Message</p>
@@ -100,32 +102,35 @@
 
 <script>
     let loggedUserId = `<?php echo session('userId'); ?>`;
-    $.ajax({
-        url : `${proxy_url}/get-user-address/${loggedUserId}`,
-        method : 'GET',
-        success : function(res){
-            if(res!=="" || res!==undefined){
-                const result = JSON.parse(res);
-                const addressArr = result.address;
-                const addressContainer = document.getElementById('user_radio_address_container');
-                addressContainer.innerHTML = '';
-                addressArr.forEach((i)=>{
-                    addressContainer.innerHTML += `<div class="radio_address">
-                        <input type="radio" id="radio_address_${i.AddressId}" name="service_booking_address" value="${i.AddressId}">
-                        <label for="radio_address_${i.AddressId}">
-                            <div>
-                                <p><span>Address</span> : ${i.AddressLine1} ${i.AddressLine2}, ${i.PostalCode}, ${i.City}</p>
-                                <p><span>Phone Number</span> : ${i.Mobile}</p>
-                            </div>
-                        </label>
-                    </div>`;
-                });
-            }
-        },
-        error : function(obj){
 
-        }
-    });
+    function loadUserAddresses(){
+        $.ajax({
+            url : `${proxy_url}/get-address/${loggedUserId}`,
+            method : 'GET',
+            success : function(res){
+                if(res!=="" || res!==undefined){
+                    const result = JSON.parse(res);
+                    const addressArr = result.address;
+                    const addressContainer = document.getElementById('user_radio_address_container');
+                    addressContainer.innerHTML = '';
+                    addressArr.forEach((i)=>{
+                        addressContainer.innerHTML += `
+                        <div class="radio_address">
+                            <input type="radio" id="radio_address_${i.AddressId}" name="service_booking_address" value="${i.AddressId}">
+                            <label for="radio_address_${i.AddressId}">
+                                <div>
+                                    <p><span>Address</span> : ${i.AddressLine1} ${i.AddressLine2}, ${i.PostalCode}, ${i.City}</p>
+                                    <p><span>Phone Number</span> : ${i.Mobile}</p>
+                                </div>
+                            </label>
+                        </div>`;
+                    });
+                }
+            }
+        });
+    }
+
+    loadUserAddresses();
 
     // IF USER HAS NOT A ADDRESS...
     $('#address_form').submit((e)=>{
@@ -137,9 +142,52 @@
                                address_form_city_validation(),
                                address_form_phone_validation()]
         for(let i=0; i<validationArr.length; i++){
-            validationArr
+            if(validationArr[i]==false){
+                validation = false;
+                break;
+            }
         }
-        console.log();
+
+        if(validation){
+
+            const data = JSON.stringify({
+                street_name : $('[name="address_form_street_name"]').val(),
+                house_number : $('[name="address_form_house_number"]').val(),
+                postal_code : $('[name="address_form_postal_code"]').val(),
+                city : $('[name="address_form_city"]').val(),
+                phone : $('[name="address_form_phone"]').val(),
+            });
+
+            $.ajax({
+                url : `${proxy_url}/add-address/${loggedUserId}`,
+                method : 'POST',
+                data : data,
+                success : function(res){
+                    console.log(res);
+                    if(res!==""){
+                        $('#address_form').trigger('reset');
+                        addressFormToggle();
+                        loadUserAddresses();
+                        Swal.fire({
+                            'title':'Good Job',
+                            'text':'Address Added Successfully.',
+                            'icon':'success'
+                        });
+                    }
+                },
+                error : function(obj){
+                    if(obj!==undefined || obj!==""){
+                        const {status, responseText} = obj;
+                        const error = JSON.parse(responseText);
+                        Swal.fire({
+                            'title':error.message,
+                            'icon':'error'
+                        });
+                    }
+                }
+            });
+        }
+
     });
 
 </script>

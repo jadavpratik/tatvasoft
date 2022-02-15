@@ -1439,10 +1439,12 @@ footer {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  background-color: white;
   border: 1px solid #C8C8C8;
   height: 46px;
   border-radius: 4px;
   padding: 0 20px;
+  color: #646464;
 }
 
 .change_password {
@@ -3359,6 +3361,7 @@ footer {
 }
 
 .your_details > div:nth-child(1) {
+  border: 2px solid green;
   padding-top: 0;
 }
 
@@ -3607,6 +3610,7 @@ footer {
   border: 0;
   border-bottom: 1px solid #DCDCDC;
   font-size: 16px;
+  color: #646464;
 }
 
 .make_payment > div:nth-child(2) > div:nth-child(2) {
