@@ -28,6 +28,7 @@ class Contact{
 		]);
 
 		if($validation==1){
+
 			// SAVE A UPLOADED FILE PATH...
 			$filePath = null;
 			if(isset($req->files->attachment)){
@@ -46,7 +47,7 @@ class Contact{
 			$contact = new ContactModel();
 			$result = $contact->create($arr);
 
-			if($result!='' && $result!=null){
+			if($result==1){
 				$emailBody = $req->body->message;
 				$emailSubject = $req->body->subject;
 				$recipient = '';
@@ -54,7 +55,6 @@ class Contact{
 				// 	$res->status(200)->json(['message'=>"Form Submitted Successfully."]);
 				// }
 				$res->status(200)->json(['message'=>"Form Submitted Successfully."]);
-				// $res->status(200)->json(['message'=>$contact->read()]);
 			}
 			else{
 				$res->status(500)->json(['message'=>'Internal Server Error']);

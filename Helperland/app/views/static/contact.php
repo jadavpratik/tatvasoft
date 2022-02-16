@@ -146,7 +146,9 @@
 				}	
 			}
 
+			// FORM DATA FOR FILE UPLOAD...
 			const data = new FormData($('#contact_us')[0]);
+
 			if(validation){
 				$.ajax({
 					url : `${proxy_url}/contact`,

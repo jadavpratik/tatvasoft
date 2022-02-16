@@ -3361,7 +3361,6 @@ footer {
 }
 
 .your_details > div:nth-child(1) {
-  border: 2px solid green;
   padding-top: 0;
 }
 
@@ -3736,6 +3735,35 @@ footer {
 .payment_summary > div > div:nth-child(1) p {
   font-size: 16px;
   font-weight: normal;
+}
+
+.payment_summary > div > div:nth-child(2) #service_extra_container {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.payment_summary > div > div:nth-child(2) #service_extra_container p {
+  padding: 4px 0;
+  color: #4F4F4F;
+}
+
+.payment_summary > div > div:nth-child(2) #service_extra_container > div {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .payment_summary > div > div:nth-child(2) > div:last-child {

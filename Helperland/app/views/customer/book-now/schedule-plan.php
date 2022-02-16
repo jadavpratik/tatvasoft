@@ -63,36 +63,41 @@
         <label for="">Extra Services</label>
         <!-- EXTRA SERVIES CONTAINER...	 -->
         <div>
+            <!-- EXTRA SERVICE DIV [INPUT+LABEL] -->
             <div>
-                <input id="cabinet" type="checkbox" name="extra_services" value="cabinet">
+                <input id="cabinet" type="checkbox" name="extra_services" value="Cabinet">
                 <label for="cabinet">
-                    <div><img src="<?= assets('assets/img/customer/book_service/cabinet_green.png'); ?>" alt=""></div>
+                    <div><img src="<?= assets('assets/img/customer/book_service/cabinet.png'); ?>" alt=""></div>
                     <p>Inside Cabinets</p>
                 </label>
             </div>
+            <!-- EXTRA SERVICE DIV [INPUT+LABEL] -->
             <div>
-                <input id="fridge" type="checkbox" name="extra_services" value="fridge">
+                <input id="fridge" type="checkbox" name="extra_services" value="Fridge">
                 <label for="fridge">
                     <div><img src="<?= assets('assets/img/customer/book_service/fridge.png'); ?>" alt=""></div>
                     <p>Inside Fridge</p>
                 </label>
             </div>
+            <!-- EXTRA SERVICE DIV [INPUT+LABEL] -->
             <div>
-                <input id="oven" type="checkbox" name="extra_services" value="oven">
+                <input id="oven" type="checkbox" name="extra_services" value="Oven">
                 <label for="oven">
                     <div><img src="<?= assets('assets/img/customer/book_service/oven.png'); ?>" alt=""></div>
                     <p>Inside Oven</p>
                 </label>
             </div>
+            <!-- EXTRA SERVICE DIV [INPUT+LABEL] -->
             <div>
-                <input id="laundry" type="checkbox" name="extra_services" value="laundry">
+                <input id="laundry" type="checkbox" name="extra_services" value="Laundry">
                 <label for="laundry">
                     <div><img src="<?= assets('assets/img/customer/book_service/laundry.png'); ?>" alt=""></div>
                     <p>Laundry Wash & Dry</p>
                 </label>
             </div>
+            <!-- EXTRA SERVICE DIV [INPUT+LABEL] -->
             <div>
-                <input id="window" type="checkbox" name="extra_services" value="window">
+                <input id="window" type="checkbox" name="extra_services" value="Window">
                 <label for="window">
                     <div><img src="<?= assets('assets/img/customer/book_service/window.png'); ?>" alt=""></div>
                     <p>Interior Windows</p>
@@ -147,13 +152,14 @@
                 extra_time = extra_time/60;
             }
             // STORE SCHEDULE PLAN DATA IN SERVICE REQUEST OBJECT...
-            service_request_obj.date = schedule_date;
-            service_request_obj.time = schedule_time;
-            service_request_obj.duration = duration;
-            service_request_obj.extra_time = extra_time;
-            service_request_obj.extra = extra;
-            service_request_obj.comments = comments;
-            service_request_obj.has_pets = has_pets;
+            serviceRequestObj.date = schedule_date;
+            serviceRequestObj.time = schedule_time;
+            serviceRequestObj.duration = duration;
+            serviceRequestObj.extra_time = extra_time;
+            serviceRequestObj.extra = extra;
+            serviceRequestObj.comments = comments;
+            serviceRequestObj.has_pets = has_pets;
+            updatePaymentSummary();
             change_book_service_tabs(2);
         }
         else{

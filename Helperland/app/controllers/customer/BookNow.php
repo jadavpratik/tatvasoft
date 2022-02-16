@@ -27,7 +27,7 @@ class BookNow{
         if($validation==1){
             $obj = new PostalCode();
             $result = $obj->where('ZipCodeValue','=', $req->body->postal_code)->exists();
-            if($result!=""){
+            if($result==1){
                 $res->status(200)->json(['message'=>'PostalCode is Exists in Database.']);
             }
             else{
@@ -35,31 +35,31 @@ class BookNow{
             }
         }
         else{
-            $res->json(['message'=>$validation]);
+            $res->status(400)->json(['message'=>$validation]);
         }
 
     }
 
     // GET LOGGED USER ADDRESS...
     public function get_address(Request $req, Response $res){
-        if(isset($req->params->id)){
+        if(session('userId')){
             $userAddress = new UserAddress();
-            $result = $userAddress->where('UserId','=',$req->params->id)->read();    
-            if($result!=""){
+            $result = $userAddress->where('UserId', '=', session('userId'))->read();
+            if(gettype($result)=='array'){
                 $res->status(200)->json(['address'=>$result]);
-            }
+            }    
         }
         else{
-            $res->status(400)->json(['message'=>'UserId is Required !']);
+            $res->status(401)->json(['message'=>"User Not Logged!"]);
         }
     }
 
     // ADD ADDRESS
     public function add_address(Request $req, Response $res){
-        if(isset($req->params->id)){
+        if(session('userId')){
             $validation = Validation::check($req->body, [
                 'street_name' => ['text'],
-                'house_number' => [''],
+                'house_number' => ['required'],
                 'postal_code' => ['postal-code'], 
                 'city' => ['text'],
                 'phone' => ['phone','length:10']
@@ -67,11 +67,11 @@ class BookNow{
             
             if($validation==1){
                 $user = new User();
-                $data = $user->column(['Email'])->where(['UserId', '=', $req->params->id])->read();
+                $data = $user->column(['Email'])->where(['UserId', '=', session('userId')])->read();
 
                 $userAddress = new UserAddress();
                 $arr = [
-                    'UserId' => $req->params->id, 
+                    'UserId' => session('userId'), 
                     'AddressLine1' => $req->body->street_name,
                     'AddressLine2' => $req->body->house_number,
                     'City' => $req->body->city,
@@ -81,11 +81,11 @@ class BookNow{
                     'Mobile' => $req->body->phone,
                 ];
                 $result = $userAddress->create($arr);
-                if($result!="" || $result==1){
-                    $res->status(200)->json(['message'=>'Address Add Successfully.']);
+                if($result==1){
+                    $res->status(201)->json(['message'=>'Address Add Successfully.']);
                 }
                 else{
-                    $res->status(400)->json(['message'=>'Something Went Wrong !']);
+                    $res->status(500)->json(['message'=>'Internal Server Error !']);
                 }
             }
             else{
@@ -93,8 +93,35 @@ class BookNow{
             }    
         }
         else{
-            $res->status(400)->json(['message'=>'UserId is Required !']);
+            $res->status(401)->json(['message'=>'User Not Logged !']);
         }
+    }
+
+    public function book_service(Request $req, Response $res){
+        $validation = Validation::check($req->body, [
+            'postal_code' => ['required','postal-code'],
+            'date' => ['required'],
+            'time' => ['required'],
+            'duration' => ['required'],
+            'extra' => ['optional'],
+            'extra_time' => ['optional'],
+            'comments' => ['optional'],
+            'has_pets' => ['optional'],
+            'address_id' => ['required'],
+            'service_provider_id' => ['optional'],
+            
+        ]);
+
+        if($validation==1){
+            $res->status(201)->json(['message'=>'Validation Completed']);
+        }
+        else{
+            $res->status(400)->json(['message'=>$validation]);
+        }
+        // SERVICE POOL [SEND MAIL TO ALL SP ACCORDING TO POSTAL CODE]
+        // FIND SERVICE_PROVIDER BY POSTAL CODE AND USERROLEID 2
+
+        // DIRECT ASSIGNMENT OF USER...
     }
 
 }

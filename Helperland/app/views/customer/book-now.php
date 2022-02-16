@@ -5,9 +5,8 @@
 <!-- --------------------------------------------------- -->
 
 <script>
-
-    let service_request_obj = {};
-
+    // FOR STORING ALL FOUR SECTION DATA AND USE IN SERVERSIDE...
+    let serviceRequestObj = {};
 </script>
 
 
@@ -42,13 +41,13 @@
                     </div>
                     <p>Schedule & Plan</p>
                 </button>
-                <button class="tab_btn active_book_service_tab">
+                <button class="tab_btn">
                     <div>
                         <img src="<?= assets('assets/img/customer/book_service/user_details.png'); ?>" alt="">
                     </div>
                     <p>Your Details</p>
                 </button>
-                <button class="tab_btn" disabled>
+                <button class="tab_btn active_book_service_tab">
                     <div>
                         <img src="<?= assets('assets/img/customer/book_service/payment.png'); ?>" alt="">
                     </div> 
@@ -70,12 +69,12 @@
                 </div>
 
                 <!-- YOUR DETAILS -->
-                <div class="tab_content active_tab_content">
+                <div class="tab_content d_none">
                     <?= component('customer/book-now/', 'your-details'); ?>
                 </div>
 
                 <!-- MAKE_PAYMENT -->
-                <div class="tab_content d_none">
+                <div class="tab_content active_tab_content">
                     <?= component('customer/book-now/', 'make-payment'); ?>
                 </div>
             </div>
@@ -97,21 +96,9 @@
 </main>
 
 <script>
-    // SECTION-3-BTN-CLICK...
-    $('#your_details_submit_btn').click(function(){			
-        // SERVICE BOOKING ADDRESS...
-        let validation = book_service_address_validation();
-        if(validation){
-            change_book_service_tabs(3);
-        }
-    });
-
-    // SECTION-4-BTN-CLICK...
-    $('#confirm_booking_submit_btn').click(function(){
-
-    });
 
     function change_book_service_tabs(i){
+        // REMOVE DISABLED BTN...
         tab_btn[i].removeAttribute('disabled');
         // REMOVE ACTIVE TAB CLASS...
         $('.tab_btn').removeClass('active_book_service_tab');
@@ -129,6 +116,7 @@
             tab_content[i].classList.add('active_tab_content');
         }, 10);
     }
+
 </script>
 
 <?= component('footer'); ?>

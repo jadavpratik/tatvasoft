@@ -2,7 +2,7 @@
     <p>Payment Summary</p>
     <div>
         <div>
-            <p>07/10/2021 08:00</p>
+            <p><span id="service_date">00/00/0000</span>&nbsp;&nbsp;<span id="service_time">00:00</span>&nbsp;&nbsp;(Time in 24hr format)</p>
             <!-- NOT INCLUDED IN SRS... -->
             <!-- <p><span>1 bed</span> <span>1 bath</span></p>	 -->
         </div>
@@ -10,21 +10,24 @@
             <p>Duration</p>
             <div>
                 <p>Basic</p>
-                <p>3 Hrs</p>
+                <p id="service_duration">0 Hours</p>
             </div>
-            <div>
-                <p>Inside Cabinets(Extra)</p>
-                <p>30 Mins</p>
+            <div id="service_extra_container">
+                <!-- DYNAMICLY RENDER BY JAVASCRIPT -->
+                <!-- <div>
+                    <p>Inside Cabinets(Extra)</p>
+                    <p>30 Mins</p>
+                </div> -->
             </div>
             <div>
                 <p>Total Service Time</p>
-                <p>3.5 Hrs</p>
+                <p id="service_total_time">0 Hours</p>
             </div>
         </div>
         <div>
             <div>
                 <p>Per Cleaning</p>	
-                <p>₹87</p>
+                <p id="service_per_price">₹0</p>
                 <!-- $ -->
             </div>
             <!-- NOT INCLUDED IN SRS... -->
@@ -36,7 +39,7 @@
         <div>
             <div>
                 <p>Total Payment</p>
-                <p>₹63</p>	
+                <p id="service_total_price">₹0</p>	
                 <!-- $ -->                
             </div>
             <!-- NOT INCLUDED IN SRS... -->
@@ -52,3 +55,41 @@
         </button>
     </div>
 </div>
+
+
+<script>
+
+    function updatePaymentSummary(){
+        let serviceDateObj = new Date(serviceRequestObj.date);
+        let serviceYear = serviceDateObj.getFullYear();
+        let serviceMonth = serviceDateObj.getMonth()+1;
+        let serviceDate = serviceDateObj.getDate();
+        if(serviceMonth<10){
+            serviceMonth = `0${serviceMonth}`;
+        }
+        if(serviceDate<10){
+            serviceDate = `0${serviceDate}`;
+        }
+
+        $('#service_date').html(`${serviceDate}/${serviceMonth}/${serviceYear}`);
+        $('#service_time').html(`${serviceRequestObj.time}`);
+        $('#service_duration').html(`${serviceRequestObj.duration} Hours`);
+        $('#service_total_time').html(`${serviceRequestObj.duration + serviceRequestObj.extra_time} Hours`);
+
+        let extra_services = ``;
+        for(let i=0; i<serviceRequestObj.extra.length; i++){
+            extra_services += `
+                <div>
+                    <p>Inside ${serviceRequestObj.extra[i]} (Extra)</p>
+                    <p>30 Mins</p>
+                </div>`; 
+        }
+        $('#service_extra_container').html(extra_services);
+        const perPrice = 70;
+        $('#service_per_price').html(`₹${perPrice}`);
+        //  TOTAL PRICES = BASIC PRICE(3 SERVICE) + EXTRA SERVICE(DYNAMICS);
+        const totalPrices = perPrice*3 + perPrice*serviceRequestObj.extra.length;
+        $('#service_total_price').html(`₹${totalPrices}`);
+    }
+
+</script>

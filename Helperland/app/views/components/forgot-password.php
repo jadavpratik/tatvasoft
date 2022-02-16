@@ -20,6 +20,7 @@
 
 
 <script type="text/javascript">
+
     $('.forgot_password_popup_form').submit((e)=>{
         e.preventDefault();
         if(forgot_password_email_validation()){

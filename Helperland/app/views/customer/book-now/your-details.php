@@ -101,30 +101,39 @@
 
 
 <script>
-    let loggedUserId = `<?php echo session('userId'); ?>`;
 
     function loadUserAddresses(){
         $.ajax({
-            url : `${proxy_url}/get-address/${loggedUserId}`,
+            url : `${proxy_url}/get-address`,
             method : 'GET',
             success : function(res){
                 if(res!=="" || res!==undefined){
-                    const result = JSON.parse(res);
-                    const addressArr = result.address;
-                    const addressContainer = document.getElementById('user_radio_address_container');
-                    addressContainer.innerHTML = '';
-                    addressArr.forEach((i)=>{
-                        addressContainer.innerHTML += `
-                        <div class="radio_address">
-                            <input type="radio" id="radio_address_${i.AddressId}" name="service_booking_address" value="${i.AddressId}">
-                            <label for="radio_address_${i.AddressId}">
-                                <div>
-                                    <p><span>Address</span> : ${i.AddressLine1} ${i.AddressLine2}, ${i.PostalCode}, ${i.City}</p>
-                                    <p><span>Phone Number</span> : ${i.Mobile}</p>
-                                </div>
-                            </label>
-                        </div>`;
-                    });
+                    try{
+                        const result = JSON.parse(res);
+                        const addressArr = result.address;
+                        const addressContainer = document.getElementById('user_radio_address_container');
+                        addressContainer.innerHTML = '';
+                        addressArr.forEach((i)=>{
+                            addressContainer.innerHTML += `
+                            <div class="radio_address">
+                                <input type="radio" id="radio_address_${i.AddressId}" name="service_booking_address" value="${i.AddressId}">
+                                <label for="radio_address_${i.AddressId}">
+                                    <div>
+                                        <p><span>Address</span> : ${i.AddressLine1} ${i.AddressLine2}, ${i.PostalCode}, ${i.City}</p>
+                                        <p><span>Phone Number</span> : ${i.Mobile}</p>
+                                    </div>
+                                </label>
+                            </div>`;
+                        });
+                    }
+                    catch(e){
+                        console.log('Invalid JSON Reponse!');
+                        Swal.fire({
+                            title:'Interal Server Error',
+                            text:'Invalid JSON Response!',
+                            icon:'error'
+                        });
+                    }
                 }
             }
         });
@@ -132,7 +141,7 @@
 
     loadUserAddresses();
 
-    // IF USER HAS NOT A ADDRESS...
+    // ADD ADDRESS...
     $('#address_form').submit((e)=>{
         e.preventDefault();
         let validation = true;
@@ -140,7 +149,8 @@
                                address_form_house_number_validation(),
                                address_form_postal_code_validation(),
                                address_form_city_validation(),
-                               address_form_phone_validation()]
+                               address_form_phone_validation()];
+
         for(let i=0; i<validationArr.length; i++){
             if(validationArr[i]==false){
                 validation = false;
@@ -159,11 +169,10 @@
             });
 
             $.ajax({
-                url : `${proxy_url}/add-address/${loggedUserId}`,
+                url : `${proxy_url}/add-address`,
                 method : 'POST',
                 data : data,
                 success : function(res){
-                    console.log(res);
                     if(res!==""){
                         $('#address_form').trigger('reset');
                         addressFormToggle();
@@ -187,7 +196,19 @@
                 }
             });
         }
-
     });
+
+    // SECTION-3-BTN-CLICK...
+    $('#your_details_submit_btn').click(function(){
+        // SERVICE BOOKING ADDRESS...
+        let validation = book_service_address_validation();
+        if(validation){
+            serviceRequestObj.address_id = $('[name="service_booking_address"]:checked').val();
+            serviceRequestObj.service_provider_id = false;
+            change_book_service_tabs(3);
+        }
+    });
+
+    // SELECT YOUR FAVOURITE SERVICE PROVIDER....
 
 </script>

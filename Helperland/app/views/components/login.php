@@ -80,6 +80,11 @@
                         }
                         catch(e){
                             console.log('Invalid Json Response');
+                            Swal.fire({
+                                title : 'Error',
+                                text : 'Internal Server Erro',
+                                icon : 'error'
+                            });
                         }
                     }
                 },

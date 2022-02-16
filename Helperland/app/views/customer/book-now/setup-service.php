@@ -33,7 +33,7 @@
                         const result = JSON.parse(res);
                         if(result.message!=""){
                             // STORE POSTAL CODE IN SERVICE REQUEST OBJECT...
-                            service_request_obj.postal_code = parseInt(postal_code);
+                            serviceRequestObj.postal_code = parseInt(postal_code);
                             change_book_service_tabs(1);
                         }
                         else{

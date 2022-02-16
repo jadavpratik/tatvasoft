@@ -151,19 +151,17 @@
 				success : function(res){
 					if(res!==undefined && res!==""){
 						try{
-							if(res!==undefined && res!==""){
 							const result = JSON.parse(res);
-								Swal.fire({
-									title : 'Good job!',
-									text : result.message,
-									icon : 'success'
-								}).then((res)=>{
-									if(res.isConfirmed){
-										$('#sp_signup').trigger('reset');
-										$('.form_btn').prop('disabled', true);
-									}
-								});
-							}
+							Swal.fire({
+								title : 'Good job!',
+								text : result.message,
+								icon : 'success'
+							}).then((res)=>{
+								if(res.isConfirmed){
+									$('#sp_signup').trigger('reset');
+									$('.form_btn').prop('disabled', true);
+								}
+							});
 						}
 						catch(e){
 							console.log('Invalid Json Response');

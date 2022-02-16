@@ -106,6 +106,7 @@ class Database{
         }
     }
 
+    // -----------------COLUMN-------------------
     public function column($columns){
         if(isset($columns) && !empty($columns)){
             foreach($columns as $column){
@@ -138,6 +139,7 @@ class Database{
             $result = $this->conn->query($this->query);
             $data = $result->fetchAll(PDO::FETCH_ASSOC);
             return json_decode(json_encode($data));
+            // RETURN ARRAY OF AN OBJECT...
         }
         catch(Exception $e){
             echo $e->getMessage();

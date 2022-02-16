@@ -21,7 +21,7 @@
 	</div>
 
 	<!-- LET'S BOOKS A CLEANER -->
-	<a class="home_s1_main_btn" href="" data-aos="fade-up">Let's Book a Cleaner</a>
+	<a class="home_s1_main_btn" href="<?= url('/book-now'); ?>" data-aos="fade-up">Let's Book a Cleaner</a>
 
 	<!-- SECTION_1_CARD_CONTAINER -->
 	<div class="home_s1_card_container">

@@ -185,6 +185,14 @@
 
 					<!-- SCHEDULE_PLAN -->
 					<div class="tab_content d_none">
+
+						<!-- IF ERROR THEN TARGET HERE -->
+						<a href="#target_section" id="target_btn" class="d_none">Error_Target</a>
+						<section id="target_section">
+						    <!-- THIS SECTION WILL BE HIDDEN  -->
+						</section>
+						<!-- IF ERROR THEN TARGET HERE -->
+
 						<div class="schedule_plan">
 							<!-- FIRST DIV is HIDDEN BECAUSE NOT INCLUDED IN SRS... -->
 							<div class="label_select d_none">
@@ -478,9 +486,27 @@
 								<p>Basic</p>
 								<p>3 Hrs</p>
 							</div>
-							<div>
-								<p>Inside Cabinets(Extra)</p>
-								<p>30 Mins</p>
+							<div id="service_extra_container">
+								<div>
+									<p>Inside Cabinets(Extra)</p>
+									<p>30 Mins</p>
+								</div>	
+								<div>
+									<p>Inside Cabinets(Extra)</p>
+									<p>30 Mins</p>
+								</div>	
+								<div>
+									<p>Inside Cabinets(Extra)</p>
+									<p>30 Mins</p>
+								</div>	
+								<div>
+									<p>Inside Cabinets(Extra)</p>
+									<p>30 Mins</p>
+								</div>	
+								<div>
+									<p>Inside Cabinets(Extra)</p>
+									<p>30 Mins</p>
+								</div>	
 							</div>
 							<div>
 								<p>Total Service Time</p>
@@ -692,8 +718,9 @@
 				change_book_service_tabs(2);
 			}
 			else{
-				const y = $(window).scrollTop();
-				$("html, body").animate({scrollTop:y-200},100);
+	            // SCROLL THE PAGE WHERE ERROR COMES...
+	            document.getElementById('target_btn').click();
+	            window.scrollTo({top: $(window).scrollTop()-200, behavior: "smooth"});
 			}
 		});
 

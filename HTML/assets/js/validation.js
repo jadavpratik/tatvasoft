@@ -11,10 +11,13 @@ const HouseNumberRegEx = /^[0-9]{1,4}$/;
 let date = new Date();
 let currentYear = date.getFullYear();
 let currentMonth = date.getMonth()+1;
+let currentDate = date.getDate();
 if(currentMonth<10){
     currentMonth = `0${currentMonth}`;
 }
-let currentDate = date.getDate();
+if(currentDate<10){
+    currentDate = `0${currentDate}`;
+}
 let today = `${currentYear}-${currentMonth}-${currentDate}`;
 
 
@@ -285,6 +288,7 @@ function schedule_date_validation(){
     const tempDate = temp.getDate();
     const newYear = tempYear+1;
     currentMonth = parseInt(currentMonth);
+    currentDate = parseInt(currentDate);
     if(selectedDate==undefined || selectedDate==""){
         $('[name="schedule_date"]').parent().next().removeClass('d_none').children().html('Please Select Date !');
         return false;
