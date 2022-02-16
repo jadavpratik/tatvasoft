@@ -11,9 +11,7 @@ class Validation{
 	const PasswordRegEx = '/(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/';
 	const PostalCodeRegEx = '/^[0-9]{5,10}$/';
 
-
 	private static $password = '';
-
 
 	public static function check($body, $validationArr){
 
