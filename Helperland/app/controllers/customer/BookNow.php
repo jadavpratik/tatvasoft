@@ -227,11 +227,13 @@ class BookNow{
                 $result = $service_address->create($arr);
 
                 if($result==1){
+                    // *************SERVICE POOLING BAKI 6E****************
+                    // **********SEND MAIL TO SP BAKI 6E*******************
                     // SERVICE POOL [SEND MAIL TO ALL SP ACCORDING TO POSTAL CODE]
                     // FIND SERVICE_PROVIDER BY POSTAL CODE AND USERROLEID 2
 
                     // DIRECT ASSIGNMENT OF USER...
-                    $res->status(201)->json(['message'=>'Service Book Successfully.']);
+                    $res->status(201)->json(['message'=>'Service Book Successfully.', 'id'=>$lastInsertedId]);
                 }
                 else{
                     $res->status(500)->json(['message'=>'Internal Server Error']);

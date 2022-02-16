@@ -55,8 +55,8 @@
                     const result = JSON.parse(res);
                     try{
                         Swal.fire({
-                            title : 'Good Job',
-                            text : result.message,
+                            title : result.message,
+                            text : `Service Request Id = ${result.id}`,
                             icon : 'success'
                         })
                     }
