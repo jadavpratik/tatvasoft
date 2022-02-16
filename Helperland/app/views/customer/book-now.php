@@ -29,25 +29,25 @@
         <div class="book_service_tabs">
             <!-- TAB BTNS CONTAINER -->
             <div>
-                <button class="tab_btn">
+                <button class="tab_btn active_book_service_tab">
                     <div>
                         <img src="<?= assets('assets/img/customer/book_service/setup_service.png'); ?>" alt="">
                     </div>
                     <p>Setup Service</p>
                 </button>
-                <button class="tab_btn">
+                <button class="tab_btn" disabled>
                     <div>
                         <img src="<?= assets('assets/img/customer/book_service/schedule_plan.png'); ?>" alt="">
                     </div>
                     <p>Schedule & Plan</p>
                 </button>
-                <button class="tab_btn">
+                <button class="tab_btn" disabled>
                     <div>
                         <img src="<?= assets('assets/img/customer/book_service/user_details.png'); ?>" alt="">
                     </div>
                     <p>Your Details</p>
                 </button>
-                <button class="tab_btn active_book_service_tab">
+                <button class="tab_btn" disabled>
                     <div>
                         <img src="<?= assets('assets/img/customer/book_service/payment.png'); ?>" alt="">
                     </div> 
@@ -59,7 +59,7 @@
             <div>
 
                 <!-- SETUP_SERVICE -->
-                <div class="tab_content d_none">
+                <div class="tab_content active_tab_content">
                     <?= component('customer/book-now/', 'setup-service'); ?>
                 </div>
 
@@ -74,7 +74,7 @@
                 </div>
 
                 <!-- MAKE_PAYMENT -->
-                <div class="tab_content active_tab_content">
+                <div class="tab_content d_none">
                     <?= component('customer/book-now/', 'make-payment'); ?>
                 </div>
             </div>

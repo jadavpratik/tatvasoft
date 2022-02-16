@@ -44,9 +44,9 @@ class Request{
 		// php://input (ONLY FOR INCOMING JSON DATA...)
 		if(file_get_contents('php://input')){
 			$php_input = file_get_contents('php://input');
-			$this->body = json_decode($php_input, false);
 			// [json_decode($arr,false) return object]
 			// [json_decode($arr,true) return array]
+			$this->body = json_decode($php_input, false);
 		}
 
 

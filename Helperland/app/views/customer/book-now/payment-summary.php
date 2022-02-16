@@ -88,7 +88,7 @@
         const perPrice = 70;
         $('#service_per_price').html(`₹${perPrice}`);
         //  TOTAL PRICES = BASIC PRICE(3 SERVICE) + EXTRA SERVICE(DYNAMICS);
-        const totalPrices = perPrice*3 + perPrice*serviceRequestObj.extra.length;
+        const totalPrices = perPrice*3 + (perPrice/2)*serviceRequestObj.extra.length;
         $('#service_total_price').html(`₹${totalPrices}`);
     }
 

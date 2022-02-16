@@ -51,7 +51,23 @@
             method : 'POST',
             data : JSON.stringify(serviceRequestObj),
             success : function(res){
-                console.log(res);
+                if(res!=="" || res!==undefined){
+                    const result = JSON.parse(res);
+                    try{
+                        Swal.fire({
+                            title : 'Good Job',
+                            text : result.message,
+                            icon : 'success'
+                        })
+                    }
+                    catch(e){
+                        console.log('Invalid Json Response!');
+                        Swal.fire({
+                            title : 'Invalid Json Response!',
+                            icon : 'error'
+                        });
+                    }
+                }
             },
             error : function(obj){
                 if(obj!==undefined){

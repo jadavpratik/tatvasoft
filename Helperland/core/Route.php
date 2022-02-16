@@ -38,13 +38,13 @@ class Route{
 		// SET BROWSER_URL...
 		self::$params_value = explode('/', self::$browser_url);
 
-		self::$req = new Request();
-		self::$res = new Response();
+		// ****************IF ROUTE MATCH THEN CREATE REQ, RES OBJECT...
 	
-
 		if(self::$route_url==self::$browser_url){
 			// MATCH FOUNDED PAGE...
 			page_url(self::$browser_url);
+			self::$req = new Request();
+			self::$res = new Response();	
 			return true;
 		}
 		else if(str_contains(self::$route_url, ':')){
@@ -60,6 +60,7 @@ class Route{
 				}
 				// IF URL HAS A PARAMS THEN REINITIATE REQ OBJECT...
 				self::$req = new Request([self::$params_key, self::$params_value]);
+				self::$res = new Response();	
 				return true;
 			}
 			else{
@@ -69,6 +70,8 @@ class Route{
 		else if(self::$route_url!==self::$browser_url && self::$route_url=='/*'){
 			// PAGE_NOT_FOUND...
 			page_url('/*');	
+			self::$req = new Request();
+			self::$res = new Response();	
 			return true;
 		}
 

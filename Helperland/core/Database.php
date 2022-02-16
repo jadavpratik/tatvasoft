@@ -18,6 +18,7 @@ class Database{
     private $columns = '';
     protected $table = '';
     private $where = '';
+    private $lastId = '';
 
 
     // -----------------CONNECT-------------------
@@ -54,7 +55,7 @@ class Database{
             else if($value!=null)
                 $values .= "'{$value}' ,";
             else
-                $values .= 'null';
+                $values .= "null, ";
         }
         $keys = rtrim($keys, ', ');
         $values = rtrim($values, ', ');
@@ -62,6 +63,7 @@ class Database{
         $values .= ')';
         try{
             $this->query = "INSERT INTO $this->table $keys VALUES $values";
+            // echo $this->query;
             return $this->conn->exec($this->query);
         }
         catch(Exception $e){
@@ -184,8 +186,14 @@ class Database{
     public function join(){
 
     }
-    
+ 
+    public function insertedId(){
+        $this->lastId = $this->conn->lastInsertId();
+        return $this->lastId;
+    }
+
     public function __destruct(){
+        $this->insertedId();
         $this->conn = null;
         // echo "Database Disconnected";
     }

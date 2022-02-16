@@ -35,8 +35,10 @@ class Validation{
 						// IF VALUE EXIST THEN DO OTHER VALIDATON...
 
 						// NUMBER OR INTERGER VALIDATION...
-						if(!is_int($body->$key) || !is_integer($body->$key)){
-							$error_messages[$temp++] = 'Only Number allowed (Interger)';
+						if($i=='number' || $i=='integer'){
+							if(!is_int($body->$key) || !is_integer($body->$key)){
+								$error_messages[$temp++] = 'Only Number allowed (Integer)';
+							}
 						}
 	
 						// MINIMUM VALIDATION
