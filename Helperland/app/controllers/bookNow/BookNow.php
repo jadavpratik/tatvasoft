@@ -1,6 +1,6 @@
 <?php
 
-namespace app\controllers\customer;
+namespace app\controllers\bookNow;
 
 use core\Request;
 use core\Response;
@@ -18,7 +18,7 @@ class BookNow{
 
 
     public function view(Request $req, Response $res){
-        $res->render('customer/book-now');
+        $res->render('book-now/index');
     }
 
     // CHECK POSTAL CODE 
@@ -101,19 +101,20 @@ class BookNow{
     }
 
     public function book_service(Request $req, Response $res){
+
         $validation = Validation::check($req->body, [
             'postal_code' => ['required','postal-code'],
             'date' => ['required'],
             'time' => ['required'],
             'duration' => ['required', 'number'],
-            'extra' => ['optional'],
+            'extra' => ['optional', 'array'],
             'extra_time' => ['optional'],
             'comments' => ['optional'],
             'has_pets' => ['optional'],
-            'address_id' => ['required','number'],
-            'service_provider_id' => ['optional', 'number'],
-            
+            'sp_id' => ['optional', 'number'],
+            'address' => ['required', 'object'],
         ]);
+
         if($validation==1){
             // INITIALIZE REQUIRED VARIABLE...
             $userId = session('userId');
@@ -135,7 +136,6 @@ class BookNow{
             */
             $date = date('Y-m-d H:i:s', $date);
             $duration = $req->body->duration;
-            $address_id = $req->body->address_id;
 
             // OPTIONAL PARAMETERS...
             $extra = [];
@@ -155,8 +155,8 @@ class BookNow{
             if(isset($req->body->has_pets)){
                 $has_pets = $req->body->has_pets==true ? 1 : 0;
             }
-            if(isset($req->body->service_provider_id)){
-                $service_provider_id = $req->body->service_provider_id;
+            if(isset($req->body->sp_id)){
+                $sp_id = $req->body->sp_id;
             }
 
             $hourly_rate = 70;
@@ -209,18 +209,15 @@ class BookNow{
                 }
 
                 // ADD SERVICE_REQUEST_ADDRESS IN DATABASE TABLE...
-                $user_address = new UserAddress();
-                $where = "UserId = {$userId} AND AddressId = {$address_id}";
-                $result = $user_address->where($where)->read();
                 $arr = [
                     'ServiceRequestId' => $lastInsertedId,
-                    'AddressLine1' => $result[0]->AddressLine1,
-                    'AddressLine2' => $result[0]->AddressLine2,
-                    'City' => $result[0]->City,
-                    'State' => $result[0]->State,
-                    'PostalCode' => $result[0]->PostalCode,
-                    'Mobile' => $result[0]->Mobile,
-                    'Email' => $result[0]->Email,
+                    'AddressLine1' => $req->body->address->AddressLine1,
+                    'AddressLine2' => $req->body->address->AddressLine2,
+                    'City' => $req->body->address->City,
+                    'State' => $req->body->address->State,
+                    'PostalCode' => $req->body->address->PostalCode,
+                    'Mobile' => $req->body->address->Mobile,
+                    'Email' => $req->body->address->Email,
                 ];
     
                 $service_address = new ServiceAddress();
@@ -233,6 +230,7 @@ class BookNow{
                     // FIND SERVICE_PROVIDER BY POSTAL CODE AND USERROLEID 2
 
                     // DIRECT ASSIGNMENT OF USER...
+                    session('isBookingCompleted', true);
                     $res->status(201)->json(['message'=>'Service Book Successfully.', 'id'=>$lastInsertedId]);
                 }
                 else{

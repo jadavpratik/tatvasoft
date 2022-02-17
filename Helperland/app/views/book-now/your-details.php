@@ -111,6 +111,8 @@
                     try{
                         const result = JSON.parse(res);
                         const addressArr = result.address;
+                        // STORE AS GLOBALLY...
+                        user_address = addressArr;
                         const addressContainer = document.getElementById('user_radio_address_container');
                         addressContainer.innerHTML = '';
                         addressArr.forEach((i)=>{
@@ -203,8 +205,14 @@
         // SERVICE BOOKING ADDRESS...
         let validation = book_service_address_validation();
         if(validation){
-            serviceRequestObj.address_id = $('[name="service_booking_address"]:checked').val();
-            serviceRequestObj.service_provider_id = false;
+            address_id = parseInt($('[name="service_booking_address"]:checked').val());
+            user_address.filter((obj)=>{
+                if(obj.AddressId==address_id){
+                    service_request.address = obj;
+                }
+            });
+            // DIRECT ASSSIGNMENT TO THE SERVICE PROVIDER...
+            service_request.sp_id = null;
             change_book_service_tabs(3);
         }
     });

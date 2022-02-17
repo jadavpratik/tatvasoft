@@ -15,7 +15,6 @@
 
 <script>
 
-
     $('#setup_service_submit_btn').click(function(){
 
         let validation = setup_service_postal_code_validation();
@@ -32,8 +31,8 @@
                     if(res!=="" || res!==undefined){
                         const result = JSON.parse(res);
                         if(result.message!=""){
-                            // STORE POSTAL CODE IN SERVICE REQUEST OBJECT...
-                            serviceRequestObj.postal_code = parseInt(postal_code);
+                            // STORE POSTAL CODE...
+                            service_request.postal_code = parseInt(postal_code);
                             change_book_service_tabs(1);
                         }
                         else{

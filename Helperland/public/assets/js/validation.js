@@ -7,7 +7,6 @@ const PostalCodeRegEx = /^[0-9]{5,10}$/;
 const HouseNumberRegEx = /^[0-9]{1,4}$/;
 
 // --------------FOR DATE VALIDATION---------
-
 let date = new Date();
 let currentYear = date.getFullYear();
 let currentMonth = date.getMonth()+1;
@@ -525,10 +524,10 @@ $('[name="address_form_phone"]').focusout(function(){
 
 // ----------------------BOOK-SERVICE-S4-VALIDATION----------------------
 // FOR SPACE BETWEEN CARD NUMBER...
-$('#card_no').on('keyup', function() {
-    var foo = $(this).val().split(" ").join(""); 
-    if (foo.length > 0) {
-        foo = foo.match(new RegExp('.{1,4}', 'g')).join(" ");
-    }
-    $(this).val(foo);
-});
+// $('#card_no').on('keyup', function() {
+//     var foo = $(this).val().split(" ").join(""); 
+//     if (foo.length > 0) {
+//         foo = foo.match(new RegExp('.{1,4}', 'g')).join(" ");
+//     }
+//     $(this).val(foo);
+// });

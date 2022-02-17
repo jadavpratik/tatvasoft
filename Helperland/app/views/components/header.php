@@ -1,9 +1,8 @@
 <?php
 	// RETURN CURRENT PAGE_TITLE...
 	function title(){
-		global $page_url;
 		$title = 'Index';
-		switch($page_url){
+		switch(page_url()){
 			case '/' :
 				$title = 'Home'; 
 				break;
@@ -44,14 +43,16 @@
 	<!-- FONT-AWESOME -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- AOS -->
-	<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">	
+	<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 	<!-- CSS -->
 	<link rel="stylesheet" href="<?= assets('assets/css/index.css'); ?>">
-
-	<!-- SET-PROXY-URL -->
-	<script> const proxy_url = `<?= BASE_URL; ?>`; </script>
 	<!-- JQUERY -->
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<!-- SET-PROXY-URL -->
+	<script> 
+		// PROXY URL AS BASE URL GUIDE THE FRONT AJAX REQUEST...
+		const proxy_url = `<?= BASE_URL; ?>`; 
+	</script>
 </head>
 <body>
 

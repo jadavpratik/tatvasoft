@@ -42,10 +42,13 @@
 <script>
 
     $('.login_popup_form').submit((e)=>{
+
         e.preventDefault();
+    
         let validation = true;
+
         const validationArr = [login_password_validation(),
-                               login_email_validation()];
+                                login_email_validation()];
 
         for(let i=0; i<validationArr.length; i++){
             if(validationArr[i]==false){
@@ -60,37 +63,30 @@
                 method : 'POST',
                 data : $('.login_popup_form').serialize(),
                 success : function(res){
-                    if(res!==undefined && res!==""){
+                    if(res!=="" || res!==undefined){
                         try{
                             const result = JSON.parse(res);
-                            if(result.role!="" && result.message!=""){
-                                $('.login_popup_form').trigger('reset');
-                                switch(result.role){
-                                    case 'customer':
-                                        window.location.replace(`${proxy_url}/customer`);
-                                        break;
-                                    case 'service-provider':
-                                        window.location.replace(`${proxy_url}/service-provider`);
-                                        break;
-                                    case 'admin':
-                                        window.location.replace(`${proxy_url}/admin`);
-                                        break;
-                                }
+                            $('.login_popup_form').trigger('reset');
+                            switch(result.role){
+                                case 'customer':
+                                    window.location.replace(`${proxy_url}/customer`);
+                                    break;
+                                case 'service-provider':
+                                    window.location.replace(`${proxy_url}/service-provider`);
+                                    break;
+                                case 'admin':
+                                    window.location.replace(`${proxy_url}/admin`);
+                                    break;
                             }
                         }
                         catch(e){
-                            console.log('Invalid Json Response');
-                            Swal.fire({
-                                title : 'Error',
-                                text : 'Internal Server Erro',
-                                icon : 'error'
-                            });
+                            console.log('Invalid Json Response!');
                         }
                     }
                 },
                 error : function(obj){
                     if(obj!==undefined){
-                        const {responseText, status} = obj;
+                        const {responseText} = obj;
                         const error = JSON.parse(responseText);
                         Swal.fire({
                             title : error.message,

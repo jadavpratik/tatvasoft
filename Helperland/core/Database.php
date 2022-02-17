@@ -63,7 +63,6 @@ class Database{
         $values .= ')';
         try{
             $this->query = "INSERT INTO $this->table $keys VALUES $values";
-            // echo $this->query;
             return $this->conn->exec($this->query);
         }
         catch(Exception $e){

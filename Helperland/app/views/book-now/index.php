@@ -5,8 +5,23 @@
 <!-- --------------------------------------------------- -->
 
 <script>
-    // FOR STORING ALL FOUR SECTION DATA AND USE IN SERVERSIDE...
-    let serviceRequestObj = {};
+    // FOR STORING A DATA AS GLOBALLY...
+    let default_service_request = {
+        postal_code : null,
+        date : '00/00/0000',
+        time : '00:00',
+        duration : 0,
+        comments : null,
+        has_pets : false,
+        extra : [],
+        extra_time : 0,
+        sp_id : null,
+        per_price : 70,
+        total_price : 0,
+        address : {},
+    }
+    let service_request = default_service_request;
+    let user_address = {};
 </script>
 
 
@@ -60,22 +75,22 @@
 
                 <!-- SETUP_SERVICE -->
                 <div class="tab_content active_tab_content">
-                    <?= component('customer/book-now/', 'setup-service'); ?>
+                    <?= component('book-now/', 'setup-service'); ?>
                 </div>
 
                 <!-- SCHEDULE_PLAN -->
                 <div class="tab_content d_none">
-                    <?= component('customer/book-now/', 'schedule-plan'); ?>
+                    <?= component('book-now/', 'schedule-plan'); ?>
                 </div>
 
                 <!-- YOUR DETAILS -->
                 <div class="tab_content d_none">
-                    <?= component('customer/book-now/', 'your-details'); ?>
+                    <?= component('book-now/', 'your-details'); ?>
                 </div>
 
                 <!-- MAKE_PAYMENT -->
                 <div class="tab_content d_none">
-                    <?= component('customer/book-now/', 'make-payment'); ?>
+                    <?= component('book-now/', 'make-payment'); ?>
                 </div>
             </div>
         </div>
@@ -85,9 +100,9 @@
             <!-- MODEL_CLOSE -->
             <button class="model_close_btn">&times;</button>
             <!-- PAYMENT -->
-            <?= component('customer/book-now/', 'payment-summary'); ?>
+            <?= component('book-now/', 'payment-summary'); ?>
             <!-- QUESTIONS -->
-            <?= component('customer/book-now/', 'questions'); ?>
+            <?= component('book-now/', 'questions'); ?>
         </div>
 
         <!-- VISIBLE BELOWER 1280PX -->
@@ -98,23 +113,20 @@
 <script>
 
     function change_book_service_tabs(i){
-        // REMOVE DISABLED BTN...
+
         tab_btn[i].removeAttribute('disabled');
-        // REMOVE ACTIVE TAB CLASS...
+
         $('.tab_btn').removeClass('active_book_service_tab');
-
-        // HIDE ALL TAB CONTENTS, and TRANSITION + OPACITY CLASS->active_tab_content
         $('.tab_content').addClass('d_none');
-        tab_content[i].classList.remove('active_tab_content');
 
-        // SHOW ONLY PERTICULAR TAB CONTENT
+        tab_content[i].classList.remove('active_tab_content');
         tab_content[i].classList.remove('d_none');
+
         setTimeout(()=>{
-            // BOOK SERVICES...
             tab_btn[i].classList.add('active_book_service_tab');
-            // ADD TRANSITION + OPACITY CLASS->active_tab_content
             tab_content[i].classList.add('active_tab_content');
         }, 10);
+
     }
 
 </script>

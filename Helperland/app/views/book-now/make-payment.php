@@ -49,16 +49,16 @@
         $.ajax({
             url : `${proxy_url}/book-now`,
             method : 'POST',
-            data : JSON.stringify(serviceRequestObj),
+            data : JSON.stringify(service_request),
             success : function(res){
                 if(res!=="" || res!==undefined){
-                    const result = JSON.parse(res);
                     try{
+                        const result = JSON.parse(res);
                         Swal.fire({
                             title : result.message,
                             text : `Service Request Id = ${result.id}`,
                             icon : 'success'
-                        })
+                        });
                     }
                     catch(e){
                         console.log('Invalid Json Response!');
@@ -73,6 +73,7 @@
                 if(obj!==undefined){
                     const {status, responseText} = obj;
                     const error = JSON.parse(responseText);
+                    // console.log(error);
                     Swal.fire({
                         title : 'Error',
                         text : error.message,

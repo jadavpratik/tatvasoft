@@ -22,8 +22,12 @@
 <script type="text/javascript">
 
     $('.forgot_password_popup_form').submit((e)=>{
+
         e.preventDefault();
-        if(forgot_password_email_validation()){
+
+        let validation = forgot_password_email_validation();
+
+        if(validation){
             $.ajax({
                 url : `${proxy_url}/forgot-password`,
                 method : 'POST',

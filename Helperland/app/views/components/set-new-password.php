@@ -29,43 +29,59 @@
 
 <script type="text/javascript">
 	$('.set_new_password_popup').submit((e)=>{
+
 		e.preventDefault();
-		$.ajax({
-			url : `${proxy_url}/set-new-password`,
-			method : 'POST',
-			data : $('.set_new_password_popup').serialize(),
-			success : function(res){
-				if(res!=undefined && res!=""){
-					try{
-						const result = JSON.parse(res);
-						Swal.fire({
-							title : 'Good Job',
-							text : result.message,
-							icon : 'success'
-						}).then((res)=>{
-							if(res.isConfirmed){
-								close_model();
-							}
-						});
-					}
-					catch(e){
-						console.log('Invalid Json Response!');
-						Swal.fire({
-							title : 'SERVER ERROR',
-							text : 'Invalid JSON Response!!!',
-							icon : 'error'
-						});
-					}
-				}
-			},
-			error : function(obj){
-                const {responseText, status} = obj;
-                const error = JSON.parse(responseText);
-				Swal.fire({
-					text:error.message,
-					icon:'error',
-				})
+
+		let validation = true;
+
+		let validationArr = [set_new_password_validation(),
+							 set_new_cpassword_validation()];
+
+		for(let i=0; i<validationArr.length; i++){
+			if(validationArr[i]==false){
+				validation = false;
+				break;
 			}
-		});
+		}
+
+		if(validation){
+			$.ajax({
+				url : `${proxy_url}/set-new-password`,
+				method : 'POST',
+				data : $('.set_new_password_popup').serialize(),
+				success : function(res){
+					if(res!=undefined && res!=""){
+						try{
+							const result = JSON.parse(res);
+							Swal.fire({
+								title : 'Good Job',
+								text : result.message,
+								icon : 'success'
+							}).then((res)=>{
+								if(res.isConfirmed){
+									close_model();
+								}
+							});
+						}
+						catch(e){
+							console.log('Invalid Json Response!');
+							Swal.fire({
+								title : 'SERVER ERROR',
+								text : 'Invalid JSON Response!!!',
+								icon : 'error'
+							});
+						}
+					}
+				},
+				error : function(obj){
+					const {responseText, status} = obj;
+					const error = JSON.parse(responseText);
+					Swal.fire({
+						text:error.message,
+						icon:'error',
+					})
+				}
+			});
+		}
 	});
 </script>

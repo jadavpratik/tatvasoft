@@ -60,7 +60,7 @@
 <script>
 
     function updatePaymentSummary(){
-        let serviceDateObj = new Date(serviceRequestObj.date);
+        let serviceDateObj = new Date(service_request.date);
         let serviceYear = serviceDateObj.getFullYear();
         let serviceMonth = serviceDateObj.getMonth()+1;
         let serviceDate = serviceDateObj.getDate();
@@ -72,24 +72,23 @@
         }
 
         $('#service_date').html(`${serviceDate}/${serviceMonth}/${serviceYear}`);
-        $('#service_time').html(`${serviceRequestObj.time}`);
-        $('#service_duration').html(`${serviceRequestObj.duration} Hours`);
-        $('#service_total_time').html(`${serviceRequestObj.duration + serviceRequestObj.extra_time} Hours`);
+        $('#service_time').html(`${service_request.time}`);
+        $('#service_duration').html(`${service_request.duration} Hours`);
+        $('#service_total_time').html(`${service_request.duration + service_request.extra_time} Hours`);
 
         let extra_services = ``;
-        for(let i=0; i<serviceRequestObj.extra.length; i++){
+        for(let i=0; i<service_request.extra.length; i++){
             extra_services += `
                 <div>
-                    <p>Inside ${serviceRequestObj.extra[i]} (Extra)</p>
+                    <p>Inside ${service_request.extra[i]} (Extra)</p>
                     <p>30 Mins</p>
                 </div>`; 
         }
         $('#service_extra_container').html(extra_services);
-        const perPrice = 70;
-        $('#service_per_price').html(`₹${perPrice}`);
+        $('#service_per_price').html(`₹${service_request.per_price}`);
         //  TOTAL PRICES = BASIC PRICE(3 SERVICE) + EXTRA SERVICE(DYNAMICS);
-        const totalPrices = perPrice*3 + (perPrice/2)*serviceRequestObj.extra.length;
-        $('#service_total_price').html(`₹${totalPrices}`);
+        service_request.total_price = service_request.per_price*3 + (service_request.per_price/2)*service_request.extra.length;
+        $('#service_total_price').html(`₹${service_request.total_price}`);
     }
 
 </script>

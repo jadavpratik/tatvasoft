@@ -12,7 +12,7 @@ class Request{
 
 	public function __construct($arr=false){
 
-		$this->params = [];
+		$this->params = new stdClass();
 		$this->body = new stdClass();
 		$this->files = new stdClass();		
 
@@ -35,19 +35,19 @@ class Request{
 		if(!empty($_POST)){
 			$this->body = (object) $_POST;
 		}
+		else if(file_get_contents('php://input')){
+			// php://input (ONLY FOR INCOMING JSON DATA...)
+			$php_input = file_get_contents('php://input');
+			// [json_decode($arr,false) return object]
+			// [json_decode($arr,true) return array]
+			$this->body = json_decode($php_input, false);
+		}
 
 		// SET FILES DATA...
 		if(!empty($_FILES)){
 			$this->files = (object) $_FILES;
 		}
 
-		// php://input (ONLY FOR INCOMING JSON DATA...)
-		if(file_get_contents('php://input')){
-			$php_input = file_get_contents('php://input');
-			// [json_decode($arr,false) return object]
-			// [json_decode($arr,true) return array]
-			$this->body = json_decode($php_input, false);
-		}
 
 
 	}

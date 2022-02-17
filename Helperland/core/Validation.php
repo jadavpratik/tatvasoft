@@ -18,22 +18,43 @@ class Validation{
 		$error = array();
 
 		foreach($validationArr as $key => $validation){
-
 			$temp = 0;
 			$error_messages = array();
 
 			foreach($validation as $i){
 				if($i=='optional'){
-					continue;
+					break;
 				}
-				else if($i=='required' || $i=='require'){
-					// EMPTY VALIDATION
+				else{
+					// IF VALUE EXIST THEN DO OTHER VALIDATON...
 					if(isset($body->$key)){
 
-						// IF VALUE EXIST THEN DO OTHER VALIDATON...
+						// IS TYPE OF ARRAY
+						if($i=='array'){
+							if(!is_array($body->$key)){
+								// gettype($body->$key)!='array'
+								$error_messages[$temp++] = 'The field should be a type of an array!';
+							}
+						}
+
+						// IS TYPE OF ARRAY
+						if($i=='string'){
+							if(!is_string($body->$key)){
+								// gettype($body->$key)!='array'
+								$error_messages[$temp++] = 'The field should be a type of an string!';
+							}
+						}
+
+						// IS TYPE OF OBJECT
+						if($i=='object'){
+							if(!is_object($body->$key)){
+								// gettype($body->$key)!='object'
+								$error_messages[$temp++] = 'The field should be a type of an object!';
+							}
+						}
 
 						// NUMBER OR INTERGER VALIDATION...
-						if($i=='number' || $i=='integer'){
+						if($i=='number' || $i=='integer' || $i=='int'){
 							if(!is_int($body->$key) || !is_integer($body->$key)){
 								$error_messages[$temp++] = 'Only Number allowed (Integer)';
 							}

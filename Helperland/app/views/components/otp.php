@@ -20,9 +20,14 @@
 </div>
 
 <script type="text/javascript">
+
     $('.otp_popup_form').submit((e)=>{
+
         e.preventDefault();
-        if(otp_validation()){
+
+        let validation = otp_validation();
+
+        if(validation){
             $.ajax({
                 url : `${proxy_url}/check-otp`,
                 method : 'POST',

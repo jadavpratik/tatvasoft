@@ -9,7 +9,7 @@ use app\controllers\static\Prices;
 use app\controllers\static\Contact;
 use app\controllers\static\About;
 use app\controllers\static\Guarantee;
-use app\controllers\static\PageNotFound;
+
 
 Route::get('/', [new Home(), 'view']);
 Route::get('/faqs', [new FAQs(), 'view']);
@@ -20,6 +20,3 @@ Route::get('/guarantee', [new Guarantee(), 'view']);
 
 // ---------------POST-METHOD-------------------
 Route::post('/contact', [new Contact(), 'submit']);
-
-// -----------THIS-METHOD-WILL-BE-LAST-----------------
-Route::get('/*', [new PageNotFound(), 'view']);

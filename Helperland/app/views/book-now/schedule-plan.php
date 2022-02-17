@@ -134,11 +134,13 @@
         }
 
         if(validation){
-            let schedule_date = $('[name="schedule_date"]').val();
-            let schedule_time = $('[name="schedule_time"]').val(); // [INCOMING INPUT TIME IN 24HRS]...
-            let duration = parseInt($('[name="duration"]').val());
-            let has_pets = Boolean($('[name="has_pets"]:checked').val());
-            let comments = $('[name="comments"]').val();
+            // STORE SCHEDULE PLAN DATA
+            service_request.date = $('[name="schedule_date"]').val();
+            service_request.time = $('[name="schedule_time"]').val(); // [INCOMING INPUT TIME IN 24HRS]...
+            service_request.duration = parseInt($('[name="duration"]').val());
+            service_request.comments = $('[name="comments"]').val();
+            service_request.has_pets = Boolean($('[name="has_pets"]:checked').val());
+
             let extra_services = $('[name="extra_services"]:checked');
             let extra_time = 0;
             let extra = [];
@@ -148,17 +150,12 @@
             }
 
             if(extra.length!==0){
-                extra_time = extra.length*30; // in minutes...
+                extra_time = extra.length*30; // IN MINUTES...
                 extra_time = extra_time/60;
             }
-            // STORE SCHEDULE PLAN DATA IN SERVICE REQUEST OBJECT...
-            serviceRequestObj.date = schedule_date;
-            serviceRequestObj.time = schedule_time;
-            serviceRequestObj.duration = duration;
-            serviceRequestObj.extra_time = extra_time;
-            serviceRequestObj.extra = extra;
-            serviceRequestObj.comments = comments;
-            serviceRequestObj.has_pets = has_pets;
+
+            service_request.extra_time = extra_time;
+            service_request.extra = extra;
             updatePaymentSummary();
             change_book_service_tabs(2);
         }
