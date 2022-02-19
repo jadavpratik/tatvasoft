@@ -49,6 +49,7 @@
         $.ajax({
             url : `${proxy_url}/book-now`,
             method : 'POST',
+            contentType : 'application/json',
             data : JSON.stringify(service_request),
             success : function(res){
                 if(res!=="" || res!==undefined){

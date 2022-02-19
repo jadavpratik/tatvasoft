@@ -28,8 +28,9 @@ class BookNow{
         ]);
 
         if($validation==1){
-            $obj = new PostalCode();
-            $result = $obj->where('ZipCodeValue','=', $req->body->postal_code)->exists();
+            $obj = new UserAddress();
+            $where = " PostalCode = {$req->body->postal_code}";
+            $result = $obj->where($where)->exists();
             if($result==1){
                 $res->status(200)->json(['message'=>'PostalCode is Exists in Database.']);
             }

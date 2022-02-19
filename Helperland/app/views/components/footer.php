@@ -93,11 +93,11 @@
 	<script src="<?= assets('assets/js/validation.js'); ?>"></script>
 
 	<!-- NEED AUTHENTICATION -->
-	<?php if(session('need-authentication')){ ?>
+	<?php if(session('open-login-form')){ ?>
 		<script>
 			open_model('login');
 		</script>";
-		<?php unset($_SESSION['need-authentication']); ?>
+		<?php unset($_SESSION['open-login-form']); ?>
 	<?php } ?>
 
 	<!-- LOGOUT -->
@@ -110,6 +110,8 @@
 		</script>
 		<?php unset($_SESSION['logout']); ?>
 	<?php } ?>
+
+
 
 </body>
 </html>

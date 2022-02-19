@@ -11,6 +11,11 @@ use core\Mail;
 
 class Account{
 
+	public function login_view(Request $req, Response $res){
+		session('open-login-form', true);
+		$res->redirect('/');
+	}
+
 	// -----------------------------SET-NEW-PASSWORD------------------------------------
 	public function set_new_password(Request $req, Response $res){
 
@@ -103,6 +108,7 @@ class Account{
 	// -----------------------------LOGIN------------------------------------
 	public function login(Request $req, Response $res){
 
+		// ALSO CHECK REMEMBER ME PENDING....
 		$validation = Validation::check($req->body, [
 			'login_email' => ['email'],
 			'login_password' => ['password']

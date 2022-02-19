@@ -31,7 +31,7 @@ class Auth{
             return true;
         }
         else{
-            session('need-authentication', true);
+            session('open-login-form', true);
             $base_url = BASE_URL;
             header("location:{$base_url}");
             return false;

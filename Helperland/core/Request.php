@@ -31,27 +31,48 @@ class Request{
 			}	
 		}
 
-		// SET POST DATA...
-		if(!empty($_POST)){
-			$this->body = (object) $_POST;
+		if(isset($_SERVER['CONTENT_TYPE'])){
+			$contentType = $_SERVER['CONTENT_TYPE'];
+			// CHECK HEADER TOKEN...
+			// print_r(apache_request_headers());
+			if(str_contains($contentType, 'application/json')){
+				$this->setJSON();
+			}
+			else if(str_contains($contentType, 'application/x-www-form-urlencoded')){
+				$this->setPOST();
+			}
+			else if(str_contains($contentType, 'multipart/form-data')){
+				$this->setFILES();
+			}
 		}
-		else if(file_get_contents('php://input')){
+	}
+
+	public function setJSON(){
+		if(file_get_contents('php://input')){
 			// php://input (ONLY FOR INCOMING JSON DATA...)
 			$php_input = file_get_contents('php://input');
 			// [json_decode($arr,false) return object]
 			// [json_decode($arr,true) return array]
 			$this->body = json_decode($php_input, false);
-		}
+		}	
+	}
 
+	public function setPOST(){
+		// SET POST DATA...
+		if(!empty($_POST)){
+			$this->body = (object) $_POST;
+		}
+	}
+	
+	public function setFILES(){
+		// SET POST DATA...
+		if(!empty($_POST)){
+			$this->body = (object) $_POST;
+		}
 		// SET FILES DATA...
 		if(!empty($_FILES)){
 			$this->files = (object) $_FILES;
-		}
-
-
-
+		}	
 	}
-
-
 
 }

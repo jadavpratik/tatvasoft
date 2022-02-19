@@ -26,6 +26,7 @@
             $.ajax({
                 url :  `${proxy_url}/check-postal-code`,
                 method : 'POST',
+                contentType : 'application/json',
                 data : data,
                 success : function(res){
                     if(res!=="" || res!==undefined){
