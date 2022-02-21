@@ -16,7 +16,6 @@ Route::get('/service-provider/signup', [new Auth(), 'alreadyLogged'], [new Servi
 Route::get('/customer/signup', [new Auth(), 'alreadyLogged'], [new CustomerSignup(), 'view']);
 Route::get('/logout', [new Account(), 'logout']);
 
-
 Route::post('/signup', [new Account(), 'signup']);
 Route::post('/login', [new Account(), 'login']);
 Route::post('/forgot-password', [new Account(), 'forgot_password']);

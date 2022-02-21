@@ -43,7 +43,7 @@ class Account{
 			}	
 		}
 		else{
-			$res->status(400)->json(['message'=>$validation]);
+			$res->status(400)->json($validation);
 		}
 	}
 
@@ -63,7 +63,7 @@ class Account{
 			}	
 		}
 		else{
-			$res->status(400)->json(['message'=>$validation]);			
+			$res->status(400)->json($validation);			
 		}
 	}
 
@@ -91,7 +91,7 @@ class Account{
 			}	
 		}
 		else{
-			$res->status(400)->json(['message'=>$validation]);			
+			$res->status(400)->json($validation);			
 		}
 	}
 
@@ -151,7 +151,7 @@ class Account{
 			}	
 		}
 		else{
-			$res->status(400)->json(['message'=>$validation]);			
+			$res->status(400)->json($validation);			
 		}
 	}
 
@@ -222,7 +222,7 @@ class Account{
 			}	
 		}
 		else{
-			$res->status(400)->json(['message'=>$validation]);
+			$res->status(400)->json($validation);
 		}
 	}
     

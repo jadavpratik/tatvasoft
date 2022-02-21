@@ -38,6 +38,26 @@ class Auth{
         }
     }
 
+    public function isCustomer(){
+        if(session('isLogged')){
+            if(session('userRole')=='customer'){
+                return true;
+            }
+            else{
+                $base_url = BASE_URL;
+                header("location:{$base_url}");
+                return false;
+            }
+        }
+        else{
+            session('open-login-form', true);
+            $base_url = BASE_URL;
+            header("location:{$base_url}");
+            return false;
+        }
+    }
+
+
 
 
 }

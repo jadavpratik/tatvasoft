@@ -33,8 +33,10 @@ class Request{
 
 		if(isset($_SERVER['CONTENT_TYPE'])){
 			$contentType = $_SERVER['CONTENT_TYPE'];
-			// CHECK HEADER TOKEN...
-			// print_r(apache_request_headers());
+			// HEADERS FOR TOKEN AUTHENTICATIONS...
+			// $headers = apache_request_headers();
+			// $contentType = $headers['Content-Type'];
+			// $_token = $headers['_token'];
 			if(str_contains($contentType, 'application/json')){
 				$this->setJSON();
 			}
@@ -45,6 +47,7 @@ class Request{
 				$this->setFILES();
 			}
 		}
+
 	}
 
 	public function setJSON(){

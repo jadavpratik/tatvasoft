@@ -14,7 +14,6 @@ class Contact{
 	public function view(Request $req, Response $res){
 		$res->render('static/contact');	
 	}
-
 	
 	public function submit(Request $req, Response $res){
 
@@ -61,7 +60,7 @@ class Contact{
 			}	
 		}
 		else{
-			$res->status(400)->json(['message'=>$validation]);
+			$res->status(400)->json($validation);
 		}
 	}
 

@@ -28,18 +28,18 @@ class BookNow{
         ]);
 
         if($validation==1){
-            $obj = new UserAddress();
-            $where = " PostalCode = {$req->body->postal_code}";
+            $obj = new User();
+            $where = " ZipCode = {$req->body->postal_code} AND RoleId = 2";
             $result = $obj->where($where)->exists();
             if($result==1){
-                $res->status(200)->json(['message'=>'PostalCode is Exists in Database.']);
+                $res->status(200)->json(['message'=>'User Availabe']);
             }
             else{
-                $res->status(400)->json(['message'=>'PostalCode Not Exists in Database.']);
+                $res->status(400)->json(['message'=>'We are not providing service in this area!']);
             }
         }
         else{
-            $res->status(400)->json(['message'=>$validation]);
+            $res->status(400)->json($validation);
         }
 
     }
@@ -66,7 +66,7 @@ class BookNow{
                 'house_number' => ['required'],
                 'postal_code' => ['postal-code'], 
                 'city' => ['text'],
-                'phone' => ['phone','length:10']
+                'phone' => ['phone', 'length:10']
             ]);
             
             if($validation==1){
@@ -93,7 +93,7 @@ class BookNow{
                 }
             }
             else{
-                $res->status(400)->json(['message'=>$validation]);
+                $res->status(400)->json($validation);
             }    
         }
         else{
@@ -243,7 +243,7 @@ class BookNow{
             }
         }
         else{
-            $res->status(400)->json(['message'=>$validation]);
+            $res->status(400)->json($validation);
         }
     }
 

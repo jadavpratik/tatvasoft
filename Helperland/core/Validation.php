@@ -2,155 +2,214 @@
 
 namespace core;
 
-
 class Validation{
 
+	// REGEX...
 	const TextRegEx = '/^[A-Za-z]/';
 	const EmailRegEx = '/^[a-zA-Z0-9.]+@[a-zA-Z0-9]+(\.[a-zA-Z]{2,})+$/';
 	const PhoneRegEx = '/^[0-9]{10}$/';
 	const PasswordRegEx = '/(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/';
 	const PostalCodeRegEx = '/^[0-9]{5,10}$/';
 
+	// PASSWORD...
 	private static $password = '';
-
-	public static function check($body, $validationArr){
-
-		$error = array();
-
-		foreach($validationArr as $key => $validation){
-			$temp = 0;
-			$error_messages = array();
-
-			foreach($validation as $i){
-				if($i=='optional'){
-					break;
-				}
-				else if(isset($body->$key)){
-					// IF VALUE EXIST THEN DO OTHER VALIDATON...
-
-					// IS TYPE OF ARRAY
-					if($i=='array'){
-						if(!is_array($body->$key)){
-							// gettype($body->$key)!='array'
-							$error_messages[$temp++] = 'The field should be a type of an array!';
-						}
-					}
-
-					// IS TYPE OF ARRAY
-					if($i=='string'){
-						if(!is_string($body->$key)){
-							// gettype($body->$key)!='array'
-							$error_messages[$temp++] = 'The field should be a type of an string!';
-						}
-					}
-
-					// IS TYPE OF OBJECT
-					if($i=='object'){
-						if(!is_object($body->$key)){
-							// gettype($body->$key)!='object'
-							$error_messages[$temp++] = 'The field should be a type of an object!';
-						}
-					}
-
-					// NUMBER OR INTERGER VALIDATION...
-					if($i=='number' || $i=='integer' || $i=='int'){
-						if(!is_int($body->$key) || !is_integer($body->$key)){
-							$error_messages[$temp++] = 'Only Number allowed (Integer)';
-						}
-					}
-
-					// MINIMUM VALIDATION
-					if(str_contains($i, 'min:')){
-						$min = (int) str_replace('min:', '', $i);
-						if(strlen($body->$key) < $min){
-							$error_messages[$temp++] = 'Field Required minimum '.$min.' characters';
-						}
-					}
-
-					// MAXIMUM VALIDATION
-					if(str_contains($i, 'max:')){
-						$max = (int) str_replace('max:', '', $i);
-						if(strlen($body->$key) > $max){
-							$error_messages[$temp++] = 'Field Required maximum '.$max.' characters';
-						}
-					}
-
-					// MINIMUM VALIDATION
-					if(str_contains($i, 'length:')){
-						$length = (int) str_replace('length:', '', $i);
-						if(strlen($body->$key) != $length){
-							$error_messages[$temp++] = 'Field Value length is '.$length.' character only';
-						}
-					}
+	// ERROR ARRAY...
+	private static $error = [];
 
 
-					// EMAIL VALIDATION
-					if($i=='email'){
-						if(!preg_match(Validation::EmailRegEx, $body->$key)){
-							$error_messages[$temp++] = 'Email Address is Invalid';
-						}
-					}
-
-					// PHONE VALIDATION
-					if($i=='phone'){
-						if(!preg_match(Validation::PhoneRegEx, $body->$key)){
-							$error_messages[$temp++] = 'Phone Number is Invalid';
-						}
-					}
-
-					// TEXT 0R STRING VALIDATION
-					if($i=='text'){
-						if(!preg_match(Validation::TextRegEx, $body->$key)){
-							$error_messages[$temp++] = 'Only Text Allowed';
-						}
-					}
-
-					// PASSWORD VALIDATION
-					if($i=='password'){
-						if(!preg_match(Validation::PasswordRegEx, $body->$key)){
-							$error_messages[$temp++] = 'Make Sure your password is a combination of one special character, one number & one capital character';
-						}
-						self::$password = $body->$key;
-					}
-
-					// CONFIRM PASSWORD VALIDATION
-					if($i=='confirm-password'){
-						if(!preg_match(Validation::PasswordRegEx, $body->$key)){
-							$error_messages[$temp++] = 'Make Sure your password is a combination of one special character, one number & one capital character';
-						}
-						if(self::$password != $body->$key){
-							$error_messages[$temp++] = 'Password & Confirm Password Not Same';
-						}
-					}
-
-					// POSTAL CODE VALIDATION...
-					if($i=='postal-code'){
-						if(!preg_match(Validation::PostalCodeRegEx, $body->$key)){
-							$error_messages[$temp++] = 'Postal Code Should be a Min:5 or Max:10 Digits Only !';
-						}
+	public static function check($body, $fields){
+		// LOOP FOR ALL INPUT FIELDS...
+		foreach($fields as $key => $validation){
+			if(isset($body->$key)){
+				// STORE INPUT VALUE IN VARIABLE...
+				$value = $body->$key; 
+				// TEMP ARRAY [STORING ALL ERROR MESSAGE...]
+				$temp[$key] = [];    
+				// LOOP FOR ALL VALIDATION FOR SINGLE INPUT FIELDS...
+				foreach($validation as $i){
+					self::checkCriteria($key, $value, $i);
+					if(isset(self::$error[$key])){
+						array_push($temp[$key], self::$error[$key]);
 					}
 				}
-				else{
-					// EMPTY VALIDATION
-					$error_messages[$temp++] = 'This Field is required';
-					break;
+				if(count($temp[$key])==1){
+					// ASSIGN STRING... [SINGLE ERROR MESSAGE]
+					self::$error[$key] = $temp[$key][0];
 				}
-
+				else if(count($temp[$key])>1){
+					// ASSIGN ARRAY...  [MULTIPULE ERROR MESSAGE]
+					self::$error[$key] = $temp[$key];
+				}
 			}
-			if(count($error_messages)>0){
-				$error[$key] = $error_messages;
+			else if($validation[0]!=='optional'){
+				self::$error[$key] = 'Field is required!';
+				break;
 			}
-
 		}
-
-		// RETURN ERROR OR TRUE...
-		if(count($error)>0){
-			return $error;
+		// PASS RESPONSE ACCORDING TO VALIDATION...
+		if(count(self::$error)>0){
+			return self::$error;
 		}
 		else{
 			return true;
 		}
-
 	}
 
+
+	public static function checkCriteria($key, $value, $i){
+		if(str_contains($i, 'min:')){
+			self::minValidation($key, $value, $i);
+		}
+		else if(str_contains($i, 'max:')){
+			self::maxValidation($key, $value, $i);
+		}
+		else if(str_contains($i, 'length:')){
+			self::lengthValidation($key, $value, $i);
+		}
+		else{
+			switch($i){
+				case 'text'            :
+					self::textValidation($key, $value);
+					break;
+				case 'string'          :
+					self::stringValidation($key, $value);
+					break;
+				case 'integer'         :
+					self::integerValidation($key, $value);
+					break;
+				case 'number'          :
+					self::integerValidation($key, $value);
+					break;
+				case 'array'           :
+					self::arrayValidation($key, $value);
+					break;
+				case 'object'          :
+					self::objectValidation($key, $value);
+					break;
+				case 'email'           :
+					self::emailValidation($key, $value);
+					break;
+				case 'phone'           :
+					self::phoneValidation($key, $value);
+					break;
+				case 'mobile'          :
+					self::phoneValidation($key, $value);
+					break;
+				case 'password'        :
+					self::passwordValidation($key, $value);
+					break;
+				case 'confirm-password':
+					self::confirmPasswordValidation($key, $value);
+					break;
+				case 'postal-code'     :
+					self::postalCodeValidation($key, $value);
+					break;	
+			}	
+		}
+	}
+
+	// TEXT VALIDATION...
+	public static function textValidation($key, $value){
+		if(!preg_match(Validation::TextRegEx, $value)){
+			self::$error[$key] = 'Only text allowed !';
+			// [ ONLY A-Z]
+		}
+	}
+
+	// STRING VALIDATION...
+	public static function stringValidation($key, $value){
+		if(!is_string($value)){
+			self::$error[$key] = 'Not a valid string !';
+		}
+	}
+
+	// INTEGER VALIDATION...
+	public static function integerValidation($key, $value){
+		if(!is_integer($value)){
+			self::$error[$key] = 'Not a valid integer !';
+		}	
+	}
+
+	// ARRAY VALIDATION...
+	public static function arrayValidation($key, $value){
+		if(!is_array($value)){
+			self::$error[$key] = 'Not a valid array !';
+		}	
+	}
+
+	// OBJECT VALIDATION...
+	public static function objectValidation($key, $value){
+		if(!is_object($value)){
+			self::$error[$key] = 'Not a valid object !';
+		}	
+	}
+
+	// MIN VALIDATION...
+	public static function minValidation($key, $value, $i){
+		if(str_contains($i, 'min:')){
+			$min = (int) str_replace('min:', '', $i);
+			if(strlen($value) < $min){
+				self::$error[$key] = "Minimum {$min} character required !";
+			}
+		}
+	}
+
+	// MAX VALIDATION...
+	public static function maxValidation($key, $value, $i){
+		if(str_contains($i, 'max:')){
+			$max = (int) str_replace('max:', '', $i);
+			if(strlen($value) > $max){
+				self::$error[$key] = "Maximum {$max} character allowed !";
+			}
+		}
+	}
+
+	// LENGTH VALIDATION...
+	public static function lengthValidation($key, $value, $i){
+		if(str_contains($i, 'length:')){
+			$length = (int) str_replace('length:', '', $i);
+			if(strlen($value) !== $length){
+				self::$error[$key] = "Field value length {$length} characters exact!";
+			}
+		}
+	}
+
+	// EMAIL VALIDATION...
+	public static function emailValidation($key, $value){
+		if(!preg_match(Validation::EmailRegEx, $value)){
+			self::$error[$key] = "Email Address not in valid format !";
+		}
+	}
+
+	// PHONE VALIDATION...
+	public static function phoneValidation($key, $value){
+		if(!preg_match(Validation::PhoneRegEx, $value)){
+			self::$error[$key] = "Phone Number not in valid format !";
+		}
+	}
+
+	// PASSWORD VALIDATION...
+	public static function passwordValidation($key, $value){
+		// STORE THE PASSWORD FOR VALIDATE CONFIRM PASSWORD...
+		self::$password = $value;
+		if(!preg_match(Validation::PasswordRegEx, $value)){
+			self::$error[$key] = "Password not in valid format !";
+		}
+	}
+
+	// CONFIRM-PASSWORD VALIDATION...
+	public static function confirmPasswordValidation($key, $value){
+		if(self::$password!==$value){
+			self::$error[$key] = "Confirm Password & Password are not same !";
+		}
+	}
+
+	// POSTAL-CODE VALIDATION...
+	public static function postalCodeValidation($key, $value){
+		if(!preg_match(Validation::PostalCodeRegEx, $value)){
+			self::$error[$key] = "Postal Code have Minimum 5 or Maximum 10 digits only !";
+		}
+	}
+
+	
 }

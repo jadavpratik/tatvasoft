@@ -173,7 +173,7 @@
             $.ajax({
                 url : `${proxy_url}/add-address`,
                 method : 'POST',
-                contentType : 'applicaton/json',
+                contentType : 'application/json',
                 data : data,
                 success : function(res){
                     if(res!==""){
