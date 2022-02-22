@@ -90,6 +90,13 @@ class Route{
 		}
 	}
 
+	// PATCH METHOD...
+	public static function patch($route_arr, $callback1, $callback2=false){
+		if(self::setMethod() == 'PATCH'){
+			self::run($route_arr, $callback1, $callback2);
+		}
+	}
+
 	// PUT METHOD...
 	public static function put($route_arr, $callback1, $callback2=false){
 		if(self::setMethod() == 'PUT'){

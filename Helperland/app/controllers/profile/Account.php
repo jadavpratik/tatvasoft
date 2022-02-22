@@ -6,8 +6,10 @@ use core\Request;
 use core\Response;
 use core\Hash;
 use core\Validation;
-use app\models\User;
 use core\Mail;
+
+use app\models\User;
+use app\models\OTP;
 
 class Account{
 
@@ -23,21 +25,19 @@ class Account{
 
 	// -----------------------------SET-NEW-PASSWORD------------------------------------
 	public function set_new_password(Request $req, Response $res){
-		// echo '<pre>';
-		// print_r($req->body);
 		$validation = Validation::check($req->body, [
-			'set_new_password' => ['password'],
-			'set_new_cpassword' => ['confirm-password']
+			'password' => ['password'],
+			'cpassword' => ['confirm-password'],
+			'email' => ['email'],
 		]);
 
 		if($validation==1){
-			if($req->body->set_new_password==$req->body->set_new_cpassword){
+			if($req->body->password==$req->body->cpassword){
 				$user = new User();
-				$hash = Hash::create($req->body->set_new_password);
-				$email = session('email');
-				$result = $user->where('Email','=', "'{$email}'")->update(['Password'=>$hash]);
+				$hash = Hash::create($req->body->password);
+				$email = $req->body->email;
+				$result = $user->where('Email','=', $email)->update(['Password'=>$hash]);
 				if($result){
-					unset($_SESSION['email']);
 					$res->status(200)->json(['message'=>'Password Updated Successfully.']);
 				}
 				else{
@@ -56,16 +56,23 @@ class Account{
 	public function check_otp(Request $req, Response $res){
 
 		$validation = Validation::check($req->body, [
-			'otp' => ['integer', 'length:4']
+			'otp' => ['integer', 'length:4'],
+			'email' => ['email']
 		]);
 
 		if($validation==1){
-			if($req->body->otp==session('otp')){
-				unset($_SESSION['otp']);
-				$res->status(200)->json(['message'=>'OTP Matched.']);
+			$obj = new OTP();			
+			$email = $req->body->email;
+			$result = $obj->where('email', '=', $email)->read();
+			$dbOTP = $result[0]->otp;
+			$userOTP = $req->body->otp;
+			if($dbOTP == $userOTP){
+				if($obj->where('email', '=', $email)->delete()){
+					$res->status(200)->json(['message'=>'OTP Matched.']);
+				}
 			}
 			else{
-				$res->status(401)->json(['message'=>'OTP Not Matched!!!']);
+				$res->status(401)->json(['message'=> 'OTP Not Matched!!!']);
 			}	
 		}
 		else{
@@ -77,20 +84,42 @@ class Account{
 	public function forgot_password(Request $req, Response $res){
 
 		$validation = Validation::check($req->body, [
-			'forgot_password_email' => ['email']
+			'email' => ['email']
 		]);
 
 		if($validation==1){
+			$email = $req->body->email;
 			$user = new User();
-			if($user->where('Email', '=', "'{$req->body->forgot_password_email}'")->exists()){
+			if($user->where('Email', '=', $email)->exists()){
 				// GENERATE OTP...
 				$otp = rand(1000, 9999);
-				// STORE OTP IN SESSION...
-				session('otp', $otp);
-				session('email', $req->body->forgot_password_email);
-				$recipient = $req->body->forgot_password_email;
-				// Mail::send($recipient, $subject, $body);
-				$res->status(200)->json(['otp'=>$otp, 'message'=>'OTP Sent On Your Email Address']);
+				// STORE OTP IN DATABASE...
+				$obj = new OTP();
+				$result = $obj->create([
+					'email'=> $email,
+					'otp' => $otp,
+				]);
+
+				if($result){
+
+					// ----------WITHOUT MAIL----------
+					$res->status(200)->json(['otp'=>$otp, 'message'=>'OTP Sent On Your Email Address']);
+
+					// ---------ACTIVE MAIL SYSTEM---------
+					// $subject = 'Helperland';
+					// $body = 'Your one time otp = '.$otp;
+					// $recipient = $email;
+					// if(Mail::send($recipient, $subject, $body)){
+					// 	$otp = '';
+					// 	$res->status(200)->json(['otp'=>$otp, 'message'=> 'OTP Sent On Your Email Address']);
+					// }
+					// else{
+					// 	$res->status(500)->json(['otp'=>$otp, 'message'=> "OTP Can't be sent on your Email Address !"]);
+					// }
+				}
+				else{
+					$res->status(500)->json(['otp'=>$otp, 'message'=>'Something Went Wrong!']);
+				}
 			}
 			else{
 				$res->status(401)->json(['message'=>'User not Exists in Database.']);
@@ -105,6 +134,7 @@ class Account{
 	public function logout(Request $req, Response $res){
 		// DESTORY THE SESSION...
 		unset($_SESSION['isLogged']);
+		unset($_SESSION['userId']);
 		unset($_SESSION['userRole']);
 		unset($_SESSION['userName']);
 		session('logout', true);

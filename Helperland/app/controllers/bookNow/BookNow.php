@@ -71,7 +71,7 @@ class BookNow{
             
             if($validation==1){
                 $user = new User();
-                $data = $user->column(['Email'])->where(['UserId', '=', session('userId')])->read();
+                $data = $user->column(['Email'])->where('UserId', '=', session('userId'))->read();
 
                 $userAddress = new UserAddress();
                 $arr = [

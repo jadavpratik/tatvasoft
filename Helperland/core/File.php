@@ -5,8 +5,8 @@ namespace core;
 
 class File{
 
-	public static function upload($file, $path){
-		$uploadPath = __DIR__.'/../public/'.$path;
+	public static function upload($file, $path){		
+		$uploadPath = STORAGE_PATH.$path;
 		$fileName = $file['name'];	
 		if(!file_exists($uploadPath)){
 			mkdir($uploadPath, 0777, true);

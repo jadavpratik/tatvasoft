@@ -46,12 +46,13 @@
 
 		if(validation){
 			const data = JSON.stringify({
-				set_new_password : $('[name="set_new_password"]').val(),
-				set_new_cpassword : $('[name="set_new_cpassword"]').val()
+				password : $('[name="set_new_password"]').val(),
+				cpassword : $('[name="set_new_cpassword"]').val(),
+				email : state.forgot_password_email
 			})
 			$.ajax({
 				url : `${proxy_url}/set-new-password`,
-				method : 'PUT',
+				method : 'PATCH',
 				contentType : 'application/json',
 				data : data,
 				success : function(res){

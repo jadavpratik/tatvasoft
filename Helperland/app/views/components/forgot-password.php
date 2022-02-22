@@ -28,16 +28,22 @@
         let validation = forgot_password_email_validation();
 
         if(validation){
+
+            const email = $('[name="forgot_password_email"]').val();
+            // STORE EMAIL GLOBALLY...
+            state.forgot_password_email = email;
+            const data = JSON.stringify({email});
             $.ajax({
                 url : `${proxy_url}/forgot-password`,
                 method : 'POST',
-                data : $('.forgot_password_popup_form').serialize(),
+                contentType : 'application/json',
+                data : data,
                 success : function(res){
                     if(res!==undefined && res!==""){
                         try{
                             const result = JSON.parse(res);
                             Swal.fire({
-                                title : `OTP = ${result.otp}`,
+                                title : `${result.otp}`,
                                 text : result.message,
                                 icon : 'info'
                             }).then((res)=>{

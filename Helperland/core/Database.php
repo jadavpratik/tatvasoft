@@ -14,11 +14,10 @@ class Database{
     private $dbPassword = DB_PASSWORD;
     private $conn = null;
     
+    protected $table = '';
     private $query = '';
     private $columns = '';
-    protected $table = '';
     private $where = '';
-    private $lastId = '';
 
 
     // -----------------CONNECT-------------------
@@ -80,12 +79,12 @@ class Database{
     public function where($key, $operator=false, $value=false){
         if($operator!=false && $value!=false){
             // IF WE PASS ALL THREE PARAMETERS...
-            $this->where = $key.' '.$operator.' '.$value;
-        }
-        else if(gettype($key)=='array'){
-            // IF WE PASS ARRAY...
-            for($i = 0; $i<count($key); $i++){
-                $this->where .= $key[$i];
+            if(is_integer($value)){
+                $this->where = $key.' '.$operator.' '.$value;
+            }
+            else{
+                $value = "'{$value}'";
+                $this->where = $key.' '.$operator.' '.$value;
             }
         }
         else{

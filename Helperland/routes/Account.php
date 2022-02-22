@@ -22,7 +22,7 @@ Route::post('/login', [new Account(), 'login']);
 Route::post('/forgot-password', [new Account(), 'forgot_password']);
 Route::post('/check-otp', [new Account(), 'check_otp']);
 
-Route::put('/set-new-password', [new Account(), 'set_new_password']);
+Route::patch('/set-new-password', [new Account(), 'set_new_password']);
 
 // PENDING....
 // Route::put();

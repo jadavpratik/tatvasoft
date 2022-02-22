@@ -21,5 +21,8 @@
     define('EMAIL_ADDRESS', '');
     define('EMAIL_PASSWORD', '');
     
-    // DEFINE STORAGE PATH....
     // SESSION CONFIG...
+    define('SESSION_PATH', __DIR__.'/../public/sessions/');
+    
+    // STORAGE PATH...
+    define('STORAGE_PATH', __DIR__.'/../public/upload/');

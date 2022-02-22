@@ -51,7 +51,9 @@
 	<!-- SET-PROXY-URL -->
 	<script> 
 		// PROXY URL AS BASE URL GUIDE THE FRONT AJAX REQUEST...
-		const proxy_url = `<?= BASE_URL; ?>`; 
+		let proxy_url = `<?= BASE_URL; ?>`; 
+		// STORE THE GLOBAL DATA...
+		let state = {};
 	</script>
 </head>
 <body>

@@ -26,6 +26,7 @@ class Response{
 		// 404 : NOT FOUND
 		// 409 : CONFLICT		
 		// 500 : INTERNAL SERVER
+		// 502 : BAD GATEWAY
 		http_response_code($status_code);
 		return $this;
 	}
