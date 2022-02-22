@@ -32,14 +32,14 @@
 				<div class="footer_links">
 					<a href="<?= url('/'); ?>">HOME</a>
 					<a href="<?= url('/about'); ?>">ABOUT</a>
-					<a href="#">TESTIMONIALS</a>
+					<a href="javascript:void(0);">TESTIMONIALS</a>
 					<a href="<?= url('/faqs'); ?>">FAQS</a>
-					<a href="#">INSURANCE POLICY</a>
-					<a href="#">IMPRESSUM</a>
+					<a href="javascript:void(0);">INSURANCE POLICY</a>
+					<a href="javascript:void(0);">IMPRESSUM</a>
 				</div>
 				<div class="social_media_links">
-					<a href="#"><img src="<?= assets('assets/img/global/facebook.png'); ?>" alt=""></a>
-					<a href="#"><img src="<?= assets('assets/img/global/instagram.png'); ?>" alt=""></a>
+					<a href="javascript:void(0);"><img src="<?= assets('assets/img/global/facebook.png'); ?>" alt=""></a>
+					<a href="javascript:void(0);"><img src="<?= assets('assets/img/global/instagram.png'); ?>" alt=""></a>
 				</div>
 			</div>
 			<!-- COPYRIGHT_SECTION -->
@@ -92,26 +92,24 @@
 	<script src="<?= assets('assets/js/tabletab.js'); ?>"></script>
 	<script src="<?= assets('assets/js/validation.js'); ?>"></script>
 
-	<!-- NEED AUTHENTICATION -->
-	<?php if(session('open-login-form')){ ?>
-		<script>
-			open_model('login');
-		</script>";
-		<?php unset($_SESSION['open-login-form']); ?>
+
+	<!-- OPEN LOGIN FORM -->
+	<?php if(session('openLoginForm')){ ?>
+		<script> open_model('login'); </script>
+		<?php unset($_SESSION['openLoginForm']); ?>
+	<?php } ?>
+
+	<!-- OPEN FORGOT-PASSWORD -->
+	<?php if(session('openForgotPasswordForm')){ ?>
+		<script> open_model('forgot_password'); </script>
+		<?php unset($_SESSION['openForgotPasswordForm']); ?>
 	<?php } ?>
 
 	<!-- LOGOUT -->
 	<?php if(session('logout')){ ?>
-		<script>
-			Swal.fire({
-				title : `Logout Successfully`,
-				icon : 'success'
-			});
-		</script>
+		<script> Swal.fire({ title : `Logout Successfully`, icon : 'success' }); </script>
 		<?php unset($_SESSION['logout']); ?>
 	<?php } ?>
-
-
 
 </body>
 </html>

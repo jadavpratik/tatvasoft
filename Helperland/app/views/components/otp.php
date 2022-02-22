@@ -28,10 +28,14 @@
         let validation = otp_validation();
 
         if(validation){
+            const data = JSON.stringify({
+                otp:parseInt($('[name="otp"]').val())
+            });
             $.ajax({
                 url : `${proxy_url}/check-otp`,
                 method : 'POST',
-                data : $('.otp_popup_form').serialize(),
+                contentType : 'application/json',
+                data : data,
                 success : function(res){
                     if(res!==undefined && res!==""){
                         try{

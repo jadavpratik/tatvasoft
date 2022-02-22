@@ -148,7 +148,7 @@
 								<p>Cancellation! You have canceled the order, Service ID: 8503</p>
 								<p>30/12/2021 11:43</p>    
 							</div>
-							<a href="#">Show All</a>
+							<a href="javascript:void(0);">Show All</a>
 						</div> -->
 					</div>
 				</div>
@@ -164,7 +164,7 @@
 						</div>
 						<hr>
 						<a href="">To Overview</a>
-						<a href="#" class="table_tab_btn">My Setting</a>
+						<a href="javascript:void(0);" class="table_tab_btn">My Setting</a>
 						<a href="<?= url('/logout') ?>">Logout</a>
 					</div>
 				</div>
@@ -172,7 +172,7 @@
 				}
 			 	else{ 
 			?>
-				<a class="navbar_focus_btn <?= $home_focus_btn; ?>" href="#" onclick="open_model('login')">Login</a>
+				<a class="navbar_focus_btn <?= $home_focus_btn; ?>" href="javascript:void(0);" onclick="open_model('login')">Login</a>
 				<a class="navbar_focus_btn <?= $home_focus_btn; ?>" href="<?= url('/service-provider/signup'); ?>">Become a Helper</a>
 			<?php } ?>
 		</div><!-- END NAV_MENU -->
@@ -183,79 +183,7 @@
 	<!-- --------------------------------------------------- -->
 						<!-- SIDE_NAVBAR -->
 	<!-- --------------------------------------------------- -->
-	<aside class="sidenav">
-
-		<?php if(session('isLogged')==true){ ?>
-			<!-- FOR_LOGGED_USER -->
-			<div class="sidenav_header">
-				<p>Warm Welcome</p>
-				<p class="sidenav_logged_username"><?= session('userName'); ?></p>
-			</div>
-			<hr>
-		<?php } ?>
-
-		<div class="sidenav_main">
-			<!-- GUEST_USER -->
-			<a href="<?= url('/book-now'); ?>">Book Now</a>
-			<a href="<?= url('/prices'); ?>">Prices & Services</a>
-			<a href="<?= url('/guarantee'); ?>">Guarantee</a>
-			<a href="<?= url('/blog'); ?>">Blog</a>
-			<a href="<?= url('/contact'); ?>">Contact</a>
-			<a href="#" onclick="open_model('login')">Login</a>
-			<a href="<?= url('/service-provider/signup'); ?>">Become a Helper!</a>
-
-
-			<?php if(session('isLogged')==true){ ?>
-
-				<!-- CUSTOMER -->
-				<?php if(session('userRole')=='customer'){ ?>
-					<a href="#">Overview</a>
-					<a href="#">Completed Service Orders</a>
-					<a href="#">Calander view</a>
-					<a href="#">My Favorites</a>
-					<a href="#">Bills</a>
-				<?php } ?>
-
-				<!-- SERVICE_PROVIDER -->
-				<?php if(session('userRole')=='service_provider'){ ?>
-					<a href="#">Overview</a>
-					<a href="#">New Inquiries</a>
-					<a href="#">Accepted Requests</a>
-					<a href="#">Calander view</a>
-					<a href="#">Completed Service Orders</a>
-					<a href="#">My Reviews</a>
-					<a href="#">Block Customer</a>
-					<a href="#">Bills</a>
-				<?php } ?>
-
-				<!-- COMMAN_LINKS FOR LOGGED_USER -->
-				<a href="<?= url('/my-setting'); ?>">My Setting</a>
-				<a href="<?= url('/logout'); ?>">Logout</a>
-
-			<?php } ?>
-
-		</div>
-		<hr>
-		<?php if(session('isLogged')==true){ ?>
-			<!-- COMMAN_LINKS FOR LOGGED_USER -->
-			<div class="sidenav_comman_links">
-				<!-- BOOK NOW FOR CUSTOMER -->
-				<a href="<?= url('/book-now'); ?>">Book Now</a>
-				<a href="<?= url('/prices'); ?>">Prices & Services</a>
-				<a href="<?= url('/guarantee'); ?>">Guarantee</a>
-				<a href="<?= url('/blog'); ?>">Blog</a>
-				<a href="<?= url('/contact'); ?>">Contact</a>
-			</div>
-			<hr>
-		<?php } ?>
-
-		<div class="sidenav_footer">
-			<a href="#"><i class="fab fa-facebook-f"></i></a>
-			<a href="#"><i class="fab fa-instagram"></i></a>
-		</div>
-
-	</aside>
-
+	<?= component('sidenav'); ?>
 
 	<!-- --------------------------------------------------- -->
 				<!-- POPUP_MODEL -->

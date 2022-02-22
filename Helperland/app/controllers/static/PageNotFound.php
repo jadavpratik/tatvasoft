@@ -11,4 +11,8 @@ class PageNotFound{
 		$res->render('static/page-not-found');
 	}
 
+	public function notAllowedView(Request $req, Response $res){
+		$res->render('static/not-allowed');
+	}
+
 }

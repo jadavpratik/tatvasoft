@@ -31,7 +31,7 @@ class BookNow{
             $obj = new User();
             $where = " ZipCode = {$req->body->postal_code} AND RoleId = 2";
             $result = $obj->where($where)->exists();
-            if($result==1){
+            if($result){
                 $res->status(200)->json(['message'=>'User Availabe']);
             }
             else{
@@ -85,7 +85,7 @@ class BookNow{
                     'Mobile' => $req->body->phone,
                 ];
                 $result = $userAddress->create($arr);
-                if($result==1){
+                if($result){
                     $res->status(201)->json(['message'=>'Address Add Successfully.']);
                 }
                 else{
@@ -177,11 +177,9 @@ class BookNow{
                     'HasPets' => $has_pets];
 
             $service = new Service();
-            $result = $service->create($arr);
+            $serviceId = $service->create($arr);
 
-            if($result==1){
-                $lastInsertedId = $service->insertedId();
-
+            if($serviceId){
                 // ADD EXTRA SERVICES IN DATABASE IF USER WANT'S...
                 $extra_service_obj = new ExtraService();
                 for($i=0; $i<count($extra); $i++){
@@ -204,14 +202,14 @@ class BookNow{
                             break;
                     }
                     $extra_service_obj->create([
-                        'ServiceRequestId' => $lastInsertedId,
+                        'ServiceRequestId' => $serviceId,
                         'ServiceExtraId' => $extraId,
                     ]);
                 }
 
                 // ADD SERVICE_REQUEST_ADDRESS IN DATABASE TABLE...
                 $arr = [
-                    'ServiceRequestId' => $lastInsertedId,
+                    'ServiceRequestId' => $serviceId,
                     'AddressLine1' => $req->body->address->AddressLine1,
                     'AddressLine2' => $req->body->address->AddressLine2,
                     'City' => $req->body->address->City,
@@ -224,15 +222,14 @@ class BookNow{
                 $service_address = new ServiceAddress();
                 $result = $service_address->create($arr);
 
-                if($result==1){
+                if($result){
                     // *************SERVICE POOLING BAKI 6E****************
                     // **********SEND MAIL TO SP BAKI 6E*******************
                     // SERVICE POOL [SEND MAIL TO ALL SP ACCORDING TO POSTAL CODE]
                     // FIND SERVICE_PROVIDER BY POSTAL CODE AND USERROLEID 2
-
                     // DIRECT ASSIGNMENT OF USER...
                     session('isBookingCompleted', true);
-                    $res->status(201)->json(['message'=>'Service Book Successfully.', 'id'=>$lastInsertedId]);
+                    $res->status(201)->json(['message'=>'Service Book Successfully.', 'id'=>$serviceId]);
                 }
                 else{
                     $res->status(500)->json(['message'=>'Internal Server Error']);

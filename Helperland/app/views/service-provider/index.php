@@ -13,15 +13,15 @@
     <div class="table_tab">
         <div class="table_tab_left">
             <div class="table_tab_list">
-                <a href="#" class="table_tab_btn">Dashboard</a>
-                <a href="#" class="table_tab_btn">New Service Request</a>
-                <a href="#" class="table_tab_btn">Upcoming Services</a>
-                <a href="#" class="table_tab_btn">Service Schedule</a>
-                <a href="#" class="table_tab_btn">Service History</a>
-                <a href="#" class="table_tab_btn">My Rating</a>
-                <a href="#" class="table_tab_btn">Block Customer</a>
-                <a href="#" class="table_tab_btn">Invoice</a>
-                <a href="#" class="table_tab_btn">Notification</a>
+                <a href="javascript:void(0);" class="table_tab_btn">Dashboard</a>
+                <a href="javascript:void(0);" class="table_tab_btn">New Service Request</a>
+                <a href="javascript:void(0);" class="table_tab_btn">Upcoming Services</a>
+                <a href="javascript:void(0);" class="table_tab_btn">Service Schedule</a>
+                <a href="javascript:void(0);" class="table_tab_btn">Service History</a>
+                <a href="javascript:void(0);" class="table_tab_btn">My Rating</a>
+                <a href="javascript:void(0);" class="table_tab_btn">Block Customer</a>
+                <a href="javascript:void(0);" class="table_tab_btn">Invoice</a>
+                <a href="javascript:void(0);" class="table_tab_btn">Notification</a>
             </div>
         </div>
         <div class="table_tab_right">

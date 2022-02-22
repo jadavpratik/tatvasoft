@@ -45,10 +45,15 @@
 		}
 
 		if(validation){
+			const data = JSON.stringify({
+				set_new_password : $('[name="set_new_password"]').val(),
+				set_new_cpassword : $('[name="set_new_cpassword"]').val()
+			})
 			$.ajax({
 				url : `${proxy_url}/set-new-password`,
-				method : 'POST',
-				data : $('.set_new_password_popup').serialize(),
+				method : 'PUT',
+				contentType : 'application/json',
+				data : data,
 				success : function(res){
 					if(res!=undefined && res!=""){
 						try{

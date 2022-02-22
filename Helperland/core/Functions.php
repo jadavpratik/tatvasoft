@@ -31,14 +31,18 @@
 			// WE CAN CHANGE THE COMPONENT PATH IN VIEWS Directory...
 			$path = $parameter1;
 			$name = $parameter2;
-			$component_path = ROOT.'/app/views/'.$path.$name.'.php';
-			require_once $component_path;			
+			$component_path = __DIR__.'/../app/views/'.$path.$name.'.php';
+			if(file_exists($component_path)){
+				require_once $component_path;							
+			}
 		}
 		else{
 			// BY DEFAULT ALL COMPOENTS LOADED FROM VIEWS/COMPONENTS/...
 			$name = $parameter1;
-			$component_path = ROOT.'/app/views/components/'.$name.'.php';
-			require_once $component_path;
+			$component_path = __DIR__.'/../app/views/components/'.$name.'.php';
+			if(file_exists($component_path)){
+				require_once $component_path;							
+			}
 		}
 	}
 

@@ -27,7 +27,7 @@
     </div>
     <div>
         <input type="checkbox" name="TermCheckBox">
-        <label for="">I accept the <a href="#">term and condition</a>. the <a href="#">cancellation policy</a> and the <a href="#">privacy policy</a>. i confirm that helperland start to execute that contract before the expiry of the withdrawal period and i lose my right of withdrawal as consumer with full performance of the contract.</label>
+        <label for="">I accept the <a href="javascript:void(0);">term and condition</a>. the <a href="javascript:void(0);">cancellation policy</a> and the <a href="javascript:void(0);">privacy policy</a>. i confirm that helperland start to execute that contract before the expiry of the withdrawal period and i lose my right of withdrawal as consumer with full performance of the contract.</label>
     </div>
     <button id="confirm_booking_submit_btn" class="book_service_btn" disabled>Complete Booking</button>
 </div>

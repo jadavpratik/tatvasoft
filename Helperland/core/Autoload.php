@@ -1,19 +1,21 @@
 <?php
 
-    // REQUIRE CONSTANT...
+    // CONSTANT...
     require_once __DIR__.'/Constants.php';
 
-    // REQUIRED GLOBAL FUNCTIONS... LIKE URL, ASSETS, SESSION
-    require_once ROOT.'/core/Functions.php';
+    // GLOBAL FUNCTIONS...
+    require_once __DIR__.'/Functions.php';
 
     spl_autoload_register(function($class){
-        // THIS IS ONLY FOR PHPMailer CLASS...
-        $mail1 = 'PHPMailer\PHPMailer\PHPMailer';
-        $mail2 = 'PHPMailer\PHPMailer\SMTP';
-        $mail3 = 'PHPMailer\PHPMailer\Exception';
 
-        if($class!=$mail1 && $class!=$mail2 && $class!=$mail3){
-            $class_path = ROOT.'/'.$class.'.php';
+        // NOT TO LOAD PHPMailer Class Here...
+        $PHPMailer = 'PHPMailer\PHPMailer\PHPMailer';
+        $SMTP = 'PHPMailer\PHPMailer\SMTP';
+        $Exception = 'PHPMailer\PHPMailer\Exception';
+
+        if($class!=$PHPMailer  &&  $class!=$SMTP  &&  $class!=$Exception){
+            $class = str_replace('\\', '/', $class);
+            $class_path = __DIR__.'\\..\\'.$class.'.php';
             // FILE NAME AND CLASS NAME MUST BE SAME OTHERWISE FILE NOT BE LOADED...
             if(file_exists($class_path)){
                 require_once $class_path;

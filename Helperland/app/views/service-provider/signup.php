@@ -55,7 +55,7 @@
                 <input type="checkbox"><p>Send me newsletters from Helperland</p>
             </div>
             <div>
-                <input type="checkbox" name="TermCheckBox"><p>I accept <a href="#">terms and conditions</a> & <a href="#">privacy policy</a></p>
+                <input type="checkbox" name="TermCheckBox"><p>I accept <a href="javascript:void(0);">terms and conditions</a> & <a href="javascript:void(0);">privacy policy</a></p>
             </div>
 			<input type="hidden" name="role" value="service-provider">
             <button class="form_btn" disabled>Get Started <img src="<?= assets('assets/img/buttons/arrow/arrow_right_white.png'); ?>" alt=""></button>
@@ -82,7 +82,7 @@
 			<div>
 				<p>Register yourself</p>
 				<p>Provide your basic information to register yourself as a service provider.</p>
-				<a href="#">Read more <img src="<?= assets('assets/img/buttons/arrow/arrow_right_black.png'); ?>" alt=""></a>
+				<a href="javascript:void(0);">Read more <img src="<?= assets('assets/img/buttons/arrow/arrow_right_black.png'); ?>" alt=""></a>
 			</div>
 			<img src="<?= assets('assets/img/service_provider/laptop.png'); ?>" alt="">
 		</div>
@@ -92,7 +92,7 @@
 			<div>
 				<p>Get service requests</p>
 				<p>You will get service requests from customes depend on service area and profile.</p>
-				<a href="#">Read more <img src="<?= assets('assets/img/buttons/arrow/arrow_right_black.png'); ?>" alt=""></a>
+				<a href="javascript:void(0);">Read more <img src="<?= assets('assets/img/buttons/arrow/arrow_right_black.png'); ?>" alt=""></a>
 			</div>
 		</div>
 
@@ -100,7 +100,7 @@
 			<div>
 				<p>Complete service</p>
 				<p>Accept service requests from your customers and complete your work.</p>
-				<a href="#">Read more <img src="<?= assets('assets/img/buttons/arrow/arrow_right_black.png'); ?>" alt=""></a>
+				<a href="javascript:void(0);">Read more <img src="<?= assets('assets/img/buttons/arrow/arrow_right_black.png'); ?>" alt=""></a>
 			</div>
 			<img src="<?= assets('assets/img/service_provider/cleaning.png'); ?>" alt="">
 		</div>

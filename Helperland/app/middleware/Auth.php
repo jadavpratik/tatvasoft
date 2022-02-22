@@ -4,21 +4,36 @@ namespace app\middleware;
 
 class Auth{
 
+    // REDIRECT...
+    public function redirect($path){
+        $redirect_url = BASE_URL.$path;
+        header("location:{$redirect_url}");
+        return false;
+    }
+
+    // OPEN LOGIN FORM...
+    public function openLoginForm(){
+        session('openLoginForm', true);
+        $base_url = BASE_URL;
+        header("location:{$base_url}");
+        return false;
+    }
+        
+    // ALREADY LOGGED...
     public function alreadyLogged(){
         if(session('isLogged')){
-            $base_url = BASE_URL;
             switch(session('userRole')){
                 case 'customer':
-                    $base_url = BASE_URL.'/customer';
+                    $redirect_url = BASE_URL.'/customer';
                     break;
                 case 'service-provider':
-                    $base_url = BASE_URL.'/service-provider';
+                    $redirect_url = BASE_URL.'/service-provider';
                     break;
                 case 'admin':
-                    $base_url = BASE_URL.'/admin';
+                    $redirect_url = BASE_URL.'/admin';
                     break;
             }
-            header("location:{$base_url}");
+            header("location:{$redirect_url}");
             return false;
         }
         else{
@@ -26,38 +41,38 @@ class Auth{
         }
     }
 
+    // IS LOGGED...
     public function isLogged(){
-        if(session('isLogged')){
+        if(session('isLogged'))
             return true;
-        }
-        else{
-            session('open-login-form', true);
-            $base_url = BASE_URL;
-            header("location:{$base_url}");
-            return false;
-        }
+        else
+            $this->openLoginForm();
     }
 
+    // IS CUSTOMER...
     public function isCustomer(){
         if(session('isLogged')){
-            if(session('userRole')=='customer'){
+            if(session('userRole')=='customer')
                 return true;
-            }
-            else{
-                $base_url = BASE_URL;
-                header("location:{$base_url}");
-                return false;
-            }
+            else
+                $this->redirect('/not-allowed');
         }
         else{
-            session('open-login-form', true);
-            $base_url = BASE_URL;
-            header("location:{$base_url}");
-            return false;
+            $this->openLoginForm();
         }
     }
 
-
-
+    // IS SERVICE PROVIDER...
+    public function isServiceProvider(){
+        if(session('isLogged')){
+            if(session('userRole')=='service-provider')
+                return true;
+            else
+               $this->redirect('/not-allowed');
+        }
+        else{
+            $this->openLoginForm();
+        }
+    }
 
 }

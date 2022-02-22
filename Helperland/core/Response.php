@@ -7,9 +7,15 @@ class Response{
 	public function render($view, $arr=false){
 		if(!empty($arr))
 			extract($arr);
-		$view_path = ROOT.'/app/views/'.$view.'.php';
-		require_once $view_path;
+
+		$view_path = __DIR__.'/../app/views/'.$view.'.php';
+
+		if(file_exists($view_path)){
+			require_once $view_path;
+		}
+
 	}
+
 	public function status($status_code){
 		// 200 : OK
 		// 201 : CREATED

@@ -8,6 +8,6 @@ use app\middleware\Auth;
 // CUSTOMER PAGES CONTROLLERS...
 use app\controllers\customer\Customer;
 
-Route::get('/customer', [new Auth(), 'isLogged'], [new Customer(), 'view']);
+Route::get('/customer', [new Auth(), 'isCustomer'], [new Customer(), 'view']);
 
 

@@ -13,7 +13,7 @@
                 </div>
             </div>
             <button class="popup_btn">Send</button>
-            <a href="#" onclick="open_model('login')">Login Now</a>
+            <a href="javascript:void(0);" onclick="open_model('login')">Login Now</a>
         </form>
     </div>
 </div>

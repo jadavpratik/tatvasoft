@@ -49,6 +49,7 @@ class Database{
         $keys = '(';
         $values = '(';
         foreach($arr as $key => $value){
+            $value = htmlspecialchars($value);
             $keys .= $key.', ';
             if(gettype($value)=='integer')
                 $values .= "{$value} ,";
@@ -63,7 +64,12 @@ class Database{
         $values .= ')';
         try{
             $this->query = "INSERT INTO $this->table $keys VALUES $values";
-            return $this->conn->exec($this->query);
+            if($this->conn->exec($this->query)){
+                return $this->conn->lastInsertId();
+            }
+            else{
+                return false;
+            }
         }
         catch(Exception $e){
             echo $e->getMessage();
@@ -185,14 +191,8 @@ class Database{
     public function join(){
 
     }
- 
-    public function insertedId(){
-        $this->lastId = $this->conn->lastInsertId();
-        return $this->lastId;
-    }
 
     public function __destruct(){
-        $this->insertedId();
         $this->conn = null;
         // echo "Database Disconnected";
     }

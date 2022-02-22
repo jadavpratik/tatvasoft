@@ -57,14 +57,14 @@
         </div>
         <div>
             <input type="checkbox" name="TermCheckBox">
-            <label for="">I have read the <a href="">privacy policy</a></label>
+            <label for="">I have read the <a href="javascript:void(0);">privacy policy</a></label>
         </div>
         <div>
 			<input type="hidden" name="role" value="customer">
             <button class="form_btn" disabled>Register</button>
         </div>
         <div>
-            <p>Already Register? <a href="#" onclick="open_model('login');">Login Now</a></p>
+            <p>Already Register? <a href="javascript:void(0);" onclick="open_model('login');">Login Now</a></p>
         </div>
     </form>
 </div>
@@ -88,11 +88,11 @@
 		e.preventDefault();
 		let validation = true;;
 		const validationArr = [firstname_validation(),
-							lastname_validation(),
-							email_validation(),
-							phone_validation(),
-							password_validation(),
-							cpassword_validation()];
+							   lastname_validation(),
+							   email_validation(),
+							   phone_validation(),
+							   password_validation(),
+							   cpassword_validation()];
 
 		for(let i=0; i<validationArr.length; i++){
 			if(validationArr[i]==false){

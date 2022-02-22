@@ -12,13 +12,19 @@ use core\Mail;
 class Account{
 
 	public function login_view(Request $req, Response $res){
-		session('open-login-form', true);
+		session('openLoginForm', true);
+		$res->redirect('/');
+	}
+
+	public function forgot_password_view(Request $req, Response $res){
+		session('openForgotPasswordForm', true);
 		$res->redirect('/');
 	}
 
 	// -----------------------------SET-NEW-PASSWORD------------------------------------
 	public function set_new_password(Request $req, Response $res){
-
+		// echo '<pre>';
+		// print_r($req->body);
 		$validation = Validation::check($req->body, [
 			'set_new_password' => ['password'],
 			'set_new_cpassword' => ['confirm-password']
@@ -30,7 +36,7 @@ class Account{
 				$hash = Hash::create($req->body->set_new_password);
 				$email = session('email');
 				$result = $user->where('Email','=', "'{$email}'")->update(['Password'=>$hash]);
-				if($result==1){
+				if($result){
 					unset($_SESSION['email']);
 					$res->status(200)->json(['message'=>'Password Updated Successfully.']);
 				}
@@ -50,7 +56,7 @@ class Account{
 	public function check_otp(Request $req, Response $res){
 
 		$validation = Validation::check($req->body, [
-			'otp' => ['length:4']
+			'otp' => ['integer', 'length:4']
 		]);
 
 		if($validation==1){
@@ -160,8 +166,8 @@ class Account{
 	public function signup(Request $req, Response $res){
 
 		$validation = Validation::check($req->body, [
-			'firstname' => ['text', 'min:3', 'max:10'],
-			'lastname' => ['text', 'min:3', 'max:10'],
+			'firstname' => ['text', 'min:3', 'max:20'],
+			'lastname' => ['text', 'min:3', 'max:20'],
 			'email' => ['email'],
 			'phone' => ['phone'],
 			'role' => ['text'],
@@ -207,7 +213,7 @@ class Account{
 						if(!empty($arr)){
 							$user = new User();
 							$result = $user->create($arr);
-							if($result==1){
+							if($result){
 								$res->status(201)->json(['message'=>'Account is Created Successfully.']);
 							}
 						}

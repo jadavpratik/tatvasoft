@@ -46,7 +46,7 @@ class Contact{
 			$contact = new ContactModel();
 			$result = $contact->create($arr);
 
-			if($result==1){
+			if($result){
 				$emailBody = $req->body->message;
 				$emailSubject = $req->body->subject;
 				$recipient = '';

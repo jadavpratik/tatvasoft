@@ -27,10 +27,9 @@ class Route{
 		self::$route_url = filter_var(rtrim($route_arr), FILTER_SANITIZE_URL);
 		self::$browser_url = filter_var(rtrim($_SERVER['REQUEST_URI']), FILTER_SANITIZE_URL);
 
-		// FIX THIS PREFIX REMOVEER....
 		if($_SERVER['SERVER_PORT']==80 && $_SERVER['HTTP_HOST']=='localhost'){
-			// REMOVE PREFIX = "/tatvasoft/Helperland" (BECAUSE WE RUN ON LOCALHOST )
-			self::$browser_url = str_replace('/tatvasoft/Helperland','', self::$browser_url);
+			// TRIM THE BASE URL PATH AND GET ONLY PAGE URL...
+			self::$browser_url = str_replace(TRIM_URL, '', self::$browser_url);
 		}
 
 		// SET THE ROUTE_URL...
@@ -80,42 +79,47 @@ class Route{
 	// GET METHOD...
 	public static function get($route_arr, $callback1, $callback2=false){
 		if(self::setMethod() == 'GET'){
-			if(self::splitUrl($route_arr)){
-				if($callback2!=false){
-					$middleware = $callback1;
-					$controller = $callback2;
-					if(call_user_func($middleware)){
-						// IF MIDDLEWARE RETURN TRUE THEN CALL CONTROLLER...
-						call_user_func_array($controller, [self::$req, self::$res]);
-					}
-				}
-				else{
-					$controller = $callback1;
-					call_user_func_array($controller, [self::$req, self::$res]);
-				}
-				exit();	
-			}	
+			self::run($route_arr, $callback1, $callback2);
 		}
 	}
 
 	// POST METHOD...
 	public static function post($route_arr, $callback1, $callback2=false){
 		if(self::setMethod() == 'POST'){
-			if(self::splitUrl($route_arr)){
-				if($callback2!=false){
-					$middleware = $callback1;
-					$controller = $callback2;
-					if(call_user_func($middleware)){
-						// IF MIDDLEWARE RETURN TRUE THEN CALL CONTROLLER...
-						call_user_func_array($controller, [self::$req, self::$res]);
-					}
-				}
-				else{
-					$controller = $callback1;
+			self::run($route_arr, $callback1, $callback2);
+		}
+	}
+
+	// PUT METHOD...
+	public static function put($route_arr, $callback1, $callback2=false){
+		if(self::setMethod() == 'PUT'){
+			self::run($route_arr, $callback1, $callback2);
+		}
+	}
+	
+	// DELETE METHOD...
+	public static function delete($route_arr, $callback1, $callback2=false){
+		if(self::setMethod() == 'DELETE'){
+			self::run($route_arr, $callback1, $callback2);
+		}
+	}
+
+	// RUN METHOD [FOR CALL A CONTROLLER & MIDDLEWARE]...
+	public static function run($route_arr, $callback1, $callback2){
+		if(self::splitUrl($route_arr)){
+			if($callback2!=false){
+				$middleware = $callback1;
+				$controller = $callback2;
+				if(call_user_func($middleware)){
+					// IF MIDDLEWARE RETURN TRUE THEN CALL CONTROLLER...
 					call_user_func_array($controller, [self::$req, self::$res]);
 				}
-				exit();	
-			}	
+			}
+			else{
+				$controller = $callback1;
+				call_user_func_array($controller, [self::$req, self::$res]);
+			}
+			exit();	
 		}
 	}
 
