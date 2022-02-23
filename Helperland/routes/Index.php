@@ -1,21 +1,19 @@
 <?php
 
-require_once __DIR__."/Static.php";
 require_once __DIR__."/Account.php";
 require_once __DIR__."/BookNow.php";
-require_once __DIR__."/Customer.php";
-require_once __DIR__."/ServiceProvider.php";
-require_once __DIR__."/PageNotFound.php";
+require_once __DIR__."/View.php";
 
 // ----------------------------TESTROUTES----------------------------
-use core\Route;
-// use core\Validation;
-use app\models\Test;
-
-Route::get('/test', function($req, $res){
-});
-
 // TABLE TO CARD
 // SESSION ON DATABASE
 // JOIN TABLE
+use core\Route;
 
+Route::get('/test', function($req, $res){
+    // $date = date('Y-m-d');
+    // $time = date('H:i:s', time());
+    // $string = strtotime($date.' '.$time);
+    // $date = date('Y-m-d H:i:s', $string);
+    // echo $date;
+});

@@ -124,7 +124,7 @@
 			<?php } ?>
 			<a class="<?= $active_link['prices']; ?>" href="<?= url('/prices'); ?>">Prices</a>
 			<a class="<?= $active_link['guarantee']; ?>" href="<?= url('/guarantee'); ?>">Our Guarantee</a>
-			<a class="<?= $active_link['blog']; ?>" href="<?= url('/blog'); ?>">Blog</a>
+			<a class="<?= $active_link['blog']; ?>" href="javascript:void(0);">Blog</a>
 			<a class="<?= $active_link['contact']; ?>" href="<?= url('/contact'); ?>">Contact Us</a>
 			<?php if(session('isLogged')){ ?>
 				<div class="dropdown border_left border_right">
@@ -187,8 +187,10 @@
 	<!-- --------------------------------------------------- -->
 	<?= component('sidenav'); ?>
 
+
+
 	<!-- --------------------------------------------------- -->
-				<!-- POPUP_MODEL -->
+				<!--HIDDEN POPUP_MODEL -->
 	<!-- --------------------------------------------------- -->
 	<?= component('login'); ?>
 	<?= component('forgot-password'); ?>

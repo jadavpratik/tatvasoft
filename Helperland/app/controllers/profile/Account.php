@@ -13,16 +13,6 @@ use app\models\OTP;
 
 class Account{
 
-	public function login_view(Request $req, Response $res){
-		session('openLoginForm', true);
-		$res->redirect('/');
-	}
-
-	public function forgot_password_view(Request $req, Response $res){
-		session('openForgotPasswordForm', true);
-		$res->redirect('/');
-	}
-
 	// -----------------------------SET-NEW-PASSWORD------------------------------------
 	public function set_new_password(Request $req, Response $res){
 		$validation = Validation::check($req->body, [
@@ -36,7 +26,10 @@ class Account{
 				$user = new User();
 				$hash = Hash::create($req->body->password);
 				$email = $req->body->email;
-				$result = $user->where('Email','=', $email)->update(['Password'=>$hash]);
+				$result = $user->where('Email','=', $email)->update([
+					'Password' => $hash,
+					'ModifiedDate' => timestamp(),
+				]);
 				if($result){
 					$res->status(200)->json(['message'=>'Password Updated Successfully.']);
 				}
@@ -53,6 +46,7 @@ class Account{
 		}
 	}
 
+	// CHECK OTP...
 	public function check_otp(Request $req, Response $res){
 
 		$validation = Validation::check($req->body, [
@@ -229,7 +223,7 @@ class Account{
 				if($role!=null && ($role==1 || $role==2 || $role==3)){
 					// PASSWORD === CONFIRM-PASSOWRD
 					if($req->body->password===$req->body->cpassword){
-		
+							
 						// PASSWORD -> HASH
 						$hash = Hash::create($req->body->password);
 		
@@ -238,7 +232,8 @@ class Account{
 								'Email' => $req->body->email,
 								'Mobile' => $req->body->phone,
 								'Password'=> $hash,
-								'RoleId' => $role];
+								'RoleId' => $role,
+								'CreatedDate' => timestamp()];
 		
 						if(!empty($arr)){
 							$user = new User();

@@ -24,12 +24,14 @@ class Route{
 	// SPLIT URL...
 	public static function splitUrl($route_arr){
 
-		self::$route_url = filter_var(rtrim($route_arr), FILTER_SANITIZE_URL);
-		self::$browser_url = filter_var(rtrim($_SERVER['REQUEST_URI']), FILTER_SANITIZE_URL);
+		self::$route_url = filter_var($route_arr, FILTER_SANITIZE_URL);
+		self::$route_url = strtolower(self::$route_url);
+		self::$browser_url = filter_var($_SERVER['REQUEST_URI'], FILTER_SANITIZE_URL);
+		self::$browser_url = strtolower(self::$browser_url);
 
 		if($_SERVER['SERVER_PORT']==80 && $_SERVER['HTTP_HOST']=='localhost'){
-			// TRIM THE BASE URL PATH AND GET ONLY PAGE URL...
-			self::$browser_url = str_replace(TRIM_URL, '', self::$browser_url);
+			// TRIM THE BASE URL PATH AND GET PAGE URL COMPARE WITH ROUTE URL...
+			self::$browser_url = str_replace(URL_TRIM_PART, '', self::$browser_url);
 		}
 
 		// SET THE ROUTE_URL...
@@ -37,8 +39,7 @@ class Route{
 		// SET BROWSER_URL...
 		self::$params_value = explode('/', self::$browser_url);
 
-		// ****************IF ROUTE MATCH THEN CREATE REQ, RES OBJECT...
-	
+		// *******MATCH THEN CREATE REQ, RES OBJECT*********
 		if(self::$route_url==self::$browser_url){
 			// MATCH FOUNDED PAGE...
 			page_url(self::$browser_url);
@@ -47,23 +48,12 @@ class Route{
 			return true;
 		}
 		else if(str_contains(self::$route_url, ':')){
-			page_url(self::$browser_url);
 			// FOR PARAMS URL...
-			if(count(self::$params_key) && count(self::$params_value)){
-				// LOOP WILL BE RUNNING ACCORDING TO URL ROUTE FUNCTION...
-				// THAT WHY WE CHOOSE self::$params_key insted of self::$params_value...
-				for($i = 0; $i<count(self::$params_key)-1; $i++){
-					if(self::$params_value[$i]!==self::$params_key[$i]){
-						return false;
-					}
-				}
-				// IF URL HAS A PARAMS THEN REINITIATE REQ OBJECT...
+			page_url(self::$browser_url);
+			if(count(self::$params_key) == count(self::$params_value)){
 				self::$req = new Request([self::$params_key, self::$params_value]);
 				self::$res = new Response();	
 				return true;
-			}
-			else{
-				return false;
 			}
 		}
 		else if(self::$route_url!==self::$browser_url && self::$route_url=='/*'){

@@ -12,7 +12,7 @@
                     <p>Validation Message!!!</p>
                 </div>
             </div>
-            <button class="popup_btn">Send</button>
+            <button class="popup_btn" name="forgot_password_btn">Send</button>
             <a href="javascript:void(0);" onclick="open_model('login')">Login Now</a>
         </form>
     </div>
@@ -24,6 +24,8 @@
     $('.forgot_password_popup_form').submit((e)=>{
 
         e.preventDefault();
+        // DISABLE SEND BUTTON...
+        $('[name="forgot_password_btn"]').prop('disabled', true);
 
         let validation = forgot_password_email_validation();
 
@@ -47,6 +49,7 @@
                                 text : result.message,
                                 icon : 'info'
                             }).then((res)=>{
+                                $('[name="forgot_password_btn"]').prop('disabled', false);
                                 if(res.isConfirmed){
                                     $('.forgot_password_popup_form').trigger('reset');
                                     close_model();
@@ -55,6 +58,7 @@
                             });
                         }   
                         catch(e){
+                            $('[name="forgot_password_btn"]').prop('disabled', false);
                             console.log('Invalid JSON Response!!!');
                             Swal.fire({
                                 title : 'Server Error',
@@ -65,6 +69,7 @@
                     }
                 },
                 error : function(obj){
+                    $('[name="forgot_password_btn"]').prop('disabled', false);
                     if(obj!==undefined){
                         const {responseText, status} = obj;
                         const error = JSON.parse(responseText);

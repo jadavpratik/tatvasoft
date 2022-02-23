@@ -6,8 +6,6 @@ use core\Request;
 use core\Response;
 use core\Validation;
 
-
-use app\models\PostalCode;
 use app\models\UserAddress;
 use app\models\User;
 use app\models\Service;
@@ -15,11 +13,6 @@ use app\models\ServiceAddress;
 use app\models\ExtraService;
 
 class BookNow{
-
-
-    public function view(Request $req, Response $res){
-        $res->render('book-now/index');
-    }
 
     // CHECK POSTAL CODE 
     public function check_postal_code(Request $req, Response $res){

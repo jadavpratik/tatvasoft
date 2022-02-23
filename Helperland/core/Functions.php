@@ -48,7 +48,7 @@
 
 	// SESSION FUNCTIONS...
 	function session($key, $value=false){
-		if($value!=false){
+		if($value!==false){
 			// SET SESSION...
 			$_SESSION[$key] = $value;
 		}
@@ -61,3 +61,10 @@
 		}
 	}
 
+	function timestamp(){
+		$date = date('Y-m-d');
+		$time = date('H:i:s', time());
+		$string = strtotime($date.' '.$time);
+		$date = date('Y-m-d H:i:s', $string);
+		return $date;
+	}

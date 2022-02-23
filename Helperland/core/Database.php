@@ -50,9 +50,9 @@ class Database{
         foreach($arr as $key => $value){
             $value = htmlspecialchars($value);
             $keys .= $key.', ';
-            if(gettype($value)=='integer')
+            if(is_integer($value))
                 $values .= "{$value} ,";
-            else if($value!=null)
+            else if(is_string($value))
                 $values .= "'{$value}' ,";
             else
                 $values .= "null, ";
@@ -62,7 +62,7 @@ class Database{
         $keys .= ')';
         $values .= ')';
         try{
-            $this->query = "INSERT INTO $this->table $keys VALUES $values";
+            $this->query = "INSERT INTO {$this->table} {$keys} VALUES {$values}";
             if($this->conn->exec($this->query)){
                 return $this->conn->lastInsertId();
             }
@@ -82,7 +82,7 @@ class Database{
             if(is_integer($value)){
                 $this->where = $key.' '.$operator.' '.$value;
             }
-            else{
+            else if(is_string($value)){
                 $value = "'{$value}'";
                 $this->where = $key.' '.$operator.' '.$value;
             }
@@ -96,7 +96,7 @@ class Database{
 
     // -----------------EXISTS-------------------
     public function exists(){
-        $this->query = "SELECT * FROM $this->table WHERE $this->where";
+        $this->query = "SELECT * FROM {$this->table} WHERE {$this->where}";
         try{
             $result = $this->conn->query($this->query);
             $data = $result->fetchAll(PDO::FETCH_ASSOC);
@@ -128,19 +128,19 @@ class Database{
         try{
             if($this->columns!=="" && $this->where!==""){
                 // WITH SELECTED COLUMNS & WITH WHERE CONDITION...
-                $this->query = "SELECT $this->columns FROM $this->table WHERE $this->where";
+                $this->query = "SELECT {$this->columns} FROM {$this->table} WHERE {$this->where}";
             }                
             else if($this->columns!=="" && $this->where==""){
                 // WITH SELECTED COLUMNS & WITHOUT WHERE CONDITION...
-                $this->query = "SELECT $this->columns FROM $this->table";
+                $this->query = "SELECT {$this->columns} FROM {$this->table}";
             }
             else if($this->columns=="" && $this->where!==""){
                 // WITH ALL COLUMNS & WITH WHERE CONDITION...
-                $this->query = "SELECT * FROM $this->table WHERE $this->where";
+                $this->query = "SELECT * FROM {$this->table} WHERE {$this->where}";
             }
             else{
                 // WITH ALL COLUMNS & WITHOUT WHERE CONDITION...
-                $this->query = "SELECT * FROM $this->table";
+                $this->query = "SELECT * FROM {$this->table}";
             }
             $result = $this->conn->query($this->query);
             $data = $result->fetchAll(PDO::FETCH_ASSOC);
@@ -158,16 +158,16 @@ class Database{
         // SET THE KEYS AND VALUES INTO A STRING...
         $updateString = '';
         foreach($arr as $key => $value){
-            if(gettype($value)=='integer'){
+            if(is_integer($value)){
                 $updateString .= $key." = {$value}, ";
             }
-            else if(gettype($value)=='string'){
+            else if(is_string($value)){
                 $updateString .= $key." = '{$value}', ";
             }
         }
         $updateString = rtrim($updateString, ', ');
         try{
-            $this->query = "UPDATE $this->table SET $updateString WHERE $this->where";
+            $this->query = "UPDATE {$this->table} SET {$updateString} WHERE {$this->where}";
             return $this->conn->exec($this->query);
         }
         catch(Exception $e){
@@ -178,7 +178,7 @@ class Database{
     // -----------------DELETE-------------------
     public function delete(){
         try{
-            $this->query = "DELETE FROM $this->table WHERE $this->where";
+            $this->query = "DELETE FROM {$this->table} WHERE {$this->where}";
             return $this->conn->exec($this->query);    
         }
         catch(Exception $e){
