@@ -4,6 +4,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- TITLE -->
+	<?= component('title'); ?>
 	<title><?= title(); ?></title>
 	<!-- FAVICON -->
 	<link rel="icon" href="<?= assets('assets/img/favicon/favicon.png'); ?>" sizes="16x16" type="image/png">
@@ -25,11 +26,42 @@
 </head>
 <body>
 
-	<!-- INCLUDE REQUIRED PHP SCRIPT [NOT-HTML] -->
-	<?= component('title'); ?>
-	<?= component('header-active-links'); ?>
-	<?= component('session-components'); ?>
-
+	<?php
+		$home_header_id = '';
+		$home_header_style = '';
+		$home_header_logo_style = '';
+		$home_focus_btn = '';
+		$active_link = ['contact' => '', 
+						'prices' => '', 
+						'guarantee' => '', 
+						'blog'=> ''];
+		switch(page_url()){
+			case '/':
+				$home_header_id = 'home_navbar';
+				$home_header_style = 'background-color:transparent;height:130px';
+				$home_header_logo_style = 'width:175px; height:130px;';
+				$home_focus_btn = 'transparent';			
+				break;
+			case '/service-provider/signup':
+				$home_header_id = 'home_navbar';
+				$home_header_style = 'background-color:transparent;height:130px';
+				$home_header_logo_style = 'width:175px; height:130px;';
+				$home_focus_btn = 'transparent';			
+				break;			
+			case '/prices':
+				$active_link['prices'] = 'navbar_focus_btn transparent';
+				break;
+			case '/contact':
+				$active_link['contact'] = 'navbar_focus_btn transparent';
+				break;
+			case '/blog':
+				$active_link['blog'] = 'navbar_focus_btn transparent';
+				break;
+			case '/guarantee':
+				$active_link['guarantee'] = 'navbar_focus_btn transparent';
+				break;
+		}
+	?>
 	<!-- --------------------------------------------------- -->
 						<!-- FOR_BACKLIGHT_CONTAIN -->
 	<!-- --------------------------------------------------- -->
@@ -38,7 +70,6 @@
 	<!-- --------------------------------------------------- -->
 						<!-- NAVBAR -->
 	<!-- --------------------------------------------------- -->
-
 	<nav class="navbar" id="<?= $home_header_id; ?>" style="<?= $home_header_style; ?>">
 
 		<!-- LOGO -->
@@ -115,17 +146,15 @@
 		</div><!-- END NAV_MENU -->
 	</nav><!-- END NAVBAR -->
 
-
 	<!-- --------------------------------------------------- -->
-						<!-- SIDE_NAVBAR -->
+				<!--SIDE_NAVBAR, POPUP_MODEL (HIDDEN) -->
 	<!-- --------------------------------------------------- -->
 	<?= component('sidenav'); ?>
-
-	<!-- --------------------------------------------------- -->
-				<!--HIDDEN POPUP_MODEL -->
-	<!-- --------------------------------------------------- -->
 	<?= component('login'); ?>
 	<?= component('forgot-password'); ?>
 	<?= component('otp'); ?>
 	<?= component('set-new-password'); ?>
 	<?= component('included-services'); ?>
+	<?= component('session-components'); ?>
+
+

@@ -2,6 +2,17 @@ $input_border:#C8C8C8;
 $input_text:#646464;
 $phone_label_bg:#f3f3f3;
 $label_text:#4F4F4F;
+$validation_msg:#e50009;
+
+.validation_message{
+    padding:6px 0 0;
+    transition:  all 0.2s;
+    p{
+        color:$validation_msg !important;
+        transition:  all 0.2s;
+        font-size: 14px;
+    }
+}
 
 .input,
 .select,
@@ -97,7 +108,7 @@ $label_text:#4F4F4F;
 .date_of_birth{
     display: flex;
     flex-direction: column;
-    div{
+    & > div:first-of-type{
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         grid-template-rows: 1fr;
@@ -186,3 +197,11 @@ $label_text:#4F4F4F;
     }
 }
 
+@media screen and (max-width:576px) {
+    .change_password{
+        width:100%;
+        div{
+            width:100%;
+        }
+    }
+}

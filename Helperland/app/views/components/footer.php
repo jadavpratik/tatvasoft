@@ -90,6 +90,6 @@
 	<script src="<?= assets('assets/js/navtabs.js'); ?>"></script>
 	<script src="<?= assets('assets/js/sidenav.js'); ?>"></script>
 	<script src="<?= assets('assets/js/tabletab.js'); ?>"></script>
-	<script type="module"> src="<?= assets('assets/js/validation.js'); ?>"></script>
+	<script type="module" src="<?= assets('assets/js/validation.js'); ?>"></script>
 </body>
 </html>
