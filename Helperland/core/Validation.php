@@ -9,7 +9,7 @@ class Validation{
 	const EmailRegEx = '/^[a-zA-Z0-9.]+@[a-zA-Z0-9]+(\.[a-zA-Z]{2,})+$/';
 	const PhoneRegEx = '/^[0-9]{10}$/';
 	const PasswordRegEx = '/(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/';
-	const PostalCodeRegEx = '/^[0-9]{5,10}$/';
+	const PostalCodeRegEx = '/^[0-9]{5,6}$/';
 
 	// PASSWORD...
 	private static $password = '';

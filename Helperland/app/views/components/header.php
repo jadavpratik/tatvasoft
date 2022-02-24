@@ -1,42 +1,9 @@
-<?php
-	// RETURN CURRENT PAGE_TITLE...
-	function title(){
-		$title = 'Index';
-		switch(page_url()){
-			case '/' :
-				$title = 'Home'; 
-				break;
-			case '/faqs' :
-				$title = 'FAQs'; 
-				break;
-			case '/prices' :
-				$title = 'Prices'; 
-				break;
-			case '/contact' :
-				$title = 'Contact'; 
-				break;
-			case '/service-provider/signup' :
-				$title = 'Service Provider Signup'; 
-				break;
-			case '/customer/signup' :
-				$title = 'Customer Signup'; 
-				break;
-			case '/book-now' :
-				$title = 'Book Now'; 
-				break;
-			case '/guarantee' :
-				$title = 'Our Gurantee'; 
-				break;
-		}
-		echo $title;
-	}
-
-?>
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- TITLE -->
 	<title><?= title(); ?></title>
 	<!-- FAVICON -->
 	<link rel="icon" href="<?= assets('assets/img/favicon/favicon.png'); ?>" sizes="16x16" type="image/png">
@@ -58,6 +25,11 @@
 </head>
 <body>
 
+	<!-- INCLUDE REQUIRED PHP SCRIPT [NOT-HTML] -->
+	<?= component('title'); ?>
+	<?= component('header-active-links'); ?>
+	<?= component('session-components'); ?>
+
 	<!-- --------------------------------------------------- -->
 						<!-- FOR_BACKLIGHT_CONTAIN -->
 	<!-- --------------------------------------------------- -->
@@ -66,43 +38,6 @@
 	<!-- --------------------------------------------------- -->
 						<!-- NAVBAR -->
 	<!-- --------------------------------------------------- -->
-
-	<?php 
-		$home_header_id = '';
-		$home_header_style = '';
-		$home_header_logo_style = '';
-		$home_focus_btn = '';
-		$active_link = ['contact' => '', 
-						'prices' => '', 
-						'guarantee' => '', 
-						'blog'=> ''];
-		switch(page_url()){
-			case '/':
-				$home_header_id = 'home_navbar';
-				$home_header_style = 'background-color:transparent;height:130px';
-				$home_header_logo_style = 'width:175px; height:130px;';
-				$home_focus_btn = 'transparent';			
-				break;
-			case '/service-provider/signup':
-				$home_header_id = 'home_navbar';
-				$home_header_style = 'background-color:transparent;height:130px';
-				$home_header_logo_style = 'width:175px; height:130px;';
-				$home_focus_btn = 'transparent';			
-				break;			
-			case '/prices':
-				$active_link['prices'] = 'navbar_focus_btn transparent';
-				break;
-			case '/contact':
-				$active_link['contact'] = 'navbar_focus_btn transparent';
-				break;
-			case '/blog':
-				$active_link['blog'] = 'navbar_focus_btn transparent';
-				break;
-			case '/guarantee':
-				$active_link['guarantee'] = 'navbar_focus_btn transparent';
-				break;
-		}
-	?>
 
 	<nav class="navbar" id="<?= $home_header_id; ?>" style="<?= $home_header_style; ?>">
 
@@ -116,9 +51,9 @@
 		
 		<!-- NAV_MENU -->
 		<div class="nav_menu">
-			<?php 
-				$userRole = session('userRole');
-			?>
+			<!-- USERROLE BY SESSION -->
+			<?php $userRole = session('userRole'); ?>
+
 			<?php if($userRole!='service-provider' && $userRole!='admin' ){ ?>
 				<a class="navbar_focus_btn <?= $home_focus_btn; ?>" href="<?= url('/book-now'); ?>">Book a Cleaner</a>
 			<?php } ?>
@@ -181,13 +116,10 @@
 	</nav><!-- END NAVBAR -->
 
 
-
 	<!-- --------------------------------------------------- -->
 						<!-- SIDE_NAVBAR -->
 	<!-- --------------------------------------------------- -->
 	<?= component('sidenav'); ?>
-
-
 
 	<!-- --------------------------------------------------- -->
 				<!--HIDDEN POPUP_MODEL -->

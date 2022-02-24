@@ -197,3 +197,11 @@ $validation_msg:#e50009;
     }
 }
 
+@media screen and (max-width:576px) {
+    .change_password{
+        width:100%;
+        div{
+            width:100%;
+        }
+    }
+}
