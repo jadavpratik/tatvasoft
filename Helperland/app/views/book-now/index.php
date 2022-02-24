@@ -113,20 +113,12 @@
 <script>
 
     function change_book_service_tabs(i){
-
         tab_btn[i].removeAttribute('disabled');
-
-        $('.tab_btn').removeClass('active_book_service_tab');
         $('.tab_content').addClass('d_none');
-
-        tab_content[i].classList.remove('active_tab_content');
         tab_content[i].classList.remove('d_none');
 
-        setTimeout(()=>{
-            tab_btn[i].classList.add('active_book_service_tab');
-            tab_content[i].classList.add('active_tab_content');
-        }, 10);
-
+        $('.tab_btn').removeClass('active_book_service_tab');
+        tab_btn[i].classList.add('active_book_service_tab');
     }
 
 </script>

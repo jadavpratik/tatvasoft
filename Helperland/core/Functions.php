@@ -62,9 +62,5 @@
 	}
 
 	function timestamp(){
-		$date = date('Y-m-d');
-		$time = date('H:i:s', time());
-		$string = strtotime($date.' '.$time);
-		$date = date('Y-m-d H:i:s', $string);
-		return $date;
+		return date('Y-m-d H:i:s');
 	}

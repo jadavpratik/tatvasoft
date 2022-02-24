@@ -521,13 +521,3 @@ $('[name="address_form_city"]').focusout(function(){
 $('[name="address_form_phone"]').focusout(function(){
     address_form_phone_validation();
 });
-
-// ----------------------BOOK-SERVICE-S4-VALIDATION----------------------
-// FOR SPACE BETWEEN CARD NUMBER...
-// $('#card_no').on('keyup', function() {
-//     var foo = $(this).val().split(" ").join(""); 
-//     if (foo.length > 0) {
-//         foo = foo.match(new RegExp('.{1,4}', 'g')).join(" ");
-//     }
-//     $(this).val(foo);
-// });

@@ -51,13 +51,13 @@
 		<form id="contact_us">
 			<div>
 				<div class="form_group">
-					<input class="input" type="text" placeholder="First Name" name="firstname">
+					<input class="input" type="text" placeholder="First Name" name="firstname" value="<?= isset($data->FirstName)? $data->FirstName : ''; ?>">
 					<div class="validation_message d_none">
 						<p>Validation Message</p>
 					</div>
 				</div>
 				<div class="form_group">
-					<input class="input" type="text" placeholder="Last Name" name="lastname">
+					<input class="input" type="text" placeholder="Last Name" name="lastname" value="<?= isset($data->LastName)? $data->LastName : '' ; ?>">
 					<div class="validation_message d_none">
 						<p>Validation Message</p>
 					</div>
@@ -67,14 +67,14 @@
 				<div class="form_group">
 					<div class="phone_number">
 						<label for="">+46</label>
-						<input type="text" placeholder="Phone Number" name="phone">
+						<input type="text" placeholder="Phone Number" name="phone" value="<?= isset($data->Mobile)? $data->Mobile : '' ; ?>">
 					</div>		
 					<div class="validation_message d_none">
 						<p>Validation Message</p>
 					</div>
 				</div>
 				<div class="form_group">
-					<input class="input" type="text" placeholder="Email Address" name="email">
+					<input class="input" type="text" placeholder="Email Address" name="email" value="<?= isset($data->Email)? $data->Email : ''; ?>">
 					<div class="validation_message d_none">
 						<p>Validation Message</p>
 					</div>

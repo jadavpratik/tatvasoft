@@ -35,7 +35,7 @@
             });
 
             $.ajax({
-                url : `${proxy_url}/check-otp`,
+                url : `${proxy_url}/verify-otp`,
                 method : 'POST',
                 contentType : 'application/json',
                 data : data,

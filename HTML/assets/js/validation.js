@@ -153,6 +153,19 @@ function subject_validation(){
     }
 }
 
+// ------------------------SUBJECT-VALIDATON--------------------
+function language_validation(){
+    const input_value = $('[name="language"]').val();
+    if(input_value==''){
+        $('[name="language"]').next().removeClass('d_none').children().html('Please Select a language !');
+        return false;
+    }
+    else{
+        $('[name="language"]').next().addClass('d_none').children().html('');
+        return true;
+    }
+}
+
 // ------------------------PASSWORD-VALIDATON--------------------
 function password_validation(){
     const input_value = $('[name="password"]').val();
@@ -481,6 +494,11 @@ $('[name="subject"]').focusout(function(){
     subject_validation();
 });    
 
+$('[name="language"]').focusout(function(){
+    language_validation();
+});    
+
+
 $('[name="otp"]').focusout(function(){
     otp_validation();
 });        
@@ -521,14 +539,4 @@ $('[name="address_form_city"]').focusout(function(){
 
 $('[name="address_form_phone"]').focusout(function(){
     address_form_phone_validation();
-});
-
-// ----------------------BOOK-SERVICE-S4-VALIDATION----------------------
-// FOR SPACE BETWEEN CARD NUMBER...
-$('#card_no').on('keyup', function() {
-    var foo = $(this).val().split(" ").join(""); 
-    if (foo.length > 0) {
-        foo = foo.match(new RegExp('.{1,4}', 'g')).join(" ");
-    }
-    $(this).val(foo);
 });

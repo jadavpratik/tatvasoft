@@ -196,21 +196,33 @@
                                         <div class="my_details_inner_div_1">
                                             <div class="label_input">
                                                 <label class="label" for="">First Name</label>
-                                                <input class="input" type="text">
+                                                <input class="input" type="text" name="firstname">
+                                                <div class="validation_message d_none">
+                                                    <p>Validation Message!</p>
+                                                </div>
                                             </div>
                                             <div class="label_input">
                                                 <label class="label" for="">Last Name</label>
-                                                <input class="input" type="text">
+                                                <input class="input" type="text" name="lastname">
+                                                <div class="validation_message d_none">
+                                                    <p>Validation Message!</p>
+                                                </div>
                                             </div>
                                             <div class="label_input">
                                                 <label class="label" for="">Email Address</label>
-                                                <input class="input" type="text">
+                                                <input class="input" type="text" name="email">
+                                                <div class="validation_message d_none">
+                                                    <p>Validation Message!</p>
+                                                </div>
                                             </div>
                                             <div class="label_phone_number">
                                                 <label class="label" for="">Phone Number</label>
                                                 <div class="phone_number">
                                                     <label for="">+49</label>
-                                                    <input type="text">
+                                                    <input type="text" name="phone">
+                                                </div>
+                                                <div class="validation_message d_none">
+                                                    <p>Validation Message!</p>
                                                 </div>
                                             </div>
                                             <div class="date_of_birth">
@@ -229,14 +241,23 @@
                                                         <option value="">2001</option>
                                                     </select>
                                                 </div><!-- END_INNER_DIV -->
+                                                <div class="validation_message">
+                                                    <p>Validation Message!</p>
+                                                </div>
                                             </div><!-- END_GRID_DIV -->
                                         </div><!-- END_GRID_DIV -->
                                         <div class="my_details_inner_div_2">
                                             <div class="label_select">
                                                 <label class="label" for="">My Preferred Language</label>
-                                                <select class="select" name="" id="">
-                                                    <option value="">English</option>
+                                                <select class="select" name="language" id="">
+                                                    <option value=""></option>
+                                                    <option value="english">English</option>
+                                                    <option value="hindi">Hindi</option>
+                                                    <option value="gujarati">Gujarati</option>
                                                 </select>    
+                                                <div class="validation_message">
+                                                    <p>Validation Message!</p>
+                                                </div>
                                             </div>
                                             <button class="profile_save_btn">Save</button>
                                         </div><!-- END_GRID_DIV -->
@@ -988,6 +1009,7 @@
 	<script src="../assets/js/accordion.js"></script>
 	<script src="../assets/js/dropdown.js"></script>
     <script src="../assets/js/tabletab.js"></script>
+    <script src="../assets/js/validation.js"></script>
 
 </body>
 </html>

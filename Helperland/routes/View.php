@@ -19,9 +19,6 @@ Route::get('/prices', [new View(), 'prices']);
 Route::get('/contact', [new View(), 'contact']);
 Route::get('/about', [new View(), 'about']);
 Route::get('/guarantee', [new View(), 'guarantee']);
-// ---------------POST-METHOD-------------------
-Route::post('/contact', [new View(), 'contact_submit']);
-
 
 // ----------COMPONENTS----------
 Route::get('/login', $alreadyLogged,[new View(), 'login']);

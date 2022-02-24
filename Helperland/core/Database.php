@@ -4,6 +4,7 @@ namespace core;
 
 use \PDO;
 use \Exception;
+use core\Response;
 
 class Database{
 
@@ -19,22 +20,25 @@ class Database{
     private $columns = '';
     private $where = '';
 
+    public $error = false;
 
     // -----------------CONNECT-------------------
     public function connect(){
         try {
             $dbString = "$this->dbType:host=$this->dbHost;dbname=$this->dbName";
             $this->conn = new PDO($dbString, $this->dbUser, $this->dbPassword);
-            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);            
         } 
-        catch(PDOException $e){
-            echo "Connection Failed ! <br><br>".$e->getMessage();
+        catch(Exception $e){
+            $this->error = true;
         }
     }
 
     public function __construct(){
         $this->connect();
     }
+
+    // -----------------CUSTOM-QUERY-----------------
 
     // -----------------TABLE-------------------
     public function table($name){
@@ -113,7 +117,7 @@ class Database{
     }
 
     // -----------------COLUMN-------------------
-    public function column($columns){
+    public function columns($columns){
         if(isset($columns) && !empty($columns)){
             foreach($columns as $column){
                 $this->columns .= $column.', ';

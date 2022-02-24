@@ -21,14 +21,19 @@ class BookNow{
         ]);
 
         if($validation==1){
-            $obj = new User();
-            $where = " ZipCode = {$req->body->postal_code} AND RoleId = 2";
-            $result = $obj->where($where)->exists();
-            if($result){
-                $res->status(200)->json(['message'=>'User Availabe']);
+            $user = new User();
+            if(!$user->error){
+                $where = " ZipCode = {$req->body->postal_code} AND RoleId = 2";
+                $result = $user->where($where)->exists();
+                if($result){
+                    $res->status(200)->json(['message'=>'User Availabe']);
+                }
+                else{
+                    $res->status(400)->json(['message'=>'We are not providing service in this area!']);
+                }    
             }
             else{
-                $res->status(400)->json(['message'=>'We are not providing service in this area!']);
+                $res->status(500)->json(['message'=>'Database Connection Issue!']);
             }
         }
         else{
@@ -41,10 +46,15 @@ class BookNow{
     public function get_address(Request $req, Response $res){
         if(session('userId')){
             $userAddress = new UserAddress();
-            $result = $userAddress->where('UserId', '=', session('userId'))->read();
-            if(gettype($result)=='array'){
-                $res->status(200)->json(['address'=>$result]);
-            }    
+            if(!$userAddress->error){
+                $result = $userAddress->where('UserId', '=', session('userId'))->read();
+                if(is_array($result)){
+                    $res->status(200)->json(['address'=>$result]);
+                }        
+            }
+            else{
+                $res->status(500)->json(['message'=>'Database Connection Issue!']);
+            }
         }
         else{
             $res->status(401)->json(['message'=>"User Not Logged!"]);
@@ -64,25 +74,30 @@ class BookNow{
             
             if($validation==1){
                 $user = new User();
-                $data = $user->column(['Email'])->where('UserId', '=', session('userId'))->read();
+                if(!$user->error){
+                    $data = $user->columns(['Email'])->where('UserId', '=', session('userId'))->read();
 
-                $userAddress = new UserAddress();
-                $arr = [
-                    'UserId' => session('userId'), 
-                    'AddressLine1' => $req->body->street_name,
-                    'AddressLine2' => $req->body->house_number,
-                    'City' => $req->body->city,
-                    'State' => 'Gujarat',
-                    'PostalCode' => $req->body->postal_code,
-                    'Email' => $data[0]->Email,
-                    'Mobile' => $req->body->phone,
-                ];
-                $result = $userAddress->create($arr);
-                if($result){
-                    $res->status(201)->json(['message'=>'Address Add Successfully.']);
+                    $userAddress = new UserAddress();
+                    $arr = [
+                        'UserId' => session('userId'), 
+                        'AddressLine1' => $req->body->street_name,
+                        'AddressLine2' => $req->body->house_number,
+                        'City' => $req->body->city,
+                        'State' => 'Gujarat',
+                        'PostalCode' => $req->body->postal_code,
+                        'Email' => $data[0]->Email,
+                        'Mobile' => $req->body->phone,
+                    ];
+                    $result = $userAddress->create($arr);
+                    if($result){
+                        $res->status(201)->json(['message'=>'Address Add Successfully.']);
+                    }
+                    else{
+                        $res->status(500)->json(['message'=>'Internal Server Error !']);
+                    }    
                 }
                 else{
-                    $res->status(500)->json(['message'=>'Internal Server Error !']);
+                    $res->status(500)->json(['message'=>'Database connection Issue !']);
                 }
             }
             else{
@@ -117,6 +132,7 @@ class BookNow{
             $date = $req->body->date;
             $date = $date.' '. $time;
             $date = strtotime($date);
+            $date = date('Y-m-d H:i:s', $date);
             /*
                 HOW SMALL AND CAPITAL LETTER EFFECTS IN DATE...
                 d : date number 
@@ -128,7 +144,6 @@ class BookNow{
                 h : time in 12hr format
                 H : time in 24hr format
             */
-            $date = date('Y-m-d H:i:s', $date);
             $duration = $req->body->duration;
 
             // OPTIONAL PARAMETERS...
@@ -170,66 +185,72 @@ class BookNow{
                     'HasPets' => $has_pets];
 
             $service = new Service();
-            $serviceId = $service->create($arr);
+            if(!$service->error){
 
-            if($serviceId){
-                // ADD EXTRA SERVICES IN DATABASE IF USER WANT'S...
-                $extra_service_obj = new ExtraService();
-                for($i=0; $i<count($extra); $i++){
-                    $extraId = 0;
-                    switch($extra[$i]){
-                        case 'Cabinet':
-                            $extraId = 1;
-                            break;
-                        case 'Fridge':
-                            $extraId = 2;
-                            break;
-                        case 'Oven':
-                            $extraId = 3;
-                            break;
-                        case 'Laundry':
-                            $extraId = 4;
-                            break;
-                        case 'Window':
-                            $extraId = 5;
-                            break;
+                $serviceId = $service->create($arr);
+
+                if($serviceId){
+                    // ADD EXTRA SERVICES IN DATABASE IF USER WANT'S...
+                    $extra_service_obj = new ExtraService();
+                    for($i=0; $i<count($extra); $i++){
+                        $extraId = 0;
+                        switch($extra[$i]){
+                            case 'Cabinet':
+                                $extraId = 1;
+                                break;
+                            case 'Fridge':
+                                $extraId = 2;
+                                break;
+                            case 'Oven':
+                                $extraId = 3;
+                                break;
+                            case 'Laundry':
+                                $extraId = 4;
+                                break;
+                            case 'Window':
+                                $extraId = 5;
+                                break;
+                        }
+                        $extra_service_obj->create([
+                            'ServiceRequestId' => $serviceId,
+                            'ServiceExtraId' => $extraId,
+                        ]);
                     }
-                    $extra_service_obj->create([
-                        'ServiceRequestId' => $serviceId,
-                        'ServiceExtraId' => $extraId,
-                    ]);
-                }
-
-                // ADD SERVICE_REQUEST_ADDRESS IN DATABASE TABLE...
-                $arr = [
-                    'ServiceRequestId' => $serviceId,
-                    'AddressLine1' => $req->body->address->AddressLine1,
-                    'AddressLine2' => $req->body->address->AddressLine2,
-                    'City' => $req->body->address->City,
-                    'State' => $req->body->address->State,
-                    'PostalCode' => $req->body->address->PostalCode,
-                    'Mobile' => $req->body->address->Mobile,
-                    'Email' => $req->body->address->Email,
-                ];
     
-                $service_address = new ServiceAddress();
-                $result = $service_address->create($arr);
-
-                if($result){
-                    // *************SERVICE POOLING BAKI 6E****************
-                    // **********SEND MAIL TO SP BAKI 6E*******************
-                    // SERVICE POOL [SEND MAIL TO ALL SP ACCORDING TO POSTAL CODE]
-                    // FIND SERVICE_PROVIDER BY POSTAL CODE AND USERROLEID 2
-                    // DIRECT ASSIGNMENT OF USER...
-                    session('isBookingCompleted', true);
-                    $res->status(201)->json(['message'=>'Service Book Successfully.', 'id'=>$serviceId]);
-                }
+                    // ADD SERVICE_REQUEST_ADDRESS IN DATABASE TABLE...
+                    $arr = [
+                        'ServiceRequestId' => $serviceId,
+                        'AddressLine1' => $req->body->address->AddressLine1,
+                        'AddressLine2' => $req->body->address->AddressLine2,
+                        'City' => $req->body->address->City,
+                        'State' => $req->body->address->State,
+                        'PostalCode' => $req->body->address->PostalCode,
+                        'Mobile' => $req->body->address->Mobile,
+                        'Email' => $req->body->address->Email,
+                    ];
+        
+                    $service_address = new ServiceAddress();
+                    $result = $service_address->create($arr);
+    
+                    if($result){
+                        // *************SERVICE POOLING BAKI 6E****************
+                        // **********SEND MAIL TO SP BAKI 6E*******************
+                        // SERVICE POOL [SEND MAIL TO ALL SP ACCORDING TO POSTAL CODE]
+                        // FIND SERVICE_PROVIDER BY POSTAL CODE AND USERROLEID 2
+                        // DIRECT ASSIGNMENT OF USER...
+                        // session('isBookingCompleted', true);
+                        $res->status(201)->json(['message'=>'Service Book Successfully.', 'id'=>$serviceId]);
+                    }
+                    else{
+                        $res->status(500)->json(['message'=>'Internal Server Error']);
+                    }
+                }    
                 else{
                     $res->status(500)->json(['message'=>'Internal Server Error']);
                 }
             }
             else{
-                $res->status(500)->json(['message'=>'Internal Server Error']);
+                $res->status(500)->json(['message'=>'Database connection Issue!']);
             }
         }
         else{

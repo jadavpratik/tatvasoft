@@ -11,10 +11,9 @@
     </div>
     <div class="label_input">
         <div>
-            <!-- id="card_no" THIS ID FOR SPLIT A 4-4 NUMBERS -->
-            <input type="text" placeholder="XXXX-XXXX-XXXX-XXXX"  value="1111-1111-1111-1111" name="card_no" readonly>
-            <input type="text" placeholder="MM/YY" value="11/24" name="card_date" readonly>	
-            <input type="text" placeholder="CVV/CVC" value="123" name="card_cvv" readonly>
+            <input type="text" placeholder="XXXX-XXXX-XXXX-XXXX" value="1111-1111-1111-1111" readonly>
+            <input type="text" placeholder="MM/YY" value="11/24" readonly>	
+            <input type="text" placeholder="CVV/CVC" value="123" readonly>
         </div>
         <div>
             <p>Accepeted Card</p>

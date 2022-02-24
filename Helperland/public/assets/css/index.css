@@ -618,13 +618,8 @@ button:disabled {
 .tab_content {
   width: 100%;
   height: auto;
-  opacity: 0;
   -webkit-transition: all 0.2s ease;
   transition: all 0.2s ease;
-}
-
-.active_tab_content {
-  opacity: 1;
 }
 
 .page_not_found {

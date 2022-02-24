@@ -618,13 +618,8 @@ button:disabled {
 .tab_content {
   width: 100%;
   height: auto;
-  opacity: 0;
   -webkit-transition: all 0.2s ease;
   transition: all 0.2s ease;
-}
-
-.active_tab_content {
-  opacity: 1;
 }
 
 .page_not_found {
@@ -1186,6 +1181,19 @@ footer {
   border-bottom: 3px solid #1D7A8C !important;
 }
 
+.validation_message {
+  padding: 6px 0 0;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+}
+
+.validation_message p {
+  color: #e50009 !important;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+  font-size: 14px;
+}
+
 .input,
 .select,
 .textarea {
@@ -1323,7 +1331,7 @@ footer {
           flex-direction: column;
 }
 
-.date_of_birth div {
+.date_of_birth > div:first-of-type {
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: (1fr)[3];
@@ -1454,19 +1462,6 @@ footer {
 .change_password div {
   width: 280px;
   margin-bottom: 20px;
-}
-
-.validation_message {
-  padding: 6px 0 0;
-  -webkit-transition: all 0.2s;
-  transition: all 0.2s;
-}
-
-.validation_message p {
-  color: #e50009 !important;
-  -webkit-transition: all 0.2s;
-  transition: all 0.2s;
-  font-size: 14px;
 }
 
 .my_details {
