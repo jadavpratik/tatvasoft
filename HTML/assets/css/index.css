@@ -1492,6 +1492,13 @@ footer {
   background: transparent;
 }
 
+.from_date p,
+.to_date p {
+  color: #4F4F4F;
+  font-size: 14px;
+  padding-right: 20px;
+}
+
 .input_time {
   width: -webkit-fit-content;
   width: -moz-fit-content;
@@ -3040,6 +3047,19 @@ footer {
 
 .favourite_pros_card > div:last-of-type button {
   margin: 0 10px;
+}
+
+@media screen and (max-width: 576px) {
+  .favourite_pros {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+  }
+  .favourite_pros_card {
+    width: 100%;
+  }
 }
 
 .sp_my_rating {

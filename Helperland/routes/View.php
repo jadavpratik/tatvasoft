@@ -34,5 +34,4 @@ Route::get('/service-provider/signup', $alreadyLogged, [new View(), 'sp_signup']
 Route::get('/service-provider', $isServiceProvider, [new View(), 'sp_profile']);
 
 // -----------LAST-METHOD-----------------
-Route::get('/not-allowed', [new View(), 'not_allowed']);
 Route::get('/*', [new View(), 'page_not_found']);

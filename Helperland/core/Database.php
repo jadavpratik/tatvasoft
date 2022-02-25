@@ -4,6 +4,7 @@ namespace core;
 
 use \PDO;
 use \Exception;
+
 use core\Response;
 
 class Database{
@@ -19,8 +20,7 @@ class Database{
     private $query = '';
     private $columns = '';
     private $where = '';
-
-    public $error = false;
+    private $res = null;
 
     // -----------------CONNECT-------------------
     public function connect(){
@@ -30,11 +30,13 @@ class Database{
             $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);            
         } 
         catch(Exception $e){
-            $this->error = true;
+            $this->res->status(500)->json(['message'=>'Database connection issue!']);
+            exit();
         }
     }
 
     public function __construct(){
+        $this->res = new Response();
         $this->connect();
     }
 
@@ -75,7 +77,8 @@ class Database{
             }
         }
         catch(Exception $e){
-            echo $e->getMessage();
+            $this->res->status(500)->json(['message'=>$e->getMessage()]);
+            exit();
         }
     }
 
@@ -112,7 +115,8 @@ class Database{
             }    
         }
         catch(Exception $e){
-            echo $e->getMessage();
+            $this->res->status(500)->json(['message'=>$e->getMessage()]);
+            exit();
         }
     }
 
@@ -152,7 +156,8 @@ class Database{
             // RETURN ARRAY OF AN OBJECT...
         }
         catch(Exception $e){
-            echo $e->getMessage();
+            $this->res->status(500)->json(['message'=>$e->getMessage()]);
+            exit();
         }
     }
 
@@ -175,7 +180,8 @@ class Database{
             return $this->conn->exec($this->query);
         }
         catch(Exception $e){
-            echo $e->getMessage();
+            $this->res->status(500)->json(['message'=>$e->getMessage()]);
+            exit();
         }
     }
 
@@ -186,8 +192,9 @@ class Database{
             return $this->conn->exec($this->query);    
         }
         catch(Exception $e){
-            echo $e->getMessage();
-       }
+            $this->res->status(500)->json(['message'=>$e->getMessage()]);
+            exit();
+        }
     }
 
     // -----------------JOIN-------------------

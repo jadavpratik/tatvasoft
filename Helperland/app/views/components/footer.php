@@ -97,5 +97,7 @@
 			maxGlare: .5
 		});
 	</script>
+	
+	<?= component('session-components'); ?>
 </body>
 </html>

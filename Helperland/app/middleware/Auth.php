@@ -2,13 +2,14 @@
 
 namespace app\middleware;
 
+use core\Response;
+
 class Auth{
 
-    // REDIRECT...
-    public function redirect($path){
-        $redirect_url = BASE_URL.$path;
-        header("location:{$redirect_url}");
-        return false;
+    private $res = null;
+
+    public function __construct(){
+        $this->res = new Response();
     }
 
     // OPEN LOGIN FORM...
@@ -52,10 +53,13 @@ class Auth{
     // IS CUSTOMER...
     public function isCustomer(){
         if(session('isLogged')){
-            if(session('userRole')=='customer')
+            if(session('userRole')=='customer'){
                 return true;
-            else
-                $this->redirect('/not-allowed');
+            }
+            else{
+                $this->res->status(403)->json(['error'=>'You are not allowed to access this page']);
+                return false;
+            }
         }
         else{
             $this->openLoginForm();
@@ -65,10 +69,13 @@ class Auth{
     // IS SERVICE PROVIDER...
     public function isServiceProvider(){
         if(session('isLogged')){
-            if(session('userRole')=='service-provider')
+            if(session('userRole')=='service-provider'){
                 return true;
-            else
-               $this->redirect('/not-allowed');
+            }
+            else{
+                $this->res->status(403)->json(['error'=>'You are not allowed to access this page']);
+                return false;
+            }
         }
         else{
             $this->openLoginForm();

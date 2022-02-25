@@ -30,11 +30,8 @@ class View{
     public function contact(Request $req, Response $res){
         if(session('isLogged')){
             $user = new User();
-            $data = '';
-            if(!$user->error){
-                $columns = ['FirstName', 'LastName', 'Email', 'Mobile'];
-                $data = $user->columns($columns)->where('UserId', '=', session('userId'))->read();
-            }
+            $columns = ['FirstName', 'LastName', 'Email', 'Mobile'];
+            $data = $user->columns($columns)->where('UserId', '=', session('userId'))->read();
             $res->render('static/contact', ['data'=>$data[0]]);	
         }
         else{
@@ -95,16 +92,9 @@ class View{
 		$res->redirect('/');
 	}
 
-    // **********ERROR & AUTH REDIRECT PAGES**********
-
     // PAGE-NOT-FOUND...
 	public function page_not_found(Request $req, Response $res){
 		$res->render('static/page-not-found');
-	}
-
-    // NOT-ALLOWED...
-	public function not_allowed(Request $req, Response $res){
-		$res->render('static/not-allowed');
 	}
 
 }

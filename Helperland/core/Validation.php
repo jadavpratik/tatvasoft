@@ -2,6 +2,8 @@
 
 namespace core;
 
+use core\Response;
+
 class Validation{
 
 	// REGEX...
@@ -48,10 +50,9 @@ class Validation{
 		}
 		// PASS RESPONSE ACCORDING TO VALIDATION...
 		if(count(self::$error)>0){
-			return self::$error;
-		}
-		else{
-			return true;
+			$res = new Response();
+			$res->status(400)->json(['errors'=>self::$error]);
+			exit();
 		}
 	}
 

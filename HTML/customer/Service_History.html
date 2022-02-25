@@ -469,7 +469,7 @@
                         <p>Current Service Requests</p>
                         <button class="add_new_service_request_btn">Add New Service Request</button>
                     </div>
-                    <table>
+                    <table id="current_service_request_table" class="">
                         <thead>
                             <tr>
                                 <th>Service Id</th>
@@ -1119,5 +1119,14 @@
     <script src="../assets/js/validation.js"></script>
     <script src="../assets/js/model.js"></script>
 
+
+
+    <script>
+        $('#current_service_request_table').DataTable({
+            searching: false,
+            ordering:  false,
+            dom : 't<"bottom"lp>'
+        });
+    </script>
 </body>
 </html>

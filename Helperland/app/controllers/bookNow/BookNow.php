@@ -16,102 +16,58 @@ class BookNow{
 
     // CHECK POSTAL CODE 
     public function check_postal_code(Request $req, Response $res){
-        $validation = Validation::check($req->body, [
+
+        Validation::check($req->body, [
             'postal_code' => ['postal-code']
         ]);
 
-        if($validation==1){
-            $user = new User();
-            if(!$user->error){
-                $where = " ZipCode = {$req->body->postal_code} AND RoleId = 2";
-                $result = $user->where($where)->exists();
-                if($result){
-                    $res->status(200)->json(['message'=>'User Availabe']);
-                }
-                else{
-                    $res->status(400)->json(['message'=>'We are not providing service in this area!']);
-                }    
-            }
-            else{
-                $res->status(500)->json(['message'=>'Database Connection Issue!']);
-            }
+        $user = new User();
+        $where = " ZipCode = {$req->body->postal_code} AND RoleId = 2";
+        if($user->where($where)->exists()){
+            $res->status(200)->json(['message'=>'User Availabe']);
         }
         else{
-            $res->status(400)->json($validation);
-        }
+            $res->status(400)->json(['message'=>'We are not providing service in this area!']);
+        }    
 
     }
 
-    // GET LOGGED USER ADDRESS...
+    // GET CUSTOMER ADDRESS...
     public function get_address(Request $req, Response $res){
-        if(session('userId')){
-            $userAddress = new UserAddress();
-            if(!$userAddress->error){
-                $result = $userAddress->where('UserId', '=', session('userId'))->read();
-                if(is_array($result)){
-                    $res->status(200)->json(['address'=>$result]);
-                }        
-            }
-            else{
-                $res->status(500)->json(['message'=>'Database Connection Issue!']);
-            }
-        }
-        else{
-            $res->status(401)->json(['message'=>"User Not Logged!"]);
-        }
+        $userAddress = new UserAddress();
+        $result = $userAddress->where('UserId', '=', session('userId'))->read();
+        $res->status(200)->json(['address'=>$result]);
     }
 
-    // ADD ADDRESS
+    // ADD ADDRESS...
     public function add_address(Request $req, Response $res){
-        if(session('userId')){
-            $validation = Validation::check($req->body, [
-                'street_name' => ['text'],
-                'house_number' => ['required'],
-                'postal_code' => ['postal-code'], 
-                'city' => ['text'],
-                'phone' => ['phone', 'length:10']
-            ]);
-            
-            if($validation==1){
-                $user = new User();
-                if(!$user->error){
-                    $data = $user->columns(['Email'])->where('UserId', '=', session('userId'))->read();
-
-                    $userAddress = new UserAddress();
-                    $arr = [
-                        'UserId' => session('userId'), 
-                        'AddressLine1' => $req->body->street_name,
-                        'AddressLine2' => $req->body->house_number,
-                        'City' => $req->body->city,
-                        'State' => 'Gujarat',
-                        'PostalCode' => $req->body->postal_code,
-                        'Email' => $data[0]->Email,
-                        'Mobile' => $req->body->phone,
-                    ];
-                    $result = $userAddress->create($arr);
-                    if($result){
-                        $res->status(201)->json(['message'=>'Address Add Successfully.']);
-                    }
-                    else{
-                        $res->status(500)->json(['message'=>'Internal Server Error !']);
-                    }    
-                }
-                else{
-                    $res->status(500)->json(['message'=>'Database connection Issue !']);
-                }
-            }
-            else{
-                $res->status(400)->json($validation);
-            }    
-        }
-        else{
-            $res->status(401)->json(['message'=>'User Not Logged !']);
-        }
+        Validation::check($req->body, [
+            'street_name' => ['text'],
+            'house_number' => ['required'],
+            'postal_code' => ['postal-code'], 
+            'city' => ['text'],
+            'phone' => ['phone', 'length:10']
+        ]);
+        $user = new User();
+        $data = $user->columns(['Email'])->where('UserId', '=', session('userId'))->read();
+        $userAddress = new UserAddress();
+        $userAddress->create([
+            'UserId' => session('userId'), 
+            'AddressLine1' => $req->body->street_name,
+            'AddressLine2' => $req->body->house_number,
+            'City' => $req->body->city,
+            'State' => 'Gujarat',
+            'PostalCode' => $req->body->postal_code,
+            'Email' => $data[0]->Email,
+            'Mobile' => $req->body->phone,
+        ]);
+        $res->status(201)->json(['message'=>'Address Add Successfully.']);
     }
 
+    // BOOK SERVICE...
     public function book_service(Request $req, Response $res){
 
-        $validation = Validation::check($req->body, [
+        Validation::check($req->body, [
             'postal_code' => ['required','postal-code'],
             'date' => ['required'],
             'time' => ['required'],
@@ -124,137 +80,79 @@ class BookNow{
             'address' => ['required', 'object'],
         ]);
 
-        if($validation==1){
-            // INITIALIZE REQUIRED VARIABLE...
-            $userId = session('userId');
-            $postal_code = $req->body->postal_code;
-            $time = $req->body->time;
-            $date = $req->body->date;
-            $date = $date.' '. $time;
-            $date = strtotime($date);
-            $date = date('Y-m-d H:i:s', $date);
-            /*
-                HOW SMALL AND CAPITAL LETTER EFFECTS IN DATE...
-                d : date number 
-                D : date name  [mon, tue, wed, etc..]
-                m : month number
-                M : month name [jan, feb, march, etc... ]
-                y : year have only 2 digits.
-                Y : year have 4 digits.
-                h : time in 12hr format
-                H : time in 24hr format
-            */
-            $duration = $req->body->duration;
+        // INITIALIZE REQUIRED VARIABLE...
+        $service = new Service();
+        $service_address = new ServiceAddress();
 
-            // OPTIONAL PARAMETERS...
-            $extra = [];
-            $extra_time = null;
-            $comments = null;
-            $has_pets = null;
-            $service_provider_id = null;
-            if(isset($req->body->extra)){
-                $extra = $req->body->extra;
-            }
-            if(isset($req->body->extra_time)){
-                $extra_time = $req->body->extra_time;
-            }
-            if(isset($req->body->comments)){
-                $comments = $req->body->comments;
-            }
-            if(isset($req->body->has_pets)){
-                $has_pets = $req->body->has_pets==true ? 1 : 0;
-            }
-            if(isset($req->body->sp_id)){
-                $sp_id = $req->body->sp_id;
-            }
+        $user_id = session('userId');
+        $postal_code = $req->body->postal_code;
+        $date = date('Y-m-d H:i:s', strtotime($req->body->date.' '.$req->body->time));
+        $duration = $req->body->duration;
+        // OPTIONAL PARAMERTERS...
+        $extra =  isset($req->body->extra)? $req->body->extra : [];
+        $extra_time = isset($req->body->extra_time)? $req->body->extra_time : null;
+        $comments = isset($req->body->comments)? $req->body->comments : null;
+        $has_pets = (isset($req->body->has_pets) && $req->body->has_pets==true)? 1 : null;
+        $sp_id = isset($req->body->sp_id)? $req->body->sp_id : null;
+        $hourly_rate = 70;
+        $total_cost = $hourly_rate*3 + ($hourly_rate/2)*count($extra);
 
-            $hourly_rate = 70;
-            $total_cost = $hourly_rate*3 + ($hourly_rate/2)*count($extra);
+        // ADD SERVICE_REQUEST IN DATABASE TABLE...
+        $serviceId = $service->create([
+            'UserId' => $user_id,
+            'ServiceStartDate' => $date,
+            'ZipCode' => $postal_code,
+            'ServiceHourlyRate' => $hourly_rate,
+            'ServiceHours' => $duration,
+            'ExtraHours' => $extra_time,
+            'SubTotal' => $total_cost,
+            'TotalCost' => $total_cost,
+            'Comments' => $comments,
+            'ServiceProviderId' => $sp_id,
+            'HasPets' => $has_pets
+        ]);
 
-            // ADD SERVICE_REQUEST IN DATABASE TABLE...
-            $arr = ['UserId' => $userId,
-                    'ServiceStartDate' => $date,
-                    'ZipCode' => $postal_code,
-                    'ServiceHourlyRate' => $hourly_rate,
-                    'ServiceHours' => $duration,
-                    'ExtraHours' => $extra_time,
-                    'SubTotal' => $total_cost,
-                    'TotalCost' => $total_cost,
-                    'Comments' => $comments,
-                    'ServiceProviderId' => $service_provider_id,
-                    'HasPets' => $has_pets];
+        // ADD SERVICE_REQUEST_ADDRESS IN DATABASE TABLE...
+        $service_address->create([
+            'ServiceRequestId' => $serviceId,
+            'AddressLine1' => $req->body->address->AddressLine1,
+            'AddressLine2' => $req->body->address->AddressLine2,
+            'City' => $req->body->address->City,
+            'State' => $req->body->address->State,
+            'PostalCode' => $req->body->address->PostalCode,
+            'Mobile' => $req->body->address->Mobile,
+            'Email' => $req->body->address->Email,
+        ]);
 
-            $service = new Service();
-            if(!$service->error){
-
-                $serviceId = $service->create($arr);
-
-                if($serviceId){
-                    // ADD EXTRA SERVICES IN DATABASE IF USER WANT'S...
-                    $extra_service_obj = new ExtraService();
-                    for($i=0; $i<count($extra); $i++){
-                        $extraId = 0;
-                        switch($extra[$i]){
-                            case 'Cabinet':
-                                $extraId = 1;
-                                break;
-                            case 'Fridge':
-                                $extraId = 2;
-                                break;
-                            case 'Oven':
-                                $extraId = 3;
-                                break;
-                            case 'Laundry':
-                                $extraId = 4;
-                                break;
-                            case 'Window':
-                                $extraId = 5;
-                                break;
-                        }
-                        $extra_service_obj->create([
-                            'ServiceRequestId' => $serviceId,
-                            'ServiceExtraId' => $extraId,
-                        ]);
-                    }
-    
-                    // ADD SERVICE_REQUEST_ADDRESS IN DATABASE TABLE...
-                    $arr = [
-                        'ServiceRequestId' => $serviceId,
-                        'AddressLine1' => $req->body->address->AddressLine1,
-                        'AddressLine2' => $req->body->address->AddressLine2,
-                        'City' => $req->body->address->City,
-                        'State' => $req->body->address->State,
-                        'PostalCode' => $req->body->address->PostalCode,
-                        'Mobile' => $req->body->address->Mobile,
-                        'Email' => $req->body->address->Email,
-                    ];
-        
-                    $service_address = new ServiceAddress();
-                    $result = $service_address->create($arr);
-    
-                    if($result){
-                        // *************SERVICE POOLING BAKI 6E****************
-                        // **********SEND MAIL TO SP BAKI 6E*******************
-                        // SERVICE POOL [SEND MAIL TO ALL SP ACCORDING TO POSTAL CODE]
-                        // FIND SERVICE_PROVIDER BY POSTAL CODE AND USERROLEID 2
-                        // DIRECT ASSIGNMENT OF USER...
-                        // session('isBookingCompleted', true);
-                        $res->status(201)->json(['message'=>'Service Book Successfully.', 'id'=>$serviceId]);
-                    }
-                    else{
-                        $res->status(500)->json(['message'=>'Internal Server Error']);
-                    }
-                }    
-                else{
-                    $res->status(500)->json(['message'=>'Internal Server Error']);
-                }
-            }
-            else{
-                $res->status(500)->json(['message'=>'Database connection Issue!']);
-            }
+        // ADD EXTRA SERVICES IN DATABASE IF USER WANT'S...
+        if(count($extra)>0){
+            $extra_service_obj = new ExtraService();
+            for($i=0; $i<count($extra); $i++){
+                $extraId = $this->setExtraServiceId($extra[$i]);
+                $extra_service_obj->create([
+                    'ServiceRequestId' => $serviceId,
+                    'ServiceExtraId' => $extraId,
+                ]);
+            }    
         }
-        else{
-            $res->status(400)->json($validation);
+        // SERVICE POOL [SEND MAIL TO ALL SP ACCORDING TO POSTAL CODE]
+        // DIRECT ASSIGNMENT OF USER...
+        $res->status(201)->json(['message'=>'Service Book Successfully.', 'id'=>$serviceId]);
+    }
+
+    // SET EXTRA SERVICE ID...
+    public function setExtraServiceId($extraServiceName){
+        switch($extraServiceName){
+            case 'Cabinet':
+                return 1;
+            case 'Fridge':
+                return 2;
+            case 'Oven':
+                return 3;
+            case 'Laundry':
+                return 4;
+            case 'Window':
+                return 5;
         }
     }
 

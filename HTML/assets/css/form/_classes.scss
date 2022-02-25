@@ -172,8 +172,12 @@ $validation_msg:#e50009;
             left:-32px;
             position:absolute;
             background:transparent;
-            // border:0.5px solid red;
         }
+    }
+    p{
+        color:$label_text;
+        font-size: 14px;
+        padding-right:20px;
     }
 }
 

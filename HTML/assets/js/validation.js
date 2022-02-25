@@ -373,27 +373,27 @@ function schedule_date_validation(){
     const tempMonth = temp.getMonth()+1;
     const tempDate = temp.getDate();
     const newYear = tempYear+1;
-    currentMonth = parseInt(currentMonth);
-    currentDate = parseInt(currentDate);
+    mm = parseInt(mm);
+    dd = parseInt(dd);
     if(selectedDate==undefined || selectedDate==""){
         $('[name="schedule_date"]').parent().next().removeClass('d_none').children().html('Please Select Date !');
         return false;
     }
-    else if(currentMonth==12 && newYear > currentYear){
+    else if(mm==12 && newYear > yyyy){
         // ASSUME THAT NEW YEAR WILL BE START SOON, 
         // AND ASSUME USER BOOK SERVICE IN DECEMBER MONTH..
         console.log('Nothing to Do...');
         return true;
     }
-    else if(tempYear < currentYear || tempYear > currentYear){
+    else if(tempYear < yyyy || tempYear > yyyy){
         $('[name="schedule_date"]').parent().next().removeClass('d_none').children().html('Year is Invalid !');
         return false;
     }
-    else if((tempYear == currentYear) && (tempMonth < currentMonth)){
+    else if((tempYear == yyyy) && (tempMonth < mm)){
         $('[name="schedule_date"]').parent().next().removeClass('d_none').children().html('Month is Invalid !');
         return false;
     }
-    else if((tempYear == currentYear) && (tempMonth == currentMonth) && (tempDate < currentDate)){
+    else if((tempYear == yyyy) && (tempMonth == mm) && (tempDate < dd)){
         $('[name="schedule_date"]').parent().next().removeClass('d_none').children().html('Date is Invalid !');
         return false;
     }

@@ -154,6 +154,5 @@
 	<?= component('otp'); ?>
 	<?= component('set-new-password'); ?>
 	<?= component('included-services'); ?>
-	<?= component('session-components'); ?>
 
 
