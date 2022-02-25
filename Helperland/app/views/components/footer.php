@@ -73,7 +73,6 @@
 	<!-- --------------------------------------------------- -->
 	<!-- AOS -->
 	<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-	<script>AOS.init();</script>
 	<!-- TITL-JS -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/tilt.js/1.0.3/tilt.jquery.min.js"></script>
 	<!-- SWEET-ALERT -->
@@ -90,6 +89,13 @@
 	<script src="<?= assets('assets/js/navtabs.js'); ?>"></script>
 	<script src="<?= assets('assets/js/sidenav.js'); ?>"></script>
 	<script src="<?= assets('assets/js/tabletab.js'); ?>"></script>
-	<script type="module" src="<?= assets('assets/js/validation.js'); ?>"></script>
+	<script src="<?= assets('assets/js/validation.js'); ?>"></script>
+	<script>
+		AOS.init();
+		$('.home_s3_intro > img').tilt({
+			glare: true,
+			maxGlare: .5
+		});
+	</script>
 </body>
 </html>

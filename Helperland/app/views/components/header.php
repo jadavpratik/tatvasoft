@@ -16,7 +16,6 @@
 	<link rel="stylesheet" href="<?= assets('assets/css/index.css'); ?>">
 	<!-- JQUERY -->
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-	<!-- SET-PROXY-URL -->
 	<script> 
 		// PROXY URL AS BASE URL GUIDE THE FRONT AJAX REQUEST...
 		let proxy_url = `<?= BASE_URL; ?>`; 

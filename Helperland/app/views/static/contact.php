@@ -116,86 +116,85 @@
 		</form>
 	</div><!-- END_GET_IN_TOUCH -->
 
-	<script>
+<script>
 
-		$('[name="TermCheckBox"]').click(()=>{
-			if($('[name="TermCheckBox"]').prop('checked')==true){
-				$('.form_btn').prop('disabled', false);
-			}
-			else{
-				$('.form_btn').prop('disabled', true);
-			}
-		});
+	$('[name="TermCheckBox"]').click(()=>{
+		if($('[name="TermCheckBox"]').prop('checked')==true){
+			$('.form_btn').prop('disabled', false);
+		}
+		else{
+			$('.form_btn').prop('disabled', true);
+		}
+	});
 
-		$('#contact_us').submit(function(e){
-			e.preventDefault();
+	$('#contact_us').submit(function(e){
+		e.preventDefault();
 
-			let validation = true;
+		let validation = true;
 
-			const validationArr = [firstname_validation(),
-									lastname_validation(),
-									email_validation(),
-									phone_validation(),
-									message_validation(),
-									subject_validation()];
+		const validationArr = [firstname_validation(),
+								lastname_validation(),
+								email_validation(),
+								phone_validation(),
+								message_validation(),
+								subject_validation()];
 
-			for(let i=0; i<validationArr.length; i++){
-				if(validationArr[i]==false){
-					validation = false;
-					break;
-				}	
-			}
+		for(let i=0; i<validationArr.length; i++){
+			if(validationArr[i]==false){
+				validation = false;
+				break;
+			}	
+		}
 
-			// FORM DATA FOR FILE UPLOAD...
-			const data = new FormData($('#contact_us')[0]);
+		// FORM DATA FOR FILE UPLOAD...
+		const data = new FormData($('#contact_us')[0]);
 
-			if(validation){
-				$.ajax({
-					url : `${proxy_url}/contact`,
-					type : 'POST',
-					data : data,
-					processData : false,
-					contentType : false,
-					success : function(res){
-						if(res!=="" || res!==undefined){
-							try{
-								const result = JSON.parse(res);
-								Swal.fire({
-									title : 'Good job!',
-									text : result.message,
-									icon : 'success'
-								}).then((res)=>{
-									if(res.isConfirmed){
-										$('#contact_us').trigger('reset');
-										$('.form_btn').prop('disabled', true);
-									}
-								});
-							}
-							catch(e){
-								Swal.fire({
-									title : 'Server Error',
-									text : 'Invalid Response Coming From Server',
-									icon : 'error'
-								});
-							}
-						}
-					},
-					error : function(obj){
-						if(obj!==undefined || obj!==""){
-							const {status, responseText} = obj;
-							const error = JSON.parse(responseText);
+		if(validation){
+			$.ajax({
+				url : `${proxy_url}/contact`,
+				type : 'POST',
+				data : data,
+				processData : false,
+				contentType : false,
+				success : function(res){
+					if(res!=="" || res!==undefined){
+						try{
+							const result = JSON.parse(res);
 							Swal.fire({
-								title : 'Error',
-								text : error.message,
+								title : 'Good job!',
+								text : result.message,
+								icon : 'success'
+							}).then((res)=>{
+								if(res.isConfirmed){
+									$('#contact_us').trigger('reset');
+									$('.form_btn').prop('disabled', true);
+								}
+							});
+						}
+						catch(e){
+							Swal.fire({
+								title : 'Server Error',
+								text : 'Invalid Response Coming From Server',
 								icon : 'error'
 							});
 						}
-					},
-				});
-			}
-		});
-
-	</script>
+					}
+				},
+				error : function(obj){
+					if(obj!==undefined || obj!==""){
+						const {status, responseText} = obj;
+						const error = JSON.parse(responseText);
+						Swal.fire({
+							title : 'Error',
+							text : error.message,
+							icon : 'error'
+						});
+					}
+				},
+			});
+		}
+	});
+</script>
 
 	<!-- MAP -->
 	<div class="map">
