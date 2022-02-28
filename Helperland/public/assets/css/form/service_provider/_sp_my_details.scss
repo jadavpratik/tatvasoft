@@ -113,3 +113,23 @@
         }
     }
 }
+
+
+@media screen and (max-width:576px) {
+    .sp_basic_details_container{
+        display: flex;
+        flex-direction: column;
+        & > div:nth-child(9){
+            // SELECT AVATAR CONTIANER...
+            & > div{
+                // SELECT AVATAR INNER DIV...
+                overflow:auto;
+            }
+        }
+    }        
+    .sp_my_address_container{
+        display: flex;
+        flex-direction: column;
+    }
+
+}

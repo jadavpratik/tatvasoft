@@ -154,5 +154,7 @@
 	<?= component('otp'); ?>
 	<?= component('set-new-password'); ?>
 	<?= component('included-services'); ?>
+	<?= component('add-address'); ?>
+	<?= component('edit-address'); ?>
 
 

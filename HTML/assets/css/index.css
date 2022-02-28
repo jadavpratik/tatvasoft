@@ -1521,7 +1521,7 @@ footer {
   padding: 20px 0;
 }
 
-.change_password div {
+.change_password > div {
   width: 280px;
   margin-bottom: 20px;
 }
@@ -1530,7 +1530,7 @@ footer {
   .change_password {
     width: 100%;
   }
-  .change_password div {
+  .change_password > div {
     width: 100%;
   }
 }

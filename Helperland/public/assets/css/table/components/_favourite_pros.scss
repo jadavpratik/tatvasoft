@@ -35,3 +35,14 @@ $favourite_pros_text:#646464;
         }
     }
 }
+
+
+@media screen and (max-width:576px) {
+    .favourite_pros{
+        display: flex;
+        flex-wrap: wrap;
+    }       
+    .favourite_pros_card{
+        width:100%;
+    }
+}

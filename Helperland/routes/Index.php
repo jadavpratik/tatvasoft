@@ -1,5 +1,10 @@
 <?php
 
+session('isLogged', true);
+session('userId', 34);
+session('userRole', 'customer');
+session('userName', 'Gaurav Barai');
+
 require_once __DIR__."/Account.php";
 require_once __DIR__."/BookNow.php";
 require_once __DIR__."/Contact.php";

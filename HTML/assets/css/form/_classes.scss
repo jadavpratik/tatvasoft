@@ -195,16 +195,17 @@ $validation_msg:#e50009;
 
 .change_password{
     padding:20px 0;
-    div{
+    & > div{
         width:280px;
         margin-bottom: 20px;
+        
     }
 }
 
 @media screen and (max-width:576px) {
     .change_password{
         width:100%;
-        div{
+        & > div{
             width:100%;
         }
     }

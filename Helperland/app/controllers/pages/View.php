@@ -61,8 +61,8 @@ class View{
 		$res->render('customer/signup');
 	}
 
-    // CUSTOMER-PROFILE...
-    public function customer_profile(Request $req, Response $res){
+    // CUSTOMER-DASHBOARD...
+    public function customer_dashboard(Request $req, Response $res){
         $res->render('customer/index');
     }
 
@@ -74,7 +74,7 @@ class View{
     }
 
     // SP-PROFILE...
-    public function sp_profile(Request $req, Response $res){
+    public function sp_dashboard(Request $req, Response $res){
         $res->render('service-provider/index');
     }
 
