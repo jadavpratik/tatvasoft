@@ -32,6 +32,7 @@ class Validation{
 					self::checkCriteria($key, $value, $i);
 					if(isset(self::$error[$key])){
 						array_push($temp[$key], self::$error[$key]);
+						self::$error[$key] = null;
 					}
 				}
 				if(count($temp[$key])==1){
@@ -45,7 +46,6 @@ class Validation{
 			}
 			else if($validation[0]!=='optional'){
 				self::$error[$key] = 'Field is required!';
-				break;
 			}
 		}
 		// PASS RESPONSE ACCORDING TO VALIDATION...

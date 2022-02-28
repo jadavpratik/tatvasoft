@@ -3142,6 +3142,78 @@ footer {
   }
 }
 
+.dataTable,
+.dataTable thead > tr > th {
+  border-bottom: 1px solid #E1E1E1 !important;
+}
+
+.datatable_bottom {
+  margin-top: 9px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+@media screen and (max-width: 768px) {
+  .datatable_bottom {
+    margin-top: 9px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+}
+
+.dataTables_length {
+  margin-bottom: 4px;
+}
+
+.dataTables_length > label {
+  color: #646464;
+}
+
+.dataTables_length > label > select {
+  margin: 0 10px;
+  border: 1px solid #E1E1E1;
+}
+
+.paging_full_numbers > .paginate_button,
+.paging_full_numbers > span > .paginate_button {
+  width: 38px;
+  height: 38px;
+  font-size: 14px;
+  padding-top: 9.3px !important;
+  background-color: white;
+  border: 1px solid #E1E1E1 !important;
+  border-radius: 50% !important;
+}
+
+.paging_full_numbers > .paginate_button i,
+.paging_full_numbers > span > .paginate_button i {
+  font-size: 12px;
+}
+
+.paging_full_numbers > .paginate_button:hover {
+  border: 1px solid transparent !important;
+}
+
+.paging_full_numbers > .disabled:hover,
+.paging_full_numbers > .current:hover {
+  border: 1px solid #E1E1E1 !important;
+}
+
 .customer_signup {
   margin: auto;
   margin-top: 114px;
@@ -6499,8 +6571,6 @@ footer {
     border-radius: 8px !important;
     margin-bottom: 20px;
     overflow: hidden;
-  }
-  .table_tab_content table td {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -6511,6 +6581,14 @@ footer {
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
+  }
+  .table_tab_content table td {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
   }
   .customer_details {
     display: -webkit-box;

@@ -12,14 +12,6 @@ class Auth{
         $this->res = new Response();
     }
 
-    // OPEN LOGIN FORM...
-    public function openLoginForm(){
-        session('openLoginForm', true);
-        $base_url = BASE_URL;
-        header("location:{$base_url}");
-        return false;
-    }
-        
     // ALREADY LOGGED...
     public function alreadyLogged(){
         if(session('isLogged')){
@@ -35,19 +27,11 @@ class Auth{
                     break;
             }
             header("location:{$redirect_url}");
-            return false;
+            exit();
         }
         else{
             return true;
         }
-    }
-
-    // IS LOGGED...
-    public function isLogged(){
-        if(session('isLogged'))
-            return true;
-        else
-            $this->openLoginForm();
     }
 
     // IS CUSTOMER...
@@ -58,8 +42,12 @@ class Auth{
             }
             else{
                 $this->res->status(403)->json(['error'=>'You are not allowed to access this page']);
-                return false;
+                exit();
             }
+        }
+        else if($_SERVER['REQUEST_METHOD']!=='GET'){
+            $this->res->status(401)->json(['error'=>'You need to login!']);
+            exit();
         }
         else{
             $this->openLoginForm();
@@ -74,12 +62,24 @@ class Auth{
             }
             else{
                 $this->res->status(403)->json(['error'=>'You are not allowed to access this page']);
-                return false;
+                exit();
             }
+        }
+        else if($_SERVER['REQUEST_METHOD']!=='GET'){
+            $this->res->status(401)->json(['error'=>'You need to login!']);
+            exit();
         }
         else{
             $this->openLoginForm();
         }
     }
 
+    // OPEN LOGIN FORM...
+    public function openLoginForm(){
+        session('openLoginForm', true);
+        $base_url = BASE_URL;
+        header("location:{$base_url}");
+        exit();
+    }
+                
 }

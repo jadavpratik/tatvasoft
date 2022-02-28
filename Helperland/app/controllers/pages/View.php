@@ -93,8 +93,13 @@ class View{
 	}
 
     // PAGE-NOT-FOUND...
-	public function page_not_found(Request $req, Response $res){
+	public function not_found_page(Request $req, Response $res){
 		$res->render('static/page-not-found');
+	}
+
+    // PAGE-NOT-FOUND-JSON...
+	public function not_found_json(Request $req, Response $res){
+		$res->status(404)->json(['error'=>'No route availabe!']);
 	}
 
 }

@@ -108,15 +108,15 @@ class Route{
 				$middleware = $callback1;
 				$controller = $callback2;
 				if(call_user_func($middleware)){
-					// IF MIDDLEWARE RETURN TRUE THEN CALL CONTROLLER...
 					call_user_func_array($controller, [self::$req, self::$res]);
+					exit();
 				}
 			}
 			else{
 				$controller = $callback1;
 				call_user_func_array($controller, [self::$req, self::$res]);
+				exit();
 			}
-			exit();	
 		}
 	}
 

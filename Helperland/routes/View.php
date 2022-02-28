@@ -34,4 +34,8 @@ Route::get('/service-provider/signup', $alreadyLogged, [new View(), 'sp_signup']
 Route::get('/service-provider', $isServiceProvider, [new View(), 'sp_profile']);
 
 // -----------LAST-METHOD-----------------
-Route::get('/*', [new View(), 'page_not_found']);
+Route::get('/*', [new View(), 'not_found_page']);
+Route::post('/*', [new View(), 'not_found_json']);
+Route::put('/*', [new View(), 'not_found_json']);
+Route::delete('/*', [new View(), 'not_found_json']);
+Route::patch('/*', [new View(), 'not_found_json']);
