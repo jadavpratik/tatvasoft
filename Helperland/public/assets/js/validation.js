@@ -21,6 +21,7 @@ let today = `${yyyy}-${mm}-${dd}`;
 
 
 
+// ------------------------FIRST-NAME-VALIDATION--------------------
 function firstname_validation(){
     const input_value = $('[name="firstname"]').val();
     if(input_value==''){
@@ -166,9 +167,6 @@ function cpassword_validation(){
     }
 }
 
-
-
-
 // ------------------------LOGIN-EMAIL-ADDRESS-VALIDATION--------------------
 function login_email_validation(){
     const input_value = $('[name="login_email"]').val();
@@ -203,9 +201,7 @@ function login_password_validation(){
     }
 }
 
-
-
-
+// ------------------------CHANGE-PASSWORD-OLD-VALIDATON--------------------
 function change_password_old_validation(){
     const input_value = $('[name="change_password_old"]').val();
     if(input_value==''){
@@ -222,6 +218,7 @@ function change_password_old_validation(){
     }
 }
 
+// ------------------------CHANGE-PASSWORD-NEW-VALIDATON--------------------
 function change_password_new_validation(){
     const input_value = $('[name="change_password_new"]').val();
     if(input_value==''){
@@ -239,6 +236,7 @@ function change_password_new_validation(){
     
 }
 
+// ------------------------CHANGE-PASSWORD-CONFIRM-VALIDATON--------------------
 function change_password_confirm_validation(){
     const password = $('[name="change_password_new"]').val();
     const cpassword = $('[name="change_password_confirm"]').val();
@@ -260,7 +258,6 @@ function change_password_confirm_validation(){
     }    
 }
 
-
 // ------------------------FORGOT-PASSWORD-EMAIL-ADDRESS-VALIDATION--------------------
 function forgot_password_email_validation(){
     const input_value = $('[name="forgot_password_email"]').val();
@@ -277,7 +274,6 @@ function forgot_password_email_validation(){
         return true;
     }
 }
-
 
 // ------------------------OTP-VALIDATON--------------------
 function otp_validation(){
@@ -306,7 +302,6 @@ function digits_count(n) {
     }  
     return count;
 }
-
 
 // ------------------------SET_NEW_PASSWORD-VALIDATON--------------------
 function set_new_password_validation(){
@@ -346,7 +341,6 @@ function set_new_cpassword_validation(){
         return true;
     }
 }
-
 
 // ------------------------SETUP-SERVICE-POSTAL-CODE-VALIDATON--------------------
 function setup_service_postal_code_validation(){
@@ -433,7 +427,7 @@ function address_form_street_name_validation(){
     }
 }
 
-// ------------------------HOUSE-NUMBER-VALIDATON--------------------
+// ------------------------ADDRESS-FORM-HOUSE-NUMBER-VALIDATON--------------------
 function address_form_house_number_validation(){
     const input_value = $('[name="address_form_house_number"]').val();
     if(input_value==''){
@@ -471,7 +465,7 @@ function address_form_postal_code_validation(){
 function address_form_city_validation(){
     const input_value = $('[name="address_form_city"]').val();
     if(input_value==''){
-        $('[name="address_form_city"]').next().removeClass('d_none').children().html('Please Enter CityName !');
+        $('[name="address_form_city"]').next().removeClass('d_none').children().html('Please Enter City Name !');
         return false;
     }
     else if(TextRegEx.test(input_value)==false){
@@ -488,20 +482,20 @@ function address_form_city_validation(){
 function address_form_phone_validation(){
     const input_value = $('[name="address_form_phone"]').val();
     if(input_value==''){
-        $('[name="address_form_phone"]').next().removeClass('d_none').children().html('Please Enter Phone Number !');
+        $('[name="address_form_phone"]').parent().next().removeClass('d_none').children().html('Please Enter Phone Number !');
         return false;
     }
     else if(PhoneRegEx.test(input_value)==false){
-        $('[name="address_form_phone"]').next().removeClass('d_none').children().html('Phone Number Should be a 10 Digits !');
+        $('[name="address_form_phone"]').parent().next().removeClass('d_none').children().html('Phone Number Should be a 10 Digits !');
         return false;
     }
     else{
-        $('[name="address_form_phone"]').next().addClass('d_none').children().html('');
+        $('[name="address_form_phone"]').parent().next().addClass('d_none').children().html('');
         return true;
     }
 }
 
-// ------------------------ADDRESS-FORM-PHONE-VALIDATON--------------------
+// ------------------------BOOK-SERVICES-ADDRESS-VALIDATON--------------------
 function book_service_address_validation(){
     const input_value = $('[name="service_booking_address"]:checked').val();
     if(input_value==undefined || input_value==""){
@@ -514,6 +508,193 @@ function book_service_address_validation(){
     }
 }
 
+
+// ------------------------ADD-ADDRESS-STREET-NAME-VALIDATON--------------------
+function add_address_street_name_validation(){
+    const input_value = $('[name="add_address_street_name"]').val();
+    if(input_value==''){
+        $('[name="add_address_street_name"]').next().removeClass('d_none').children().html('Please Enter Street Name !');
+        return false;
+    }
+    else if(TextRegEx.test(input_value)==false){
+        $('[name="add_address_street_name"]').next().removeClass('d_none').children().html('Enter a Text in Valid Format !');
+        return false;
+    }
+    else{
+        $('[name="add_address_street_name"]').next().addClass('d_none').children().html('');
+        return true;
+    }
+}
+
+// ------------------------ADD-ADDRESS-STREET-NAME-VALIDATON--------------------
+function add_address_street_name_validation(){
+    const input_value = $('[name="add_address_street_name"]').val();
+    if(input_value==''){
+        $('[name="add_address_street_name"]').next().removeClass('d_none').children().html('Please Enter Street Name !');
+        return false;
+    }
+    else if(TextRegEx.test(input_value)==false){
+        $('[name="add_address_street_name"]').next().removeClass('d_none').children().html('Enter a Text in Valid Format !');
+        return false;
+    }
+    else{
+        $('[name="add_address_street_name"]').next().addClass('d_none').children().html('');
+        return true;
+    }
+}
+
+// ------------------------ADD-ADDRESS-HOUSE-NUMBER-VALIDATON--------------------
+function add_address_house_number_validation(){
+    const input_value = $('[name="add_address_house_number"]').val();
+    if(input_value==''){
+        $('[name="add_address_house_number"]').next().removeClass('d_none').children().html('Please Enter a House Number or (Enter 0) !');
+        return false;
+    }
+    else if(HouseNumberRegEx.test(input_value)==false){
+        $('[name="add_address_house_number"]').next().removeClass('d_none').children().html('House Number Should be Numbers !');
+        return false;
+    }
+    else{
+        $('[name="add_address_house_number"]').next().addClass('d_none').children().html('');
+        return true;
+    }
+}
+
+// ------------------------ADD-ADDRESS-POSTAL-CODE-VALIDATON--------------------
+function add_address_postal_code_validation(){
+    const input_value = $('[name="add_address_postal_code"]').val();
+    if(input_value==''){
+        $('[name="add_address_postal_code"]').next().removeClass('d_none').children().html('Please Enter Postal Code !');
+        return false;
+    }
+    else if(PostalCodeRegEx.test(input_value)==false){
+        $('[name="add_address_postal_code"]').next().removeClass('d_none').children().html('Postal Code Shoud be a Min:5 or Max:10 Digits !');
+        return false;
+    }
+    else{
+        $('[name="add_address_postal_code"]').next().addClass('d_none').children().html('');
+        return true;
+    }
+}
+
+// ------------------------ADD-ADDRESS-CITY-VALIDATON--------------------
+function add_address_city_validation(){
+    const input_value = $('[name="add_address_city"]').val();
+    if(input_value==''){
+        $('[name="add_address_city"]').next().removeClass('d_none').children().html('Please Enter City Name !');
+        return false;
+    }
+    else if(TextRegEx.test(input_value)==false){
+        $('[name="add_address_city"]').next().removeClass('d_none').children().html('Enter a Text in Valid Format !');
+        return false;
+    }
+    else{
+        $('[name="add_address_city"]').next().addClass('d_none').children().html('');
+        return true;
+    }
+}
+
+// ------------------------ADD-ADDRESS-PHONE-VALIDATON--------------------
+function add_address_phone_validation(){
+    const input_value = $('[name="add_address_phone"]').val();
+    if(input_value==''){
+        $('[name="add_address_phone"]').parent().next().removeClass('d_none').children().html('Please Enter Phone Number !');
+        return false;
+    }
+    else if(PhoneRegEx.test(input_value)==false){
+        $('[name="add_address_phone"]').parent().next().removeClass('d_none').children().html('Phone Number Should be a 10 Digits !');
+        return false;
+    }
+    else{
+        $('[name="add_address_phone"]').parent().next().addClass('d_none').children().html('');
+        return true;
+    }
+}
+
+// ------------------------EDIT-ADDRESS-STREET-NAME-VALIDATON--------------------
+function edit_address_street_name_validation(){
+    const input_value = $('[name="edit_address_street_name"]').val();
+    if(input_value==''){
+        $('[name="edit_address_street_name"]').next().removeClass('d_none').children().html('Please Enter Street Name !');
+        return false;
+    }
+    else if(TextRegEx.test(input_value)==false){
+        $('[name="edit_address_street_name"]').next().removeClass('d_none').children().html('Enter a Text in Valid Format !');
+        return false;
+    }
+    else{
+        $('[name="edit_address_street_name"]').next().addClass('d_none').children().html('');
+        return true;
+    }
+}
+
+// ------------------------EDIT-ADDRESS-HOUSE-NUMBER-VALIDATON--------------------
+function edit_address_house_number_validation(){
+    const input_value = $('[name="edit_address_house_number"]').val();
+    if(input_value==''){
+        $('[name="edit_address_house_number"]').next().removeClass('d_none').children().html('Please Enter a House Number or (Enter 0) !');
+        return false;
+    }
+    else if(HouseNumberRegEx.test(input_value)==false){
+        $('[name="edit_address_house_number"]').next().removeClass('d_none').children().html('House Number Should be Numbers !');
+        return false;
+    }
+    else{
+        $('[name="edit_address_house_number"]').next().addClass('d_none').children().html('');
+        return true;
+    }
+}
+
+// ------------------------EDIT-ADDRESS-POSTAL-CODE-VALIDATON--------------------
+function edit_address_postal_code_validation(){
+    const input_value = $('[name="edit_address_postal_code"]').val();
+    if(input_value==''){
+        $('[name="edit_address_postal_code"]').next().removeClass('d_none').children().html('Please Enter Postal Code !');
+        return false;
+    }
+    else if(PostalCodeRegEx.test(input_value)==false){
+        $('[name="edit_address_postal_code"]').next().removeClass('d_none').children().html('Postal Code Shoud be a Min:5 or Max:10 Digits !');
+        return false;
+    }
+    else{
+        $('[name="edit_address_postal_code"]').next().addClass('d_none').children().html('');
+        return true;
+    }
+}
+
+// ------------------------EDIT-ADDRESS-CITY-VALIDATON--------------------
+function edit_address_city_validation(){
+    const input_value = $('[name="edit_address_city"]').val();
+    if(input_value==''){
+        $('[name="edit_address_city"]').next().removeClass('d_none').children().html('Please Enter City Name !');
+        return false;
+    }
+    else if(TextRegEx.test(input_value)==false){
+        $('[name="edit_address_city"]').next().removeClass('d_none').children().html('Enter a Text in Valid Format !');
+        return false;
+    }
+    else{
+        $('[name="edit_address_city"]').next().addClass('d_none').children().html('');
+        return true;
+    }
+}
+
+// ------------------------EDIT-ADDRESS-PHONE-VALIDATON--------------------
+function edit_address_phone_validation(){
+    const input_value = $('[name="edit_address_phone"]').val();
+    if(input_value==''){
+        $('[name="edit_address_phone"]').parent().next().removeClass('d_none').children().html('Please Enter Phone Number !');
+        return false;
+    }
+    else if(PhoneRegEx.test(input_value)==false){
+        $('[name="edit_address_phone"]').parent().next().removeClass('d_none').children().html('Phone Number Should be a 10 Digits !');
+        return false;
+    }
+    else{
+        $('[name="edit_address_phone"]').parent().next().addClass('d_none').children().html('');
+        return true;
+    }
+}
 
 
 // -------------------CONTACTUS, SIGNUP, PROFILE---------------------
@@ -631,6 +812,72 @@ $('[name="address_form_phone"]').focusout(function(){
     address_form_phone_validation();
 });
 
+// ---------------------ADD ADDRESS -POPUP-MODEL-------------------
+$('[name="add_address_street_name"]').focusout(function(){
+    add_address_street_name_validation();
+});
+
+$('[name="add_address_house_number"]').focusout(function(){
+    add_address_house_number_validation();
+});
+
+$('[name="add_address_postal_code"]').focusout(function(){
+    add_address_postal_code_validation();
+});
+
+$('[name="add_address_city"]').focusout(function(){
+    add_address_city_validation();
+});
+
+$('[name="add_address_phone"]').focusout(function(){
+    add_address_phone_validation();
+});
+
+
+
+// ---------------------EDIT ADDRESS -POPUP-MODEL-------------------
+$('[name="edit_address_street_name"]').focusout(function(){
+    edit_address_street_name_validation();
+});
+
+$('[name="edit_address_house_number"]').focusout(function(){
+    edit_address_house_number_validation();
+});
+
+$('[name="edit_address_postal_code"]').focusout(function(){
+    edit_address_postal_code_validation();
+});
+
+$('[name="edit_address_city"]').focusout(function(){
+    edit_address_city_validation();
+});
+
+$('[name="edit_address_phone"]').focusout(function(){
+    edit_address_phone_validation();
+});
+
+function dob_validation(){
+    const input_val = $('[name="dob"]').val();    
+    const user = new Date(input_val);
+    if(input_val==""){
+        $('[name="dob"]').next().removeClass('d_none').children().html('Please Select Date Of Birth !')
+        return false;
+    }
+    else if(user.getTime() > date.getTime()){
+        $('[name="dob"]').next().removeClass('d_none').children().html('Please Select a Valid Date !')
+        return false;
+    }
+    else{
+        $('[name="dob"]').next().addClass('d_none').children().html('')
+        return true;
+    }
+}
+
+$('[name="dob"]').focusout(function(){
+    dob_validation();
+});
+
+$('[name="dob"]').attr('max', today);
 
 
 
@@ -643,50 +890,4 @@ $('[name="address_form_phone"]').focusout(function(){
 
 
 
-
-
-
-
-
-
-
-// ********************MODULE FUNCTION CAN'T ACCESS OUTSIDE THIS FILE**********************...
-// // CONTACT, SIGNUP & PROFILE....
-// import { firstname_validation, lastname_validation, 
-//          phone_validation, email_validation,
-//          message_validation, subject_validation, language_validation,
-//          password_validation, cpassword_validation } from './validation/profile.js';
-
-// //  CHANGE PASSWORD...
-// import { change_password_old_validation, 
-//          change_password_new_validation, 
-//          change_password_confirm_validation } from './validation/change_password.js';
-        
-// // BOOK SERVICE...
-// import{ setup_service_postal_code_validation,
-//         schedule_date_validation, 
-//         schedule_time_validation,
-//         address_form_street_name_validation,
-//         address_form_house_number_validation,
-//         address_form_postal_code_validation,
-//         address_form_city_validation,
-//         address_form_phone_validation,
-//         book_service_address_validation } from './validation/book_service.js';
-
-// // LOGIN...
-// import { login_email_validation, 
-//          login_password_validation } from './validation/login.js';        
-
-// // FORGOT PASSWORD...
-// import { forgot_password_email_validation } from './validation/forgot_password.js';
-
-// // OTP VALIDATON...
-// import { otp_validation } from './validation/otp.js';
-         
-// // SET NEW PASSWORD...
-// import { set_new_cpassword_validation, 
-//          set_new_password_validation } from './validation/set_new_password.js';        
-
-// // DATE...
-// import { today } from './validation/date.js';         
 

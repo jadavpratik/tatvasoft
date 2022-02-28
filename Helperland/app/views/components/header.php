@@ -21,6 +21,18 @@
 		let proxy_url = `<?= BASE_URL; ?>`; 
 		// STORE THE GLOBAL DATA...
 		let state = {};
+		// CONVERT FORM TO JSON DATA...
+		function form_to_json(arr){
+			let json = {};
+			const temp = JSON.parse(JSON.stringify(arr));
+            for(i of temp){
+                if(i.name=='language')
+                    json[i.name] = parseInt(i.value);
+                else
+                    json[i.name] = i.value;
+            };            
+			return json;
+		}
 	</script>
 </head>
 <body>

@@ -26,7 +26,10 @@
 	}
 
 	// RETURN COMPONENTS LIKE HEADER, FOOTER, MODELS ETC...
-	function component($parameter1, $parameter2=false){
+	function component($parameter1, $parameter2=false, $data=false){
+		if(!empty($data))
+			extract($data);
+
 		if($parameter2!=false){
 			// WE CAN CHANGE THE COMPONENT PATH IN VIEWS Directory...
 			$path = $parameter1;

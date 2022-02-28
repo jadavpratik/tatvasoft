@@ -29,6 +29,9 @@ class Validation{
 				$temp[$key] = [];    
 				// LOOP FOR ALL VALIDATION FOR SINGLE INPUT FIELDS...
 				foreach($validation as $i){
+					if($i=='new-password'){
+						self::$password = $body->$key;
+					}
 					self::checkCriteria($key, $value, $i);
 					if(isset(self::$error[$key])){
 						array_push($temp[$key], self::$error[$key]);

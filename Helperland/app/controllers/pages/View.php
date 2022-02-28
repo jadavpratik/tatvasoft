@@ -6,6 +6,8 @@ use core\Request;
 use core\Response;
 
 use app\models\User;
+use app\models\UserAddress;
+
 
 class View{
 
@@ -63,7 +65,12 @@ class View{
 
     // CUSTOMER-DASHBOARD...
     public function customer_dashboard(Request $req, Response $res){
-        $res->render('customer/index');
+        $userId = session('userId');
+        $user = new User();
+        $userAddress = new UserAddress();
+        $details = $user->columns(['FirstName', 'LastName', 'Email', 'Mobile', 'DateOfBirth', 'LanguageId'])->where('UserId', '=', $userId)->read();
+        $address = $userAddress->where('UserId', '=', $userId)->read();
+        $res->render('customer/index', ['details'=>$details[0], 'address'=>$address]);
     }
 
     // **********SERVICE-PROVIDER**********
@@ -73,7 +80,7 @@ class View{
         $res->render('service-provider/signup');
     }
 
-    // SP-PROFILE...
+    // SP-DASHBOARD...
     public function sp_dashboard(Request $req, Response $res){
         $res->render('service-provider/index');
     }

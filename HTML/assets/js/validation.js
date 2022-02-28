@@ -482,15 +482,15 @@ function address_form_city_validation(){
 function address_form_phone_validation(){
     const input_value = $('[name="address_form_phone"]').val();
     if(input_value==''){
-        $('[name="address_form_phone"]').next().removeClass('d_none').children().html('Please Enter Phone Number !');
+        $('[name="address_form_phone"]').parent().next().removeClass('d_none').children().html('Please Enter Phone Number !');
         return false;
     }
     else if(PhoneRegEx.test(input_value)==false){
-        $('[name="address_form_phone"]').next().removeClass('d_none').children().html('Phone Number Should be a 10 Digits !');
+        $('[name="address_form_phone"]').parent().next().removeClass('d_none').children().html('Phone Number Should be a 10 Digits !');
         return false;
     }
     else{
-        $('[name="address_form_phone"]').next().addClass('d_none').children().html('');
+        $('[name="address_form_phone"]').parent().next().addClass('d_none').children().html('');
         return true;
     }
 }
@@ -598,15 +598,15 @@ function add_address_city_validation(){
 function add_address_phone_validation(){
     const input_value = $('[name="add_address_phone"]').val();
     if(input_value==''){
-        $('[name="add_address_phone"]').next().removeClass('d_none').children().html('Please Enter Phone Number !');
+        $('[name="add_address_phone"]').parent().next().removeClass('d_none').children().html('Please Enter Phone Number !');
         return false;
     }
     else if(PhoneRegEx.test(input_value)==false){
-        $('[name="add_address_phone"]').next().removeClass('d_none').children().html('Phone Number Should be a 10 Digits !');
+        $('[name="add_address_phone"]').parent().next().removeClass('d_none').children().html('Phone Number Should be a 10 Digits !');
         return false;
     }
     else{
-        $('[name="add_address_phone"]').next().addClass('d_none').children().html('');
+        $('[name="add_address_phone"]').parent().next().addClass('d_none').children().html('');
         return true;
     }
 }
@@ -683,15 +683,15 @@ function edit_address_city_validation(){
 function edit_address_phone_validation(){
     const input_value = $('[name="edit_address_phone"]').val();
     if(input_value==''){
-        $('[name="edit_address_phone"]').next().removeClass('d_none').children().html('Please Enter Phone Number !');
+        $('[name="edit_address_phone"]').parent().next().removeClass('d_none').children().html('Please Enter Phone Number !');
         return false;
     }
     else if(PhoneRegEx.test(input_value)==false){
-        $('[name="edit_address_phone"]').next().removeClass('d_none').children().html('Phone Number Should be a 10 Digits !');
+        $('[name="edit_address_phone"]').parent().next().removeClass('d_none').children().html('Phone Number Should be a 10 Digits !');
         return false;
     }
     else{
-        $('[name="edit_address_phone"]').next().addClass('d_none').children().html('');
+        $('[name="edit_address_phone"]').parent().next().addClass('d_none').children().html('');
         return true;
     }
 }
@@ -856,6 +856,28 @@ $('[name="edit_address_phone"]').focusout(function(){
     edit_address_phone_validation();
 });
 
+function dob_validation(){
+    const input_val = $('[name="dob"]').val();    
+    const user = new Date(input_val);
+    if(input_val==""){
+        $('[name="dob"]').next().removeClass('d_none').children().html('Please Select Date Of Birth !')
+        return false;
+    }
+    else if(user.getTime() > date.getTime()){
+        $('[name="dob"]').next().removeClass('d_none').children().html('Please Select a Valid Date !')
+        return false;
+    }
+    else{
+        $('[name="dob"]').next().addClass('d_none').children().html('')
+        return true;
+    }
+}
+
+$('[name="dob"]').focusout(function(){
+    dob_validation();
+});
+
+$('[name="dob"]').attr('max', today);
 
 
 
@@ -868,48 +890,4 @@ $('[name="edit_address_phone"]').focusout(function(){
 
 
 
-
-
-
-
-
-// ********************MODULE FUNCTION CAN'T ACCESS OUTSIDE THIS FILE**********************...
-// // CONTACT, SIGNUP & PROFILE....
-// import { firstname_validation, lastname_validation, 
-//          phone_validation, email_validation,
-//          message_validation, subject_validation, language_validation,
-//          password_validation, cpassword_validation } from './validation/profile.js';
-
-// //  CHANGE PASSWORD...
-// import { change_password_old_validation, 
-//          change_password_new_validation, 
-//          change_password_confirm_validation } from './validation/change_password.js';
-        
-// // BOOK SERVICE...
-// import{ setup_service_postal_code_validation,
-//         schedule_date_validation, 
-//         schedule_time_validation,
-//         address_form_street_name_validation,
-//         address_form_house_number_validation,
-//         address_form_postal_code_validation,
-//         address_form_city_validation,
-//         address_form_phone_validation,
-//         book_service_address_validation } from './validation/book_service.js';
-
-// // LOGIN...
-// import { login_email_validation, 
-//          login_password_validation } from './validation/login.js';        
-
-// // FORGOT PASSWORD...
-// import { forgot_password_email_validation } from './validation/forgot_password.js';
-
-// // OTP VALIDATON...
-// import { otp_validation } from './validation/otp.js';
-         
-// // SET NEW PASSWORD...
-// import { set_new_cpassword_validation, 
-//          set_new_password_validation } from './validation/set_new_password.js';        
-
-// // DATE...
-// import { today } from './validation/date.js';         
 

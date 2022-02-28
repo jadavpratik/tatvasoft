@@ -10,18 +10,20 @@
     <?php } ?>
 
     <div class="sidenav_main">
-        <!-- GUEST_USER -->
-        <a href="<?= url('/book-now'); ?>">Book Now</a>
-        <a href="<?= url('/prices'); ?>">Prices & Services</a>
-        <a href="<?= url('/guarantee'); ?>">Guarantee</a>
-        <a href="<?= url('/blog'); ?>">Blog</a>
-        <a href="<?= url('/contact'); ?>">Contact</a>
-        <a href="javascript:void(0);" onclick="open_model('login')">Login</a>
-        <a href="<?= url('/service-provider/signup'); ?>">Become a Helper!</a>
+
+        <?php if(session('isLogged')!==true){ ?>
+            <!-- GUEST_USER -->
+            <a href="<?= url('/book-now'); ?>">Book Now</a>
+            <a href="<?= url('/prices'); ?>">Prices & Services</a>
+            <a href="<?= url('/guarantee'); ?>">Guarantee</a>
+            <a href="<?= url('/blog'); ?>">Blog</a>
+            <a href="<?= url('/contact'); ?>">Contact</a>
+            <a href="javascript:void(0);" onclick="open_model('login')">Login</a>
+            <a href="<?= url('/service-provider/signup'); ?>">Become a Helper!</a>
+        <?php } ?>
 
 
         <?php if(session('isLogged')==true){ ?>
-
             <!-- CUSTOMER -->
             <?php if(session('userRole')=='customer'){ ?>
                 <a href="javascript:void(0);">Overview</a>
@@ -56,7 +58,9 @@
         <!-- COMMAN_LINKS FOR LOGGED_USER -->
         <div class="sidenav_comman_links">
             <!-- BOOK NOW FOR CUSTOMER -->
-            <a href="<?= url('/book-now'); ?>">Book Now</a>
+            <?php if(session('userRole')=='customer'){ ?>
+                <a href="<?= url('/book-now'); ?>">Book Now</a>
+            <?php } ?>
             <a href="<?= url('/prices'); ?>">Prices & Services</a>
             <a href="<?= url('/guarantee'); ?>">Guarantee</a>
             <a href="<?= url('/blog'); ?>">Blog</a>

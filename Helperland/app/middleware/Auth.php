@@ -74,6 +74,17 @@ class Auth{
         }
     }
 
+    // IS LOGGED...
+    public function isLogged(){
+        if(session('isLogged')){
+            return true;
+        }
+        else{
+            $this->res->status(403)->json(['error'=>'You are not allowed to access this page']);
+            exit();
+        }
+    }
+
     // OPEN LOGIN FORM...
     public function openLoginForm(){
         session('openLoginForm', true);

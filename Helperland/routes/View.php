@@ -28,7 +28,6 @@ Route::get('/forgot-password', $alreadyLogged, [new View(), 'forgot_password']);
 Route::get('/customer/signup', $alreadyLogged, [new View(), 'customer_signup']);
 Route::get('/book-now', $isCustomer, [new View(), 'booknow']);
 Route::get('/customer', $isCustomer, [new View(), 'customer_dashboard']);
-Route::get('/customer/my-setting', $isCustomer, [new View(), 'custom_my_setting']);
 
 // ----------SERVICE-PROVDER----------
 Route::get('/service-provider/signup', $alreadyLogged, [new View(), 'sp_signup']);

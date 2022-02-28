@@ -208,4 +208,43 @@ class Account{
 		]);
 		$res->status(200)->json(['message'=>'Password Updated Successfully.']);
 	}    
+
+	// -----------------------------CHANGE-PASSWORD------------------------------------
+	public function change_password(Request $req, Response $res){
+		/* 
+			**********BUG**********
+			CONFIRM-PASSWORD===PASSWORD 
+			CONFIRM-PASSWORD===PASSWORD
+			SO WE ADDED NEW KEY AS FLAG NEW-PASSWORD
+		*/
+		Validation::check($req->body, [
+			'change_password_old' => ['required'],
+			'change_password_new' => ['password', 'new-password'],
+			'change_password_confirm' => ['confirm-password']
+		]);
+
+		$userId = session('userId');
+
+		$user = new User();
+		$data = $user->where('UserId', '=', $userId)->read();
+
+		// ALL PASSWORD...
+		$dbPassword = $data[0]->Password;
+		$oldPassword = $req->body->change_password_old;
+		$newPassword = $req->body->change_password_new;
+		$confirmPassword = $req->body->change_password_confirm;
+		$hash = Hash::create($confirmPassword);
+
+		if(Hash::verify($oldPassword, $dbPassword)){
+			$user->where('UserId', '=', $userId)->update([
+				'UserId' => $userId,
+				'Password' => $hash,
+			]);	
+			$res->status(200)->json(['message'=>'Password Change Successfully.']);	
+		}
+		else{
+			$res->status(401)->json(['message'=>'Old password is wrong!']);
+		}
+	}    
+
 }

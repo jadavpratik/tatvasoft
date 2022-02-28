@@ -21,11 +21,11 @@
 </head>
 <body>
 
-    <div class="model active_model">
+    <div class="model">
         <!-- MODEL_CLOSE -->
         <button class="model_close_btn">&times;</button>
 		<!-- EDIT_ADDRESS -->
-		<div class="popup_main" id="add_address_popup">
+		<div class="popup_main d_none" id="add_address_popup">
 			<p class="popup_title">Add Address</p>
 			<div class="form_group">
 				<label class="label" for="">Steet Name</label>
@@ -323,22 +323,9 @@
                                                     <p>Validation Message!</p>
                                                 </div>
                                             </div>
-                                            <div class="date_of_birth">
+                                            <div class="label_input">
                                                 <label class="label" for="">Date of Birth</label>
-                                                <div>
-                                                    <select class="select" name="" id="">
-                                                        <option value="">1</option>
-                                                        <option value="">1</option>
-                                                    </select>
-                                                    <select class="select" name="" id="">
-                                                        <option value="">March</option>
-                                                        <option value="">April</option>
-                                                    </select>
-                                                    <select class="select" name="" id="">
-                                                        <option value="">2000</option>
-                                                        <option value="">2001</option>
-                                                    </select>
-                                                </div><!-- END_INNER_DIV -->
+                                                <input class="input" type="date" name="dob">
                                                 <div class="validation_message d_none">
                                                     <p>Validation Message!</p>
                                                 </div>

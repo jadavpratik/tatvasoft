@@ -1,6 +1,0 @@
-<?php
-
-use core\Route;
-
-
-

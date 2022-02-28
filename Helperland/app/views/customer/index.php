@@ -27,7 +27,7 @@
 
             <!-- PROFILE -->
             <div class="table_tab_content">
-                <?= component('customer/', 'profile'); ?>
+                <?= component('customer/', 'profile', ['details'=>$details, 'address'=>$address]); ?>
             </div>
             
             <!-- CUSTOMER_SERVICE_REQUESTS -->
