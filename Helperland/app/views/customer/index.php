@@ -13,7 +13,7 @@
         <div class="table_tab_left">
             <!-- TAB AND TABLE LIST -->
             <div class="table_tab_list">
-                <a href="javascript:void(0);" class="table_tab_btn">Dashboard</a>
+                <a href="javascript:void(0);" class="table_tab_btn active_table_tab">Dashboard</a>
                 <a href="javascript:void(0);" class="table_tab_btn">Service History</a>
                 <a href="javascript:void(0);" class="table_tab_btn">Service Schedule</a>
                 <a href="javascript:void(0);" class="table_tab_btn">Favourite Pros</a>
@@ -26,12 +26,12 @@
         <div class="table_tab_right">
 
             <!-- PROFILE -->
-            <div class="table_tab_content">
-                <?= component('customer/', 'profile', ['details'=>$details, 'address'=>$address]); ?>
+            <div class="table_tab_content d_none">
+                <?= component('customer/', 'profile'); ?>
             </div>
             
             <!-- CUSTOMER_SERVICE_REQUESTS -->
-            <div class="table_tab_content d_none">
+            <div class="table_tab_content">
                 <?= component('customer/', 'current-service-requests'); ?>
             </div>
 

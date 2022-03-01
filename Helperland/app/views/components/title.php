@@ -1,7 +1,7 @@
 <?php
 
 	function title(){
-		$title = 'Index';
+		$title = 'Helperland';
 		switch(page_url()){
 			case '/' :
 				$title = 'Home'; 
@@ -27,6 +27,9 @@
 			case '/guarantee' :
 				$title = 'Our Gurantee'; 
 				break;
-		}
+			case '/customer' :
+				$title = 'Customer'; 
+				break;
+					}
 		echo $title;
 	}

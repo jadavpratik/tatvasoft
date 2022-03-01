@@ -69,8 +69,10 @@
 	<?php } ?>
 
 	<!-- --------------------------------------------------- -->
-					<!-- ALL SCRIPT FILES... -->
+					<!-- ALL SCRIPT FILES -->
 	<!-- --------------------------------------------------- -->
+	<!-- DATATABLE -->
+	<script src="//cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
 	<!-- AOS -->
 	<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 	<!-- TITL-JS -->

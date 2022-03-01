@@ -239,6 +239,7 @@ class Account{
 			$user->where('UserId', '=', $userId)->update([
 				'UserId' => $userId,
 				'Password' => $hash,
+				'ModifiedDate' => timestamp(),
 			]);	
 			$res->status(200)->json(['message'=>'Password Change Successfully.']);	
 		}

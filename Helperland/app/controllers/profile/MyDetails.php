@@ -11,7 +11,22 @@ use app\models\User;
 
 class MyDetails{
 
-    public function update(Request $req, Response $res){
+    // ----------GET-DETAILS----------
+    public function get_details(Request $req, Response $res){
+        $userId = session('userId');
+        $user = new User();
+        $details = $user->where('UserId', '=', $userId)->read();
+        if(is_array($details)){
+            // PASSWORD IS ALSO COMING FROM DATABASE (PENDING)...
+            $res->status(200)->json($details[0]);
+        }
+        else{
+            $res->status(400)->json(['message'=> 'No details available!']);            
+        }
+    }
+
+    // ----------UPDATE-DETAILS----------
+    public function update_details(Request $req, Response $res){
 
         Validation::check($req->body, [
             'firstname' => ['text', 'min:3', 'max:20'],
@@ -32,7 +47,7 @@ class MyDetails{
                 'LastName' => $req->body->lastname,
                 'Email' => $req->body->email,
                 'Mobile' => $req->body->phone,
-                'LanguageId' => $this->languageNumber($req->body->language),
+                'LanguageId' => $req->body->language,
                 'DateOfBirth' => $req->body->dob,
                 'ModifiedDate'=> timestamp()
             ]);    
@@ -43,15 +58,4 @@ class MyDetails{
         }
 
     }
-
-
-    public function languageNumber($lang){
-        switch($lang){
-            case 'english':
-                return 1;
-            case 'hindi':
-                return 2;
-        }
-    }
-
 }

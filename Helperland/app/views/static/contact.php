@@ -151,7 +151,7 @@
 
 		if(validation){
 			$.ajax({
-				url : `${proxy_url}/contact`,
+				url : `${BASE_URL}/contact`,
 				type : 'POST',
 				data : data,
 				processData : false,

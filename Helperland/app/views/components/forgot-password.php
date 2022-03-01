@@ -36,7 +36,7 @@
             state.forgot_password_email = email;
             const data = JSON.stringify({email});
             $.ajax({
-                url : `${proxy_url}/forgot-password`,
+                url : `${BASE_URL}/forgot-password`,
                 method : 'POST',
                 contentType : 'application/json',
                 data : data,

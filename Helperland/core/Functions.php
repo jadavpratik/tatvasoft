@@ -27,6 +27,7 @@
 
 	// RETURN COMPONENTS LIKE HEADER, FOOTER, MODELS ETC...
 	function component($parameter1, $parameter2=false, $data=false){
+		// PASS COMPONENTS PARAMETERS...
 		if(!empty($data))
 			extract($data);
 

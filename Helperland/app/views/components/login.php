@@ -59,7 +59,7 @@
 
         if(validation){
             $.ajax({
-                url : `${proxy_url}/login`,
+                url : `${BASE_URL}/login`,
                 method : 'POST',
                 data : $('.login_popup_form').serialize(),
                 success : function(res){
@@ -69,13 +69,13 @@
                             $('.login_popup_form').trigger('reset');
                             switch(result.role){
                                 case 'customer':
-                                    window.location.replace(`${proxy_url}/customer`);
+                                    window.location.replace(`${BASE_URL}/customer`);
                                     break;
                                 case 'service-provider':
-                                    window.location.replace(`${proxy_url}/service-provider`);
+                                    window.location.replace(`${BASE_URL}/service-provider`);
                                     break;
                                 case 'admin':
-                                    window.location.replace(`${proxy_url}/admin`);
+                                    window.location.replace(`${BASE_URL}/admin`);
                                     break;
                             }
                         }

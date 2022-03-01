@@ -145,7 +145,7 @@
 
 		if(validation){
 			$.ajax({
-				url : `${proxy_url}/signup`,
+				url : `${BASE_URL}/signup`,
 				method : 'POST',
 				data : $('#sp_signup').serialize(),
 				success : function(res){

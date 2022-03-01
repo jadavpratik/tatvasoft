@@ -1,8 +1,9 @@
 <div class="customer_current_service_requests">
     <p>Current Service Requests</p>
-    <button class="add_new_service_request_btn">Add New Service Request</button>
+    <button class="add_new_service_request_btn" onclick="window.location.href='<?=url('/book-now')?>' ">Add New Service Request</button>
 </div>
-<table>
+
+<table id="current_service_requests_table">
     <thead>
         <tr>
             <th>Service Id</th>
@@ -82,3 +83,33 @@
         </tr>
     </tbody>
 </table>
+
+
+<script>
+    $(document).ready(()=>{
+        // const url = `https://jsonplaceholder.typicode.com/todos/`;
+        // const url = ;
+        let data = '';
+        $.ajax({
+            url : `${BASE_URL}/customer-current-service-requests`,
+            method : 'GET',
+            success : function(res){
+                console.log(res);
+            }
+        });
+        $('#current_service_requests_table').DataTable({
+            searching : false,
+            dom : 't<"datatable_bottom"lp>',
+            data : JSON.parse(res),
+            pagingType : 'full_numbers',
+            language : {
+                paginate : {
+                    first    :'<i class="fa-solid fa-backward-step"></i>',
+                    previous :'<i class="fas fa-angle-left">',  
+                    next     :'<i class="fas fa-angle-right">',
+                    last     :'<i class="fa-solid fa-forward-step"></i>'  
+                },
+            }
+        });
+    });
+</script>

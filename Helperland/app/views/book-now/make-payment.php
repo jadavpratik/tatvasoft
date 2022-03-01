@@ -46,7 +46,7 @@
     // SECTION-4-BTN-CLICK...
     $('#confirm_booking_submit_btn').click(function(){
         $.ajax({
-            url : `${proxy_url}/book-now`,
+            url : `${BASE_URL}/book-now`,
             method : 'POST',
             contentType : 'application/json',
             data : JSON.stringify(service_request),

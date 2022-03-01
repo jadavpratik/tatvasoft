@@ -47,7 +47,7 @@
 </div>
 
 
-<!-- ADD ADDRESS & EDIT OR UPDATE ADDRESS SCRIPT... -->
+<!-- ADD ADDRESS SCRIPT -->
 <script>
     $('#add_address_popup').submit((e)=>{
         e.preventDefault();
@@ -68,20 +68,20 @@
 
         if(validation){
             $.ajax({
-                url : `${proxy_url}/my-address`,
+                url : `${BASE_URL}/my-address`,
                 method : 'POST',
                 data : $('#add_address_popup').serialize(),
                 success : function(res){
                     if(res!=="" || res!==undefined){
                         try{
                             const result = JSON.parse(res);
-                            console.log(result.message);
                             Swal.fire({
-                                title : `${result.message}`,
+                                title : result.message,
                                 icon : 'success'
                             });
                             $('#add_address_popup').trigger('reset');
                             close_model();
+                            customerAddress();
                         }
                         catch(e){
                             Swal.fire({
@@ -96,14 +96,12 @@
                         const {responseText} = obj;
                         const error = JSON.parse(responseText);
                         Swal.fire({
-                            title : `${error.error}`,
+                            title : error.message,
                             icon : 'error'
                         });
                     }
                 }
             });
         }
-
-
     });
 </script>

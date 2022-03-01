@@ -24,7 +24,7 @@
             let data = JSON.stringify({postal_code});
 
             $.ajax({
-                url :  `${proxy_url}/check-postal-code`,
+                url :  `${BASE_URL}/check-postal-code`,
                 method : 'POST',
                 contentType : 'application/json',
                 data : data,

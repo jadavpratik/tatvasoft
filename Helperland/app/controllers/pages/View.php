@@ -65,12 +65,7 @@ class View{
 
     // CUSTOMER-DASHBOARD...
     public function customer_dashboard(Request $req, Response $res){
-        $userId = session('userId');
-        $user = new User();
-        $userAddress = new UserAddress();
-        $details = $user->columns(['FirstName', 'LastName', 'Email', 'Mobile', 'DateOfBirth', 'LanguageId'])->where('UserId', '=', $userId)->read();
-        $address = $userAddress->where('UserId', '=', $userId)->read();
-        $res->render('customer/index', ['details'=>$details[0], 'address'=>$address]);
+        $res->render('customer/index');
     }
 
     // **********SERVICE-PROVIDER**********
@@ -106,7 +101,7 @@ class View{
 
     // PAGE-NOT-FOUND-JSON...
 	public function not_found_json(Request $req, Response $res){
-		$res->status(404)->json(['error'=>'No route availabe!']);
+		$res->status(404)->json(['message'=>'No route availabe!']);
 	}
 
 }

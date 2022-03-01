@@ -1,6 +1,6 @@
 const input_arr = [`cabinet`, `fridge`, `oven`, `laundry`, `window`];
 // const img_path = `../assets/img/customer/book_service`;
-const img_path = `${proxy_url}/assets/img/customer/book_service`;
+const img_path = `${BASE_URL}/assets/img/customer/book_service`;
 
 
 for(let i=0; i<input_arr.length; i++){

@@ -41,12 +41,12 @@ class Auth{
                 return true;
             }
             else{
-                $this->res->status(403)->json(['error'=>'You are not allowed to access this page']);
+                $this->res->status(403)->json(['message'=>'You are not allowed to access this page']);
                 exit();
             }
         }
         else if($_SERVER['REQUEST_METHOD']!=='GET'){
-            $this->res->status(401)->json(['error'=>'You need to login!']);
+            $this->res->status(401)->json(['message'=>'You need to login!']);
             exit();
         }
         else{
@@ -61,12 +61,12 @@ class Auth{
                 return true;
             }
             else{
-                $this->res->status(403)->json(['error'=>'You are not allowed to access this page']);
+                $this->res->status(403)->json(['message'=>'You are not allowed to access this page']);
                 exit();
             }
         }
         else if($_SERVER['REQUEST_METHOD']!=='GET'){
-            $this->res->status(401)->json(['error'=>'You need to login!']);
+            $this->res->status(401)->json(['message'=>'You need to login!']);
             exit();
         }
         else{
@@ -80,7 +80,7 @@ class Auth{
             return true;
         }
         else{
-            $this->res->status(403)->json(['error'=>'You are not allowed to access this page']);
+            $this->res->status(403)->json(['message'=>'You are not allowed to access this page']);
             exit();
         }
     }

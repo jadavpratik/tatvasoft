@@ -51,7 +51,7 @@
 				email : state.forgot_password_email
 			})
 			$.ajax({
-				url : `${proxy_url}/set-new-password`,
+				url : `${BASE_URL}/set-new-password`,
 				method : 'PATCH',
 				contentType : 'application/json',
 				data : data,

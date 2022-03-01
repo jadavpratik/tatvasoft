@@ -102,7 +102,7 @@
 		}
 		if(validation){
 			$.ajax({
-				url : `${proxy_url}/signup`,
+				url : `${BASE_URL}/signup`,
 				method : 'POST',
 				data : $('#customer_signup').serialize(),
 				success : function(res){

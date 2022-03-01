@@ -104,7 +104,7 @@
 
     function loadUserAddresses(){
         $.ajax({
-            url : `${proxy_url}/get-address`,
+            url : `${BASE_URL}/get-customer-address`,
             method : 'GET',
             success : function(res){
                 if(res!=="" || res!==undefined){
@@ -171,7 +171,7 @@
             });
 
             $.ajax({
-                url : `${proxy_url}/add-address`,
+                url : `${BASE_URL}/add-customer-address`,
                 method : 'POST',
                 contentType : 'application/json',
                 data : data,

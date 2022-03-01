@@ -5,29 +5,29 @@
             <button class="tab_btn"><div><img src="<?= assets('assets/img/profile/Address.png'); ?>"></div><span>My Addresses</span></button>
             <button class="tab_btn"><div><img src="<?= assets('assets/img/profile/Password.png'); ?>" alt=""></div><span>Change Password</span></button>
         </div>
-        <div class="tab_body">
 
+        <div class="tab_body">
             <!-- MY DETAILS -->
             <div class="tab_content">
-                <form class="my_details" id="customer_my_details">
+                <form class="my_details" id="customer_details">
                     <div class="my_details_inner_div_1">
                         <div class="label_input">
                             <label class="label" for="">First Name</label>
-                            <input class="input" type="text" name="firstname" value="<?= isset($details->FirstName)? $details->FirstName : '' ?>">
+                            <input class="input" type="text" name="firstname">
                             <div class="validation_message d_none">
                                 <p>Validation Message!</p>
                             </div>
                         </div>
                         <div class="label_input">
                             <label class="label" for="">Last Name</label>
-                            <input class="input" type="text" name="lastname" value="<?= isset($details->LastName)? $details->LastName : '' ?>">
+                            <input class="input" type="text" name="lastname">
                             <div class="validation_message d_none">
                                 <p>Validation Message!</p>
                             </div>
                         </div>
                         <div class="label_input">
                             <label class="label" for="">Email Address</label>
-                            <input class="input" type="text" name="email" value="<?= isset($details->Email)? $details->Email : '' ?>">
+                            <input class="input" type="text" name="email">
                             <div class="validation_message d_none">
                                 <p>Validation Message!</p>
                             </div>
@@ -36,7 +36,7 @@
                             <label class="label" for="">Phone Number</label>
                             <div class="phone_number">
                                 <label for="">+49</label>
-                                <input type="text" name="phone" value="<?= isset($details->Mobile)? $details->Mobile : '' ?>">
+                                <input type="text" name="phone">
                             </div>
                             <div class="validation_message d_none">
                                 <p>Validation Message!</p>
@@ -44,7 +44,7 @@
                         </div>
                         <div class="label_input">
                             <label class="label" for="">Date of Birth</label>
-                            <input class="input" type="date" name="dob" value="<?= isset($details->DateOfBirth)? $details->DateOfBirth : '' ?>">
+                            <input class="input" type="date" name="dob">
                             <div class="validation_message d_none">
                                 <p>Validation Message!</p>
                             </div>
@@ -52,14 +52,11 @@
                     </div><!-- END_GRID_DIV -->
                     <div class="my_details_inner_div_2">
                         <div class="label_select">
-                            <label class="label" for="">My Preferred Language</label>                            
+                            <label class="label" for="">My Preferred Language</label>
                             <select class="select" name="language">
                                 <option value="1">English</option>
                                 <option value="2">Hindi</option>
-                            </select>    
-                            <script>
-                                $('[name="language"]').val(`<?= $details->LanguageId; ?>`);
-                            </script>
+                            </select>
                             <div class="validation_message d_none">
                                 <p>Validation Message!</p>
                             </div>
@@ -79,23 +76,8 @@
                                 <th>Action</th>
                             </tr>
                         </thead>
-                        <tbody>                             
-                            <?php foreach($address as $i){ ?>
-                                <tr>
-                                    <td>
-                                        <div>
-                                            <p><span>Address</span> : <?= $i->AddressLine1; ?> <?= $i->AddressLine2; ?>, <?= $i->PostalCode; ?> <?= $i->City; ?></p>
-                                            <p><span>Phone Number</span> : <?= $i->Mobile; ?></p>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <div>
-                                            <button onclick="open_model('edit_address');"><i class="fas fa-edit"></i></button>
-                                            <button><i class="fas fa-trash-alt"></i></button>    
-                                        </div>
-                                    </td>
-                                </tr>
-                            <?php } ?>
+                        <tbody id="customer_address_tbody">
+                            <!-- ADDRESS WILL BE GENERATE DYNAMICALLY BY JAVASCRIPT -->
                         </tbody>
                     </table>
                     <button  onclick="open_model('add_address');" class="profile_save_btn">Add New Address</button>
@@ -133,9 +115,39 @@
     </div><!-- END_TAB_CONTAINER -->
 </div><!-- END_PROFILE -->
 
-<!-- UPDATE MY DETAILS SCRIPTS... -->
+
+<!-- MY DETAILS SCRIPTS -->
 <script>
-    $('#customer_my_details').submit((e)=>{
+
+    // LOAD CUSTOMER DETAILS...
+    function customerDetails(){
+        $.ajax({
+            url : `${BASE_URL}/my-details`,
+            method : 'GET',
+            success : function(res){
+                if(res!=="" && res!==undefined){
+                    const result = JSON.parse(res);
+                    // SET CUSTOMER DETAILS...
+                    $('[name="firstname"]').val(result.FirstName);
+                    $('[name="lastname"]').val(result.LastName);
+                    $('[name="email"]').val(result.Email);
+                    $('[name="phone"]').val(result.Mobile);
+                    $('[name="language"]').val(result.LanguageId);
+                    $('[name="dob"]').val(result.DateOfBirth);
+                }
+            },
+            error : function(obj){
+                if(obj!==undefined && obj!==""){
+                    const {responseText} = obj;
+                    const error = JSON.parse(responseText);
+                    console.log(error.message);
+                }
+            }
+        })
+    }
+    customerDetails();
+
+    $('#customer_details').submit((e)=>{
         e.preventDefault();
         let validation = true;
 
@@ -154,9 +166,9 @@
 
         if(validation){
             // CONVERTING A FORM DATA INTO JSON DATA....
-            let json = form_to_json($('#customer_my_details').serializeArray());
+            let json = form_to_json($('#customer_details').serializeArray());
             $.ajax({
-                url :  `${proxy_url}/my-details`,
+                url :  `${BASE_URL}/my-details`,
                 method : 'PATCH',
                 contentType : 'application/json',
                 data : JSON.stringify(json),
@@ -164,18 +176,14 @@
                     if(res!=="" || res!==undefined){
                         try{
                             const result = JSON.parse(res);
-                            console.log(result.message);
                             Swal.fire({
                                 title : `${result.message}`,
                                 icon : 'success'
-                            }).then((res)=>{
-                                if(res.isConfirmed){
-                                    $('#customer_my_details').trigger('reset');
-                                    close_model();
-                                }
                             });
+                            customerDetails();
                         }
                         catch(e){
+                            // console.log(e);
                             Swal.fire({
                                 title : 'Invalid JSON Response!',
                                 icon : 'error'
@@ -187,6 +195,7 @@
                     if(obj!==undefined && obj!==""){
                         const {responseText} = obj;
                         const error = JSON.parse(responseText);
+                        console.log(error.message);
                         Swal.fire({
                             title : `${error.message}`,
                             icon : 'error'
@@ -198,7 +207,132 @@
     });
 </script>
 
-<!-- CHANGE PASSWORD SCRIPTS... -->
+<!-- MY ADDRESS SCRIPTS -->
+<script>
+    function customerAddress(){
+        $.ajax({
+            url : `${BASE_URL}/my-address`,
+            method : 'GET',
+            success : function(res){
+                if(res!=="" && res!==undefined){
+                    const address = JSON.parse(res);
+                    let temp = ``;
+                    for(result of address){
+                        temp += `
+                            <tr>
+                                <td>
+                                    <div>
+                                        <p><span>Address</span> : ${result.AddressLine1} ${result.AddressLine2}, ${result.PostalCode} ${result.City}</p>
+                                        <p><span>Phone Number</span> : ${result.Mobile}</p>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div>
+                                        <button onclick="edit_address(${result.AddressId});"><i class="fas fa-edit"></i></button>
+                                        <button onclick="delete_address(${result.AddressId});"><i class="fas fa-trash-alt"></i></button>    
+                                    </div>
+                                </td>
+                            </tr>
+                        `;
+                    }
+                    $('#customer_address_tbody').html(``);
+                    $('#customer_address_tbody').html(temp);
+                }
+            },
+            error : function(obj){
+                console.log(obj);
+            }
+        });
+    }
+    customerAddress();
+
+    // EDIT ADDRESS...
+    function edit_address(id){
+        $.ajax({
+            url : `${BASE_URL}/get-address/${id}`,
+            method : 'GET',
+            success : function(res){
+                if(res!=="" || res!==undefined){
+                    try{
+                        const result = JSON.parse(res);
+                        // SET VALUE IN POPUP_MODELS...
+                        $('[name="edit_address_id"]').val(result.AddressId);
+                        $('[name="edit_address_street_name"]').val(result.AddressLine1);
+                        $('[name="edit_address_house_number"]').val(result.AddressLine2);
+                        $('[name="edit_address_postal_code"]').val(result.PostalCode);
+                        $('[name="edit_address_city"]').val(result.City);
+                        $('[name="edit_address_phone"]').val(result.Mobile);
+                        open_model('edit_address');
+                    }
+                    catch(e){
+                        Swal.fire({
+                            title : 'Invalid JSON Response!',
+                            icon : 'error'
+                        })
+                    }
+                }
+            },
+            error : function(obj){
+                if(obj!==undefined && obj!==""){
+                    const {responseText} = obj;
+                    const error = JSON.parse(responseText);
+                    Swal.fire({
+                        title : `${error.message}`,
+                        icon : 'error'
+                    });
+                }
+            }
+        });
+    }
+
+    // DELETE ADDRESS...
+    function delete_address(id){
+        Swal.fire({
+            title : 'Are you Sure?',
+            error : 'warning',
+            showCancelButton: true,
+            focusConfirm: false,        
+        }).then((res)=>{
+            if(res.isConfirmed){
+                // AJAX REQUEST...
+                $.ajax({
+                    url : `${BASE_URL}/my-address/${id}`,
+                    method : 'DELETE',
+                    success : function(res){
+                        if(res!=="" && res!==undefined){
+                            try{
+                                const result = JSON.parse(res);
+                                Swal.fire({
+                                    title : result.message,
+                                    icon : 'success'
+                                });
+                                customerAddress();
+                            }
+                            catch(e){
+                                Swal.fire({
+                                    title : 'Invalid JSON Response!',
+                                    icon : 'error'
+                                });
+                            }
+                        }
+                    },
+                    error : function(obj){
+                        if(obj!==undefined && obj!==""){
+                            const {responseText} = obj;
+                            const error = JSON.parse(responseText);
+                            Swal.fire({
+                                title : error.message,
+                                icon : 'error'
+                            });
+                        }
+                    }
+                })
+            }
+        });
+    }
+</script>
+
+<!-- CHANGE PASSWORD SCRIPTS -->
 <script>
     $('#change_password').submit((e)=>{
         e.preventDefault();
@@ -220,7 +354,7 @@
             let json = form_to_json($('#change_password').serializeArray());
 
             $.ajax({
-                url : `${proxy_url}/change-password`,
+                url : `${BASE_URL}/change-password`,
                 method : 'PATCH',
                 contentType : 'application/json',
                 data : JSON.stringify(json),
@@ -262,3 +396,4 @@
 
     })
 </script>
+

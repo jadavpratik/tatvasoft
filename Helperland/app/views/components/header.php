@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- TITLE -->
-	<?= component('title'); ?>
+	<?php component('title'); ?>
 	<title><?= title(); ?></title>
 	<!-- FAVICON -->
 	<link rel="icon" href="<?= assets('assets/img/favicon/favicon.png'); ?>" sizes="16x16" type="image/png">
@@ -14,22 +14,28 @@
 	<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 	<!-- CSS -->
 	<link rel="stylesheet" href="<?= assets('assets/css/index.css'); ?>">
+    <!-- DATATABLE -->
+    <link rel="stylesheet" href="//cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
 	<!-- JQUERY -->
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script> 
-		// PROXY URL AS BASE URL GUIDE THE FRONT AJAX REQUEST...
-		let proxy_url = `<?= BASE_URL; ?>`; 
+		// 	BASE URL FOR GUIDE AJAX REQUEST...
+		let BASE_URL = `<?= BASE_URL; ?>`; 
+
 		// STORE THE GLOBAL DATA...
 		let state = {};
+
 		// CONVERT FORM TO JSON DATA...
 		function form_to_json(arr){
 			let json = {};
 			const temp = JSON.parse(JSON.stringify(arr));
             for(i of temp){
-                if(i.name=='language')
+                if(i.name=='language'){
                     json[i.name] = parseInt(i.value);
-                else
+				}
+				else{
                     json[i.name] = i.value;
+				}
             };            
 			return json;
 		}

@@ -30,7 +30,7 @@ class Route{
 		self::$browser_url = strtolower(self::$browser_url);
 
 		if($_SERVER['SERVER_PORT']==80 && $_SERVER['HTTP_HOST']=='localhost'){
-			// TRIM THE BASE URL PATH AND GET PAGE URL COMPARE WITH ROUTE URL...
+			// TRIM THE BASE_URL_PATH & GET PAGE_URL & COMPARE WITH ROUTE_URL...
 			self::$browser_url = str_replace(URL_TRIM_PART, '', self::$browser_url);
 		}
 
@@ -87,12 +87,12 @@ class Route{
 		}
 	}
 
-	// PUT METHOD...
-	public static function put($route_arr, $callback1, $callback2=false){
-		if(self::setMethod() == 'PUT'){
-			self::run($route_arr, $callback1, $callback2);
-		}
-	}
+	// // PUT METHOD...
+	// public static function put($route_arr, $callback1, $callback2=false){
+	// 	if(self::setMethod() == 'PUT'){
+	// 		self::run($route_arr, $callback1, $callback2);
+	// 	}
+	// }
 	
 	// DELETE METHOD...
 	public static function delete($route_arr, $callback1, $callback2=false){
