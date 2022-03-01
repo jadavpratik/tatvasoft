@@ -8,6 +8,8 @@ class Response{
 		if(!empty($arr))
 			extract($arr);
 
+		// TRIM $res->render('/home') to $res->render('home');
+		$view = ltrim($view, '/');
 		$view_path = __DIR__.'/../app/views/'.$view.'.php';
 
 		if(file_exists($view_path)){
@@ -37,7 +39,8 @@ class Response{
 	}
 
 	public function redirect($path){
-		$redirect_path = BASE_URL.$path;
+		$path = ltrim($path, '/');
+		$redirect_path = BASE_URL.'/'.$path;
 		header("location:{$redirect_path}");
 	}
 

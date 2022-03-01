@@ -17,11 +17,14 @@
 
 	// FOR ANCHOR TAG...
 	function url($path){
-		return BASE_URL.$path;
+		$path = ltrim($path, '/');
+		$path = rtrim($path, '/');
+		return BASE_URL.'/'.$path;
 	}
 
 	// FOR PUBLIC FOLDER ACCESS...
 	function assets($path){
+		$path = ltrim($path, '/');
 		return BASE_URL.'/'.$path;
 	}
 
@@ -35,7 +38,11 @@
 			// WE CAN CHANGE THE COMPONENT PATH IN VIEWS Directory...
 			$path = $parameter1;
 			$name = $parameter2;
-			$component_path = __DIR__.'/../app/views/'.$path.$name.'.php';
+			$path = ltrim($path, '/');
+			$path = rtrim($path, '/');
+			$name = ltrim($name, '/');
+			$name = rtrim($name, '/');
+			$component_path = __DIR__.'/../app/views/'.$path.'/'.$name.'.php';
 			if(file_exists($component_path)){
 				require_once $component_path;							
 			}
@@ -43,7 +50,10 @@
 		else{
 			// BY DEFAULT ALL COMPOENTS LOADED FROM VIEWS/COMPONENTS/...
 			$name = $parameter1;
+			$name = ltrim($name, '/');
+			$name = rtrim($name, '/');
 			$component_path = __DIR__.'/../app/views/components/'.$name.'.php';
+			// echo $component_path;
 			if(file_exists($component_path)){
 				require_once $component_path;							
 			}
@@ -65,6 +75,7 @@
 		}
 	}
 
+	// RETURN DATE...
 	function timestamp(){
 		return date('Y-m-d H:i:s');
 	}

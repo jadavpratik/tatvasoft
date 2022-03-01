@@ -15,55 +15,69 @@ class Route{
 	public static $res;
 	public static $method = 'GET';
 
-	// SET METHOD...
-	public static function setMethod(){
-		self::$method = $_SERVER['REQUEST_METHOD'];
-		return self::$method;
+	// CLEAN URL...
+	public static function cleanUrl($url){
+		$url = filter_var($url, FILTER_SANITIZE_URL);
+		$url = strtolower($url);
+		$url = rtrim($url, '/');
+		if($_SERVER['SERVER_PORT']==80 && $_SERVER['HTTP_HOST']=='localhost'){
+			if(str_contains($url, URL_TRIM_PART)){
+				$url = str_replace(URL_TRIM_PART, '', $url);
+			}
+		}
+		$url = $url==""? '/' : $url;
+		return $url;
 	}
 
 	// SPLIT URL...
 	public static function splitUrl($route_arr){
 
-		self::$route_url = filter_var($route_arr, FILTER_SANITIZE_URL);
-		self::$route_url = strtolower(self::$route_url);
-		self::$browser_url = filter_var($_SERVER['REQUEST_URI'], FILTER_SANITIZE_URL);
-		self::$browser_url = strtolower(self::$browser_url);
+		self::$route_url = self::cleanUrl($route_arr);
+		self::$browser_url = self::cleanUrl($_SERVER['REQUEST_URI']);
 
-		if($_SERVER['SERVER_PORT']==80 && $_SERVER['HTTP_HOST']=='localhost'){
-			// TRIM THE BASE_URL_PATH & GET PAGE_URL & COMPARE WITH ROUTE_URL...
-			self::$browser_url = str_replace(URL_TRIM_PART, '', self::$browser_url);
-		}
-
-		// SET THE ROUTE_URL...
+		// SET ROUTE_URL AS PARAMS_KEY
 		self::$params_key = explode('/', self::$route_url);
-		// SET BROWSER_URL...
+		// SET BROWSER_URL AS PARAMS_VALUE
 		self::$params_value = explode('/', self::$browser_url);
 
-		// *******MATCH THEN CREATE REQ, RES OBJECT*********
+		/*
+		 	*******MOST IMPORTANT********
+			WHEN ROUTE MATCH THEN CREATE REQ, RES OBJECT
+		*/
+		
+		// MATCH FOUNDED PAGE...
 		if(self::$route_url==self::$browser_url){
-			// MATCH FOUNDED PAGE...
 			page_url(self::$browser_url);
 			self::$req = new Request();
 			self::$res = new Response();	
 			return true;
 		}
+		// FOR PARAMS URL...
 		else if(str_contains(self::$route_url, ':')){
-			// FOR PARAMS URL...
 			page_url(self::$browser_url);
 			if(count(self::$params_key) == count(self::$params_value)){
-				self::$req = new Request([self::$params_key, self::$params_value]);
-				self::$res = new Response();	
-				return true;
+				if(self::$params_key[1]==self::$params_value[1]){
+					// ON INDEX 1 OF ARRAY URL PRESENT...
+					self::$req = new Request([self::$params_key, self::$params_value]);
+					self::$res = new Response();		
+					return true;
+				}
 			}
 		}
-		else if(self::$route_url!==self::$browser_url && self::$route_url=='/*'){
-			// PAGE_NOT_FOUND...
+		// PAGE_NOT_FOUND...
+		else if(self::$route_url!==self::$browser_url && self::$route_url=='/*'){			
 			page_url('/*');	
 			self::$req = new Request();
 			self::$res = new Response();	
 			return true;
 		}
 
+	}
+
+	// SET METHOD...
+	public static function setMethod(){
+		self::$method = $_SERVER['REQUEST_METHOD'];
+		return self::$method;
 	}
 
 	// GET METHOD...
@@ -88,11 +102,11 @@ class Route{
 	}
 
 	// // PUT METHOD...
-	// public static function put($route_arr, $callback1, $callback2=false){
-	// 	if(self::setMethod() == 'PUT'){
-	// 		self::run($route_arr, $callback1, $callback2);
-	// 	}
-	// }
+	public static function put($route_arr, $callback1, $callback2=false){
+		if(self::setMethod() == 'PUT'){
+			self::run($route_arr, $callback1, $callback2);
+		}
+	}
 	
 	// DELETE METHOD...
 	public static function delete($route_arr, $callback1, $callback2=false){
