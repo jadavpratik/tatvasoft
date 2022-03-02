@@ -350,7 +350,7 @@ function setup_service_postal_code_validation(){
         return false;
     }
     else if(PostalCodeRegEx.test(postal_code)==false){
-        $('[name="setup_service_postal_code"]').next().removeClass('d_none').children().html('Postal Code Shoud be a Min:5 or Max:10 Digits !');
+        $('[name="setup_service_postal_code"]').next().removeClass('d_none').children().html('Postal Code Shoud be a Min:5 or Max:6 Digits !');
         return false;
     }
     else{
@@ -399,13 +399,23 @@ function schedule_date_validation(){
 
 // ------------------------SCHEDULE-TIME-VALIDATON--------------------
 function schedule_time_validation(){
-    const time = $('[name="schedule_time"]').val();
-    if(time=="" || time==undefined){
+    const min = $('[name="schedule_time"]').attr('min');
+    const max = $('[name="schedule_time"]').attr('max');
+    const input_val = $('[name="schedule_time"]').val();
+    const minTime      = (new Date(`1999-09-20 ${min}`)).getTime();
+    const maxTime      = (new Date(`1999-09-20 ${max}`)).getTime();
+    const selectedTime = (new Date(`1999-09-20 ${input_val}`)).getTime();
+
+    if(input_val=="" || input_val==undefined){
         $('[name="schedule_time"]').next().removeClass('d_none').children().html('Please Select a Time !');
         return false;
     }
+    else if(selectedTime < minTime || selectedTime > maxTime){
+        $('[name="schedule_time"]').next().removeClass('d_none').children().html('Select a time in range of 08:00 AM to 06:00 PM!');
+        return false;
+    }
     else{
-        $('[name="schedule_time"]').next().addClass('d_none').children().html('');        
+        $('[name="schedule_time"]').next().addClass('d_none').children().html('');
         return true;
     }
 }
@@ -431,7 +441,7 @@ function address_form_street_name_validation(){
 function address_form_house_number_validation(){
     const input_value = $('[name="address_form_house_number"]').val();
     if(input_value==''){
-        $('[name="address_form_house_number"]').next().removeClass('d_none').children().html('Please Enter a House Number or (Enter 0) !');
+        $('[name="address_form_house_number"]').next().removeClass('d_none').children().html('Please Enter a House Number!');
         return false;
     }
     else if(HouseNumberRegEx.test(input_value)==false){
@@ -452,7 +462,7 @@ function address_form_postal_code_validation(){
         return false;
     }
     else if(PostalCodeRegEx.test(input_value)==false){
-        $('[name="address_form_postal_code"]').next().removeClass('d_none').children().html('Postal Code Shoud be a Min:5 or Max:10 Digits !');
+        $('[name="address_form_postal_code"]').next().removeClass('d_none').children().html('Postal Code Shoud be a Min:5 or Max:6 Digits !');
         return false;
     }
     else{
@@ -547,7 +557,7 @@ function add_address_street_name_validation(){
 function add_address_house_number_validation(){
     const input_value = $('[name="add_address_house_number"]').val();
     if(input_value==''){
-        $('[name="add_address_house_number"]').next().removeClass('d_none').children().html('Please Enter a House Number or (Enter 0) !');
+        $('[name="add_address_house_number"]').next().removeClass('d_none').children().html('Please Enter a House Number!');
         return false;
     }
     else if(HouseNumberRegEx.test(input_value)==false){
@@ -568,7 +578,7 @@ function add_address_postal_code_validation(){
         return false;
     }
     else if(PostalCodeRegEx.test(input_value)==false){
-        $('[name="add_address_postal_code"]').next().removeClass('d_none').children().html('Postal Code Shoud be a Min:5 or Max:10 Digits !');
+        $('[name="add_address_postal_code"]').next().removeClass('d_none').children().html('Postal Code Shoud be a Min:5 or Max:6 Digits !');
         return false;
     }
     else{
@@ -632,7 +642,7 @@ function edit_address_street_name_validation(){
 function edit_address_house_number_validation(){
     const input_value = $('[name="edit_address_house_number"]').val();
     if(input_value==''){
-        $('[name="edit_address_house_number"]').next().removeClass('d_none').children().html('Please Enter a House Number or (Enter 0) !');
+        $('[name="edit_address_house_number"]').next().removeClass('d_none').children().html('Please Enter a House Number!');
         return false;
     }
     else if(HouseNumberRegEx.test(input_value)==false){
@@ -653,7 +663,7 @@ function edit_address_postal_code_validation(){
         return false;
     }
     else if(PostalCodeRegEx.test(input_value)==false){
-        $('[name="edit_address_postal_code"]').next().removeClass('d_none').children().html('Postal Code Shoud be a Min:5 or Max:10 Digits !');
+        $('[name="edit_address_postal_code"]').next().removeClass('d_none').children().html('Postal Code Shoud be a Min:5 or Max:6 Digits !');
         return false;
     }
     else{
@@ -696,6 +706,49 @@ function edit_address_phone_validation(){
     }
 }
 
+// -------------------DATE OF BIRTH VALIDATION---------------------
+function dob_validation(){
+    const input_val = $('[name="dob"]').val();    
+    const user = new Date(input_val);
+    if(input_val==""){
+        $('[name="dob"]').next().removeClass('d_none').children().html('Please Select Date Of Birth !')
+        return false;
+    }
+    else if(user.getTime() > date.getTime()){
+        $('[name="dob"]').next().removeClass('d_none').children().html('Please Select a Valid Date !')
+        return false;
+    }
+    else{
+        $('[name="dob"]').next().addClass('d_none').children().html('')
+        return true;
+    }
+}
+
+// -------------------CANCEL REQUEST VALIDATON---------------------
+function cancel_service_validation(){
+    const input_val = $('[name="cancel_service_reason"]').val();    
+    if(input_val==""){
+        $('[name="cancel_service_reason"]').next().removeClass('d_none').children().html('Please write a reason for cancel service !')
+        return false;
+    }
+    else{
+        $('[name="cancel_service_reason"]').next().addClass('d_none').children().html('')
+        return true;
+    }
+}
+
+function reschedule_service_validation(){
+    const input_date = $('[name="reschedule_service_date"]').val();    
+    const input_time = $('[name="reschedule_service_time"]').val();    
+    if(input_date=="" || input_time==""){
+        $('[name="reschedule_service_date"]').parent().next().removeClass('d_none').children().html('Please Enter a new date & time !')
+        return false;
+    }
+    else{
+        $('[name="reschedule_service_date"]').parent().next().addClass('d_none').children().html('')
+        return true;
+    }
+}
 
 // -------------------CONTACTUS, SIGNUP, PROFILE---------------------
 $('[name="firstname"]').focusout(function(){
@@ -780,9 +833,6 @@ $('[name="setup_service_postal_code"]').focusout(function(){
 });
 
 // ----------------------BOOK-SERVICE-S2-VALIDATION----------------------
-// DATE VALIDATION...
-$('[name="schedule_date"]').attr('min',today);
-
 $('[name="schedule_date"]').change(function(){
     schedule_date_validation();
 });
@@ -856,29 +906,28 @@ $('[name="edit_address_phone"]').focusout(function(){
     edit_address_phone_validation();
 });
 
-function dob_validation(){
-    const input_val = $('[name="dob"]').val();    
-    const user = new Date(input_val);
-    if(input_val==""){
-        $('[name="dob"]').next().removeClass('d_none').children().html('Please Select Date Of Birth !')
-        return false;
-    }
-    else if(user.getTime() > date.getTime()){
-        $('[name="dob"]').next().removeClass('d_none').children().html('Please Select a Valid Date !')
-        return false;
-    }
-    else{
-        $('[name="dob"]').next().addClass('d_none').children().html('')
-        return true;
-    }
-}
-
 $('[name="dob"]').focusout(function(){
     dob_validation();
 });
 
-$('[name="dob"]').attr('max', today);
+// ----------------------CUSTOMER DASHBOARD POPUP VALIDATION-----------------
+$('[name="cancel_service_reason"]').focusout(function(){
+    cancel_service_validation();
+});
 
+$('[name="reschedule_service_date"]').focusout(function(){
+    reschedule_service_validation();
+});
+
+$('[name="reschedule_service_time"]').focusout(function(){
+    reschedule_service_validation();
+});
+
+// ------------MIN & MAX DATE FIX FOR VALIDATION--------------
+$('[name="dob"]').attr('max', today);
+$('[name="schedule_date"]').attr('min',today);
+$('[name="schedule_time"]').attr('min', '08:00').attr('max', '18:00');
+$('[name="reschedule_service_date"]').attr('min', today);
 
 
 

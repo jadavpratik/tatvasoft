@@ -2147,7 +2147,7 @@ footer {
           flex-direction: column;
 }
 
-#reschedule_service_request_popup > div > div {
+#reschedule_service_request_popup > div > div:first-of-type {
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: (1fr)[2];
@@ -2157,10 +2157,14 @@ footer {
   overflow: hidden;
 }
 
-#reschedule_service_request_popup > div > div input, #reschedule_service_request_popup > div > div select {
+#reschedule_service_request_popup > div > div:first-of-type input, #reschedule_service_request_popup > div > div:first-of-type select {
   width: 100%;
   padding: 8px;
   font-size: 14px;
+}
+
+#reschedule_service_request_popup > div > div:last-of-type {
+  margin-bottom: 15px;
 }
 
 #service_details_popup {

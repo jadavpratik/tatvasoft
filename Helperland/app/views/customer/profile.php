@@ -249,7 +249,7 @@
     // EDIT ADDRESS...
     function edit_address(id){
         $.ajax({
-            url : `${BASE_URL}/get-address/${id}`,
+            url : `${BASE_URL}/my-address/${id}`,
             method : 'GET',
             success : function(res){
                 if(res!=="" || res!==undefined){

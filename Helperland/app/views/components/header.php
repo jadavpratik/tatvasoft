@@ -174,5 +174,9 @@
 	<?= component('included-services'); ?>
 	<?= component('add-address'); ?>
 	<?= component('edit-address'); ?>
+	<?= component('service-details'); ?>
+	<?= component('reschedule-service'); ?>
+	<?= component('cancel-service'); ?>
+	<?= component('rating-sp'); ?>
 
 

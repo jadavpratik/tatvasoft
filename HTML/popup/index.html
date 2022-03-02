@@ -18,102 +18,12 @@
 </head>
 <body>
 
-	<!-- --------------------------------------------------- -->
-						<!-- NAVBAR -->
-	<!-- --------------------------------------------------- -->
-	<nav class="navbar">
-
-		<!-- LOGO -->
-		<div class="logo">
-			<a href=""><img src="../assets/img/global/logo.png" alt=""></a>
-		</div>
-
-		<!-- NAV_BTN_RESPONSIVE -->
-		<button class="sidenav_btn"><i class="fas fa-bars"></i></button>
-		
-		<!-- NAV_MENU -->
-		<div class="nav_menu">
-			<a class="navbar_focus_btn" href="">Book Now</a>
-			<a class="navbar_active_btn" href="">Prices & Services</a>
-			<a href="">Warranty</a>
-			<a href="">Blog</a>
-			<a href="">Contact</a>
-			<a class="navbar_focus_btn" href="">Login</a>
-			<a class="navbar_focus_btn" href="">Become a Helper</a>
-		</div><!-- END NAV_MENU -->
-	</nav><!-- END NAVBAR -->
-
-	<!-- --------------------------------------------------- -->
-						<!-- SIDE_NAVBAR -->
-	<!-- --------------------------------------------------- -->
-	<aside class="sidenav">
-		<!-- FOR_LOGGED_USER -->
-		<div class="sidenav_header">
-			<p>Warm Welcome</p>
-			<p class="sidenav_logged_username">Kavan Patel</p>
-		</div>
-		<hr>
-		<div class="sidenav_main">
-			<!-- GUEST_USER -->
-			<a href="">Book Now</a>
-			<a href="">Prices & Services</a>
-			<a href="">Gurantee</a>
-			<a href="">Blog</a>
-			<a href="">Contact</a>
-			<a href="">Register</a>
-			<a href="">Become a Helper!</a>
-
-			<!-- CUSTOMER -->
-			<!-- <a href="">Overview</a>
-			<a href="">Completed Service Orders</a>
-			<a href="">Calander view</a>
-			<a href="">My Favorites</a>
-			<a href="">Bills</a>
-			<a href="">My Setting</a>
-			<a href="">Logout</a> -->
-
-			<!-- SERVICE_PROVIDER -->
-			<!-- <a href="">Overview</a>
-			<a href="">New Inquiries</a>
-			<a href="">Accepted Requests</a>
-			<a href="">Calander view</a>
-			<a href="">Completed Service Orders</a>
-			<a href="">My Reviews</a>
-			<a href="">Block Customer</a>
-			<a href="">Bills</a>
-			<a href="">My Setting</a>
-			<a href="">Logout</a> -->
-
-			<!-- ADMIN -->
-			<!-- <a href="">My Setting</a>
-			<a href="">Logout</a> -->
-
-		</div>
-		<hr>
-		<!-- COMMAN_LINKS_AFTER_LOGIN_OF_USER -->
-		<!-- <div class="sidenav_comman_links">
-			BOOK NOW FOR CUSTOMER
-			<a href="">Book Now</a>
-			<a href="">Prices & Services</a>
-			<a href="">Gurantee</a>
-			<a href="">Blog</a>
-			<a href="">Contact</a>
-		</div>
-		<hr> -->
-		<div class="sidenav_footer">
-			<a href=""><i class="fab fa-facebook-f"></i></a>
-			<a href=""><i class="fab fa-instagram"></i></a>
-		</div>
-	</aside>
-
     <!-- --------------------------------------------------- -->
 						<!-- FOR_BACKLIGHT_CONTAIN -->
 	<!-- --------------------------------------------------- -->
 	<div class="backlight_container"></div>
 
 	<div class="model_btn">
-        <button onclick="open_model('success')">SUCCESS</button>
-        <!-- <button onclick="open_model('fail')">FAIL</button> -->
         <button onclick="open_model('login')">LOGIN</button>
         <button onclick="open_model('otp')">OTP</button>
         <button onclick="open_model('forgot_password')">FORGOT PASSOWORD</button>
@@ -122,17 +32,17 @@
         <button onclick="open_model('edit_service_request')">Edit Service</button>
         <button onclick="open_model('cancel_service_request')">Cancel Service</button>
         <button onclick="open_model('reschedule_service_request')">Reschedule Service Request</button>
+        <button onclick="open_model('add_address')">Add Address</button>
         <button onclick="open_model('edit_address')">Edit Address</button>
         <button onclick="open_model('service_details')">Service Details</button>
         <button onclick="open_model('rating')">Rating</button>
         <button onclick="open_model('included_services')">Included Services</button>
     </div>
 
-	<!-- NOT INTIGRATED WITH ACTUAL PAGE... -->
-    <p style="text-align: center;font-size: 24px;color:gray;padding:50px 0 10px;">Popup Model,</p>
-	<p style="text-align: center;font-size: 24px;color:gray;padding:0px 0 50px;">not Intigrated with actual page, yet</p>
-
-
+	<!-- WILL BE INTEGRATED IN BACKEND -->
+    <p style="text-align: center;font-size: 24px;color:lightgray;padding:50px 0 10px;">
+		<span>Popup Model</span>
+	</p>
 
     <!-- --------------------------------------------------- -->
 				<!-- FORGOT-PASSWORD -->
@@ -401,7 +311,6 @@
 		</div>
 	</div>
 
-
 	<!-- ---------------------------------- -->
 			<!-- ACCEPT-SERVICE-DETAILS -->
 	<!-- ---------------------------------- -->
@@ -439,6 +348,9 @@
 		</div>
 	</div>
 
+	<!-- ---------------------------------- -->
+			<!-- ADD ADDRESS -->
+	<!-- ---------------------------------- -->
     <div class="model">
         <!-- MODEL_CLOSE -->
         <button class="model_close_btn">&times;</button>
@@ -487,7 +399,9 @@
 		</div>
 	</div>
 
-
+	<!-- ---------------------------------- -->
+			<!-- EDIT ADDRESS -->
+	<!-- ---------------------------------- -->
     <div class="model">
         <!-- MODEL_CLOSE -->
         <button class="model_close_btn">&times;</button>
@@ -610,9 +524,9 @@
 			<p class="popup_title">Cancel Service Request</p>
 			<div class="form_group">
 				<label class="label" for="">Why you want to cancel the service request?</label>
-				<textarea class="textarea" name=""></textarea>
+				<textarea class="textarea" name="cancel_service_reason"></textarea>
 				<div class="validation_message d_none">
-					<p>Enter Reason1</p>
+					<p>VALIDATON MESSAGE!</p>
 				</div>
 			</div>
 			<button class="popup_btn">Cancel Now</button>
@@ -631,8 +545,11 @@
 			<div class="form_group">
 				<label class="label" for="">Select New Date & Time</label>
 				<div>
-					<input class="input" type="date">
-					<input class="input" type="time">
+					<input class="input" type="date" name="reschedule_service_date">
+					<input class="input" type="time" name="reschedule_service_time">
+				</div>
+				<div class="validation_message">
+					<p>Please Enter date and Time!</p>
 				</div>
 				<button class="popup_btn">Update</button>
 			</div>
@@ -673,22 +590,6 @@
 		</div>
 	</div>
 
-	<!-- ---------------------------------- -->
-			<!-- SUCCESS -->
-	<!-- ---------------------------------- -->
-	<div class="model">
-        <!-- MODEL_CLOSE -->
-        <button class="model_close_btn">&times;</button>
-		<!-- SUCCESS -->
-		<div class="popup_main d_none" id="success_popup">
-			<i class="fas fa-check-circle"></i>
-			<p>Booking has been successfully submitted</p>
-			<p>Service Request Id : <span>8488</span></p>
-			<button class="popup_btn" onclick="close_model()">OK</button>
-		</div>
-	</div>
-
-
 	<!-- CUSTOM_JAVASCRIPT -->
 	<script src="../assets/js/homenav.js"></script>
 	<script src="../assets/js/sidenav.js"></script>
@@ -697,6 +598,7 @@
 	<script src="../assets/js/accordion.js"></script>
 	<script src="../assets/js/dropdown.js"></script>
 	<script src="../assets/js/model.js"></script>
+	<script src="../assets/js/validation.js"></script>
 
 </body>
 </html>

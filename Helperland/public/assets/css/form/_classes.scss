@@ -108,6 +108,7 @@ $validation_msg:#e50009;
 .date_of_birth{
     display: flex;
     flex-direction: column;
+    // IF THREE SELECT INPUT EXISTS...
     & > div:first-of-type{
         display: grid;
         grid-template-columns: repeat(3, 1fr);

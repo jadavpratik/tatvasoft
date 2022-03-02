@@ -20,6 +20,7 @@ class Database{
     private $query = '';
     private $columns = '';
     private $where = '';
+    private $joinString = '';
     private $res = null;
 
     // -----------------CONNECT-------------------
@@ -54,6 +55,7 @@ class Database{
         $keys = '(';
         $values = '(';
         foreach($arr as $key => $value){
+            // FOR AVOID XSS...
             $value = htmlspecialchars($value);
             $keys .= $key.', ';
             if(is_integer($value))
@@ -87,23 +89,23 @@ class Database{
         if($operator!=false && $value!=false){
             // IF WE PASS ALL THREE PARAMETERS...
             if(is_integer($value)){
-                $this->where = $key.' '.$operator.' '.$value;
+                $this->where = 'WHERE '.$key.' '.$operator.' '.$value;
             }
             else if(is_string($value)){
                 $value = "'{$value}'";
-                $this->where = $key.' '.$operator.' '.$value;
+                $this->where = 'WHERE '.$key.' '.$operator.' '.$value;
             }
         }
         else{
             // IF WE PASS STRING...
-            $this->where = $key;
+            $this->where = 'WHERE '.$key;
         }
         return $this;
     }
 
     // -----------------EXISTS-------------------
     public function exists(){
-        $this->query = "SELECT * FROM {$this->table} WHERE {$this->where}";
+        $this->query = "SELECT * FROM {$this->table} {$this->where}";
         try{
             $result = $this->conn->query($this->query);
             $data = $result->fetchAll(PDO::FETCH_ASSOC);
@@ -131,24 +133,21 @@ class Database{
         return $this;
     }
 
+    
+    // -----------------JOIN-------------------
+    public function join($pk, $fk, $joinTable){
+        $this->joinString = "INNER JOIN {$joinTable} ON {$this->table}.{$pk}={$joinTable}.{$fk}";
+        return $this;
+    }
+
     // -----------------READ-------------------
     public function read(){
         try{
-            if($this->columns!=="" && $this->where!==""){
-                // WITH SELECTED COLUMNS & WITH WHERE CONDITION...
-                $this->query = "SELECT {$this->columns} FROM {$this->table} WHERE {$this->where}";
-            }                
-            else if($this->columns!=="" && $this->where==""){
-                // WITH SELECTED COLUMNS & WITHOUT WHERE CONDITION...
-                $this->query = "SELECT {$this->columns} FROM {$this->table}";
-            }
-            else if($this->columns=="" && $this->where!==""){
-                // WITH ALL COLUMNS & WITH WHERE CONDITION...
-                $this->query = "SELECT * FROM {$this->table} WHERE {$this->where}";
+            if($this->columns!="" || $this->columns!=null){
+                $this->query = "SELECT {$this->columns} FROM {$this->table} {$this->joinString} {$this->where}";
             }
             else{
-                // WITH ALL COLUMNS & WITHOUT WHERE CONDITION...
-                $this->query = "SELECT * FROM {$this->table}";
+                $this->query = "SELECT * FROM {$this->table} {$this->joinString} {$this->where}";
             }
             $result = $this->conn->query($this->query);
             $data = $result->fetchAll(PDO::FETCH_ASSOC);
@@ -176,7 +175,7 @@ class Database{
         }
         $updateString = rtrim($updateString, ', ');
         try{
-            $this->query = "UPDATE {$this->table} SET {$updateString} WHERE {$this->where}";
+            $this->query = "UPDATE {$this->table} SET {$updateString} {$this->where}";
             return $this->conn->exec($this->query);
         }
         catch(Exception $e){
@@ -188,18 +187,13 @@ class Database{
     // -----------------DELETE-------------------
     public function delete(){
         try{
-            $this->query = "DELETE FROM {$this->table} WHERE {$this->where}";
+            $this->query = "DELETE FROM {$this->table} {$this->where}";
             return $this->conn->exec($this->query);    
         }
         catch(Exception $e){
             $this->res->status(500)->json(['message'=>$e->getMessage()]);
             exit();
         }
-    }
-
-    // -----------------JOIN-------------------
-    public function join(){
-
     }
 
     public function __destruct(){
