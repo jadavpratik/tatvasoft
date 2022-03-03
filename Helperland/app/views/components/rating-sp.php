@@ -3,16 +3,16 @@
     <!-- MODEL_CLOSE -->
     <button class="model_close_btn">&times;</button>
     <!-- RATING_POPUP -->
-    <div class="popup_main d_none" id="rating_popup">
+    <form class="popup_main d_none" id="rating_popup">
         <div class="service_provider">
             <img class="hat_style" src="<?= assets('assets/img/table/hat.png'); ?>" alt="">
             <div>
                 <p>Lyum Watson</p>    
                 <div>
-                    <i class="fas fa-star rated_star"></i>
-                    <i class="fas fa-star rated_star"></i>
-                    <i class="fas fa-star rated_star"></i>
-                    <i class="fas fa-star rated_star"></i>
+                    <i class="fas fa-star unrated_star"></i>
+                    <i class="fas fa-star unrated_star"></i>
+                    <i class="fas fa-star unrated_star"></i>
+                    <i class="fas fa-star unrated_star"></i>
                     <i class="fas fa-star unrated_star"></i>
                     <span>4</span>
                 </div>
@@ -25,8 +25,8 @@
                 <p>On time arrival</p>    
                 <i class="fas fa-star rated_star"></i>
                 <i class="fas fa-star rated_star"></i>
-                <i class="fas fa-star rated_star"></i>
-                <i class="fas fa-star rated_star"></i>
+                <i class="fas fa-star unrated_star"></i>
+                <i class="fas fa-star unrated_star"></i>
                 <i class="fas fa-star unrated_star"></i>
             </div>
             <div>
@@ -34,7 +34,7 @@
                 <i class="fas fa-star rated_star"></i>
                 <i class="fas fa-star rated_star"></i>
                 <i class="fas fa-star rated_star"></i>
-                <i class="fas fa-star rated_star"></i>
+                <i class="fas fa-star unrated_star"></i>
                 <i class="fas fa-star unrated_star"></i>
             </div>
             <div>
@@ -49,13 +49,13 @@
         <div>
             <div class="form_group">
                 <label class="label" for="">Feedback on service provider</label>
-                <textarea class="textarea" name=""></textarea>
+                <textarea class="textarea" name="rating_feedback"></textarea>
                 <div class="validation_message d_none">
                     <p>Enter Feedback</p>
                 </div>
             </div>
             <button class="popup_btn">Submit</button>
         </div>
-    </div><!-- RATING POPUP -->
+    </form><!-- RATING POPUP -->
 </div>
 

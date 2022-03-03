@@ -133,6 +133,19 @@ class Database{
         return $this;
     }
 
+    // -----------------CUSTOM_QUERY-------------------
+    public function query($sql){
+        try{
+            $result = $this->conn->query($sql);
+            $data = $result->fetchAll(PDO::FETCH_ASSOC);
+            return json_decode(json_encode($data));
+            // RETURN ARRAY OF AN OBJECT...
+        }
+        catch(Exception $e){
+            $this->res->status(500)->json(['message'=>$e->getMessage()]);
+            exit();
+        }
+    }
     
     // -----------------JOIN-------------------
     public function join($pk, $fk, $joinTable){

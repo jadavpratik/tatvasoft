@@ -24,6 +24,7 @@
         state.customer_service_history_table = $('#customer_service_history_table').DataTable({
             searching : false,
             serviceSide : true,
+            autoWidth : false,
             dom : 't<"datatable_bottom"lp>',
             ajax : {
                 url : `${BASE_URL}/customer-all-services`,
@@ -37,7 +38,7 @@
             columns :[
                 {
                     mRender : function(data, type, row){
-                        return`<div class="service_details">
+                        return`<div class="service_details" onclick="show_service_details(${row.ServiceRequestId});">
                                     <div>
                                         <img src="<?= assets('assets/img/table/calendar_black.png'); ?>" alt="">
                                         <p>${row.ServiceDate}</p>
@@ -50,33 +51,55 @@
                 },
                 {
                     mRender : function(data, type, row){
+                        if(row.ServiceProvider!==undefined){
+                            if(row.Rating!==undefined){
+                                return `<div class="service_provider">
+                                        <img class="hat_style" src="${BASE_URL}/${row.ServiceProvider.UserProfilePicture}" alt="">
+                                        <div>
+                                            <p>${row.ServiceProvider.FirstName} ${row.ServiceProvider.LastName}</p>    
+                                            <div>
+                                                <i class="fas fa-star rated_star"></i>
+                                                <i class="fas fa-star rated_star"></i>
+                                                <i class="fas fa-star rated_star"></i>
+                                                <i class="fas fa-star rated_star"></i>
+                                                <i class="fas fa-star unrated_star"></i>
+                                                <span>${row.Rating}</span>
+                                            </div>
+                                        </div>
+                                    </div>`;
+                            }
+                            else{
+                                return `<div class="service_provider">
+                                        <img class="hat_style" src="${BASE_URL}/${row.ServiceProvider.UserProfilePicture}" alt="">
+                                        <div>
+                                            <p>${row.ServiceProvider.FirstName} ${row.ServiceProvider.LastName}</p>    
+                                            <div>
+                                                <i class="fas fa-star unrated_star"></i>
+                                                <i class="fas fa-star unrated_star"></i>
+                                                <i class="fas fa-star unrated_star"></i>
+                                                <i class="fas fa-star unrated_star"></i>
+                                                <i class="fas fa-star unrated_star"></i>
+                                                <span></span>
+                                            </div>
+                                        </div>
+                                    </div>`;
+                            }
+                        }
+                        else{
                             return 'No SP';
-                            // return `<div class="service_provider">
-                            //             <img class="hat_style" src="<?= assets('assets/img/table/hat.png'); ?>" alt="">
-                            //             <div>
-                            //                 <p>Lyum Watson</p>    
-                            //                 <div>
-                            //                     <i class="fas fa-star rated_star"></i>
-                            //                     <i class="fas fa-star rated_star"></i>
-                            //                     <i class="fas fa-star rated_star"></i>
-                            //                     <i class="fas fa-star rated_star"></i>
-                            //                     <i class="fas fa-star unrated_star"></i>
-                            //                     <span>4</span>
-                            //                 </div>
-                            //             </div>
-                            //         </div>`;
+                        }
                     }
                 },
                 {
                     mRender : function(data, type, row){
                         // €
-                        return `<p class="payment_text"><span>${row.TotalCost} ₹</span></p>`;
+                        return `<p class="payment_text">₹<span>${row.TotalCost}</span></p>`;
                     }
                 },
                 {
                     mRender : function(data, type, row){
                         switch(row.Status){
-                            case null:
+                            case 0:
                                 return `<p class="new_status">New</p>`;
                             case 1:
                                 return `<p class="pending_status">Pending</p>`;
@@ -89,7 +112,16 @@
                 },
                 {
                     mRender : function(data, type, row){
-                        return `<button class="rate_sp_btn" onclick="rateSP(${row.ServiceRequestId});">Rate SP</button>`;
+                        // NULL : NEW
+                        // 1    : PENDING
+                        // 2    : COMPLETED
+                        // 3    : CANCALLED
+                        if(row.Status==2){
+                            return `<button class="rate_sp_btn" onclick="rateSP(${row.ServiceRequestId});">Rate SP</button>`;
+                        }
+                        else{
+                            return `<button class="rate_sp_btn" disabled>Rate SP</button>`;
+                        }
                     }
                 }
             ],
@@ -110,7 +142,72 @@
 
     function rateSP(id){
         state.rate_service_id = id;
-        // IF SERVICE PROVIDER AVAILABLE THEN RATING OTHERWISE DON'T...
+
+        let data = state.customer_service_history_data;
+
+        data = data.filter((service)=>{
+            if(service.ServiceRequestId==id){
+                return service;
+            }
+        });
+
+        data = data[0];
+
+        // ASSIGN HTML BEFORE OPEN MODEL
+        $('#rating_popup').html(`
+            <div class="service_provider">
+                <img class="hat_style" src="${BASE_URL}/${data.ServiceProvider.UserProfilePicture}" alt="">
+                <div>
+                    <p>${data.ServiceProvider.FirstName} ${data.ServiceProvider.LastName}</p>    
+                    <div>
+                        <i class="fas fa-star unrated_star"></i>
+                        <i class="fas fa-star unrated_star"></i>
+                        <i class="fas fa-star unrated_star"></i>
+                        <i class="fas fa-star unrated_star"></i>
+                        <i class="fas fa-star unrated_star"></i>
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+            <!-- NEED TO TEXT ALIGN LEFT -->
+            <p class="popup_title" style="text-align: left;">Rate your Service Provider</p>
+            <div class="rate_type">
+                <div>
+                    <p>On time arrival</p>    
+                    <i class="fas fa-star rated_star"></i>
+                    <i class="fas fa-star rated_star"></i>
+                    <i class="fas fa-star unrated_star"></i>
+                    <i class="fas fa-star unrated_star"></i>
+                    <i class="fas fa-star unrated_star"></i>
+                </div>
+                <div>
+                    <p>Friendly</p>    
+                    <i class="fas fa-star rated_star"></i>
+                    <i class="fas fa-star rated_star"></i>
+                    <i class="fas fa-star rated_star"></i>
+                    <i class="fas fa-star unrated_star"></i>
+                    <i class="fas fa-star unrated_star"></i>
+                </div>
+                <div>
+                    <p>Quality of Service</p>
+                    <i class="fas fa-star rated_star"></i>
+                    <i class="fas fa-star rated_star"></i>
+                    <i class="fas fa-star rated_star"></i>
+                    <i class="fas fa-star rated_star"></i>
+                    <i class="fas fa-star unrated_star"></i>
+                </div>
+            </div><!-- RATE TYPE -->
+            <div>
+                <div class="form_group">
+                    <label class="label" for="">Feedback on service provider</label>
+                    <textarea class="textarea" name="rating_feedback"></textarea>
+                    <div class="validation_message d_none">
+                        <p>Enter Feedback</p>
+                    </div>
+                </div>
+                <button class="popup_btn">Submit</button>
+            </div>
+        `);
         open_model('rating');
     }
 

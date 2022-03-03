@@ -109,7 +109,8 @@ class BookNow{
             'TotalCost' => $total_cost,
             'Comments' => $comments,
             'ServiceProviderId' => $sp_id,
-            'HasPets' => $has_pets
+            'HasPets' => $has_pets,
+            'Status' => 0 //STATUS ZERO MEANS NEW REQUEST...
         ]);
 
         // ADD SERVICE_REQUEST_ADDRESS IN DATABASE TABLE...

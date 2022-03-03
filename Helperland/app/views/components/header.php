@@ -96,7 +96,7 @@
 		
 		<!-- NAV_MENU -->
 		<div class="nav_menu">
-			<?php if(session('userRole')=='customer'){ ?>
+			<?php if(session('userRole')!='admin' && session('userRole')!='service-provider'){ ?>
 				<a class="navbar_focus_btn <?= $home_focus_btn; ?>" href="<?= url('/book-now'); ?>">Book a Cleaner</a>
 			<?php } ?>
 			<a class="<?= $active_link['prices']; ?>" href="<?= url('/prices'); ?>">Prices</a>
@@ -142,7 +142,7 @@
 							<p><?= session('userName'); ?></p>
 						</div>
 						<hr>
-						<a href="">To Overview</a>
+						<a href="javascript:void(0);">To Overview</a>
 						<a href="javascript:void(0);" class="table_tab_btn">My Setting</a>
 						<a href="<?= url('/logout') ?>">Logout</a>
 					</div>

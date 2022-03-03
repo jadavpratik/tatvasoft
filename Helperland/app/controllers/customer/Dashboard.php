@@ -7,14 +7,16 @@ use core\Response;
 use core\Validation;
 
 use app\models\Service;
+use app\models\ExtraService;
+use app\models\User;
+use app\models\Rating;
 
 class Dashboard{
 
-    /* 
-        Status : 1    (COMPLETED)
-        Status : 2    (CANCELLED)
-        Status : NULL (PENDING OR NOT COMPLETED)
-    */
+    private $NEW_REQUEST       = 0;
+    private $PENDING_REQUEST   = 1; // (ALSO ACCEPTED BY SP)
+    private $COMPLETED_REQUEST = 2;
+    private $CANCELLED_REQUEST = 3;
 
     // ALL SERVICES...
     public function all_services(Request $req, Response $res){
@@ -46,6 +48,27 @@ class Dashboard{
             $data[$i]->Duration = date('H:i', mktime(0, $data[$i]->intDuration*60));
             // END TIME (24 HOUR FORMAT)
             $data[$i]->EndTime = date('H:i', mktime(0, time_to_minutes($data[$i]->StartTime) + time_to_minutes($data[$i]->Duration)));
+
+            // EXTRA SERVICE DETAILS...
+            $extra = new ExtraService();
+            $temp = $extra->where('ServiceRequestId', '=', $data[$i]->ServiceRequestId)->read();
+            for($j=0; $j<count($temp); $j++){
+                $data[$i]->ExtraService[] = $temp[$j]->ServiceExtraId;                
+            }
+
+            // SERVICE PROVIDER DETAILS...
+            if($data[$i]->ServiceProviderId!=null){
+                $user = new User();
+                $temp = $user->where('UserId', '=', $data[$i]->ServiceProviderId)->read();
+                $data[$i]->ServiceProvider = $temp[0];
+            }
+
+            // RATTING DETAILS...
+            $rating = new Rating();
+            $temp = $rating->where('ServiceRequestId', '=', $data[$i]->ServiceRequestId)->read();
+            if(count($temp)>0 || count($temp)==1){
+                $data[$i]->Rating = $temp[0];
+            }            
         }
         $res->status(200)->json($data);
     }
@@ -55,9 +78,10 @@ class Dashboard{
 
         $userId = session('userId');
         $service = new Service();
-        $where = "UserId = {$userId} AND Status IS NULL";
+        // STATUS = 0 OR 1 MEANS (NEW OR PENDING)...
+        $where = "UserId = {$userId} AND (Status = {$this->PENDING_REQUEST} OR Status = {$this->NEW_REQUEST})";
         $data = $service->join('ServiceRequestId', 'ServiceRequestId', 'servicerequestaddress')->where($where)->read();
-       
+
         // BAKI 6E... EXTRA SERVICE TABLE NE JOIN KARVANU...
         function time_to_minutes($time){
             $temp = explode(':', $time);
@@ -80,6 +104,27 @@ class Dashboard{
             $data[$i]->Duration = date('H:i', mktime(0, $data[$i]->intDuration*60));
             // END TIME (24 HOUR FORMAT)
             $data[$i]->EndTime = date('H:i', mktime(0, time_to_minutes($data[$i]->StartTime) + time_to_minutes($data[$i]->Duration)));
+
+            // EXTRA SERVICE DETAILS...
+            $extra = new ExtraService();
+            $temp = $extra->where('ServiceRequestId', '=', $data[$i]->ServiceRequestId)->read();
+            for($j=0; $j<count($temp); $j++){
+                $data[$i]->ExtraService[] = $temp[$j]->ServiceExtraId;                
+            }
+
+            // SERVICE PROVIDER DETAILS...
+            if($data[$i]->ServiceProviderId!=null){
+                $user = new User();
+                $temp = $user->where('UserId', '=', $data[$i]->ServiceProviderId)->read();
+                $data[$i]->ServiceProvider = $temp[0];
+            }
+
+            // RATTING DETAILS...
+            $rating = new Rating();
+            $temp = $rating->where('ServiceRequestId', '=', $data[$i]->ServiceRequestId)->read();
+            if(count($temp)>0 || count($temp)==1){
+                $data[$i]->Rating = $temp[0];
+            }
         }
         $res->status(200)->json($data);
     }
@@ -96,7 +141,7 @@ class Dashboard{
 
         // REASON STORE IN DATABASE PENDING...
         $service->where('ServiceRequestId', '=', $serviceId)->update([
-            'Status' => 2,
+            'Status' => $this->CANCELLED_REQUEST,
         ]);
 
         $res->status(200)->json(['message'=>'Service cancelled successfully.']);
@@ -118,7 +163,8 @@ class Dashboard{
 
         // REASON STORE IN DATABASE PENDING...
         $service->where('ServiceRequestId', '=', $serviceId)->update([
-            'ServiceStartDate' => date('Y-m-d H:i:s', strtotime($date.' '.$time) ),
+            'ServiceStartDate' => date('Y-m-d H:i:s', strtotime($date.' '.$time)),
+            'Status' => $this->NEW_REQUEST
         ]);
 
         $res->status(200)->json(['message'=>'Service cancelled successfully.']);
