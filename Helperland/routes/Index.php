@@ -11,11 +11,3 @@ require_once __DIR__."/BookNow.php";
 require_once __DIR__."/Contact.php";
 require_once __DIR__."/Customer.php";
 require_once __DIR__."/View.php";
-
-
-// use core\Route;
-// use app\models\Service;
-
-// Route::get('/test_api', function(){
-    // $service = new Service();
-// });

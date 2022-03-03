@@ -1,5 +1,6 @@
 <?= component('header'); ?>
 
+<!-- **********MAIN********** -->
 <main>
 
     <!-- WELCOME_MESSAGE -->

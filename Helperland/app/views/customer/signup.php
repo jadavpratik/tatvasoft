@@ -1,6 +1,6 @@
 <?= component('header'); ?>
 
-<!-- CUSTOMER-SIGNUP-FORM -->
+<!-- **********CUSTOMER_SIGNUP********** -->
 <div class="customer_signup">
 
     <div class="title_with_icon">
@@ -71,9 +71,7 @@
 
 <?= component('footer'); ?>
 
-<!-- ---------------------------------------------------------- -->
-			<!-- SCRIPT FOR REGISTRATION... -->
-<!-- ---------------------------------------------------------- -->
+<!-- **********SCRIPT FOR REGISTRATION********** -->
 <script>
 	$('[name="TermCheckBox"]').click(()=>{
 		if($('[name="TermCheckBox"]').prop('checked')){

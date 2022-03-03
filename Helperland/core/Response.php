@@ -8,7 +8,6 @@ class Response{
 		if(!empty($arr))
 			extract($arr);
 
-		// TRIM $res->render('/home') to $res->render('home');
 		$view = ltrim($view, '/');
 		$view_path = __DIR__.'/../app/views/'.$view.'.php';
 

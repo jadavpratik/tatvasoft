@@ -1,15 +1,15 @@
 <?php
 
     // DIRECTORY PATH
-    $PATH1 = 'http://localhost/tatvasoft/helperland';
+    $DIR_PATH = 'http://localhost/tatvasoft/helperland';
     // PORT PATH
-    $PATH2 = "http://localhost:".$_SERVER['SERVER_PORT'];
+    $PORT_PATH = "http://localhost:".$_SERVER['SERVER_PORT'];
     // BASE_URL
-    $BASE_URL = ($_SERVER['SERVER_PORT']==80 && $_SERVER['HTTP_HOST']=='localhost')? $PATH1 : $PATH2 ;
+    $BASE_URL = ($_SERVER['SERVER_PORT']==80 && $_SERVER['HTTP_HOST']=='localhost')? $DIR_PATH : $PORT_PATH ;
 
     // SET THE BASE_URL
     define('BASE_URL', $BASE_URL);
-    define('URL_TRIM_PART', str_replace('http://localhost', '', $PATH1));
+    define('URL_TRIM_PART', str_replace('http://localhost', '', $DIR_PATH));
     
     // CONFIG OF DATABASE...
     define('DB_TYPE', 'mysql');

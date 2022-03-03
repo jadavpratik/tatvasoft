@@ -6,6 +6,7 @@ namespace core;
 class File{
 
 	public static function upload($file, $path){		
+		// URL / \ TRIM BAKI 6E...
 		$uploadPath = STORAGE_PATH.$path;
 		$fileName = $file['name'];	
 		if(!file_exists($uploadPath)){

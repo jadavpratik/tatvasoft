@@ -1,16 +1,16 @@
-<!-- ----------OPEN LOGIN FORM---------- -->
+<!-- **********OPEN_LOGIN_FORM********** -->
 <?php if(session('openLoginForm')){ ?>
 	<script> open_model('login'); </script>
 	<?php unset($_SESSION['openLoginForm']); ?>
 <?php } ?>
 
-<!-- ----------OPEN FORGOT-PASSWORD---------- -->
+<!-- **********OPEN_FORGOT_PASSWORD********** -->
 <?php if(session('openForgotPasswordForm')){ ?>
 	<script> open_model('forgot_password'); </script>
 	<?php unset($_SESSION['openForgotPasswordForm']); ?>
 <?php } ?>
 
-<!-- ----------LOGOUT---------- -->
+<!-- **********LOGOUT********** -->
 <?php if(session('logout')){ ?>
 	<script> Swal.fire({ title : `Logout Successfully`, icon : 'success' }); </script>
 	<?php unset($_SESSION['logout']); ?>

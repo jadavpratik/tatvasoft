@@ -1,3 +1,4 @@
+<!-- **********SIDENAV********** -->
 <aside class="sidenav">
 
     <?php if(session('isLogged')==true){ ?>

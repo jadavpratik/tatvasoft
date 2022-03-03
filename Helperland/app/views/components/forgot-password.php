@@ -1,4 +1,4 @@
-<!-- FORGOT_PASSWORD -->
+<!-- **********FORGOT_PASSWORD********** -->
 <div class="model">
     <!-- MODEL_CLOSE -->
     <button class="model_close_btn">&times;</button>

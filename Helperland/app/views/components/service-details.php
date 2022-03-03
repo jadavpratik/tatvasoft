@@ -1,6 +1,4 @@
-<!-- ---------------------------------- -->
-        <!-- SERVICE DETAILS -->
-<!-- ---------------------------------- -->
+<!-- **********SERVICE_DETAILS********** -->
 <div class="model">
     <!-- MODEL_CLOSE -->
     <button class="model_close_btn">&times;</button>

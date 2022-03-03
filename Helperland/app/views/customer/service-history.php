@@ -76,14 +76,14 @@
                 {
                     mRender : function(data, type, row){
                         switch(row.Status){
-                            case 1:
-                                return `<p class="completed_status">Completed</p>`;
-                            case 2:
-                                return `<p class="cancelled_status">Cancelled</p>`;
                             case null:
-                                return `<p class="cancelled_status">Pending</p>`;
-                            default:
-                                return `<p class="cancelled_status">Pending</p>`;
+                                return `<p class="new_status">New</p>`;
+                            case 1:
+                                return `<p class="pending_status">Pending</p>`;
+                            case 2:
+                                return `<p class="completed_status">Completed</p>`;
+                            case 3:
+                                return `<p class="cancelled_status">Cancelled</p>`;
                         }
                     }
                 },

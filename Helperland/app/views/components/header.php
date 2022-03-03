@@ -79,14 +79,11 @@
 				break;
 		}
 	?>
-	<!-- --------------------------------------------------- -->
-						<!-- FOR_BACKLIGHT_CONTAIN -->
-	<!-- --------------------------------------------------- -->
+	
+	<!-- **********FOR_BACKLIGHT_CONTAIN********** -->	
 	<div class="backlight_container"></div>
-
-	<!-- --------------------------------------------------- -->
-						<!-- NAVBAR -->
-	<!-- --------------------------------------------------- -->
+	
+	<!-- **********NAVBAR********** -->	
 	<nav class="navbar" id="<?= $home_header_id; ?>" style="<?= $home_header_style; ?>">
 
 		<!-- LOGO -->
@@ -99,10 +96,7 @@
 		
 		<!-- NAV_MENU -->
 		<div class="nav_menu">
-			<!-- USERROLE BY SESSION -->
-			<?php $userRole = session('userRole'); ?>
-
-			<?php if($userRole!='service-provider' && $userRole!='admin' ){ ?>
+			<?php if(session('userRole')=='customer'){ ?>
 				<a class="navbar_focus_btn <?= $home_focus_btn; ?>" href="<?= url('/book-now'); ?>">Book a Cleaner</a>
 			<?php } ?>
 			<a class="<?= $active_link['prices']; ?>" href="<?= url('/prices'); ?>">Prices</a>
@@ -163,9 +157,8 @@
 		</div><!-- END NAV_MENU -->
 	</nav><!-- END NAVBAR -->
 
-	<!-- --------------------------------------------------- -->
-				<!--SIDE_NAVBAR, POPUP_MODEL (HIDDEN) -->
-	<!-- --------------------------------------------------- -->
+	
+	<!-- **********SIDEBAR & POPUP_MODEL********** -->	
 	<?= component('sidenav'); ?>
 	<?= component('login'); ?>
 	<?= component('forgot-password'); ?>

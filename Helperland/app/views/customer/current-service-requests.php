@@ -140,7 +140,7 @@
         </div>`;
 
         // ASSIGN DYNAMIC HTML BEFORE OPEN MODEL...
-        $('#service_details_popup').html(service_details_inner_html);
+        $('#service_details_popup').html(html);
         open_model('service_details');
 
     }

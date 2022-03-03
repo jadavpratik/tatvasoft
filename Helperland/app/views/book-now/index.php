@@ -1,8 +1,6 @@
 <?= component('header'); ?>
 
-<!-- --------------------------------------------------- -->
-                    <!-- BOOK A SERVICE -->
-<!-- --------------------------------------------------- -->
+<!-- **********BOOK A SERVICE********** -->
 
 <script>
     // FOR STORING A DATA AS GLOBALLY...
@@ -25,7 +23,7 @@
 </script>
 
 
-<!-- BOOK A SERVICE -->
+<!-- **********BOOK A SERVICE********** -->
 <div class="banner">
     <img src="<?= assets('assets/img/banner/book_service.png'); ?>" alt="">
 </div>

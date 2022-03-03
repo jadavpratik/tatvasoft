@@ -1,8 +1,6 @@
 <?= component('header'); ?>
 
-<!-- --------------------------------------------------- -->
-					<!-- CONTACT_MAIN -->
-<!-- --------------------------------------------------- -->
+<!-- **********CONTACT_MAIN********** -->
 
 <!-- CONTACT_PAGE_BANNER -->
 <div class="banner">
@@ -11,9 +9,7 @@
 
 <main>
 
-	<!-- --------------------------------------------------- -->
-						<!-- CONTACT_US -->
-	<!-- --------------------------------------------------- -->
+	<!-- **********CONTACT_US********** -->
 	<div class="contact">
 		
 		<!-- SECTION_1_TITLE -->
@@ -43,9 +39,7 @@
 	
 	<hr class="contact_hr">
 
-	<!-- --------------------------------------------------- -->
-						<!-- GET_IN_TOUCH -->
-	<!-- --------------------------------------------------- -->
+	<!-- **********GET_IN_TOUCH********** -->
 	<div class="get_in_touch">
 		<p class="get_in_touch_title">Get in touch with us</p>
 		<form id="contact_us">
@@ -115,6 +109,15 @@
 			<button class="form_btn" disabled>Submit</button>
 		</form>
 	</div><!-- END_GET_IN_TOUCH -->
+
+	<!-- MAP -->
+	<div class="map">
+		<img src="<?= assets('assets/img/static/contact/section_2/map.png'); ?>" alt="">
+	</div>
+
+<main>
+
+
 
 <script>
 
@@ -195,12 +198,5 @@
 		}
 	});
 </script>
-
-	<!-- MAP -->
-	<div class="map">
-		<img src="<?= assets('assets/img/static/contact/section_2/map.png'); ?>" alt="">
-	</div>
-
-<main>
 
 <?= component('footer') ?>

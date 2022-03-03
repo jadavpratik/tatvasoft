@@ -5,9 +5,7 @@
 		}
 	?>
 
-	<!-- --------------------------------------------------- -->
-						<!-- FOOTER -->
-	<!-- --------------------------------------------------- -->
+	<!-- **********FOOTER********** -->
 	<footer>
 		<!-- FOOTER_TRANSPARENT_DIV -->
 		<!-- IF HOME PAGE THEN TRANSPARENT-DIV HAVE DIFFERNT COLOR -->
@@ -50,10 +48,7 @@
 
 	</footer>
 
-	<!-- --------------------------------------------------- -->
-						<!-- FIXED BUTTON -->
-	<!-- --------------------------------------------------- -->
-
+	<!-- **********FIXED_BUTTON********** -->
 	<?php if(false){ ?>
 		<!-- GO_TO_TOP_BTN -->
 		<button class="go_top_btn"><img src="<?= assets('assets/img/buttons/up_btn.png'); ?>" alt=""></button>
@@ -68,9 +63,8 @@
 		</div>
 	<?php } ?>
 
-	<!-- --------------------------------------------------- -->
-					<!-- ALL SCRIPT FILES -->
-	<!-- --------------------------------------------------- -->
+	<!-- **********ALL_SCRIPT_FILES********** -->
+
 	<!-- DATATABLE -->
 	<script src="//cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
 	<!-- AOS -->

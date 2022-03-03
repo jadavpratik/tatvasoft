@@ -211,7 +211,7 @@ class Validation{
 	// POSTAL-CODE VALIDATION...
 	public static function postalCodeValidation($key, $value){
 		if(!preg_match(Validation::PostalCodeRegEx, $value)){
-			self::$error[$key] = "Postal Code have Minimum 5 or Maximum 10 digits only !";
+			self::$error[$key] = "Postal Code have Minimum 5 or Maximum 6 digits only !";
 		}
 	}
 

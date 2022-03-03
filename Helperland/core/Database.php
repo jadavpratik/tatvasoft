@@ -18,7 +18,7 @@ class Database{
     
     protected $table = '';
     private $query = '';
-    private $columns = '';
+    private $columns = ' * ';
     private $where = '';
     private $joinString = '';
     private $res = null;
@@ -26,7 +26,7 @@ class Database{
     // -----------------CONNECT-------------------
     public function connect(){
         try {
-            $dbString = "$this->dbType:host=$this->dbHost;dbname=$this->dbName";
+            $dbString = "{$this->dbType}:host=$this->dbHost;dbname=$this->dbName";
             $this->conn = new PDO($dbString, $this->dbUser, $this->dbPassword);
             $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);            
         } 
@@ -40,8 +40,6 @@ class Database{
         $this->res = new Response();
         $this->connect();
     }
-
-    // -----------------CUSTOM-QUERY-----------------
 
     // -----------------TABLE-------------------
     public function table($name){
@@ -125,6 +123,8 @@ class Database{
     // -----------------COLUMN-------------------
     public function columns($columns){
         if(isset($columns) && !empty($columns)){
+            // FIRST BLANK THE ALL COLUMNS...
+            $this->columns = '';
             foreach($columns as $column){
                 $this->columns .= $column.', ';
             }
@@ -143,13 +143,8 @@ class Database{
     // -----------------READ-------------------
     public function read(){
         try{
-            if($this->columns!="" || $this->columns!=null){
-                $this->query = "SELECT {$this->columns} FROM {$this->table} {$this->joinString} {$this->where}";
-            }
-            else{
-                $this->query = "SELECT * FROM {$this->table} {$this->joinString} {$this->where}";
-            }
-            $result = $this->conn->query($this->query);
+            $this->query = "SELECT {$this->columns} FROM {$this->table} {$this->joinString} {$this->where}";
+            $result = $this->conn->query($this->query);            
             $data = $result->fetchAll(PDO::FETCH_ASSOC);
             return json_decode(json_encode($data));
             // RETURN ARRAY OF AN OBJECT...
