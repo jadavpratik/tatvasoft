@@ -37,7 +37,7 @@
             </div>
 
             <!-- SERVICE_HISTORY -->
-            <div class="table_tab_content">
+            <div class="table_tab_content d_none">
                 <?= component('customer/', 'service-history'); ?>
             </div><!-- END_TABLE_TAB_CONTENT -->
 
@@ -49,7 +49,7 @@
             </div><!-- END_TABLE_TAB_CONTENT -->
 
             <!-- FAVOURITE PROS -->
-            <div class="table_tab_content d_none">
+            <div class="table_tab_content">
                 <?= component('customer/', 'favourite-sp'); ?>
             </div><!-- END_TABLE_TAB_CONTENT -->
 

@@ -10,6 +10,7 @@ use app\models\Service;
 use app\models\ExtraService;
 use app\models\User;
 use app\models\Rating;
+use app\models\Favorite;
 
 class Dashboard{
 
@@ -207,5 +208,108 @@ class Dashboard{
         ]);
         
         $res->status(200)->json(['message'=>'Thanks for feedback Us.']);
+    }
+
+    // CUSTOMER SP LIST (WHO PROVIDED SERVICE TO CUSTOMER IN PAST...)
+    public function customer_sp_list(Request $req, Response $res){
+        $userId = session('userId');
+
+        $service = new Service();
+        $where = "UserId = {$userId} AND Status = 2";
+        // GET ALL SERVICE PROVIDER ID WHO COMPLETED SERVICE WITH THIS CUSTOMER...
+        $data = $service->columns(['ServiceProviderId'])->where($where)->read();
+    
+        for($i=0; $i<count($data); $i++){
+            // STORE FIRSTNAME AND LASTNAME OF SERVICE PROVIDER...
+            $user = new User();
+            $where = "UserId = {$data[$i]->ServiceProviderId}";
+            $temp1 = $user->columns(['UserId, FirstName', 'LastName', 'UserProfilePicture'])->where($where)->read();
+    
+    
+            // STORE FAVORITE AND BLOCKED DATA...
+            $fav = new Favorite();
+            $where = "UserId = {$userId} AND TargetUserId = {$data[$i]->ServiceProviderId}";
+            $temp2 = $fav->columns(['UserId', 'IsFavorite', 'IsBlocked'])->where($where)->read();
+            
+            if(count($temp2)>0){
+                $temp1[0]->IsBlocked = $temp2[0]->IsBlocked;
+                $temp1[0]->IsFavorite = $temp2[0]->IsFavorite;
+            }
+            $data[$i] = $temp1[0];
+            unset($data[$i]->ServiceProviderId);
+        }    
+        $res->json($data);    
+    }
+
+    // ADD TO FAVORITE LIST...
+    public function add_to_favorite(Request $req, Response $res){
+        $customerId = session('userId');
+        $serviceProviderId = $req->params->id;   
+        $fav = new Favorite();
+        $where = "UserId = {$customerId} AND TargetUserId = {$serviceProviderId}";
+        if($fav->where($where)->exists()){
+            $fav->where($where)->update([
+                'IsFavorite' => 1
+            ]);    
+        }
+        else{
+            $fav->create([
+                'IsFavorite' => 1,
+                'IsBlocked' => 0,
+                'UserId' => $customerId,
+                'TargetUserId' => $serviceProviderId
+            ]);    
+        }
+        $res->status(200)->json(['message'=>'Added to Favorite list']);
+    }
+
+    // REMOVE FROM FAVORITE LIST...
+    public function remove_from_favorite(Request $req, Response $res){
+        $customerId = session('userId');
+        $serviceProviderId = $req->params->id;   
+        $fav = new Favorite();
+        $where = "UserId = {$customerId} AND TargetUserId = {$serviceProviderId}";
+        if($fav->where($where)->exists()){
+            $fav->where($where)->update([
+                'IsFavorite' => 0
+            ]);    
+        }
+        $res->status(200)->json(['message'=>'Remove from Favorite List']);
+    }
+
+    // BLOCK SP...
+    public function block_sp(Request $req, Response $res){
+        $customerId = session('userId');
+        $serviceProviderId = $req->params->id;   
+        $fav = new Favorite();
+        $where = "UserId = {$customerId} AND TargetUserId = {$serviceProviderId}";
+        if($fav->where($where)->exists()){
+            $fav->where($where)->update([
+                'IsBlocked' => 1
+            ]);    
+        }
+        else{
+            $fav->create([
+                'IsFavorite' => 0,
+                'IsBlocked' => 1,
+                'UserId' => $customerId,
+                'TargetUserId' => $serviceProviderId
+            ]);    
+        }
+        $res->status(200)->json(['message'=>'Service Provider Blocked Successfully.']);
+    }
+
+    // UNBLOCK SP...
+    public function unblock_sp(Request $req, Response $res){
+        $customerId = session('userId');
+        $serviceProviderId = $req->params->id;   
+        $fav = new Favorite();
+        $where = "UserId = {$customerId} AND TargetUserId = {$serviceProviderId}";
+        if($fav->where($where)->exists()){
+            $fav->where($where)->update([
+                'IsBlocked' => 0
+            ]);    
+        }
+        $res->status(200)->json(['message'=>'Service Provider Unblocked Successfully.']);
     }
 }
