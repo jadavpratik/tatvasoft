@@ -750,6 +750,23 @@ function reschedule_service_validation(){
     }
 }
 
+function rating_feedback_validation(){
+    const input_value = $('[name="rating_feedback"]').val();
+    const quality_rating = $('[name="quality_rating"]:checked').val();
+    const arrival_rating = $('[name="arrival_rating"]:checked').val();
+    const friendly_rating = $('[name="friendly_rating"]:checked').val();
+    if(input_value=="" || arrival_rating=="" || quality_rating=="" || friendly_rating==""){
+        $('[name="rating_feedback"]').next().removeClass('d_none').children().html('Please Give Feedback & Rating!');
+        return false;
+    }   
+    else{
+        $('[name="rating_feedback"]').next().removeClass('d_none').children().html('');
+        return true;
+    } 
+}
+
+
+
 // -------------------CONTACTUS, SIGNUP, PROFILE---------------------
 $('[name="firstname"]').focusout(function(){
     firstname_validation();    
@@ -921,6 +938,10 @@ $('[name="reschedule_service_date"]').focusout(function(){
 
 $('[name="reschedule_service_time"]').focusout(function(){
     reschedule_service_validation();
+});
+
+$('[name="rating_feedback"]').focusout(function(){
+    rating_feedback_validation();
 });
 
 // ------------MIN & MAX DATE FIX FOR VALIDATION--------------

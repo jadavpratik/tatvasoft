@@ -67,7 +67,7 @@ class Dashboard{
             $rating = new Rating();
             $temp = $rating->where('ServiceRequestId', '=', $data[$i]->ServiceRequestId)->read();
             if(count($temp)>0 || count($temp)==1){
-                $data[$i]->Rating = $temp[0];
+                $data[$i]->Rating = $temp[0]->Ratings;
             }            
         }
         $res->status(200)->json($data);
@@ -123,7 +123,7 @@ class Dashboard{
             $rating = new Rating();
             $temp = $rating->where('ServiceRequestId', '=', $data[$i]->ServiceRequestId)->read();
             if(count($temp)>0 || count($temp)==1){
-                $data[$i]->Rating = $temp[0];
+                $data[$i]->Rating = $temp[0]->Ratings;
             }
         }
         $res->status(200)->json($data);
@@ -170,4 +170,42 @@ class Dashboard{
         $res->status(200)->json(['message'=>'Service cancelled successfully.']);
     }
 
+    // RATE SERVICE PROVIDER...
+    public function rate_service_provider(Request $req, Response $res){
+
+        $serviceId = $req->params->id;
+
+        // Validation::check($req->body, [
+        //     'arrival_rating' => ['required'],
+        //     'friendly_rating' => ['required'],
+        //     'quality_rating' => ['required'],
+        //     'rating_feedback' => ['required'],
+        // ]);
+
+        $arrival_rating = (int) $req->body->arrival_rating;
+        $quality_rating = (int) $req->body->arrival_rating;
+        $friendly_rating = (int) $req->body->friendly_rating;
+        $rating_feedback = $req->body->rating_feedback;
+        $averageRating =  (float) ($arrival_rating + $quality_rating + $friendly_rating )/3;
+
+        $service = new Service();
+        $data = $service->where('ServiceRequestId', '=', $serviceId)->read();
+        $customerId = $data[0]->UserId;
+        $serviceProviderId = $data[0]->ServiceProviderId;
+
+        $rating = new Rating();
+        $rating->create([
+            'ServiceRequestId' => $serviceId,
+            'RatingFrom' => $customerId,
+            'RatingTo' => $serviceProviderId,
+            'Ratings' => $averageRating,
+            'Comments' => $rating_feedback,
+            'RatingDate' => date('Y-m-d H:i:s'),
+            'OnTimeArrival' => $arrival_rating,
+            'Friendly' => $friendly_rating,
+            'QualityOfService' => $quality_rating,
+        ]);
+        
+        $res->status(200)->json(['message'=>'Thanks for feedback Us.']);
+    }
 }

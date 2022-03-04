@@ -32,12 +32,12 @@
             </div>
             
             <!-- CUSTOMER_SERVICE_REQUESTS -->
-            <div class="table_tab_content">
+            <div class="table_tab_content d_none">
                 <?= component('customer/', 'current-service-requests'); ?>
             </div>
 
             <!-- SERVICE_HISTORY -->
-            <div class="table_tab_content d_none">
+            <div class="table_tab_content">
                 <?= component('customer/', 'service-history'); ?>
             </div><!-- END_TABLE_TAB_CONTENT -->
 
@@ -104,28 +104,6 @@
         // SERVICE DATA...
         data = data[0];
 
-        // IF EXTRA SERVICE TAKEN...
-        let extraService = ``;
-        if(data.ExtraService!==undefined){
-            for(let i=0; i<data.ExtraService.length; i++){
-                if(data.ExtraService[i]==1){
-                    extraService += `<p>Extras : <span>Inside Cabinet</span></p>`;
-                }
-                else if(data.ExtraService[i]==2){
-                    extraService += `<p>Extras : <span>Inside Fridge</span></p>`;
-                }
-                else if(data.ExtraService[i]==3){
-                    extraService += `<p>Extras : <span>Inside Oven</span></p>`;
-                }
-                else if(data.ExtraService[i]==4){
-                    extraService += `<p>Extras : <span>Inside Laundry</span></p>`;
-                }
-                else if(data.ExtraService[i]==5){
-                    extraService += `<p>Extras : <span>Inside Window</span></p>`;
-                }
-            }
-        }
-
         // SETUP HTML... $ ₹
         $('#service_details_popup').html(`
             <p class="popup_title">Service Details</p>
@@ -135,7 +113,32 @@
             </div>
             <div>
                 <p>Service Id : <span>${data.ServiceRequestId}</span></p>
-                ${extraService}
+                ${(function(){
+                    let extraService = ``;
+                    if(data.ExtraService!==undefined){
+                        for(let i=0; i<data.ExtraService.length; i++){
+                            if(data.ExtraService[i]==1){
+                                extraService += `<p>Extras : <span>Inside Cabinet</span></p>`;
+                            }
+                            else if(data.ExtraService[i]==2){
+                                extraService += `<p>Extras : <span>Inside Fridge</span></p>`;
+                            }
+                            else if(data.ExtraService[i]==3){
+                                extraService += `<p>Extras : <span>Inside Oven</span></p>`;
+                            }
+                            else if(data.ExtraService[i]==4){
+                                extraService += `<p>Extras : <span>Inside Laundry</span></p>`;
+                            }
+                            else if(data.ExtraService[i]==5){
+                                extraService += `<p>Extras : <span>Inside Window</span></p>`;
+                            }
+                        }
+                        return extraService;
+                    }
+                    else{
+                        return extraService;
+                    }
+                })()}
                 <p>Net Amout : <span class="price_text">${data.TotalCost} ₹</span></p>
             </div>
             <div>
@@ -145,7 +148,7 @@
                 <p>Email : <span>${data.Email}</span></p>
             </div>
             <div>
-                <p>Conmments : <span>${data.Comments}</span></p>
+                <p>Conmments : <span>${data.Comments? data.Comments:''}</span></p>
             </div>
             <div class="table_btn_container">
                 <button class="reschedule_btn" onclick="reschedule_service(${data.ServiceRequestId});"><i class="fas fa-redo-alt"></i> Reschdule</button>

@@ -12,9 +12,10 @@ Route::patch('/cancel-service/:id', $isCustomer, [new CustomerDashboard(), 'canc
 Route::patch('/reschedule-service/:id', $isCustomer, [new CustomerDashboard(), 'reschedule_service']);
 Route::get('/customer-all-services', $isCustomer, [new CustomerDashboard(), 'all_services']);
 
+
+Route::post('/rate-service-provider/:id', $isCustomer, [new CustomerDashboard(), 'rate_service_provider']);
 // FAVOURITE
 // UNFAVOURITE
 // BLOCK
 // UNBLOCK
-// RATE SP
 

@@ -37,7 +37,7 @@ class Contact{
             'Subject' => $req->body->subject,
             'Message' => $req->body->message,
             'UploadFileName' => $filePath,
-            'CreatedOn' => timestamp()
+            'CreatedOn' => date('Y-m-d H:i:s')
         ]);    
         $res->status(200)->json(['message'=>"Form Submitted Successfully."]);
         // $emailBody = $req->body->message;

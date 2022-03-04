@@ -67,7 +67,7 @@ class Account{
 					'Mobile' => $req->body->phone,
 					'Password'=> $hash,
 					'RoleId' => $role,
-					'CreatedDate' => timestamp()
+					'CreatedDate' => date('Y-m-d H:i:s')
 				]);
 				$res->status(201)->json(['message'=>'Account is Created Successfully.']);
 			}
@@ -204,7 +204,7 @@ class Account{
 		$email = $req->body->email;
 		$user->where('Email','=', $email)->update([
 			'Password' => $hash,
-			'ModifiedDate' => timestamp(),
+			'ModifiedDate' => date('Y-m-d H:i:s'),
 		]);
 		$res->status(200)->json(['message'=>'Password Updated Successfully.']);
 	}    
@@ -239,7 +239,7 @@ class Account{
 			$user->where('UserId', '=', $userId)->update([
 				'UserId' => $userId,
 				'Password' => $hash,
-				'ModifiedDate' => timestamp(),
+				'ModifiedDate' => date('Y-m-d H:i:s'),
 			]);	
 			$res->status(200)->json(['message'=>'Password Change Successfully.']);	
 		}

@@ -21,7 +21,7 @@
     <!-- --------------------------------------------------- -->
 						<!-- FOR_BACKLIGHT_CONTAIN -->
 	<!-- --------------------------------------------------- -->
-	<div class="backlight_container"></div>
+	<div class="backlight_container backlight"></div>
 
 	<div class="model_btn">
         <button onclick="open_model('login')">LOGIN</button>
@@ -453,11 +453,12 @@
 	<!-- ---------------------------------- -->
 			<!-- RATING-POPUP -->
 	<!-- ---------------------------------- -->
-	<div class="model">
+	<div class="model active_model">
         <!-- MODEL_CLOSE -->
         <button class="model_close_btn">&times;</button>
 		<!-- RATING_POPUP -->
-		<div class="popup_main d_none" id="rating_popup">
+		<div id="rating_popup" class="popup_main">
+			<!-- ON RATE SERVICE PROVIDER  -->
 			<div class="service_provider">
 				<img class="hat_style" src="../assets/img/table/hat.png" alt="">
 				<div>
@@ -467,51 +468,82 @@
 						<i class="fas fa-star rated_star"></i>
 						<i class="fas fa-star rated_star"></i>
 						<i class="fas fa-star rated_star"></i>
-						<i class="fas fa-star unrated_star"></i>
-						<span>4</span>
+						<i class="fas fa-star rated_star"></i>
+						<span>5</span>
 					</div>
 				</div>
-			</div>
-			<!-- NEED TO TEXT ALIGN LEFT -->
-			<p class="popup_title" style="text-align: left;">Rate your Service Provider</p>
+			</div><!-- END-SERVICE-PROVIDER -->
 			<div class="rate_type">
-				<div>
-					<p>On time arrival</p>    
-					<i class="fas fa-star rated_star"></i>
-					<i class="fas fa-star rated_star"></i>
-					<i class="fas fa-star rated_star"></i>
-					<i class="fas fa-star rated_star"></i>
-					<i class="fas fa-star unrated_star"></i>
-				</div>
-				<div>
-					<p>Friendly</p>    
-					<i class="fas fa-star rated_star"></i>
-					<i class="fas fa-star rated_star"></i>
-					<i class="fas fa-star rated_star"></i>
-					<i class="fas fa-star rated_star"></i>
-					<i class="fas fa-star unrated_star"></i>
-				</div>
-				<div>
-					<p>Quality of Service</p>
-					<i class="fas fa-star rated_star"></i>
-					<i class="fas fa-star rated_star"></i>
-					<i class="fas fa-star rated_star"></i>
-					<i class="fas fa-star rated_star"></i>
-					<i class="fas fa-star unrated_star"></i>
-				</div>
-			</div><!-- RATE TYPE -->
-			<div>
-				<div class="form_group">
-					<label class="label" for="">Feedback on service provider</label>
-					<textarea class="textarea" name=""></textarea>
-					<div class="validation_message d_none">
-						<p>Enter Feedback</p>
+				<div class="rating_container">
+					<p>On Time Arriaval</p>    
+					<div class="rating_div">
+						<input type="radio" id="arriaval_rating_5" name="arriaval_rating" value="5">
+						<label for="arriaval_rating_5"><i class="fas fa-star unrated_star"></i></label>    
+						<input type="radio" id="arriaval_rating_4" name="arriaval_rating" value="4">
+						<label for="arriaval_rating_4"><i class="fas fa-star unrated_star"></i></label>
+						<input type="radio" id="arriaval_rating_3" name="arriaval_rating" value="3">
+						<label for="arriaval_rating_3"><i class="fas fa-star unrated_star"></i></label>
+						<input type="radio" id="arriaval_rating_2" name="arriaval_rating" value="2">
+						<label for="arriaval_rating_2"><i class="fas fa-star unrated_star"></i></label>
+						<input type="radio" id="arriaval_rating_1" name="arriaval_rating" value="1">
+						<label for="arriaval_rating_1"><i class="fas fa-star unrated_star"></i></label>
 					</div>
 				</div>
+				<div class="rating_container">
+					<p>Friendly</p>    
+					<div class="rating_div">
+						<input type="radio" id="friendly_rating_5" name="friendly_rating" value="5">
+						<label for="friendly_rating_5"><i class="fas fa-star unrated_star"></i></label>    
+						<input type="radio" id="friendly_rating_4" name="friendly_rating" value="4">
+						<label for="friendly_rating_4"><i class="fas fa-star unrated_star"></i></label>
+						<input type="radio" id="friendly_rating_3" name="friendly_rating" value="3">
+						<label for="friendly_rating_3"><i class="fas fa-star unrated_star"></i></label>
+						<input type="radio" id="friendly_rating_2" name="friendly_rating" value="2">
+						<label for="friendly_rating_2"><i class="fas fa-star unrated_star"></i></label>
+						<input type="radio" id="friendly_rating_1" name="friendly_rating" value="1">
+						<label for="friendly_rating_1"><i class="fas fa-star unrated_star"></i></label>
+					</div>
+				</div>
+				<div class="rating_container">
+					<p>Quality of Service</p>    
+					<div class="rating_div">
+						<input type="radio" id="quality_rating_5" name="quality_rating" value="5">
+						<label for="quality_rating_5"><i class="fas fa-star unrated_star"></i></label>    
+						<input type="radio" id="quality_rating_4" name="quality_rating" value="4">
+						<label for="quality_rating_4"><i class="fas fa-star unrated_star"></i></label>
+						<input type="radio" id="quality_rating_3" name="quality_rating" value="3">
+						<label for="quality_rating_3"><i class="fas fa-star unrated_star"></i></label>
+						<input type="radio" id="quality_rating_2" name="quality_rating" value="2">
+						<label for="quality_rating_2"><i class="fas fa-star unrated_star"></i></label>
+						<input type="radio" id="quality_rating_1" name="quality_rating" value="1">
+						<label for="quality_rating_1"><i class="fas fa-star unrated_star"></i></label>
+					</div>
+				</div>                        
+			</div>
+			<div class="rating_feedback">
+				<p>Feedback on Service Provider</p>
+				<textarea class="textarea" name="rating_feedback"></textarea>
 				<button class="popup_btn">Submit</button>
 			</div>
-		</div><!-- RATING POPUP -->
-	</div>
+		</div><!-- END-RATING POPUP -->
+	</div><!-- END-MODEL -->
+
+	<script>
+		$('[name="quality_rating"]').click(()=>{
+            const quality_rating = $('[name="quality_rating"]:checked').val();
+			console.log(quality_rating);
+        });
+
+        $('[name="friendly_rating"]').change(()=>{
+            const friendly_rating = $('[name="friendly_rating"]:checked').val();
+			console.log(friendly_rating);
+        });
+
+        $('[name="arrival_rating"]').change(()=>{
+            const arrival_rating = $('[name="arrival_rating"]:checked').val();
+			console.log(arrival_rating);
+        });
+	</script>
 
 	<!-- ---------------------------------- -->
 			<!-- CANCEL_SERVICE_REQUEST -->

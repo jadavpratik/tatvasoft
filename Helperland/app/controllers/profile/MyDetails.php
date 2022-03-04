@@ -49,7 +49,7 @@ class MyDetails{
                 'Mobile' => $req->body->phone,
                 'LanguageId' => $req->body->language,
                 'DateOfBirth' => $req->body->dob,
-                'ModifiedDate'=> timestamp()
+                'ModifiedDate'=> date('Y-m-d H:i:s')
             ]);    
             $res->status(200)->json(['message'=>'Profile Updated Successfully.']);
         }

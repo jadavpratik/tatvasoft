@@ -2190,16 +2190,7 @@ footer {
   font-weight: normal;
 }
 
-#rating_popup .popup_title {
-  padding-bottom: 10px;
-  border-bottom: 1px solid lightgray;
-}
-
-#rating_popup > div:last-child {
-  padding-top: 10px;
-}
-
-#rating_popup > div:last-child > div {
+#rating_popup {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -2207,40 +2198,81 @@ footer {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  padding-bottom: 15px;
 }
 
-#rating_popup > div:last-child > div label {
+#rating_popup .popup_title {
   padding-bottom: 10px;
-  font-size: 16px;
-}
-
-#rating_popup > div:last-child > div textarea {
-  height: 80px;
-  margin: 0;
+  border-bottom: 1px solid lightgray;
 }
 
 .rate_type {
-  padding-top: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin: 10px 0;
 }
 
-.rate_type div {
+.rating_container {
+  padding: 10px 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  padding-bottom: 6px;
 }
 
-.rate_type div p {
+.rating_container > p {
   width: 140px;
-  color: #646464;
 }
 
-.rate_type div i {
+.rating_div {
+  direction: rtl;
+}
+
+.rating_div input {
+  display: none;
+}
+
+.rating_div label {
   margin: 0 2px;
+}
+
+.rating_div label i {
+  color: lightgray;
+  -webkit-transition: color 0.2s;
+  transition: color 0.2s;
+}
+
+.rating_div label:hover i,
+.rating_div label:hover ~ label i,
+.rating_div input:checked ~ label i {
+  color: #fc0;
+}
+
+.rating_feedback p {
+  padding: 5px 0;
+}
+
+.rating_feedback textarea {
+  height: 100px;
+  margin-bottom: 10px;
+}
+
+@media screen and (max-width: 576px) {
+  .rating_container {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+  .rating_container > p {
+    font-size: 14px;
+    width: 120px;
+  }
 }
 
 #add_address_popup,
@@ -2928,7 +2960,7 @@ footer {
 }
 
 .rated_star {
-  color: #ECB91C;
+  color: #fc0;
 }
 
 .unrated_star {
@@ -3189,7 +3221,7 @@ footer {
 }
 
 .dataTables_length > label > select {
-  margin: 0 10px;
+  margin: 0 6px;
   border: 1px solid #E1E1E1;
 }
 
