@@ -66,9 +66,15 @@ class Dashboard{
 
             // RATTING DETAILS...
             $rating = new Rating();
-            $temp = $rating->where('ServiceRequestId', '=', $data[$i]->ServiceRequestId)->read();
-            if(count($temp)>0 || count($temp)==1){
-                $data[$i]->Rating = $temp[0]->Ratings;
+            $temp = $rating->where('RatingTo', '=', $data[$i]->ServiceProvider->UserId)->read();
+            if(count($temp)>0){
+                $tempRating = 0;
+                for($j=0; $j<count($temp); $j++){
+                    $tempRating += (float) $temp[$j]->Ratings;
+                    
+                }
+                $tempRating /= count($temp);
+                $data[$i]->Rating = $tempRating;
             }            
         }
         $res->status(200)->json($data);
@@ -122,9 +128,14 @@ class Dashboard{
 
             // RATTING DETAILS...
             $rating = new Rating();
-            $temp = $rating->where('ServiceRequestId', '=', $data[$i]->ServiceRequestId)->read();
-            if(count($temp)>0 || count($temp)==1){
-                $data[$i]->Rating = $temp[0]->Ratings;
+            $temp = $rating->where('RatingTo', '=', $data[$i]->ServiceProvider->UserId)->read();
+            if(count($temp)>0){
+                $tempRating = 0;
+                for($j=0; $j<count($temp); $j++){
+                    $tempRating += $temp[$j]->Ratings;
+                }
+                $tempRating /= count($temp);
+                $data[$i]->Rating = $tempRating;
             }
         }
         $res->status(200)->json($data);
@@ -195,19 +206,25 @@ class Dashboard{
         $serviceProviderId = $data[0]->ServiceProviderId;
 
         $rating = new Rating();
-        $rating->create([
-            'ServiceRequestId' => $serviceId,
-            'RatingFrom' => $customerId,
-            'RatingTo' => $serviceProviderId,
-            'Ratings' => $averageRating,
-            'Comments' => $rating_feedback,
-            'RatingDate' => date('Y-m-d H:i:s'),
-            'OnTimeArrival' => $arrival_rating,
-            'Friendly' => $friendly_rating,
-            'QualityOfService' => $quality_rating,
-        ]);
-        
-        $res->status(200)->json(['message'=>'Thanks for feedback Us.']);
+        $where = "RatingFrom = {$customerId} AND RatingTo= {$serviceProviderId}";
+        if(!$rating->where($where)->exists()){
+            $rating->create([
+                'ServiceRequestId' => $serviceId,
+                'RatingFrom' => $customerId,
+                'RatingTo' => $serviceProviderId,
+                'Ratings' => $averageRating,
+                'Comments' => $rating_feedback,
+                'RatingDate' => date('Y-m-d H:i:s'),
+                'OnTimeArrival' => $arrival_rating,
+                'Friendly' => $friendly_rating,
+                'QualityOfService' => $quality_rating,
+            ]);
+            
+            $res->status(200)->json(['message'=>'Thanks for feedback Us.']);    
+        }
+        else{
+            $res->status(400)->json(['message'=>'You already given feedback!']);    
+        }
     }
 
     // CUSTOMER SP LIST (WHO PROVIDED SERVICE TO CUSTOMER IN PAST...)
@@ -236,10 +253,15 @@ class Dashboard{
 
             // STORE RATING...
             $rating = new Rating();
-            $where = "RatingFrom = {$userId} AND RatingTo = {$data[$i]->ServiceProviderId}";
+            $where = "RatingTo = {$data[$i]->ServiceProviderId}";
             $temp3 = $rating->where($where)->read();
             if(count($temp3)>0){
-                $temp1[0]->Rating = (float) $temp3[0]->Ratings;
+                $tempRating = 0;
+                for($j=0; $j<count($temp3); $j++){
+                    $tempRating += (float) $temp3[$j]->Ratings;
+                }
+                $tempRating /= count($temp3); 
+                $temp1[0]->Rating = $tempRating;
             }
             $data[$i] = $temp1[0];
 

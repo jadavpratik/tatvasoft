@@ -114,7 +114,7 @@
                         const error = JSON.parse(responseText);
                         Swal.fire({
                             title : error.message,
-                            icon : 'error'
+                            icon : 'warning'
                         });
                     }
                 }

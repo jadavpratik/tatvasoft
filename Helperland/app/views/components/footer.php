@@ -64,7 +64,8 @@
 	<?php } ?>
 
 	<!-- **********ALL_SCRIPT_FILES********** -->
-
+	<!-- EXCEL2TABLE -->
+	<script src="//cdn.rawgit.com/rainabba/jquery-table2excel/1.1.0/dist/jquery.table2excel.min.js"></script>
 	<!-- DATATABLE -->
 	<script src="//cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
 	<!-- AOS -->

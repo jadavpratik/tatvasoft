@@ -1,6 +1,6 @@
 <div class="customer_service_history">
     <p>Service History</p>
-    <button class="export_btn">Export</button>
+    <button class="export_btn" onclick="export_table_data()">Export</button>
 </div>
 <table id="customer_service_history_table">
     <thead>
@@ -19,6 +19,12 @@
 
 
 <script>
+    function export_table_data(){
+        $("#customer_service_history_table").table2excel({
+            exclude_img: true,
+            filename: "Customer_Service_History.xls"
+        });
+    }
 
     $(document).ready(function(){
         state.customer_service_history_table = $('#customer_service_history_table').DataTable({
@@ -123,6 +129,7 @@
                     }
                 }
             ],
+            buttons : ['excel'],
             pagingType : 'full_numbers',
             language : {
                 paginate : {

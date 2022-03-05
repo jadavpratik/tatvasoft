@@ -54,7 +54,7 @@
                         <div class="label_select">
                             <label class="label" for="">My Preferred Language</label>
                             <select class="select" name="language">
-                                <option value="1" selected>English</option>
+                                <option value="1">English</option>
                                 <option value="2">Hindi</option>
                             </select>
                             <div class="validation_message d_none">
