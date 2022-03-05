@@ -15,17 +15,17 @@ class View{
 
     // HOME...
     public function home(Request $req, Response $res){
-		$res->render('static/home');	
+		$res->render('static-pages/home');	
 	}
 
     // FAQs...
     public function faqs(Request $req, Response $res){
-		$res->render('static/faqs');	
+		$res->render('static-pages/faqs');	
     }
 
     // PRICES...
     public function prices(Request $req, Response $res){
-		$res->render('static/prices');	
+		$res->render('static-pages/prices');	
 	}
 
     // CONTACT...
@@ -34,21 +34,21 @@ class View{
             $user = new User();
             $columns = ['FirstName', 'LastName', 'Email', 'Mobile'];
             $data = $user->columns($columns)->where('UserId', '=', session('userId'))->read();
-            $res->render('static/contact', ['data'=>$data[0]]);	
+            $res->render('static-pages/contact', ['data'=>$data[0]]);	
         }
         else{
-            $res->render('static/contact');	
+            $res->render('static-pages/contact');	
         }
 	}
 
     // ABOUT...
 	public function about(Request $req, Response $res){
-		$res->render('static/about');	
+		$res->render('static-pages/about');	
 	}
 
     // GUARANTEE...
     public function guarantee(Request $req, Response $res){
-        $res->render('static/guarantee');
+        $res->render('static-pages/guarantee');
     }
 
     // **********CUSTOMER**********
@@ -96,7 +96,7 @@ class View{
 
     // PAGE-NOT-FOUND...
 	public function not_found_page(Request $req, Response $res){
-		$res->render('static/page-not-found');
+		$res->render('static-pages/page-not-found');
 	}
 
     // PAGE-NOT-FOUND-JSON...

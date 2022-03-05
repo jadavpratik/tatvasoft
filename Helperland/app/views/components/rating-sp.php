@@ -81,7 +81,7 @@
     $('#rating_popup').submit((e)=>{
         
         e.preventDefault();
-        let validation = true;//rating_feedback_validation();        
+        let validation = rating_feedback_validation();        
 
         if(validation){
             $.ajax({
@@ -97,6 +97,8 @@
                                 icon : 'success'
                             });
                             $('#rating_popup').trigger('reset');
+                            state.customer_service_history_table.ajax.reload();
+                            close_model();
                         }
                         catch(e){
                             Swal.fire({

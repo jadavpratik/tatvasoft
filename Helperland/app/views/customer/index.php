@@ -27,7 +27,7 @@
         <div class="table_tab_right">
 
             <!-- PROFILE -->
-            <div class="table_tab_content d_none">
+            <div class="table_tab_content">
                 <?= component('customer/', 'profile'); ?>
             </div>
             
@@ -43,28 +43,19 @@
 
             <!-- SERVICE SCHEDULE -->
             <div class="table_tab_content d_none">
-                <div style="display:flex;align-items:center;justify-content:center">
-                    <p style="font-size:20px; text-center;">No Content Available</p>
-                </div>
             </div><!-- END_TABLE_TAB_CONTENT -->
 
             <!-- FAVOURITE PROS -->
-            <div class="table_tab_content">
+            <div class="table_tab_content d_none">
                 <?= component('customer/', 'favourite-sp'); ?>
             </div><!-- END_TABLE_TAB_CONTENT -->
 
             <!-- INVOICES -->
             <div class="table_tab_content d_none">
-                <div style="display:flex;align-items:center;justify-content:center">
-                    <p style="font-size:20px; text-center;">No Content Available</p>
-                </div>
             </div><!-- END_TABLE_TAB_CONTENT -->
 
             <!-- NORTIFICATIONS -->
             <div class="table_tab_content d_none">
-                <div style="display:flex;align-items:center;justify-content:center">
-                    <p style="font-size:20px; text-center;">No Content Available</p>
-                </div>
             </div><!-- END_TABLE_TAB_CONTENT -->
 
         </div><!-- END_TABLE_TAB_RIGHT -->

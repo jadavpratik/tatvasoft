@@ -176,15 +176,15 @@ class Dashboard{
 
         $serviceId = $req->params->id;
 
-        // Validation::check($req->body, [
-        //     'arrival_rating' => ['required'],
-        //     'friendly_rating' => ['required'],
-        //     'quality_rating' => ['required'],
-        //     'rating_feedback' => ['required'],
-        // ]);
+        Validation::check($req->body, [
+            'arrival_rating' => ['required'],
+            'friendly_rating' => ['required'],
+            'quality_rating' => ['required'],
+            'rating_feedback' => ['required'],
+        ]);
 
         $arrival_rating = (int) $req->body->arrival_rating;
-        $quality_rating = (int) $req->body->arrival_rating;
+        $quality_rating = (int) $req->body->quality_rating;
         $friendly_rating = (int) $req->body->friendly_rating;
         $rating_feedback = $req->body->rating_feedback;
         $averageRating =  (float) ($arrival_rating + $quality_rating + $friendly_rating )/3;
@@ -225,18 +225,24 @@ class Dashboard{
             $where = "UserId = {$data[$i]->ServiceProviderId}";
             $temp1 = $user->columns(['UserId, FirstName', 'LastName', 'UserProfilePicture'])->where($where)->read();
     
-    
             // STORE FAVORITE AND BLOCKED DATA...
             $fav = new Favorite();
             $where = "UserId = {$userId} AND TargetUserId = {$data[$i]->ServiceProviderId}";
-            $temp2 = $fav->columns(['UserId', 'IsFavorite', 'IsBlocked'])->where($where)->read();
-            
+            $temp2 = $fav->columns(['UserId', 'IsFavorite', 'IsBlocked'])->where($where)->read();            
             if(count($temp2)>0){
                 $temp1[0]->IsBlocked = $temp2[0]->IsBlocked;
                 $temp1[0]->IsFavorite = $temp2[0]->IsFavorite;
             }
+
+            // STORE RATING...
+            $rating = new Rating();
+            $where = "RatingFrom = {$userId} AND RatingTo = {$data[$i]->ServiceProviderId}";
+            $temp3 = $rating->where($where)->read();
+            if(count($temp3)>0){
+                $temp1[0]->Rating = (float) $temp3[0]->Ratings;
+            }
             $data[$i] = $temp1[0];
-            unset($data[$i]->ServiceProviderId);
+
         }    
         $res->json($data);    
     }

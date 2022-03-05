@@ -20,12 +20,26 @@
                                             <div>
                                                 <p>${sp.FirstName} ${sp.LastName}</p>    
                                                 <div>
-                                                    <i class="fas fa-star rated_star"></i>
-                                                    <i class="fas fa-star rated_star"></i>
-                                                    <i class="fas fa-star rated_star"></i>
-                                                    <i class="fas fa-star rated_star"></i>
-                                                    <i class="fas fa-star unrated_star"></i>
-                                                    <span>4</span>
+                                                    ${(function(){
+                                                        let html = ``;
+                                                        if(sp.Rating!==undefined && sp.Rating!==""){
+                                                            for(let i=0; i<parseInt(sp.Rating); i++){
+                                                                html += `<i class="fas fa-star rated_star"></i>`;
+                                                            }
+                                                            for(let i=0; i<5-parseInt(sp.Rating); i++){
+                                                                html += `<i class="fas fa-star unrated_star"></i>`;
+                                                            }
+                                                        }
+                                                        else{
+                                                            html = `<i class="fas fa-star unrated_star"></i>
+                                                                    <i class="fas fa-star unrated_star"></i>
+                                                                    <i class="fas fa-star unrated_star"></i>
+                                                                    <i class="fas fa-star unrated_star"></i>
+                                                                    <i class="fas fa-star unrated_star"></i>`;
+                                                        }
+                                                        return html;
+                                                    })()}
+                                                    <span>${sp.Rating!==undefined?parseFloat(sp.Rating):''}</span>
                                                 </div>
                                             </div>
                                         </div><!-- END SERVICE PROVIDER -->

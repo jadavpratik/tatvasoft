@@ -77,7 +77,7 @@
                                                 }
                                                 return rating_html;
                                             })()}
-                                            <span>${row.Rating!==undefined?parseInt(row.Rating):''}</span>
+                                            <span>${row.Rating!==undefined?parseFloat(row.Rating):''}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -186,16 +186,16 @@
                 <div class="rating_container">
                     <p>On Time Arriaval</p>    
                     <div class="rating_div">
-                        <input type="radio" id="arriaval_rating_5" name="arriaval_rating" value="5">
-                        <label for="arriaval_rating_5"><i class="fas fa-star unrated_star"></i></label>    
-                        <input type="radio" id="arriaval_rating_4" name="arriaval_rating" value="4">
-                        <label for="arriaval_rating_4"><i class="fas fa-star unrated_star"></i></label>
-                        <input type="radio" id="arriaval_rating_3" name="arriaval_rating" value="3">
-                        <label for="arriaval_rating_3"><i class="fas fa-star unrated_star"></i></label>
-                        <input type="radio" id="arriaval_rating_2" name="arriaval_rating" value="2">
-                        <label for="arriaval_rating_2"><i class="fas fa-star unrated_star"></i></label>
-                        <input type="radio" id="arriaval_rating_1" name="arriaval_rating" value="1">
-                        <label for="arriaval_rating_1"><i class="fas fa-star unrated_star"></i></label>
+                        <input type="radio" id="arrival_rating_5" name="arrival_rating" value="5">
+                        <label for="arrival_rating_5"><i class="fas fa-star unrated_star"></i></label>    
+                        <input type="radio" id="arrival_rating_4" name="arrival_rating" value="4">
+                        <label for="arrival_rating_4"><i class="fas fa-star unrated_star"></i></label>
+                        <input type="radio" id="arrival_rating_3" name="arrival_rating" value="3">
+                        <label for="arrival_rating_3"><i class="fas fa-star unrated_star"></i></label>
+                        <input type="radio" id="arrival_rating_2" name="arrival_rating" value="2">
+                        <label for="arrival_rating_2"><i class="fas fa-star unrated_star"></i></label>
+                        <input type="radio" id="arrival_rating_1" name="arrival_rating" value="1">
+                        <label for="arrival_rating_1"><i class="fas fa-star unrated_star"></i></label>
                     </div>
                 </div>
                 <div class="rating_container">
