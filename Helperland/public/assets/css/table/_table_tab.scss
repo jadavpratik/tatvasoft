@@ -1,13 +1,5 @@
-$table_tab_left:#1D7A8C;
-$active_table_tab:#146371;
-
-$table_border:#E1E1E1;
-$table_thead_bg:#f9f9f9;
-$table_th_text:#646464;
-$table_text:#646464;
-
 .table_tab{
-    padding-top: 30px;
+    padding-top: 50px;
     padding-bottom: 50px;
     width:1140px;
     margin:0 auto;
@@ -36,6 +28,7 @@ $table_text:#646464;
         align-items: center;
         color:white;
         font-size: 18px;
+        border-bottom:0.5px solid rgba($table_border, 0.5);
         &:hover{
             background-color: $active_table_tab;
         }

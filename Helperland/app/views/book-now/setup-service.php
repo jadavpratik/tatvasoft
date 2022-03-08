@@ -13,6 +13,7 @@
 </div>
 
 
+<!-- **********BOOK-SERVICE-S1-SCRIPTS********** -->
 <script>
 
     $('#setup_service_submit_btn').click(function(){

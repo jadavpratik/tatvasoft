@@ -1,9 +1,6 @@
-// ---------------SECTION_TITLE_COLORS------------------
-$title_with_icon:#4F4F4F;
-$title_with_icon_border:#CCCCCC;
-$welcome_message_bg:#F9F9F9;
-$welcome_message_text:#4F4F4F;
-$welcome_message_border:#E1E1E1;
+.d_none{
+    display: none !important;
+}
 
 .welcome_message{
     margin-top: $navbar_height;
@@ -98,7 +95,7 @@ $welcome_message_border:#E1E1E1;
     p{        
         width:100%;
         text-align: center;
-        color:$title_with_icon;
+        color:$title_with_icon_text;
         font-weight: bold;
         font-size: 35px;
         margin:0 0 9px;

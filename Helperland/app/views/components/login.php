@@ -37,8 +37,9 @@
             <p>Don't Have an Account? <a href="<?= url('/customer/signup') ?>">Create an Account</a></p>
         </div><!-- END_LOGIN_POPUP_FOOTER -->
     </div><!-- END_LOGIN_POPUP -->
-</div><!-- END_MODEL -->
+</div>
 
+<!-- **********LOGIN-POPUP-SCRIPTS********** -->
 <script>
 
     $('.login_popup_form').submit((e)=>{
@@ -69,13 +70,13 @@
                             $('.login_popup_form').trigger('reset');
                             switch(result.role){
                                 case 'customer':
-                                    window.location.replace(`${BASE_URL}/customer`);
+                                    window.location.replace(`${BASE_URL}/customer/dashboard/`);
                                     break;
                                 case 'service-provider':
-                                    window.location.replace(`${BASE_URL}/service-provider`);
+                                    window.location.replace(`${BASE_URL}/service-provider/dashboard/`);
                                     break;
                                 case 'admin':
-                                    window.location.replace(`${BASE_URL}/admin`);
+                                    window.location.replace(`${BASE_URL}/admin/dashboard/`);
                                     break;
                             }
                         }

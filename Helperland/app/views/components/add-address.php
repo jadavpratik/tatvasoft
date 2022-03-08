@@ -48,7 +48,7 @@
 </div>
 
 
-<!-- ADD ADDRESS SCRIPT -->
+<!-- **********ADD ADDRESS SCRIPT********** -->
 <script>
     $('#add_address_popup').submit((e)=>{
         e.preventDefault();
@@ -82,7 +82,7 @@
                             });
                             $('#add_address_popup').trigger('reset');
                             close_model();
-                            customerAddress();
+                            customer_my_address();
                         }
                         catch(e){
                             Swal.fire({

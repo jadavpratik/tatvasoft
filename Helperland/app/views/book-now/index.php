@@ -1,7 +1,6 @@
 <?= component('header'); ?>
 
-<!-- **********BOOK A SERVICE********** -->
-
+<!-- **********BOOK-SERVICE-SCRIPTS********** -->
 <script>
     // FOR STORING A DATA AS GLOBALLY...
     let default_service_request = {
@@ -108,6 +107,7 @@
     </div>	
 </main>
 
+<!-- **********CHANGE-TAB-SCRIPTS********** -->
 <script>
 
     function change_book_service_tabs(i){

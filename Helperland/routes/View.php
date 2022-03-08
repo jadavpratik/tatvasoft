@@ -27,9 +27,9 @@ Route::get('/forgot-password', $alreadyLogged, [new View(), 'forgot_password']);
 // ----------CUSTOMER----------
 Route::get('/customer/signup', $alreadyLogged, [new View(), 'customer_signup']);
 Route::get('/book-now', $isCustomer, [new View(), 'booknow']);
-Route::get('/customer', $isCustomer, [new View(), 'customer_dashboard']);
+Route::get('/customer/dashboard/', $isCustomer, [new View(), 'customer_dashboard']);
 
 // ----------SERVICE-PROVDER----------
-Route::get('/service-provider/signup', $alreadyLogged, [new View(), 'sp_signup']);
-Route::get('/service-provider', $isServiceProvider, [new View(), 'sp_dashboard']);
+Route::get('/service-provider/signup/', $alreadyLogged, [new View(), 'sp_signup']);
+Route::get('/service-provider/dashboard/', $isServiceProvider, [new View(), 'sp_dashboard']);
 

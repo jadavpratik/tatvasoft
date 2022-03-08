@@ -14,12 +14,12 @@
         <div class="table_tab_left">
             <!-- TAB AND TABLE LIST -->
             <div class="table_tab_list">
-                <a href="javascript:void(0);" class="table_tab_btn active_table_tab" onclick="load_customer_dashboard_data()">Dashboard</a>
+                <a href="javascript:void(0);" class="table_tab_btn" onclick="load_customer_dashboard_data()">Dashboard</a>
                 <a href="javascript:void(0);" class="table_tab_btn" onclick="load_customer_service_history_data()">Service History</a>
-                <a href="javascript:void(0);" class="table_tab_btn">Service Schedule</a>
-                <a href="javascript:void(0);" class="table_tab_btn" onclick="load_customer_favourite_data()">Favourite Pros</a>
-                <a href="javascript:void(0);" class="table_tab_btn">Invoices</a>
-                <a href="javascript:void(0);" class="table_tab_btn">Notifications</a>    
+                <!-- <a href="javascript:void(0);" class="table_tab_btn">Service Schedule</a> -->
+                <a href="javascript:void(0);" class="table_tab_btn" onclick="load_customer_favorite_section_data()">Favourite Pros</a>
+                <!-- <a href="javascript:void(0);" class="table_tab_btn">Invoices</a> -->
+                <!-- <a href="javascript:void(0);" class="table_tab_btn">Notifications</a>     -->
             </div>
         </div>
 
@@ -42,8 +42,8 @@
             </div><!-- END_TABLE_TAB_CONTENT -->
 
             <!-- SERVICE SCHEDULE -->
-            <div class="table_tab_content d_none">
-            </div><!-- END_TABLE_TAB_CONTENT -->
+            <!-- <div class="table_tab_content d_none"> -->
+            <!-- </div>END_TABLE_TAB_CONTENT -->
 
             <!-- FAVOURITE PROS -->
             <div class="table_tab_content d_none">
@@ -51,17 +51,18 @@
             </div><!-- END_TABLE_TAB_CONTENT -->
 
             <!-- INVOICES -->
-            <div class="table_tab_content d_none">
-            </div><!-- END_TABLE_TAB_CONTENT -->
+            <!-- <div class="table_tab_content d_none"> -->
+            <!-- </div>END_TABLE_TAB_CONTENT -->
 
             <!-- NORTIFICATIONS -->
-            <div class="table_tab_content d_none">
-            </div><!-- END_TABLE_TAB_CONTENT -->
+            <!-- <div class="table_tab_content d_none"> -->
+            <!-- </div>END_TABLE_TAB_CONTENT -->
 
         </div><!-- END_TABLE_TAB_RIGHT -->
     </div><!-- END_TABLE_TAB -->
 </main><!-- END_MAIN -->
 
+<!-- **********CUSTOMER-SECTIONS-RELOAD-SCRIPTS**********s -->
 <script>
 
     // LOAD CUSTOMER DASHBOARD DATA...
@@ -74,11 +75,6 @@
     function load_customer_service_history_data(){
         const table = state.customer_service_history_table;
         table.ajax.reload();
-    }
-
-    // LOAD CUSTOMER FAVOURITE DATA...
-    function load_customer_favourite_data(){
-        
     }
 
     // SHOW SERVICE DETAILS...

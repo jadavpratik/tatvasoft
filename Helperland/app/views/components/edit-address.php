@@ -48,7 +48,7 @@
     </form>
 </div>
 
-<!-- EDIT ADDRESS SCRIPT -->
+<!-- **********EDIT ADDRESS SCRIPT********** -->
 <script>
     $('#edit_address_popup').submit((e)=>{
         e.preventDefault();
@@ -83,7 +83,7 @@
                                 title : result.message,
                                 icon : 'success'
                             });
-                            customerAddress();
+                            customer_my_address();
                             $('#edit_address_popup').trigger('reset');
                             close_model();
                         }

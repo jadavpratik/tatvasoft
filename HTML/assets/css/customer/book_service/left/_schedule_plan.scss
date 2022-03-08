@@ -1,3 +1,4 @@
+
 // -------------SCHEDULE_PLAN---------------
 .schedule_plan{
     display: flex;
@@ -10,12 +11,12 @@
 
     & > div{
         padding:28px 0;
-        border-bottom: 1px solid #DCDCDC;
+        border-bottom: 1px solid  $book_service_s2_border;
     }
 
     & > div:nth-child(1){
         // padding-top: 0;
-        border:2px solid green;
+        // border:2px solid green;
         // IN SRS FIRST DIV NOT THERE [BED, BATHROOM]...
         div{
             display: grid;
@@ -77,7 +78,7 @@
                         width:108px;
                         height: 108px;
                         border-radius: 50%;
-                        border:1px solid #C8C8C8;
+                        border:1px solid $book_service_s2_circel_border;
                         display: flex;
                         align-items: center;
                         justify-content: center;

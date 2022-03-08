@@ -25,7 +25,9 @@
 	</div>
 </div>
 
-<script type="text/javascript">
+<!-- **********SET-NEW-PASSWORD-SCRITPS********** -->
+
+<script>
 	$('.set_new_password_popup').submit((e)=>{
 
 		e.preventDefault();

@@ -1,6 +1,6 @@
 // ACCORDION IMPLEMENTATION...
-const acc_btn = document.getElementsByClassName("accordion_btn");
-const acc_content = document.getElementsByClassName("accordion_content");
+const acc_btn = $(".accordion_btn");
+const acc_content = $(".accordion_content");
 
 for (let i = 0; i < acc_btn.length; i++) {
 

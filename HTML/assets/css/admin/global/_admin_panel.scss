@@ -1,11 +1,7 @@
-$admin_panel_bg:#f2f4f5;
-$admin_tab_text:#646464;
-$active_admin_tab_text:#1FB6FF;
-$admin_tab_shadow:#0000001A;
 
 .admin_panel{
     display: flex;
-    background-color:$admin_panel_bg;
+    background-color:$admin_bg;
     height:100%;
 }
 
@@ -85,7 +81,7 @@ $admin_tab_shadow:#0000001A;
 }
 
 .admin_sidenav_active_tab{
-    color:$active_admin_tab_text;
+    color:$admin_tab_active_text;
 }
 
 .admin_right{

@@ -18,7 +18,8 @@
         </div>
     </form>
 </div>
-    
+
+<!-- **********RESCHEDULE-SCRIPTS********** -->
 <script>
     $('#reschedule_service_request_popup').submit((e)=>{
 

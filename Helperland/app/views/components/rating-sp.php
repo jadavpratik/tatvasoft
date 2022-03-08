@@ -77,6 +77,7 @@
     </form><!-- END-RATING POPUP -->
 </div><!-- END-MODEL -->
 
+<!-- **********RATING-SCRIPTS********** -->
 <script>
     $('#rating_popup').submit((e)=>{
         
@@ -118,10 +119,8 @@
                         });
                     }
                 }
-            })
-
+            });
         }
-
     });
 </script>
 

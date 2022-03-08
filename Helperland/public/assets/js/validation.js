@@ -765,6 +765,76 @@ function rating_feedback_validation(){
     } 
 }
 
+// ----------**********FOR MY ADDRESS SECTION IN SERVICE PROVIDER**********----------
+
+// ------------------------SP-MY-ADDRESS-STREET-NAME-VALIDATON--------------------
+function street_name_validation(){
+    const input_value = $('[name="street_name"]').val();
+    if(input_value==''){
+        $('[name="street_name"]').next().removeClass('d_none').children().html('Please Enter Street Name !');
+        return false;
+    }
+    else if(TextRegEx.test(input_value)==false){
+        $('[name="street_name"]').next().removeClass('d_none').children().html('Enter a Text in Valid Format !');
+        return false;
+    }
+    else{
+        $('[name="street_name"]').next().addClass('d_none').children().html('');
+        return true;
+    }
+}
+
+// ------------------------SP-MY-ADDRESS-HOUSE-NUMBER-VALIDATON--------------------
+function house_number_validation(){
+    const input_value = $('[name="house_number"]').val();
+    if(input_value==''){
+        $('[name="house_number"]').next().removeClass('d_none').children().html('Please Enter a House Number!');
+        return false;
+    }
+    else if(HouseNumberRegEx.test(input_value)==false){
+        $('[name="house_number"]').next().removeClass('d_none').children().html('House Number Should be Numbers !');
+        return false;
+    }
+    else{
+        $('[name="house_number"]').next().addClass('d_none').children().html('');
+        return true;
+    }
+}
+
+// ------------------------SP-MY-ADDRESS-POSTAL-CODE-VALIDATON--------------------
+function postal_code_validation(){
+    const input_value = $('[name="postal_code"]').val();
+    if(input_value==''){
+        $('[name="postal_code"]').next().removeClass('d_none').children().html('Please Enter Postal Code !');
+        return false;
+    }
+    else if(PostalCodeRegEx.test(input_value)==false){
+        $('[name="postal_code"]').next().removeClass('d_none').children().html('Postal Code Shoud be a Min:5 or Max:6 Digits !');
+        return false;
+    }
+    else{
+        $('[name="postal_code"]').next().addClass('d_none').children().html('');
+        return true;
+    }
+}
+
+// ------------------------SP-MY-ADDRESS-CITY-VALIDATON--------------------
+function city_validation(){
+    const input_value = $('[name="city"]').val();
+    if(input_value==''){
+        $('[name="city"]').next().removeClass('d_none').children().html('Please Enter City Name !');
+        return false;
+    }
+    else if(TextRegEx.test(input_value)==false){
+        $('[name="city"]').next().removeClass('d_none').children().html('Enter a Text in Valid Format !');
+        return false;
+    }
+    else{
+        $('[name="city"]').next().addClass('d_none').children().html('');
+        return true;
+    }
+}
+
 
 
 // -------------------CONTACTUS, SIGNUP, PROFILE---------------------
@@ -942,6 +1012,24 @@ $('[name="reschedule_service_time"]').focusout(function(){
 
 $('[name="rating_feedback"]').focusout(function(){
     rating_feedback_validation();
+});
+
+// ----------SP MY ADDRESS VALIDATON----------
+// ---------------------EDIT ADDRESS -POPUP-MODEL-------------------
+$('[name="street_name"]').focusout(function(){
+    street_name_validation();
+});
+
+$('[name="house_number"]').focusout(function(){
+    house_number_validation();
+});
+
+$('[name="postal_code"]').focusout(function(){
+    postal_code_validation();
+});
+
+$('[name="city"]').focusout(function(){
+    city_validation();
 });
 
 // ------------MIN & MAX DATE FIX FOR VALIDATION--------------

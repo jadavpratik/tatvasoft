@@ -1,5 +1,6 @@
+
 .payment_summary{
-    box-shadow:1px 1px 7px #00000059;
+    box-shadow:1px 1px 7px $payment_summary_shadow;
     border-radius: 2px;
     overflow: hidden;
     & > p{
@@ -15,7 +16,7 @@
     & > div{
         // MAIN CONTAINER FOR ALL SMALL DIV...
         & > div{
-            border-bottom: 1px solid #C8C8C8;
+            border-bottom: 1px solid $payment_summary_border;
             padding:12px 19px;
             p{
                 padding:4px 0;
@@ -58,7 +59,7 @@
             & > div:last-child{
                 margin-top: 8px;
                 padding-top:8px;
-                border-top:1px solid #C8C8C8;
+                border-top:1px solid $payment_summary_border;
                 p{
                     font-weight: 500;
                 }
@@ -109,7 +110,7 @@
             padding:0 19px;
             display: flex;
             align-items: center;
-            background-color: #F3F3F3;
+            background-color: $payment_summary_bottom_btn;
             color:$book_service_para;
             font-size: 14px;
             border:0;

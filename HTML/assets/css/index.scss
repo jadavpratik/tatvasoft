@@ -1,9 +1,10 @@
 // ------------------------GENERAL_CSS------------------------
+@import "./colors/index";
 @import "./global/index";
-@import "./form/index";
 @import "./popup/index";
 @import "./table/index";
 @import "./datatable/index";
+@import "./form/index";
 
 // -------ADMIN, SERVICE_PROVIDER, CUSTOMER-------------
 @import "./customer/index";

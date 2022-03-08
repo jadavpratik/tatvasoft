@@ -1,8 +1,8 @@
 <div class="profile">
     <div class="tab_container">
         <div class="tab_indicator profile_tabs">
-            <button class="tab_btn active_profile_tab">My Details</button>
-            <button class="tab_btn ">Change Password</button>
+            <button class="tab_btn active_profile_tab"><div><img src="<?= assets('assets/img/profile/Details.png'); ?>"></div><span>My Details</span></button>
+            <button class="tab_btn "><div><img src="<?= assets('assets/img/profile/Password.png'); ?>" alt=""></div><span>Change Password</span></button>
         </div>
         <div class="tab_body">
             <div class="tab_content active_tab_content">
@@ -17,21 +17,21 @@
                         </div>
                         <div class="form_group">
                             <label class="label" for="">First Name</label>
-                            <input class="input" type="text">
+                            <input class="input" type="text" name="firstname">
                             <div class="validation_message d_none">
                                 <p>Validation Message!!!</p>
                             </div>
                         </div>
                         <div class="form_group">
                             <label class="label" for="">Last Name</label>
-                            <input class="input" type="text">
+                            <input class="input" type="text" name="lastname">
                             <div class="validation_message d_none">
                                 <p>Validation Message!!!</p>
                             </div>
                         </div>
                         <div class="form_group">
                             <label class="label" for="">Email Address</label>
-                            <input class="input" type="text">
+                            <input class="input" type="text" name="email">
                             <div class="validation_message d_none">
                                 <p>Validation Message!!!</p>
                             </div>
@@ -40,30 +40,24 @@
                             <label class="label" for="">Phone Number</label>
                             <div class="phone_number">
                                 <label for="">+49</label>
-                                <input type="text">
+                                <input type="text" name="phone">
                             </div>
                             <div class="validation_message d_none">
                                 <p>Validation Message!!!</p>
                             </div>
                         </div>
-                        <div class="date_of_birth">
+                        <div class="label_input">
                             <label class="label" for="">Date of Birth</label>
-                            <div>
-                                <select class="select" name="" id="">
-                                    <option value="">02</option>
-                                </select>
-                                <select class="select" name="" id="">
-                                    <option value="">April</option>
-                                </select>
-                                <select class="select" name="" id="">
-                                    <option value="">1962</option>
-                                </select>
+                            <input class="input" type="date" name="dob">
+                            <div class="validation_message d_none">
+                                <p>Validaton Message!!!</p>
                             </div>
                         </div>
                         <div class="label_select">
                             <label class="label" for="">Nationality</label>
                             <select class="select" name="" id="">
-                                <option value="">German</option>
+                                <option value="1">English</option>
+                                <option value="2">Hindi</option>
                             </select>
                         </div>
                         <!-- GENDER -->
@@ -80,12 +74,12 @@
                             </div>
                             <!-- NOT SAY -->
                             <div>
-                                <input type="radio" id="no_gender" name="gender">
-                                <label for="no_gender">Rather not to say</label>
+                                <input type="radio" id="no_gender" name="gender" checked>
+                                <label for="no_gender">Rather Not to say</label>
                             </div>
-                            <div class="validation_message d_none">
+                            <!-- <div class="validation_message d_none">
                                 <p>Validation Message!!!</p>
-                            </div>
+                            </div> -->
                         </div>
                         <!-- SELECT AVATAR -->
                         <div class="select_avatar_container">
@@ -125,28 +119,28 @@
                         </div>
                         <div class="form_group">
                             <label class="label" for="">Street Name</label>
-                            <input class="input" type="text">
+                            <input class="input" type="text" name="street_name">
                             <div class="validation_message d_none">
                                 <p>Validation Message!!!</p>
                             </div>
                         </div>
                         <div class="form_group">
                             <label class="label" for="">House Number</label>
-                            <input class="input" type="text">
+                            <input class="input" type="text" name="house_number">
                             <div class="validation_message d_none">
                                 <p>Validation Message!!!</p>
                             </div>
                         </div>
                         <div class="form_group">
                             <label class="label" for="">Postal Code</label>
-                            <input class="input" type="text">
+                            <input class="input" type="text" name="postal_code">
                             <div class="validation_message d_none">
                                 <p>Validation Message!!!</p>
                             </div>
                         </div>
                         <div class="form_group">
                             <label class="label" for="">City</label>
-                            <input class="input" type="text">
+                            <input class="input" type="text" name="city">
                             <div class="validation_message d_none">
                                 <p>Validation Message!!!</p>
                             </div>
@@ -155,25 +149,25 @@
                     <button class="profile_save_btn">Save</button>
                 </div><!-- END SP MY DETAILS -->
             </div><!-- END TAB CONTENT -->
-            <div class="tab_content">
+            <div class="tab_content d_none">
                 <form class="change_password">
                     <div class="form_group">
                         <label class="label" for="">Old Password</label>
-                        <input class="input" type="text" placeholder="Current Password">
+                        <input class="input" type="text" placeholder="Current Password" name="change_password_old">
                         <div class="validation_message d_none">
                             <p>Validation Message!!!</p>
                         </div>
                     </div>
                     <div class="form_group">
                         <label class="label" for="">New Password</label>
-                        <input class="input" type="text" placeholder="Password">                                            
+                        <input class="input" type="text" placeholder="Password" name="change_password_new">                                            
                         <div class="validation_message d_none">
                             <p>Validation Message!!!</p>
                         </div>
                     </div>
                     <div class="form_group">
                         <label class="label" for="">Confirm Password</label>
-                        <input class="input" type="text" placeholder="Confirm Password">
+                        <input class="input" type="text" placeholder="Confirm Password" name="change_password_confirm">
                         <div class="validation_message d_none">
                             <p>Validation Message!!!</p>
                         </div>
@@ -184,3 +178,8 @@
         </div>
     </div>
 </div>
+
+
+<script>
+
+</script>

@@ -1,6 +1,3 @@
-$sidenav_text:#646464;
-$sidenav_active_text:#1FB6FF;
-
 .sidenav{
     width:250px;
     height:100%;
@@ -14,15 +11,15 @@ $sidenav_active_text:#1FB6FF;
     overflow-y: auto;
     z-index: $sidenav_z_index;
     a, i{
-        color:$sidenav_text;
+        color:$sidenav_link;
         &:hover{
-            color:$sidenav_active_text;
+            color:$sidenav_active_link;
         }
     }
 }
 
 .sidenav_active{
-    color:$sidenav_active_text;
+    color:$sidenav_active_link;
 }
 
 .sidenav_header,
@@ -35,7 +32,7 @@ $sidenav_active_text:#1FB6FF;
 
 .sidenav_header{
     p{
-        color:$sidenav_text;
+        color:$sidenav_link;
         &:last-child{
             padding-top: 4px;
             font-weight: bold;
@@ -50,7 +47,7 @@ $sidenav_active_text:#1FB6FF;
     a{
         margin:10px 0;
         // border:2px solid black;
-        color:$sidenav_text;
+        color:$sidenav_link;
     }
 }
 

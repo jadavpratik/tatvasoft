@@ -30,6 +30,6 @@
 			case '/customer' :
 				$title = 'Customer'; 
 				break;
-					}
+		}
 		echo $title;
 	}

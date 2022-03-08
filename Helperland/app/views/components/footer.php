@@ -25,7 +25,7 @@
 			<!-- LOGO + LINKS -->
 			<div>
 				<div class="footer_logo">
-					<a href=""><img src="<?= assets('assets/img/global/logo.png'); ?>" alt=""></a>
+					<a href="<?= url('/'); ?>"><img src="<?= assets('assets/img/global/logo.png'); ?>" alt=""></a>
 				</div>
 				<div class="footer_links">
 					<a href="<?= url('/'); ?>">HOME</a>
@@ -42,7 +42,7 @@
 			</div>
 			<!-- COPYRIGHT_SECTION -->
 			<div>
-				<p class="copyright_section">©2018 Helperland. All rights reserved. Terms and Conditions | <a href="">Privacy Policy</a></p>
+				<p class="copyright_section">©2018 Helperland. All rights reserved. Terms and Conditions | <a href="javascript:void(0);">Privacy Policy</a></p>
 			</div>
 		</div><!-- END_FOOTER_MAIN_DIV -->
 
@@ -63,7 +63,7 @@
 		</div>
 	<?php } ?>
 
-	<!-- **********ALL_SCRIPT_FILES********** -->
+
 	<!-- EXCEL2TABLE -->
 	<script src="//cdn.rawgit.com/rainabba/jquery-table2excel/1.1.0/dist/jquery.table2excel.min.js"></script>
 	<!-- DATATABLE -->

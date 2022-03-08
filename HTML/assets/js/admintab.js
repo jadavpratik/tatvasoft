@@ -1,5 +1,6 @@
 const admin_tab_btn = $('.admin_tab_btn');
 const admin_tab_content = $('.admin_tab_content');
+
 for(let i=0; i<admin_tab_btn.length; i++){
     admin_tab_btn[i].addEventListener('click', ()=>{
 

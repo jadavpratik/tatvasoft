@@ -31,9 +31,8 @@
     <button id="confirm_booking_submit_btn" class="book_service_btn" disabled>Complete Booking</button>
 </div>
 
-
+<!-- **********BOOK-SERVICE-S4-SCRIPTS********** -->
 <script>
-
     $('[name="TermCheckBox"]').click(()=>{
         if($('[name="TermCheckBox"]').prop('checked')){
             $('#confirm_booking_submit_btn').prop('disabled', false);
@@ -58,6 +57,10 @@
                             title : result.message,
                             text : `Service Request Id = ${result.id}`,
                             icon : 'success'
+                        }).then((res)=>{
+                            if(res.isConfirmed){
+                                location.reload();
+                            }
                         });
                     }
                     catch(e){
@@ -73,7 +76,6 @@
                 if(obj!==undefined){
                     const {status, responseText} = obj;
                     const error = JSON.parse(responseText);
-                    // console.log(error);
                     Swal.fire({
                         title : 'Error',
                         text : error.message,
@@ -83,5 +85,4 @@
             }
         });
     });
-
 </script>

@@ -1,16 +1,16 @@
 // ------------------HORIZONTAL NAVTABS [FAQs, Profile, Book_Service]--------------------------
-const tab_btn = document.getElementsByClassName('tab_btn');
-const tab_content = document.getElementsByClassName('tab_content');
-const faq_tabs = document.getElementsByClassName('faq_tabs');
-const book_service_tabs = document.getElementsByClassName('book_service_tabs');
+const tab_btn = $('.tab_btn');
+const tab_content = $('.tab_content');
+const faq_tabs = $('.faq_tabs');
+const book_service_tabs = $('.book_service_tabs');
 var faq_tab, book_service_tab;
 
 if(faq_tabs.length){
-	faq_tab = document.getElementsByClassName('faq_tabs')[0].children;
+	faq_tab = $('.faq_tabs').children();
 }
 
 if(book_service_tabs.length){
-	book_service_tab = document.getElementsByClassName('book_service_tabs')[0].children;
+	book_service_tab = $('.book_service_tabs').children();
 }
 
 for(let i=0; i<tab_btn.length; i++){

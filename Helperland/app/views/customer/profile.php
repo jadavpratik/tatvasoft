@@ -116,11 +116,11 @@
 </div><!-- END_PROFILE -->
 
 
-<!-- MY DETAILS SCRIPTS -->
+<!-- **********CUSTOMER MY-DETAILS SCRIPTS********** -->
 <script>
 
     // LOAD CUSTOMER DETAILS...
-    function customerDetails(){
+    function customer_my_details(){
         $.ajax({
             url : `${BASE_URL}/my-details`,
             method : 'GET',
@@ -145,7 +145,7 @@
             }
         })
     }
-    customerDetails();
+    customer_my_details();
 
     $('#customer_details').submit((e)=>{
         e.preventDefault();
@@ -180,7 +180,7 @@
                                 title : `${result.message}`,
                                 icon : 'success'
                             });
-                            customerDetails();
+                            customer_my_details();
                         }
                         catch(e){
                             // console.log(e);
@@ -207,9 +207,9 @@
     });
 </script>
 
-<!-- MY ADDRESS SCRIPTS -->
+<!-- **********CUSTOMER MY-ADDRESS SCRIPTS********** -->
 <script>
-    function customerAddress(){
+    function customer_my_address(){
         $.ajax({
             url : `${BASE_URL}/my-address`,
             method : 'GET',
@@ -244,7 +244,7 @@
             }
         });
     }
-    customerAddress();
+    customer_my_address();
 
     // EDIT ADDRESS...
     function edit_address(id){
@@ -306,7 +306,7 @@
                                     title : result.message,
                                     icon : 'success'
                                 });
-                                customerAddress();
+                                customer_my_address();
                             }
                             catch(e){
                                 Swal.fire({
@@ -332,7 +332,7 @@
     }
 </script>
 
-<!-- CHANGE PASSWORD SCRIPTS -->
+<!-- **********CUSTOMER CHANGE-PASSWORD SCRIPTS********** -->
 <script>
     $('#change_password').submit((e)=>{
         e.preventDefault();

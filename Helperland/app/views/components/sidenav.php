@@ -27,27 +27,27 @@
         <?php if(session('isLogged')==true){ ?>
             <!-- CUSTOMER -->
             <?php if(session('userRole')=='customer'){ ?>
-                <a href="javascript:void(0);">Overview</a>
+                <!-- <a href="javascript:void(0);">Overview</a>
                 <a href="javascript:void(0);">Completed Service Orders</a>
                 <a href="javascript:void(0);">Calander view</a>
                 <a href="javascript:void(0);">My Favorites</a>
-                <a href="javascript:void(0);">Bills</a>
+                <a href="javascript:void(0);">Bills</a> -->
             <?php } ?>
 
             <!-- SERVICE_PROVIDER -->
             <?php if(session('userRole')=='service_provider'){ ?>
-                <a href="javascript:void(0);">Overview</a>
+                <!-- <a href="javascript:void(0);">Overview</a>
                 <a href="javascript:void(0);">New Inquiries</a>
                 <a href="javascript:void(0);">Accepted Requests</a>
                 <a href="javascript:void(0);">Calander view</a>
                 <a href="javascript:void(0);">Completed Service Orders</a>
                 <a href="javascript:void(0);">My Reviews</a>
                 <a href="javascript:void(0);">Block Customer</a>
-                <a href="javascript:void(0);">Bills</a>
+                <a href="javascript:void(0);">Bills</a> -->
             <?php } ?>
 
             <!-- COMMAN_LINKS FOR LOGGED_USER -->
-            <a href="<?= url('/my-setting'); ?>">My Setting</a>
+            <a href="javascript:void(0);" onclick="go_to_dashboard();">My Setting</a>
             <a href="<?= url('/logout'); ?>">Logout</a>
 
         <?php } ?>

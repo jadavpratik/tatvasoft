@@ -434,19 +434,9 @@
 							</div>
 							<div class="label_input">
 								<div>
-									<input type="text" placeholder="XXXX-XXXX-XXXX-XXXX" id="card_no" maxlength="19" value="1111-1111-1111-1111">
-									<input type="text" placeholder="MM/YY" value="12/26">	
-									<input type="text" placeholder="CVV/CVC" value="111">
-									<script>
-										// FOR SPACE BETWEEN CARD NUMBER...
-										$('#card_no').on('keyup', function() {
-											var foo = $(this).val().split(" ").join(""); 
-											if (foo.length > 0) {
-												foo = foo.match(new RegExp('.{1,4}', 'g')).join(" ");
-											}
-											$(this).val(foo);
-										});
-									</script>
+									<input type="text" placeholder="XXXX-XXXX-XXXX-XXXX" id="card_no" maxlength="19" value="1111-1111-1111-1111" readonly>
+									<input type="text" placeholder="MM/YY" value="12/26" readonly>	
+									<input type="text" placeholder="CVV/CVC" value="111" readonly>
 								</div>
 								<div>
 									<p>Accepeted Card</p>
@@ -492,25 +482,25 @@
 									<p>30 Mins</p>
 								</div>	
 								<div>
-									<p>Inside Cabinets(Extra)</p>
+									<p>Inside Fridge(Extra)</p>
 									<p>30 Mins</p>
 								</div>	
 								<div>
-									<p>Inside Cabinets(Extra)</p>
+									<p>Inside Oven(Extra)</p>
 									<p>30 Mins</p>
 								</div>	
 								<div>
-									<p>Inside Cabinets(Extra)</p>
+									<p>Laundry Wash & Dry(Extra)</p>
 									<p>30 Mins</p>
 								</div>	
 								<div>
-									<p>Inside Cabinets(Extra)</p>
+									<p>Interior Windows(Extra)</p>
 									<p>30 Mins</p>
 								</div>	
 							</div>
 							<div>
 								<p>Total Service Time</p>
-								<p>3.5 Hrs</p>
+								<p>5.5 Hrs</p>
 							</div>
 						</div>
 						<div>
@@ -528,7 +518,7 @@
 						<div>
 							<div>
 								<p>Total Payment</p>
-								<p>₹210</p>	
+								<p>₹385</p>	
 								<!-- $ -->
 							</div>
 							<!-- NOT INCLUDED IN SRS -->

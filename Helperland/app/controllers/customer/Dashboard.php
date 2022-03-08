@@ -65,17 +65,19 @@ class Dashboard{
             }
 
             // RATTING DETAILS...
-            $rating = new Rating();
-            $temp = $rating->where('RatingTo', '=', $data[$i]->ServiceProvider->UserId)->read();
-            if(count($temp)>0){
-                $tempRating = 0;
-                for($j=0; $j<count($temp); $j++){
-                    $tempRating += (float) $temp[$j]->Ratings;
-                    
-                }
-                $tempRating /= count($temp);
-                $data[$i]->Rating = $tempRating;
-            }            
+            if(isset($data[$i]->ServiceProvider)){
+                $rating = new Rating();
+                $temp = $rating->where('RatingTo', '=', $data[$i]->ServiceProvider->UserId)->read();
+                if(count($temp)>0){
+                    $tempRating = 0;
+                    for($j=0; $j<count($temp); $j++){
+                        $tempRating += (float) $temp[$j]->Ratings;
+                        
+                    }
+                    $tempRating /= count($temp);
+                    $data[$i]->Rating = $tempRating;
+                }                
+            }
         }
         $res->status(200)->json($data);
     }
@@ -127,15 +129,17 @@ class Dashboard{
             }
 
             // RATTING DETAILS...
-            $rating = new Rating();
-            $temp = $rating->where('RatingTo', '=', $data[$i]->ServiceProvider->UserId)->read();
-            if(count($temp)>0){
-                $tempRating = 0;
-                for($j=0; $j<count($temp); $j++){
-                    $tempRating += $temp[$j]->Ratings;
-                }
-                $tempRating /= count($temp);
-                $data[$i]->Rating = $tempRating;
+            if(isset($data[$i]->ServiceProvider)){
+                $rating = new Rating();
+                $temp = $rating->where('RatingTo', '=', $data[$i]->ServiceProvider->UserId)->read();
+                if(count($temp)>0){
+                    $tempRating = 0;
+                    for($j=0; $j<count($temp); $j++){
+                        $tempRating += $temp[$j]->Ratings;
+                    }
+                    $tempRating /= count($temp);
+                    $data[$i]->Rating = $tempRating;
+                }    
             }
         }
         $res->status(200)->json($data);

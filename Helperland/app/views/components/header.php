@@ -19,6 +19,7 @@
 	<!-- JQUERY -->
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script> 
+
 		// 	BASE URL FOR GUIDE AJAX REQUEST...
 		let BASE_URL = `<?= BASE_URL; ?>`; 
 
@@ -27,17 +28,11 @@
 
 		// CONVERT FORM TO JSON DATA...
 		function form_to_json(arr){
-			let json = {};
-			const temp = JSON.parse(JSON.stringify(arr));
-            for(i of temp){
-                if(i.name=='language'){
-                    json[i.name] = parseInt(i.value);
-				}
-				else{
-                    json[i.name] = i.value;
-				}
-            };            
-			return json;
+			var object = {};
+			arr.forEach((i) => {
+				object[i.name] = i.name=='language'? parseInt(i.value) : i.value;
+			});
+			return object;
 		}
 	</script>
 </head>
@@ -80,7 +75,7 @@
 		}
 	?>
 	
-	<!-- **********FOR_BACKLIGHT_CONTAIN********** -->	
+	<!-- **********FOR_BACKLIGHT_CONTAINER********** -->	
 	<div class="backlight_container"></div>
 	
 	<!-- **********NAVBAR********** -->	
@@ -142,8 +137,8 @@
 							<p><?= session('userName'); ?></p>
 						</div>
 						<hr>
-						<a href="javascript:void(0);">To Overview</a>
-						<a href="javascript:void(0);" class="table_tab_btn">My Setting</a>
+						<a href="javascript:void(0);" onclick="go_to_dashboard();">To Overview</a>
+						<a href="javascript:void(0);" class="table_tab_btn" onclick="go_to_dashboard();">My Setting</a>
 						<a href="<?= url('/logout') ?>">Logout</a>
 					</div>
 				</div>
@@ -158,7 +153,6 @@
 	</nav><!-- END NAVBAR -->
 
 	
-	<!-- **********SIDEBAR & POPUP_MODEL********** -->	
 	<?= component('sidenav'); ?>
 	<?= component('login'); ?>
 	<?= component('forgot-password'); ?>
@@ -172,4 +166,13 @@
 	<?= component('cancel-service'); ?>
 	<?= component('rating-sp'); ?>
 
-
+<!-- **********DROPDOWN-TO-DASHBOARD********** -->
+<script>
+	function go_to_dashboard(){
+		currentPageUrl = window.location.href;
+		const userRole = `<?= session('userRole'); ?>`;
+		if(!currentPageUrl.includes(userRole)){
+			window.location.replace(`${BASE_URL}/${userRole}/dashboard`);
+		}
+	}
+</script>

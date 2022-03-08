@@ -12,8 +12,8 @@ const ship_url = "../assets/img/avatar/ship.png";
 const iron_url = "../assets/img/avatar/iron.png";
 const hat_url = "../assets/img/avatar/hat.png";
 
-const avatar_input = document.getElementsByName('avatar');
-const profile_avatar = document.getElementsByClassName('avatar')[0];
+const avatar_input = $('[name="avatar"]');
+const profile_avatar = $('avatar')[0];
 
 for(let i=0; i<avatar_input.length; i++){
     avatar_input[i].addEventListener('change', ()=>{

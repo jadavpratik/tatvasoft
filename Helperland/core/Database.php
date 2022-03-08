@@ -8,14 +8,7 @@ use \Exception;
 use core\Response;
 
 class Database{
-
-    private $dbType = DB_TYPE;
-    private $dbHost = DB_HOST;
-    private $dbName = DB_NAME;
-    private $dbUser = DB_USER;
-    private $dbPassword = DB_PASSWORD;
-    private $conn = null;
-    
+    private $conn = null;    
     protected $table = '';
     private $query = '';
     private $columns = ' * ';
@@ -25,10 +18,15 @@ class Database{
 
     // -----------------CONNECT-------------------
     public function connect(){
-        try {
-            $dbString = "{$this->dbType}:host=$this->dbHost;dbname=$this->dbName";
-            $this->conn = new PDO($dbString, $this->dbUser, $this->dbPassword);
-            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);            
+        $dbType     = DB_TYPE;
+        $dbHost     = DB_HOST;
+        $dbUser     = DB_USER;
+        $dbPassword = DB_PASSWORD;
+        $dbName     = DB_NAME;
+        $dbString   = "{$dbType}:host={$dbHost};dbname={$dbName}";
+        try{
+            $this->conn = new PDO($dbString, $dbUser, $dbPassword);
+            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } 
         catch(Exception $e){
             $this->res->status(500)->json(['message'=>'Database connection issue!']);

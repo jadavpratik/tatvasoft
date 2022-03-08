@@ -100,9 +100,10 @@
 </div>
 
 
+<!-- **********BOOK-SERVICE-S3-SCRIPTS********** -->
 <script>
 
-    function loadUserAddresses(){
+    function load_user_address(){
         $.ajax({
             url : `${BASE_URL}/get-customer-address`,
             method : 'GET',
@@ -141,7 +142,7 @@
         });
     }
 
-    loadUserAddresses();
+    load_user_address();
 
     // ADD ADDRESS...
     $('#address_form').submit((e)=>{
@@ -179,7 +180,7 @@
                     if(res!==""){
                         $('#address_form').trigger('reset');
                         addressFormToggle();
-                        loadUserAddresses();
+                        load_user_address();
                         Swal.fire({
                             'title':'Good Job',
                             'text':'Address Added Successfully.',

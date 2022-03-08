@@ -119,6 +119,7 @@
     <button id="schedule_plan_submit_btn" class="book_service_btn">Continue</button>
 </div>
 
+<!-- **********BOOK-SERVICE-S2-SCRIPTS********** -->
 <script>
 
     // SECTION-2-BTN-CLICK...
@@ -156,16 +157,14 @@
 
             service_request.extra_time = extra_time;
             service_request.extra = extra;
-            updatePaymentSummary();
+            update_payment_summary();
             change_book_service_tabs(2);
         }
         else{
-            // SCROLL THE PAGE WHERE ERROR COMES...
+            // SCROLL-UP PAGE WHEN ERROR COMES...
             document.getElementById('target_btn').click();
             window.scrollTo({top: $(window).scrollTop()-200, behavior: "smooth"});
         }
-
     });
-
 </script>
 

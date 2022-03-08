@@ -4,7 +4,7 @@ use core\Route;
 
 // MIDDLEWARE....
 use app\middleware\Auth;
-$isCustomer = [ new Auth(), 'isCustomer'];
+$isCustomer = [new Auth(), 'isCustomer'];
 
 // BOOKNOW CONTROLLERS...
 use app\controllers\bookNow\BookNow;

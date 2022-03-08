@@ -18,8 +18,8 @@
     </div>
 </div>
 
-
-<script type="text/javascript">
+<!-- **********FORGOT-PASSWORD-SCRIPTS********** -->
+<script>
 
     $('.forgot_password_popup_form').submit((e)=>{
 
@@ -80,6 +80,9 @@
                     }
                 }
             });
+        }
+        else{
+            $('[name="forgot_password_btn"]').prop('disabled', false);
         }
     });
 </script>

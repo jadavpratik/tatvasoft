@@ -4,7 +4,7 @@
     flex-direction: column;
     & > div{
         padding:28px 0 20px;
-        border-bottom: 1px solid #DCDCDC;
+        border-bottom: 1px solid $book_service_s3_border;
     }
     & > div:nth-child(1){
         // FOR ADDRESS DIV CONTAINER...
@@ -89,12 +89,12 @@
 
 .radio_address{
     display: flex;
-    border: 1px solid #DCDCDC;
+    border: 1px solid $book_service_s3_border;
     border-radius: 4px;
     margin-bottom: 14px;
     input{
         margin:auto 25px;
-        border:2px solid red;
+        // border:2px solid red;
     }
     label{
         cursor: pointer;
@@ -104,7 +104,7 @@
         flex-direction: column;
         justify-content: center;
         padding:6px 16px !important;
-        border-left: 1px solid #DCDCDC;
+        border-left: 1px solid $book_service_s3_border;
         p{
             font-weight: normal;
             margin:0;
@@ -121,7 +121,7 @@
     margin:10px 0;
     padding:20px;
     background-color: $book_service_tab;
-    border:1px solid #DCDCDC;
+    border:1px solid $book_service_s3_border;
     border-radius: 4px;
     display: grid;
     grid-template-columns: repeat(2, 1fr);

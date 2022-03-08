@@ -1,16 +1,3 @@
-$form_btn:#1D7A8C;
-$book_service_btn:#1D7A8C;
-$rate_sp:#6DA9B5;
-$reschedule_btn:#1D7A8C;
-$cancel_btn:#ff6b6b;
-$export_button:#1D7A8C;
-$remove_btn:#1D7A8C;
-$block_btn:#ff6b6b;
-$accept_btn:#1D7A8C;
-$input_border:#DEDDDD;
-$search_btn:#1FB6FF;
-$add_new_user_btn:#1FB6FF;
-
 .disabled_btn{
     border:2px solid green;
 }
@@ -97,12 +84,12 @@ $add_new_user_btn:#1FB6FF;
 // ---------------------TABLE_BTNS------------------------
 .export_btn{
     @include table_btn;
-    background-color: $export_button;
+    background-color: $export_btn;
 }
 
 .add_new_service_request_btn{
     @include table_btn;
-    background-color: $export_button;
+    background-color: $export_btn;
 }
 
 .reschedule_btn{
@@ -117,7 +104,7 @@ $add_new_user_btn:#1FB6FF;
 
 .rate_sp_btn{
     @include table_btn;
-    background-color: $rate_sp;
+    background-color: $rate_sp_btn;
 }
 
 .remove_btn{

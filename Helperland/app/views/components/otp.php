@@ -17,7 +17,8 @@
 	</div>
 </div>
 
-<script type="text/javascript">
+<!-- **********OTP-SCRIPTS********** -->
+<script>
 
     $('.otp_popup_form').submit((e)=>{
 

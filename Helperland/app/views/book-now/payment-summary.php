@@ -56,10 +56,10 @@
     </div>
 </div>
 
-
+<!-- **********UPDATE-PAYMENT-SUMMARY-SCRIPTS********** -->
 <script>
 
-    function updatePaymentSummary(){
+    function update_payment_summary(){
         let serviceDateObj = new Date(service_request.date);
         let serviceYear = serviceDateObj.getFullYear();
         let serviceMonth = serviceDateObj.getMonth()+1;
@@ -75,16 +75,17 @@
         $('#service_time').html(`${service_request.time}`);
         $('#service_duration').html(`${service_request.duration} Hours`);
         $('#service_total_time').html(`${service_request.duration + service_request.extra_time} Hours`);
-
-        let extra_services = ``;
-        for(let i=0; i<service_request.extra.length; i++){
-            extra_services += `
-                <div>
-                    <p>Inside ${service_request.extra[i]} (Extra)</p>
-                    <p>30 Mins</p>
-                </div>`; 
-        }
-        $('#service_extra_container').html(extra_services);
+        $('#service_extra_container').html(`${(function(){
+            let extra_services = ``;
+            for(let i=0; i<service_request.extra.length; i++){
+                extra_services += `
+                    <div>
+                        <p>Inside ${service_request.extra[i]} (Extra)</p>
+                        <p>30 Mins</p>
+                    </div>`; 
+            }
+            return extra_services;
+        })()}`);
         $('#service_per_price').html(`₹${service_request.per_price}`);
         //  TOTAL PRICES = BASIC PRICE(3 SERVICE) + EXTRA SERVICE(DYNAMICS);
         service_request.total_price = service_request.per_price*3 + (service_request.per_price/2)*service_request.extra.length;

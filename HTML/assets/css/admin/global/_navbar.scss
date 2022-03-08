@@ -1,9 +1,7 @@
-$navbar_bg:#1FB6FF;
-
 .admin_navbar{
     width:100%;
     height: 60px;  
-    background-color: $navbar_bg;
+    background-color: $admin_navbar_bg;
     display: flex;
     align-items: center;
     justify-content: space-between;
