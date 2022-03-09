@@ -202,13 +202,24 @@ class Dashboard{
             $customerData = $user->columns(['FirstName', 'LastName'])->where('UserId', '=', $customerId)->read();
             $serviceData[$i]->CustomerName = $customerData[0]->FirstName.' '.$customerData[0]->LastName;
 
-            // EXTRA SERVICE DETAILS...
-            $extra = new ExtraService();
-            $temp = $extra->where('ServiceRequestId', '=', $serviceData[$i]->ServiceRequestId)->read();
-            for($j=0; $j<count($temp); $j++){
-                $serviceData[$i]->ExtraService[] = $temp[$j]->ServiceExtraId;
+            // IN WHICH CATEGORY HIGHEST RATING GOT BY CUSTOMER...
+            $ratingArr = [
+                (float) $serviceData[$i]->OnTimeArrival,
+                (float) $serviceData[$i]->Friendly,
+                (float) $serviceData[$i]->QualityOfService
+            ];
+            $HighestRating = max($ratingArr);
+            switch($HighestRating){
+                case $ratingArr[0]:
+                    $serviceData[$i]->HighestRating = 'On Time Arrival';
+                    break;
+                case $ratingArr[1]:
+                    $serviceData[$i]->HighestRating = 'Friendly';
+                    break;
+                case $ratingArr[2]:
+                    $serviceData[$i]->HighestRating = 'Quality Of Service';
+                    break;
             }
-            
         }
 
         $res->status(200)->json($serviceData);

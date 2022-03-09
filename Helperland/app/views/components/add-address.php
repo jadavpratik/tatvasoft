@@ -73,7 +73,7 @@
                 method : 'POST',
                 data : $('#add_address_popup').serialize(),
                 success : function(res){
-                    if(res!=="" || res!==undefined){
+                    if(res!=="" && res!==undefined){
                         try{
                             const result = JSON.parse(res);
                             Swal.fire({

@@ -9,7 +9,7 @@
             url : `${BASE_URL}/customer-favorite-sp-list`,
             method : 'GET',
             success : function(res){
-                if(res!=="" || res!==undefined){
+                if(res!=="" && res!==undefined){
                     try{
                         const spList = JSON.parse(res);
                         let html = ``;    
@@ -115,7 +115,7 @@
                 url : url,
                 method : 'PATCH',
                 success : function(res){
-                    if(res!=="" || res!==undefined){
+                    if(res!=="" && res!==undefined){
                         try{
                             const result = JSON.parse(res);
                             Swal.fire({

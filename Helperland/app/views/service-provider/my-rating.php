@@ -1,5 +1,5 @@
 <div class="my_rating">
-    <table>
+    <table id="sp_my_rating_table">
         <thead>
             <tr>
                 <th>Service Id</th>
@@ -10,348 +10,90 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td><p class="service_id">8318</p></td>
-                <td>
-                    <div class="service_date">
-                        <div>
-                            <img src="<?= assets('assets/img/table/calendar.png'); ?>" alt="">
-                            <p>09/04/2018</p>
-                        </div>
-                        <div>
-                            <img src="<?= assets('assets/img/table/time.png'); ?>" alt="">
-                            <p>12:00 - 18:00</p>                            
-                        </div>    
-                    </div>
-                </td>
-                <td><p class="customer_name">Pratik</p></td>
-                <td>
-                    <div class="sp_my_rating">
-                        <div>
-                            <i class="fas fa-star rated_star"></i>
-                            <i class="fas fa-star rated_star"></i>
-                            <i class="fas fa-star rated_star"></i>
-                            <i class="fas fa-star rated_star"></i>
-                            <i class="fas fa-star unrated_star"></i>    
-                        </div>
-                        <p>Very Good</p>
-                    </div>
-                </td>
-                <td>
-                    <p>Excellent Work Done by Provider, i am very happy and would you like to receive the services of same provider</p>
-                </td>
-            </tr>
-            <tr>
-                <td><p class="service_id">8318</p></td>
-                <td>
-                    <div class="service_date">
-                        <div>
-                            <img src="<?= assets('assets/img/table/calendar.png'); ?>" alt="">
-                            <p>09/04/2018</p>
-                        </div>
-                        <div>
-                            <img src="<?= assets('assets/img/table/time.png'); ?>" alt="">
-                            <p>12:00 - 18:00</p>                            
-                        </div>    
-                    </div>
-                </td>
-                <td><p class="customer_name">Pratik</p></td>
-                <td>
-                    <div class="sp_my_rating">
-                        <div>
-                            <i class="fas fa-star rated_star"></i>
-                            <i class="fas fa-star rated_star"></i>
-                            <i class="fas fa-star rated_star"></i>
-                            <i class="fas fa-star rated_star"></i>
-                            <i class="fas fa-star unrated_star"></i>    
-                        </div>
-                        <p>Very Good</p>
-                    </div>
-                </td>
-                <td>
-                    <p>Excellent Work Done by Provider, i am very happy and would you like to receive the services of same provider</p>
-                </td>
-            </tr>
-            <tr>
-                <td><p class="service_id">8318</p></td>
-                <td>
-                    <div class="service_date">
-                        <div>
-                            <img src="<?= assets('assets/img/table/calendar.png'); ?>" alt="">
-                            <p>09/04/2018</p>
-                        </div>
-                        <div>
-                            <img src="<?= assets('assets/img/table/time.png'); ?>" alt="">
-                            <p>12:00 - 18:00</p>                            
-                        </div>    
-                    </div>
-                </td>
-                <td><p class="customer_name">Pratik</p></td>
-                <td>
-                    <div class="sp_my_rating">
-                        <div>
-                            <i class="fas fa-star rated_star"></i>
-                            <i class="fas fa-star rated_star"></i>
-                            <i class="fas fa-star rated_star"></i>
-                            <i class="fas fa-star rated_star"></i>
-                            <i class="fas fa-star unrated_star"></i>    
-                        </div>
-                        <p>Very Good</p>
-                    </div>
-                </td>
-                <td>
-                    <p>Excellent Work Done by Provider, i am very happy and would you like to receive the services of same provider</p>
-                </td>
-            </tr>
-            <tr>
-                <td><p class="service_id">8318</p></td>
-                <td>
-                    <div class="service_date">
-                        <div>
-                            <img src="<?= assets('assets/img/table/calendar.png'); ?>" alt="">
-                            <p>09/04/2018</p>
-                        </div>
-                        <div>
-                            <img src="<?= assets('assets/img/table/time.png'); ?>" alt="">
-                            <p>12:00 - 18:00</p>                            
-                        </div>    
-                    </div>
-                </td>
-                <td><p class="customer_name">Pratik</p></td>
-                <td>
-                    <div class="sp_my_rating">
-                        <div>
-                            <i class="fas fa-star rated_star"></i>
-                            <i class="fas fa-star rated_star"></i>
-                            <i class="fas fa-star rated_star"></i>
-                            <i class="fas fa-star rated_star"></i>
-                            <i class="fas fa-star unrated_star"></i>    
-                        </div>
-                        <p>Very Good</p>
-                    </div>
-                </td>
-                <td>
-                    <p>Excellent Work Done by Provider, i am very happy and would you like to receive the services of same provider</p>
-                </td>
-            </tr>
-            <tr>
-                <td><p class="service_id">8318</p></td>
-                <td>
-                    <div class="service_date">
-                        <div>
-                            <img src="<?= assets('assets/img/table/calendar.png'); ?>" alt="">
-                            <p>09/04/2018</p>
-                        </div>
-                        <div>
-                            <img src="<?= assets('assets/img/table/time.png'); ?>" alt="">
-                            <p>12:00 - 18:00</p>                            
-                        </div>    
-                    </div>
-                </td>
-                <td><p class="customer_name">Pratik</p></td>
-                <td>
-                    <div class="sp_my_rating">
-                        <div>
-                            <i class="fas fa-star rated_star"></i>
-                            <i class="fas fa-star rated_star"></i>
-                            <i class="fas fa-star rated_star"></i>
-                            <i class="fas fa-star rated_star"></i>
-                            <i class="fas fa-star unrated_star"></i>    
-                        </div>
-                        <p>Very Good</p>
-                    </div>
-                </td>
-                <td>
-                    <p>Excellent Work Done by Provider, i am very happy and would you like to receive the services of same provider</p>
-                </td>
-            </tr>
-            <tr>
-                <td><p class="service_id">8318</p></td>
-                <td>
-                    <div class="service_date">
-                        <div>
-                            <img src="<?= assets('assets/img/table/calendar.png'); ?>" alt="">
-                            <p>09/04/2018</p>
-                        </div>
-                        <div>
-                            <img src="<?= assets('assets/img/table/time.png'); ?>" alt="">
-                            <p>12:00 - 18:00</p>                            
-                        </div>    
-                    </div>
-                </td>
-                <td><p class="customer_name">Pratik</p></td>
-                <td>
-                    <div class="sp_my_rating">
-                        <div>
-                            <i class="fas fa-star rated_star"></i>
-                            <i class="fas fa-star rated_star"></i>
-                            <i class="fas fa-star rated_star"></i>
-                            <i class="fas fa-star rated_star"></i>
-                            <i class="fas fa-star unrated_star"></i>    
-                        </div>
-                        <p>Very Good</p>
-                    </div>
-                </td>
-                <td>
-                    <p>Excellent Work Done by Provider, i am very happy and would you like to receive the services of same provider</p>
-                </td>
-            </tr>
-            <tr>
-                <td><p class="service_id">8318</p></td>
-                <td>
-                    <div class="service_date">
-                        <div>
-                            <img src="<?= assets('assets/img/table/calendar.png'); ?>" alt="">
-                            <p>09/04/2018</p>
-                        </div>
-                        <div>
-                            <img src="<?= assets('assets/img/table/time.png'); ?>" alt="">
-                            <p>12:00 - 18:00</p>                            
-                        </div>    
-                    </div>
-                </td>
-                <td><p class="customer_name">Pratik</p></td>
-                <td>
-                    <div class="sp_my_rating">
-                        <div>
-                            <i class="fas fa-star rated_star"></i>
-                            <i class="fas fa-star rated_star"></i>
-                            <i class="fas fa-star rated_star"></i>
-                            <i class="fas fa-star rated_star"></i>
-                            <i class="fas fa-star unrated_star"></i>    
-                        </div>
-                        <p>Very Good</p>
-                    </div>
-                </td>
-                <td>
-                    <p>Excellent Work Done by Provider, i am very happy and would you like to receive the services of same provider</p>
-                </td>
-            </tr>
-            <tr>
-                <td><p class="service_id">8318</p></td>
-                <td>
-                    <div class="service_date">
-                        <div>
-                            <img src="<?= assets('assets/img/table/calendar.png'); ?>" alt="">
-                            <p>09/04/2018</p>
-                        </div>
-                        <div>
-                            <img src="<?= assets('assets/img/table/time.png'); ?>" alt="">
-                            <p>12:00 - 18:00</p>                            
-                        </div>    
-                    </div>
-                </td>
-                <td><p class="customer_name">Pratik</p></td>
-                <td>
-                    <div class="sp_my_rating">
-                        <div>
-                            <i class="fas fa-star rated_star"></i>
-                            <i class="fas fa-star rated_star"></i>
-                            <i class="fas fa-star rated_star"></i>
-                            <i class="fas fa-star rated_star"></i>
-                            <i class="fas fa-star unrated_star"></i>    
-                        </div>
-                        <p>Very Good</p>
-                    </div>
-                </td>
-                <td>
-                    <p>Excellent Work Done by Provider, i am very happy and would you like to receive the services of same provider</p>
-                </td>
-            </tr>
-            <tr>
-                <td><p class="service_id">8318</p></td>
-                <td>
-                    <div class="service_date">
-                        <div>
-                            <img src="<?= assets('assets/img/table/calendar.png'); ?>" alt="">
-                            <p>09/04/2018</p>
-                        </div>
-                        <div>
-                            <img src="<?= assets('assets/img/table/time.png'); ?>" alt="">
-                            <p>12:00 - 18:00</p>                            
-                        </div>    
-                    </div>
-                </td>
-                <td><p class="customer_name">Pratik</p></td>
-                <td>
-                    <div class="sp_my_rating">
-                        <div>
-                            <i class="fas fa-star rated_star"></i>
-                            <i class="fas fa-star rated_star"></i>
-                            <i class="fas fa-star rated_star"></i>
-                            <i class="fas fa-star rated_star"></i>
-                            <i class="fas fa-star unrated_star"></i>    
-                        </div>
-                        <p>Very Good</p>
-                    </div>
-                </td>
-                <td>
-                    <p>Excellent Work Done by Provider, i am very happy and would you like to receive the services of same provider</p>
-                </td>
-            </tr>
-            <tr>
-                <td><p class="service_id">8318</p></td>
-                <td>
-                    <div class="service_date">
-                        <div>
-                            <img src="<?= assets('assets/img/table/calendar.png'); ?>" alt="">
-                            <p>09/04/2018</p>
-                        </div>
-                        <div>
-                            <img src="<?= assets('assets/img/table/time.png'); ?>" alt="">
-                            <p>12:00 - 18:00</p>                            
-                        </div>    
-                    </div>
-                </td>
-                <td><p class="customer_name">Pratik</p></td>
-                <td>
-                    <div class="sp_my_rating">
-                        <div>
-                            <i class="fas fa-star rated_star"></i>
-                            <i class="fas fa-star rated_star"></i>
-                            <i class="fas fa-star rated_star"></i>
-                            <i class="fas fa-star rated_star"></i>
-                            <i class="fas fa-star unrated_star"></i>    
-                        </div>
-                        <p>Very Good</p>
-                    </div>
-                </td>
-                <td>
-                    <p>Excellent Work Done by Provider, i am very happy and would you like to receive the services of same provider</p>
-                </td>
-            </tr>
-            <tr>
-                <td><p class="service_id">8318</p></td>
-                <td>
-                    <div class="service_date">
-                        <div>
-                            <img src="<?= assets('assets/img/table/calendar.png'); ?>" alt="">
-                            <p>09/04/2018</p>
-                        </div>
-                        <div>
-                            <img src="<?= assets('assets/img/table/time.png'); ?>" alt="">
-                            <p>12:00 - 18:00</p>                            
-                        </div>    
-                    </div>
-                </td>
-                <td><p class="customer_name">Pratik</p></td>
-                <td>
-                    <div class="sp_my_rating">
-                        <div>
-                            <i class="fas fa-star rated_star"></i>
-                            <i class="fas fa-star rated_star"></i>
-                            <i class="fas fa-star rated_star"></i>
-                            <i class="fas fa-star rated_star"></i>
-                            <i class="fas fa-star unrated_star"></i>    
-                        </div>
-                        <p>Very Good</p>
-                    </div>
-                </td>
-                <td>
-                    <p>Excellent Work Done by Provider, i am very happy and would you like to receive the services of same provider</p>
-                </td>
-            </tr>
-
+            <!-- DYNAMIC GENERTED BY DATATABLE... -->
         </tbody>
     </table>
 </div>
+
+<!-- **********SP-MY-RATING********** -->
+<script>
+    $(document).ready(function(){
+        state.sp_my_rating_table = $('#sp_my_rating_table').DataTable({
+            searching : false,
+            serviceSide : true,
+            autoWidth : false,
+            dom : 't<"datatable_bottom"lp>',
+            ajax : {
+                url : `${BASE_URL}/sp-my-rating`,
+                cache : true,
+                dataSrc : function(data){
+                    // STORE DATA GLOBALLY...
+                    state.sp_my_rating_data = data;
+                    return data;
+                },
+            },
+            columns :[
+                {
+                    mRender : function(data, type, row){
+                        return`<p class="service_id">${row.ServiceRequestId}</p>`;
+                    },
+                },
+                {
+                    mRender : function(data, type, row){
+                        return `<div class="service_date">
+                                    <div>
+                                        <img src="<?= assets('assets/img/table/calendar.png'); ?>" alt="">
+                                        <p>${row.ServiceDate}</p>
+                                    </div>
+                                    <div>
+                                        <img src="<?= assets('assets/img/table/time.png'); ?>" alt="">
+                                        <p>${row.StartTime} to ${row.EndTime}</p>
+                                    </div>
+                                </div>`;
+                    }
+                },
+                {
+                    mRender : function(data, type, row){
+                        return `<p class="customer_name">${row.CustomerName}</p>`;
+                    }
+                },
+                {
+                    mRender : function(data, type, row){
+                        return `<div class="sp_my_rating">
+                                    <div>
+                                        ${(function(){
+                                            let html = ``;
+                                            // FOR RATED STAR...
+                                            for(let i=0; i<parseInt(row.Ratings); i++){
+                                                html += `<i class="fas fa-star rated_star"></i>`;
+                                            }
+                                            // FOR UNRATED STAR....
+                                            for(let i=0; i<5-parseInt(row.Ratings); i++){
+                                                html += `<i class="fas fa-star unrated_star"></i>`;
+                                            }
+                                            return html;
+                                        })()}
+                                    </div>
+                                    <p>${row.HighestRating}</p>
+                                </div>`;
+                    }
+                },
+                {
+                    mRender : function(data, type, row){
+                        return `<p>${row.Comments}</p>`;
+                    }
+                }
+            ],
+            pagingType : 'full_numbers',
+            language : {
+                paginate : {
+                    first    :'<i class="fa-solid fa-backward-step"></i>',
+                    previous :'<i class="fas fa-angle-left">',  
+                    next     :'<i class="fas fa-angle-right">',
+                    last     :'<i class="fa-solid fa-forward-step"></i>'  
+                },
+            }
+        });
+    });
+</script>
+

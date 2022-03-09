@@ -50,7 +50,7 @@
             contentType : 'application/json',
             data : JSON.stringify(service_request),
             success : function(res){
-                if(res!=="" || res!==undefined){
+                if(res!=="" && res!==undefined){
                     try{
                         const result = JSON.parse(res);
                         Swal.fire({

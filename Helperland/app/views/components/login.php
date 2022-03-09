@@ -64,7 +64,7 @@
                 method : 'POST',
                 data : $('.login_popup_form').serialize(),
                 success : function(res){
-                    if(res!=="" || res!==undefined){
+                    if(res!=="" && res!==undefined){
                         try{
                             const result = JSON.parse(res);
                             $('.login_popup_form').trigger('reset');

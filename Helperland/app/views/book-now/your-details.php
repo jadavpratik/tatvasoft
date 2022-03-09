@@ -123,7 +123,7 @@
             url : `${BASE_URL}/get-customer-address`,
             method : 'GET',
             success : function(res){
-                if(res!=="" || res!==undefined){
+                if(res!=="" && res!==undefined){
                     try{
                         const result = JSON.parse(res);
                         user_address = result.address;

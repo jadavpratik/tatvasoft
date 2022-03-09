@@ -29,7 +29,7 @@
                 contentType : 'application/json',
                 data : json,
                 success : function(res){
-                    if(res!=="" || res!==undefined){
+                    if(res!=="" && res!==undefined){
                         try{
                             const result = JSON.parse(res);
                             if(result.message!=""){
