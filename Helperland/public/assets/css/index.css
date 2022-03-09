@@ -2316,8 +2316,8 @@ footer {
   margin-right: 6px;
   border: 1px solid #AAAAAA;
   border-radius: 50%;
-  -o-object-fit: contain;
-     object-fit: contain;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .service_details div {

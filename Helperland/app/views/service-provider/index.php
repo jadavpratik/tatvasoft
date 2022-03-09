@@ -24,7 +24,7 @@
         <div class="table_tab_right">
 
             <!-- PROFILE -->
-            <div class="table_tab_content">
+            <div class="table_tab_content d_none">
                 <?= component('service-provider/', 'profile'); ?>
             </div>
 
@@ -45,7 +45,7 @@
             <div class="table_tab_content d_none"></div>
 
             <!-- SERVICE HISTORY -->
-            <div class="table_tab_content d_none">
+            <div class="table_tab_content">
                 <?= component('service-provider/', 'service-history'); ?>
             </div>
 

@@ -19,6 +19,8 @@
 
 <!-- **********CUSTOMER SERVICE-HISTORY SCRIPTS********** -->
 <script>
+
+    // EXPORT TABLE AS EXCEL....
     function export_table_data(){
         $("#customer_service_history_table").table2excel({
             exclude_img: true,
@@ -33,7 +35,7 @@
             autoWidth : false,
             dom : 't<"datatable_bottom"lp>',
             ajax : {
-                url : `${BASE_URL}/customer-all-services`,
+                url : `${BASE_URL}/customer-service-history`,
                 cache : true,
                 dataSrc : function(data){
                     // STORE DATA GLOBALLY...
@@ -50,6 +52,7 @@
                                         <p>${row.ServiceDate}</p>
                                     </div>
                                     <div>
+                                        <i class="far fa-clock"></i>
                                         <p>${row.StartTime} - ${row.EndTime}</p>
                                     </div>
                                 </div>`;
@@ -116,7 +119,7 @@
                 },
                 {
                     mRender : function(data, type, row){
-                        // NULL : NEW
+                        // 0    : NEW
                         // 1    : PENDING
                         // 2    : COMPLETED
                         // 3    : CANCALLED
@@ -129,7 +132,6 @@
                     }
                 }
             ],
-            buttons : ['excel'],
             pagingType : 'full_numbers',
             language : {
                 paginate : {

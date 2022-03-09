@@ -29,4 +29,3 @@ Route::get('/my-address/:id', $isLogged, [new MyAddress(), 'get_address']); // i
 Route::post('/my-address', $isLogged, [new MyAddress(), 'add_address']);
 Route::patch('/my-address/:id', $isLogged, [new MyAddress(), 'update_address']); // id = addressId
 Route::delete('/my-address/:id', $isLogged, [new MyAddress(), 'delete_address']); // id = addressId
-

@@ -11,7 +11,7 @@
             <div class="validation_message d_none">
                 <p>Enter Stree name!</p>
             </div>
-        </div>	
+        </div>
         <div class="form_group">
             <label class="label" for="">House Number</label>
             <input class="input" type="text" name="add_address_house_number">

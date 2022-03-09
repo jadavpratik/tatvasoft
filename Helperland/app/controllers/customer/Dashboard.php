@@ -20,14 +20,13 @@ class Dashboard{
     private $CANCELLED_REQUEST = 3;
 
     // ALL SERVICES...
-    public function all_services(Request $req, Response $res){
+    public function service_history(Request $req, Response $res){
 
         $userId = session('userId');
         $service = new Service();
         $where = "UserId = {$userId}";
         $data = $service->join('ServiceRequestId', 'ServiceRequestId', 'servicerequestaddress')->where($where)->read();
        
-        // BAKI 6E... EXTRA SERVICE TABLE NE JOIN KARVANU...
         function time_to_minutes($time){
             $temp = explode(':', $time);
             $hours = (int) $temp[0];
@@ -183,11 +182,11 @@ class Dashboard{
             'Status' => $this->NEW_REQUEST
         ]);
 
-        $res->status(200)->json(['message'=>'Service cancelled successfully.']);
+        $res->status(200)->json(['message'=>'Service has been reschedule successfully.']);
     }
 
     // RATE SERVICE PROVIDER...
-    public function rate_service_provider(Request $req, Response $res){
+    public function rate_sp(Request $req, Response $res){
 
         $serviceId = $req->params->id;
 
@@ -232,7 +231,7 @@ class Dashboard{
     }
 
     // CUSTOMER SP LIST (WHO PROVIDED SERVICE TO CUSTOMER IN PAST...)
-    public function customer_sp_list(Request $req, Response $res){
+    public function favorite_sp_list(Request $req, Response $res){
         $userId = session('userId');
 
         $service = new Service();

@@ -86,7 +86,7 @@
 
         if(validation){
             $.ajax({
-                url : `${BASE_URL}/rate-service-provider/${state.rate_service_id}`,
+                url : `${BASE_URL}/rate-sp/${state.rate_service_id}`,
                 method : 'POST',
                 data : $('#rating_popup').serialize(),
                 success : function(res){

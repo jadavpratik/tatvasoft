@@ -7,7 +7,7 @@
     </div>
     <button class="export_btn">Export</button>
 </div>
-<table>
+<table id="sp_service_history_table">
     <thead>
         <tr>
             <th>Service Id</th>
@@ -16,269 +16,69 @@
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <td><p class="service_id">8488</p></td>
-            <td>
-                <div class="service_date">
-                    <div>
-                        <img src="<?= assets('assets/img/table/calendar.png'); ?>" alt="">
-                        <p>07/10/2021</p>
-                    </div>
-                    <div>
-                        <img src="<?= assets('assets/img/table/time.png'); ?>" alt="">
-                        <p>08:00 to 11:00</p>
-                    </div>
-                </div>
-            </td>
-            <td>
-                <div class="customer_details"> 
-                    <p>Gaurang Patel</p>
-                    <div>
-                        <img src="<?= assets('assets/img/table/home.png'); ?>" alt="">
-                        <p>Koenigstrasse 112 99897 Tambach Dietharz</p>
-                    </div>
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td><p class="service_id">8488</p></td>
-            <td>
-                <div class="service_date">
-                    <div>
-                        <img src="<?= assets('assets/img/table/calendar.png'); ?>" alt="">
-                        <p>07/10/2021</p>
-                    </div>
-                    <div>
-                        <img src="<?= assets('assets/img/table/time.png'); ?>" alt="">
-                        <p>08:00 to 11:00</p>
-                    </div>
-                </div>
-            </td>
-            <td>
-                <div class="customer_details"> 
-                    <p>Gaurang Patel</p>
-                    <div>
-                        <img src="<?= assets('assets/img/table/home.png'); ?>" alt="">
-                        <p>Koenigstrasse 112 99897 Tambach Dietharz</p>
-                    </div>
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td><p class="service_id">8488</p></td>
-            <td>
-                <div class="service_date">
-                    <div>
-                        <img src="<?= assets('assets/img/table/calendar.png'); ?>" alt="">
-                        <p>07/10/2021</p>
-                    </div>
-                    <div>
-                        <img src="<?= assets('assets/img/table/time.png'); ?>" alt="">
-                        <p>08:00 to 11:00</p>
-                    </div>
-                </div>
-            </td>
-            <td>
-                <div class="customer_details"> 
-                    <p>Gaurang Patel</p>
-                    <div>
-                        <img src="<?= assets('assets/img/table/home.png'); ?>" alt="">
-                        <p>Koenigstrasse 112 99897 Tambach Dietharz</p>
-                    </div>
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td><p class="service_id">8488</p></td>
-            <td>
-                <div class="service_date">
-                    <div>
-                        <img src="<?= assets('assets/img/table/calendar.png'); ?>" alt="">
-                        <p>07/10/2021</p>
-                    </div>
-                    <div>
-                        <img src="<?= assets('assets/img/table/time.png'); ?>" alt="">
-                        <p>08:00 to 11:00</p>
-                    </div>
-                </div>
-            </td>
-            <td>
-                <div class="customer_details"> 
-                    <p>Gaurang Patel</p>
-                    <div>
-                        <img src="<?= assets('assets/img/table/home.png'); ?>" alt="">
-                        <p>Koenigstrasse 112 99897 Tambach Dietharz</p>
-                    </div>
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td><p class="service_id">8488</p></td>
-            <td>
-                <div class="service_date">
-                    <div>
-                        <img src="<?= assets('assets/img/table/calendar.png'); ?>" alt="">
-                        <p>07/10/2021</p>
-                    </div>
-                    <div>
-                        <img src="<?= assets('assets/img/table/time.png'); ?>" alt="">
-                        <p>08:00 to 11:00</p>
-                    </div>
-                </div>
-            </td>
-            <td>
-                <div class="customer_details"> 
-                    <p>Gaurang Patel</p>
-                    <div>
-                        <img src="<?= assets('assets/img/table/home.png'); ?>" alt="">
-                        <p>Koenigstrasse 112 99897 Tambach Dietharz</p>
-                    </div>
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td><p class="service_id">8488</p></td>
-            <td>
-                <div class="service_date">
-                    <div>
-                        <img src="<?= assets('assets/img/table/calendar.png'); ?>" alt="">
-                        <p>07/10/2021</p>
-                    </div>
-                    <div>
-                        <img src="<?= assets('assets/img/table/time.png'); ?>" alt="">
-                        <p>08:00 to 11:00</p>
-                    </div>
-                </div>
-            </td>
-            <td>
-                <div class="customer_details"> 
-                    <p>Gaurang Patel</p>
-                    <div>
-                        <img src="<?= assets('assets/img/table/home.png'); ?>" alt="">
-                        <p>Koenigstrasse 112 99897 Tambach Dietharz</p>
-                    </div>
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td><p class="service_id">8488</p></td>
-            <td>
-                <div class="service_date">
-                    <div>
-                        <img src="<?= assets('assets/img/table/calendar.png'); ?>" alt="">
-                        <p>07/10/2021</p>
-                    </div>
-                    <div>
-                        <img src="<?= assets('assets/img/table/time.png'); ?>" alt="">
-                        <p>08:00 to 11:00</p>
-                    </div>
-                </div>
-            </td>
-            <td>
-                <div class="customer_details"> 
-                    <p>Gaurang Patel</p>
-                    <div>
-                        <img src="<?= assets('assets/img/table/home.png'); ?>" alt="">
-                        <p>Koenigstrasse 112 99897 Tambach Dietharz</p>
-                    </div>
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td><p class="service_id">8488</p></td>
-            <td>
-                <div class="service_date">
-                    <div>
-                        <img src="<?= assets('assets/img/table/calendar.png'); ?>" alt="">
-                        <p>07/10/2021</p>
-                    </div>
-                    <div>
-                        <img src="<?= assets('assets/img/table/time.png'); ?>" alt="">
-                        <p>08:00 to 11:00</p>
-                    </div>
-                </div>
-            </td>
-            <td>
-                <div class="customer_details"> 
-                    <p>Gaurang Patel</p>
-                    <div>
-                        <img src="<?= assets('assets/img/table/home.png'); ?>" alt="">
-                        <p>Koenigstrasse 112 99897 Tambach Dietharz</p>
-                    </div>
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td><p class="service_id">8488</p></td>
-            <td>
-                <div class="service_date">
-                    <div>
-                        <img src="<?= assets('assets/img/table/calendar.png'); ?>" alt="">
-                        <p>07/10/2021</p>
-                    </div>
-                    <div>
-                        <img src="<?= assets('assets/img/table/time.png'); ?>" alt="">
-                        <p>08:00 to 11:00</p>
-                    </div>
-                </div>
-            </td>
-            <td>
-                <div class="customer_details"> 
-                    <p>Gaurang Patel</p>
-                    <div>
-                        <img src="<?= assets('assets/img/table/home.png'); ?>" alt="">
-                        <p>Koenigstrasse 112 99897 Tambach Dietharz</p>
-                    </div>
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td><p class="service_id">8488</p></td>
-            <td>
-                <div class="service_date">
-                    <div>
-                        <img src="<?= assets('assets/img/table/calendar.png'); ?>" alt="">
-                        <p>07/10/2021</p>
-                    </div>
-                    <div>
-                        <img src="<?= assets('assets/img/table/time.png'); ?>" alt="">
-                        <p>08:00 to 11:00</p>
-                    </div>
-                </div>
-            </td>
-            <td>
-                <div class="customer_details"> 
-                    <p>Gaurang Patel</p>
-                    <div>
-                        <img src="<?= assets('assets/img/table/home.png'); ?>" alt="">
-                        <p>Koenigstrasse 112 99897 Tambach Dietharz</p>
-                    </div>
-                </div>
-            </td>
-        </tr>
-        <tr>
-            <td><p class="service_id">8488</p></td>
-            <td>
-                <div class="service_date">
-                    <div>
-                        <img src="<?= assets('assets/img/table/calendar.png'); ?>" alt="">
-                        <p>07/10/2021</p>
-                    </div>
-                    <div>
-                        <img src="<?= assets('assets/img/table/time.png'); ?>" alt="">
-                        <p>08:00 to 11:00</p>
-                    </div>
-                </div>
-            </td>
-            <td>
-                <div class="customer_details"> 
-                    <p>Gaurang Patel</p>
-                    <div>
-                        <img src="<?= assets('assets/img/table/home.png'); ?>" alt="">
-                        <p>Koenigstrasse 112 99897 Tambach Dietharz</p>
-                    </div>
-                </div>
-            </td>
-        </tr>
+        <!-- DYNAMIC GENERATED BY DATATABLE... -->
     </tbody>
 </table>
+
+
+<!-- **********SP-SERVICES-HISTORY********** -->
+<script>
+    $(document).ready(function(){
+        state.sp_service_history_table = $('#sp_service_history_table').DataTable({
+            searching : false,
+            serviceSide : true,
+            autoWidth : false,
+            dom : 't<"datatable_bottom"lp>',
+            ajax : {
+                url : `${BASE_URL}/sp-service-history`,
+                cache : true,
+                dataSrc : function(data){
+                    // STORE DATA GLOBALLY...
+                    state.sp_service_history_data = data;
+                    return data;
+                },
+            },
+            columns :[
+                {
+                    mRender : function(data, type, row){
+                        return`<p class="service_id">${row.ServiceRequestId}</p>`;
+                    },
+                },
+                {
+                    mRender : function(data, type, row){
+                        return `<div class="service_date">
+                                    <div>
+                                        <img src="<?= assets('assets/img/table/calendar.png'); ?>" alt="">
+                                        <p>${row.ServiceDate}</p>
+                                    </div>
+                                    <div>
+                                        <img src="<?= assets('assets/img/table/time.png'); ?>" alt="">
+                                        <p>${row.StartTime} to ${row.EndTime}</p>
+                                    </div>
+                                </div>`;
+                    }
+                },
+                {
+                    mRender : function(data, type, row){
+                        return `<div class="customer_details"> 
+                                    <p>${row.CustomerName}</p>
+                                    <div>
+                                        <img src="<?= assets('assets/img/table/home.png'); ?>" alt="">
+                                        <p>${row.AddressLine1} ${row.AddressLine2}, ${row.PostalCode} ${row.City}</p>
+                                    </div>
+                                </div>`;
+                    }
+                },
+            ],
+            pagingType : 'full_numbers',
+            language : {
+                paginate : {
+                    first    :'<i class="fa-solid fa-backward-step"></i>',
+                    previous :'<i class="fas fa-angle-left">',  
+                    next     :'<i class="fas fa-angle-right">',
+                    last     :'<i class="fa-solid fa-forward-step"></i>'  
+                },
+            }
+        });
+    });
+</script>

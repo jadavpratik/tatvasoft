@@ -34,12 +34,12 @@
             const email = $('[name="forgot_password_email"]').val();
             // STORE EMAIL GLOBALLY...
             state.forgot_password_email = email;
-            const data = JSON.stringify({email});
+            const json = JSON.stringify({email});
             $.ajax({
                 url : `${BASE_URL}/forgot-password`,
                 method : 'POST',
                 contentType : 'application/json',
-                data : data,
+                data : json,
                 success : function(res){
                     if(res!==undefined && res!==""){
                         try{

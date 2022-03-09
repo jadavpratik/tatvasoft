@@ -3,7 +3,7 @@
 <!-- **********BOOK-SERVICE-SCRIPTS********** -->
 <script>
     // FOR STORING A DATA AS GLOBALLY...
-    let default_service_request = {
+    let service_request = {
         postal_code : null,
         date : '00/00/0000',
         time : '00:00',
@@ -16,8 +16,7 @@
         per_price : 70,
         total_price : 0,
         address : {},
-    }
-    let service_request = default_service_request;
+    };
     let user_address = {};
 </script>
 

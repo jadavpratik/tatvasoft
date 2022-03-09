@@ -45,7 +45,7 @@
 		}
 
 		if(validation){
-			const data = JSON.stringify({
+			const json = JSON.stringify({
 				password : $('[name="set_new_password"]').val(),
 				cpassword : $('[name="set_new_cpassword"]').val(),
 				email : state.forgot_password_email
@@ -54,7 +54,7 @@
 				url : `${BASE_URL}/set-new-password`,
 				method : 'PATCH',
 				contentType : 'application/json',
-				data : data,
+				data : json,
 				success : function(res){
 					if(res!=undefined && res!=""){
 						try{

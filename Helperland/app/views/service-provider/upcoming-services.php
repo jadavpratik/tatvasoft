@@ -1,4 +1,4 @@
-<table>
+<table id="sp_upcoming_services_table">
     <thead>
         <tr>
             <th>Service Id</th>
@@ -9,313 +9,80 @@
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <td><p class="service_id">323436</p></td>
-            <td>
-                <div class="service_date">
-                    <div>
-                        <img src="<?= assets('assets/img/table/calendar.png'); ?>" alt="">
-                        <p>09/04/2018</p>
-                    </div>
-                    <div>
-                        <img src="<?= assets('assets/img/table/time.png'); ?>" alt="">
-                        <p>12:00 - 18:00</p>                            
-                    </div>    
-                </div>
-            </td>
-            <td>
-                <div class="customer_details">
-                    <p>David Bough</p>
-                    <div>
-                        <img src="<?= assets('assets/img/table/home.png'); ?>" alt="">
-                        <p>Musterstrabe 5,12345 Bonn</p>
-                    </div>
-                </div>
-            </td>
-            <td><p class="distance">15 Km</p></td>
-            <td>
-                <button class="cancel_btn">Cancel</button>
-            </td>
-        </tr><!-- END_SINGLE_ROW -->
-        <tr>
-            <td><p class="service_id">323436</p></td>
-            <td>
-                <div class="service_date">
-                    <div>
-                        <img src="<?= assets('assets/img/table/calendar.png'); ?>" alt="">
-                        <p>09/04/2018</p>
-                    </div>
-                    <div>
-                        <img src="<?= assets('assets/img/table/time.png'); ?>" alt="">
-                        <p>12:00 - 18:00</p>                            
-                    </div>    
-                </div>
-            </td>
-            <td>
-                <div class="customer_details">
-                    <p>David Bough</p>
-                    <div>
-                        <img src="<?= assets('assets/img/table/home.png'); ?>" alt="">
-                        <p>Musterstrabe 5,12345 Bonn</p>
-                    </div>
-                </div>
-            </td>
-            <td><p class="distance">15 Km</p></td>
-            <td>
-                <button class="cancel_btn">Cancel</button>
-            </td>
-        </tr><!-- END_SINGLE_ROW -->
-        <tr>
-            <td><p class="service_id">323436</p></td>
-            <td>
-                <div class="service_date">
-                    <div>
-                        <img src="<?= assets('assets/img/table/calendar.png'); ?>" alt="">
-                        <p>09/04/2018</p>
-                    </div>
-                    <div>
-                        <img src="<?= assets('assets/img/table/time.png'); ?>" alt="">
-                        <p>12:00 - 18:00</p>                            
-                    </div>    
-                </div>
-            </td>
-            <td>
-                <div class="customer_details">
-                    <p>David Bough</p>
-                    <div>
-                        <img src="<?= assets('assets/img/table/home.png'); ?>" alt="">
-                        <p>Musterstrabe 5,12345 Bonn</p>
-                    </div>
-                </div>
-            </td>
-            <td><p class="distance">15 Km</p></td>
-            <td>
-                <button class="cancel_btn">Cancel</button>
-            </td>
-        </tr><!-- END_SINGLE_ROW -->
-        <tr>
-            <td><p class="service_id">323436</p></td>
-            <td>
-                <div class="service_date">
-                    <div>
-                        <img src="<?= assets('assets/img/table/calendar.png'); ?>" alt="">
-                        <p>09/04/2018</p>
-                    </div>
-                    <div>
-                        <img src="<?= assets('assets/img/table/time.png'); ?>" alt="">
-                        <p>12:00 - 18:00</p>                            
-                    </div>    
-                </div>
-            </td>
-            <td>
-                <div class="customer_details">
-                    <p>David Bough</p>
-                    <div>
-                        <img src="<?= assets('assets/img/table/home.png'); ?>" alt="">
-                        <p>Musterstrabe 5,12345 Bonn</p>
-                    </div>
-                </div>
-            </td>
-            <td><p class="distance">15 Km</p></td>
-            <td>
-                <button class="cancel_btn">Cancel</button>
-            </td>
-        </tr><!-- END_SINGLE_ROW -->
-        <tr>
-            <td><p class="service_id">323436</p></td>
-            <td>
-                <div class="service_date">
-                    <div>
-                        <img src="<?= assets('assets/img/table/calendar.png'); ?>" alt="">
-                        <p>09/04/2018</p>
-                    </div>
-                    <div>
-                        <img src="<?= assets('assets/img/table/time.png'); ?>" alt="">
-                        <p>12:00 - 18:00</p>                            
-                    </div>    
-                </div>
-            </td>
-            <td>
-                <div class="customer_details">
-                    <p>David Bough</p>
-                    <div>
-                        <img src="<?= assets('assets/img/table/home.png'); ?>" alt="">
-                        <p>Musterstrabe 5,12345 Bonn</p>
-                    </div>
-                </div>
-            </td>
-            <td><p class="distance">15 Km</p></td>
-            <td>
-                <button class="cancel_btn">Cancel</button>
-            </td>
-        </tr><!-- END_SINGLE_ROW -->
-        <tr>
-            <td><p class="service_id">323436</p></td>
-            <td>
-                <div class="service_date">
-                    <div>
-                        <img src="<?= assets('assets/img/table/calendar.png'); ?>" alt="">
-                        <p>09/04/2018</p>
-                    </div>
-                    <div>
-                        <img src="<?= assets('assets/img/table/time.png'); ?>" alt="">
-                        <p>12:00 - 18:00</p>                            
-                    </div>    
-                </div>
-            </td>
-            <td>
-                <div class="customer_details">
-                    <p>David Bough</p>
-                    <div>
-                        <img src="<?= assets('assets/img/table/home.png'); ?>" alt="">
-                        <p>Musterstrabe 5,12345 Bonn</p>
-                    </div>
-                </div>
-            </td>
-            <td><p class="distance">15 Km</p></td>
-            <td>
-                <button class="cancel_btn">Cancel</button>
-            </td>
-        </tr><!-- END_SINGLE_ROW -->
-        <tr>
-            <td><p class="service_id">323436</p></td>
-            <td>
-                <div class="service_date">
-                    <div>
-                        <img src="<?= assets('assets/img/table/calendar.png'); ?>" alt="">
-                        <p>09/04/2018</p>
-                    </div>
-                    <div>
-                        <img src="<?= assets('assets/img/table/time.png'); ?>" alt="">
-                        <p>12:00 - 18:00</p>                            
-                    </div>    
-                </div>
-            </td>
-            <td>
-                <div class="customer_details">
-                    <p>David Bough</p>
-                    <div>
-                        <img src="<?= assets('assets/img/table/home.png'); ?>" alt="">
-                        <p>Musterstrabe 5,12345 Bonn</p>
-                    </div>
-                </div>
-            </td>
-            <td><p class="distance">15 Km</p></td>
-            <td>
-                <button class="cancel_btn">Cancel</button>
-            </td>
-        </tr><!-- END_SINGLE_ROW -->
-        <tr>
-            <td><p class="service_id">323436</p></td>
-            <td>
-                <div class="service_date">
-                    <div>
-                        <img src="<?= assets('assets/img/table/calendar.png'); ?>" alt="">
-                        <p>09/04/2018</p>
-                    </div>
-                    <div>
-                        <img src="<?= assets('assets/img/table/time.png'); ?>" alt="">
-                        <p>12:00 - 18:00</p>                            
-                    </div>    
-                </div>
-            </td>
-            <td>
-                <div class="customer_details">
-                    <p>David Bough</p>
-                    <div>
-                        <img src="<?= assets('assets/img/table/home.png'); ?>" alt="">
-                        <p>Musterstrabe 5,12345 Bonn</p>
-                    </div>
-                </div>
-            </td>
-            <td><p class="distance">15 Km</p></td>
-            <td>
-                <button class="cancel_btn">Cancel</button>
-            </td>
-        </tr><!-- END_SINGLE_ROW -->
-        <tr>
-            <td><p class="service_id">323436</p></td>
-            <td>
-                <div class="service_date">
-                    <div>
-                        <img src="<?= assets('assets/img/table/calendar.png'); ?>" alt="">
-                        <p>09/04/2018</p>
-                    </div>
-                    <div>
-                        <img src="<?= assets('assets/img/table/time.png'); ?>" alt="">
-                        <p>12:00 - 18:00</p>                            
-                    </div>    
-                </div>
-            </td>
-            <td>
-                <div class="customer_details">
-                    <p>David Bough</p>
-                    <div>
-                        <img src="<?= assets('assets/img/table/home.png'); ?>" alt="">
-                        <p>Musterstrabe 5,12345 Bonn</p>
-                    </div>
-                </div>
-            </td>
-            <td><p class="distance">15 Km</p></td>
-            <td>
-                <button class="cancel_btn">Cancel</button>
-            </td>
-        </tr><!-- END_SINGLE_ROW -->
-        <tr>
-            <td><p class="service_id">323436</p></td>
-            <td>
-                <div class="service_date">
-                    <div>
-                        <img src="<?= assets('assets/img/table/calendar.png'); ?>" alt="">
-                        <p>09/04/2018</p>
-                    </div>
-                    <div>
-                        <img src="<?= assets('assets/img/table/time.png'); ?>" alt="">
-                        <p>12:00 - 18:00</p>                            
-                    </div>    
-                </div>
-            </td>
-            <td>
-                <div class="customer_details">
-                    <p>David Bough</p>
-                    <div>
-                        <img src="<?= assets('assets/img/table/home.png'); ?>" alt="">
-                        <p>Musterstrabe 5,12345 Bonn</p>
-                    </div>
-                </div>
-            </td>
-            <td><p class="distance">15 Km</p></td>
-            <td>
-                <button class="cancel_btn">Cancel</button>
-            </td>
-        </tr><!-- END_SINGLE_ROW -->
-        <tr>
-            <td><p class="service_id">323436</p></td>
-            <td>
-                <div class="service_date">
-                    <div>
-                        <img src="<?= assets('assets/img/table/calendar.png'); ?>" alt="">
-                        <p>09/04/2018</p>
-                    </div>
-                    <div>
-                        <img src="<?= assets('assets/img/table/time.png'); ?>" alt="">
-                        <p>12:00 - 18:00</p>                            
-                    </div>    
-                </div>
-            </td>
-            <td>
-                <div class="customer_details">
-                    <p>David Bough</p>
-                    <div>
-                        <img src="<?= assets('assets/img/table/home.png'); ?>" alt="">
-                        <p>Musterstrabe 5,12345 Bonn</p>
-                    </div>
-                </div>
-            </td>
-            <td><p class="distance">15 Km</p></td>
-            <td>
-                <button class="cancel_btn">Cancel</button>
-            </td>
-        </tr><!-- END_SINGLE_ROW -->
+        <!-- DYNAMIC TABLE GENERATED BY DATATABLE -->
     </tbody>
 </table><!-- END_UPCOMING_SERVICE -->
+
+
+<!-- **********SP-UPCOMING-SERVICE-REQUEST********** -->
+<script>
+    $(document).ready(function(){
+        state.sp_upcoming_services_table = $('#sp_upcoming_services_table').DataTable({
+            searching : false,
+            serviceSide : true,
+            autoWidth : false,
+            dom : 't<"datatable_bottom"lp>',
+            ajax : {
+                url : `${BASE_URL}/sp-upcoming-services`,
+                cache : true,
+                dataSrc : function(data){
+                    // STORE DATA GLOBALLY...
+                    state.sp_upcoming_services_data = data;
+                    return data;
+                },
+            },
+            columns :[
+                {
+                    mRender : function(data, type, row){
+                        return`<p class="service_id">${row.ServiceRequestId}</p>`;
+                    },
+                },
+                {
+                    mRender : function(data, type, row){
+                        return `<div class="service_date">
+                                    <div>
+                                        <img src="<?= assets('assets/img/table/calendar.png'); ?>" alt="">
+                                        <p>${row.ServiceDate}</p>
+                                    </div>
+                                    <div>
+                                        <img src="<?= assets('assets/img/table/time.png'); ?>" alt="">
+                                        <p>${row.StartTime} - ${row.EndTime}</p>                            
+                                    </div>    
+                                </div>`;
+                    }
+                },
+                {
+                    mRender : function(data, type, row){
+                        return `<div class="customer_details">
+                                    <p>${row.CustomerName}</p>
+                                    <div>
+                                        <img src="<?= assets('assets/img/table/home.png'); ?>" alt="">
+                                        <p>${row.AddressLine1} ${row.AddressLine2}, ${row.PostalCode} ${row.City}</p>
+                                    </div>
+                                </div>`;
+                    }
+                },
+                {
+                    mRender : function(data, type, row){
+                        return ``;
+                        // return `<p class="distance">15 Km</p>`;
+                    }
+                },
+                {
+                    mRender : function(data, type, row){
+                        return `<button class="cancel_btn" onclick="cancel_service(${row.ServiceRequestId});">Cancel</button>`;
+                    }
+                }
+            ],
+            pagingType : 'full_numbers',
+            language : {
+                paginate : {
+                    first    :'<i class="fa-solid fa-backward-step"></i>',
+                    previous :'<i class="fas fa-angle-left">',  
+                    next     :'<i class="fas fa-angle-right">',
+                    last     :'<i class="fa-solid fa-forward-step"></i>'  
+                },
+            }
+        });
+    });
+</script>

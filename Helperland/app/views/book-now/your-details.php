@@ -57,40 +57,40 @@
         <p>You can choose your favourite service provider from the below list</p>
         <!-- LIST OF SERVICE PROVIDER -->
         <?php if(false){ ?>
-        <div id="favourite_sp_container">
-            <div class="form_group">
-                <input type="radio" id="favourite_sp1" name="favourite_sp">
-                <label class="your_details_sp_card" for="favourite_sp1">
-                    <img src="<?= assets('assets/img/avatar/hat.png'); ?>" alt="">
-                    <p>Ram Patel</p>
-                    <p class="book_service_outline_btn">Select</p>
-                </label>	
+            <div id="favourite_sp_container">
+                <div class="form_group">
+                    <input type="radio" id="favourite_sp1" name="favourite_sp">
+                    <label class="your_details_sp_card" for="favourite_sp1">
+                        <img src="<?= assets('assets/img/avatar/hat.png'); ?>" alt="">
+                        <p>Ram Patel</p>
+                        <p class="book_service_outline_btn">Select</p>
+                    </label>	
+                </div>
+                <div class="form_group">
+                    <input type="radio" name="favourite_sp" id="favourite_sp2">
+                    <label class="your_details_sp_card" for="favourite_sp2">
+                        <img src="<?= assets('assets/img/avatar/hat.png'); ?>" alt="">
+                        <p>Laxman Chaudhari</p>
+                        <p class="book_service_outline_btn">Select</p>
+                    </label>	
+                </div>
+                <div class="form_group">
+                    <input type="radio" name="favourite_sp" id="favourite_sp3">
+                    <label class="your_details_sp_card" for="favourite_sp3">
+                        <img src="<?= assets('assets/img/avatar/hat.png'); ?>" alt="">
+                        <p>Laxman Chaudhari</p>
+                        <p class="book_service_outline_btn">Select</p>
+                    </label>
+                </div>
+                <div class="form_group">
+                    <input type="radio" name="favourite_sp" id="favourite_sp4">
+                    <label class="your_details_sp_card" for="favourite_sp4">
+                        <img src="<?= assets('assets/img/avatar/hat.png'); ?>" alt="">
+                        <p>Laxman Chaudhari</p>
+                        <p class="book_service_outline_btn">Select</p>
+                    </label>
+                </div>
             </div>
-            <div class="form_group">
-                <input type="radio" name="favourite_sp" id="favourite_sp2">
-                <label class="your_details_sp_card" for="favourite_sp2">
-                    <img src="<?= assets('assets/img/avatar/hat.png'); ?>" alt="">
-                    <p>Laxman Chaudhari</p>
-                    <p class="book_service_outline_btn">Select</p>
-                </label>	
-            </div>
-            <div class="form_group">
-                <input type="radio" name="favourite_sp" id="favourite_sp3">
-                <label class="your_details_sp_card" for="favourite_sp3">
-                    <img src="<?= assets('assets/img/avatar/hat.png'); ?>" alt="">
-                    <p>Laxman Chaudhari</p>
-                    <p class="book_service_outline_btn">Select</p>
-                </label>
-            </div>
-            <div class="form_group">
-                <input type="radio" name="favourite_sp" id="favourite_sp4">
-                <label class="your_details_sp_card" for="favourite_sp4">
-                    <img src="<?= assets('assets/img/avatar/hat.png'); ?>" alt="">
-                    <p>Laxman Chaudhari</p>
-                    <p class="book_service_outline_btn">Select</p>
-                </label>
-            </div>
-        </div>
         <?php } ?>
     </div>
     <div class="validation_message d_none">
@@ -103,6 +103,21 @@
 <!-- **********BOOK-SERVICE-S3-SCRIPTS********** -->
 <script>
 
+    // BEFORE OPENING ADDRESS FORM PRE SET VALUE...[postalcode, mobile]
+    $('#open_address_form_btn').click(function(){
+        $('[name="address_form_postal_code"]').val(service_request.postal_code).prop('readonly', true);
+        $.ajax({
+            url : `${BASE_URL}/my-details`,
+            method : 'GET',
+            success : function(res){
+                if(res!==undefined || res!==undefined){
+                    const result = JSON.parse(res);
+                    $('[name="address_form_phone"]').val(result.Mobile).prop('readonly', true);
+                }
+            }
+        });
+    })
+
     function load_user_address(){
         $.ajax({
             url : `${BASE_URL}/get-customer-address`,
@@ -111,23 +126,23 @@
                 if(res!=="" || res!==undefined){
                     try{
                         const result = JSON.parse(res);
-                        const addressArr = result.address;
-                        // STORE AS GLOBALLY...
-                        user_address = addressArr;
-                        const addressContainer = document.getElementById('user_radio_address_container');
-                        addressContainer.innerHTML = '';
-                        addressArr.forEach((i)=>{
-                            addressContainer.innerHTML += `
-                            <div class="radio_address">
-                                <input type="radio" id="radio_address_${i.AddressId}" name="service_booking_address" value="${i.AddressId}">
-                                <label for="radio_address_${i.AddressId}">
-                                    <div>
-                                        <p><span>Address</span> : ${i.AddressLine1} ${i.AddressLine2}, ${i.PostalCode}, ${i.City}</p>
-                                        <p><span>Phone Number</span> : ${i.Mobile}</p>
-                                    </div>
-                                </label>
-                            </div>`;
-                        });
+                        user_address = result.address;
+                        $('#user_radio_address_container').html(`${(function(){    
+                            let html = '';
+                            user_address.forEach((i)=>{
+                                html += `
+                                <div class="radio_address">
+                                    <input type="radio" id="radio_address_${i.AddressId}" name="service_booking_address" value="${i.AddressId}">
+                                    <label for="radio_address_${i.AddressId}">
+                                        <div>
+                                            <p><span>Address</span> : ${i.AddressLine1} ${i.AddressLine2}, ${i.PostalCode}, ${i.City}</p>
+                                            <p><span>Phone Number</span> : ${i.Mobile}</p>
+                                        </div>
+                                    </label>
+                                </div>`;
+                            });
+                            return html;
+                        })()}`);
                     }
                     catch(e){
                         console.log('Invalid JSON Reponse!');
@@ -141,7 +156,6 @@
             }
         });
     }
-
     load_user_address();
 
     // ADD ADDRESS...
@@ -163,7 +177,7 @@
 
         if(validation){
 
-            const data = JSON.stringify({
+            const json = JSON.stringify({
                 street_name : $('[name="address_form_street_name"]').val(),
                 house_number : $('[name="address_form_house_number"]').val(),
                 postal_code : $('[name="address_form_postal_code"]').val(),
@@ -175,11 +189,11 @@
                 url : `${BASE_URL}/add-customer-address`,
                 method : 'POST',
                 contentType : 'application/json',
-                data : data,
+                data : json,
                 success : function(res){
                     if(res!==""){
                         $('#address_form').trigger('reset');
-                        addressFormToggle();
+                        address_form_toggle();
                         load_user_address();
                         Swal.fire({
                             'title':'Good Job',

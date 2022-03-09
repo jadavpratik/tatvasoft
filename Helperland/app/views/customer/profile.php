@@ -27,7 +27,7 @@
                         </div>
                         <div class="label_input">
                             <label class="label" for="">Email Address</label>
-                            <input class="input" type="text" name="email">
+                            <input class="input" type="text" name="email" readonly>
                             <div class="validation_message d_none">
                                 <p>Validation Message!</p>
                             </div>
@@ -166,12 +166,19 @@
 
         if(validation){
             // CONVERTING A FORM DATA INTO JSON DATA....
-            let json = form_to_json($('#customer_details').serializeArray());
+            let json = JSON.stringify({
+                firstname : $('[name="firstname"]').val(),
+                lastname : $('[name="lastname"]').val(),
+                email : $('[name="email"]').val(),
+                phone : $('[name="phone"]').val(),
+                language : parseInt($('[name="language"]').val()),
+                dob : $('[name="dob"]').val()
+            });
             $.ajax({
                 url :  `${BASE_URL}/my-details`,
                 method : 'PATCH',
                 contentType : 'application/json',
-                data : JSON.stringify(json),
+                data : json,
                 success : function(res){
                     if(res!=="" || res!==undefined){
                         try{
@@ -183,7 +190,6 @@
                             customer_my_details();
                         }
                         catch(e){
-                            // console.log(e);
                             Swal.fire({
                                 title : 'Invalid JSON Response!',
                                 icon : 'error'
@@ -351,13 +357,17 @@
 
         if(validation){
 
-            let json = form_to_json($('#change_password').serializeArray());
+            let json = JSON.stringify({
+                change_password_old : $('[name="change_password_old"]').val(),
+                change_password_new : $('[name="change_password_new"]').val(),
+                change_password_confirm : $('[name="change_password_confirm"]').val()
+            });
 
             $.ajax({
                 url : `${BASE_URL}/change-password`,
                 method : 'PATCH',
                 contentType : 'application/json',
-                data : JSON.stringify(json),
+                data : json,
                 success : function(res){
                     if(res!=="" || res!==undefined){
                         try{
@@ -366,12 +376,8 @@
                             Swal.fire({
                                 title : `${result.message}`,
                                 icon : 'success'
-                            }).then((res)=>{
-                                if(res.isConfirmed){
-                                    $('#change_password').trigger('reset');
-                                    close_model();
-                                }
                             });
+                            $('#change_password').trigger('reset');
                         }
                         catch(e){
                             Swal.fire({

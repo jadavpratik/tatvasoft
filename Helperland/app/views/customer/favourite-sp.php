@@ -98,10 +98,10 @@
         let url = ``;
         switch(action){
             case 'add':
-                url = `${BASE_URL}/add-sp-to-favorite/${sp_id}`;
+                url = `${BASE_URL}/favorite/${sp_id}`;
                 break;
             case 'remove':
-                url = `${BASE_URL}/remove-sp-from-favorite/${sp_id}`;
+                url = `${BASE_URL}/unfavorite/${sp_id}`;
                 break;
             case 'block':
                 url = `${BASE_URL}/block-sp/${sp_id}`;

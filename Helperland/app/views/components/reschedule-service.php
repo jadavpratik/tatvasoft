@@ -31,11 +31,11 @@
             let json = JSON.stringify({
                 new_service_date : $('[name="reschedule_service_date"]').val(),
                 new_service_time : $('[name="reschedule_service_time"]').val(),
-                service_id : state.cancel_service_id,
+                service_id : state.reschedule_service_id,
             });
 
             $.ajax({
-                url : `${BASE_URL}/reschedule-service/${state.cancel_service_id}`,
+                url : `${BASE_URL}/reschedule-service/${state.reschedule_service_id}`,
                 method : 'PATCH',
                 contentType : 'application/json',
                 data : json,

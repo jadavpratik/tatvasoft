@@ -19,21 +19,11 @@
 	<!-- JQUERY -->
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script> 
-
 		// 	BASE URL FOR GUIDE AJAX REQUEST...
 		let BASE_URL = `<?= BASE_URL; ?>`; 
 
 		// STORE THE GLOBAL DATA...
 		let state = {};
-
-		// CONVERT FORM TO JSON DATA...
-		function form_to_json(arr){
-			var object = {};
-			arr.forEach((i) => {
-				object[i.name] = i.name=='language'? parseInt(i.value) : i.value;
-			});
-			return object;
-		}
 	</script>
 </head>
 <body>

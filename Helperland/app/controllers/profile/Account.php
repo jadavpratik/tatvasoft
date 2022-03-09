@@ -83,7 +83,6 @@ class Account{
 	// -----------------------------LOGIN------------------------------------
 	public function login(Request $req, Response $res){
 
-		// ALSO CHECK REMEMBER ME PENDING....
 		Validation::check($req->body, [
 			'login_email' => ['email'],
 			'login_password' => ['password']
@@ -91,6 +90,14 @@ class Account{
 
 		$email = $req->body->login_email;
 		$password = $req->body->login_password;
+
+		// REMEMBER ME...
+		if(isset($req->body->remember)){
+			if($req->body->remember=='true'){
+				cookie('email', $email);
+				cookie('password', $password);
+			}
+		}
 
 		$user = new User();
 		$where = "Email = '{$email}'";
@@ -156,11 +163,10 @@ class Account{
 			// $body = 'Your one time otp = '.$otp;
 			// $recipient = $email;
 			// if(Mail::send($recipient, $subject, $body)){
-			// 	$otp = '';
-			// 	$res->status(200)->json(['otp'=>$otp, 'message'=> 'OTP Sent On Your Email Address']);
+			// 	$res->status(200)->json(['otp'=>'', 'message'=> 'OTP Sent On Your Email Address']);
 			// }
 			// else{
-			// 	$res->status(500)->json(['otp'=>$otp, 'message'=> "OTP Can't be sent on your Email Address !"]);
+			// 	$res->status(500)->json(['otp'=>'', 'message'=> "OTP Can't be sent on your Email Address !"]);
 			// }
 		}
 		else{

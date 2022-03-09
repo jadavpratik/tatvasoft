@@ -22,24 +22,25 @@
         
         if(validation){
             const postal_code = $('[name="setup_service_postal_code"]').val();
-            let data = JSON.stringify({postal_code});
-
+            let json = JSON.stringify({postal_code});
             $.ajax({
                 url :  `${BASE_URL}/check-postal-code`,
                 method : 'POST',
                 contentType : 'application/json',
-                data : data,
+                data : json,
                 success : function(res){
                     if(res!=="" || res!==undefined){
-                        const result = JSON.parse(res);
-                        if(result.message!=""){
-                            // STORE POSTAL CODE...
-                            service_request.postal_code = parseInt(postal_code);
-                            change_book_service_tabs(1);
+                        try{
+                            const result = JSON.parse(res);
+                            if(result.message!=""){
+                                // STORE POSTAL CODE...
+                                service_request.postal_code = parseInt(postal_code);
+                                change_book_service_tabs(1);
+                            }
                         }
-                        else{
+                        catch(e){
                             Swal.fire({
-                                title : 'Something Went Wrong!',
+                                title : 'Invalid JSON Response!',
                                 icon : 'error'
                             });
                         }

@@ -64,7 +64,6 @@
                         });
                     }
                     catch(e){
-                        console.log('Invalid Json Response!');
                         Swal.fire({
                             title : 'Invalid Json Response!',
                             icon : 'error'

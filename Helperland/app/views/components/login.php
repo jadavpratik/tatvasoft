@@ -8,7 +8,7 @@
         <form class="login_popup_form">
             <div class="form_group">
                 <div class="input_icon">
-                    <input class="input" type="text" placeholder="Email" name="login_email">
+                    <input class="input" type="text" placeholder="Email" name="login_email" value="<?= cookie('email'); ?>">
                     <label for=""><i class="fas fa-user"></i></label>
                 </div>
                 <div class="validation_message d_none">
@@ -17,7 +17,7 @@
             </div>
             <div class="form_group">
                 <div class="input_icon">
-                    <input class="input" type="password" placeholder="Password" name="login_password">
+                    <input class="input" type="password" placeholder="Password" name="login_password" value="<?= cookie('password'); ?>">
                     <label for=""><i class="fas fa-lock"></i></label>
                 </div>
                 <div class="validation_message d_none">
@@ -25,7 +25,7 @@
                 </div>
             </div>
             <div>
-                <input type="checkbox">
+                <input type="checkbox" name="remember" value="true">
                 <label class="label" for="">Remember Me</label>
             </div>
             <div>
@@ -82,6 +82,10 @@
                         }
                         catch(e){
                             console.log('Invalid Json Response!');
+                            Swal.fire({
+                                title : 'Invalid JSON Response!',
+                                icon : 'error'
+                            });
                         }
                     }
                 },

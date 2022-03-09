@@ -68,13 +68,20 @@
         }
 
         if(validation){
-            let json = form_to_json($('#edit_address_popup').serializeArray());
+            let json = JSON.stringify({
+                edit_address_phone : $('[name="edit_address_phone"]').val(),
+                edit_address_street_name : $('[name="edit_address_street_name"]').val(),
+                edit_address_house_number : $('[name="edit_address_house_number"]').val(),
+                edit_address_city : $('[name="edit_address_city"]').val(),
+                edit_address_postal_code : $('[name="edit_address_postal_code"]').val(),
+                edit_address_id : $('[name="edit_address_id"]').val()
+            });
             let id = $('[name="edit_address_id"]').val();
             $.ajax({
                 url : `${BASE_URL}/my-address/${id}`,
                 method : 'PATCH',
                 contentType : 'application/json',
-                data : JSON.stringify(json),
+                data : json,
                 success : function(res){
                     if(res!=="" || res!==undefined){
                         try{

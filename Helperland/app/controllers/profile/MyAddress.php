@@ -21,7 +21,7 @@ class MyAddress{
             $res->status(200)->json($data[0]);
         }
         else{
-            $res->status(401)->json(['message'=>'No Address available!']);
+            $res->status(404)->json(['message'=>'No Address available!']);
         }
     }
 
@@ -33,7 +33,7 @@ class MyAddress{
             $res->status(200)->json($data);
         }
         else{
-            $res->status(401)->json(['message'=>'No Address available!']);
+            $res->status(404)->json(['message'=>'No Address available!']);
         }
     }    
 

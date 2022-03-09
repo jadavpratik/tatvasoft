@@ -60,15 +60,28 @@
 		}
 	}
 
-	// SESSION FUNCTIONS...
+	// SESSION FUNCTION...
 	function session($key, $value=false){
 		if($value!==false){
-			// SET SESSION...
 			$_SESSION[$key] = $value;
 		}
 		else if(isset($_SESSION[$key])){
-			// GET SESSION...
 			return $_SESSION[$key];
+		}
+		else{
+			return false;
+		}
+	}
+
+	// COOKIE FUNCTION...
+	function cookie($key, $value=false){
+		if($value!==false){
+			// 30 DAYS TIME...
+			$time = time()+(60*60*24*30);
+			setcookie($key, $value, $time, '/', '', true, true);
+		}
+		else if(isset($_COOKIE[$key])){
+			return $_COOKIE[$key];
 		}
 		else{
 			return false;

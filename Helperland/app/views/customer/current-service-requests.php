@@ -123,6 +123,8 @@
     });
 </script>
 
+
+<!-- **********CUSTOMER-RESCHEDULE-CANCEL-SERVICE-SCRIPTS********** -->
 <script>
 
     // CANCEL SERVICE REQUEST...

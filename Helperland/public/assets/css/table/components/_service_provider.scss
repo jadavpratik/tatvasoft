@@ -21,6 +21,7 @@
     }
 }
 
+
 .rated_star{
     color:$rated_star;
 }
@@ -36,6 +37,6 @@
     margin-right: 6px;
     border:1px solid $hat_border;
     border-radius:50%;
-    object-fit: contain;    
+    object-fit: cover;    
 }
 

@@ -28,7 +28,7 @@
 
         if(validation){
 
-            const data = JSON.stringify({
+            const json = JSON.stringify({
                 otp:parseInt($('[name="otp"]').val()),
                 email:state.forgot_password_email
             });
@@ -37,7 +37,7 @@
                 url : `${BASE_URL}/verify-otp`,
                 method : 'POST',
                 contentType : 'application/json',
-                data : data,
+                data : json,
                 success : function(res){
                     if(res!==undefined && res!==""){
                         try{
