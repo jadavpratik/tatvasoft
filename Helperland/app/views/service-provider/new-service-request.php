@@ -26,6 +26,96 @@
     </tbody>
 </table>
 
+<!-- **********NEW-SERVICE-REQUEST********** -->
+<script>
+    $(document).ready(function(){
+        state.sp_new_services_table = $('#sp_new_services_table').DataTable({
+            searching : false,
+            serviceSide : true,
+            autoWidth : false,
+            dom : 't<"datatable_bottom"lp>',
+            ajax : {
+                url : `${BASE_URL}/sp-new-services`,
+                cache : true,
+                dataSrc : function(data){
+                    // STORE DATA GLOBALLY...
+                    state.sp_new_services_data = data;
+                    return data;
+                },
+            },
+            columns :[
+                {
+                    mRender : function(data, type, row){
+                        return`<p class="service_id">${row.ServiceRequestId}</p>`;
+                    },
+                },
+                {
+                    mRender : function(data, type, row){
+                        return `<div class="service_date">
+                                    <div>
+                                        <img src="<?= assets('assets/img/table/calendar.png'); ?>" alt="">
+                                        <p>${row.ServiceDate}</p>
+                                    </div>
+                                    <div>
+                                        <img src="<?= assets('assets/img/table/time.png'); ?>" alt="">
+                                        <p>${row.StartTime} to ${row.EndTime}</p>
+                                    </div>
+                                </div>`;
+                    }
+                },
+                {
+                    mRender : function(data, type, row){
+                        return `<div class="customer_details"> 
+                                    <p>${row.CustomerName}</p>
+                                    <div>
+                                        <img src="<?= assets('assets/img/table/home.png'); ?>" alt="">
+                                        <p>${row.AddressLine1} ${row.AddressLine2}, ${row.PostalCode} ${row.City}</p>
+                                    </div>
+                                </div>`;
+                    }
+                },
+                {
+                    mRender : function(data, type, row){
+                        // €
+                        return `<p class="payment_text">₹<span>${row.TotalCost}</span></p>`;
+                    }
+                },
+                // {
+                //     mRender : function(data, type, row){
+                //         // TIME CONFLICT...
+                //         return ``;
+                //     }
+                // },
+                {
+                    mRender : function(data, type, row){
+                        if(row.IsExpired==1){
+                            return `<div style="display:flex;">
+                                    <button class="accept_btn" onclick="accept_service_open_model(${row.ServiceRequestId});">Accept</button>
+                                    <button class="accept_btn" onclick="complete_service(${row.ServiceRequestId});">Complete</button>
+                                </div>`;
+
+                        }
+                        else if(row.IsExpired==0){
+                            return `<div style="display:flex;">
+                                    <button class="accept_btn" onclick="accept_service_open_model(${row.ServiceRequestId});">Accept</button>
+                                </div>`;
+                        }
+                    }
+                }
+            ],
+            pagingType : 'full_numbers',
+            language : {
+                paginate : {
+                    first    :'<i class="fa-solid fa-backward-step"></i>',
+                    previous :'<i class="fas fa-angle-left">',  
+                    next     :'<i class="fas fa-angle-right">',
+                    last     :'<i class="fa-solid fa-forward-step"></i>'  
+                },
+            }
+        });
+    });
+</script>
+
 <!-- **********ACCEPT-SERVICE********** -->
 <script>
     // SETUP HTML FOR ACCEPT SERVICE POPUP...
@@ -98,85 +188,43 @@
     }
 </script>
 
-<!-- **********NEW-SERVICE-REQUEST********** -->
+<!-- **********COMPLTE-SERVICE********** -->
 <script>
-    $(document).ready(function(){
-        state.sp_new_services_table = $('#sp_new_services_table').DataTable({
-            searching : false,
-            serviceSide : true,
-            autoWidth : false,
-            dom : 't<"datatable_bottom"lp>',
-            ajax : {
-                url : `${BASE_URL}/sp-new-services`,
-                cache : true,
-                dataSrc : function(data){
-                    // STORE DATA GLOBALLY...
-                    state.sp_new_services_data = data;
-                    return data;
-                },
-            },
-            columns :[
-                {
-                    mRender : function(data, type, row){
-                        return`<p class="service_id">${row.ServiceRequestId}</p>`;
-                    },
-                },
-                {
-                    mRender : function(data, type, row){
-                        return `<div class="service_date">
-                                    <div>
-                                        <img src="<?= assets('assets/img/table/calendar.png'); ?>" alt="">
-                                        <p>${row.ServiceDate}</p>
-                                    </div>
-                                    <div>
-                                        <img src="<?= assets('assets/img/table/time.png'); ?>" alt="">
-                                        <p>${row.StartTime} to ${row.EndTime}</p>
-                                    </div>
-                                </div>`;
+    function complete_service(id){
+        $.ajax({
+            url : `${BASE_URL}/complete-service/${id}`,
+            method : 'PATCH',
+            success : function(res){
+                if(res!==undefined && res!==""){
+                    try{
+                        const result = JSON.parse(res);
+                        Swal.fire({
+                            title : 'Good job!',
+                            text : result.message,
+                            icon : 'success'
+                        });
+                        state.sp_new_services_table.ajax.reload();
                     }
-                },
-                {
-                    mRender : function(data, type, row){
-                        return `<div class="customer_details"> 
-                                    <p>${row.CustomerName}</p>
-                                    <div>
-                                        <img src="<?= assets('assets/img/table/home.png'); ?>" alt="">
-                                        <p>${row.AddressLine1} ${row.AddressLine2}, ${row.PostalCode} ${row.City}</p>
-                                    </div>
-                                </div>`;
-                    }
-                },
-                {
-                    mRender : function(data, type, row){
-                        // €
-                        return `<p class="payment_text">₹<span>${row.TotalCost}</span></p>`;
-                    }
-                },
-                // {
-                //     mRender : function(data, type, row){
-                //         // TIME CONFLICT...
-                //         return ``;
-                //     }
-                // },
-                {
-                    mRender : function(data, type, row){
-                        return `<div style="display:flex;">
-                                    <button class="accept_btn" onclick="accept_service_open_model(${row.ServiceRequestId});">Accept</button>
-                                    <button class="accept_btn" onclick="complete_service(${row.ServiceRequestId});">Complete</button>
-                                </div>`;
+                    catch(e){
+                        console.log('Invalid Json Response!!!');
+                        Swal.fire({
+                            title : 'Server Error',
+                            text : 'Invalid Response Coming From Server!!!',
+                            icon : 'error'
+                        });
                     }
                 }
-            ],
-            pagingType : 'full_numbers',
-            language : {
-                paginate : {
-                    first    :'<i class="fa-solid fa-backward-step"></i>',
-                    previous :'<i class="fas fa-angle-left">',  
-                    next     :'<i class="fas fa-angle-right">',
-                    last     :'<i class="fa-solid fa-forward-step"></i>'  
-                },
+            },
+            error : function(obj){
+                if(obj!==undefined){
+                    const {responseText, status} = obj;
+                    const error = JSON.parse(responseText);
+                    Swal.fire({
+                        text : error.message,
+                        icon : 'error'
+                    });
+                }
             }
         });
-    });
+    }
 </script>
-

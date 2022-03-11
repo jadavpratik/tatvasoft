@@ -48,6 +48,11 @@ class Dashboard{
             $serviceData[$i]->Duration = date('H:i', mktime(0, $serviceData[$i]->intDuration*60));
             // END TIME (24 HOUR FORMAT)
             $serviceData[$i]->EndTime = date('H:i', mktime(0, time_to_minutes($serviceData[$i]->StartTime) + time_to_minutes($serviceData[$i]->Duration)));
+            
+            // CHECK IS SERVICE EXPIRE...
+            $serviceDate = strtotime($serviceData[$i]->ServiceStartDate);
+            $todayDate = strtotime(date('Y-m-d H:i:s'));
+            $serviceData[$i]->IsExpired = $serviceDate < $todayDate ? 1 : 0;
 
             // ADD CUSTOMER DETAILS...
             $customerId = $serviceData[$i]->UserId;
@@ -98,7 +103,12 @@ class Dashboard{
             $serviceData[$i]->Duration = date('H:i', mktime(0, $serviceData[$i]->intDuration*60));
             // END TIME (24 HOUR FORMAT)
             $serviceData[$i]->EndTime = date('H:i', mktime(0, time_to_minutes($serviceData[$i]->StartTime) + time_to_minutes($serviceData[$i]->Duration)));
-                        
+
+            // CHECK IS SERVICE EXPIRE...
+            $serviceDate = strtotime($serviceData[$i]->ServiceStartDate);
+            $todayDate = strtotime(date('Y-m-d H:i:s'));
+            $serviceData[$i]->IsExpired = $serviceDate < $todayDate ? 1 : 0;
+            
             // ADD CUSTOMER DETAILS...
             $customerId = $serviceData[$i]->UserId;
             $customerData = $user->columns(['FirstName', 'LastName'])->where('UserId', '=', $customerId)->read();
@@ -148,7 +158,12 @@ class Dashboard{
             $serviceData[$i]->Duration = date('H:i', mktime(0, $serviceData[$i]->intDuration*60));
             // END TIME (24 HOUR FORMAT)
             $serviceData[$i]->EndTime = date('H:i', mktime(0, time_to_minutes($serviceData[$i]->StartTime) + time_to_minutes($serviceData[$i]->Duration)));
-                        
+
+            // CHECK IS SERVICE EXPIRE...
+            $serviceDate = strtotime($serviceData[$i]->ServiceStartDate);
+            $todayDate = strtotime(date('Y-m-d H:i:s'));
+            $serviceData[$i]->IsExpired = $serviceDate < $todayDate ? 1 : 0;
+
             // ADD CUSTOMER DETAILS...
             $customerId = $serviceData[$i]->UserId;
             $customerData = $user->columns(['FirstName', 'LastName'])->where('UserId', '=', $customerId)->read();
@@ -244,7 +259,16 @@ class Dashboard{
             // ADD CUSTOMER DETAILS...
             $customerId = $serviceData[$i]->UserId;
             $customerData = $user->columns(['UserId', 'FirstName', 'LastName', 'Email', 'Mobile'])->where('UserId', '=', $customerId)->read();
+
+            // ADD FAVORITE AND BLOCKED DATA...
+            $fav = new Favorite();
+            $favData = $fav->where('TargetUserId', '=', $customerId)->read();
+            if(isset($favData[0])){
+                $customerData[0]->IsFavorite = $favData[0]->IsFavorite;
+                $customerData[0]->IsBlocked = $favData[0]->IsBlocked;
+            }
             $serviceData[$i] = $customerData[0];
+
         }
 
         // REMOVE REPEATED OBJECT FROM ARRAY...
@@ -273,15 +297,27 @@ class Dashboard{
         $serviceId = $req->params->id;
         // STATUS 2 MEANS COMPLETED SERVICE..
         $service = new Service();
-        $service->where('ServiceRequestId', '=', $serviceId)->update([
-            'ServiceProviderId' => session('userId'),
-            'Status' => 2,
-            'ModifiedDate' => date('Y-m-d H:i:s'),
-        ]);
-        $res->status(200)->json(['message'=>'Service Completed Successfully.']);
-    }
 
-    
+        // CHECK IS SERVICE EXPIRE...
+        $serviceData = $service->where('ServiceRequestId', '=', $serviceId)->read();
+        $serviceDate = strtotime($serviceData[0]->ServiceStartDate);
+        $todayDate = strtotime(date('Y-m-d H:i:s'));
+        $isExpired = $serviceDate < $todayDate ? 1 : 0;
+
+        if($isExpired){
+            $service->where('ServiceRequestId', '=', $serviceId)->update([
+                'ServiceProviderId' => session('userId'),
+                'Status' => 2,
+                'ModifiedDate' => date('Y-m-d H:i:s'),
+            ]);
+            $res->status(200)->json(['message'=>'Service Completed Successfully.']);    
+        }
+        else{
+            $res->status(200)->json(['message'=>'Service not able to completed']);    
+        }
+
+    }
+   
     // -------------CANCEL-OR-REJECT-SERVICE-------------
     public function reject_service(Request $req, Response $res){
         $serviceId = $req->params->id;
@@ -298,7 +334,36 @@ class Dashboard{
 
     // -------------BLOCK-CUSTOMER-------------
     public function block_customer(Request $req, Response $res){
+        $customerId = $req->params->id;
+        $serviceProviderId = session('userId');
+        $fav = new Favorite();
+        $where = "UserId = {$serviceProviderId} AND TargetUserId = {$customerId}";
+        if(!$fav->where($where)->exists()){
+            $fav->create([
+                'UserId' => $serviceProviderId,
+                'TargetUserId' => $customerId,
+                'IsFavorite' => 0,
+                'IsBlocked' => 1,
+            ]);    
+        }
+        else{
+            $fav->where($where)->update([
+                'IsBlocked' => 1,
+            ]);    
+        }
+        $res->status(200)->json(['message'=>'Block Customer Successfully.']);
+    }
 
+    // -------------UNBLOCK-CUSTOMER-------------
+    public function unblock_customer(Request $req, Response $res){
+        $customerId = $req->params->id;
+        $serviceProviderId = session('userId');
+        $fav = new Favorite();
+        $where = "UserId = {$serviceProviderId} AND TargetUserId = {$customerId}";
+        $fav->where($where)->update([
+            'IsBlocked' => 0,
+        ]);    
+        $res->status(200)->json(['message'=>'Unblock Customer Successfully.']);
     }
 
 }

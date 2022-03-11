@@ -37,7 +37,7 @@
             </div>
 
             <!-- UPCOMING SERVICES -->
-            <div class="table_tab_content">
+            <div class="table_tab_content d_none">
                 <?= component('service-provider/', 'upcoming-services'); ?>
             </div>
 
@@ -55,7 +55,7 @@
             </div>
 
             <!-- BLOCK CUSTOMER -->
-            <div class="table_tab_content d_none">
+            <div class="table_tab_content">
                 <?= component('service-provider/', 'block-customer'); ?>
             </div>
 

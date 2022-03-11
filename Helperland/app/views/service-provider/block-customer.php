@@ -13,7 +13,6 @@
                     try{
                         const result = JSON.parse(res);
                         state.sp_my_customer = result;
-                        console.log(state.sp_my_customer);
                         let html = ``;
                         for(let i=0; i<result.length; i++){
                             html += `<div class="block_customer_card">
@@ -22,7 +21,12 @@
                                         </div>
                                         <p>${result[i].FirstName} ${result[i].LastName}</p>
                                         ${(function(){
-                                            return `<button class="block_btn" onclick="action_on_customer(${result[i].UserId})">Block</button>`;
+                                            if(result[i].IsBlocked!==undefined && result[i].IsBlocked==1){
+                                                return `<button class="block_btn" onclick="action_on_customer(${result[i].UserId}, 'unblock')">Unblock</button>`;
+                                            }
+                                            else{
+                                                return `<button class="block_btn" onclick="action_on_customer(${result[i].UserId}, 'block')">Block</button>`;
+                                            }
                                         })()}
                                     </div>`;
                         }
@@ -48,9 +52,19 @@
 
 <!-- **********SP-BLOCK-CUSTOMER********** -->
 <script>
-    function block_customer(id){
+    function action_on_customer(id, action){
+        let url = ``;
+        switch(action){
+            case 'block':
+                url = `${BASE_URL}/block-customer/${id}`;
+                break;
+            case 'unblock':
+                url = `${BASE_URL}/unblock-customer/${id}`;
+                break;
+        }
+
         $.ajax({
-            url : `${BASE_URL}/block-customer/${id}`,
+            url : url,
             method : 'PATCH',
             success : function(res){
                 if(res!==undefined && res!==""){
@@ -60,6 +74,7 @@
                             title : result.message,
                             icon : 'success'
                         })
+                        load_my_customers();
                     }
                     catch(e){
                         console.log(e);

@@ -16,3 +16,4 @@ Route::patch('/accept-service/:id', $isServiceProvider, [new ServiceProviderDash
 Route::patch('/reject-service/:id', $isServiceProvider, [new ServiceProviderDashboard(), 'reject_service']);
 Route::patch('/complete-service/:id', $isServiceProvider, [new ServiceProviderDashboard(), 'complete_service']);
 Route::patch('/block-customer/:id', $isServiceProvider, [new ServiceProviderDashboard(), 'block_customer']);
+Route::patch('/unblock-customer/:id', $isServiceProvider, [new ServiceProviderDashboard(), 'unblock_customer']);
