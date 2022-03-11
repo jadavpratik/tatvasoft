@@ -69,13 +69,13 @@
                             const result = JSON.parse(res);
                             $('.login_popup_form').trigger('reset');
                             switch(result.role){
-                                case 'customer':
+                                case 1:
                                     window.location.replace(`${BASE_URL}/customer/dashboard/`);
                                     break;
-                                case 'service-provider':
+                                case 2:
                                     window.location.replace(`${BASE_URL}/service-provider/dashboard/`);
                                     break;
-                                case 'admin':
+                                case 3:
                                     window.location.replace(`${BASE_URL}/admin/dashboard/`);
                                     break;
                             }

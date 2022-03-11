@@ -21,7 +21,6 @@
     }
 }
 
-
 .rated_star{
     color:$rated_star;
 }
@@ -33,10 +32,9 @@
 .hat_style{
     width:44px;
     height:44px;
-    padding:7px;
-    margin-right: 6px;
     border:1px solid $hat_border;
     border-radius:50%;
-    object-fit: cover;    
+    object-fit: contain;    
+    margin-right: 6px;
 }
 

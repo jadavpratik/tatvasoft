@@ -6,7 +6,7 @@
 <script>
     function load_customer_favorite_section_data(){
         $.ajax({
-            url : `${BASE_URL}/customer-favorite-sp-list`,
+            url : `${BASE_URL}/customer-my-service-provider`,
             method : 'GET',
             success : function(res){
                 if(res!=="" && res!==undefined){
@@ -16,7 +16,7 @@
                         for(sp of spList){
                             html += `<div class="favourite_pros_card">
                                         <div class="service_provider">
-                                            <img class="hat_style" src="${BASE_URL}/${sp.UserProfilePicture}" alt="">
+                                            <img class="hat_style" src="${BASE_URL}/assets/img/avatar/${sp.UserProfilePicture}.png" alt="">
                                             <div>
                                                 <p>${sp.FirstName} ${sp.LastName}</p>    
                                                 <div>

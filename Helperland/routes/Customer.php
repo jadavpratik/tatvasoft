@@ -9,7 +9,7 @@ use app\controllers\customer\Dashboard as CustomerDashboard;
 
 Route::get('/customer-current-services', $isCustomer, [new CustomerDashboard(), 'current_services']);
 Route::get('/customer-service-history', $isCustomer, [new CustomerDashboard(), 'service_history']);
-Route::get('/customer-favorite-sp-list', $isCustomer, [new CustomerDashboard(), 'favorite_sp_list']);
+Route::get('/customer-my-service-provider', $isCustomer, [new CustomerDashboard(), 'my_service_provider']);
 
 Route::post('/rate-sp/:id', $isCustomer, [new CustomerDashboard(), 'rate_sp']); // id = serviceId
 Route::patch('/cancel-service/:id', $isCustomer, [new CustomerDashboard(), 'cancel_service']); // id = serviceId

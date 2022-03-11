@@ -63,7 +63,7 @@
                         if(row.ServiceProvider!==undefined){
                             return `
                                 <div class="service_provider">
-                                    <img class="hat_style" src="${BASE_URL}/${row.ServiceProvider.UserProfilePicture}" alt="">
+                                    <img class="hat_style" src="${BASE_URL}/assets/img/avatar/${row.ServiceProvider.UserProfilePicture}.png" alt="">
                                     <div>
                                         <p>${row.ServiceProvider.FirstName} ${row.ServiceProvider.LastName}</p>    
                                         <div>
@@ -165,7 +165,7 @@
         $('#rating_popup').html(`
             <!-- ON RATE SERVICE PROVIDER  -->
             <div class="service_provider">
-                <img class="hat_style" src="${BASE_URL}/${data.ServiceProvider.UserProfilePicture}" alt="">
+                <img class="hat_style" src="${BASE_URL}/assets/img/avatar/${data.ServiceProvider.UserProfilePicture}.png" alt="">
                 <div>
                     <p>${data.ServiceProvider.FirstName} ${data.ServiceProvider.LastName}</p>
                     <div>

@@ -9,7 +9,7 @@
             <!-- **********MY-DETAILS--TAB********** -->
             <div class="tab_content">
                 <div class="sp_my_details">
-                    <p class="sp_account_status">Account Status : <span>Active</span></p>
+                    <p class="sp_account_status">Account Status : <span id="userStatus">Active</span></p>
                     <!-- BASIC DETAILS -->
                     <div class="sp_basic_details_container">
                         <!-- TITLE -->
@@ -85,27 +85,27 @@
                             <p>Select Avatar</p>
                             <div>
                                 <div>
-                                    <input type="radio" name="avatar" value="assets/img/avatar/car.png" id="avatar_car" checked>
+                                    <input type="radio" name="avatar" value="car" id="avatar_car" checked>
                                     <label for="avatar_car"><img src="<?= assets('assets/img/avatar/car.png'); ?>" alt=""></label>
                                 </div>
                                 <div>
-                                    <input type="radio" name="avatar" value="assets/img/avatar/female.png" id="avatar_female">
+                                    <input type="radio" name="avatar" value="female" id="avatar_female">
                                     <label for="avatar_female"><img src="<?= assets('assets/img/avatar/female.png'); ?>" alt=""></label>
                                 </div>
                                 <div>
-                                    <input type="radio" name="avatar" value="assets/img/avatar/hat.png" id="avatar_hat">
+                                    <input type="radio" name="avatar" value="hat" id="avatar_hat">
                                     <label for="avatar_hat"><img src="<?= assets('assets/img/avatar/hat.png'); ?>" alt=""></label>
                                 </div>
                                 <div>
-                                    <input type="radio" name="avatar" value="assets/img/avatar/iron.png" id="avatar_iron">
+                                    <input type="radio" name="avatar" value="iron" id="avatar_iron">
                                     <label for="avatar_iron"><img src="<?= assets('assets/img/avatar/iron.png'); ?>" alt=""></label>
                                 </div>
                                 <div>
-                                    <input type="radio" name="avatar" value="assets/img/avatar/male.png" id="avatar_male">
+                                    <input type="radio" name="avatar" value="male" id="avatar_male">
                                     <label for="avatar_male"><img src="<?= assets('assets/img/avatar/male.png'); ?>" alt=""></label>
                                 </div>
                                 <div>
-                                    <input type="radio" name="avatar" value="assets/img/avatar/ship.png" id="avatar_ship">
+                                    <input type="radio" name="avatar" value="ship" id="avatar_ship">
                                     <label for="avatar_ship"><img src="<?= assets('assets/img/avatar/ship.png'); ?>" alt=""></label>
                                 </div>
                             </div>
@@ -192,15 +192,25 @@
                 if(res!=="" && res!==undefined){
                     const result = JSON.parse(res);
                     // SET SERVICE PROVIDER DETAILS...
-                    $('[name="userStatus"]').val(result.IsActive);
+                    switch(result.IsActive){
+                        case 0:
+                            $('#userStatus').text('NoActive').css({color:'red'});
+                            break;
+                        case 1:
+                            $('#userStatus').text('Active');
+                            break;
+                        default:
+                            $('#userStatus').text('NoActive').css({color:'red'});
+                    }                    
                     $('[name="firstname"]').val(result.FirstName);
                     $('[name="lastname"]').val(result.LastName);
                     $('[name="email"]').val(result.Email);
                     $('[name="phone"]').val(result.Mobile);
                     $('[name="language"]').val(result.LanguageId);
                     $('[name="dob"]').val(result.DateOfBirth);
-                    $('[name="gender"]').val(result.Gender).change();
-                    $('[name="avatar"]').val(result.UserProfilePicture).change();
+                    $(`[name="gender"][value="${result.Gender}"]`).prop('checked', true);
+                    $(`[name="avatar"][value="${result.UserProfilePicture}"]`).prop('checked', true);
+                    $('.avatar').attr('src', `${BASE_URL}/assets/img/avatar/${result.UserProfilePicture}.png`);
                 }
             },
             error : function(obj){
@@ -268,7 +278,11 @@
         if(validation){
             update_sp_details();
         }
-        // "update_sp_address()" WILL BE CALL AFTER SUCCESS OF "update_sp_details()";
+
+        /*
+            NOTE
+            update_sp_address() WILL CALL INSIDE update_sp_details()
+        */
 
         // UPDATE SP-DETAILS....
         function update_sp_details(){
@@ -282,7 +296,6 @@
                 gender : $('[name="gender"]:checked').val(),
                 avatar : $('[name="avatar"]:checked').val(),
             });
-
 
             $.ajax({
                 url : `${BASE_URL}/my-details`,

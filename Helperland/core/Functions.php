@@ -1,7 +1,5 @@
 <?php
 
-	// FOR START THE SESSION...
-	session_start();
 	$page_url = '/';
 
 	// RETURN & STORE CURRENT URL...
@@ -25,14 +23,12 @@
 	// FOR PUBLIC FOLDER ACCESS...
 	function assets($path){
 		$path = ltrim($path, '/');
-		return BASE_URL.'/'.$path;
+		return BASE_URL.'/'.$path.'?'.time();
+		//APPEND TIME END OF FILE, BECAUSE FILE NOT REFLECTING AFTER CHANGING IT
 	}
 
 	// RETURN COMPONENTS LIKE HEADER, FOOTER, MODELS ETC...
-	function component($parameter1, $parameter2=false, $data=false){
-		// PASS COMPONENTS PARAMETERS...
-		if(!empty($data))
-			extract($data);
+	function component($parameter1, $parameter2=false){
 
 		if($parameter2!=false){
 			// WE CAN CHANGE THE COMPONENT PATH IN VIEWS Directory...
@@ -53,7 +49,6 @@
 			$name = ltrim($name, '/');
 			$name = rtrim($name, '/');
 			$component_path = __DIR__.'/../app/views/components/'.$name.'.php';
-			// echo $component_path;
 			if(file_exists($component_path)){
 				require_once $component_path;							
 			}
@@ -62,7 +57,7 @@
 
 	// SESSION FUNCTION...
 	function session($key, $value=false){
-		if($value!==false){
+		if($value!=false){
 			$_SESSION[$key] = $value;
 		}
 		else if(isset($_SESSION[$key])){
@@ -74,10 +69,12 @@
 	}
 
 	// COOKIE FUNCTION...
-	function cookie($key, $value=false){
-		if($value!==false){
-			// 30 DAYS TIME...
-			$time = time()+(60*60*24*30);
+	function cookie($key, $value=false, $time=false){
+		if($value!=false){
+			// 5 DAYS TIME...
+			if($tile==flase){
+				$time = time()+(60*60*24*5);
+			}
 			setcookie($key, $value, $time, '/', '', true, true);
 		}
 		else if(isset($_COOKIE[$key])){

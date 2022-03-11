@@ -4,37 +4,83 @@
 
 <!-- **********SP-BLOCK-CUSTOMER********** -->
 <script>
-    $.ajax({
-        url : `${BASE_URL}/sp-my-customer`,
-        method : 'GET',
-        success : function(res){
-            if(res!=="" && res!==undefined){
-                try{
-                    const result = JSON.parse(res);
-                    state.sp_my_customer = result;
-                    let html = ``;
-                    for(let i=0; i<result.length; i++){
-                        html += `<div class="block_customer_card">
-                                    <div>
-                                        <img src="<?= assets('assets/img/table/hat.png'); ?>" alt="">
-                                    </div>
-                                    <p>${result[i].FirstName} ${result[i].LastName}</p>
-                                    <button class="block_btn" onclick="block_customer(${result[i].UserId})">Block</button>
-                                </div>`;
+    function load_my_customers(){
+        $.ajax({
+            url : `${BASE_URL}/sp-my-customer`,
+            method : 'GET',
+            success : function(res){
+                if(res!=="" && res!==undefined){
+                    try{
+                        const result = JSON.parse(res);
+                        state.sp_my_customer = result;
+                        console.log(state.sp_my_customer);
+                        let html = ``;
+                        for(let i=0; i<result.length; i++){
+                            html += `<div class="block_customer_card">
+                                        <div>
+                                            <img src="<?= assets('assets/img/table/hat.png'); ?>" alt="">
+                                        </div>
+                                        <p>${result[i].FirstName} ${result[i].LastName}</p>
+                                        ${(function(){
+                                            return `<button class="block_btn" onclick="action_on_customer(${result[i].UserId})">Block</button>`;
+                                        })()}
+                                    </div>`;
+                        }
+                        $('.block_customer').html(html);
                     }
-                    $('.block_customer').html(html);
+                    catch(e){
+                        console.log('Invalid JSON Response!');
+                    }
                 }
-                catch(e){
-                    console.log('Invalid JSON Response!');
+            },
+            error : function(obj){
+                if(obj!==undefined){
+                    const {responseText} = obj;
+                    const error = JSON.parse(responseText);
+                    console.log(error.message);
                 }
             }
-        },
-        error : function(obj){
-            if(obj!==undefined){
-                const {responseText} = obj;
-                const error = JSON.parse(responseText);
-                console.log(error.message);
+        });
+    }
+
+    load_my_customers();
+</script>
+
+<!-- **********SP-BLOCK-CUSTOMER********** -->
+<script>
+    function block_customer(id){
+        $.ajax({
+            url : `${BASE_URL}/block-customer/${id}`,
+            method : 'PATCH',
+            success : function(res){
+                if(res!==undefined && res!==""){
+                    try{
+                        const result = JSON.parse(res);
+                        Swal.fire({
+                            title : result.message,
+                            icon : 'success'
+                        })
+                    }
+                    catch(e){
+                        console.log(e);
+                        Swal.fire({
+                            title : 'Invalid JSON response!',
+                            icon : 'error'
+                        })
+                    }
+                }
+            },
+            error : function(obj){
+                if(obj!==undefined){
+                    const {responseText} = obj;
+                    const error = JSON.parse(responseText);
+                    console.log(error.message);
+                    Swal.fire({
+                        title : error.message,
+                        icon : 'error'
+                    })
+                }
             }
-        }
-    });
+        });
+    }
 </script>

@@ -16,14 +16,14 @@ class Auth{
     public function alreadyLogged(){
         if(session('isLogged')){
             switch(session('userRole')){
-                case 'customer':
-                    $redirect_url = BASE_URL.'/customer';
+                case 1:
+                    $redirect_url = BASE_URL.'/customer/dashboard/';
                     break;
-                case 'service-provider':
-                    $redirect_url = BASE_URL.'/service-provider';
+                case 2:
+                    $redirect_url = BASE_URL.'/service-provider/dashboard/';
                     break;
-                case 'admin':
-                    $redirect_url = BASE_URL.'/admin';
+                case 3:
+                    $redirect_url = BASE_URL.'/admin/dashboard/';
                     break;
             }
             header("location:{$redirect_url}");
@@ -37,7 +37,7 @@ class Auth{
     // IS CUSTOMER...
     public function isCustomer(){
         if(session('isLogged')){
-            if(session('userRole')=='customer'){
+            if(session('userRole')==1){
                 return true;
             }
             else{
@@ -45,7 +45,7 @@ class Auth{
                 exit();
             }
         }
-        else if($_SERVER['REQUEST_METHOD']!=='GET'){
+        else if($_SERVER['REQUEST_METHOD']!='GET'){
             $this->res->status(401)->json(['message'=>'You need to login!']);
             exit();
         }
@@ -57,7 +57,7 @@ class Auth{
     // IS SERVICE PROVIDER...
     public function isServiceProvider(){
         if(session('isLogged')){
-            if(session('userRole')=='service-provider'){
+            if(session('userRole')==2){
                 return true;
             }
             else{
@@ -65,7 +65,7 @@ class Auth{
                 exit();
             }
         }
-        else if($_SERVER['REQUEST_METHOD']!=='GET'){
+        else if($_SERVER['REQUEST_METHOD']!='GET'){
             $this->res->status(401)->json(['message'=>'You need to login!']);
             exit();
         }

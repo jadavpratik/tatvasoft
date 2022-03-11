@@ -11,6 +11,7 @@ class Database{
     private $conn = null;    
     protected $table = '';
     private $query = '';
+    private $distinct = '';
     private $columns = ' * ';
     private $where = '';
     private $joinString = '';
@@ -150,6 +151,12 @@ class Database{
         $this->joinString = "INNER JOIN {$joinTable} ON {$this->table}.{$pk}={$joinTable}.{$fk}";
         return $this;
     }
+
+    // // -----------------DISTINCT-------------------
+    // public function distinct(){
+    //     $this->distinct = 'DISTINCT';
+    //     return $this;
+    // }
 
     // -----------------READ-------------------
     public function read(){

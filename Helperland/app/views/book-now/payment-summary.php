@@ -85,14 +85,26 @@
         function extra_services_html(){
             let extra_services = ``;
             for(let i=0; i<service_request.extra.length; i++){
-                extra_services += `
-                    <div>
-                        <p>Inside ${service_request.extra[i]} (Extra)</p>
-                        <p>30 Mins</p>
-                    </div>`; 
+                if(service_request.extra[i] == 1)
+                    extra_services += `<div><p>Inside Cabinet (Extra)</p><p>30 Mins</p></div>`; 
+                else if(service_request.extra[i] == 2)
+                    extra_services += `<div><p>Inside Fridge (Extra)</p><p>30 Mins</p></div>`; 
+                else if(service_request.extra[i] == 3)
+                    extra_services += `<div><p>Inside Oven (Extra)</p><p>30 Mins</p></div>`; 
+                else if(service_request.extra[i] == 4)
+                    extra_services += `<div><p>Inside Laundry (Extra)</p><p>30 Mins</p></div>`; 
+                else if(service_request.extra[i] == 5)
+                    extra_services += `<div><p>Inside Window (Extra)</p><p>30 Mins</p></div>`; 
             }
             return extra_services;
         }
     }
 
+    // 1 => 'Cabinet'
+    // 2 => 'Fridge'
+    // 3 => 'Oven'
+    // 4 => 'Laundry'
+    // 5 => 'Window'
+
 </script>
+

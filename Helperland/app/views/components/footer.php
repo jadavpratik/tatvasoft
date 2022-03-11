@@ -49,19 +49,17 @@
 	</footer>
 
 	<!-- **********FIXED_BUTTON********** -->
-	<?php if(false){ ?>
-		<!-- GO_TO_TOP_BTN -->
-		<button class="go_top_btn"><img src="<?= assets('assets/img/buttons/up_btn.png'); ?>" alt=""></button>
+	<!-- GO_TO_TOP_BTN -->
+	<button class="go_top_btn"><img src="<?= assets('assets/img/buttons/up_btn.png'); ?>" alt=""></button>
 
-		<!-- CHAT -->
-		<button class="chat"><img src="<?= assets('assets/img/global/time.png'); ?>" alt=""></button>
+	<!-- CHAT -->
+	<!-- <button class="chat"><img src="<?= assets('assets/img/global/time.png'); ?>" alt=""></button> -->
 
-		<!-- PRIVACY_POLICY -->
-		<div class="cookie">
-			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut feugiat nunc libero, ac malesuada ligula aliquam ac. <a href="">Privacy Policy</a></p>
-			<button id="cookie_submit_btn">OK!</button>
-		</div>
-	<?php } ?>
+	<!-- PRIVACY_POLICY -->
+	<!-- <div class="cookie">
+		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut feugiat nunc libero, ac malesuada ligula aliquam ac. <a href="">Privacy Policy</a></p>
+		<button id="cookie_submit_btn">OK!</button>
+	</div> -->
 
 
 	<!-- EXCEL2TABLE -->
@@ -95,6 +93,6 @@
 		});
 	</script>
 	
-	<?= component('session-components'); ?>
+	<?= component('session-scripts'); ?>
 </body>
 </html>

@@ -47,7 +47,7 @@ class Validation{
 					self::$error[$key] = $temp[$key];
 				}
 			}
-			else if($validation[0]!=='optional'){
+			else if($validation[0]!='optional'){
 				self::$error[$key] = 'Field is required!';
 			}
 		}
@@ -172,7 +172,7 @@ class Validation{
 	public static function lengthValidation($key, $value, $i){
 		if(str_contains($i, 'length:')){
 			$length = (int) str_replace('length:', '', $i);
-			if(strlen($value) !== $length){
+			if(strlen($value) != $length){
 				self::$error[$key] = "Field value length {$length} characters exact!";
 			}
 		}
@@ -203,7 +203,7 @@ class Validation{
 
 	// CONFIRM-PASSWORD VALIDATION...
 	public static function confirmPasswordValidation($key, $value){
-		if(self::$password!==$value){
+		if(self::$password!=$value){
 			self::$error[$key] = "Confirm Password & Password are not same !";
 		}
 	}

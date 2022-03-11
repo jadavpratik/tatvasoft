@@ -1,7 +1,7 @@
 <?php
 
 namespace core;
-	
+
 class Response{
 
 	public function render($view, $arr=false){
@@ -33,8 +33,13 @@ class Response{
 	}
 
 	public function json($data){
-		// header('Content-Type:application/json');
+		// header('Access-Control-Allow-Origin:*');
+		// header('Access-Control-Allow-Credentials:true');
+		// header('Access-Control-Allow-Methods:GET, POST, PUT, PATCH, DELETE');
+		// header('Access-Control-Allow-Headers:*');
+		// header('Content-Type:application/json');		
 		echo json_encode($data, JSON_PRETTY_PRINT);
+		exit();
 	}
 
 	public function redirect($path){

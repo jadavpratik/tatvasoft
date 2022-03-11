@@ -65,7 +65,7 @@
         <div>
             <!-- EXTRA SERVICE DIV [INPUT+LABEL] -->
             <div>
-                <input id="cabinet" type="checkbox" name="extra_services" value="Cabinet">
+                <input id="cabinet" type="checkbox" name="extra_services" value="1">
                 <label for="cabinet">
                     <div><img src="<?= assets('assets/img/customer/book_service/cabinet.png'); ?>" alt=""></div>
                     <p>Inside Cabinets</p>
@@ -73,7 +73,7 @@
             </div>
             <!-- EXTRA SERVICE DIV [INPUT+LABEL] -->
             <div>
-                <input id="fridge" type="checkbox" name="extra_services" value="Fridge">
+                <input id="fridge" type="checkbox" name="extra_services" value="2">
                 <label for="fridge">
                     <div><img src="<?= assets('assets/img/customer/book_service/fridge.png'); ?>" alt=""></div>
                     <p>Inside Fridge</p>
@@ -81,7 +81,7 @@
             </div>
             <!-- EXTRA SERVICE DIV [INPUT+LABEL] -->
             <div>
-                <input id="oven" type="checkbox" name="extra_services" value="Oven">
+                <input id="oven" type="checkbox" name="extra_services" value="3">
                 <label for="oven">
                     <div><img src="<?= assets('assets/img/customer/book_service/oven.png'); ?>" alt=""></div>
                     <p>Inside Oven</p>
@@ -89,7 +89,7 @@
             </div>
             <!-- EXTRA SERVICE DIV [INPUT+LABEL] -->
             <div>
-                <input id="laundry" type="checkbox" name="extra_services" value="Laundry">
+                <input id="laundry" type="checkbox" name="extra_services" value="4">
                 <label for="laundry">
                     <div><img src="<?= assets('assets/img/customer/book_service/laundry.png'); ?>" alt=""></div>
                     <p>Laundry Wash & Dry</p>
@@ -97,7 +97,7 @@
             </div>
             <!-- EXTRA SERVICE DIV [INPUT+LABEL] -->
             <div>
-                <input id="window" type="checkbox" name="extra_services" value="Window">
+                <input id="window" type="checkbox" name="extra_services" value="5">
                 <label for="window">
                     <div><img src="<?= assets('assets/img/customer/book_service/window.png'); ?>" alt=""></div>
                     <p>Interior Windows</p>
@@ -121,7 +121,6 @@
 
 <!-- **********BOOK-SERVICE-S2-SCRIPTS********** -->
 <script>
-
     // SECTION-2-BTN-CLICK...
     $('#schedule_plan_submit_btn').click(function(){
 

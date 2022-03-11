@@ -104,7 +104,7 @@
 			</div>
 			<div>
 				<input type="checkbox" name="TermCheckBox">
-				<p>Our current ones apply <a href="#">privacy policy</a> i hereby agree that my data entered into the contact form will be stored electronically and processed and used for the used for the purpose of establishing contact. the consent can be withdrawn at any time pursuant to art. 7(3) GDPR by informal notification (eg. by e-mail).</p>
+				<p>Our current ones apply <a href="javascript:void(0);">privacy policy</a> i hereby agree that my data entered into the contact form will be stored electronically and processed and used for the used for the purpose of establishing contact. the consent can be withdrawn at any time pursuant to art. 7(3) GDPR by informal notification (eg. by e-mail).</p>
 			</div>
 			<button class="form_btn" disabled>Submit</button>
 		</form>

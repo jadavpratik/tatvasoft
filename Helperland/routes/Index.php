@@ -2,12 +2,13 @@
 // -----------TEMP-SESSION------------
 // session('isLogged', true);
 // session('userId', 1);
-// session('userRole', 'customer');
+// session('userRole', 1);
 // session('userName', 'Gaurav Barai');
 
 // session('isLogged', true);
-// session('userId', 11);
-// session('userRole', 'servce-provider');
+// session('userId', 9);
+// session('userRole', 2);
+// session('userRoleName','service-provider');
 // session('userName', 'Pratik Jadav');
 
 require_once __DIR__."/Account.php";
@@ -16,21 +17,24 @@ require_once __DIR__."/Contact.php";
 require_once __DIR__."/Customer.php";
 require_once __DIR__."/ServiceProvider.php";
 require_once __DIR__."/View.php";
-require_once __DIR__."/NotFound.php";
+// require_once __DIR__."/NotFound.php";
 
-// use core\Route;
 
-// Route::get('/set_cookie', function(){
-//     cookie('test_cookie', 'hi how are you?');
-// });
+use core\Route;
+use core\Database;
 
-// Route::get('/get_cookie', function(){
-//     if(cookie('test_cookie')){
-//         echo cookie('test_cookie');
-//     }
-//     else{
-//         echo 'false';
-//     }
-// });
 
-// SET TITILE OF PAGE...
+Route::get('/test-route', function($req, $res){
+    $db = new Database();
+    // 1.SERVICE_REQUEST
+    // 2.SERVICE_REQUEST_EXTRA
+    
+    $sql = "SELECT FROM servicerequestextra";
+    $data = $db->query($sql);
+    echo '<pre>';
+    print_r($data);
+    // $res->json($data);
+
+});
+
+

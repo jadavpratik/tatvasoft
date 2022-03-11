@@ -12,7 +12,7 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- AOS -->
 	<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-	<!-- CSS -->
+	<!-- CSS  -->
 	<link rel="stylesheet" href="<?= assets('assets/css/index.css'); ?>">
     <!-- DATATABLE -->
     <link rel="stylesheet" href="//cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
@@ -21,22 +21,18 @@
 	<script> 
 		// 	BASE URL FOR GUIDE AJAX REQUEST...
 		let BASE_URL = `<?= BASE_URL; ?>`; 
-
 		// STORE THE GLOBAL DATA...
 		let state = {};
 	</script>
 </head>
 <body>
 
-	<?php
+	<?php 
 		$home_header_id = '';
 		$home_header_style = '';
 		$home_header_logo_style = '';
 		$home_focus_btn = '';
-		$active_link = ['contact' => '', 
-						'prices' => '', 
-						'guarantee' => '', 
-						'blog'=> ''];
+		$active_link = ['contact' => '', 'prices' => '', 'guarantee' => '', 'blog'=> ''];
 		switch(page_url()){
 			case '/':
 				$home_header_id = 'home_navbar';
@@ -81,7 +77,7 @@
 		
 		<!-- NAV_MENU -->
 		<div class="nav_menu">
-			<?php if(session('userRole')!='admin' && session('userRole')!='service-provider'){ ?>
+			<?php if(session('userRole')!=3 && session('userRole')!=2){ ?>
 				<a class="navbar_focus_btn <?= $home_focus_btn; ?>" href="<?= url('/book-now'); ?>">Book a Cleaner</a>
 			<?php } ?>
 			<a class="<?= $active_link['prices']; ?>" href="<?= url('/prices'); ?>">Prices</a>
@@ -134,35 +130,32 @@
 				</div>
 			<?php 
 				}
-			 	else{ 
+				else{ 
 			?>
 				<a class="navbar_focus_btn <?= $home_focus_btn; ?>" href="javascript:void(0);" onclick="open_model('login')">Login</a>
 				<a class="navbar_focus_btn <?= $home_focus_btn; ?>" href="<?= url('/service-provider/signup'); ?>">Become a Helper</a>
 			<?php } ?>
 		</div><!-- END NAV_MENU -->
 	</nav><!-- END NAVBAR -->
-
 	
 	<?= component('sidenav'); ?>
-	<?= component('login'); ?>
-	<?= component('forgot-password'); ?>
-	<?= component('otp'); ?>
-	<?= component('set-new-password'); ?>
-	<?= component('included-services'); ?>
-	<?= component('add-address'); ?>
-	<?= component('edit-address'); ?>
-	<?= component('service-details'); ?>
-	<?= component('reschedule-service'); ?>
-	<?= component('cancel-service'); ?>
-	<?= component('rating-sp'); ?>
+	<?= component('popup/login'); ?>
+	<?= component('popup/forgot-password'); ?>
+	<?= component('popup/otp'); ?>
+	<?= component('popup/set-new-password'); ?>
+	<?= component('popup/included-services'); ?>
+	<?= component('popup/add-address'); ?>
+	<?= component('popup/edit-address'); ?>
+	<?= component('popup/service-details'); ?>
+	<?= component('popup/reschedule-service'); ?>
+	<?= component('popup/cancel-service'); ?>
+	<?= component('popup/rating-sp'); ?>
+	<?= component('popup/accept-service'); ?>
 
 <!-- **********DROPDOWN-TO-DASHBOARD********** -->
 <script>
 	function go_to_dashboard(){
-		currentPageUrl = window.location.href;
-		const userRole = `<?= session('userRole'); ?>`;
-		if(!currentPageUrl.includes(userRole)){
-			window.location.replace(`${BASE_URL}/${userRole}/dashboard`);
-		}
+		const userRole = `<?= session('userRoleName'); ?>`;
+		window.location.replace(`${BASE_URL}/${userRole}/dashboard`);
 	}
 </script>

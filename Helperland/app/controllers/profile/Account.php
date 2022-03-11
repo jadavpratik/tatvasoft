@@ -13,18 +13,6 @@ use app\models\OTP;
 
 class Account{
 
-	// ---------------SET USER ROLE ID---------------------------
-	public function setUserRoleId($roleName){
-		switch($roleName){
-			case 'customer':
-				return 1;
-			case 'service-provider':
-				return 2;
-			case 'admin':
-				return 3;
-		}
-	}
-
 	// ---------------SET USER ROLE NAME---------------------------
 	public function setUserRoleName($roleId){
 		switch($roleId){
@@ -57,7 +45,7 @@ class Account{
 		$where = "Email = '{$email}' OR Mobile = $mobile";
 
 		if(!$user->where($where)->exists()){
-			$role = $this->setUserRoleId($req->body->role);
+			$role = (int) $req->body->role;
 			if($role==1 || $role==2 || $role==3){
 				$hash = Hash::create($req->body->password);	
 				$user->create([
@@ -110,16 +98,24 @@ class Account{
 			$userPassword = $result[0]->Password;
 			$userName = $result[0]->FirstName.' '.$result[0]->LastName;
 
-			if(Hash::verify($password, $userPassword)){
-				$userRole = $this->setUserRoleName($userRole);
-				session('isLogged', true);
-				session('userId', $userId);
-				session('userRole', $userRole);
-				session('userName', $userName);
-				$res->status(200)->json(['role'=>$userRole, 'message'=>"Login Successfully."]);
+			if(cookie('LOGIN_ATTEMPT')<5){
+				if(Hash::verify($password, $userPassword)){
+					session('isLogged', true);
+					session('userId', $userId);
+					session('userRole', $userRole);
+					session('userRoleName', $this->setUserRoleName($userRole));
+					session('userName', $userName);
+					$res->status(200)->json(['role'=>$userRole, 'message'=>"Login Successfully."]);
+				}
+				else{
+					$ATTEMPTS =  (int)cookie('LOGIN_ATTEMPT') + 1;
+					// SET SESSION FOR 30 MINUTES...
+					setcookie('LOGIN_ATTEMPT', $ATTEMPTS, time()+1800);
+					$res->status(401)->json(['message'=>"Password is Not Matched."]);
+				}	
 			}
 			else{
-				$res->status(401)->json(['message'=>"Password is Not Matched."]);
+				$res->status(401)->json(['message'=>"Try After 30 Minutes!"]);
 			}
 		}
 		else{

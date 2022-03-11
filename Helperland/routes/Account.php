@@ -17,7 +17,7 @@ Route::post('/forgot-password', [new Account(), 'forgot_password']);
 Route::post('/verify-otp', [new Account(), 'verify_otp']);
 Route::patch('/set-new-password', [new Account(), 'set_new_password']);
 Route::patch('/change-password', $isLogged, [new Account(), 'change_password']);
-Route::get('/logout', $isLogged, [new Account(), 'logout']);
+Route::get('/logout', [new Account(), 'logout']);
 
 // -----------MY-DETAILS---------------
 Route::get('/my-details', $isLogged, [new MyDetails(), 'get_details']);

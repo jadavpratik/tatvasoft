@@ -231,14 +231,15 @@ class Dashboard{
     }
 
     // CUSTOMER SP LIST (WHO PROVIDED SERVICE TO CUSTOMER IN PAST...)
-    public function favorite_sp_list(Request $req, Response $res){
+    public function my_service_provider(Request $req, Response $res){
         $userId = session('userId');
 
         $service = new Service();
         $where = "UserId = {$userId} AND Status = 2";
         // GET ALL SERVICE PROVIDER ID WHO COMPLETED SERVICE WITH THIS CUSTOMER...
         $data = $service->columns(['ServiceProviderId'])->where($where)->read();
-    
+
+        $serviceProviders = [];
         for($i=0; $i<count($data); $i++){
             // STORE FIRSTNAME AND LASTNAME OF SERVICE PROVIDER...
             $user = new User();
@@ -266,10 +267,13 @@ class Dashboard{
                 $tempRating /= count($temp3); 
                 $temp1[0]->Rating = $tempRating;
             }
-            $data[$i] = $temp1[0];
+            $serviceProviders[] = (array) $temp1[0];
 
         }    
-        $res->json($data);    
+        // REMOVE REPEATED OBJECT FROM ARRAY...
+        $temp = array_unique(array_column($serviceProviders, 'UserId'));
+        $serviceProviders = array_values(array_intersect_key($serviceProviders, $temp));
+        $res->json($serviceProviders);    
     }
 
     // ADD TO FAVORITE LIST...

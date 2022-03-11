@@ -13,6 +13,7 @@
             <th>Service Id</th>
             <th>Service Date</th>
             <th>Customer Details</th>
+            <th>Status</th>
         </tr>
     </thead>
     <tbody>
@@ -67,6 +68,20 @@
                                         <p>${row.AddressLine1} ${row.AddressLine2}, ${row.PostalCode} ${row.City}</p>
                                     </div>
                                 </div>`;
+                    }
+                },
+                {
+                    mRender : function(data, type, row){
+                        switch(row.Status){
+                            case 0:
+                                return `<p class="new_status">New</p>`;
+                            case 1:
+                                return `<p class="pending_status">Pending</p>`;
+                            case 2:
+                                return `<p class="completed_status">Completed</p>`;
+                            case 3:
+                                return `<p class="cancelled_status">Cancelled</p>`;
+                        }
                     }
                 },
             ],

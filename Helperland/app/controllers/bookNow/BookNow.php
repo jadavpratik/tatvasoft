@@ -110,7 +110,10 @@ class BookNow{
             'Comments' => $comments,
             'ServiceProviderId' => $sp_id,
             'HasPets' => $has_pets,
-            'Status' => 0 //STATUS ZERO MEANS NEW REQUEST...
+            'Status' => $sp_id!=null? 1 : 0, //STATUS ZERO MEANS NEW REQUEST...
+            'SPAcceptedDate' => $sp_id!=null? date('Y-m-d H:i:s') : null,
+            'CreatedDate' => date('Y-m-d H:i:s'),
+            'ModifiedDate' => date('Y-m-d H:i:s')
         ]);
 
         // ADD SERVICE_REQUEST_ADDRESS IN DATABASE TABLE...
@@ -129,32 +132,15 @@ class BookNow{
         if(count($extra)>0){
             $extra_service_obj = new ExtraService();
             for($i=0; $i<count($extra); $i++){
-                $extraId = $this->setExtraServiceId($extra[$i]);
                 $extra_service_obj->create([
                     'ServiceRequestId' => $serviceId,
-                    'ServiceExtraId' => $extraId,
+                    'ServiceExtraId' => (int) $extra[$i],
                 ]);
             }    
         }
         // SERVICE POOL [SEND MAIL TO ALL SP ACCORDING TO POSTAL CODE]
         // DIRECT ASSIGNMENT OF USER...
         $res->status(201)->json(['message'=>'Service Book Successfully.', 'id'=>$serviceId]);
-    }
-
-    // SET EXTRA SERVICE ID...
-    public function setExtraServiceId($extraServiceName){
-        switch($extraServiceName){
-            case 'Cabinet':
-                return 1;
-            case 'Fridge':
-                return 2;
-            case 'Oven':
-                return 3;
-            case 'Laundry':
-                return 4;
-            case 'Window':
-                return 5;
-        }
     }
 
 }

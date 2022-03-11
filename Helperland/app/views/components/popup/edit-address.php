@@ -76,7 +76,9 @@
                 edit_address_postal_code : $('[name="edit_address_postal_code"]').val(),
                 edit_address_id : $('[name="edit_address_id"]').val()
             });
+
             let id = $('[name="edit_address_id"]').val();
+
             $.ajax({
                 url : `${BASE_URL}/my-address/${id}`,
                 method : 'PATCH',

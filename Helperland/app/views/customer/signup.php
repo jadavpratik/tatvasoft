@@ -60,7 +60,7 @@
             <label for="">I have read the <a href="javascript:void(0);">privacy policy</a></label>
         </div>
         <div>
-			<input type="hidden" name="role" value="customer">
+			<input type="hidden" name="role" value="1">
             <button class="form_btn" disabled>Register</button>
         </div>
         <div>

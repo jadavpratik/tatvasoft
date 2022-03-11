@@ -70,7 +70,7 @@
                 },
                 {
                     mRender : function(data, type, row){
-                        return `<button class="cancel_btn" onclick="cancel_service(${row.ServiceRequestId});">Cancel</button>`;
+                        return `<button class="cancel_btn" onclick="reject_service_by_sp(${row.ServiceRequestId});">Cancel</button>`;
                     }
                 }
             ],
@@ -85,4 +85,53 @@
             }
         });
     });
+</script>
+
+<!-- **********CANCEL-SERVICE-SERVICE-BY-SP********** -->
+<script>
+    function reject_service_by_sp(id){
+        Swal.fire({
+            title : 'Are you sure?',
+            showCancelButton: true, 
+            icon : 'warning'
+        }).then((res)=>{
+            if(res.isConfirmed){
+
+                $.ajax({
+                    url : `${BASE_URL}/reject-service/${id}`,
+                    method : 'PATCH',
+                    success : function(res){
+                        if(res!=="" && res!==undefined){
+                            try{
+                                const result = JSON.parse(res);
+                                Swal.fire({
+                                    title : result.message,
+                                    icon : 'success'
+                                });
+                                close_model();
+                                // RELOAD TABLE...
+                                state.sp_upcoming_services_table.ajax.reload();
+                            }
+                            catch(e){
+                                Swal.fire({
+                                    title : 'Invalid JSON Response!',
+                                    icon : 'error'
+                                })
+                            }
+                        }
+                    },
+                    error : function(obj){
+                        if(obj!==undefined && obj!==""){
+                            const {responseText} = obj;
+                            const error = JSON.parse(responseText);
+                            Swal.fire({
+                                title : error.message,
+                                icon : 'error'
+                            });
+                        }
+                    }
+                });
+            }
+        });
+    }
 </script>

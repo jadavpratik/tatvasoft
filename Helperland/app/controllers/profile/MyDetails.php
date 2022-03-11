@@ -21,10 +21,10 @@ class MyDetails{
         $columns = ['FirstName', 'LastName', 
                     'Email', 'Mobile', 
                     'DateOfBirth', 'LanguageId', 
-                    'Gender', 'UserProfilePicture'];
+                    'Gender', 'UserProfilePicture',
+                    'Status', 'IsActive'];
         $details = $user->columns($columns)->where('UserId', '=', $userId)->read();
         if(is_array($details)){
-            // PASSWORD IS ALSO COMING FROM DATABASE (PENDING)...
             $res->status(200)->json($details[0]);
         }
         else{
@@ -50,7 +50,7 @@ class MyDetails{
         $where = "UserId != {$userId} AND Mobile = {$req->body->phone}";
 
         $gender = isset($req->body->gender)? $req->body->gender : 0;
-        $avatar = isset($req->body->avatar)? $req->body->avatar : 'assets/img/avatar/hat.png';
+        $avatar = isset($req->body->avatar)? $req->body->avatar : 'hat';
 
         if(!$user->where($where)->exists()){
             $user->where('UserId', '=', $userId)->update([

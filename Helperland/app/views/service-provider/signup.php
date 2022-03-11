@@ -55,7 +55,7 @@
             <div>
                 <input type="checkbox" name="TermCheckBox"><p>I accept <a href="javascript:void(0);">terms and conditions</a> & <a href="javascript:void(0);">privacy policy</a></p>
             </div>
-			<input type="hidden" name="role" value="service-provider">
+			<input type="hidden" name="role" value="2">
             <button class="form_btn" disabled>Get Started <img src="<?= assets('assets/img/buttons/arrow/arrow_right_white.png'); ?>" alt=""></button>
         </form>
     </div>

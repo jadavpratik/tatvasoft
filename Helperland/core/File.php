@@ -10,7 +10,7 @@ class File{
 		$path = ltrim($path, '/');
 		$path = rtrim($path, '/');
 		$uploadPath = STORAGE_PATH.$path;
-		$fileName = strtolower(date('Y_m_d').'_'.time().'_'.$file['name']);	
+		$fileName = strtolower(time().date('ymd').$file['name']);	
 
 		if(!file_exists($uploadPath)){
 			mkdir($uploadPath, 0777, true);

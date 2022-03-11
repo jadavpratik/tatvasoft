@@ -8,10 +8,11 @@ use core\Response;
 use app\models\Service;
 use app\models\User;
 use app\models\ExtraService;
+use app\models\Favorite;
 
 class Dashboard{
 
-    // -------------NEW-SERVICES-------------
+    // -------------NEW-SERVICES [STATUS 0 & SP ZIPCODE]-------------
     public function new_services(Request $req, Response $res){
         $service = new Service();
         $user = new User();
@@ -22,7 +23,8 @@ class Dashboard{
         $zipCode = $spData[0]->ZipCode;
 
         // SERVICES COMING ACCORDING TO POSTAL CODE...
-        $serviceData = $service->join('ServiceRequestId', 'ServiceRequestId', 'servicerequestaddress')->where('ZipCode', '=', $zipCode)->read();
+        $where = "ZipCode = {$zipCode} AND Status=0";
+        $serviceData = $service->join('ServiceRequestId', 'ServiceRequestId', 'servicerequestaddress')->where($where)->read();
 
         function time_to_minutes($time){
             $temp = explode(':', $time);
@@ -64,14 +66,14 @@ class Dashboard{
         $res->status(200)->json($serviceData);
     }
 
-    // -------------UPCOMING-SERVICES-------------
+    // -------------UPCOMING-SERVICES[STATUS 1 ALREADY ASSIGNED TO SP]-------------
     public function upcoming_services(Request $req, Response $res){
         $service = new Service();
         $user = new User();
         $userId = session('userId');
 
         // SERVICES COMING ACCORDING TO POSTAL CODE...
-        $where = "ServiceProviderId = {$userId} AND Status = 0";
+        $where = "ServiceProviderId = {$userId} AND Status = 1";
         $serviceData = $service->join('ServiceRequestId', 'ServiceRequestId', 'servicerequestaddress')->where($where)->read();
 
         function time_to_minutes($time){
@@ -114,14 +116,14 @@ class Dashboard{
         $res->status(200)->json($serviceData);
     }
 
-    // -------------SERVICE_HISTORY-------------
+    // -------------SERVICE_HISTORY(ALL STATUS )-------------
     public function service_history(Request $req, Response $res){
         $service = new Service();
         $user = new User();
         $userId = session('userId');
 
         // SERVICES COMING ACCORDING TO POSTAL CODE...
-        $where = "ServiceProviderId = {$userId} AND Status = 2";
+        $where = "ServiceProviderId = {$userId}";
         $serviceData = $service->join('ServiceRequestId', 'ServiceRequestId', 'servicerequestaddress')->where($where)->read();
 
         function time_to_minutes($time){
@@ -226,7 +228,7 @@ class Dashboard{
 
     }
 
-    // -------------SERVICE-PROVIDER'S CUSTOMER LIST...-------------
+    // -------------SERVICE-PROVIDER'S CUSTOMER LIST-------------
     public function my_customer(Request $req, Response $res){
         $service = new Service();
         $user = new User();
@@ -237,6 +239,7 @@ class Dashboard{
         $serviceData = $service->where($where)->read();
         
         // MODIFY DATA...
+        $customers = [];
         for($i=0; $i<count($serviceData); $i++){
             // ADD CUSTOMER DETAILS...
             $customerId = $serviceData[$i]->UserId;
@@ -244,8 +247,58 @@ class Dashboard{
             $serviceData[$i] = $customerData[0];
         }
 
-        $res->status(200)->json($serviceData);
+        // REMOVE REPEATED OBJECT FROM ARRAY...
+        $temp = array_unique(array_column($serviceData, 'UserId'));
+        $customers = array_values(array_intersect_key($serviceData, $temp));
+        $res->status(200)->json($customers);
 
     }    
+
+    // -------------ACCEPT-SERVICE-------------
+    public function accept_service(Request $req, Response $res){
+        $serviceId = $req->params->id;
+        // STATUS 1 MEANS ACCEPT BUT NOT COMPLETED..
+        $service = new Service();
+        $service->where('ServiceRequestId', '=', $serviceId)->update([
+            'ServiceProviderId' => session('userId'),
+            'SPAcceptedDate' => date('Y-m-d H:i:s'),
+            'Status' => 1,
+            'ModifiedDate' => date('Y-m-d H:i:s'),
+        ]);
+        $res->status(200)->json(['message'=>'Service Accepted Successfully.']);
+    }
+
+    // -------------COMPLETE-SERVICE-------------
+    public function complete_service(Request $req, Response $res){
+        $serviceId = $req->params->id;
+        // STATUS 2 MEANS COMPLETED SERVICE..
+        $service = new Service();
+        $service->where('ServiceRequestId', '=', $serviceId)->update([
+            'ServiceProviderId' => session('userId'),
+            'Status' => 2,
+            'ModifiedDate' => date('Y-m-d H:i:s'),
+        ]);
+        $res->status(200)->json(['message'=>'Service Completed Successfully.']);
+    }
+
+    
+    // -------------CANCEL-OR-REJECT-SERVICE-------------
+    public function reject_service(Request $req, Response $res){
+        $serviceId = $req->params->id;
+        // STATUS 3 MEANS CANCELED SERVICE..
+        $service = new Service();
+        $service->where('ServiceRequestId', '=', $serviceId)->update([
+            'ServiceProviderId' => session('userId'),
+            'SPAcceptedDate' => date('Y-m-d H:i:s'),
+            'Status' => 3,
+            'ModifiedDate' => date('Y-m-d H:i:s'),
+        ]);
+        $res->status(200)->json(['message'=>'Service Rejected Successfully.']);
+    }
+
+    // -------------BLOCK-CUSTOMER-------------
+    public function block_customer(Request $req, Response $res){
+
+    }
 
 }
