@@ -1,5 +1,4 @@
 <?php
-
 	function title(){
 		$title = 'Helperland';
 		switch(page_url()){
@@ -27,8 +26,11 @@
 			case '/guarantee' :
 				$title = 'Our Gurantee'; 
 				break;
-			case '/customer' :
-				$title = 'Customer'; 
+			case '/customer/dashboard' :
+				$title = 'Customer Dashboard'; 
+				break;
+			case '/service-provider/dashboard' :
+				$title = 'Service-Provider Dashboard'; 
 				break;
 		}
 		echo $title;

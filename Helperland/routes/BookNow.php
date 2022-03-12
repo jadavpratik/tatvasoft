@@ -7,7 +7,7 @@ use app\middleware\Auth;
 $isCustomer = [new Auth(), 'isCustomer'];
 
 // BOOKNOW CONTROLLERS...
-use app\controllers\bookNow\BookNow;
+use app\controllers\BookNow;
 
 // -------------SERVICE-BOOKING-ACTION-ROUTES--------------------
 Route::get('/get-customer-address', $isCustomer, [new BookNow(), 'get_address']);

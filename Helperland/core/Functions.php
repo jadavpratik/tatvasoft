@@ -13,7 +13,7 @@
 		}
 	}
 
-	// FOR ANCHOR TAG...
+	// FOR ANCHOR TAG... [CONCAT URL WITH BASE_URL]
 	function url($path){
 		$path = ltrim($path, '/');
 		$path = rtrim($path, '/');
@@ -24,7 +24,7 @@
 	function assets($path){
 		$path = ltrim($path, '/');
 		return BASE_URL.'/'.$path.'?'.time();
-		//APPEND TIME END OF FILE, BECAUSE FILE NOT REFLECTING AFTER CHANGING IT
+		//APPEND TIME END OF FILE, BECAUSE FILE NOT REFLECTING AFTER CHANGING IN IT
 	}
 
 	// RETURN COMPONENTS LIKE HEADER, FOOTER, MODELS ETC...
@@ -72,7 +72,7 @@
 	function cookie($key, $value=false, $time=false){
 		if($value!=false){
 			// 5 DAYS TIME...
-			if($tile==flase){
+			if($time==flase){
 				$time = time()+(60*60*24*5);
 			}
 			setcookie($key, $value, $time, '/', '', true, true);

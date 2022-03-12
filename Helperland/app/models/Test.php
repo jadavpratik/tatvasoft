@@ -5,6 +5,6 @@ namespace app\models;
 use core\Database;
 
 class Test extends Database{
-	protected $table = 'test';
+	protected $table = 'test_mvc';
 }
 

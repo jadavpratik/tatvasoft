@@ -1,6 +1,6 @@
 <?php
 
-namespace app\controllers\profile;
+namespace app\controllers;
 
 use core\Request;
 use core\Response;

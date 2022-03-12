@@ -3,7 +3,7 @@
 use core\Route;
 
 // CONTROLLERS...
-use app\controllers\pages\View;
+use app\controllers\View;
 
 // -----------LAST-METHOD-----------------
 Route::get('/*', [new View(), 'not_found_page']);

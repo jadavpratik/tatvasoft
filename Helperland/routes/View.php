@@ -10,7 +10,7 @@ $isCustomer = [new Auth(), 'isCustomer'];
 $isServiceProvider = [new Auth(), 'isServiceProvider'];
 
 // CONTROLLERS...
-use app\controllers\pages\View;
+use app\controllers\View;
 
 // ----------STATIC-PAGES----------
 Route::get('/', [new View(), 'home']);

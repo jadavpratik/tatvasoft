@@ -9,6 +9,7 @@ class Response{
 			extract($arr);
 
 		$view = ltrim($view, '/');
+		$view = rtrim($view, '/');
 		$view_path = __DIR__.'/../app/views/'.$view.'.php';
 
 		if(file_exists($view_path)){
@@ -33,17 +34,13 @@ class Response{
 	}
 
 	public function json($data){
-		// header('Access-Control-Allow-Origin:*');
-		// header('Access-Control-Allow-Credentials:true');
-		// header('Access-Control-Allow-Methods:GET, POST, PUT, PATCH, DELETE');
-		// header('Access-Control-Allow-Headers:*');
-		// header('Content-Type:application/json');		
 		echo json_encode($data, JSON_PRETTY_PRINT);
 		exit();
 	}
 
 	public function redirect($path){
 		$path = ltrim($path, '/');
+		$path = rtrim($path, '/');
 		$redirect_path = BASE_URL.'/'.$path;
 		header("location:{$redirect_path}");
 	}

@@ -1,6 +1,6 @@
 <?php
 
-namespace app\controllers\customer;
+namespace app\controllers;
 
 use core\Request;
 use core\Response;
@@ -12,7 +12,7 @@ use app\models\User;
 use app\models\Rating;
 use app\models\Favorite;
 
-class Dashboard{
+class CustomerDashboard{
 
     private $NEW_REQUEST       = 0;
     private $PENDING_REQUEST   = 1; // (ALSO ACCEPTED BY SP)

@@ -6,9 +6,9 @@ use app\middleware\Auth;
 $isLogged = [new Auth(), 'isLogged'];
 
 // PROFILE CONTROLLER...
-use app\controllers\profile\Account;
-use app\controllers\profile\MyDetails;
-use app\controllers\profile\MyAddress;
+use app\controllers\Account;
+use app\controllers\MyDetails;
+use app\controllers\MyAddress;
 
 // -----------MY-ACCOUNT---------------
 Route::post('/signup', [new Account(), 'signup']);

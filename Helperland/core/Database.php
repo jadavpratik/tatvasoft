@@ -8,14 +8,14 @@ use \Exception;
 use core\Response;
 
 class Database{
-    private $conn = null;    
+
+    private $conn    = null;    
+    private $res     = null;
+    private $query   = '';
+    private $columns = '*';
+    private $where   = '';
+    private $join    = '';
     protected $table = '';
-    private $query = '';
-    private $distinct = '';
-    private $columns = ' * ';
-    private $where = '';
-    private $joinString = '';
-    private $res = null;
 
     // -----------------CONNECT-------------------
     public function connect(){
@@ -48,19 +48,21 @@ class Database{
 
     // -----------------CREATE-------------------
     public function create($arr){
-        // SET THE KEYS AND VALUES INTO A STRING...
         $keys = '(';
         $values = '(';
         foreach($arr as $key => $value){
             // FOR AVOID XSS...
             $value = htmlspecialchars($value);
             $keys .= $key.', ';
-            if(is_integer($value))
-                $values .= "{$value} ,";
-            else if(is_string($value))
-                $values .= "'{$value}' ,";
-            else
+            if(is_integer($value) || !is_string($value)){
+                $values .= "{$value}, ";
+            }
+            else if(is_string($value)){
+                $values .= "'{$value}', ";
+            }
+            else{
                 $values .= "null, ";
+            }
         }
         $keys = rtrim($keys, ', ');
         $values = rtrim($values, ', ');
@@ -69,7 +71,8 @@ class Database{
         try{
             $this->query = "INSERT INTO {$this->table} {$keys} VALUES {$values}";
             if($this->conn->exec($this->query)){
-                return $this->conn->lastInsertId();
+                // RETURN INSERTED ID...
+                return $this->conn->lastInsertId();                
             }
             else{
                 return false;
@@ -84,17 +87,16 @@ class Database{
     // -----------------WHERE-------------------
     public function where($key, $operator=false, $value=false){
         if($operator!=false && $value!=false){
-            // IF WE PASS ALL THREE PARAMETERS...
-            if(is_integer($value)){
-                $this->where = 'WHERE '.$key.' '.$operator.' '.$value;
+            // IF WE PASS ALL THREE PARAMETERS... [KEY, OPERATOR, VALUE]
+            if(is_integer($value) || !is_string($value)){
+                $this->where = "WHERE {$key} {$operator} {$value}";
             }
             else if(is_string($value)){
-                $value = "'{$value}'";
-                $this->where = 'WHERE '.$key.' '.$operator.' '.$value;
+                $this->where = "WHERE {$key} {$operator} '{$value}' ";
             }
         }
         else{
-            // IF WE PASS STRING...
+            // FOR CUSTOM WHERE CONDITION...
             $this->where = 'WHERE '.$key;
         }
         return $this;
@@ -111,7 +113,7 @@ class Database{
             }
             else{
                 return false;
-            }    
+            }
         }
         catch(Exception $e){
             $this->res->status(500)->json(['message'=>$e->getMessage()]);
@@ -132,13 +134,18 @@ class Database{
         return $this;
     }
 
-    // -----------------CUSTOM_QUERY-------------------
+    // -----------------QUERY-------------------
     public function query($sql){
         try{
-            $result = $this->conn->query($sql);
-            $data = $result->fetchAll(PDO::FETCH_ASSOC);
-            return json_decode(json_encode($data));
-            // RETURN ARRAY OF AN OBJECT...
+            if(str_contains($sql, 'SELECT')){
+                $result = $this->conn->query($sql);
+                $data = $result->fetchAll(PDO::FETCH_ASSOC);
+                return json_decode(json_encode($data));
+                // RETURN ARRAY OF AN OBJECT...    
+            }
+            else{
+                return $this->conn->execute($sql);
+            }
         }
         catch(Exception $e){
             $this->res->status(500)->json(['message'=>$e->getMessage()]);
@@ -147,21 +154,15 @@ class Database{
     }
     
     // -----------------JOIN-------------------
-    public function join($pk, $fk, $joinTable){
-        $this->joinString = "INNER JOIN {$joinTable} ON {$this->table}.{$pk}={$joinTable}.{$fk}";
+    public function join($pk, $fk, $table){
+        $this->join = "INNER JOIN {$table} ON {$this->table}.{$pk}={$table}.{$fk}";
         return $this;
     }
-
-    // // -----------------DISTINCT-------------------
-    // public function distinct(){
-    //     $this->distinct = 'DISTINCT';
-    //     return $this;
-    // }
 
     // -----------------READ-------------------
     public function read(){
         try{
-            $this->query = "SELECT {$this->columns} FROM {$this->table} {$this->joinString} {$this->where}";
+            $this->query = "SELECT {$this->columns} FROM {$this->table} {$this->join} {$this->where}";
             $result = $this->conn->query($this->query);            
             $data = $result->fetchAll(PDO::FETCH_ASSOC);
             return json_decode(json_encode($data));
@@ -173,17 +174,15 @@ class Database{
         }
     }
 
-
     // -----------------UPDATE-------------------
     public function update($arr){
-        // SET THE KEYS AND VALUES INTO A STRING...
         $updateString = '';
         foreach($arr as $key => $value){
-            if(is_integer($value)){
-                $updateString .= $key." = {$value}, ";
+            if(is_integer($value) || !is_string($value)){
+                $updateString .= "{$key} = {$value}, ";
             }
             else if(is_string($value)){
-                $updateString .= $key." = '{$value}', ";
+                $updateString .= "{$key} = '{$value}', ";
             }
         }
         $updateString = rtrim($updateString, ', ');

@@ -38,13 +38,13 @@
 				$home_header_id = 'home_navbar';
 				$home_header_style = 'background-color:transparent;height:130px';
 				$home_header_logo_style = 'width:175px; height:130px;';
-				$home_focus_btn = 'transparent';			
+				$home_focus_btn = 'transparent';
 				break;
 			case '/service-provider/signup':
 				$home_header_id = 'home_navbar';
 				$home_header_style = 'background-color:transparent;height:130px';
 				$home_header_logo_style = 'width:175px; height:130px;';
-				$home_focus_btn = 'transparent';			
+				$home_focus_btn = 'transparent';
 				break;			
 			case '/prices':
 				$active_link['prices'] = 'navbar_focus_btn transparent';
@@ -152,10 +152,10 @@
 	<?= component('popup/rating-sp'); ?>
 	<?= component('popup/accept-service'); ?>
 
-<!-- **********DROPDOWN-TO-DASHBOARD********** -->
-<script>
-	function go_to_dashboard(){
-		const userRole = `<?= session('userRoleName'); ?>`;
-		window.location.replace(`${BASE_URL}/${userRole}/dashboard`);
-	}
-</script>
+	<!-- **********DROPDOWN-TO-DASHBOARD********** -->
+	<script>
+		function go_to_dashboard(){
+			const userRole = `<?= session('userRoleName'); ?>`;
+			window.location.replace(`${BASE_URL}/${userRole}/dashboard`);
+		}
+	</script>

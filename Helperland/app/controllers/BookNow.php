@@ -1,6 +1,6 @@
 <?php
 
-namespace app\controllers\bookNow;
+namespace app\controllers;
 
 use core\Request;
 use core\Response;

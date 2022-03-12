@@ -5,7 +5,7 @@ use core\Route;
 use app\middleware\Auth;
 $isCustomer = [new Auth(), 'isCustomer'];
 
-use app\controllers\customer\Dashboard as CustomerDashboard;
+use app\controllers\CustomerDashboard;
 
 Route::get('/customer-current-services', $isCustomer, [new CustomerDashboard(), 'current_services']);
 Route::get('/customer-service-history', $isCustomer, [new CustomerDashboard(), 'service_history']);

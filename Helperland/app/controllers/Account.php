@@ -1,6 +1,6 @@
 <?php    
 
-namespace app\controllers\profile;
+namespace app\controllers;
 
 use core\Request;
 use core\Response;
@@ -98,7 +98,7 @@ class Account{
 			$userPassword = $result[0]->Password;
 			$userName = $result[0]->FirstName.' '.$result[0]->LastName;
 
-			if(cookie('LOGIN_ATTEMPT')<5){
+			if(cookie('loginAttempts')<5){
 				if(Hash::verify($password, $userPassword)){
 					session('isLogged', true);
 					session('userId', $userId);
@@ -108,9 +108,9 @@ class Account{
 					$res->status(200)->json(['role'=>$userRole, 'message'=>"Login Successfully."]);
 				}
 				else{
-					$ATTEMPTS =  (int)cookie('LOGIN_ATTEMPT') + 1;
-					// SET SESSION FOR 30 MINUTES...
-					setcookie('LOGIN_ATTEMPT', $ATTEMPTS, time()+1800);
+					$attempts =  cookie('loginAttempts') + 1;
+					// SET COOKIE FOR 30 MINUTES...
+					cookie('loginAttempts', $attempts, time()+1800);
 					$res->status(401)->json(['message'=>"Password is Not Matched."]);
 				}	
 			}

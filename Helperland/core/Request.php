@@ -1,5 +1,11 @@
 <?php
 
+// header('Access-Control-Allow-Origin:*');
+// header('Access-Control-Allow-Credentials:true');
+// header('Access-Control-Allow-Methods:GET, POST, PUT, PATCH, DELETE');
+// header('Access-Control-Allow-Headers:*');
+// header('Content-Type:application/json');		
+
 namespace core;
 
 class Request{
@@ -37,7 +43,9 @@ class Request{
 	public function setParams($params){
 		[$key, $value] = $params;
 		if(count($key)==count($value)){
-			// PARAMS KEY IS FIXED SO LOOP IS RUNNING ACCORDING TO THAT...
+			// PARAMS-VALUE NOT FIXED [HOW MANY COMES FROM URL]
+			// PARAMS-KEY IS FIXED [FIXED KEY COMES FROM ROUTE FUNCTIONS]
+			// SO LOOP IS RUNNING ACCORDING TO PARAMS-KEY...
 			for($i=1; $i<count($key); $i++){
 				if(str_contains($key[$i], ':')){
 					$param_key = ltrim($key[$i],':');

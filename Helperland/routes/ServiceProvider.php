@@ -4,7 +4,7 @@ use core\Route;
 use app\middleware\Auth;
 $isServiceProvider = [new Auth(), 'isServiceProvider'];
 
-use app\controllers\serviceProvider\Dashboard as ServiceProviderDashboard;
+use app\controllers\ServiceProviderDashboard;
 
 Route::get('/sp-new-services', $isServiceProvider, [new ServiceProviderDashboard(), 'new_services']);
 Route::get('/sp-upcoming-services', $isServiceProvider, [new ServiceProviderDashboard(), 'upcoming_services']);

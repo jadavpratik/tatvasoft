@@ -1,6 +1,6 @@
 <?php
 
-namespace app\controllers\serviceProvider;
+namespace app\controllers;
 
 use core\Request;
 use core\Response;
@@ -10,7 +10,7 @@ use app\models\User;
 use app\models\ExtraService;
 use app\models\Favorite;
 
-class Dashboard{
+class ServiceProviderDashboard{
 
     // -------------NEW-SERVICES [STATUS 0 & SP ZIPCODE]-------------
     public function new_services(Request $req, Response $res){
