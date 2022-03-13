@@ -59,7 +59,7 @@
                         if(row.ServiceProvider!==undefined){
                             if(row.Rating!==undefined){
                                 return `<div class="service_provider">
-                                        <img class="hat_style" src="${BASE_URL}/assets/avatar/${row.ServiceProvider.UserProfilePicture}.png" alt="">
+                                        <img class="hat_style" src="${BASE_URL}/assets/img/avatar/${row.ServiceProvider.UserProfilePicture}.png" alt="">
                                         <div>
                                             <p>${row.ServiceProvider.FirstName} ${row.ServiceProvider.LastName}</p>    
                                             <div>
@@ -75,7 +75,7 @@
                             }
                             else{
                                 return `<div class="service_provider">
-                                        <img class="hat_style" src="${BASE_URL}/${row.ServiceProvider.UserProfilePicture}" alt="">
+                                        <img class="hat_style" src="${BASE_URL}/assets/img/avatar/${row.ServiceProvider.UserProfilePicture}.png" alt="">
                                         <div>
                                             <p>${row.ServiceProvider.FirstName} ${row.ServiceProvider.LastName}</p>    
                                             <div>

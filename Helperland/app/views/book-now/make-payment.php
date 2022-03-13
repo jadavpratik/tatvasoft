@@ -12,7 +12,7 @@
     <div class="label_input">
         <div>
             <input type="text" placeholder="XXXX-XXXX-XXXX-XXXX" value="1111-1111-1111-1111" readonly>
-            <input type="text" placeholder="MM/YY" value="11/24" readonly>	
+            <input type="text" placeholder="MM/YY" value="11/24" readonly>
             <input type="text" placeholder="CVV/CVC" value="123" readonly>
         </div>
         <div>

@@ -136,27 +136,25 @@
         }
 
         if(validation){
+
             // STORE SCHEDULE PLAN DATA
             let extra_services = $('[name="extra_services"]:checked');
             let extra = [];
             extra_services.filter((i, element) => {
                 extra.push(element.value);
             });
-            let extra_time = 0;
-            if(extra.length!==0){
-                extra_time = extra.length*30; // IN MINUTES...
-                extra_time = extra_time/60;
-            }
 
-            service_request.extra_time = extra_time;
-            service_request.extra = extra;
-            service_request.date = $('[name="schedule_date"]').val();
-            service_request.time = $('[name="schedule_time"]').val(); // [INCOMING INPUT TIME IN 24HRS]...
+            service_request.extra    = extra;
+            service_request.extra_time = extra.length!==0 ? (extra.length*30)/60 : 0;
+            service_request.date     = $('[name="schedule_date"]').val();
+            service_request.time     = $('[name="schedule_time"]').val(); // [INCOMING INPUT TIME IN 24HRS]...
             service_request.duration = parseInt($('[name="duration"]').val());
             service_request.comments = $('[name="comments"]').val();
             service_request.has_pets = Boolean($('[name="has_pets"]:checked').val());
+
             update_payment_summary();
             change_book_service_tabs(2);
+
         }
         else{
             // SCROLL-UP PAGE WHEN ERROR COMES...
@@ -166,3 +164,9 @@
     });
 </script>
 
+<!-- **********ON INPUT CHANGE UPDATE PAYMENT SUMMARY********** -->
+<script>
+    // $(document).ready(()=>{
+    //     update_payment_summary();
+    // });
+</script>

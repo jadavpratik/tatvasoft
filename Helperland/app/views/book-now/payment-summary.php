@@ -2,7 +2,7 @@
     <p>Payment Summary</p>
     <div>
         <div>
-            <p><span id="service_date">00/00/0000</span>&nbsp;&nbsp;<span id="service_time">00:00</span>&nbsp;&nbsp;(Time in 24hr format)</p>
+            <p><span id="service_date">00/00/0000</span>&nbsp;&nbsp;<span id="service_time">00:00</span>&nbsp;&nbsp;</p>
             <!-- NOT INCLUDED IN SRS... -->
             <!-- <p><span>1 bed</span> <span>1 bath</span></p>	 -->
         </div>
@@ -64,25 +64,27 @@
         let serviceYear = serviceDateObj.getFullYear();
         let serviceMonth = serviceDateObj.getMonth()+1;
         let serviceDate = serviceDateObj.getDate();
-        if(serviceMonth<10){
-            serviceMonth = `0${serviceMonth}`;
-        }
-        if(serviceDate<10){
-            serviceDate = `0${serviceDate}`;
-        }
+        serviceMonth = serviceMonth < 10 ? `0${serviceMonth}` : serviceMonth;
+        serviceDate  = serviceDate < 10 ? `0${serviceDate}` : serviceDate;
+        service_request.date = `${serviceDate}/${serviceMonth}/${serviceYear}`;
+        //  TOTAL PRICES = BASIC PRICE(3 SERVICE) + EXTRA SERVICE(DYNAMICS);
+        service_request.total_price = service_request.per_price*3 + (service_request.per_price/2)*service_request.extra.length;
 
-        $('#service_date').html(`${serviceDate}/${serviceMonth}/${serviceYear}`);
-        $('#service_time').html(`${service_request.time}`);
+        $('#service_date').html(service_request.date);
+        $('#service_time').html(service_request.time);
         $('#service_duration').html(`${service_request.duration} Hours`);
         $('#service_total_time').html(`${service_request.duration + service_request.extra_time} Hours`);
         $('#service_extra_container').html(extra_services_html());
         $('#service_per_price').html(`₹${service_request.per_price}`);
-        //  TOTAL PRICES = BASIC PRICE(3 SERVICE) + EXTRA SERVICE(DYNAMICS);
-        service_request.total_price = service_request.per_price*3 + (service_request.per_price/2)*service_request.extra.length;
         $('#service_total_price').html(`₹${service_request.total_price}`);
 
         // EXTRA SERVICES HTML...
         function extra_services_html(){
+            // 1 => 'Cabinet'
+            // 2 => 'Fridge'
+            // 3 => 'Oven'
+            // 4 => 'Laundry'
+            // 5 => 'Window'
             let extra_services = ``;
             for(let i=0; i<service_request.extra.length; i++){
                 if(service_request.extra[i] == 1)
@@ -99,12 +101,6 @@
             return extra_services;
         }
     }
-
-    // 1 => 'Cabinet'
-    // 2 => 'Fridge'
-    // 3 => 'Oven'
-    // 4 => 'Laundry'
-    // 5 => 'Window'
 
 </script>
 

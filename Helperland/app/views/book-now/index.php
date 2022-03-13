@@ -2,20 +2,26 @@
 
 <!-- **********BOOK-SERVICE-SCRIPTS********** -->
 <script>
+    function currentTime(){
+        let dateObj = new Date();
+        let hours   = dateObj.getHours();
+        let minutes = dateObj.getMinutes();
+        return `${hours}:${minutes}`;
+    }
     // FOR STORING A DATA AS GLOBALLY...
     let service_request = {
-        postal_code : null,
-        date : '00/00/0000',
-        time : '00:00',
-        duration : 0,
-        comments : null,
-        has_pets : false,
-        extra : [],
-        extra_time : 0,
-        sp_id : null,
-        per_price : 70,
-        total_price : 0,
-        address : {},
+        postal_code : '',
+        date        : new Date(),
+        time        : currentTime(),
+        duration    : 3,  // BASIC 3 HOURS...
+        comments    : '',
+        has_pets    : false,
+        extra       : [],
+        extra_time  : 0,  // 
+        sp_id       : null,
+        per_price   : 70, // PER CLEANING 70Rs.
+        total_price : 0,  // TOTAL PRICES CONVERTED IN UPDATE_PAYMENT_SUMMARY FUNCTION...
+        address     : {},
     };
     let user_address = {};
 </script>

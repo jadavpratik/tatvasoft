@@ -12,8 +12,9 @@ Route::get('/sp-service-history', $isServiceProvider, [new ServiceProviderDashbo
 Route::get('/sp-my-rating', $isServiceProvider, [new ServiceProviderDashboard(), 'my_rating']);
 Route::get('/sp-my-customer', $isServiceProvider, [new ServiceProviderDashboard(), 'my_customer']);
 
-Route::patch('/accept-service/:id', $isServiceProvider, [new ServiceProviderDashboard(), 'accept_service']);
-Route::patch('/reject-service/:id', $isServiceProvider, [new ServiceProviderDashboard(), 'reject_service']);
-Route::patch('/complete-service/:id', $isServiceProvider, [new ServiceProviderDashboard(), 'complete_service']);
-Route::patch('/block-customer/:id', $isServiceProvider, [new ServiceProviderDashboard(), 'block_customer']);
-Route::patch('/unblock-customer/:id', $isServiceProvider, [new ServiceProviderDashboard(), 'unblock_customer']);
+Route::patch('/accept-service/:id', $isServiceProvider, [new ServiceProviderDashboard(), 'accept_service']);     // id = serviceId
+Route::patch('/reject-service/:id', $isServiceProvider, [new ServiceProviderDashboard(), 'reject_service']);     // id = serviceId
+Route::patch('/complete-service/:id', $isServiceProvider, [new ServiceProviderDashboard(), 'complete_service']); // id = serviceId
+
+Route::patch('/block-customer/:id', $isServiceProvider, [new ServiceProviderDashboard(), 'block_customer']);     // id = customerId
+Route::patch('/unblock-customer/:id', $isServiceProvider, [new ServiceProviderDashboard(), 'unblock_customer']); // id = customerId

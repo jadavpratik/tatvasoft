@@ -32,11 +32,9 @@
                     if(res!=="" && res!==undefined){
                         try{
                             const result = JSON.parse(res);
-                            if(result.message!=""){
-                                // STORE POSTAL CODE...
-                                service_request.postal_code = parseInt(postal_code);
-                                change_book_service_tabs(1);
-                            }
+                            // STORE POSTAL CODE...
+                            service_request.postal_code = parseInt(postal_code);
+                            change_book_service_tabs(1);
                         }
                         catch(e){
                             Swal.fire({

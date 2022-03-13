@@ -178,11 +178,11 @@
         if(validation){
 
             const json = JSON.stringify({
-                street_name : $('[name="address_form_street_name"]').val(),
+                street_name  : $('[name="address_form_street_name"]').val(),
                 house_number : $('[name="address_form_house_number"]').val(),
-                postal_code : $('[name="address_form_postal_code"]').val(),
-                city : $('[name="address_form_city"]').val(),
-                phone : $('[name="address_form_phone"]').val(),
+                postal_code  : $('[name="address_form_postal_code"]').val(),
+                city         : $('[name="address_form_city"]').val(),
+                phone        : $('[name="address_form_phone"]').val(),
             });
 
             $.ajax({

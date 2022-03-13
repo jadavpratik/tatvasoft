@@ -6,7 +6,7 @@
 <script>
     function load_customer_favorite_section_data(){
         $.ajax({
-            url : `${BASE_URL}/customer-my-service-provider`,
+            url : `${BASE_URL}/customer-my-sp`,
             method : 'GET',
             success : function(res){
                 if(res!=="" && res!==undefined){
