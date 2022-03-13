@@ -66,14 +66,13 @@
         let serviceDate = serviceDateObj.getDate();
         serviceMonth = serviceMonth < 10 ? `0${serviceMonth}` : serviceMonth;
         serviceDate  = serviceDate < 10 ? `0${serviceDate}` : serviceDate;
-        service_request.date = `${serviceDate}/${serviceMonth}/${serviceYear}`;
         //  TOTAL PRICES = BASIC PRICE(3 SERVICE) + EXTRA SERVICE(DYNAMICS);
         service_request.total_price = service_request.per_price*3 + (service_request.per_price/2)*service_request.extra.length;
 
-        $('#service_date').html(service_request.date);
+        $('#service_date').html(`${serviceDate}/${serviceMonth}/${serviceYear}`);
         $('#service_time').html(service_request.time);
         $('#service_duration').html(`${service_request.duration} Hours`);
-        $('#service_total_time').html(`${service_request.duration + service_request.extra_time} Hours`);
+        $('#service_total_time').html(`${parseInt(service_request.duration) + parseInt(service_request.extra_time)} Hours`);
         $('#service_extra_container').html(extra_services_html());
         $('#service_per_price').html(`₹${service_request.per_price}`);
         $('#service_total_price').html(`₹${service_request.total_price}`);

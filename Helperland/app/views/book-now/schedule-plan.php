@@ -164,9 +164,33 @@
     });
 </script>
 
-<!-- **********ON INPUT CHANGE UPDATE PAYMENT SUMMARY********** -->
+<!-- **********ON CHANGE UPDATE PAYMENT SUMMARY********** -->
 <script>
-    // $(document).ready(()=>{
-    //     update_payment_summary();
-    // });
+    // ON DATE CHANGE UPDATE PAYMENT SUMMARY...
+    $('[name="schedule_date"]').change(function(){
+        service_request.date = $('[name="schedule_date"]').val();
+        update_payment_summary();
+    });
+
+    $('[name="schedule_time"]').change(function(){
+        service_request.time = $('[name="schedule_time"]').val();
+        update_payment_summary();
+    });
+
+    $('[name="duration"]').change(function(){
+        service_request.duration = $('[name="duration"]').val();
+        update_payment_summary();
+    });
+
+    $('[name="extra_services"]').change(function(){
+        let extra_services = $('[name="extra_services"]:checked');
+        let extra = [];
+        extra_services.filter((i, element) => {
+            extra.push(element.value);
+        });
+        service_request.extra    = extra;
+        service_request.extra_time = extra.length!==0 ? (extra.length*30)/60 : 0;
+        update_payment_summary();
+    });
+
 </script>
