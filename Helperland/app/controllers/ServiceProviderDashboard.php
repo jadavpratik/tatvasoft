@@ -21,54 +21,59 @@ class ServiceProviderDashboard{
         // GET SP POSTAL CODE...
         $spData = $user->where('UserId', '=', $userId)->read();
         $zipCode = $spData[0]->ZipCode;
+        if($spData[0]->ZipCode!=null){
+            // SERVICES COMING ACCORDING TO POSTAL CODE...
+            $where = "ZipCode = {$zipCode} AND Status = 0";
+            $serviceData = $service->join('ServiceRequestId', 'ServiceRequestId', 'servicerequestaddress')->where($where)->read();
 
-        // SERVICES COMING ACCORDING TO POSTAL CODE...
-        $where = "ZipCode = {$zipCode} AND Status=0";
-        $serviceData = $service->join('ServiceRequestId', 'ServiceRequestId', 'servicerequestaddress')->where($where)->read();
-
-        function time_to_minutes($time){
-            $temp = explode(':', $time);
-            $hours = (int) $temp[0];
-            $minutes = (int) $temp[1];
-            $totalMinutes = $hours*60 + $minutes;
-            return $totalMinutes;
-        }
-
-        // MODIFY SERVICE DATA...
-        for($i=0; $i<count($serviceData); $i++){
-            // TOTAL COST
-            $serviceData[$i]->TotalCost = (int) $serviceData[$i]->TotalCost;
-            // DATE IN DD/MM/YYYY FORMAT
-            $serviceData[$i]->ServiceDate = date('d/m/Y', strtotime($serviceData[$i]->ServiceStartDate));
-            // START TIME (24 HOUR FORMAT)
-            $serviceData[$i]->StartTime = date('H:i', strtotime($serviceData[$i]->ServiceStartDate));
-            // TOTAL TIME (IN INTEGER)
-            $serviceData[$i]->intDuration = $serviceData[$i]->ServiceHours + $serviceData[$i]->ExtraHours;
-            // TOTAL TIME ( IN HOURS)
-            $serviceData[$i]->Duration = date('H:i', mktime(0, $serviceData[$i]->intDuration*60));
-            // END TIME (24 HOUR FORMAT)
-            $serviceData[$i]->EndTime = date('H:i', mktime(0, time_to_minutes($serviceData[$i]->StartTime) + time_to_minutes($serviceData[$i]->Duration)));
-            
-            // CHECK IS SERVICE EXPIRE...
-            $serviceDate = strtotime($serviceData[$i]->ServiceStartDate);
-            $todayDate = strtotime(date('Y-m-d H:i:s'));
-            $serviceData[$i]->IsExpired = $serviceDate < $todayDate ? 1 : 0;
-
-            // ADD CUSTOMER DETAILS...
-            $customerId = $serviceData[$i]->UserId;
-            $customerData = $user->columns(['FirstName', 'LastName'])->where('UserId', '=', $customerId)->read();
-            $serviceData[$i]->CustomerName = $customerData[0]->FirstName.' '.$customerData[0]->LastName;
-
-            // EXTRA SERVICE DETAILS...
-            $extra = new ExtraService();
-            $temp = $extra->where('ServiceRequestId', '=', $serviceData[$i]->ServiceRequestId)->read();
-            for($j=0; $j<count($temp); $j++){
-                $serviceData[$i]->ExtraService[] = $temp[$j]->ServiceExtraId;
+            function time_to_minutes($time){
+                $temp = explode(':', $time);
+                $hours = (int) $temp[0];
+                $minutes = (int) $temp[1];
+                $totalMinutes = $hours*60 + $minutes;
+                return $totalMinutes;
             }
-                        
-        }
 
-        $res->status(200)->json($serviceData);
+            // MODIFY SERVICE DATA...
+            for($i=0; $i<count($serviceData); $i++){
+                // TOTAL COST
+                $serviceData[$i]->TotalCost = (int) $serviceData[$i]->TotalCost;
+                // DATE IN DD/MM/YYYY FORMAT
+                $serviceData[$i]->ServiceDate = date('d/m/Y', strtotime($serviceData[$i]->ServiceStartDate));
+                // START TIME (24 HOUR FORMAT)
+                $serviceData[$i]->StartTime = date('H:i', strtotime($serviceData[$i]->ServiceStartDate));
+                // TOTAL TIME (IN INTEGER)
+                $serviceData[$i]->intDuration = $serviceData[$i]->ServiceHours + $serviceData[$i]->ExtraHours;
+                // TOTAL TIME ( IN HOURS)
+                $serviceData[$i]->Duration = date('H:i', mktime(0, $serviceData[$i]->intDuration*60));
+                // END TIME (24 HOUR FORMAT)
+                $serviceData[$i]->EndTime = date('H:i', mktime(0, time_to_minutes($serviceData[$i]->StartTime) + time_to_minutes($serviceData[$i]->Duration)));
+                
+                // CHECK IS SERVICE EXPIRE...
+                $serviceDate = strtotime($serviceData[$i]->ServiceStartDate);
+                $todayDate = strtotime(date('Y-m-d H:i:s'));
+                $serviceData[$i]->IsExpired = $serviceDate < $todayDate ? 1 : 0;
+
+                // ADD CUSTOMER DETAILS...
+                $customerId = $serviceData[$i]->UserId;
+                $customerData = $user->columns(['FirstName', 'LastName'])->where('UserId', '=', $customerId)->read();
+                $serviceData[$i]->CustomerName = $customerData[0]->FirstName.' '.$customerData[0]->LastName;
+
+                // EXTRA SERVICE DETAILS...
+                $extra = new ExtraService();
+                $temp = $extra->where('ServiceRequestId', '=', $serviceData[$i]->ServiceRequestId)->read();
+                for($j=0; $j<count($temp); $j++){
+                    $serviceData[$i]->ExtraService[] = $temp[$j]->ServiceExtraId;
+                }
+                            
+            }
+            $res->status(200)->json($serviceData);            
+        }
+        else{
+            // NOT TO SET 400 STATUS OTHERWISE DATATABLE GIVE AN ERROR...
+            // SO SIMPLY PASS EMPTY ERROR...
+            $res->status(200)->json([]);
+        }
     }
 
     // -------------UPCOMING-SERVICES[STATUS 1 ALREADY ASSIGNED TO SP]-------------
