@@ -18,14 +18,12 @@ require_once __DIR__."/Contact.php";
 require_once __DIR__."/Customer.php";
 require_once __DIR__."/ServiceProvider.php";
 require_once __DIR__."/View.php";
-// require_once __DIR__."/NotFound.php";
+require_once __DIR__."/NotFound.php";
 
 use core\Route;
-use app\models\Test;
 use core\Database;
 
 Route::get('/test-route', function($req, $res){
-
 });
 
 

@@ -46,7 +46,7 @@
             columns :[
                 {
                     mRender : function(data, type, row){
-                        return`<p class="service_id">${row.ServiceRequestId}</p>`;
+                        return`<p class="service_id" onclick="show_service_details(${row.ServiceRequestId})">${row.ServiceRequestId}</p>`;
                     },
                 },
                 {
@@ -77,7 +77,7 @@
                 {
                     mRender : function(data, type, row){
                         // €
-                        return `<p class="payment_text">₹<span>${row.TotalCost}</span></p>`;
+                        return `<p class="payment_text" onclick="show_service_details(${row.ServiceRequestId})">₹<span>${row.TotalCost}</span></p>`;
                     }
                 },
                 // {

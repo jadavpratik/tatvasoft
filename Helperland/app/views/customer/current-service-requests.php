@@ -42,7 +42,7 @@
                 },
                 {
                     mRender : function(data, type, row){
-                        return` <div class="service_date" onclick="show_service_details(${row.ServiceRequestId});">
+                        return` <div class="service_date">
                                     <div>
                                         <img src="<?= assets('assets/img/table/calendar.png'); ?>" alt="">
                                         <p>${row.ServiceDate}</p>

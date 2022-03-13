@@ -254,7 +254,6 @@ class ServiceProviderDashboard{
         $user = new User();
         $userId = session('userId');
 
-        // SERVICES COMING ACCORDING TO POSTAL CODE...
         $where = "ServiceProviderId = {$userId} AND Status = 2";
         $serviceData = $service->where($where)->read();
         
@@ -267,7 +266,8 @@ class ServiceProviderDashboard{
 
             // ADD FAVORITE AND BLOCKED DATA...
             $fav = new Favorite();
-            $favData = $fav->where('TargetUserId', '=', $customerId)->read();
+            $where = "UserId = {$userId} AND TargetUserId = {$customerId}";
+            $favData = $fav->where($where)->read();
             if(isset($favData[0])){
                 $customerData[0]->IsFavorite = $favData[0]->IsFavorite;
                 $customerData[0]->IsBlocked = $favData[0]->IsBlocked;
@@ -275,7 +275,6 @@ class ServiceProviderDashboard{
             $serviceData[$i] = $customerData[0];
 
         }
-
         // REMOVE REPEATED OBJECT FROM ARRAY...
         $temp = array_unique(array_column($serviceData, 'UserId'));
         $customers = array_values(array_intersect_key($serviceData, $temp));

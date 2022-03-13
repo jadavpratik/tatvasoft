@@ -24,7 +24,7 @@
         <div class="table_tab_right">
 
             <!-- PROFILE -->
-            <div class="table_tab_content d_none">
+            <div class="table_tab_content">
                 <?= component('service-provider/', 'profile'); ?>
             </div>
 
@@ -55,7 +55,7 @@
             </div>
 
             <!-- BLOCK CUSTOMER -->
-            <div class="table_tab_content">
+            <div class="table_tab_content d_none">
                 <?= component('service-provider/', 'block-customer'); ?>
             </div>
 
@@ -154,10 +154,10 @@
             <div>
                 <p>Conmments : <span>${data.Comments? data.Comments:''}</span></p>
             </div>
-            <div class="table_btn_container">
+            <!--<div class="table_btn_container">
                 <button class="reschedule_btn" onclick="reschedule_service(${data.ServiceRequestId});"><i class="fas fa-redo-alt"></i> Reschdule</button>
                 <button class="cancel_btn" onclick="cancel_service(${data.ServiceRequestId});"><i class="fas fa-times"></i> Cancel</button>
-            </div>`
+            </div>-->`
         );
 
         open_model('service_details');

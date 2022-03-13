@@ -34,7 +34,7 @@
             columns :[
                 {
                     mRender : function(data, type, row){
-                        return`<p class="service_id">${row.ServiceRequestId}</p>`;
+                        return`<p class="service_id" onclick="show_service_details(${row.ServiceRequestId})">${row.ServiceRequestId}</p>`;
                     },
                 },
                 {
