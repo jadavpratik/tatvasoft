@@ -5,12 +5,14 @@ namespace app\controllers;
 use core\Request;
 use core\Response;
 use core\Validation;
+use core\Database;
 
 use app\models\UserAddress;
 use app\models\User;
 use app\models\Service;
 use app\models\ServiceAddress;
 use app\models\ExtraService;
+use app\models\Favorite;
 
 class BookNow{
 
@@ -68,16 +70,16 @@ class BookNow{
     public function book_service(Request $req, Response $res){
 
         Validation::check($req->body, [
-            'postal_code' => ['required','postal-code'],
+            'postal_code' => ['postal-code'],
             'date' => ['required'],
             'time' => ['required'],
-            'duration' => ['required', 'number'],
-            'extra' => ['optional', 'array'],
+            'duration' => ['number'],
+            'extra' => ['optional'],
             'extra_time' => ['optional'],
             'comments' => ['optional'],
             'has_pets' => ['optional'],
-            'sp_id' => ['optional', 'number'],
-            'address' => ['required', 'object'],
+            'sp_id' => ['optional'],
+            'address' => ['object'],
         ]);
 
         // INITIALIZE REQUIRED VARIABLE...
@@ -93,10 +95,17 @@ class BookNow{
         $extra_time = isset($req->body->extra_time)? $req->body->extra_time : null;
         $comments = isset($req->body->comments)? $req->body->comments : null;
         $has_pets = (isset($req->body->has_pets) && $req->body->has_pets==true)? 1 : null;
-        $sp_id = isset($req->body->sp_id)? $req->body->sp_id : null;
+        $sp_id = null;
+        if(isset($req->body->sp_id)){
+            if($req->body->sp_id!=null && $req->body->sp_id!=''){
+                $sp_id = $req->body->sp_id;
+            }
+            else{
+                $sp_id = null;
+            }
+        }
         $hourly_rate = 70;
         $total_cost = $hourly_rate*3 + ($hourly_rate/2)*count($extra);
-
         // ADD SERVICE_REQUEST IN DATABASE TABLE...
         $serviceId = $service->create([
             'UserId' => $user_id,
@@ -139,8 +148,36 @@ class BookNow{
             }    
         }
         // SERVICE POOL [SEND MAIL TO ALL SP ACCORDING TO POSTAL CODE]
-        // DIRECT ASSIGNMENT OF USER...
+        // DIRECT ASSIGNMENT OF USER BY SP ID...
         $res->status(201)->json(['message'=>'Service Book Successfully.', 'id'=>$serviceId]);
+    }
+
+    // GET FAVORITE SP...
+    public function get_favorite_sp(Request $req, Response $res){
+        $customerId = session('userId');
+        $db = new Database();
+        $sql = "SELECT u.* FROM user as u
+                INNER JOIN favoriteandblocked as f 
+                ON u.UserId = f.TargetUserId 
+                WHERE f.UserId = {$customerId} AND f.IsFavorite=1";
+        $data = $db->query($sql);
+        $data = array_filter($data, function($i){
+            unset($i->Password);
+            return $i;
+        });
+        $res->status(200)->json($data);
+        // $favorite = new Favorite();
+        // $user = new User();
+        // $data = $favorite->where('UserId', '=', $customerId)->read();
+        // $favoriteSP = [];
+        // for($i=0; $i<count($data); $i++){
+        //     if($data[$i]->IsFavorite==1){
+        //         $spId = $data[$i]->TargetUserId;
+        //         $spData = $user->where('UserId', '=', $spId)->read();
+        //         $favoriteSP[] = $spData[0];
+        //     }
+        // }
+        // $res->status(200)->json($favoriteSP);
     }
 
 }

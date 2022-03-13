@@ -56,6 +56,13 @@
                 }
             });
         }
+    });    
+</script>
+
+<script>
+    // ON CHANGE POSTAL CODE STORE IN SERVICE REQUEST OBJECT...
+    $('[name="setup_service_postal_code"]').focusout(function(){
+        const postal_code = $('[name="setup_service_postal_code"]').val();
+        service_request.postal_code = parseInt(postal_code);
     });
-    
 </script>

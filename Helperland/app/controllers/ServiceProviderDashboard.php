@@ -283,13 +283,19 @@ class ServiceProviderDashboard{
         $serviceId = $req->params->id;
         // STATUS 1 MEANS ACCEPT BUT NOT COMPLETED..
         $service = new Service();
-        $service->where('ServiceRequestId', '=', $serviceId)->update([
-            'ServiceProviderId' => session('userId'),
-            'SPAcceptedDate' => date('Y-m-d H:i:s'),
-            'Status' => 1,
-            'ModifiedDate' => date('Y-m-d H:i:s'),
-        ]);
-        $res->status(200)->json(['message'=>'Service Accepted Successfully.']);
+        $where = "Status = 1 AND ServiceRequestId = {$serviceId}";
+        if(!$service->where($where)->exists()){
+            $service->where('ServiceRequestId', '=', $serviceId)->update([
+                'ServiceProviderId' => session('userId'),
+                'SPAcceptedDate' => date('Y-m-d H:i:s'),
+                'Status' => 1,
+                'ModifiedDate' => date('Y-m-d H:i:s'),
+            ]);
+            $res->status(200)->json(['message'=>'Service Accepted Successfully.']);    
+        }
+        else{
+            $res->status(400)->json(['message'=>'Service Already Assigned to Another Service Provider!']);
+        }
     }
 
     // -------------COMPLETE-SERVICE-------------

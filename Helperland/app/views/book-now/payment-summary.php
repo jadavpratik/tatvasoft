@@ -60,6 +60,7 @@
 <script>
 
     function update_payment_summary(){
+        console.log(service_request);
         let serviceDateObj = new Date(service_request.date);
         let serviceYear = serviceDateObj.getFullYear();
         let serviceMonth = serviceDateObj.getMonth()+1;

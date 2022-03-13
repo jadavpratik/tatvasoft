@@ -2,6 +2,7 @@
 
 <!-- **********BOOK-SERVICE-SCRIPTS********** -->
 <script>
+
     function currentTime(){
         let dateObj = new Date();
         let hours   = dateObj.getHours();
@@ -22,8 +23,8 @@
         per_price   : 70, // PER CLEANING 70Rs.
         total_price : 0,  // TOTAL PRICES CONVERTED IN UPDATE_PAYMENT_SUMMARY FUNCTION...
         address     : {},
+        all_address : [],
     };
-    let user_address = {};
 </script>
 
 
