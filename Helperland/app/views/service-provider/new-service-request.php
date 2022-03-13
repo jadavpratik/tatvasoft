@@ -91,7 +91,6 @@
                         if(row.IsExpired==1){
                             return `<div style="display:flex;">
                                     <button class="accept_btn" onclick="accept_service_open_model(${row.ServiceRequestId});">Accept</button>
-                                    <button class="accept_btn" onclick="complete_service(${row.ServiceRequestId});">Complete</button>
                                 </div>`;
 
                         }

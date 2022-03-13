@@ -154,10 +154,16 @@
             <div>
                 <p>Conmments : <span>${data.Comments? data.Comments:''}</span></p>
             </div>
-            <!--<div class="table_btn_container">
-                <button class="reschedule_btn" onclick="reschedule_service(${data.ServiceRequestId});"><i class="fas fa-redo-alt"></i> Reschdule</button>
-                <button class="cancel_btn" onclick="cancel_service(${data.ServiceRequestId});"><i class="fas fa-times"></i> Cancel</button>
-            </div>-->`
+            ${(function(){
+                // MEANS SERVICE IS EXPIRED AND STATUS IS PENDING (1)
+                if(data.IsExpired==1 && data.Status==1){
+                    return `<div class="table_btn_container">
+                                <button class="accept_btn" onclick="complete_service(${id});">Complete</button>
+                            </div>`;
+                }
+                return ``;
+            })()}
+            `
         );
 
         open_model('service_details');
