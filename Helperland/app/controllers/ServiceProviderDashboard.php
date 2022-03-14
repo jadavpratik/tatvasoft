@@ -7,24 +7,33 @@ use core\Response;
 
 use app\models\Service;
 use app\models\User;
+use app\models\UserAddress;
 use app\models\ExtraService;
 use app\models\Favorite;
 
 class ServiceProviderDashboard{
 
+    private $NEW_STATUS       = 0;
+    private $ASSIGNED_STATUS  = 1; // (ACCEPTED BY SP BUT NOT COMPLETED)
+    private $COMPLETED_STATUS = 2;
+    private $CANCELLED_STATUS = 3;
+    
     // -------------NEW-SERVICES [STATUS 0 & SP ZIPCODE]-------------
     public function new_services(Request $req, Response $res){
         $service = new Service();
-        $user = new User();
-        $userId = session('userId');
+        $userAddress = new UserAddress();
+        $serviceProviderId = session('userId');
 
         // GET SP POSTAL CODE...
-        $spData = $user->where('UserId', '=', $userId)->read();
-        $zipCode = $spData[0]->ZipCode;
-        if($spData[0]->ZipCode!=null){
+        $spData = $userAddress->where('UserId', '=', $serviceProviderId)->read();
+        $zipCode = $spData[0]->PostalCode;
+
+        // IF SP ZIPCODE AVAIABLE THEN ONLY SHOW THE ACCORDING DATA...
+        if($spData[0]->PostalCode!=null && $spData[0]->PostalCode!=""){
             // SERVICES COMING ACCORDING TO POSTAL CODE...
-            $where = "ZipCode = {$zipCode} AND Status = 0";
-            $serviceData = $service->join('ServiceRequestId', 'ServiceRequestId', 'servicerequestaddress')->where($where)->read();
+            $where = "ZipCode = {$zipCode} AND Status = {$this->NEW_STATUS}";
+            $serviceData = $service->join('ServiceRequestId', 'ServiceRequestId', 'servicerequestaddress')
+                                   ->where($where)->read();
 
             function time_to_minutes($time){
                 $temp = explode(':', $time);
@@ -36,42 +45,40 @@ class ServiceProviderDashboard{
 
             // MODIFY SERVICE DATA...
             for($i=0; $i<count($serviceData); $i++){
-                // TOTAL COST
-                $serviceData[$i]->TotalCost = (int) $serviceData[$i]->TotalCost;
-                // DATE IN DD/MM/YYYY FORMAT
+                $serviceData[$i]->TotalCost   = (int) $serviceData[$i]->TotalCost;
                 $serviceData[$i]->ServiceDate = date('d/m/Y', strtotime($serviceData[$i]->ServiceStartDate));
-                // START TIME (24 HOUR FORMAT)
-                $serviceData[$i]->StartTime = date('H:i', strtotime($serviceData[$i]->ServiceStartDate));
-                // TOTAL TIME (IN INTEGER)
-                $serviceData[$i]->intDuration = $serviceData[$i]->ServiceHours + $serviceData[$i]->ExtraHours;
-                // TOTAL TIME ( IN HOURS)
-                $serviceData[$i]->Duration = date('H:i', mktime(0, $serviceData[$i]->intDuration*60));
-                // END TIME (24 HOUR FORMAT)
-                $serviceData[$i]->EndTime = date('H:i', mktime(0, time_to_minutes($serviceData[$i]->StartTime) + time_to_minutes($serviceData[$i]->Duration)));
-                
-                // CHECK IS SERVICE EXPIRE...
+                $serviceData[$i]->StartTime   = date('H:i', strtotime($serviceData[$i]->ServiceStartDate));
+                $serviceData[$i]->Duration    = $serviceData[$i]->ServiceHours 
+                                                + $serviceData[$i]->ExtraHours;
+                $serviceData[$i]->Duration    = date('H:i', mktime(0, $serviceData[$i]->Duration*60));
+                $serviceData[$i]->EndTime     = time_to_minutes($serviceData[$i]->StartTime) 
+                                                + time_to_minutes($serviceData[$i]->Duration);
+                $serviceData[$i]->EndTime     = date('H:i', mktime(0, $serviceData[$i]->EndTime));
+
+                // CHECK SERVICE EXPIRE OR NOT?...
                 $serviceDate = strtotime($serviceData[$i]->ServiceStartDate);
                 $todayDate = strtotime(date('Y-m-d H:i:s'));
                 $serviceData[$i]->IsExpired = $serviceDate < $todayDate ? 1 : 0;
 
                 // ADD CUSTOMER DETAILS...
                 $customerId = $serviceData[$i]->UserId;
+                $user = new User();
                 $customerData = $user->columns(['FirstName', 'LastName'])->where('UserId', '=', $customerId)->read();
                 $serviceData[$i]->CustomerName = $customerData[0]->FirstName.' '.$customerData[0]->LastName;
 
                 // EXTRA SERVICE DETAILS...
                 $extra = new ExtraService();
-                $temp = $extra->where('ServiceRequestId', '=', $serviceData[$i]->ServiceRequestId)->read();
+                $serviceId = $serviceData[$i]->ServiceRequestId;
+                $temp = $extra->where('ServiceRequestId', '=', $serviceId)->read();
                 for($j=0; $j<count($temp); $j++){
                     $serviceData[$i]->ExtraService[] = $temp[$j]->ServiceExtraId;
                 }
-                            
             }
             $res->status(200)->json($serviceData);            
         }
         else{
             // NOT TO SET 400 STATUS OTHERWISE DATATABLE GIVE AN ERROR...
-            // SO SIMPLY PASS EMPTY ERROR...
+            // SO SIMPLY PASS EMPTY ARRAYS...
             $res->status(200)->json([]);
         }
     }
@@ -80,11 +87,12 @@ class ServiceProviderDashboard{
     public function upcoming_services(Request $req, Response $res){
         $service = new Service();
         $user = new User();
-        $userId = session('userId');
+        $serviceProviderId = session('userId');
 
         // SERVICES COMING ACCORDING TO POSTAL CODE...
-        $where = "ServiceProviderId = {$userId} AND Status = 1";
-        $serviceData = $service->join('ServiceRequestId', 'ServiceRequestId', 'servicerequestaddress')->where($where)->read();
+        $where = "ServiceProviderId = {$serviceProviderId} AND Status = {$this->ASSIGNED_STATUS}";
+        $serviceData = $service->join('ServiceRequestId', 'ServiceRequestId', 'servicerequestaddress')
+                               ->where($where)->read();
 
         function time_to_minutes($time){
             $temp = explode(':', $time);
@@ -96,24 +104,21 @@ class ServiceProviderDashboard{
 
         // MODIFY SERVICE DATA...
         for($i=0; $i<count($serviceData); $i++){
-            // TOTAL COST
-            $serviceData[$i]->TotalCost = (int) $serviceData[$i]->TotalCost;
-            // DATE IN DD/MM/YYYY FORMAT
+            $serviceData[$i]->TotalCost   = (int) $serviceData[$i]->TotalCost;
             $serviceData[$i]->ServiceDate = date('d/m/Y', strtotime($serviceData[$i]->ServiceStartDate));
-            // START TIME (24 HOUR FORMAT)
-            $serviceData[$i]->StartTime = date('H:i', strtotime($serviceData[$i]->ServiceStartDate));
-            // TOTAL TIME (IN INTEGER)
-            $serviceData[$i]->intDuration = $serviceData[$i]->ServiceHours + $serviceData[$i]->ExtraHours;
-            // TOTAL TIME ( IN HOURS)
-            $serviceData[$i]->Duration = date('H:i', mktime(0, $serviceData[$i]->intDuration*60));
-            // END TIME (24 HOUR FORMAT)
-            $serviceData[$i]->EndTime = date('H:i', mktime(0, time_to_minutes($serviceData[$i]->StartTime) + time_to_minutes($serviceData[$i]->Duration)));
+            $serviceData[$i]->StartTime   = date('H:i', strtotime($serviceData[$i]->ServiceStartDate));
+            $serviceData[$i]->Duration    = $serviceData[$i]->ServiceHours 
+                                          + $serviceData[$i]->ExtraHours;
+            $serviceData[$i]->Duration    = date('H:i', mktime(0, $serviceData[$i]->Duration*60));
+            $serviceData[$i]->EndTime     = time_to_minutes($serviceData[$i]->StartTime) 
+                                          + time_to_minutes($serviceData[$i]->Duration);
+            $serviceData[$i]->EndTime     = date('H:i', mktime(0, $serviceData[$i]->EndTime));
 
-            // CHECK IS SERVICE EXPIRE...
+            // CHECK SERVICE EXPIRE OR NOT?...
             $serviceDate = strtotime($serviceData[$i]->ServiceStartDate);
             $todayDate = strtotime(date('Y-m-d H:i:s'));
             $serviceData[$i]->IsExpired = $serviceDate < $todayDate ? 1 : 0;
-            
+
             // ADD CUSTOMER DETAILS...
             $customerId = $serviceData[$i]->UserId;
             $customerData = $user->columns(['FirstName', 'LastName'])->where('UserId', '=', $customerId)->read();
@@ -121,7 +126,8 @@ class ServiceProviderDashboard{
 
             // EXTRA SERVICE DETAILS...
             $extra = new ExtraService();
-            $temp = $extra->where('ServiceRequestId', '=', $serviceData[$i]->ServiceRequestId)->read();
+            $serviceId = $serviceData[$i]->ServiceRequestId;
+            $temp = $extra->where('ServiceRequestId', '=', $serviceId)->read();
             for($j=0; $j<count($temp); $j++){
                 $serviceData[$i]->ExtraService[] = $temp[$j]->ServiceExtraId;
             }
@@ -135,11 +141,12 @@ class ServiceProviderDashboard{
     public function service_history(Request $req, Response $res){
         $service = new Service();
         $user = new User();
-        $userId = session('userId');
+        $serviceProviderId = session('userId');
 
         // SERVICES COMING ACCORDING TO POSTAL CODE...
-        $where = "ServiceProviderId = {$userId}";
-        $serviceData = $service->join('ServiceRequestId', 'ServiceRequestId', 'servicerequestaddress')->where($where)->read();
+        $where = "ServiceProviderId = {$serviceProviderId}";
+        $serviceData = $service->join('ServiceRequestId', 'ServiceRequestId', 'servicerequestaddress')
+                               ->where($where)->read();
 
         function time_to_minutes($time){
             $temp = explode(':', $time);
@@ -151,20 +158,17 @@ class ServiceProviderDashboard{
 
         // MODIFY SERVICE DATA...
         for($i=0; $i<count($serviceData); $i++){
-            // TOTAL COST
-            $serviceData[$i]->TotalCost = (int) $serviceData[$i]->TotalCost;
-            // DATE IN DD/MM/YYYY FORMAT
+            $serviceData[$i]->TotalCost   = (int) $serviceData[$i]->TotalCost;
             $serviceData[$i]->ServiceDate = date('d/m/Y', strtotime($serviceData[$i]->ServiceStartDate));
-            // START TIME (24 HOUR FORMAT)
-            $serviceData[$i]->StartTime = date('H:i', strtotime($serviceData[$i]->ServiceStartDate));
-            // TOTAL TIME (IN INTEGER)
-            $serviceData[$i]->intDuration = $serviceData[$i]->ServiceHours + $serviceData[$i]->ExtraHours;
-            // TOTAL TIME ( IN HOURS)
-            $serviceData[$i]->Duration = date('H:i', mktime(0, $serviceData[$i]->intDuration*60));
-            // END TIME (24 HOUR FORMAT)
-            $serviceData[$i]->EndTime = date('H:i', mktime(0, time_to_minutes($serviceData[$i]->StartTime) + time_to_minutes($serviceData[$i]->Duration)));
+            $serviceData[$i]->StartTime   = date('H:i', strtotime($serviceData[$i]->ServiceStartDate));
+            $serviceData[$i]->Duration    = $serviceData[$i]->ServiceHours 
+                                          + $serviceData[$i]->ExtraHours;
+            $serviceData[$i]->Duration    = date('H:i', mktime(0, $serviceData[$i]->Duration*60));
+            $serviceData[$i]->EndTime     = time_to_minutes($serviceData[$i]->StartTime) 
+                                          + time_to_minutes($serviceData[$i]->Duration);
+            $serviceData[$i]->EndTime     = date('H:i', mktime(0, $serviceData[$i]->EndTime));
 
-            // CHECK IS SERVICE EXPIRE...
+            // CHECK SERVICE EXPIRE OR NOT?...
             $serviceDate = strtotime($serviceData[$i]->ServiceStartDate);
             $todayDate = strtotime(date('Y-m-d H:i:s'));
             $serviceData[$i]->IsExpired = $serviceDate < $todayDate ? 1 : 0;
@@ -176,7 +180,8 @@ class ServiceProviderDashboard{
 
             // EXTRA SERVICE DETAILS...
             $extra = new ExtraService();
-            $temp = $extra->where('ServiceRequestId', '=', $serviceData[$i]->ServiceRequestId)->read();
+            $serviceId = $serviceData[$i]->ServiceRequestId;
+            $temp = $extra->where('ServiceRequestId', '=', $serviceId)->read();
             for($j=0; $j<count($temp); $j++){
                 $serviceData[$i]->ExtraService[] = $temp[$j]->ServiceExtraId;
             }
@@ -190,10 +195,10 @@ class ServiceProviderDashboard{
     public function my_rating(Request $req, Response $res){
         $service = new Service();
         $user = new User();
-        $userId = session('userId');
+        $serviceProviderId = session('userId');
 
         // SERVICES COMING ACCORDING TO POSTAL CODE...
-        $where = "ServiceProviderId = {$userId} AND Status = 2";
+        $where = "ServiceProviderId = {$serviceProviderId} AND Status = {$this->COMPLETED_STATUS}";
         $serviceData = $service->join('ServiceRequestId', 'ServiceRequestId', 'rating')->where($where)->read();
 
         function time_to_minutes($time){
@@ -206,18 +211,16 @@ class ServiceProviderDashboard{
 
         // MODIFY SERVICE DATA...
         for($i=0; $i<count($serviceData); $i++){
-            // TOTAL COST
-            $serviceData[$i]->TotalCost = (int) $serviceData[$i]->TotalCost;
-            // DATE IN DD/MM/YYYY FORMAT
+            $serviceData[$i]->TotalCost   = (int) $serviceData[$i]->TotalCost;
             $serviceData[$i]->ServiceDate = date('d/m/Y', strtotime($serviceData[$i]->ServiceStartDate));
-            // START TIME (24 HOUR FORMAT)
-            $serviceData[$i]->StartTime = date('H:i', strtotime($serviceData[$i]->ServiceStartDate));
-            // TOTAL TIME (IN INTEGER)
-            $serviceData[$i]->intDuration = $serviceData[$i]->ServiceHours + $serviceData[$i]->ExtraHours;
-            // TOTAL TIME ( IN HOURS)
-            $serviceData[$i]->Duration = date('H:i', mktime(0, $serviceData[$i]->intDuration*60));
-            // END TIME (24 HOUR FORMAT)
-            $serviceData[$i]->EndTime = date('H:i', mktime(0, time_to_minutes($serviceData[$i]->StartTime) + time_to_minutes($serviceData[$i]->Duration)));
+            $serviceData[$i]->StartTime   = date('H:i', strtotime($serviceData[$i]->ServiceStartDate));
+            $serviceData[$i]->Duration    = $serviceData[$i]->ServiceHours 
+                                          + $serviceData[$i]->ExtraHours;
+            $serviceData[$i]->Duration    = date('H:i', mktime(0, $serviceData[$i]->Duration*60));
+            $serviceData[$i]->EndTime     = time_to_minutes($serviceData[$i]->StartTime) 
+                                          + time_to_minutes($serviceData[$i]->Duration);
+            $serviceData[$i]->EndTime     = date('H:i', mktime(0, $serviceData[$i]->EndTime));
+
                         
             // ADD CUSTOMER DETAILS...
             $customerId = $serviceData[$i]->UserId;
@@ -252,9 +255,9 @@ class ServiceProviderDashboard{
     public function my_customer(Request $req, Response $res){
         $service = new Service();
         $user = new User();
-        $userId = session('userId');
+        $serviceProviderId = session('userId');
 
-        $where = "ServiceProviderId = {$userId} AND Status = 2";
+        $where = "ServiceProviderId = {$serviceProviderId} AND Status = {$this->COMPLETED_STATUS}";
         $serviceData = $service->where($where)->read();
         
         // MODIFY DATA...
@@ -264,20 +267,20 @@ class ServiceProviderDashboard{
             $customerId = $serviceData[$i]->UserId;
             $customerData = $user->columns(['UserId', 'FirstName', 'LastName', 'Email', 'Mobile'])->where('UserId', '=', $customerId)->read();
 
-            // ADD FAVORITE AND BLOCKED DATA...
-            $fav = new Favorite();
-            $where = "UserId = {$userId} AND TargetUserId = {$customerId}";
-            $favData = $fav->where($where)->read();
-            if(isset($favData[0])){
-                $customerData[0]->IsFavorite = $favData[0]->IsFavorite;
-                $customerData[0]->IsBlocked = $favData[0]->IsBlocked;
+            // ADD BLOCKED CUSTOMER DATA...
+            $favorite = new Favorite();
+            $where = "UserId = {$serviceProviderId} AND TargetUserId = {$customerId}";
+            $blockedData = $favorite->where($where)->read();
+            if(isset($blockedData[0])){
+                $customerData[0]->IsBlocked = $blockedData[0]->IsBlocked;
             }
-            $serviceData[$i] = $customerData[0];
+
+            $customers[] = $customerData[0];
 
         }
         // REMOVE REPEATED OBJECT FROM ARRAY...
-        $temp = array_unique(array_column($serviceData, 'UserId'));
-        $customers = array_values(array_intersect_key($serviceData, $temp));
+        $temp = array_unique(array_column($customers, 'UserId'));
+        $customers = array_values(array_intersect_key($customers, $temp));
         $res->status(200)->json($customers);
 
     }    
@@ -285,27 +288,25 @@ class ServiceProviderDashboard{
     // -------------ACCEPT-SERVICE-------------
     public function accept_service(Request $req, Response $res){
         $serviceId = $req->params->id;
-        // STATUS 1 MEANS ACCEPT BUT NOT COMPLETED..
         $service = new Service();
-        $where = "Status = 1 AND ServiceRequestId = {$serviceId}";
+        $where = "Status = {$this->ASSIGNED_STATUS} AND ServiceRequestId = {$serviceId}";
         if(!$service->where($where)->exists()){
             $service->where('ServiceRequestId', '=', $serviceId)->update([
                 'ServiceProviderId' => session('userId'),
                 'SPAcceptedDate' => date('Y-m-d H:i:s'),
-                'Status' => 1,
+                'Status' => $this->ASSIGNED_STATUS,
                 'ModifiedDate' => date('Y-m-d H:i:s'),
             ]);
-            $res->status(200)->json(['message'=>'Service Accepted Successfully.']);    
+            $res->status(200)->json(['message'=>'Service accepted successfully.']);    
         }
         else{
-            $res->status(400)->json(['message'=>'Service Already Assigned to Another Service Provider!']);
+            $res->status(400)->json(['message'=>'Service already assigned to another service provider!']);
         }
     }
 
     // -------------COMPLETE-SERVICE-------------
     public function complete_service(Request $req, Response $res){
         $serviceId = $req->params->id;
-        // STATUS 2 MEANS COMPLETED SERVICE..
         $service = new Service();
 
         // CHECK IS SERVICE EXPIRE...
@@ -317,13 +318,13 @@ class ServiceProviderDashboard{
         if($isExpired){
             $service->where('ServiceRequestId', '=', $serviceId)->update([
                 'ServiceProviderId' => session('userId'),
-                'Status' => 2,
+                'Status' => $this->COMPLETED_STATUS,
                 'ModifiedDate' => date('Y-m-d H:i:s'),
             ]);
             $res->status(200)->json(['message'=>'Service Completed Successfully.']);    
         }
         else{
-            $res->status(200)->json(['message'=>'Service not able to completed']);    
+            $res->status(401)->json(['message'=>'Service not able to completed']);
         }
 
     }
@@ -331,15 +332,20 @@ class ServiceProviderDashboard{
     // -------------CANCEL-OR-REJECT-SERVICE-------------
     public function reject_service(Request $req, Response $res){
         $serviceId = $req->params->id;
-        // STATUS 3 MEANS CANCELED SERVICE..
         $service = new Service();
-        $service->where('ServiceRequestId', '=', $serviceId)->update([
-            'ServiceProviderId' => session('userId'),
-            'SPAcceptedDate' => date('Y-m-d H:i:s'),
-            'Status' => 3,
-            'ModifiedDate' => date('Y-m-d H:i:s'),
-        ]);
-        $res->status(200)->json(['message'=>'Service Rejected Successfully.']);
+        $where = "ServiceRequestId = {$serviceId} AND Status = {$this->NEW_STATUS}";
+        if($service->where($where)->exists()){
+            $service->where('ServiceRequestId', '=', $serviceId)->update([
+                'ServiceProviderId' => session('userId'),
+                'SPAcceptedDate' => date('Y-m-d H:i:s'),
+                'Status' => 3,
+                'ModifiedDate' => date('Y-m-d H:i:s'),
+            ]);
+            $res->status(200)->json(['message'=>'Service rejected successfully.']);    
+        }
+        else{
+            $res->status(404)->json(['message'=>'No service available!']);    
+        }
     }
 
     // -------------BLOCK-CUSTOMER-------------

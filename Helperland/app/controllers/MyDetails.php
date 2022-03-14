@@ -28,7 +28,7 @@ class MyDetails{
             $res->status(200)->json($details[0]);
         }
         else{
-            $res->status(400)->json(['message'=> 'No details available!']);            
+            $res->status(404)->json(['message'=> 'No details available!']);            
         }
     }
 
@@ -63,10 +63,10 @@ class MyDetails{
                 'UserProfilePicture' => $avatar,
                 'ModifiedDate'=> date('Y-m-d H:i:s')
             ]);    
-            $res->status(200)->json(['message'=>'Profile Updated Successfully.']);
+            $res->status(200)->json(['message'=>'Profile updated successfully.']);
         }
         else{
-            $res->status(401)->json(['message'=>'Email or Mobile already exists in Database!']);
+            $res->status(409)->json(['message'=>'Email or Mobile already exists in Database!']);
         }
 
     }

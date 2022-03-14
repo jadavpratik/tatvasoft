@@ -21,7 +21,7 @@ class MyAddress{
             $res->status(200)->json($data[0]);
         }
         else{
-            $res->status(404)->json(['message'=>'No Address available!']);
+            $res->status(404)->json(['message'=>'No address available!']);
         }
     }
 
@@ -29,11 +29,11 @@ class MyAddress{
     public function get_all_address(Request $req, Response $res){
         $userAddress = new UserAddress();
         $data = $userAddress->where('UserId', '=', session('userId'))->read();
-        if(is_array($data) && count($data)>0){
+        if(count($data)>0){
             $res->status(200)->json($data);
         }
         else{
-            $res->status(404)->json(['message'=>'No Address available!']);
+            $res->status(404)->json(['message'=>'No address available!']);
         }
     }    
 
@@ -65,7 +65,7 @@ class MyAddress{
             'Email' => $details[0]->Email
         ]);
 
-        $res->status(200)->json(['message'=>'Address Added successfully.']);
+        $res->status(200)->json(['message'=>'Address added successfully.']);
 
     }
 
@@ -97,7 +97,7 @@ class MyAddress{
             'Email' => $details[0]->Email
         ]);
 
-        $res->status(200)->json(['message'=>'Address Updated successfully.']);
+        $res->status(200)->json(['message'=>'Address updated successfully.']);
 
     } 
 
@@ -108,7 +108,7 @@ class MyAddress{
         $where = "UserId = {$userId} AND AddressId = {$id}";
         $userAddress = new UserAddress();
         $userAddress->where($where)->delete();
-        $res->status(200)->json(['message'=>'Address Deleted Successfully.']);
+        $res->status(200)->json(['message'=>'Address deleted successfully.']);
     }
 
 }

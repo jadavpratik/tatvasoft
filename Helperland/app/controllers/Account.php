@@ -13,7 +13,7 @@ use app\models\OTP;
 
 class Account{
 
-	// ---------------SET USER ROLE NAME---------------------------
+	// ----------SET USER ROLE_NAME----------
 	public function setUserRoleName($roleId){
 		switch($roleId){
 			case 1:
@@ -25,7 +25,7 @@ class Account{
 		}
 	}
 	
-	// -----------------------------SIGNUP------------------------------------
+	// ----------SIGNUP----------
 	public function signup(Request $req, Response $res){
 
 		Validation::check($req->body, [
@@ -33,7 +33,7 @@ class Account{
 			'lastname' => ['text', 'min:3', 'max:20'],
 			'email' => ['email'],
 			'phone' => ['phone'],
-			'role' => ['text'],
+			'role' => ['required'],
 			'password' => ['password'],
 			'cpassword' => ['confirm-password'],
 		]);
@@ -57,18 +57,18 @@ class Account{
 					'RoleId' => $role,
 					'CreatedDate' => date('Y-m-d H:i:s')
 				]);
-				$res->status(201)->json(['message'=>'Account is Created Successfully.']);
+				$res->status(201)->json(['message'=>'Account is created successfully.']);
 			}
 			else{
-				$res->status(401)->json(['message'=>'Role Id Not Matched!']);
+				$res->status(401)->json(['message'=>'Role id not matched!']);
 			}
 		}
 		else{
-			$res->status(409)->json(['message'=>'Email Address or Mobile Number Already Exists in Database']);
+			$res->status(409)->json(['message'=>'Email or Mobile already exists in database']);
 		}		
 	}
 
-	// -----------------------------LOGIN------------------------------------
+	// ----------LOGIN----------
 	public function login(Request $req, Response $res){
 
 		Validation::check($req->body, [
@@ -93,6 +93,7 @@ class Account{
 		if($user->where($where)->exists()){
 
 			$result = $user->where($where)->read();
+			// STORE DATA IN VARIABLE FOR SET IN SESSION...
 			$userId = $result[0]->UserId;
 			$userRole = $result[0]->RoleId;
 			$userPassword = $result[0]->Password;
@@ -105,36 +106,33 @@ class Account{
 					session('userRole', $userRole);
 					session('userRoleName', $this->setUserRoleName($userRole));
 					session('userName', $userName);
-					$res->status(200)->json(['role'=>$userRole, 'message'=>"Login Successfully."]);
+					$res->status(200)->json(['role'=>$userRole, 'message'=>"Login successfully."]);
 				}
 				else{
 					$attempts =  cookie('loginAttempts') + 1;
 					// SET COOKIE FOR 30 MINUTES...
 					cookie('loginAttempts', $attempts, time()+1800);
-					$res->status(401)->json(['message'=>"Password is Not Matched."]);
+					$res->status(401)->json(['message'=>"Password is not matched."]);
 				}	
 			}
 			else{
-				$res->status(401)->json(['message'=>"Try After 30 Minutes!"]);
+				$res->status(401)->json(['message'=>"Try after 30 minutes!"]);
 			}
 		}
 		else{
-			$res->status(401)->json(['message'=>"User not Exists in Database"]);			
+			$res->status(404)->json(['message'=>"User not exists in database"]);
 		}		
 	}
 
-	// -----------------------------LOGOUT------------------------------------
+	// ----------LOGOUT----------
 	public function logout(Request $req, Response $res){
 		// DESTORY THE SESSION...
-		unset($_SESSION['isLogged']);
-		unset($_SESSION['userId']);
-		unset($_SESSION['userRole']);
-		unset($_SESSION['userName']);
+		session_destroy();
 		session('logout', true);
 		$res->redirect('/');
 	}
 
-	// -----------------------------FORGOT-PASSWORD------------------------------------
+	// ----------FORGOT-PASSWORD----------
 	public function forgot_password(Request $req, Response $res){
 
 		Validation::check($req->body, [
@@ -152,25 +150,25 @@ class Account{
 			// STORE OTP IN DATABASE...
 			$obj->create(['email'=> $email, 'otp' => $otp ]);
 			// ----------WITHOUT MAIL----------
-			$res->status(200)->json(['otp'=>$otp, 'message'=>'OTP Sent On Your Email Address']);
+			$res->status(200)->json(['otp'=>$otp, 'message'=>'OTP sent on your email address']);
 
 			// ---------ACTIVE MAIL SYSTEM---------
 			// $subject = 'Helperland';
 			// $body = 'Your one time otp = '.$otp;
 			// $recipient = $email;
 			// if(Mail::send($recipient, $subject, $body)){
-			// 	$res->status(200)->json(['otp'=>'', 'message'=> 'OTP Sent On Your Email Address']);
+			// 	$res->status(200)->json(['otp'=>'', 'message'=> 'OTP sent on your email address']);
 			// }
 			// else{
-			// 	$res->status(500)->json(['otp'=>'', 'message'=> "OTP Can't be sent on your Email Address !"]);
+			// 	$res->status(500)->json(['otp'=>'', 'message'=> "OTP can't sent on your email address!"]);
 			// }
 		}
 		else{
-			$res->status(401)->json(['message'=>'User not Exists in Database.']);
+			$res->status(404)->json(['message'=>'User not exists in database.']);
 		}		
 	}
 
-	// -----------------------------VERIFY-OTP------------------------------------
+	// ----------VERIFY-OTP----------
 	public function verify_otp(Request $req, Response $res){
 
 		Validation::check($req->body, [
@@ -183,16 +181,16 @@ class Account{
 		$result = $obj->where('email', '=', $email)->read();
 		if($result[0]->otp == $req->body->otp){
 			if($obj->where('email', '=', $email)->delete()){
-				$res->status(200)->json(['message'=>'OTP Matched.']);
+				$res->status(200)->json(['message'=>'OTP matched.']);
 			}
 		}
 		else{
-			$res->status(401)->json(['message'=> 'OTP Not Matched!!!']);
+			$res->status(401)->json(['message'=> 'OTP not matched!']);
 		}		
 	
 	}
 
-	// -----------------------------SET-NEW-PASSWORD------------------------------------
+	// ----------SET-NEW-PASSWORD----------
 	public function set_new_password(Request $req, Response $res){
 
 		Validation::check($req->body, [
@@ -208,10 +206,10 @@ class Account{
 			'Password' => $hash,
 			'ModifiedDate' => date('Y-m-d H:i:s'),
 		]);
-		$res->status(200)->json(['message'=>'Password Updated Successfully.']);
+		$res->status(200)->json(['message'=>'Password updated successfully.']);
 	}    
 
-	// -----------------------------CHANGE-PASSWORD------------------------------------
+	// ----------CHANGE-PASSWORD----------
 	public function change_password(Request $req, Response $res){
 		/* 
 			**********BUG**********
@@ -243,7 +241,7 @@ class Account{
 				'Password' => $hash,
 				'ModifiedDate' => date('Y-m-d H:i:s'),
 			]);	
-			$res->status(200)->json(['message'=>'Password Change Successfully.']);	
+			$res->status(200)->json(['message'=>'Password change successfully.']);	
 		}
 		else{
 			$res->status(401)->json(['message'=>'Old password is wrong!']);

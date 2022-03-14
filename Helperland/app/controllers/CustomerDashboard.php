@@ -5,6 +5,7 @@ namespace app\controllers;
 use core\Request;
 use core\Response;
 use core\Validation;
+use core\Database;
 
 use app\models\Service;
 use app\models\ExtraService;
@@ -14,18 +15,18 @@ use app\models\Favorite;
 
 class CustomerDashboard{
 
-    private $NEW_REQUEST       = 0;
-    private $PENDING_REQUEST   = 1; // (ALSO ACCEPTED BY SP)
-    private $COMPLETED_REQUEST = 2;
-    private $CANCELLED_REQUEST = 3;
+    private $NEW_STATUS       = 0;
+    private $PENDING_STATUS   = 1; // (ACCEPTED BY SP BUT NOT COMPLETED)
+    private $COMPLETED_STATUS = 2;
+    private $CANCELLED_STATUS = 3;
 
-    // ALL SERVICES...
+    // ----------ALL SERVICES----------
     public function service_history(Request $req, Response $res){
 
-        $userId = session('userId');
+        $customerId = session('userId');
         $service = new Service();
-        $where = "UserId = {$userId}";
-        $data = $service->join('ServiceRequestId', 'ServiceRequestId', 'servicerequestaddress')->where($where)->read();
+        $serviceData = $service->join('ServiceRequestId', 'ServiceRequestId', 'servicerequestaddress')
+                               ->where('UserId', '=', $customerId)->read();
        
         function time_to_minutes($time){
             $temp = explode(':', $time);
@@ -35,62 +36,70 @@ class CustomerDashboard{
             return $totalMinutes;
         }
 
-        for($i=0; $i<count($data); $i++){
-            // TOTAL COST
-            $data[$i]->TotalCost = (int) $data[$i]->TotalCost;
-            // DATE IN DD/MM/YYYY FORMAT
-            $data[$i]->ServiceDate = date('d/m/Y', strtotime($data[$i]->ServiceStartDate));
-            // START TIME (24 HOUR FORMAT)
-            $data[$i]->StartTime = date('H:i', strtotime($data[$i]->ServiceStartDate));
-            // TOTAL TIME (IN INTEGER)
-            $data[$i]->intDuration = $data[$i]->ServiceHours + $data[$i]->ExtraHours;
-            // TOTAL TIME ( IN HOURS)
-            $data[$i]->Duration = date('H:i', mktime(0, $data[$i]->intDuration*60));
-            // END TIME (24 HOUR FORMAT)
-            $data[$i]->EndTime = date('H:i', mktime(0, time_to_minutes($data[$i]->StartTime) + time_to_minutes($data[$i]->Duration)));
+        // MODIFY DATA...
+        for($i=0; $i<count($serviceData); $i++){
+            $serviceData[$i]->TotalCost   = (int) $serviceData[$i]->TotalCost;
+            $serviceData[$i]->ServiceDate = date('d/m/Y', strtotime($serviceData[$i]->ServiceStartDate));
+            $serviceData[$i]->StartTime   = date('H:i', strtotime($serviceData[$i]->ServiceStartDate));
+            $serviceData[$i]->Duration    = $serviceData[$i]->ServiceHours 
+                                          + $serviceData[$i]->ExtraHours;
+            $serviceData[$i]->Duration    = date('H:i', mktime(0, $serviceData[$i]->Duration*60));
+            $serviceData[$i]->EndTime     = time_to_minutes($serviceData[$i]->StartTime) 
+                                          + time_to_minutes($serviceData[$i]->Duration);
+            $serviceData[$i]->EndTime     = date('H:i', mktime(0, $serviceData[$i]->EndTime));
 
-            // EXTRA SERVICE DETAILS...
+            // ADD EXTRA SERVICE DETAILS...
             $extra = new ExtraService();
-            $temp = $extra->where('ServiceRequestId', '=', $data[$i]->ServiceRequestId)->read();
-            for($j=0; $j<count($temp); $j++){
-                $data[$i]->ExtraService[] = $temp[$j]->ServiceExtraId;                
+            $serviceId = $serviceData[$i]->ServiceRequestId;
+            $extraServiceData = $extra->where('ServiceRequestId', '=', $serviceId)->read();
+            for($j=0; $j<count($extraServiceData); $j++){
+                $serviceData[$i]->ExtraService[] = $extraServiceData[$j]->ServiceExtraId;                
             }
 
-            // SERVICE PROVIDER DETAILS...
-            if($data[$i]->ServiceProviderId!=null){
+            // ADD SERVICE PROVIDER DETAILS...
+            if($serviceData[$i]->ServiceProviderId!=null){
                 $user = new User();
-                $temp = $user->where('UserId', '=', $data[$i]->ServiceProviderId)->read();
-                $data[$i]->ServiceProvider = $temp[0];
+                $serviceProviderId = $serviceData[$i]->ServiceProviderId;
+                $spData = $user->where('UserId', '=', $serviceProviderId)->read();
+                // REMOVE PASSWORD FIELD...
+                unset($spData[0]->Password);
+                $serviceData[$i]->ServiceProvider = $spData[0];
             }
 
-            // RATTING DETAILS...
-            if(isset($data[$i]->ServiceProvider)){
+            // ADD RATTING DETAILS...
+            if(isset($serviceData[$i]->ServiceProvider)){
                 $rating = new Rating();
-                $temp = $rating->where('RatingTo', '=', $data[$i]->ServiceProvider->UserId)->read();
-                if(count($temp)>0){
-                    $tempRating = 0;
-                    for($j=0; $j<count($temp); $j++){
-                        $tempRating += (float) $temp[$j]->Ratings;
-                        
+                $serviceProviderId = $serviceData[$i]->ServiceProviderId;
+                $ratingData = $rating->where('RatingTo', '=', $serviceProviderId)->read();
+                if(count($ratingData)>0){
+                    // CHECK, BY CURRENT CUSTOMER RATING IS GIVEN OR NOT ?
+                    foreach($ratingData as $chunk){
+                        if($chunk->RatingFrom == $customerId){
+                            $serviceData[$i]->SPRated = true;
+                        }
                     }
-                    $tempRating /= count($temp);
-                    $data[$i]->Rating = $tempRating;
+                    $tempRating = 0;
+                    for($j=0; $j<count($ratingData); $j++){
+                        $tempRating += (float) $ratingData[$j]->Ratings;                        
+                    }
+                    $tempRating /= count($ratingData);
+                    $serviceData[$i]->Rating = $tempRating;
                 }                
             }
         }
-        $res->status(200)->json($data);
+        $res->status(200)->json($serviceData);
     }
 
-    // CURRENT SERVICES...
+    // ----------CURRENT SERVICES----------
     public function current_services(Request $req, Response $res){
 
-        $userId = session('userId');
+        $customerId = session('userId');
         $service = new Service();
         // STATUS = 0 OR 1 MEANS (NEW OR PENDING)...
-        $where = "UserId = {$userId} AND (Status = {$this->PENDING_REQUEST} OR Status = {$this->NEW_REQUEST})";
-        $data = $service->join('ServiceRequestId', 'ServiceRequestId', 'servicerequestaddress')->where($where)->read();
+        $where = "UserId = {$customerId} AND (Status = {$this->PENDING_STATUS} OR Status = {$this->NEW_STATUS})";
+        $serviceData = $service->join('ServiceRequestId', 'ServiceRequestId', 'servicerequestaddress')
+                               ->where($where)->read();
 
-        // BAKI 6E... EXTRA SERVICE TABLE NE JOIN KARVANU...
         function time_to_minutes($time){
             $temp = explode(':', $time);
             $hours = (int) $temp[0];
@@ -99,70 +108,70 @@ class CustomerDashboard{
             return $totalMinutes;
         }
 
-        for($i=0; $i<count($data); $i++){
-            // TOTAL COST
-            $data[$i]->TotalCost = (int) $data[$i]->TotalCost;
-            // DATE IN DD/MM/YYYY FORMAT
-            $data[$i]->ServiceDate = date('d/m/Y', strtotime($data[$i]->ServiceStartDate));
-            // START TIME (24 HOUR FORMAT)
-            $data[$i]->StartTime = date('H:i', strtotime($data[$i]->ServiceStartDate));
-            // TOTAL TIME (IN INTEGER)
-            $data[$i]->intDuration = $data[$i]->ServiceHours + $data[$i]->ExtraHours;
-            // TOTAL TIME ( IN HOURS)
-            $data[$i]->Duration = date('H:i', mktime(0, $data[$i]->intDuration*60));
-            // END TIME (24 HOUR FORMAT)
-            $data[$i]->EndTime = date('H:i', mktime(0, time_to_minutes($data[$i]->StartTime) + time_to_minutes($data[$i]->Duration)));
+        // MODIFY DATA...
+        for($i=0; $i<count($serviceData); $i++){
+            $serviceData[$i]->TotalCost   = (int) $serviceData[$i]->TotalCost;
+            $serviceData[$i]->ServiceDate = date('d/m/Y', strtotime($serviceData[$i]->ServiceStartDate));
+            $serviceData[$i]->StartTime   = date('H:i', strtotime($serviceData[$i]->ServiceStartDate));
+            $serviceData[$i]->Duration    = $serviceData[$i]->ServiceHours + $serviceData[$i]->ExtraHours;
+            $serviceData[$i]->Duration    = date('H:i', mktime(0, $serviceData[$i]->Duration*60));
+            $serviceData[$i]->EndTime     = time_to_minutes($serviceData[$i]->StartTime) 
+                                          + time_to_minutes($serviceData[$i]->Duration);
+            $serviceData[$i]->EndTime     = date('H:i', mktime(0, $serviceData[$i]->EndTime));
 
-            // EXTRA SERVICE DETAILS...
+            // ADD EXTRA SERVICE DETAILS...
             $extra = new ExtraService();
-            $temp = $extra->where('ServiceRequestId', '=', $data[$i]->ServiceRequestId)->read();
-            for($j=0; $j<count($temp); $j++){
-                $data[$i]->ExtraService[] = $temp[$j]->ServiceExtraId;                
+            $serviceId = $serviceData[$i]->ServiceRequestId;
+            $extraServiceData = $extra->where('ServiceRequestId', '=', $serviceId)->read();
+            for($j=0; $j<count($extraServiceData); $j++){
+                $serviceData[$i]->ExtraService[] = $extraServiceData[$j]->ServiceExtraId;                
             }
 
-            // SERVICE PROVIDER DETAILS...
-            if($data[$i]->ServiceProviderId!=null){
+            // ADD SERVICE PROVIDER DETAILS...
+            if($serviceData[$i]->ServiceProviderId!=null){
                 $user = new User();
-                $temp = $user->where('UserId', '=', $data[$i]->ServiceProviderId)->read();
-                $data[$i]->ServiceProvider = $temp[0];
+                $serviceProviderId = $serviceData[$i]->ServiceProviderId;
+                $spData = $user->where('UserId', '=', $serviceProviderId)->read();
+                // REMOVE PASSWORD FIELD...
+                unset($spData[0]->Password);
+                $serviceData[$i]->ServiceProvider = $spData[0];
             }
 
-            // RATTING DETAILS...
-            if(isset($data[$i]->ServiceProvider)){
+            // ADD RATTING DETAILS...
+            if(isset($serviceData[$i]->ServiceProvider)){
                 $rating = new Rating();
-                $temp = $rating->where('RatingTo', '=', $data[$i]->ServiceProvider->UserId)->read();
-                if(count($temp)>0){
-                    $tempRating = 0;
-                    for($j=0; $j<count($temp); $j++){
-                        $tempRating += $temp[$j]->Ratings;
+                $serviceProviderId = $serviceData[$i]->ServiceProviderId;
+                $ratingData = $rating->where('RatingTo', '=', $serviceProviderId)->read();
+                if(count($ratingData)>0){
+                    // CHECK, BY CURRENT CUSTOMER RATING IS GIVEN OR NOT ?
+                    foreach($ratingData as $chunk){
+                        if($chunk->RatingFrom == $customerId){
+                            $serviceData[$i]->SPRated = true;
+                        }
                     }
-                    $tempRating /= count($temp);
-                    $data[$i]->Rating = $tempRating;
-                }    
+                    $tempRating = 0;
+                    for($j=0; $j<count($ratingData); $j++){
+                        $tempRating += (float) $ratingData[$j]->Ratings;                        
+                    }
+                    $tempRating /= count($ratingData);
+                    $serviceData[$i]->Rating = $tempRating;
+                }                
             }
         }
-        $res->status(200)->json($data);
+        $res->status(200)->json($serviceData);
     }
 
-    // CANCEL SERVICE...
+    // ----------CANCEL SERVICE----------
     public function cancel_service(Request $req, Response $res){
-
-        Validation::check($req->body, [
-            'reason' => ['string']
-        ]);
-
         $serviceId = $req->params->id;
         $service = new Service();
-
-        // REASON STORE IN DATABASE PENDING...
         $service->where('ServiceRequestId', '=', $serviceId)->update([
-            'Status' => $this->CANCELLED_REQUEST,
+            'Status' => $this->CANCELLED_STATUS,
         ]);
-
         $res->status(200)->json(['message'=>'Service cancelled successfully.']);
     }
     
-    // RESCHEDULE SERVICE...
+    // ----------RESCHEDULE SERVICE----------
     public function reschedule_service(Request $req, Response $res){
 
         // DATE & TIME PROPER VALIDATION PENDING...
@@ -174,21 +183,19 @@ class CustomerDashboard{
         $serviceId = $req->params->id;
         $date = $req->body->new_service_date;
         $time = $req->body->new_service_time;
+        $serviceDate = date('Y-m-d H:i:s', strtotime($date.' '.$time));
         $service = new Service();
 
-        // REASON STORE IN DATABASE PENDING...
         $service->where('ServiceRequestId', '=', $serviceId)->update([
-            'ServiceStartDate' => date('Y-m-d H:i:s', strtotime($date.' '.$time)),
-            'Status' => $this->NEW_REQUEST
+            'ServiceStartDate' => $serviceDate,
+            'Status' => $this->NEW_STATUS
         ]);
 
         $res->status(200)->json(['message'=>'Service has been reschedule successfully.']);
     }
 
-    // RATE SERVICE PROVIDER...
+    // ----------RATE SERVICE PROVIDER----------
     public function rate_sp(Request $req, Response $res){
-
-        $serviceId = $req->params->id;
 
         Validation::check($req->body, [
             'arrival_rating' => ['required'],
@@ -197,6 +204,7 @@ class CustomerDashboard{
             'rating_feedback' => ['required'],
         ]);
 
+        $serviceId = $req->params->id;
         $arrival_rating = (int) $req->body->arrival_rating;
         $quality_rating = (int) $req->body->quality_rating;
         $friendly_rating = (int) $req->body->friendly_rating;
@@ -209,7 +217,7 @@ class CustomerDashboard{
         $serviceProviderId = $data[0]->ServiceProviderId;
 
         $rating = new Rating();
-        $where = "RatingFrom = {$customerId} AND RatingTo= {$serviceProviderId}";
+        $where = "RatingFrom = {$customerId} AND RatingTo = {$serviceProviderId}";
         if(!$rating->where($where)->exists()){
             $rating->create([
                 'ServiceRequestId' => $serviceId,
@@ -221,8 +229,7 @@ class CustomerDashboard{
                 'OnTimeArrival' => $arrival_rating,
                 'Friendly' => $friendly_rating,
                 'QualityOfService' => $quality_rating,
-            ]);
-            
+            ]);            
             $res->status(200)->json(['message'=>'Thanks for feedback Us.']);    
         }
         else{
@@ -230,25 +237,27 @@ class CustomerDashboard{
         }
     }
 
-    // CUSTOMER SP LIST (WHO PROVIDED SERVICE TO CUSTOMER IN PAST...)
+    // ----------CUSTOMER SP LIST---------- 
+    // (WHO PROVIDED SERVICE TO CUSTOMER IN PAST...)
     public function my_service_provider(Request $req, Response $res){
-        $userId = session('userId');
 
+        $customerId = session('userId');
         $service = new Service();
-        $where = "UserId = {$userId} AND Status = 2";
-        // GET ALL SERVICE PROVIDER ID WHO COMPLETED SERVICE WITH THIS CUSTOMER...
+        $where = "UserId = {$customerId} AND Status = 2";
         $data = $service->columns(['ServiceProviderId'])->where($where)->read();
 
         $serviceProviders = [];
         for($i=0; $i<count($data); $i++){
+            $serviceProviderId = $data[$i]->ServiceProviderId;
+
             // STORE FIRSTNAME AND LASTNAME OF SERVICE PROVIDER...
             $user = new User();
-            $where = "UserId = {$data[$i]->ServiceProviderId}";
-            $temp1 = $user->columns(['UserId, FirstName', 'LastName', 'UserProfilePicture'])->where($where)->read();
+            $temp1 = $user->columns(['UserId, FirstName', 'LastName', 'UserProfilePicture'])
+                          ->where('UserId', '=', $serviceProviderId)->read();
     
             // STORE FAVORITE AND BLOCKED DATA...
             $fav = new Favorite();
-            $where = "UserId = {$userId} AND TargetUserId = {$data[$i]->ServiceProviderId}";
+            $where = "UserId = {$customerId} AND TargetUserId = {$serviceProviderId}";
             $temp2 = $fav->columns(['UserId', 'IsFavorite', 'IsBlocked'])->where($where)->read();            
             if(count($temp2)>0){
                 $temp1[0]->IsBlocked = $temp2[0]->IsBlocked;
@@ -257,8 +266,7 @@ class CustomerDashboard{
 
             // STORE RATING...
             $rating = new Rating();
-            $where = "RatingTo = {$data[$i]->ServiceProviderId}";
-            $temp3 = $rating->where($where)->read();
+            $temp3 = $rating->where('RatingTo', '=', $serviceProviderId)->read();
             if(count($temp3)>0){
                 $tempRating = 0;
                 for($j=0; $j<count($temp3); $j++){
@@ -276,7 +284,7 @@ class CustomerDashboard{
         $res->json($serviceProviders);    
     }
 
-    // ADD TO FAVORITE LIST...
+    // ----------ADD TO FAVORITE LIST----------
     public function add_to_favorite(Request $req, Response $res){
         $customerId = session('userId');
         $serviceProviderId = $req->params->id;   
@@ -295,10 +303,10 @@ class CustomerDashboard{
                 'TargetUserId' => $serviceProviderId
             ]);    
         }
-        $res->status(200)->json(['message'=>'Added to Favorite list']);
+        $res->status(200)->json(['message'=>'Added to favorite list']);
     }
 
-    // REMOVE FROM FAVORITE LIST...
+    // ----------REMOVE FROM FAVORITE LIST----------
     public function remove_from_favorite(Request $req, Response $res){
         $customerId = session('userId');
         $serviceProviderId = $req->params->id;   
@@ -309,10 +317,10 @@ class CustomerDashboard{
                 'IsFavorite' => 0
             ]);    
         }
-        $res->status(200)->json(['message'=>'Remove from Favorite List']);
+        $res->status(200)->json(['message'=>'Remove from favorite list']);
     }
 
-    // BLOCK SP...
+    // ----------BLOCK SP----------
     public function block_sp(Request $req, Response $res){
         $customerId = session('userId');
         $serviceProviderId = $req->params->id;   
@@ -331,10 +339,10 @@ class CustomerDashboard{
                 'TargetUserId' => $serviceProviderId
             ]);    
         }
-        $res->status(200)->json(['message'=>'Service Provider Blocked Successfully.']);
+        $res->status(200)->json(['message'=>'ServiceProvider blocked successfully.']);
     }
 
-    // UNBLOCK SP...
+    // ----------UNBLOCK SP----------
     public function unblock_sp(Request $req, Response $res){
         $customerId = session('userId');
         $serviceProviderId = $req->params->id;   
@@ -345,6 +353,6 @@ class CustomerDashboard{
                 'IsBlocked' => 0
             ]);    
         }
-        $res->status(200)->json(['message'=>'Service Provider Unblocked Successfully.']);
+        $res->status(200)->json(['message'=>'ServiceProvider unblocked successfully.']);
     }
 }

@@ -16,7 +16,7 @@ use app\models\Favorite;
 
 class BookNow{
 
-    // CHECK POSTAL CODE 
+    // ----------CHECK POSTAL CODE---------- 
     public function check_postal_code(Request $req, Response $res){
 
         Validation::check($req->body, [
@@ -26,22 +26,23 @@ class BookNow{
         $user = new User();
         $where = " ZipCode = {$req->body->postal_code} AND RoleId = 2";
         if($user->where($where)->exists()){
-            $res->status(200)->json(['message'=>'User Availabe']);
+            $res->status(200)->json(['message'=>'User availabe']);
         }
         else{
-            $res->status(400)->json(['message'=>'We are not providing service in this area!']);
+            $res->status(404)->json(['message'=>'No service providing in this area!']);
         }    
 
     }
 
-    // GET CUSTOMER ADDRESS...
+    // ----------GET CUSTOMER ADDRESS----------
     public function get_address(Request $req, Response $res){
         $userAddress = new UserAddress();
-        $result = $userAddress->where('UserId', '=', session('userId'))->read();
+        $customerId = session('userId');
+        $result = $userAddress->where('UserId', '=', $customerId)->read();
         $res->status(200)->json(['address'=>$result]);
     }
 
-    // ADD ADDRESS...
+    // ----------ADD ADDRESS----------
     public function add_address(Request $req, Response $res){
         Validation::check($req->body, [
             'street_name' => ['text'],
@@ -63,10 +64,10 @@ class BookNow{
             'Email' => $data[0]->Email,
             'Mobile' => $req->body->phone,
         ]);
-        $res->status(201)->json(['message'=>'Address Add Successfully.']);
+        $res->status(200)->json(['message'=>'Address Add Successfully.']);
     }
 
-    // BOOK SERVICE...
+    // ----------BOOK SERVICE----------
     public function book_service(Request $req, Response $res){
 
         Validation::check($req->body, [
@@ -86,9 +87,10 @@ class BookNow{
         $service = new Service();
         $service_address = new ServiceAddress();
 
-        $user_id = session('userId');
+        $customerId = session('userId');
         $postal_code = $req->body->postal_code;
-        $date = date('Y-m-d H:i:s', strtotime($req->body->date.' '.$req->body->time));
+        $date = strtotime($req->body->date.' '.$req->body->time);
+        $date = date('Y-m-d H:i:s', $date);
         $duration = $req->body->duration;
         // OPTIONAL PARAMERTERS...
         $extra =  isset($req->body->extra)? $req->body->extra : [];
@@ -100,15 +102,12 @@ class BookNow{
             if($req->body->sp_id!=null && $req->body->sp_id!=''){
                 $sp_id = $req->body->sp_id;
             }
-            else{
-                $sp_id = null;
-            }
         }
         $hourly_rate = 70;
         $total_cost = $hourly_rate*3 + ($hourly_rate/2)*count($extra);
         // ADD SERVICE_REQUEST IN DATABASE TABLE...
         $serviceId = $service->create([
-            'UserId' => $user_id,
+            'UserId' => $customerId,
             'ServiceStartDate' => $date,
             'ZipCode' => $postal_code,
             'ServiceHourlyRate' => $hourly_rate,
@@ -152,7 +151,7 @@ class BookNow{
         $res->status(201)->json(['message'=>'Service Book Successfully.', 'id'=>$serviceId]);
     }
 
-    // GET FAVORITE SP...
+    // ----------GET FAVORITE SP----------
     public function get_favorite_sp(Request $req, Response $res){
         $customerId = session('userId');
         $db = new Database();
@@ -161,10 +160,9 @@ class BookNow{
                 ON u.UserId = f.TargetUserId 
                 WHERE f.UserId = {$customerId} AND f.IsFavorite=1";
         $data = $db->query($sql);
-        $data = array_filter($data, function($i){
-            unset($i->Password);
-            return $i;
-        });
+        foreach($data as $i){
+            unset($i->Password); // REMOVE PASSWORD FIELD...
+        }
         $res->status(200)->json($data);
         // $favorite = new Favorite();
         // $user = new User();

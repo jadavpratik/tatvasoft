@@ -12,7 +12,7 @@ use app\models\Contact as ContactModel;
 
 class Contact{
 
-    // CONTACT SUBMIT...
+    // ----------CONTACT SUBMIT----------
     public function submit(Request $req, Response $res){
         Validation::check($req->body, [
             'firstname' => ['text', 'min:3', 'max:10'],
@@ -39,10 +39,10 @@ class Contact{
             'UploadFileName' => $filePath,
             'CreatedOn' => date('Y-m-d H:i:s')
         ]);    
-        $res->status(200)->json(['message'=>"Form Submitted Successfully."]);
+        $res->status(200)->json(['message'=>"Form submitted successfully."]);
         // $emailBody = $req->body->message;
         // $emailSubject = $req->body->subject;
-        // $recipient = 'RECIPIENT EMAIL ADDRESS';
+        // $recipient = 'ADMIN EMAIL ADDRESS';
         // if(Mail::send($recipient, $emailSubject, $emailBody)){
         // 	$res->status(200)->json(['message'=>"Form Submitted Successfully."]);
         // }
