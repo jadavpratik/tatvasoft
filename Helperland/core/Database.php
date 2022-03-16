@@ -124,7 +124,7 @@ class Database{
     // -----------------COLUMN-------------------
     public function columns($columns){
         if(isset($columns) && !empty($columns)){
-            // FIRST BLANK THE ALL COLUMNS...
+            // FIRST REMOVE THE ALL COLUMNS...
             $this->columns = '';
             foreach($columns as $column){
                 $this->columns .= $column.', ';
@@ -144,7 +144,7 @@ class Database{
                 // RETURN ARRAY OF AN OBJECT...    
             }
             else{
-                return $this->conn->execute($sql);
+                return $this->conn->exec($sql);
             }
         }
         catch(Exception $e){

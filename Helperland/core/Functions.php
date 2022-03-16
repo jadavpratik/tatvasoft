@@ -72,7 +72,7 @@
 	function cookie($key, $value=false, $time=false){
 		if($value!=false){
 			// 5 DAYS TIME...
-			if($time==flase){
+			if($time==false){
 				$time = time()+(60*60*24*5);
 			}
 			setcookie($key, $value, $time, '/', '', true, true);

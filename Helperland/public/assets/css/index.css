@@ -2937,10 +2937,18 @@ input[type="password"]::placeholder {
       -ms-flex-pack: center;
           justify-content: center;
   position: absolute;
+  padding: 0 8px;
+  border-right: 0.5px solid #C8C8C8;
+}
+
+.from_date label span,
+.to_date label span {
+  margin: 0 2px;
 }
 
 .from_date label img,
 .to_date label img {
+  margin: 0 2px;
   -o-object-fit: contain;
      object-fit: contain;
 }
@@ -2954,7 +2962,7 @@ input[type="password"]::placeholder {
   color: #646464;
   background-color: transparent;
   border: 0;
-  padding-left: 50px;
+  padding-left: 56px;
   position: relative;
 }
 
@@ -2973,11 +2981,11 @@ input[type="password"]::placeholder {
   background: transparent;
 }
 
-.from_date p,
-.to_date p {
+.from_date span,
+.to_date span {
   color: #4F4F4F;
-  font-size: 14px;
-  padding-right: 20px;
+  font-size: 12px;
+  padding: 10px;
 }
 
 .input_time {

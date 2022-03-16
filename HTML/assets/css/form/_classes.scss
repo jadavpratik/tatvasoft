@@ -155,7 +155,13 @@ input[type="password"]{
         align-items: center;
         justify-content: center;
         position: absolute;
+        padding:0 8px;
+        border-right: 0.5px solid $input_border;
+        span{
+            margin:0 2px;
+        }
         img{
+            margin:0 2px;
             object-fit: contain;
         }
     }
@@ -165,7 +171,7 @@ input[type="password"]{
         color:$input_text;
         background-color: transparent;
         border:0;
-        padding-left: 50px;
+        padding-left:56px;
         &:hover,
         &:focus{
             border:0 !important;
@@ -179,10 +185,11 @@ input[type="password"]{
             background:transparent;
         }
     }
-    p{
+    span{
         color:$label_text;
-        font-size: 14px;
-        padding-right:20px;
+        font-size: 12px;
+        padding:10px;
+        // border:2px solid green;
     }
 }
 

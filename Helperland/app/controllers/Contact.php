@@ -41,7 +41,7 @@ class Contact{
         ]);    
         $res->status(200)->json(['message'=>"Form submitted successfully."]);
         // $emailBody = $req->body->message;
-        // $emailSubject = $req->body->subject;
+        // $emailSubject = 'Helperland '.$req->body->subject;
         // $recipient = 'ADMIN EMAIL ADDRESS';
         // if(Mail::send($recipient, $emailSubject, $emailBody)){
         // 	$res->status(200)->json(['message'=>"Form Submitted Successfully."]);

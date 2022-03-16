@@ -27,6 +27,8 @@
 </head>
 <body>
 
+	<!-- **********BACKLIGHT********** -->	
+	<div class="backlight_container"></div>
 	<?php 
 		$home_header_id = '';
 		$home_header_style = '';
@@ -60,10 +62,7 @@
 				break;
 		}
 	?>
-	
-	<!-- **********FOR_BACKLIGHT_CONTAINER********** -->	
-	<div class="backlight_container"></div>
-	
+
 	<!-- **********NAVBAR********** -->	
 	<nav class="navbar" id="<?= $home_header_id; ?>" style="<?= $home_header_style; ?>">
 
@@ -137,7 +136,9 @@
 			<?php } ?>
 		</div><!-- END NAV_MENU -->
 	</nav><!-- END NAVBAR -->
-	
+
+
+	<!-- **********HIDDEN COMPONENTS********** -->	
 	<?= component('sidenav'); ?>
 	<?= component('popup/login'); ?>
 	<?= component('popup/forgot-password'); ?>

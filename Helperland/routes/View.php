@@ -8,6 +8,7 @@ use app\middleware\Auth;
 $alreadyLogged = [new Auth(), 'alreadyLogged'];
 $isCustomer = [new Auth(), 'isCustomer'];
 $isServiceProvider = [new Auth(), 'isServiceProvider'];
+$isAdmin = function(){return true;}; //[new Auth(), 'isAdmin'];
 
 // CONTROLLERS...
 use app\controllers\View;
@@ -33,3 +34,5 @@ Route::get('/customer/dashboard', $isCustomer, [new View(), 'customer_dashboard'
 Route::get('/service-provider/signup', $alreadyLogged, [new View(), 'sp_signup']);
 Route::get('/service-provider/dashboard', $isServiceProvider, [new View(), 'sp_dashboard']);
 
+// ----------ADMIN----------
+Route::get('/admin', $isAdmin, [new View(), 'admin_dashboard']);

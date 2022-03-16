@@ -19,9 +19,10 @@
     define('DB_PASSWORD', '');
 
     // CONFIG OF MAIL...
-    define('SMTP_HOST', 'smtp.gmail.com');
-    define('EMAIL_ADDRESS', '');
-    define('EMAIL_PASSWORD', '');
+    define('SMTP_HOST', 'smtp.mail.yahoo.com'); // 'smtp.gmail.com'
+    define('EMAIL_PORT', 465); //465, 587
+    define('EMAIL_ADDRESS', 'typeee29@yahoo.com');
+    define('EMAIL_PASSWORD', '**********');
     
     // SESSION CONFIG...
     define('SESSION_PATH', __DIR__.'/../public/sessions/');
