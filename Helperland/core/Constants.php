@@ -19,8 +19,9 @@
     define('DB_PASSWORD', '');
 
     // CONFIG OF MAIL...
-    define('SMTP_HOST', 'smtp.mail.yahoo.com'); // 'smtp.gmail.com'
-    define('EMAIL_PORT', 465); //465, 587
+    // 'smtp.gmail.com'
+    define('SMTP_HOST', 'smtp.mail.yahoo.com'); //smtp.gmail.com
+    define('EMAIL_PORT', 465); // 465, 587
     define('EMAIL_ADDRESS', 'typeee29@yahoo.com');
     define('EMAIL_PASSWORD', '**********');
     

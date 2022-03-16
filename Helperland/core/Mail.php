@@ -14,24 +14,22 @@ class Mail{
         $mail = new PHPMailer(true);
         try {
             $mail->isSMTP();
-            $mail->SMTPDebug  = 1; // FOR SHOWING THE ERRORS
-            $mail->Host       = 'smtp.mail.yahoo.com'; //SMTP_HOST;
+            // $mail->SMTPDebug  = 1; // FOR SHOWING THE ERRORS
+            $mail->Host       = SMTP_HOST;
             $mail->SMTPAuth   = true;
-            $mail->Username   = 'typeee29@yahoo.com';//EMAIL_ADDRESS;
-            $mail->Password   = '';//EMAIL_PASSWORD;
-            $mail->SMTPSecure = 'tls';      // 'ssl' 'tls'; // FOR GMAIL...                        
-            $mail->Port       = 465; //EMAIL_PORT;                                  
+            $mail->Username   = EMAIL_ADDRESS;
+            $mail->Password   = EMAIL_PASSWORD;
+            $mail->SMTPSecure = 'tls';      // SSL, TLS
+            $mail->Port       = EMAIL_PORT; // 587, 465;
             $mail->addAddress($recipient);
             $mail->isHTML(true);
             $mail->Subject = $subject;
             $mail->Body    = $body;
             $mail->send();
-            // return true;
+            return true;
         }
         catch (Exception $e) {
-            echo '<pre>';
-            print_r($e);
-            // return false;
+            return false;
         }
 
     }

@@ -15,5 +15,5 @@ use core\Mail;
 // use app\models\Test;
 
 Route::get('/test-route', function($req, $res){
-    Mail::send('pratikjadav29@gmail.com', 'subject', 'testbody');
+    Mail::send('email@gmail.com', 'subject', 'testbody');
 });
