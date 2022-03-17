@@ -34,12 +34,12 @@
             },
             columns :[
                 {
-                    mRender : function(data, type, row){
+                    render : function(data, type, row){
                         return`<p class="service_id">${row.ServiceRequestId}</p>`;
                     },
                 },
                 {
-                    mRender : function(data, type, row){
+                    render : function(data, type, row){
                         return `<div class="service_date">
                                     <div>
                                         <img src="<?= assets('assets/img/table/calendar.png'); ?>" alt="">
@@ -53,12 +53,12 @@
                     }
                 },
                 {
-                    mRender : function(data, type, row){
+                    render : function(data, type, row){
                         return `<p class="customer_name">${row.CustomerName}</p>`;
                     }
                 },
                 {
-                    mRender : function(data, type, row){
+                    render : function(data, type, row){
                         return `<div class="sp_my_rating">
                                     <div>
                                         ${(function(){
@@ -79,7 +79,7 @@
                     }
                 },
                 {
-                    mRender : function(data, type, row){
+                    render : function(data, type, row){
                         return `<p>${row.Comments}</p>`;
                     }
                 }

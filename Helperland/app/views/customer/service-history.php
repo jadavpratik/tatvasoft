@@ -45,7 +45,7 @@
             },
             columns :[
                 {
-                    mRender : function(data, type, row){
+                    render : function(data, type, row){
                         return`<div class="service_details" onclick="show_service_details(${row.ServiceRequestId});">
                                     <div>
                                         <img src="<?= assets('assets/img/table/calendar_black.png'); ?>" alt="">
@@ -59,7 +59,7 @@
                     },
                 },
                 {
-                    mRender : function(data, type, row){
+                    render : function(data, type, row){
                         if(row.ServiceProvider!==undefined){
                             return `
                                 <div class="service_provider">
@@ -98,13 +98,13 @@
                     }
                 },
                 {
-                    mRender : function(data, type, row){
+                    render : function(data, type, row){
                         // €
                         return `<p class="payment_text">₹<span>${row.TotalCost}</span></p>`;
                     }
                 },
                 {
-                    mRender : function(data, type, row){
+                    render : function(data, type, row){
                         switch(row.Status){
                             case 2:
                                 return `<p class="completed_status">Completed</p>`;
@@ -118,7 +118,7 @@
                     }
                 },
                 {
-                    mRender : function(data, type, row){
+                    render : function(data, type, row){
                         // 0    : NEW
                         // 1    : PENDING
                         // 2    : COMPLETED

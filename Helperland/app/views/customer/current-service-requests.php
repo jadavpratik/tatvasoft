@@ -36,12 +36,12 @@
             },
             columns :[
                 {
-                    mRender : function(data, type, row){
+                    render : function(data, type, row){
                         return`<p class="service_id" onclick="show_service_details(${row.ServiceRequestId});">${row.ServiceRequestId}</p>`;
                     },
                 },
                 {
-                    mRender : function(data, type, row){
+                    render : function(data, type, row){
                         return` <div class="service_date">
                                     <div>
                                         <img src="<?= assets('assets/img/table/calendar.png'); ?>" alt="">
@@ -55,7 +55,7 @@
                     }
                 },
                 {
-                    mRender : function(data, type, row){
+                    render : function(data, type, row){
                         if(row.ServiceProvider!==undefined){
                             if(row.Rating!==undefined){
                                 return `<div class="service_provider">
@@ -96,13 +96,13 @@
                     }
                 },
                 {
-                    mRender : function(data, type, row){
+                    render : function(data, type, row){
                     // €₹
                     return `<p class="payment_text">₹<span>${row.TotalCost}</span></p>`;
                     }
                 },
                 {
-                    mRender : function(data, type, row){
+                    render : function(data, type, row){
                         return `<div class="table_btn_container">
                                     <button class="reschedule_btn" onclick='reschedule_service_open_model(${row.ServiceRequestId});'>Reschedule</button>
                                     <button class="cancel_btn" onclick='cancel_service_open_model(${row.ServiceRequestId});'>Cancel</button>    

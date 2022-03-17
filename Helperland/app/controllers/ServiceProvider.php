@@ -11,7 +11,7 @@ use app\models\UserAddress;
 use app\models\ExtraService;
 use app\models\Favorite;
 
-class ServiceProviderDashboard{
+class ServiceProvider{
 
     private $NEW_STATUS       = 0;
     private $ASSIGNED_STATUS  = 1; // (ACCEPTED BY SP BUT NOT COMPLETED)

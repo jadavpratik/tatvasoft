@@ -19,239 +19,104 @@
         <button class="clear_btn">Clear</button>
     </div>
 </div><!-- END_USER_MANAGEMENT -->
-<table>
+<table id="admin_user_management_table">
     <thead>
         <tr>
             <th>User Name</th>
-            <th>User Type</th>
+            <!-- <th>User Type</th> -->
+            <th>Date of Registration</th>
             <th>Role</th>
+            <th>Phone</th>
             <th>Postal Code</th>
-            <th>City</th>
-            <th>Radius</th>
-            <th>User Status</th>
+            <!-- <th>City</th>
+            <th>Radius</th> -->
+            <th>Status</th>
             <th>Actions</th>
         </tr>
     </thead>
     <tbody>
-        <!-- SINGLE_ROW -->
-        <tr>
-            <td>Lyum watson</td>
-            <td>Call Center</td>
-            <td>Inquiry Manager</td>
-            <td>123456</td>
-            <td>Berlin</td>
-            <td></td>
-            <td><p class="active_status">Active</p></td>
-            <td>
-                <div class="dropdown">
-                    <button class="dropdown_btn"><i class="fas fa-ellipsis-v"></i></button>
-                    <div class="dropdown_menu d_none">
-                        <a href="">Active</a>
-                        <a href="">Disactive</a>
-                        <a href="">Service History</a>
-                    </div>
-                </div>
-            </td>
-        </tr>
-        <!-- SINGLE_ROW -->
-        <tr>
-            <td>Lyum watson</td>
-            <td>Call Center</td>
-            <td>Inquiry Manager</td>
-            <td>123456</td>
-            <td>Berlin</td>
-            <td></td>
-            <td><p class="active_status">Active</p></td>
-            <td>
-                <div class="dropdown">
-                    <button class="dropdown_btn"><i class="fas fa-ellipsis-v"></i></button>
-                    <div class="dropdown_menu d_none">
-                        <a href="">Active</a>
-                        <a href="">Disactive</a>
-                        <a href="">Service History</a>
-                    </div>
-                </div>
-            </td>
-        </tr>
-        <!-- SINGLE_ROW -->
-        <tr>
-            <td>Lyum watson</td>
-            <td>Call Center</td>
-            <td>Inquiry Manager</td>
-            <td>123456</td>
-            <td>Berlin</td>
-            <td></td>
-            <td><p class="active_status">Active</p></td>
-            <td>
-                <div class="dropdown">
-                    <button class="dropdown_btn"><i class="fas fa-ellipsis-v"></i></button>
-                    <div class="dropdown_menu d_none">
-                        <a href="">Active</a>
-                        <a href="">Disactive</a>
-                        <a href="">Service History</a>
-                    </div>
-                </div>
-            </td>
-        </tr>
-        <!-- SINGLE_ROW -->
-        <tr>
-            <td>Lyum watson</td>
-            <td>Call Center</td>
-            <td>Inquiry Manager</td>
-            <td>123456</td>
-            <td>Berlin</td>
-            <td></td>
-            <td><p class="active_status">Active</p></td>
-            <td>
-                <div class="dropdown">
-                    <button class="dropdown_btn"><i class="fas fa-ellipsis-v"></i></button>
-                    <div class="dropdown_menu d_none">
-                        <a href="">Active</a>
-                        <a href="">Disactive</a>
-                        <a href="">Service History</a>
-                    </div>
-                </div>
-            </td>
-        </tr>
-        <!-- SINGLE_ROW -->
-        <tr>
-            <td>Lyum watson</td>
-            <td>Call Center</td>
-            <td>Inquiry Manager</td>
-            <td>123456</td>
-            <td>Berlin</td>
-            <td></td>
-            <td><p class="active_status">Active</p></td>
-            <td>
-                <div class="dropdown">
-                    <button class="dropdown_btn"><i class="fas fa-ellipsis-v"></i></button>
-                    <div class="dropdown_menu d_none">
-                        <a href="">Active</a>
-                        <a href="">Disactive</a>
-                        <a href="">Service History</a>
-                    </div>
-                </div>
-            </td>
-        </tr>
-        <!-- SINGLE_ROW -->
-        <tr>
-            <td>Lyum watson</td>
-            <td>Call Center</td>
-            <td>Inquiry Manager</td>
-            <td>123456</td>
-            <td>Berlin</td>
-            <td></td>
-            <td><p class="active_status">Active</p></td>
-            <td>
-                <div class="dropdown">
-                    <button class="dropdown_btn"><i class="fas fa-ellipsis-v"></i></button>
-                    <div class="dropdown_menu d_none">
-                        <a href="">Active</a>
-                        <a href="">Disactive</a>
-                        <a href="">Service History</a>
-                    </div>
-                </div>
-            </td>
-        </tr>
-        <!-- SINGLE_ROW -->
-        <tr>
-            <td>Lyum watson</td>
-            <td>Call Center</td>
-            <td>Inquiry Manager</td>
-            <td>123456</td>
-            <td>Berlin</td>
-            <td></td>
-            <td><p class="inactive_status">Inactive</p></td>
-            <td>
-                <div class="dropdown">
-                    <button class="dropdown_btn"><i class="fas fa-ellipsis-v"></i></button>
-                    <div class="dropdown_menu d_none">
-                        <a href="">Active</a>
-                        <a href="">Disactive</a>
-                        <a href="">Service History</a>
-                    </div>
-                </div>
-            </td>
-        </tr>
-        <!-- SINGLE_ROW -->
-        <tr>
-            <td>Lyum watson</td>
-            <td>Call Center</td>
-            <td>Inquiry Manager</td>
-            <td>123456</td>
-            <td>Berlin</td>
-            <td></td>
-            <td><p class="active_status">Active</p></td>
-            <td>
-                <div class="dropdown">
-                    <button class="dropdown_btn"><i class="fas fa-ellipsis-v"></i></button>
-                    <div class="dropdown_menu d_none">
-                        <a href="">Active</a>
-                        <a href="">Disactive</a>
-                        <a href="">Service History</a>
-                    </div>
-                </div>
-            </td>
-        </tr>
-        <!-- SINGLE_ROW -->
-        <tr>
-            <td>Lyum watson</td>
-            <td>Call Center</td>
-            <td>Inquiry Manager</td>
-            <td>123456</td>
-            <td>Berlin</td>
-            <td></td>
-            <td><p class="active_status">Active</p></td>
-            <td>
-                <div class="dropdown">
-                    <button class="dropdown_btn"><i class="fas fa-ellipsis-v"></i></button>
-                    <div class="dropdown_menu d_none">
-                        <a href="">Active</a>
-                        <a href="">Disactive</a>
-                        <a href="">Service History</a>
-                    </div>
-                </div>
-            </td>
-        </tr>
-        <!-- SINGLE_ROW -->
-        <tr>
-            <td>Lyum watson</td>
-            <td>Call Center</td>
-            <td>Inquiry Manager</td>
-            <td>123456</td>
-            <td>Berlin</td>
-            <td></td>
-            <td><p class="active_status">Active</p></td>
-            <td>
-                <div class="dropdown">
-                    <button class="dropdown_btn"><i class="fas fa-ellipsis-v"></i></button>
-                    <div class="dropdown_menu d_none">
-                        <a href="">Active</a>
-                        <a href="">Disactive</a>
-                        <a href="">Service History</a>
-                    </div>
-                </div>
-            </td>
-        </tr>
-        <!-- SINGLE_ROW -->
-        <tr>
-            <td>Lyum watson</td>
-            <td>Call Center</td>
-            <td>Inquiry Manager</td>
-            <td>123456</td>
-            <td>Berlin</td>
-            <td></td>
-            <td><p class="active_status">Active</p></td>
-            <td>
-                <div class="dropdown">
-                    <button class="dropdown_btn"><i class="fas fa-ellipsis-v"></i></button>
-                    <div class="dropdown_menu d_none">
-                        <a href="">Active</a>
-                        <a href="">Disactive</a>
-                        <a href="">Service History</a>
-                    </div>
-                </div>
-            </td>
-        </tr>
+        <!-- DYNAMIC GENERATED BY DATATABLE -->
     </tbody>
 </table><!-- END_USER_MANAGEMENT_TABLE -->
+
+<!-- **********ADMIN-USER-MANAGEMENT********** -->
+<script>
+    $(document).ready(function(){
+        state.admin_user_management_table = $('#admin_user_management_table').DataTable({
+            searching : false,
+            serviceSide : true,
+            autoWidth : false,
+            dom : 't<"datatable_bottom"lp>',
+            ajax : {
+                url : `${BASE_URL}/user-management`,
+                cache : true,
+                dataSrc : function(data){
+                    // STORE DATA GLOBALLY...
+                    state.admin_user_management_data = data;
+                    return data;
+                }
+            },
+            columns : [
+                {
+                    render : function(data, type, row){
+                        return `${row.FirstName} ${row.LastName}`;
+                    }
+                },
+                {
+                    data : 'CreatedDate'
+                },
+                {
+                    render : function(data, type, row){
+                        switch(row.RoleId){
+                            case 1:
+                                return `Customer`;
+                            case 2:
+                                return `Service Provider`;
+                        }
+                    }
+                },
+                {
+                    data : 'Mobile'
+                },
+                {
+                    data : 'ZipCode'
+                },
+                {
+                    render : function(data, type, row){
+                        switch(row.IsActive){
+                            case 0:
+                                return `<p class="inactive_status">Inactive</p>`;
+                            case 1:
+                                return `<p class="active_status">Active</p>`;
+                            default:
+                                return `<p class="inactive_status">InActive</p>`;
+                        } 
+                    }
+                },
+                {
+                    render : function(data, type, row){
+                        return `<div class="dropdown">
+                                    <button class="dropdown_btn"><i class="fas fa-ellipsis-v"></i></button>
+                                    <div class="dropdown_menu d_none">
+                                        <a href="">Active</a>
+                                        <a href="">Disactive</a>
+                                        <a href="">Service History</a>
+                                    </div>
+                                </div>`;                    
+                    }
+                },
+            ],
+            pagingType : 'full_numbers',
+            language : {
+                paginate : {
+                    first    :'<i class="fa-solid fa-backward-step"></i>',
+                    previous :'<i class="fas fa-angle-left">',  
+                    next     :'<i class="fas fa-angle-right">',
+                    last     :'<i class="fa-solid fa-forward-step"></i>'  
+                },
+            }
+        })
+    });
+</script>
+
+

@@ -50,12 +50,12 @@
             },
             columns :[
                 {
-                    mRender : function(data, type, row){
+                    render : function(data, type, row){
                         return`<p class="service_id" onclick="show_service_details(${row.ServiceRequestId})">${row.ServiceRequestId}</p>`;
                     },
                 },
                 {
-                    mRender : function(data, type, row){
+                    render : function(data, type, row){
                         return `<div class="service_date">
                                     <div>
                                         <img src="<?= assets('assets/img/table/calendar.png'); ?>" alt="">
@@ -69,7 +69,7 @@
                     }
                 },
                 {
-                    mRender : function(data, type, row){
+                    render : function(data, type, row){
                         return `<div class="customer_details"> 
                                     <p>${row.CustomerName}</p>
                                     <div>
@@ -80,7 +80,7 @@
                     }
                 },
                 {
-                    mRender : function(data, type, row){
+                    render : function(data, type, row){
                         switch(row.Status){
                             case 2:
                                 return `<p class="completed_status">Completed</p>`;

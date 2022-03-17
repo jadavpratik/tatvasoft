@@ -54,11 +54,11 @@
 
     <div class="admin_right">
 
-        <div class="admin_tab_content">
+        <div class="admin_tab_content d_none">
             <?= component('admin/', 'service-requests') ?>
         </div>
 
-        <div class="admin_tab_content d_none">
+        <div class="admin_tab_content">
             <?= component('admin/', 'user-management') ?>
         </div>
 

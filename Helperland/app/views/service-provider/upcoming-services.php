@@ -33,12 +33,12 @@
             },
             columns :[
                 {
-                    mRender : function(data, type, row){
+                    render : function(data, type, row){
                         return`<p class="service_id" onclick="show_service_details(${row.ServiceRequestId})">${row.ServiceRequestId}</p>`;
                     },
                 },
                 {
-                    mRender : function(data, type, row){
+                    render : function(data, type, row){
                         return `<div class="service_date">
                                     <div>
                                         <img src="<?= assets('assets/img/table/calendar.png'); ?>" alt="">
@@ -52,7 +52,7 @@
                     }
                 },
                 {
-                    mRender : function(data, type, row){
+                    render : function(data, type, row){
                         return `<div class="customer_details">
                                     <p>${row.CustomerName}</p>
                                     <div>
@@ -63,13 +63,13 @@
                     }
                 },
                 {
-                    mRender : function(data, type, row){
+                    render : function(data, type, row){
                         return ``;
                         // return `<p class="distance">15 Km</p>`;
                     }
                 },
                 {
-                    mRender : function(data, type, row){
+                    render : function(data, type, row){
                         return `<button class="cancel_btn" onclick="reject_service_by_sp(${row.ServiceRequestId});">Cancel</button>`;
                     }
                 }

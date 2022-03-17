@@ -13,7 +13,7 @@ use app\models\User;
 use app\models\Rating;
 use app\models\Favorite;
 
-class CustomerDashboard{
+class Customer{
 
     private $NEW_STATUS       = 0;
     private $ASSIGNED_STATUS  = 1; // (ACCEPTED BY SP BUT NOT COMPLETED)
