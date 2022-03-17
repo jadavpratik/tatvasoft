@@ -55,6 +55,7 @@ class Account{
 					'Mobile' => $req->body->phone,
 					'Password'=> $hash,
 					'RoleId' => $role,
+					'UserProfilePicture' => 'car',
 					'CreatedDate' => date('Y-m-d H:i:s')
 				]);
 				$res->status(201)->json(['message'=>'Account is created successfully.']);

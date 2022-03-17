@@ -50,13 +50,13 @@
                                             ${(function(){
                                                 let buttons = ``;
                                                 if(sp.IsFavorite==1){
-                                                    buttons += `<button class="remove_btn" onclick="action_on_sp(${sp.UserId}, 'remove');">Remove</button>`;
+                                                    buttons += `<button class="remove_btn" onclick="action_on_sp(${sp.UserId}, 'remove');">Favorite</button>`;
                                                 }
                                                 else{
-                                                    buttons += `<button class="remove_btn" onclick="action_on_sp(${sp.UserId}, 'add');">Add</button>`;
+                                                    buttons += `<button class="remove_btn" onclick="action_on_sp(${sp.UserId}, 'add');">Unfavorite</button>`;
                                                 }
                                                 if(sp.IsBlocked==1){
-                                                    buttons += `<button class="block_btn" onclick="action_on_sp(${sp.UserId}, 'unblock');">Unblock</button>`;
+                                                    buttons += `<button class="block_btn" onclick="action_on_sp(${sp.UserId}, 'unblock');">Blocked</button>`;
                                                 }
                                                 else{
                                                     buttons += `<button class="block_btn" onclick="action_on_sp(${sp.UserId}, 'block');">Block</button>`;

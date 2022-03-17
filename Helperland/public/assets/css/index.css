@@ -1867,11 +1867,7 @@ footer {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-}
-
-.sp_new_service_request p, .sp_new_service_request label {
-  color: #646464;
-  padding-right: 5px;
+  margin-bottom: 10px;
 }
 
 .sp_new_service_request div {
@@ -1882,6 +1878,11 @@ footer {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+.sp_new_service_request div p, .sp_new_service_request div label {
+  color: #646464;
+  padding-right: 5px;
 }
 
 .sp_new_service_request div input, .sp_new_service_request div select {
@@ -1897,6 +1898,21 @@ footer {
   border-radius: 4px;
 }
 
+@media screen and (max-width: 576px) {
+  .sp_new_service_request {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .sp_new_service_request div {
+    padding-bottom: 10px;
+  }
+}
+
 .sp_service_history {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1907,6 +1923,7 @@ footer {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  margin-bottom: 10px;
 }
 
 .sp_service_history div {

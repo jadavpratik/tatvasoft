@@ -1,11 +1,11 @@
 <div class="sp_service_history">
-    <div>
+    <!-- <div>
         <p>Payment Status</p>
         <select name="" id="">
             <option value="">All</option>
         </select>
-    </div>
-    <button class="export_btn">Export</button>
+    </div> -->
+    <button class="export_btn" onclick="export_table_data()">Export</button>
 </div>
 <table id="sp_service_history_table">
     <thead>
@@ -24,6 +24,15 @@
 
 <!-- **********SP-SERVICES-HISTORY********** -->
 <script>
+
+    // EXPORT TABLE AS EXCEL....
+    function export_table_data(){
+        $("#sp_service_history_table").table2excel({
+            exclude_img: true,
+            filename: "Service_Provider_Service_History.xls"
+        });
+    }
+
     $(document).ready(function(){
         state.sp_service_history_table = $('#sp_service_history_table').DataTable({
             searching : false,
@@ -73,14 +82,14 @@
                 {
                     mRender : function(data, type, row){
                         switch(row.Status){
-                            case 0:
-                                return `<p class="new_status">New</p>`;
-                            case 1:
-                                return `<p class="pending_status">Pending</p>`;
                             case 2:
                                 return `<p class="completed_status">Completed</p>`;
                             case 3:
                                 return `<p class="cancelled_status">Cancelled</p>`;
+                            // case 0:
+                            //     return `<p class="new_status">New</p>`;
+                            // case 1:
+                            //     return `<p class="pending_status">Pending</p>`;
                         }
                     }
                 },

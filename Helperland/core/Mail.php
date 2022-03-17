@@ -19,8 +19,8 @@ class Mail{
             $mail->SMTPAuth   = true;
             $mail->Username   = EMAIL_ADDRESS;
             $mail->Password   = EMAIL_PASSWORD;
-            $mail->SMTPSecure = 'tls';      // SSL, TLS
-            $mail->Port       = EMAIL_PORT; // 587, 465;
+            $mail->SMTPSecure = SMTP_SECURE;
+            $mail->Port       = EMAIL_PORT;
             $mail->addAddress($recipient);
             $mail->isHTML(true);
             $mail->Subject = $subject;

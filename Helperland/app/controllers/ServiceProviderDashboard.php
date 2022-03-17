@@ -18,7 +18,7 @@ class ServiceProviderDashboard{
     private $COMPLETED_STATUS = 2;
     private $CANCELLED_STATUS = 3;
     
-    // -------------NEW-SERVICES [STATUS 0 & SP ZIPCODE]-------------
+    // -------------NEW-SERVICES [NEW REQUESTS ONLY BY SP ZIPCODE]-------------
     public function new_services(Request $req, Response $res){
         $service = new Service();
         $userAddress = new UserAddress();
@@ -26,55 +26,57 @@ class ServiceProviderDashboard{
 
         // GET SP POSTAL CODE...
         $spData = $userAddress->where('UserId', '=', $serviceProviderId)->read();
-        $zipCode = $spData[0]->PostalCode;
 
-        // IF SP ZIPCODE AVAIABLE THEN ONLY SHOW THE ACCORDING DATA...
-        if($spData[0]->PostalCode!=null && $spData[0]->PostalCode!=""){
-            // SERVICES COMING ACCORDING TO POSTAL CODE...
-            $where = "ZipCode = {$zipCode} AND Status = {$this->NEW_STATUS}";
-            $serviceData = $service->join('ServiceRequestId', 'ServiceRequestId', 'servicerequestaddress')
-                                   ->where($where)->read();
+        if(isset($spData[0]->PostalCode)){
+            $zipCode = $spData[0]->PostalCode;
+            // IF SP ZIPCODE AVAIABLE THEN ONLY SHOW THE ACCORDING DATA...
+            if($spData[0]->PostalCode!=null && $spData[0]->PostalCode!=""){
+                // SERVICES COMING ACCORDING TO POSTAL CODE...
+                $where = "ZipCode = {$zipCode} AND Status = {$this->NEW_STATUS}";
+                $serviceData = $service->join('ServiceRequestId', 'ServiceRequestId', 'servicerequestaddress')
+                                    ->where($where)->read();
 
-            function time_to_minutes($time){
-                $temp = explode(':', $time);
-                $hours = (int) $temp[0];
-                $minutes = (int) $temp[1];
-                $totalMinutes = $hours*60 + $minutes;
-                return $totalMinutes;
-            }
-
-            // MODIFY SERVICE DATA...
-            for($i=0; $i<count($serviceData); $i++){
-                $serviceData[$i]->TotalCost   = (int) $serviceData[$i]->TotalCost;
-                $serviceData[$i]->ServiceDate = date('d/m/Y', strtotime($serviceData[$i]->ServiceStartDate));
-                $serviceData[$i]->StartTime   = date('H:i', strtotime($serviceData[$i]->ServiceStartDate));
-                $serviceData[$i]->Duration    = $serviceData[$i]->ServiceHours 
-                                                + $serviceData[$i]->ExtraHours;
-                $serviceData[$i]->Duration    = date('H:i', mktime(0, $serviceData[$i]->Duration*60));
-                $serviceData[$i]->EndTime     = time_to_minutes($serviceData[$i]->StartTime) 
-                                                + time_to_minutes($serviceData[$i]->Duration);
-                $serviceData[$i]->EndTime     = date('H:i', mktime(0, $serviceData[$i]->EndTime));
-
-                // CHECK SERVICE EXPIRE OR NOT?...
-                $serviceDate = strtotime($serviceData[$i]->ServiceStartDate);
-                $todayDate = strtotime(date('Y-m-d H:i:s'));
-                $serviceData[$i]->IsExpired = $serviceDate < $todayDate ? 1 : 0;
-
-                // ADD CUSTOMER DETAILS...
-                $customerId = $serviceData[$i]->UserId;
-                $user = new User();
-                $customerData = $user->columns(['FirstName', 'LastName'])->where('UserId', '=', $customerId)->read();
-                $serviceData[$i]->CustomerName = $customerData[0]->FirstName.' '.$customerData[0]->LastName;
-
-                // EXTRA SERVICE DETAILS...
-                $extra = new ExtraService();
-                $serviceId = $serviceData[$i]->ServiceRequestId;
-                $temp = $extra->where('ServiceRequestId', '=', $serviceId)->read();
-                for($j=0; $j<count($temp); $j++){
-                    $serviceData[$i]->ExtraService[] = $temp[$j]->ServiceExtraId;
+                function time_to_minutes($time){
+                    $temp = explode(':', $time);
+                    $hours = (int) $temp[0];
+                    $minutes = (int) $temp[1];
+                    $totalMinutes = $hours*60 + $minutes;
+                    return $totalMinutes;
                 }
+
+                // MODIFY SERVICE DATA...
+                for($i=0; $i<count($serviceData); $i++){
+                    $serviceData[$i]->TotalCost   = (int) $serviceData[$i]->TotalCost;
+                    $serviceData[$i]->ServiceDate = date('d/m/Y', strtotime($serviceData[$i]->ServiceStartDate));
+                    $serviceData[$i]->StartTime   = date('H:i', strtotime($serviceData[$i]->ServiceStartDate));
+                    $serviceData[$i]->Duration    = $serviceData[$i]->ServiceHours 
+                                                    + $serviceData[$i]->ExtraHours;
+                    $serviceData[$i]->Duration    = date('H:i', mktime(0, $serviceData[$i]->Duration*60));
+                    $serviceData[$i]->EndTime     = time_to_minutes($serviceData[$i]->StartTime) 
+                                                    + time_to_minutes($serviceData[$i]->Duration);
+                    $serviceData[$i]->EndTime     = date('H:i', mktime(0, $serviceData[$i]->EndTime));
+
+                    // CHECK SERVICE EXPIRE OR NOT?...
+                    $serviceDate = strtotime($serviceData[$i]->ServiceStartDate);
+                    $todayDate = strtotime(date('Y-m-d H:i:s'));
+                    $serviceData[$i]->IsExpired = $serviceDate < $todayDate ? 1 : 0;
+
+                    // ADD CUSTOMER DETAILS...
+                    $customerId = $serviceData[$i]->UserId;
+                    $user = new User();
+                    $customerData = $user->columns(['FirstName', 'LastName'])->where('UserId', '=', $customerId)->read();
+                    $serviceData[$i]->CustomerName = $customerData[0]->FirstName.' '.$customerData[0]->LastName;
+
+                    // EXTRA SERVICE DETAILS...
+                    $extra = new ExtraService();
+                    $serviceId = $serviceData[$i]->ServiceRequestId;
+                    $temp = $extra->where('ServiceRequestId', '=', $serviceId)->read();
+                    for($j=0; $j<count($temp); $j++){
+                        $serviceData[$i]->ExtraService[] = $temp[$j]->ServiceExtraId;
+                    }
+                }
+                $res->status(200)->json($serviceData);            
             }
-            $res->status(200)->json($serviceData);            
         }
         else{
             // NOT TO SET 400 STATUS OTHERWISE DATATABLE GIVE AN ERROR...
@@ -83,7 +85,7 @@ class ServiceProviderDashboard{
         }
     }
 
-    // -------------UPCOMING-SERVICES[STATUS 1 ALREADY ASSIGNED TO SP]-------------
+    // -------------UPCOMING-SERVICES[ALREADY ASSIGNED TO SP]-------------
     public function upcoming_services(Request $req, Response $res){
         $service = new Service();
         $user = new User();
@@ -137,14 +139,14 @@ class ServiceProviderDashboard{
         $res->status(200)->json($serviceData);
     }
 
-    // -------------SERVICE_HISTORY(ALL STATUS )-------------
+    // -------------SERVICE_HISTORY(CANCELLED OR COMPLETED)-------------
     public function service_history(Request $req, Response $res){
         $service = new Service();
         $user = new User();
         $serviceProviderId = session('userId');
 
         // SERVICES COMING ACCORDING TO POSTAL CODE...
-        $where = "ServiceProviderId = {$serviceProviderId}";
+        $where = "ServiceProviderId = {$serviceProviderId} AND (Status = {$this->COMPLETED_STATUS} OR Status = {$this->CANCELLED_STATUS})";
         $serviceData = $service->join('ServiceRequestId', 'ServiceRequestId', 'servicerequestaddress')
                                ->where($where)->read();
 
@@ -197,7 +199,6 @@ class ServiceProviderDashboard{
         $user = new User();
         $serviceProviderId = session('userId');
 
-        // SERVICES COMING ACCORDING TO POSTAL CODE...
         $where = "ServiceProviderId = {$serviceProviderId} AND Status = {$this->COMPLETED_STATUS}";
         $serviceData = $service->join('ServiceRequestId', 'ServiceRequestId', 'rating')->where($where)->read();
 

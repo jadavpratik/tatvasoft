@@ -1,15 +1,15 @@
-<div class="sp_new_service_request" style="padding-bottom:10px;">
-    <!-- <div>
+<!-- <div class="sp_new_service_request">
+    <div>
         <p>Service Area</p>
         <select name="" id="">
             <option value="">25</option>
         </select>
-    </div> -->
+    </div>
     <div>
         <input type="checkbox">
         <label for="">including pet at home</label>
     </div>    
-</div>
+</div> -->
 <table id="sp_new_services_table">
     <thead>
         <tr>

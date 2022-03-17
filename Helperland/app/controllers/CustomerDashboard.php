@@ -16,17 +16,18 @@ use app\models\Favorite;
 class CustomerDashboard{
 
     private $NEW_STATUS       = 0;
-    private $PENDING_STATUS   = 1; // (ACCEPTED BY SP BUT NOT COMPLETED)
+    private $ASSIGNED_STATUS  = 1; // (ACCEPTED BY SP BUT NOT COMPLETED)
     private $COMPLETED_STATUS = 2;
     private $CANCELLED_STATUS = 3;
 
-    // ----------ALL SERVICES----------
+    // ----------SERVICES HISTORY (COMPLETED & CANCELLED)----------
     public function service_history(Request $req, Response $res){
 
         $customerId = session('userId');
         $service = new Service();
+        $where = "UserId = {$customerId} AND (Status = {$this->COMPLETED_STATUS} OR Status = {$this->CANCELLED_STATUS})";
         $serviceData = $service->join('ServiceRequestId', 'ServiceRequestId', 'servicerequestaddress')
-                               ->where('UserId', '=', $customerId)->read();
+                               ->where($where)->read();
        
         function time_to_minutes($time){
             $temp = explode(':', $time);
@@ -70,21 +71,31 @@ class CustomerDashboard{
             if(isset($serviceData[$i]->ServiceProvider)){
                 $rating = new Rating();
                 $serviceProviderId = $serviceData[$i]->ServiceProviderId;
-                $ratingData = $rating->where('RatingTo', '=', $serviceProviderId)->read();
+
+                // **********CUSTOMER'S RATING**********
+                $where = "RatingTo = {$serviceProviderId} AND RatingFrom = {$customerId}";
+                $ratingData = $rating->where($where)->read();
                 if(count($ratingData)>0){
-                    // CHECK, BY CURRENT CUSTOMER RATING IS GIVEN OR NOT ?
-                    foreach($ratingData as $chunk){
-                        if($chunk->RatingFrom == $customerId){
-                            $serviceData[$i]->SPRated = true;
-                        }
-                    }
-                    $tempRating = 0;
-                    for($j=0; $j<count($ratingData); $j++){
-                        $tempRating += (float) $ratingData[$j]->Ratings;                        
-                    }
-                    $tempRating /= count($ratingData);
-                    $serviceData[$i]->Rating = $tempRating;
-                }                
+                    $serviceData[$i]->Rating = $ratingData[0]->Ratings;
+                    $serviceData[$i]->SPRated = true;
+                }
+
+                // **********AVERAGE RATING**********
+                // $ratingData = $rating->where('RatingTo', '=', $serviceProviderId)->read();
+                // if(count($ratingData)>0){
+                //     // CHECK, BY CURRENT CUSTOMER RATING IS GIVEN OR NOT ?
+                //     foreach($ratingData as $chunk){
+                //         if($chunk->RatingFrom == $customerId){
+                //             $serviceData[$i]->SPRated = true;
+                //         }
+                //     }
+                //     $tempRating = 0;
+                //     for($j=0; $j<count($ratingData); $j++){
+                //         $tempRating += (float) $ratingData[$j]->Ratings;                        
+                //     }
+                //     $tempRating /= count($ratingData);
+                //     $serviceData[$i]->Rating = $tempRating;
+                // }                
             }
         }
         $res->status(200)->json($serviceData);
@@ -95,8 +106,7 @@ class CustomerDashboard{
 
         $customerId = session('userId');
         $service = new Service();
-        // STATUS = 0 OR 1 MEANS (NEW OR PENDING)...
-        $where = "UserId = {$customerId} AND (Status = {$this->PENDING_STATUS} OR Status = {$this->NEW_STATUS})";
+        $where = "UserId = {$customerId} AND (Status = {$this->ASSIGNED_STATUS} OR Status = {$this->NEW_STATUS})";
         $serviceData = $service->join('ServiceRequestId', 'ServiceRequestId', 'servicerequestaddress')
                                ->where($where)->read();
 
@@ -137,18 +147,18 @@ class CustomerDashboard{
                 $serviceData[$i]->ServiceProvider = $spData[0];
             }
 
-            // ADD RATTING DETAILS...
+            // ADD RATTING DETAILS...(AVERAGE RATING...)
             if(isset($serviceData[$i]->ServiceProvider)){
                 $rating = new Rating();
                 $serviceProviderId = $serviceData[$i]->ServiceProviderId;
                 $ratingData = $rating->where('RatingTo', '=', $serviceProviderId)->read();
                 if(count($ratingData)>0){
                     // CHECK, BY CURRENT CUSTOMER RATING IS GIVEN OR NOT ?
-                    foreach($ratingData as $chunk){
-                        if($chunk->RatingFrom == $customerId){
-                            $serviceData[$i]->SPRated = true;
-                        }
-                    }
+                    // foreach($ratingData as $chunk){
+                    //     if($chunk->RatingFrom == $customerId){
+                    //         $serviceData[$i]->SPRated = true;
+                    //     }
+                    // }
                     $tempRating = 0;
                     for($j=0; $j<count($ratingData); $j++){
                         $tempRating += (float) $ratingData[$j]->Ratings;                        
@@ -233,7 +243,18 @@ class CustomerDashboard{
             $res->status(200)->json(['message'=>'Thanks for feedback Us.']);    
         }
         else{
-            $res->status(400)->json(['message'=>'You already given feedback!']);    
+            // UPDATE OR EDIT RATING OR REVIEW...
+            $where = "ServiceRequestId = {$serviceId}";
+            $rating->where($where)->update([
+                'Ratings' => $averageRating,
+                'Comments' => $rating_feedback,
+                'RatingDate' => date('Y-m-d H:i:s'),
+                'OnTimeArrival' => $arrival_rating,
+                'Friendly' => $friendly_rating,
+                'QualityOfService' => $quality_rating,
+            ]);            
+            $res->status(200)->json(['message'=>'Thanks for feedback Us.']);    
+            // $res->status(400)->json(['message'=>'You already given feedback!']);    
         }
     }
 

@@ -9,15 +9,27 @@ let date = new Date();
 let yyyy = date.getFullYear();
 let mm = date.getMonth()+1;
 let dd = date.getDate();
+let tdd = date.getDate()+1; // TOMORROW DATE...
 
-if(mm<10){
-    mm = `0${mm}`;
-}
-if(dd<10){
-    dd = `0${dd}`;
-}
-
+mm = mm<10? `0${mm}` : mm;
+dd = dd<10? `0${dd}` : dd;
+tdd = tdd<10? `0${tdd}`: tdd;
 let today = `${yyyy}-${mm}-${dd}`;
+let tomorrow = `${yyyy}-${mm}-${tdd}`;
+
+// ------------MIN & MAX DATE FIX FOR VALIDATION--------------
+$('[name="dob"]').attr('max', today);
+if(date.getHours()<18){
+    $('[name="schedule_date"]').attr('min',today);
+}
+else{
+    // THEN SET TOMORROW... (AFTER 6PM IF SOMETRY TO ADD REQUEST)
+    $('[name="schedule_date"]').attr('min',tomorrow);
+}
+$('[name="schedule_time"]').attr('min', '08:00').attr('max', '18:00');
+$('[name="reschedule_service_date"]').attr('min', today);
+
+console.log();
 
 
 
@@ -1031,16 +1043,6 @@ $('[name="postal_code"]').focusout(function(){
 $('[name="city"]').focusout(function(){
     city_validation();
 });
-
-// ------------MIN & MAX DATE FIX FOR VALIDATION--------------
-$('[name="dob"]').attr('max', today);
-$('[name="schedule_date"]').attr('min',today);
-$('[name="schedule_time"]').attr('min', '08:00').attr('max', '18:00');
-$('[name="reschedule_service_date"]').attr('min', today);
-
-
-
-
 
 
 

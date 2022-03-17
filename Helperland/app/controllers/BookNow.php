@@ -164,6 +164,7 @@ class BookNow{
             unset($i->Password); // REMOVE PASSWORD FIELD...
         }
         $res->status(200)->json($data);
+
         // $favorite = new Favorite();
         // $user = new User();
         // $data = $favorite->where('UserId', '=', $customerId)->read();
@@ -172,6 +173,8 @@ class BookNow{
         //     if($data[$i]->IsFavorite==1){
         //         $spId = $data[$i]->TargetUserId;
         //         $spData = $user->where('UserId', '=', $spId)->read();
+        //         // REMOVE PASSWORD FIELD...
+        //         unset($spData[0]->Password);
         //         $favoriteSP[] = $spData[0];
         //     }
         // }

@@ -19,11 +19,21 @@
     define('DB_PASSWORD', '');
 
     // CONFIG OF MAIL...
-    // 'smtp.gmail.com'
-    define('SMTP_HOST', 'smtp.mail.yahoo.com'); //smtp.gmail.com
-    define('EMAIL_PORT', 465); // 465, 587
-    define('EMAIL_ADDRESS', 'typeee29@yahoo.com');
-    define('EMAIL_PASSWORD', '**********');
+
+    /**
+     *  smtp.gmail.com
+     *  587
+     *  tls
+     * 
+     *  stmp.mail.yahoo.com
+     *  456, 587
+     *  ssl, tls
+     */
+    define('SMTP_HOST', 'smtp.gmail.com');
+    define('SMTP_SECURE', 'tls');
+    define('EMAIL_PORT', 587);
+    define('EMAIL_ADDRESS', '');
+    define('EMAIL_PASSWORD', '');
     
     // SESSION CONFIG...
     define('SESSION_PATH', __DIR__.'/../public/sessions/');

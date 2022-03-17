@@ -17,7 +17,7 @@
                 <a href="javascript:void(0);" class="table_tab_btn" onclick="load_customer_dashboard_data()">Dashboard</a>
                 <a href="javascript:void(0);" class="table_tab_btn" onclick="load_customer_service_history_data()">Service History</a>
                 <!-- <a href="javascript:void(0);" class="table_tab_btn">Service Schedule</a> -->
-                <a href="javascript:void(0);" class="table_tab_btn" onclick="load_customer_favorite_section_data()">Favourite Pros</a>
+                <a href="javascript:void(0);" class="table_tab_btn" onclick="load_customer_favorite_section_data()">Favorite Service Provider</a>
                 <!-- <a href="javascript:void(0);" class="table_tab_btn">Invoices</a> -->
                 <!-- <a href="javascript:void(0);" class="table_tab_btn">Notifications</a>     -->
             </div>
