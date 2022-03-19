@@ -14,11 +14,12 @@
             <label for="">+46</label>
             <input type="text" placeholder="Phone Number">
         </div>
-        <input class="input" type="text" placeholder="Zip Code">
+        <input class="input" type="text" placeholder="Zip Code" id="searchByZipCode">
         <button class="search_btn">Search</button>
         <button class="clear_btn">Clear</button>
     </div>
 </div><!-- END_USER_MANAGEMENT -->
+
 <table id="admin_user_management_table">
     <thead>
         <tr>
@@ -46,13 +47,20 @@
             searching : false,
             serviceSide : true,
             autoWidth : false,
+            filter : true,
             dom : 't<"datatable_bottom"lp>',
             ajax : {
                 url : `${BASE_URL}/user-management`,
                 cache : true,
                 dataSrc : function(data){
                     // STORE DATA GLOBALLY...
+                    data = data.filter((i)=>{
+                        if(i.RoleId!==3){
+                            return i;
+                        }
+                    })                    
                     state.admin_user_management_data = data;
+                    // CUSTOM FILTER DATA...
                     return data;
                 }
             },
@@ -63,7 +71,9 @@
                     }
                 },
                 {
-                    data : 'CreatedDate'
+                    render : function(data, type, row){
+                        return `${row.CreatedDate}`;
+                    }
                 },
                 {
                     render : function(data, type, row){
@@ -72,14 +82,23 @@
                                 return `Customer`;
                             case 2:
                                 return `Service Provider`;
+                            default:
+                                return ``;
                         }
                     }
                 },
                 {
-                    data : 'Mobile'
+                    render : function(data, type, row){
+                        return `${row.Mobile}`;
+                    }
                 },
                 {
-                    data : 'ZipCode'
+                    render : function(data, type, row){
+                        if(row.ZipCode!=null)
+                            return `${row.ZipCode}`;
+                        else
+                            return ``;
+                    }
                 },
                 {
                     render : function(data, type, row){
@@ -116,6 +135,13 @@
                 },
             }
         })
+
+        $('#searchByZipCode').keyup(()=>{
+            console.log('a');
+            const searchVal = $('#searchByZipCode').val();
+            state.admin_user_management_table.column(5).search(searchVal).draw();
+        });
+
     });
 </script>
 

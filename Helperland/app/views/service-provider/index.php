@@ -168,6 +168,48 @@
 
         open_model('service_details');
     }
+
+    
 </script>
 
+<!-- **********COMPLTE-SERVICE********** -->
+<script>
+    function complete_service(id){
+        $.ajax({
+            url : `${BASE_URL}/complete-service/${id}`,
+            method : 'PATCH',
+            success : function(res){
+                if(res!==undefined && res!==""){
+                    try{
+                        const result = JSON.parse(res);
+                        Swal.fire({
+                            title : 'Good job!',
+                            text : result.message,
+                            icon : 'success'
+                        });
+                        state.sp_upcoming_services_table.ajax.reload();
+                    }
+                    catch(e){
+                        console.log('Invalid Json Response!!!');
+                        Swal.fire({
+                            title : 'Server Error',
+                            text : 'Invalid Response Coming From Server!!!',
+                            icon : 'error'
+                        });
+                    }
+                }
+            },
+            error : function(obj){
+                if(obj!==undefined){
+                    const {responseText, status} = obj;
+                    const error = JSON.parse(responseText);
+                    Swal.fire({
+                        text : error.message,
+                        icon : 'error'
+                    });
+                }
+            }
+        });
+    }
+</script>
 <?= component('footer'); ?>

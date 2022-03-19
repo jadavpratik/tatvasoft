@@ -61,7 +61,7 @@
                         const {responseText, status} = obj;
                         const error = JSON.parse(responseText);
                         Swal.fire({
-                            text : error.message,
+                            title : error.message,
                             icon : 'error',
                         });
                     }

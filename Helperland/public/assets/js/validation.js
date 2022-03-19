@@ -10,7 +10,6 @@ let yyyy = date.getFullYear();
 let mm = date.getMonth()+1;
 let dd = date.getDate();
 let tdd = date.getDate()+1; // TOMORROW DATE...
-
 mm = mm<10? `0${mm}` : mm;
 dd = dd<10? `0${dd}` : dd;
 tdd = tdd<10? `0${tdd}`: tdd;
@@ -20,10 +19,12 @@ let tomorrow = `${yyyy}-${mm}-${tdd}`;
 // ------------MIN & MAX DATE FIX FOR VALIDATION--------------
 $('[name="dob"]').attr('max', today);
 if(date.getHours()<18){
+    // MIN DATE WILL BE SET AS TODAY DATE
     $('[name="schedule_date"]').attr('min',today);
 }
 else{
-    // THEN SET TOMORROW... (AFTER 6PM IF SOMETRY TO ADD REQUEST)
+    // (AFTER 6PM IF SOMETRY TO ADD REQUEST)
+    // THEN MIN DATE WILL BE SET AS TOMORROW DATE
     $('[name="schedule_date"]').attr('min',tomorrow);
 }
 $('[name="schedule_time"]').attr('min', '08:00').attr('max', '18:00');
@@ -375,38 +376,27 @@ function setup_service_postal_code_validation(){
 function schedule_date_validation(){
     const selectedDate = $('[name="schedule_date"]').val();
     const temp = new Date(selectedDate);
-    const tempYear = temp.getFullYear();
-    const tempMonth = temp.getMonth()+1;
-    const tempDate = temp.getDate();
-    const newYear = tempYear+1;
-    mm = parseInt(mm);
-    dd = parseInt(dd);
+    const minDate = $('[name="schedule_date"]').attr('min');
+    const minDateObj = new Date(minDate);
     if(selectedDate==undefined || selectedDate==""){
         $('[name="schedule_date"]').parent().next().removeClass('d_none').children().html('Please Select Date !');
         return false;
     }
-    else if(mm==12 && newYear > yyyy){
-        // ASSUME THAT NEW YEAR WILL BE START SOON, 
-        // AND ASSUME USER BOOK SERVICE IN DECEMBER MONTH..
-        console.log('Nothing to Do...');
-        return true;
-    }
-    else if(tempYear < yyyy || tempYear > yyyy){
-        $('[name="schedule_date"]').parent().next().removeClass('d_none').children().html('Year is Invalid !');
-        return false;
-    }
-    else if((tempYear == yyyy) && (tempMonth < mm)){
-        $('[name="schedule_date"]').parent().next().removeClass('d_none').children().html('Month is Invalid !');
-        return false;
-    }
-    else if((tempYear == yyyy) && (tempMonth == mm) && (tempDate < dd)){
-        $('[name="schedule_date"]').parent().next().removeClass('d_none').children().html('Date is Invalid !');
+    else if(temp.getTime() < minDateObj.getTime()){
+        // IF SELECTED DATE IS LESS THEN THE MIN DATE... IT IS INVALID...
+        $('[name="schedule_date"]').parent().next().removeClass('d_none').children().html('Invalid Date Selection!');
         return false;
     }
     else{
         $('[name="schedule_date"]').parent().next().addClass('d_none').children().html('');
         return true;
     }
+    // else if(mm==12 && newYear > yyyy){
+    //     // ASSUME THAT NEW YEAR WILL BE START SOON, 
+    //     // AND ASSUME USER BOOK SERVICE IN DECEMBER MONTH..
+    //     console.log('Nothing to Do...');
+    //     return true;
+    // }
 }
 
 // ------------------------SCHEDULE-TIME-VALIDATON--------------------

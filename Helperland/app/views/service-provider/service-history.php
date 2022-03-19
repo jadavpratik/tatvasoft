@@ -56,7 +56,7 @@
                 },
                 {
                     render : function(data, type, row){
-                        return `<div class="service_date">
+                        return `<div class="service_date" onclick="show_service_details(${row.ServiceRequestId})">
                                     <div>
                                         <img src="<?= assets('assets/img/table/calendar.png'); ?>" alt="">
                                         <p>${row.ServiceDate}</p>
@@ -70,7 +70,7 @@
                 },
                 {
                     render : function(data, type, row){
-                        return `<div class="customer_details"> 
+                        return `<div class="customer_details" onclick="show_service_details(${row.ServiceRequestId})"> 
                                     <p>${row.CustomerName}</p>
                                     <div>
                                         <img src="<?= assets('assets/img/table/home.png'); ?>" alt="">
@@ -83,9 +83,9 @@
                     render : function(data, type, row){
                         switch(row.Status){
                             case 2:
-                                return `<p class="completed_status">Completed</p>`;
+                                return `<p class="completed_status" onclick="show_service_details(${row.ServiceRequestId})">Completed</p>`;
                             case 3:
-                                return `<p class="cancelled_status">Cancelled</p>`;
+                                return `<p class="cancelled_status" onclick="show_service_details(${row.ServiceRequestId})">Cancelled</p>`;
                             // case 0:
                             //     return `<p class="new_status">New</p>`;
                             // case 1:

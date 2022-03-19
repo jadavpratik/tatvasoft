@@ -60,7 +60,6 @@
 <script>
 
     function update_payment_summary(){
-        console.log(service_request);
         let serviceDateObj = new Date(service_request.date);
         let serviceYear = serviceDateObj.getFullYear();
         let serviceMonth = serviceDateObj.getMonth()+1;
@@ -68,7 +67,8 @@
         serviceMonth = serviceMonth < 10 ? `0${serviceMonth}` : serviceMonth;
         serviceDate  = serviceDate < 10 ? `0${serviceDate}` : serviceDate;
         //  TOTAL PRICES = BASIC PRICE(3 SERVICE) + EXTRA SERVICE(DYNAMICS);
-        service_request.total_price = service_request.per_price*3 + (service_request.per_price/2)*service_request.extra.length;
+        service_request.total_price = service_request.per_price*service_request.duration 
+                                    + (service_request.per_price/2)*service_request.extra.length;
 
         $('#service_date').html(`${serviceDate}/${serviceMonth}/${serviceYear}`);
         $('#service_time').html(service_request.time);

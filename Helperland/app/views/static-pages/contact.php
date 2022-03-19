@@ -132,7 +132,7 @@
 
 	$('#contact_us').submit(function(e){
 		e.preventDefault();
-
+		$('.form_btn').prop('disabled', true);
 		let validation = true;
 
 		const validationArr = [firstname_validation(),
@@ -180,6 +180,7 @@
 								text : 'Invalid Response Coming From Server',
 								icon : 'error'
 							});
+							$('.form_btn').prop('disabled', false);
 						}
 					}
 				},
@@ -193,6 +194,7 @@
 							icon : 'error'
 						});
 					}
+					$('.form_btn').prop('disabled', false);
 				},
 			});
 		}

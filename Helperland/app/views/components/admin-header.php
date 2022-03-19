@@ -42,11 +42,10 @@
             <button class="admin_dashboard_btn" title="Dashboard"><i class="fas fa-tachometer-alt"></i></button>
             <button class="sidenav_btn"><i class="fas fa-bars"></i></button>
         </div>
-
         <div class="admin_nav_menu">
             <img src="<?= assets('assets/img/global/user.png'); ?>" alt="">
             <p>James Smith</p>
-            <button><img src="<?= assets('assets/img/global/logout.png'); ?>" alt=""></button>
+            <button onclick="window.location.href=`<?= url('/logout') ?>`;" ><img src="<?= assets('assets/img/global/logout.png'); ?>" alt=""></button>
         </div>
     </nav>
 

@@ -42,7 +42,7 @@
                 },
                 {
                     render : function(data, type, row){
-                        return` <div class="service_date">
+                        return` <div class="service_date" onclick="show_service_details(${row.ServiceRequestId});">
                                     <div>
                                         <img src="<?= assets('assets/img/table/calendar.png'); ?>" alt="">
                                         <p>${row.ServiceDate}</p>
@@ -58,7 +58,7 @@
                     render : function(data, type, row){
                         if(row.ServiceProvider!==undefined){
                             if(row.Rating!==undefined){
-                                return `<div class="service_provider">
+                                return `<div class="service_provider" onclick="show_service_details(${row.ServiceRequestId});">
                                         <img class="hat_style" src="${BASE_URL}/assets/img/avatar/${row.ServiceProvider.UserProfilePicture}.png" alt="">
                                         <div>
                                             <p>${row.ServiceProvider.FirstName} ${row.ServiceProvider.LastName}</p>    
@@ -74,7 +74,7 @@
                                     </div>`;
                             }
                             else{
-                                return `<div class="service_provider">
+                                return `<div class="service_provider" onclick="show_service_details(${row.ServiceRequestId});">
                                         <img class="hat_style" src="${BASE_URL}/assets/img/avatar/${row.ServiceProvider.UserProfilePicture}.png" alt="">
                                         <div>
                                             <p>${row.ServiceProvider.FirstName} ${row.ServiceProvider.LastName}</p>    
@@ -91,14 +91,14 @@
                             }
                         }
                         else{
-                            return 'No SP';
+                            return '<p onclick="show_service_details(${row.ServiceRequestId});">NO SP</p>';
                         }
                     }
                 },
                 {
                     render : function(data, type, row){
                     // €₹
-                    return `<p class="payment_text">₹<span>${row.TotalCost}</span></p>`;
+                    return `<p class="payment_text" onclick="show_service_details(${row.ServiceRequestId});">₹<span>${row.TotalCost}</span></p>`;
                     }
                 },
                 {

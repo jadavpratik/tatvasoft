@@ -62,7 +62,7 @@
                     render : function(data, type, row){
                         if(row.ServiceProvider!==undefined){
                             return `
-                                <div class="service_provider">
+                                <div class="service_provider" onclick="show_service_details(${row.ServiceRequestId});">
                                     <img class="hat_style" src="${BASE_URL}/assets/img/avatar/${row.ServiceProvider.UserProfilePicture}.png" alt="">
                                     <div>
                                         <p>${row.ServiceProvider.FirstName} ${row.ServiceProvider.LastName}</p>    
@@ -93,23 +93,23 @@
                             `;
                         }
                         else{
-                            return `No SP`;
+                            return `<p onclick="show_service_details(${row.ServiceRequestId});">No SP</p>`;
                         }
                     }
                 },
                 {
                     render : function(data, type, row){
                         // €
-                        return `<p class="payment_text">₹<span>${row.TotalCost}</span></p>`;
+                        return `<p class="payment_text" onclick="show_service_details(${row.ServiceRequestId});">₹<span>${row.TotalCost}</span></p>`;
                     }
                 },
                 {
                     render : function(data, type, row){
                         switch(row.Status){
                             case 2:
-                                return `<p class="completed_status">Completed</p>`;
+                                return `<p class="completed_status" onclick="show_service_details(${row.ServiceRequestId});">Completed</p>`;
                             case 3:
-                                return `<p class="cancelled_status">Cancelled</p>`;
+                                return `<p class="cancelled_status" onclick="show_service_details(${row.ServiceRequestId});">Cancelled</p>`;
                             // case 0:
                             //     return `<p class="new_status">New</p>`;
                             // case 1:

@@ -80,7 +80,8 @@
     // SHOW SERVICE DETAILS...
     function show_service_details(id){
 
-        let data = state.customer_service_history_data;
+        let data = [...state.customer_service_history_data,
+                    ...state.load_customer_dashboard_data];
         
         data = data.filter((service)=>{
             if(id===service.ServiceRequestId){

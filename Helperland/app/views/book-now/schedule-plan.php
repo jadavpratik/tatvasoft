@@ -178,7 +178,7 @@
     });
 
     $('[name="duration"]').change(function(){
-        service_request.duration = $('[name="duration"]').val();
+        service_request.duration = parseInt($('[name="duration"]').val());
         update_payment_summary();
     });
 

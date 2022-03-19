@@ -51,7 +51,7 @@
                 },
                 {
                     render : function(data, type, row){
-                        return `<div class="service_date">
+                        return `<div class="service_date" onclick="show_service_details(${row.ServiceRequestId})">
                                     <div>
                                         <img src="<?= assets('assets/img/table/calendar.png'); ?>" alt="">
                                         <p>${row.ServiceDate}</p>
@@ -65,7 +65,7 @@
                 },
                 {
                     render : function(data, type, row){
-                        return `<div class="customer_details"> 
+                        return `<div class="customer_details" onclick="show_service_details(${row.ServiceRequestId})"> 
                                     <p>${row.CustomerName}</p>
                                     <div>
                                         <img src="<?= assets('assets/img/table/home.png'); ?>" alt="">
@@ -88,17 +88,9 @@
                 // },
                 {
                     render : function(data, type, row){
-                        if(row.IsExpired==1){
-                            return `<div style="display:flex;">
+                        return `<div style="display:flex;">
                                     <button class="accept_btn" onclick="accept_service_open_model(${row.ServiceRequestId});">Accept</button>
                                 </div>`;
-
-                        }
-                        else if(row.IsExpired==0){
-                            return `<div style="display:flex;">
-                                    <button class="accept_btn" onclick="accept_service_open_model(${row.ServiceRequestId});">Accept</button>
-                                </div>`;
-                        }
                     }
                 }
             ],
@@ -184,46 +176,5 @@
             </div>
         `);
         open_model('accept_service_request');
-    }
-</script>
-
-<!-- **********COMPLTE-SERVICE********** -->
-<script>
-    function complete_service(id){
-        $.ajax({
-            url : `${BASE_URL}/complete-service/${id}`,
-            method : 'PATCH',
-            success : function(res){
-                if(res!==undefined && res!==""){
-                    try{
-                        const result = JSON.parse(res);
-                        Swal.fire({
-                            title : 'Good job!',
-                            text : result.message,
-                            icon : 'success'
-                        });
-                        state.sp_new_services_table.ajax.reload();
-                    }
-                    catch(e){
-                        console.log('Invalid Json Response!!!');
-                        Swal.fire({
-                            title : 'Server Error',
-                            text : 'Invalid Response Coming From Server!!!',
-                            icon : 'error'
-                        });
-                    }
-                }
-            },
-            error : function(obj){
-                if(obj!==undefined){
-                    const {responseText, status} = obj;
-                    const error = JSON.parse(responseText);
-                    Swal.fire({
-                        text : error.message,
-                        icon : 'error'
-                    });
-                }
-            }
-        });
     }
 </script>

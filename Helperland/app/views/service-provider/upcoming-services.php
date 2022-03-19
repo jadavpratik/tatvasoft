@@ -39,7 +39,7 @@
                 },
                 {
                     render : function(data, type, row){
-                        return `<div class="service_date">
+                        return `<div class="service_date" onclick="show_service_details(${row.ServiceRequestId})">
                                     <div>
                                         <img src="<?= assets('assets/img/table/calendar.png'); ?>" alt="">
                                         <p>${row.ServiceDate}</p>
@@ -53,7 +53,7 @@
                 },
                 {
                     render : function(data, type, row){
-                        return `<div class="customer_details">
+                        return `<div class="customer_details" onclick="show_service_details(${row.ServiceRequestId})">
                                     <p>${row.CustomerName}</p>
                                     <div>
                                         <img src="<?= assets('assets/img/table/home.png'); ?>" alt="">
@@ -70,7 +70,17 @@
                 },
                 {
                     render : function(data, type, row){
-                        return `<button class="cancel_btn" onclick="reject_service_by_sp(${row.ServiceRequestId});">Cancel</button>`;
+                        if(row.IsExpired==1 && row.Status==1){
+                            return `<div class="table_btn_container">
+                                        <button class="accept_btn" onclick="complete_service(${row.ServiceRequestId});">Complete</button>
+                                        <button class="cancel_btn" onclick="reject_service_by_sp(${row.ServiceRequestId});">Cancel</button>
+                                    </div>`;
+                        }
+                        else{
+                            return `<div class="table_btn_container">
+                                        <button class="cancel_btn" onclick="reject_service_by_sp(${row.ServiceRequestId});">Cancel</button>
+                                    </div>`;
+                        }
                     }
                 }
             ],

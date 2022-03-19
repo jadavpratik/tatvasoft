@@ -64,6 +64,10 @@ class BookNow{
             'Email' => $data[0]->Email,
             'Mobile' => $req->body->phone,
         ]);
+        // UPDATE ZIPCODE IN USER TABLE
+        $user->where('UserId', '=', session('userId'))->update([
+            'ZipCode' => $req->body->postal_code
+        ]);
         $res->status(200)->json(['message'=>'Address Add Successfully.']);
     }
 
@@ -91,7 +95,7 @@ class BookNow{
         $postal_code = $req->body->postal_code;
         $date = strtotime($req->body->date.' '.$req->body->time);
         $date = date('Y-m-d H:i:s', $date);
-        $duration = $req->body->duration;
+        $duration = (int) $req->body->duration;
         // OPTIONAL PARAMERTERS...
         $extra =  isset($req->body->extra)? $req->body->extra : [];
         $extra_time = isset($req->body->extra_time)? $req->body->extra_time : null;
@@ -104,7 +108,7 @@ class BookNow{
             }
         }
         $hourly_rate = 70;
-        $total_cost = $hourly_rate*3 + ($hourly_rate/2)*count($extra);
+        $total_cost = $hourly_rate*$duration + ($hourly_rate/2)*count($extra);
         // ADD SERVICE_REQUEST IN DATABASE TABLE...
         $serviceId = $service->create([
             'UserId' => $customerId,

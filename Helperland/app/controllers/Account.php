@@ -94,30 +94,35 @@ class Account{
 		if($user->where($where)->exists()){
 
 			$result = $user->where($where)->read();
-			// STORE DATA IN VARIABLE FOR SET IN SESSION...
-			$userId = $result[0]->UserId;
-			$userRole = $result[0]->RoleId;
-			$userPassword = $result[0]->Password;
-			$userName = $result[0]->FirstName.' '.$result[0]->LastName;
+			if($result[0]->IsActive){
+				// STORE DATA IN VARIABLE FOR SET IN SESSION...
+				$userId = $result[0]->UserId;
+				$userRole = $result[0]->RoleId;
+				$userPassword = $result[0]->Password;
+				$userName = $result[0]->FirstName.' '.$result[0]->LastName;
 
-			if(cookie('loginAttempts')<5){
-				if(Hash::verify($password, $userPassword)){
-					session('isLogged', true);
-					session('userId', $userId);
-					session('userRole', $userRole);
-					session('userRoleName', $this->setUserRoleName($userRole));
-					session('userName', $userName);
-					$res->status(200)->json(['role'=>$userRole, 'message'=>"Login successfully."]);
+				if(cookie('loginAttempts')<5){
+					if(Hash::verify($password, $userPassword)){
+						session('isLogged', true);
+						session('userId', $userId);
+						session('userRole', $userRole);
+						session('userRoleName', $this->setUserRoleName($userRole));
+						session('userName', $userName);
+						$res->status(200)->json(['role'=>$userRole, 'message'=>"Login successfully."]);
+					}
+					else{
+						$attempts =  cookie('loginAttempts') + 1;
+						// SET COOKIE FOR 30 MINUTES...
+						cookie('loginAttempts', $attempts, time()+1800);
+						$res->status(401)->json(['message'=>"Password is not matched."]);
+					}	
 				}
 				else{
-					$attempts =  cookie('loginAttempts') + 1;
-					// SET COOKIE FOR 30 MINUTES...
-					cookie('loginAttempts', $attempts, time()+1800);
-					$res->status(401)->json(['message'=>"Password is not matched."]);
-				}	
+					$res->status(401)->json(['message'=>"Try after 30 minutes!"]);
+				}
 			}
 			else{
-				$res->status(401)->json(['message'=>"Try after 30 minutes!"]);
+				$res->status(401)->json(['message'=>"You need to active your account by admin"]);
 			}
 		}
 		else{
