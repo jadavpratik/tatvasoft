@@ -40,7 +40,7 @@
             autoWidth : false,
             dom : 't<"datatable_bottom"lp>',
             ajax : {
-                url : `${BASE_URL}/sp-service-history`,
+                url : `${BASE_URL}/service-provider/service/history`,
                 cache : true,
                 dataSrc : function(data){
                     // STORE DATA GLOBALLY...

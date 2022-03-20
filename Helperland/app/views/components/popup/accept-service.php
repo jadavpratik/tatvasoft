@@ -37,7 +37,7 @@
 <script>
     function accept_service(){
         $.ajax({
-            url : `${BASE_URL}/accept-service/${state.accept_service_id}`,
+            url : `${BASE_URL}/service-provider/service/accept/${state.accept_service_id}`,
             method : 'PATCH',
             success : function(res){
                 if(res!=="" && res!==undefined){

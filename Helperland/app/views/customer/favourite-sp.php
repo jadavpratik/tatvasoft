@@ -6,7 +6,7 @@
 <script>
     function load_customer_favorite_section_data(){
         $.ajax({
-            url : `${BASE_URL}/customer-my-sp`,
+            url : `${BASE_URL}/customer/sp`,
             method : 'GET',
             success : function(res){
                 if(res!=="" && res!==undefined){
@@ -98,16 +98,16 @@
         let url = ``;
         switch(action){
             case 'add':
-                url = `${BASE_URL}/favorite/${sp_id}`;
+                url = `${BASE_URL}/customer/sp/favorite/${sp_id}`;
                 break;
             case 'remove':
-                url = `${BASE_URL}/unfavorite/${sp_id}`;
+                url = `${BASE_URL}/customer/sp/unfavorite/${sp_id}`;
                 break;
             case 'block':
-                url = `${BASE_URL}/block-sp/${sp_id}`;
+                url = `${BASE_URL}/customer/sp/block/${sp_id}`;
                 break;
             case 'unblock':
-                url = `${BASE_URL}/unblock-sp/${sp_id}`;
+                url = `${BASE_URL}/customer/sp/unblock/${sp_id}`;
                 break;
         }
         if(url!==''){

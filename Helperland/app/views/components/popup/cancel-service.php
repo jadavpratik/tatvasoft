@@ -29,7 +29,7 @@
                 service_id : state.cancel_service_id
             });
             $.ajax({
-                url : `${BASE_URL}/cancel-service/${state.cancel_service_id}`,
+                url : `${BASE_URL}/customer/service/cancel/${state.cancel_service_id}`,
                 method : 'PATCH',
                 contentType : 'application/json',
                 data : json,

@@ -35,7 +35,7 @@
             });
 
             $.ajax({
-                url : `${BASE_URL}/reschedule-service/${state.reschedule_service_id}`,
+                url : `${BASE_URL}/customer/service/reschedule/${state.reschedule_service_id}`,
                 method : 'PATCH',
                 contentType : 'application/json',
                 data : json,

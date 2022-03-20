@@ -56,6 +56,8 @@ class Account{
 					'Password'=> $hash,
 					'RoleId' => $role,
 					'UserProfilePicture' => 'car',
+					// SERVICE PROVIDER NEED TO ACTIVE ACCOUNT BY ADMIN
+					'IsActive' => $role==2? 0 : 1,
 					'CreatedDate' => date('Y-m-d H:i:s')
 				]);
 				$res->status(201)->json(['message'=>'Account is created successfully.']);

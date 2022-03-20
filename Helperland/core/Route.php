@@ -56,12 +56,26 @@ class Route{
 		else if(str_contains(self::$route_url, ':')){
 			page_url(self::$browser_url);
 			if(count(self::$params_key) == count(self::$params_value)){
-				if(self::$params_key[1]==self::$params_value[1]){
-					// ON INDEX 1 OF ARRAY URL PRESENT...
-					self::$req = new Request([self::$params_key, self::$params_value]);
-					self::$res = new Response();		
-					return true;
+
+				for($i=0; $i<count(self::$params_key); $i++){
+					if(!str_contains(self::$params_key[$i], ':')){
+						if(self::$params_key[$i] != self::$params_value[$i]){
+							return false;
+						}
+					}
 				}
+				self::$req = new Request([self::$params_key, self::$params_value]);
+				self::$res = new Response();		
+				return true;
+
+				// ERROR WHEN WE USE ROUTE LIKE /USER/CART/ITEMS/:ID
+				// if(self::$params_key[1]==self::$params_value[1]){
+				// 	// ON INDEX 1 OF ARRAY URL PRESENT...
+				// 	self::$req = new Request([self::$params_key, self::$params_value]);
+				// 	self::$res = new Response();		
+				// 	return true;
+				// }
+
 			}
 		}
 		// PAGE_NOT_FOUND...

@@ -186,7 +186,7 @@
     // LOAD SERVICE PROVIDER DETAILS...
     function sp_my_details(){
         $.ajax({
-            url : `${BASE_URL}/my-details`,
+            url : `${BASE_URL}/user/details`,
             method : 'GET',
             success : function(res){
                 if(res!=="" && res!==undefined){
@@ -226,7 +226,7 @@
 
     function sp_my_address(){
         $.ajax({
-            url : `${BASE_URL}/my-address`,
+            url : `${BASE_URL}/user/address`,
             method : 'GET',
             success : function(res){
                 if(res!=="" && res!==undefined){
@@ -298,7 +298,7 @@
             });
 
             $.ajax({
-                url : `${BASE_URL}/my-details`,
+                url : `${BASE_URL}/user/details`,
                 method : 'PATCH',
                 contentType : 'application/json',
                 data : json,
@@ -333,7 +333,7 @@
         // UPDATE SP-ADDRESS....
         function update_sp_address(){
             // BY DEFAULT WE ADD THE ADDRESS...
-            let url = `${BASE_URL}/my-address`;
+            let url = `${BASE_URL}/user/address`;
             let method = 'POST';
             let json = JSON.stringify({
                 add_address_phone : $('[name="phone"]').val(),
@@ -346,7 +346,7 @@
             // IF ADDRESS AVAILABE THEN UPDATE...
             if($('[name="sp_address_id"]').val()!==""){
                 let id = $('[name="sp_address_id"]').val();
-                url = `${BASE_URL}/my-address/${id}`;
+                url = `${BASE_URL}/user/address/${id}`;
                 method = 'PATCH';
                 json = JSON.stringify({
                     edit_address_phone : $('[name="phone"]').val(),

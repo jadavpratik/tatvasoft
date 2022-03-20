@@ -35,7 +35,7 @@
             autoWidth : false,
             dom : 't<"datatable_bottom"lp>',
             ajax : {
-                url : `${BASE_URL}/customer-service-history`,
+                url : `${BASE_URL}/customer/service/history`,
                 cache : true,
                 dataSrc : function(data){
                     // STORE DATA GLOBALLY...

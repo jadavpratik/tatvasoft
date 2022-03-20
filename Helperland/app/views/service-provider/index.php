@@ -176,7 +176,7 @@
 <script>
     function complete_service(id){
         $.ajax({
-            url : `${BASE_URL}/complete-service/${id}`,
+            url : `${BASE_URL}/service-provider/service/complete/${id}`,
             method : 'PATCH',
             success : function(res){
                 if(res!==undefined && res!==""){

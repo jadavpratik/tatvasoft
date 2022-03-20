@@ -23,7 +23,7 @@
             autoWidth : false,
             dom : 't<"datatable_bottom"lp>',
             ajax : {
-                url : `${BASE_URL}/sp-upcoming-services`,
+                url : `${BASE_URL}/service-provider/service/upcoming`,
                 cache : true,
                 dataSrc : function(data){
                     // STORE DATA GLOBALLY...
@@ -108,7 +108,7 @@
             if(res.isConfirmed){
 
                 $.ajax({
-                    url : `${BASE_URL}/reject-service/${id}`,
+                    url : `${BASE_URL}/service-provider/service/reject/${id}`,
                     method : 'PATCH',
                     success : function(res){
                         if(res!=="" && res!==undefined){

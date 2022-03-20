@@ -26,7 +26,7 @@
             autoWidth : false,
             dom : 't<"datatable_bottom"lp>',
             ajax : {
-                url : `${BASE_URL}/customer-current-services`,
+                url : `${BASE_URL}/customer/service/current`,
                 cache : true,
                 dataSrc : function(data){
                     // STORE DATA GLOBALLY...
@@ -57,41 +57,39 @@
                 {
                     render : function(data, type, row){
                         if(row.ServiceProvider!==undefined){
-                            if(row.Rating!==undefined){
-                                return `<div class="service_provider" onclick="show_service_details(${row.ServiceRequestId});">
-                                        <img class="hat_style" src="${BASE_URL}/assets/img/avatar/${row.ServiceProvider.UserProfilePicture}.png" alt="">
+                            return `
+                                <div class="service_provider" onclick="show_service_details(${row.ServiceRequestId});">
+                                    <img class="hat_style" src="${BASE_URL}/assets/img/avatar/${row.ServiceProvider.UserProfilePicture}.png" alt="">
+                                    <div>
+                                        <p>${row.ServiceProvider.FirstName} ${row.ServiceProvider.LastName}</p>    
                                         <div>
-                                            <p>${row.ServiceProvider.FirstName} ${row.ServiceProvider.LastName}</p>    
-                                            <div>
-                                                <i class="fas fa-star rated_star"></i>
-                                                <i class="fas fa-star rated_star"></i>
-                                                <i class="fas fa-star rated_star"></i>
-                                                <i class="fas fa-star rated_star"></i>
-                                                <i class="fas fa-star unrated_star"></i>
-                                                <span>${row.Rating}</span>
-                                            </div>
+                                            ${(function(){
+                                                let rating_html = ``;
+                                                if(row.Rating!==undefined){
+                                                    // FOR RATED STAR...
+                                                    for(let i=0; i<parseInt(row.Rating); i++){
+                                                        rating_html +=`<i class="fas fa-star rated_star"></i>`;
+                                                    }
+                                                    // FOR UNRATED STAR...
+                                                    for(let i=0; i<(5-parseInt(row.Rating)); i++){
+                                                        rating_html +=`<i class="fas fa-star unrated_star"></i>`;
+                                                    }
+                                                }
+                                                else{
+                                                    for(let i=0; i<5; i++){
+                                                        rating_html +=`<i class="fas fa-star unrated_star"></i>`;
+                                                    }
+                                                }
+                                                return rating_html;
+                                            })()}
+                                            <span>${row.Rating!==undefined?parseFloat(row.Rating):''}</span>
                                         </div>
-                                    </div>`;
-                            }
-                            else{
-                                return `<div class="service_provider" onclick="show_service_details(${row.ServiceRequestId});">
-                                        <img class="hat_style" src="${BASE_URL}/assets/img/avatar/${row.ServiceProvider.UserProfilePicture}.png" alt="">
-                                        <div>
-                                            <p>${row.ServiceProvider.FirstName} ${row.ServiceProvider.LastName}</p>    
-                                            <div>
-                                                <i class="fas fa-star unrated_star"></i>
-                                                <i class="fas fa-star unrated_star"></i>
-                                                <i class="fas fa-star unrated_star"></i>
-                                                <i class="fas fa-star unrated_star"></i>
-                                                <i class="fas fa-star unrated_star"></i>
-                                                <span></span>
-                                            </div>
-                                        </div>
-                                    </div>`;
-                            }
+                                    </div>
+                                </div>
+                            `;
                         }
                         else{
-                            return '<p onclick="show_service_details(${row.ServiceRequestId});">NO SP</p>';
+                            return `<p onclick="show_service_details(${row.ServiceRequestId});">No SP</p>`;
                         }
                     }
                 },

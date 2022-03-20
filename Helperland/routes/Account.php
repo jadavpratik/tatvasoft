@@ -20,12 +20,12 @@ Route::patch('/change-password', $isLogged, [new Account(), 'change_password']);
 Route::get('/logout', [new Account(), 'logout']);
 
 // -----------MY-DETAILS---------------
-Route::get('/my-details', $isLogged, [new MyDetails(), 'get_details']);
-Route::patch('/my-details', $isLogged, [new MyDetails(), 'update_details']);
+Route::get('/user/details', $isLogged, [new MyDetails(), 'get_details']);
+Route::patch('/user/details', $isLogged, [new MyDetails(), 'update_details']);
 
 // -----------MY-ADDRESS---------------
-Route::get('/my-address', $isLogged, [new MyAddress(), 'get_all_address']);
-Route::get('/my-address/:id', $isLogged, [new MyAddress(), 'get_address']); // id = addressId
-Route::post('/my-address', $isLogged, [new MyAddress(), 'add_address']);
-Route::patch('/my-address/:id', $isLogged, [new MyAddress(), 'update_address']); // id = addressId
-Route::delete('/my-address/:id', $isLogged, [new MyAddress(), 'delete_address']); // id = addressId
+Route::get('/user/address', $isLogged, [new MyAddress(), 'get_all_address']);
+Route::get('/user/address/:id', $isLogged, [new MyAddress(), 'get_address']); // id = addressId
+Route::post('/user/address', $isLogged, [new MyAddress(), 'add_address']);
+Route::patch('/user/address/:id', $isLogged, [new MyAddress(), 'update_address']); // id = addressId
+Route::delete('/user/address/:id', $isLogged, [new MyAddress(), 'delete_address']); // id = addressId

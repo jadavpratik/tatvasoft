@@ -44,7 +44,7 @@
         </div>
         <div class="admin_nav_menu">
             <img src="<?= assets('assets/img/global/user.png'); ?>" alt="">
-            <p>James Smith</p>
+            <p><?= session('userName'); ?></p>
             <button onclick="window.location.href=`<?= url('/logout') ?>`;" ><img src="<?= assets('assets/img/global/logout.png'); ?>" alt=""></button>
         </div>
     </nav>

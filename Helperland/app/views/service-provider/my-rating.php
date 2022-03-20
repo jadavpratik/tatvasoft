@@ -24,7 +24,7 @@
             autoWidth : false,
             dom : 't<"datatable_bottom"lp>',
             ajax : {
-                url : `${BASE_URL}/sp-my-rating`,
+                url : `${BASE_URL}/service-provider/rating-and-review`,
                 cache : true,
                 dataSrc : function(data){
                     // STORE DATA GLOBALLY...

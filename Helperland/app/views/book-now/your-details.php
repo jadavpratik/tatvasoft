@@ -71,7 +71,7 @@
 <script>
     function load_favorite_sp(){
         $.ajax({
-            url : `${BASE_URL}/customer-favorite-sp`,
+            url : `${BASE_URL}/book-service/customer/favorite-sp`,
             method : 'GET',
             success : function(res){
                 if(res!=="" && res!==undefined){
@@ -110,7 +110,7 @@
 
     function load_user_address(){
         $.ajax({
-            url : `${BASE_URL}/get-customer-address`,
+            url : `${BASE_URL}/book-service/customer/address`,
             method : 'GET',
             success : function(res){
                 if(res!=="" && res!==undefined){
@@ -176,7 +176,7 @@
             });
 
             $.ajax({
-                url : `${BASE_URL}/add-customer-address`,
+                url : `${BASE_URL}/book-service/customer/address`,
                 method : 'POST',
                 contentType : 'application/json',
                 data : json,
@@ -210,7 +210,7 @@
     $('#open_address_form_btn').click(function(){
         $('[name="address_form_postal_code"]').val(service_request.postal_code).prop('readonly', true);
         $.ajax({
-            url : `${BASE_URL}/my-details`,
+            url : `${BASE_URL}/user/details`,
             method : 'GET',
             success : function(res){
                 if(res!==undefined || res!==undefined){

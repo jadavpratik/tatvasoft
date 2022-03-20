@@ -69,7 +69,7 @@
 
         if(validation){
             $.ajax({
-                url : `${BASE_URL}/my-address`,
+                url : `${BASE_URL}/user/address`,
                 method : 'POST',
                 data : $('#add_address_popup').serialize(),
                 success : function(res){

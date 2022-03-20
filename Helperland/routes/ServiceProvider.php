@@ -6,15 +6,15 @@ $isServiceProvider = [new Auth(), 'isServiceProvider'];
 
 use app\controllers\ServiceProvider;
 
-Route::get('/sp-new-services', $isServiceProvider, [new ServiceProvider(), 'new_services']);
-Route::get('/sp-upcoming-services', $isServiceProvider, [new ServiceProvider(), 'upcoming_services']);
-Route::get('/sp-service-history', $isServiceProvider, [new ServiceProvider(), 'service_history']);
-Route::get('/sp-my-rating', $isServiceProvider, [new ServiceProvider(), 'my_rating']);
-Route::get('/sp-my-customer', $isServiceProvider, [new ServiceProvider(), 'my_customer']);
+Route::get('/service-provider/service/new', $isServiceProvider, [new ServiceProvider(), 'new_services']);
+Route::get('/service-provider/service/upcoming', $isServiceProvider, [new ServiceProvider(), 'upcoming_services']);
+Route::get('/service-provider/service/history', $isServiceProvider, [new ServiceProvider(), 'service_history']);
+Route::get('/service-provider/rating-and-review', $isServiceProvider, [new ServiceProvider(), 'my_rating']);
 
-Route::patch('/accept-service/:id', $isServiceProvider, [new ServiceProvider(), 'accept_service']);     // id = serviceId
-Route::patch('/reject-service/:id', $isServiceProvider, [new ServiceProvider(), 'reject_service']);     // id = serviceId
-Route::patch('/complete-service/:id', $isServiceProvider, [new ServiceProvider(), 'complete_service']); // id = serviceId
+Route::patch('/service-provider/service/accept/:id', $isServiceProvider, [new ServiceProvider(), 'accept_service']);     // id = serviceId
+Route::patch('/service-provider/service/reject/:id', $isServiceProvider, [new ServiceProvider(), 'reject_service']);     // id = serviceId
+Route::patch('/service-provider/service/complete/:id', $isServiceProvider, [new ServiceProvider(), 'complete_service']); // id = serviceId
 
-Route::patch('/block-customer/:id', $isServiceProvider, [new ServiceProvider(), 'block_customer']);     // id = customerId
-Route::patch('/unblock-customer/:id', $isServiceProvider, [new ServiceProvider(), 'unblock_customer']); // id = customerId
+Route::get('/service-provider/customer', $isServiceProvider, [new ServiceProvider(), 'my_customer']);
+Route::patch('/service-provider/customer/block/:id', $isServiceProvider, [new ServiceProvider(), 'block_customer']);     // id = customerId
+Route::patch('/service-provider/customer/unblock/:id', $isServiceProvider, [new ServiceProvider(), 'unblock_customer']); // id = customerId

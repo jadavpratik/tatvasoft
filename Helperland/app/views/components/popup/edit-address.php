@@ -80,7 +80,7 @@
             let id = $('[name="edit_address_id"]').val();
 
             $.ajax({
-                url : `${BASE_URL}/my-address/${id}`,
+                url : `${BASE_URL}/user/address/${id}`,
                 method : 'PATCH',
                 contentType : 'application/json',
                 data : json,

@@ -6,7 +6,7 @@
 <script>
     function load_my_customers(){
         $.ajax({
-            url : `${BASE_URL}/sp-my-customer`,
+            url : `${BASE_URL}/service-provider/customer`,
             method : 'GET',
             success : function(res){
                 if(res!=="" && res!==undefined){
@@ -56,10 +56,10 @@
         let url = ``;
         switch(action){
             case 'block':
-                url = `${BASE_URL}/block-customer/${id}`;
+                url = `${BASE_URL}/service-provider/customer/block/${id}`;
                 break;
             case 'unblock':
-                url = `${BASE_URL}/unblock-customer/${id}`;
+                url = `${BASE_URL}/service-provider/customer/unblock/${id}`;
                 break;
         }
 

@@ -243,18 +243,18 @@ class Customer{
             $res->status(200)->json(['message'=>'Thanks for feedback Us.']);    
         }
         else{
-            // UPDATE OR EDIT RATING OR REVIEW...
-            $where = "ServiceRequestId = {$serviceId}";
-            $rating->where($where)->update([
-                'Ratings' => $averageRating,
-                'Comments' => $rating_feedback,
-                'RatingDate' => date('Y-m-d H:i:s'),
-                'OnTimeArrival' => $arrival_rating,
-                'Friendly' => $friendly_rating,
-                'QualityOfService' => $quality_rating,
-            ]);            
-            $res->status(200)->json(['message'=>'Thanks for feedback Us.']);    
-            // $res->status(400)->json(['message'=>'You already given feedback!']);    
+            // // UPDATE OR EDIT RATING OR REVIEW...
+            // $where = "ServiceRequestId = {$serviceId}";
+            // $rating->where($where)->update([
+            //     'Ratings' => $averageRating,
+            //     'Comments' => $rating_feedback,
+            //     'RatingDate' => date('Y-m-d H:i:s'),
+            //     'OnTimeArrival' => $arrival_rating,
+            //     'Friendly' => $friendly_rating,
+            //     'QualityOfService' => $quality_rating,
+            // ]);            
+            // $res->status(200)->json(['message'=>'Thanks for feedback Us.']);    
+            $res->status(400)->json(['message'=>'You already given feedback!']);    
         }
     }
 

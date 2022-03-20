@@ -35,7 +35,7 @@
             autoWidth : false,
             dom : 't<"datatable_bottom"lp>',
             ajax : {
-                url : `${BASE_URL}/sp-new-services`,
+                url : `${BASE_URL}/service-provider/service/new`,
                 cache : true,
                 dataSrc : function(data){
                     // STORE DATA GLOBALLY...

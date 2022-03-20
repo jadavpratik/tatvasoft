@@ -24,7 +24,7 @@
             const postal_code = $('[name="setup_service_postal_code"]').val();
             let json = JSON.stringify({postal_code});
             $.ajax({
-                url :  `${BASE_URL}/check-postal-code`,
+                url :  `${BASE_URL}/book-service/check-postal-code`,
                 method : 'POST',
                 contentType : 'application/json',
                 data : json,

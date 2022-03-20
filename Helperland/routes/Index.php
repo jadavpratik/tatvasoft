@@ -9,10 +9,19 @@ require_once __DIR__."/Admin.php";
 require_once __DIR__."/View.php";
 require_once __DIR__."/NotFound.php";
 
-// use core\Route;
-// use core\Mail;
-// use core\Database;
-// use app\models\Test;
+// ROUTE ISSUE FOR PARAMS ID WHEN MULTIPLE SLASH ON ROUTE AND ID IS PRESENT THEN ROUTE NOT WORK
 
-// Route::get('/test-route', function($req, $res){
+use core\Route;
+use core\Mail;
+use core\Database;
+use app\models\Test;
+
+// Route::get('/test/routte/tata/bye/:id', function($req, $res){
+//     echo '<pre> First Route <br>';
+//     print_r($req->params);
+// });
+
+// Route::get('/test/route/tata/bye/:id', function($req, $res){
+//     echo '<pre> Second Route <br>';
+//     print_r($req->params);
 // });

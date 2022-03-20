@@ -54,14 +54,15 @@
 
     <div class="admin_right">
 
-        <div class="admin_tab_content d_none">
+        <div class="admin_tab_content">
             <?= component('admin/', 'service-requests') ?>
         </div>
 
-        <div class="admin_tab_content">
+        <div class="admin_tab_content d_none">
             <?= component('admin/', 'user-management') ?>
         </div>
 
+        <!-- ----------ADMIN FOOTER---------- -->
         <div class="admin_copyright_line">
             <p>©2018 Helperland. All rights reserved.</p>
         </div><!-- END_FOOTER -->        
@@ -91,3 +92,38 @@
 <script src="<?= assets('assets/js/sidenav.js'); ?>"></script>
 <script src="<?= assets('assets/js/tabletab.js'); ?>"></script>
 <script src="<?= assets('assets/js/validation.js'); ?>"></script>
+
+<script>
+    // THIS FUNCTION FOR DROPDOWN... 
+    // (CALL EACH TIME WHEN THE CHANGES IN DATATABLE)
+    function dropdown_issue_callback(){
+        const dropdown_btn = $('.dropdown_btn');
+        const dropdown_menu = $('.dropdown_menu');
+        
+        for(let i=0; i<dropdown_btn.length; i++){
+            dropdown_btn[i].addEventListener('click', ()=>{
+                dropdown_menu[i].classList.toggle('d_none');
+                for(let j=0; j<dropdown_btn.length; j++){
+                    if(j!==i){
+                        dropdown_menu[j].classList.add('d_none');
+                    }
+                }
+            });
+        }
+        
+        window.onclick = function(event) {
+            if (!event.target.matches('.dropdown_btn')) {
+                const dropdowns = $(".dropdown_menu");
+                for (let i = 0; i < dropdowns.length; i++) {
+                    dropdowns[i].classList.add('d_none');
+                }
+            }
+        }
+        
+        for(let i=0; i<dropdown_btn.length; i++){
+        dropdown_btn[i].addEventListener('click',function(event){
+                event.stopPropagation();
+            });
+        }        
+    }
+</script>

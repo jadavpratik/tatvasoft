@@ -1,22 +1,26 @@
 <div class="user_management">
     <div>
         <p>User Management</p>
-        <button class="add_new_user_btn"><i class="fas fa-plus"></i> Add New User</button>
+        <!-- <button class="add_new_user_btn"><i class="fas fa-plus"></i> Add New User</button> -->
     </div>
     <div>
-        <select class="select" name="" id="">
+        <!-- <select class="select" name="" >
             <option value="">User Name</option>
-        </select>
-        <select class="select" name="" id="">
-            <option value="">User Role</option>
+        </select> -->
+        <input class="input" type="text" placeholder="User Name" onkeyup="search_by_username(this.value);">
+        <select class="select" name="userRoleSelect" onchange="search_by_userrole(this.value);">
+            <option value="">All</option>
+            <option value="Customer">Customer</option>
+            <option value="Service Provider">Service Provider</option>
         </select>
         <div class="phone_number">
             <label for="">+46</label>
-            <input type="text" placeholder="Phone Number">
+            <input type="text" placeholder="Phone Number" onkeyup="search_by_phone(this.value);">
         </div>
-        <input class="input" type="text" placeholder="Zip Code" id="searchByZipCode">
-        <button class="search_btn">Search</button>
-        <button class="clear_btn">Clear</button>
+        <input class="input" type="text" placeholder="Zip Code" onkeyup="search_by_zipcode(this.value);">
+        <!-- DO WE NEED SEARCH BUTTON OR NOT? -->
+        <!-- <button class="search_btn" onclick="search_by_all_value();">Search</button> -->
+        <button class="clear_btn" onclick="clear_all_value();">Clear</button>
     </div>
 </div><!-- END_USER_MANAGEMENT -->
 
@@ -44,13 +48,12 @@
 <script>
     $(document).ready(function(){
         state.admin_user_management_table = $('#admin_user_management_table').DataTable({
-            searching : false,
+            searching : true,
             serviceSide : true,
             autoWidth : false,
-            filter : true,
             dom : 't<"datatable_bottom"lp>',
             ajax : {
-                url : `${BASE_URL}/user-management`,
+                url : `${BASE_URL}/admin/user-management`,
                 cache : true,
                 dataSrc : function(data){
                     // STORE DATA GLOBALLY...
@@ -60,7 +63,6 @@
                         }
                     })                    
                     state.admin_user_management_data = data;
-                    // CUSTOM FILTER DATA...
                     return data;
                 }
             },
@@ -117,12 +119,13 @@
                         return `<div class="dropdown">
                                     <button class="dropdown_btn"><i class="fas fa-ellipsis-v"></i></button>
                                     <div class="dropdown_menu d_none">
-                                        <a href="">Active</a>
-                                        <a href="">Disactive</a>
-                                        <a href="">Service History</a>
+                                        <a href="javascript:void(0)" onclick="action_on_user('active', ${row.UserId});" >Active</a>
+                                        <a href="javascript:void(0)" onclick="action_on_user('inactive', ${row.UserId});">Inactive</a>
+                                        <!--<a href="javascript:void(0)">Service History</a>-->
                                     </div>
                                 </div>`;                    
-                    }
+                    },
+                    sortable : false
                 },
             ],
             pagingType : 'full_numbers',
@@ -133,16 +136,76 @@
                     next     :'<i class="fas fa-angle-right">',
                     last     :'<i class="fa-solid fa-forward-step"></i>'  
                 },
-            }
-        })
-
-        $('#searchByZipCode').keyup(()=>{
-            console.log('a');
-            const searchVal = $('#searchByZipCode').val();
-            state.admin_user_management_table.column(5).search(searchVal).draw();
+            },
+        }).on('click', '.dropdown_btn', ()=>{
+            dropdown_issue_callback();
         });
-
     });
+
+    // DATATABLE COLUMN START FROM ZERO...
+    function search_by_username(val){
+        state.admin_user_management_table.column(0).search(val).draw();
+    }
+
+    function search_by_userrole(val){
+        state.admin_user_management_table.column(2).search(val).draw();
+    }
+
+    function search_by_phone(val){
+        state.admin_user_management_table.column(3).search(val).draw();
+    }
+
+    function search_by_zipcode(val){
+        state.admin_user_management_table.column(4).search(val).draw();
+    }
+
+    function clear_all_value(){
+        $('input').val('').keyup();
+        $('[name="userRoleSelect"]').val('').change();
+    }
+
+    // function search_by_all_value(val){
+    //     HOW TO SEARCH MULTIPLE VALUE BY SEARCH BUTTON
+    //     state.admin_user_management_table.column([0,2,3,4]).search([val1,val2,val3,val4]).draw();
+    // }
+
 </script>
 
-
+<!-- **********MAKE-USER-ACTIVE-INACTIVE********** -->
+<script>
+    // MAKE USER ACTIVE & INACTIVE...
+    function action_on_user(type, id){
+        $.ajax({
+            url : `${BASE_URL}/admin/user/${type}/${id}`,
+            method : 'PATCH',
+            success : function(res){
+                if(res!=="" && res!==undefined){
+                    try{
+                        const result = JSON.parse(res);
+                        Swal.fire({
+                            title : result.message,
+                            icon : 'success'
+                        });
+                        state.admin_user_management_table.ajax.reload();
+                    }
+                    catch(e){
+                        Swal.fire({
+                            title : 'Invalid JSON Response!',
+                            icon : 'error'
+                        })
+                    }
+                }
+            },
+            error : function(obj){
+                if(obj!==undefined && obj!==""){
+                    const {responseText} = obj;
+                    const error = JSON.parse(responseText);
+                    Swal.fire({
+                        title : error.message,
+                        icon : 'error'
+                    });
+                }
+            }
+        });
+    }
+</script>

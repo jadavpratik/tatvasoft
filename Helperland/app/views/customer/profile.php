@@ -122,7 +122,7 @@
     // LOAD CUSTOMER DETAILS...
     function customer_my_details(){
         $.ajax({
-            url : `${BASE_URL}/my-details`,
+            url : `${BASE_URL}/user/details`,
             method : 'GET',
             success : function(res){
                 if(res!=="" && res!==undefined){
@@ -175,7 +175,7 @@
                 dob : $('[name="dob"]').val()
             });
             $.ajax({
-                url :  `${BASE_URL}/my-details`,
+                url :  `${BASE_URL}/user/details`,
                 method : 'PATCH',
                 contentType : 'application/json',
                 data : json,
@@ -217,7 +217,7 @@
 <script>
     function customer_my_address(){
         $.ajax({
-            url : `${BASE_URL}/my-address`,
+            url : `${BASE_URL}/user/address`,
             method : 'GET',
             success : function(res){
                 if(res!=="" && res!==undefined){
@@ -255,7 +255,7 @@
     // EDIT ADDRESS...
     function edit_address(id){
         $.ajax({
-            url : `${BASE_URL}/my-address/${id}`,
+            url : `${BASE_URL}/user/address/${id}`,
             method : 'GET',
             success : function(res){
                 if(res!=="" && res!==undefined){
@@ -302,7 +302,7 @@
             if(res.isConfirmed){
                 // AJAX REQUEST...
                 $.ajax({
-                    url : `${BASE_URL}/my-address/${id}`,
+                    url : `${BASE_URL}/user/address/${id}`,
                     method : 'DELETE',
                     success : function(res){
                         if(res!=="" && res!==undefined){
