@@ -167,12 +167,9 @@
 								title : 'Good job!',
 								text : result.message,
 								icon : 'success'
-							}).then((res)=>{
-								if(res.isConfirmed){
-									$('#contact_us').trigger('reset');
-									$('.form_btn').prop('disabled', true);
-								}
 							});
+							$('#contact_us').trigger('reset');
+							$('.form_btn').prop('disabled', true);
 						}
 						catch(e){
 							Swal.fire({

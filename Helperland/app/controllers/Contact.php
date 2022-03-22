@@ -40,9 +40,13 @@ class Contact{
             'CreatedOn' => date('Y-m-d H:i:s')
         ]);    
         $res->status(200)->json(['message'=>"Form submitted successfully."]);
-        // $emailBody = $req->body->message;
+        // $recipient = 'ADMIN_EMAIL_ADDRESS';
         // $emailSubject = 'Helperland '.$req->body->subject;
-        // $recipient = 'ADMIN EMAIL ADDRESS';
+        // $emailBody = " <b>Name</b> : {$req->body->firstname} {$req->body->lastname} <br>
+        //                <b>Email</b> : {$req->body->email} <br>
+        //                <b>Phone</b> : {$req->body->phone} <br>
+        //                <b>Subject</b> : {$req->body->subject} <br>
+        //                <b>Message</b> : {$req->body->message} <br>";
         // if(Mail::send($recipient, $emailSubject, $emailBody)){
         // 	$res->status(200)->json(['message'=>"Form Submitted Successfully."]);
         // }

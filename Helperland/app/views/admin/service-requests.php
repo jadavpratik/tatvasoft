@@ -99,7 +99,7 @@
                                     <p>${row.Customer.FirstName} ${row.Customer.LastName}</p>
                                     <div>
                                         <img src="<?= assets('assets/img/table/home.png'); ?>" alt="">
-                                        <p>${row.AddressLine1} ${row.AddressLine2},${row.PostalCode} ${row.City}</p>
+                                        <p>${row.AddressLine1} ${row.AddressLine2}, ${row.PostalCode} ${row.City}</p>
                                     </div>
                                 </div>`;
                     }
@@ -167,8 +167,16 @@
                         return `<div class="dropdown">
                                     <button class="dropdown_btn"><i class="fas fa-ellipsis-v"></i></button>
                                     <div class="dropdown_menu d_none">
-                                        <a href="javascript:void(0)">Reschedule</a>
-                                        <a href="javascript:void(0)">Cancel</a>
+                                        <a href="javascript:void(0)" onclick="open_edit_service_model(${row.ServiceRequestId})">Edit & Reschedule</a>
+                                        ${(function(){
+                                            // MEANS NEW AND ASSIGNED REQUEST ONLY ALLOWED TO CANCEL
+                                            if(row.Status==0 || row.Status==1){
+                                                return `<a href="javascript:void(0)" onclick="cancel_service(${row.ServiceRequestId})">Cancel</a>`;
+                                            }
+                                            else{
+                                                return ``;
+                                            }
+                                        })()}
                                         <!--
                                         <a href="">Edit</a>
                                         <a href="">Change SP</a>
@@ -225,11 +233,86 @@
         state.admin_service_requests_table.column(3).search(val).draw();
     }
 
-
     function clear_all_value(){
         $('input').val('').keyup();
         $('[name="serviceStatusSelect"]').val('').change();
     }
 
+</script>
 
+<script>
+
+    function open_edit_service_model(id){
+        let filterData = state.admin_service_requests_data.filter((i)=>{
+            if(i.ServiceRequestId == id){
+                return i;
+            }
+        });
+        filterData = filterData[0];
+        state.edit_service_id = filterData.ServiceRequestId;
+
+        // ---------- DATE ----------
+        const tempOjb = new Date(filterData.ServiceStartDate);
+        let tempDate = tempOjb.getDate();
+        tempDate = tempDate<10 ? `0${tempDate}`: tempDate;
+        let tempMonth = tempOjb.getMonth()+1;
+        tempMonth = tempMonth<10 ? `0${tempMonth}`: tempMonth;
+        const tempYear = tempOjb.getFullYear(); 
+
+        $('[name="edit_service_date"]').val(`${tempYear}-${tempMonth}-${tempDate}`);
+        $('[name="edit_service_time"]').val(filterData.StartTime);
+        $('[name="edit_service_street_name"]').val(filterData.AddressLine1);
+        $('[name="edit_service_street_name_readonly"]').val(filterData.AddressLine1);
+        $('[name="edit_service_house_number"]').val(filterData.AddressLine2);
+        $('[name="edit_service_house_number_readonly"]').val(filterData.AddressLine2);
+        $('[name="edit_service_city"]').val(filterData.City);
+        $('[name="edit_service_city_readonly"]').val(filterData.City);
+        $('[name="edit_service_postal_code"]').val(filterData.PostalCode);
+        $('[name="edit_service_postal_code_readonly"]').val(filterData.PostalCode);
+        open_model('edit_service_request');
+    }
+
+    function cancel_service(id){
+        Swal.fire({
+            title : 'Are you Sure?',
+            icon : 'warning',
+            showCancelButton: true
+        })
+        .then((res)=>{
+            if(res.isConfirmed){
+                $.ajax({
+                    url : `${BASE_URL}/admin/service/cancel/${id}`,
+                    method : 'PATCH',
+                    success : function(res){
+                        if(res!=="" && res!==undefined){
+                            try{
+                                const result = JSON.parse(res);
+                                Swal.fire({
+                                    title : result.message,
+                                    icon : 'success'
+                                });
+                                state.admin_service_requests_table.ajax.reload();
+                            }
+                            catch(e){
+                                Swal.fire({
+                                    title : 'Invalid JSON Response!',
+                                    icon : 'error'
+                                })
+                            }
+                        }
+                    },
+                    error : function(obj){
+                        if(obj!==undefined && obj!==""){
+                            const {responseText} = obj;
+                            const error = JSON.parse(responseText);
+                            Swal.fire({
+                                title : error.message,
+                                icon : 'error'
+                            });
+                        }
+                    }
+                })
+            }
+        })
+    }
 </script>

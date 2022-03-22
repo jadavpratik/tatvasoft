@@ -29,6 +29,7 @@
      *  456, 587
      *  ssl, tls
      */
+
     define('SMTP_HOST', 'smtp.gmail.com');
     define('SMTP_SECURE', 'tls');
     define('EMAIL_PORT', 587);

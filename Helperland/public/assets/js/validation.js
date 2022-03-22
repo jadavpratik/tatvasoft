@@ -1,4 +1,4 @@
-const TextRegEx = /^[A-Za-z]/;
+const TextRegEx = /^[A-Za-z]{3,}/;
 const EmailRegEx = /^[a-zA-Z0-9.]+@[a-zA-Z0-9]+(\.[a-zA-Z]{2,})+$/;
 const PasswordRegEx = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/;
 const PhoneRegEx = /^[0-9]{10}$/;
@@ -21,18 +21,18 @@ $('[name="dob"]').attr('max', today);
 if(date.getHours()<18){
     // MIN DATE WILL BE SET AS TODAY DATE
     $('[name="schedule_date"]').attr('min',today);
+    $('[name="reschedule_service_date"]').attr('min', today);
+    $('[name="edit_service_date"]').attr('min', today);
 }
 else{
-    // (AFTER 6PM IF SOMETRY TO ADD REQUEST)
-    // THEN MIN DATE WILL BE SET AS TOMORROW DATE
+    // THEN MIN DATE WILL BE SET AS TOMORROW DATE, IF SOMEONE TRY TO ADD REQUEST AFTER 6PM 
     $('[name="schedule_date"]').attr('min',tomorrow);
+    $('[name="reschedule_service_date"]').attr('min', tomorrow);
+    $('[name="edit_service_date"]').attr('min', tomorrow);
 }
 $('[name="schedule_time"]').attr('min', '08:00').attr('max', '18:00');
-$('[name="reschedule_service_date"]').attr('min', today);
-
-console.log();
-
-
+$('[name="reschedule_service_time"]').attr('min', '08:00').attr('max', '18:00');
+$('[name="edit_service_time"]').attr('min', '08:00').attr('max', '18:00');
 
 // ------------------------FIRST-NAME-VALIDATION--------------------
 function firstname_validation(){
@@ -42,7 +42,7 @@ function firstname_validation(){
         return false;
     }
     else if(TextRegEx.test(input_value)==false){
-        $('[name="firstname"]').next().removeClass('d_none').children().html('Numbers Not Allowed !');
+        $('[name="firstname"]').next().removeClass('d_none').children().html('First Name Should be a Min 3 Characters required!');
         return false;
     }
     else{
@@ -59,7 +59,7 @@ function lastname_validation(){
         return false;
     }
     else if(TextRegEx.test(input_value)==false){
-        $('[name="lastname"]').next().removeClass('d_none').children().html('Numbers Not Allowed !');
+        $('[name="lastname"]').next().removeClass('d_none').children().html('Last Name Should be a Min 3 Characters required');
         return false;
     }
     else{
@@ -375,14 +375,14 @@ function setup_service_postal_code_validation(){
 // ------------------------SCHEDULE-DATE-VALIDATON--------------------
 function schedule_date_validation(){
     const selectedDate = $('[name="schedule_date"]').val();
-    const temp = new Date(selectedDate);
     const minDate = $('[name="schedule_date"]').attr('min');
     const minDateObj = new Date(minDate);
+    const selectedDateObj = new Date(selectedDate);
     if(selectedDate==undefined || selectedDate==""){
         $('[name="schedule_date"]').parent().next().removeClass('d_none').children().html('Please Select Date !');
         return false;
     }
-    else if(temp.getTime() < minDateObj.getTime()){
+    else if(selectedDateObj.getTime() < minDateObj.getTime()){
         // IF SELECTED DATE IS LESS THEN THE MIN DATE... IT IS INVALID...
         $('[name="schedule_date"]').parent().next().removeClass('d_none').children().html('Invalid Date Selection!');
         return false;
@@ -391,12 +391,6 @@ function schedule_date_validation(){
         $('[name="schedule_date"]').parent().next().addClass('d_none').children().html('');
         return true;
     }
-    // else if(mm==12 && newYear > yyyy){
-    //     // ASSUME THAT NEW YEAR WILL BE START SOON, 
-    //     // AND ASSUME USER BOOK SERVICE IN DECEMBER MONTH..
-    //     console.log('Nothing to Do...');
-    //     return true;
-    // }
 }
 
 // ------------------------SCHEDULE-TIME-VALIDATON--------------------
@@ -404,8 +398,8 @@ function schedule_time_validation(){
     const min = $('[name="schedule_time"]').attr('min');
     const max = $('[name="schedule_time"]').attr('max');
     const input_val = $('[name="schedule_time"]').val();
-    const minTime      = (new Date(`1999-09-20 ${min}`)).getTime();
-    const maxTime      = (new Date(`1999-09-20 ${max}`)).getTime();
+    const minTime = (new Date(`1999-09-20 ${min}`)).getTime();
+    const maxTime = (new Date(`1999-09-20 ${max}`)).getTime();
     const selectedTime = (new Date(`1999-09-20 ${input_val}`)).getTime();
 
     if(input_val=="" || input_val==undefined){
@@ -430,7 +424,7 @@ function address_form_street_name_validation(){
         return false;
     }
     else if(TextRegEx.test(input_value)==false){
-        $('[name="address_form_street_name"]').next().removeClass('d_none').children().html('Enter a Text in Valid Format !');
+        $('[name="address_form_street_name"]').next().removeClass('d_none').children().html('Street Name Should be Min 3 Characters Required !');
         return false;
     }
     else{
@@ -481,7 +475,7 @@ function address_form_city_validation(){
         return false;
     }
     else if(TextRegEx.test(input_value)==false){
-        $('[name="address_form_city"]').next().removeClass('d_none').children().html('Enter a Text in Valid Format !');
+        $('[name="address_form_city"]').next().removeClass('d_none').children().html('City should be min 3 characters required!');
         return false;
     }
     else{
@@ -529,24 +523,7 @@ function add_address_street_name_validation(){
         return false;
     }
     else if(TextRegEx.test(input_value)==false){
-        $('[name="add_address_street_name"]').next().removeClass('d_none').children().html('Enter a Text in Valid Format !');
-        return false;
-    }
-    else{
-        $('[name="add_address_street_name"]').next().addClass('d_none').children().html('');
-        return true;
-    }
-}
-
-// ------------------------ADD-ADDRESS-STREET-NAME-VALIDATON--------------------
-function add_address_street_name_validation(){
-    const input_value = $('[name="add_address_street_name"]').val();
-    if(input_value==''){
-        $('[name="add_address_street_name"]').next().removeClass('d_none').children().html('Please Enter Street Name !');
-        return false;
-    }
-    else if(TextRegEx.test(input_value)==false){
-        $('[name="add_address_street_name"]').next().removeClass('d_none').children().html('Enter a Text in Valid Format !');
+        $('[name="add_address_street_name"]').next().removeClass('d_none').children().html('Street Name Should be a Min 3 Characters required!');
         return false;
     }
     else{
@@ -597,7 +574,7 @@ function add_address_city_validation(){
         return false;
     }
     else if(TextRegEx.test(input_value)==false){
-        $('[name="add_address_city"]').next().removeClass('d_none').children().html('Enter a Text in Valid Format !');
+        $('[name="add_address_city"]').next().removeClass('d_none').children().html('City should be min 3 characters required!');
         return false;
     }
     else{
@@ -631,7 +608,7 @@ function edit_address_street_name_validation(){
         return false;
     }
     else if(TextRegEx.test(input_value)==false){
-        $('[name="edit_address_street_name"]').next().removeClass('d_none').children().html('Enter a Text in Valid Format !');
+        $('[name="edit_address_street_name"]').next().removeClass('d_none').children().html('Street Name should be min 3 characters required!');
         return false;
     }
     else{
@@ -682,7 +659,7 @@ function edit_address_city_validation(){
         return false;
     }
     else if(TextRegEx.test(input_value)==false){
-        $('[name="edit_address_city"]').next().removeClass('d_none').children().html('Enter a Text in Valid Format !');
+        $('[name="edit_address_city"]').next().removeClass('d_none').children().html('City should be min 3 characters required!');
         return false;
     }
     else{
@@ -739,11 +716,33 @@ function cancel_service_validation(){
     }
 }
 
+// ------------------------SCHEDULE-DATE-AND-TIME-VALIDATON--------------------
 function reschedule_service_validation(){
-    const input_date = $('[name="reschedule_service_date"]').val();    
-    const input_time = $('[name="reschedule_service_time"]').val();    
-    if(input_date=="" || input_time==""){
-        $('[name="reschedule_service_date"]').parent().next().removeClass('d_none').children().html('Please Enter a new date & time !')
+    let input_date = $('[name="reschedule_service_date"]').val();    
+    let input_time = $('[name="reschedule_service_time"]').val();    
+    let minDate    = $('[name="reschedule_service_date"]').attr('min');
+    let minTime    = $('[name="reschedule_service_time"]').attr('min');
+    let maxTime    = $('[name="reschedule_service_time"]').attr('max');
+    let minDateObj      = new Date(minDate);
+    let minTimeObj      = new Date(`1999-09-20 ${minTime}`)
+    let maxTimeObj      = new Date(`1999-09-20 ${maxTime}`)
+    let selectedTimeObj = new Date(`1999-09-20 ${input_time}`)
+    let selectedDateObj = new Date(`${input_date}`);
+
+    if(input_date==""){
+        $('[name="reschedule_service_date"]').parent().next().removeClass('d_none').children().html('Please Enter a new date!')
+        return false;
+    }
+    else if(input_time==""){
+        $('[name="reschedule_service_date"]').parent().next().removeClass('d_none').children().html('Please Enter a new time !')
+        return false;
+    }
+    else if(selectedTimeObj.getTime() < minTimeObj.getTime() || selectedTimeObj.getTime() > maxTimeObj.getTime()){
+        $('[name="reschedule_service_date"]').parent().next().removeClass('d_none').children().html('Select a time in range of 08:00 AM to 06:00 PM!')
+        return false;
+    }
+    else if(selectedDateObj.getTime() < minDateObj.getTime()){
+        $('[name="reschedule_service_date"]').parent().next().removeClass('d_none').children().html('Invalid Date Selection!')
         return false;
     }
     else{
@@ -777,7 +776,7 @@ function street_name_validation(){
         return false;
     }
     else if(TextRegEx.test(input_value)==false){
-        $('[name="street_name"]').next().removeClass('d_none').children().html('Enter a Text in Valid Format !');
+        $('[name="street_name"]').next().removeClass('d_none').children().html('Street Name should be min 3 characters required!');
         return false;
     }
     else{
@@ -828,7 +827,7 @@ function city_validation(){
         return false;
     }
     else if(TextRegEx.test(input_value)==false){
-        $('[name="city"]').next().removeClass('d_none').children().html('Enter a Text in Valid Format !');
+        $('[name="city"]').next().removeClass('d_none').children().html('City should be min 3 characters required!');
         return false;
     }
     else{
@@ -837,7 +836,117 @@ function city_validation(){
     }
 }
 
+// --------------EDIT-SERVICE-REQUEST-VALIDATION--------------
+function edit_service_street_name_validation(){
+    const input_value = $('[name="edit_service_street_name"]').val();
+    if(input_value==''){
+        $('[name="edit_service_street_name"]').next().removeClass('d_none').children().html('Please Enter Street Name !');
+        return false;
+    }
+    else if(TextRegEx.test(input_value)==false){
+        $('[name="edit_service_street_name"]').next().removeClass('d_none').children().html('Street Name should be min 3 characters required!');
+        return false;
+    }
+    else{
+        $('[name="edit_service_street_name"]').next().addClass('d_none').children().html('');
+        return true;
+    }
+}
 
+// ------------------------SP-MY-ADDRESS-HOUSE-NUMBER-VALIDATON--------------------
+function edit_service_house_number_validation(){
+    const input_value = $('[name="edit_service_house_number"]').val();
+    if(input_value==''){
+        $('[name="edit_service_house_number"]').next().removeClass('d_none').children().html('Please Enter a House Number!');
+        return false;
+    }
+    else if(HouseNumberRegEx.test(input_value)==false){
+        $('[name="edit_service_house_number"]').next().removeClass('d_none').children().html('House Number Should be Numbers !');
+        return false;
+    }
+    else{
+        $('[name="edit_service_house_number"]').next().addClass('d_none').children().html('');
+        return true;
+    }
+}
+
+// ------------------------SP-MY-ADDRESS-POSTAL-CODE-VALIDATON--------------------
+function edit_service_postal_code_validation(){
+    const input_value = $('[name="edit_service_postal_code"]').val();
+    if(input_value==''){
+        $('[name="edit_service_postal_code"]').next().removeClass('d_none').children().html('Please Enter Postal Code !');
+        return false;
+    }
+    else if(PostalCodeRegEx.test(input_value)==false){
+        $('[name="edit_service_postal_code"]').next().removeClass('d_none').children().html('Postal Code Shoud be a Min:5 or Max:6 Digits !');
+        return false;
+    }
+    else{
+        $('[name="edit_service_postal_code"]').next().addClass('d_none').children().html('');
+        return true;
+    }
+}
+
+// ------------------------SP-MY-ADDRESS-CITY-VALIDATON--------------------
+function edit_service_city_validation(){
+    const input_value = $('[name="edit_service_city"]').val();
+    if(input_value==''){
+        $('[name="edit_service_city"]').next().removeClass('d_none').children().html('Please Enter City Name !');
+        return false;
+    }
+    else if(TextRegEx.test(input_value)==false){
+        $('[name="edit_service_city"]').next().removeClass('d_none').children().html('City should be min 3 characters required!');
+        return false;
+    }
+    else{
+        $('[name="edit_service_city"]').next().addClass('d_none').children().html('');
+        return true;
+    }
+}
+
+// ------------------------EDIT-SERVICE-VALIDATON--------------------
+function edit_service_date_validation(){
+    const selectedDate = $('[name="edit_service_date"]').val();
+    const minDate = $('[name="edit_service_date"]').attr('min');
+    const minDateObj = new Date(minDate);
+    const selectedDateObj = new Date(selectedDate);
+    if(selectedDate==undefined || selectedDate==""){
+        $('[name="edit_service_date"]').next().removeClass('d_none').children().html('Please Select Date !');
+        return false;
+    }
+    else if(selectedDateObj.getTime() < minDateObj.getTime()){
+        // IF SELECTED DATE IS LESS THEN THE MIN DATE... IT IS INVALID...
+        $('[name="edit_service_date"]').next().removeClass('d_none').children().html('Invalid Date Selection!');
+        return false;
+    }
+    else{
+        $('[name="edit_service_date"]').next().addClass('d_none').children().html('');
+        return true;
+    }
+}
+
+// ------------------------SCHEDULE-TIME-VALIDATON--------------------
+function edit_service_time_validation(){
+    const min = $('[name="edit_service_time"]').attr('min');
+    const max = $('[name="edit_service_time"]').attr('max');
+    const input_val = $('[name="edit_service_time"]').val();
+    const minTime = (new Date(`1999-09-20 ${min}`)).getTime();
+    const maxTime = (new Date(`1999-09-20 ${max}`)).getTime();
+    const selectedTime = (new Date(`1999-09-20 ${input_val}`)).getTime();
+
+    if(input_val=="" || input_val==undefined){
+        $('[name="edit_service_time"]').next().removeClass('d_none').children().html('Please Select a Time !');
+        return false;
+    }
+    else if(selectedTime < minTime || selectedTime > maxTime){
+        $('[name="edit_service_time"]').next().removeClass('d_none').children().html('Select a time in range of 08:00 AM to 06:00 PM!');
+        return false;
+    }
+    else{
+        $('[name="edit_service_time"]').next().addClass('d_none').children().html('');
+        return true;
+    }
+}
 
 // -------------------CONTACTUS, SIGNUP, PROFILE---------------------
 $('[name="firstname"]').focusout(function(){
@@ -1034,10 +1143,28 @@ $('[name="city"]').focusout(function(){
     city_validation();
 });
 
+// ---------------------EDIT SERVICE REQUEST POPUP MODEL-------------------
+$('[name="edit_service_date"]').focusout(function(){
+    edit_service_date_validation();
+});
 
+$('[name="edit_service_time"]').focusout(function(){
+    edit_service_time_validation();
+});
 
+// ---------------------EDIT SERVICE REQUEST POPUP MODEL (SERVICE ADDRESS)-------------------
+$('[name="edit_service_street_name"]').focusout(function(){
+    edit_service_street_name_validation();
+});
 
+$('[name="edit_service_house_number"]').focusout(function(){
+    edit_service_house_number_validation();
+});
 
+$('[name="edit_service_city"]').focusout(function(){
+    edit_service_city_validation();
+});
 
-
-
+$('[name="edit_service_postal_code"]').focusout(function(){
+    edit_service_postal_code_validation();
+});

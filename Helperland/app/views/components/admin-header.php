@@ -52,4 +52,6 @@
 
 	<!-- **********HIDDEN COMPONENTS********** -->	
 	<?= component('sidenav'); ?>
+	<?= component('popup/edit-service-request'); ?>
+	
 

@@ -210,14 +210,14 @@
 			<div>
 				<div class="form_group">
 					<label class="label" for="">Date</label>
-					<input class="input" type="date">
+					<input class="input" type="date" name="edit_service_date">
 					<div class="validation_message d_none">
 						<p>Enter Date!</p>
 					</div>
 				</div>
 				<div class="form_group">
 					<label class="label" for="">Time</label>
-					<input class="input" type="time">
+					<input class="input" type="time" name="edit_service_time">
 					<div class="validation_message d_none">
 						<p>Enter Date!</p>
 					</div>
@@ -228,30 +228,31 @@
 				<p>Service Address</p>
 				<div class="form_group">
 					<label class="label" for="">Street Name</label>
-					<input class="input" type="text">
+					<input class="input" type="text" name="edit_service_street_name">
 					<div class="validation_message d_none">
 						<p>Enter Date!</p>
 					</div>
 				</div>
 				<div class="form_group">
 					<label class="label" for="">House Number</label>
-					<input class="input" type="text">
+					<input class="input" type="text" name="edit_service_house_number">
 					<div class="validation_message d_none">
 						<p>Enter Date!</p>
 					</div>
 				</div>
 				<div class="form_group">
 					<label class="label" for="">Postal Code</label>
-					<input class="input" type="text">
+					<input class="input" type="text" name="edit_service_postal_code">
 					<div class="validation_message d_none">
 						<p>Enter Date!</p>
 					</div>
 				</div>
 				<div class="form_group">
 					<label class="label" for="">City</label>
-					<select class="select" name="" id="">
+					<input class="input" type="text" name="edit_service_city">
+					<!-- <select class="select" name="">
 						<option value="">Select</option>
-					</select>
+					</select> -->
 					<div class="validation_message d_none">
 						<p>Enter Date!</p>
 					</div>
@@ -262,30 +263,31 @@
 				<p>Invoice Address</p>
 				<div class="form_group">
 					<label class="label" for="">Street Name</label>
-					<input class="input" type="text">
+					<input class="input" type="text" name="edit_service_street_name2" readonly>
 					<div class="validation_message d_none">
 						<p>Enter Date!</p>
 					</div>
 				</div>
 				<div class="form_group">
 					<label class="label" for="">House Number</label>
-					<input class="input" type="text">
+					<input class="input" type="text" name="edit_service_house_number2" readonly>
 					<div class="validation_message d_none">
 						<p>Enter Date!</p>
 					</div>
 				</div>
 				<div class="form_group">
 					<label class="label" for="">Postal Code</label>
-					<input class="input" type="text">
+					<input class="input" type="text" name="edit_service_postal_code2" readonly>
 					<div class="validation_message d_none">
 						<p>Enter Date!</p>
 					</div>
 				</div>
 				<div class="form_group">
 					<label class="label" for="">City</label>
-					<select class="select" name="" id="">
+					<input class="input" type="text" name="edit_service_city2" readonly>
+					<!-- <select class="select" name="">
 						<option value="">Select</option>
-					</select>
+					</select> -->
 					<div class="validation_message d_none">
 						<p>Enter Date!</p>
 					</div>
@@ -568,11 +570,11 @@
 	<!-- ---------------------------------- -->
 			<!-- RESCHEDULE SERVICE -->
 	<!-- ---------------------------------- -->
-	<div class="model">
+	<div class="model active_model">
         <!-- MODEL_CLOSE -->
         <button class="model_close_btn">&times;</button>
 		<!-- RESCHEDULE_SERVICE_REQUEST -->
-		<div class="popup_main d_none" id="reschedule_service_request_popup">
+		<div class="popup_main" id="reschedule_service_request_popup">
 			<p class="popup_title">Reschedule Service Request</p>
 			<div class="form_group">
 				<label class="label" for="">Select New Date & Time</label>
@@ -580,7 +582,7 @@
 					<input class="input" type="date" name="reschedule_service_date">
 					<input class="input" type="time" name="reschedule_service_time">
 				</div>
-				<div class="validation_message">
+				<div class="validation_message d_none">
 					<p>Please Enter date and Time!</p>
 				</div>
 				<button class="popup_btn">Update</button>

@@ -7,9 +7,15 @@ use core\Response;
 
 use app\models\User;
 use app\models\Service;
+use app\models\ServiceAddress;
 use app\models\Rating;
 
 class Admin{
+
+    private $NEW_STATUS       = 0;
+    private $ASSIGNED_STATUS  = 1; // (ACCEPTED BY SP BUT NOT COMPLETED)
+    private $COMPLETED_STATUS = 2;
+    private $CANCELLED_STATUS = 3;
 
     // ----------USER-MANAGEMENT----------
     public function user_management(Request $req, Response $res){
@@ -111,6 +117,40 @@ class Admin{
             'IsActive' => 0
         ]);
         $res->status(200)->json(['message'=>'User inactived successfully.']);
+    }
+
+    // --------RESCHEDULE_SERVICE----------
+    public function reschedule_service(Request $req, Response $res){
+        // REQUIRED VALIDATION PENDING...
+        $serviceId = $req->params->id;
+        $service = new Service();
+        $serviceAddress = new ServiceAddress();
+        $serviceStartDate = $req->body->date.' '.$req->body->time;
+        $serviceStartDate = date('y-m-d h:i:s', strtotime($serviceStartDate));
+
+        // UPDATE SERVICE
+        $service->where('ServiceRequestId', '=', $serviceId)->update([
+            'ServiceStartDate' => $serviceStartDate
+        ]);
+
+        // UPDATE SERVICE ADDRESS
+        $serviceAddress->where('ServiceRequestId', '=', $serviceId)->update([
+            'AddressLine1' => $req->body->street_name,
+            'AddressLine2' => $req->body->house_number,
+            'PostalCode' => $req->body->postal_code,
+            'City' => $req->body->city
+        ]);
+        $res->status(200)->json(['message'=>'Service Rescheduled By Admin']);
+    }
+
+    // --------CANCEL_SERVICE----------
+    public function cancel_service(Request $req, Response $res){
+        $serviceId = $req->params->id;
+        $service = new Service();
+        $service->where('ServiceRequestId', '=', $serviceId)->update([
+            'Status' => $this->CANCELLED_STATUS
+        ]);
+        $res->status(200)->json(['message'=>'Service Canceled By Admin']);
     }
 
 
