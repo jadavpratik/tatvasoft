@@ -18,13 +18,10 @@ class MyDetails{
     public function get_details(Request $req, Response $res){
         $userId = session('userId');
         $user = new User();
-        $columns = ['FirstName', 'LastName', 
-                    'Email', 'Mobile', 
-                    'DateOfBirth', 'LanguageId', 
-                    'Gender', 'UserProfilePicture',
-                    'Status', 'IsActive'];
-        $details = $user->columns($columns)->where('UserId', '=', $userId)->read();
-        if(is_array($details)){
+        $details = $user->where('UserId', '=', $userId)->read();
+        if(count($details)>0){
+            // REMOVE PASSWORD...
+            unset($details[0]->Password);
             $res->status(200)->json($details[0]);
         }
         else{

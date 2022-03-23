@@ -26,16 +26,15 @@
         e.preventDefault();
 
         let validation = reschedule_service_validation();
-        
         if(validation){
             let json = JSON.stringify({
                 new_service_date : $('[name="reschedule_service_date"]').val(),
                 new_service_time : $('[name="reschedule_service_time"]').val(),
-                service_id : state.reschedule_service_id,
+                service_id : store.id.reschedule,
             });
 
             $.ajax({
-                url : `${BASE_URL}/customer/service/reschedule/${state.reschedule_service_id}`,
+                url : `${BASE_URL}/customer/service/reschedule/${store.id.reschedule}`,
                 method : 'PATCH',
                 contentType : 'application/json',
                 data : json,
@@ -47,9 +46,8 @@
                                 title : result.message,
                                 icon : 'success'
                             });
-                            $('[name="cancel_service_reason"]').val('');
                             // RELOAD CURRENT SERVICE REQUESTS TABLE...
-                            state.customer_dashboard_table.ajax.reload();
+                            store.customer.table.dashboard.ajax.reload();
                             close_model();
                         }
                         catch(e){

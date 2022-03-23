@@ -146,7 +146,7 @@
                         </div>
                     </div><!-- END BASIC DETAILS CONTAINER -->
                     <input type="hidden" name="sp_address_id" value="">
-                    <button class="profile_save_btn"  onclick="update_sp_profile_details();">Save</button>
+                    <button class="profile_save_btn"  onclick="update_sp_profile_details()">Save</button>
                 </div><!-- END SP MY DETAILS -->
             </div><!-- END TAB CONTENT -->
 

@@ -5,50 +5,8 @@
 
     <div class="admin_left">
         <div class="admin_tab_list">
-            <!-- <a href="#">Service Management</a> -->
-            <!-- <a href="#">Role Management</a> -->
-            <!-- <div class="admin_accordion">
-                <div>
-                    <button class="accordion_btn"><p>Coupon Code Management</p><i class="fas fa-angle-right"></i></button>                            
-                </div>
-                <div class="accordion_content">
-                    <div>
-                        <a href="#">Coupon Codes</a>
-                        <a href="#">Usage History</a>    
-                    </div>
-                </div>
-            </div> -->
-            <!-- <a href="#">Escalation Management</a> -->
-            <a class="admin_tab_btn active_admin_tab_btn" href="javascript:void(0);">Service Requests</a>
-            <!-- <a href="#">Service Providers</a> -->
-            <a class="admin_tab_btn" href="javascript:void(0);">User Management</a>
-            <!-- <div class="admin_accordion">
-                <div>
-                    <button class="accordion_btn"><p>Finance Module</p><i class="fas fa-angle-right"></i></button>  
-                </div>
-                <div class="accordion_content">
-                    <div>
-                        <a href="#">All Transactions</a>
-                        <a href="#">Generate Payment</a>
-                        <a href="#">Customer Invoices</a>    
-                    </div>
-                </div>
-            </div>
-            <a href="#">Zip Code Management</a>
-            <a href="#">Rating Management</a>
-            <a href="#">Inquiry Management</a>
-            <a href="#">Newsletter Management</a>
-            <div class="admin_accordion">
-                <div>
-                    <button class="accordion_btn"><p>Content Management </p><i class="fas fa-angle-right"></i></button>    
-                </div>
-                <div class="accordion_content">
-                    <div>
-                        <a href="#">Blog</a>
-                        <a href="#"> FAQs</a>    
-                    </div>
-                </div>
-            </div> -->
+            <a class="admin_tab_btn active_admin_tab_btn" href="javascript:void(0)">Service Requests</a>
+            <a class="admin_tab_btn" href="javascript:void(0)">User Management</a>
         </div><!-- END_ADMIN_TAB_LIST -->
     </div><!-- END_ADMIN_LEFT -->
 
@@ -94,7 +52,6 @@
 <script src="<?= assets('assets/js/validation.js'); ?>"></script>
 
 <script>
-    // THIS FUNCTION FOR DROPDOWN... 
     // (CALL EACH TIME WHEN THE CHANGES IN DATATABLE)
     function dropdown_issue_callback(){
         const dropdown_btn = $('.dropdown_btn');

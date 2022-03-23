@@ -24,8 +24,9 @@ class BookNow{
         ]);
 
         $user = new User();
-        $where = " ZipCode = {$req->body->postal_code} AND RoleId = 2";
-        if($user->where($where)->exists()){
+        $where = "RoleId = 2 AND PostalCode = {$req->body->postal_code}";
+        $users = $user->join('UserId', 'UserId', 'useraddress')->where($where)->read();
+        if(count($users)>0){
             $res->status(200)->json(['message'=>'User availabe']);
         }
         else{
@@ -63,10 +64,6 @@ class BookNow{
             'PostalCode' => $req->body->postal_code,
             'Email' => $data[0]->Email,
             'Mobile' => $req->body->phone,
-        ]);
-        // UPDATE ZIPCODE IN USER TABLE
-        $user->where('UserId', '=', session('userId'))->update([
-            'ZipCode' => $req->body->postal_code
         ]);
         $res->status(200)->json(['message'=>'Address Add Successfully.']);
     }

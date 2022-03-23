@@ -43,7 +43,6 @@
                 <p>Enter Stree name!</p>
             </div>
         </div>
-        <input type="hidden" name="edit_address_id">
         <button class="popup_btn">Edit</button>
     </form>
 </div>
@@ -74,13 +73,11 @@
                 edit_address_house_number : $('[name="edit_address_house_number"]').val(),
                 edit_address_city : $('[name="edit_address_city"]').val(),
                 edit_address_postal_code : $('[name="edit_address_postal_code"]').val(),
-                edit_address_id : $('[name="edit_address_id"]').val()
+                edit_address_id : store.id.edit
             });
 
-            let id = $('[name="edit_address_id"]').val();
-
             $.ajax({
-                url : `${BASE_URL}/user/address/${id}`,
+                url : `${BASE_URL}/user/address/${store.id.edit}`,
                 method : 'PATCH',
                 contentType : 'application/json',
                 data : json,

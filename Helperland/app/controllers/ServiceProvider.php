@@ -334,7 +334,7 @@ class ServiceProvider{
     public function reject_service(Request $req, Response $res){
         $serviceId = $req->params->id;
         $service = new Service();
-        $where = "ServiceRequestId = {$serviceId} AND Status = {$this->NEW_STATUS}";
+        $where = "ServiceRequestId = {$serviceId} AND Status = {$this->ASSIGNED_STATUS}";
         if($service->where($where)->exists()){
             $service->where('ServiceRequestId', '=', $serviceId)->update([
                 'ServiceProviderId' => session('userId'),
@@ -342,7 +342,7 @@ class ServiceProvider{
                 'Status' => 3,
                 'ModifiedDate' => date('Y-m-d H:i:s'),
             ]);
-            $res->status(200)->json(['message'=>'Service rejected successfully.']);    
+            $res->status(200)->json(['message'=>'Service rejected successfully.']);
         }
         else{
             $res->status(404)->json(['message'=>'No service available!']);    

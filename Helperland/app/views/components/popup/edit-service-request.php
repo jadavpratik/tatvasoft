@@ -95,7 +95,7 @@
         <!-- TEXTAREA -->
         <div class="form_group">
             <p>What do you want to reschedule service request?</p>
-            <textarea class="textarea" placeholder="What do you want to reschedule service request?" name=""></textarea>
+            <textarea class="textarea" placeholder="What do you want to reschedule service request?" name="" readonly></textarea>
             <div class="validation_message d_none">
                 <p>Enter Date!</p>
             </div>
@@ -103,7 +103,7 @@
         <!-- TEXTAREA -->
         <div class="form_group">
             <p>Call center EMP Notes</p>
-            <textarea class="textarea" placeholder="Enter Notes" name=""></textarea>
+            <textarea class="textarea" placeholder="Enter Notes" name="" readonly></textarea>
             <div class="validation_message d_none">
                 <p>Enter Date!</p>
             </div>
@@ -142,10 +142,10 @@
             house_number : $('[name="edit_service_house_number"]').val(),
             postal_code : $('[name="edit_service_postal_code"]').val(),
             city : $('[name="edit_service_city"]').val(),
-            id : state.edit_service_id
+            id : store.id.reschedule
         });
         $.ajax({
-            url : `${BASE_URL}/admin/service/reschedule/${state.edit_service_id}`,
+            url : `${BASE_URL}/admin/service/reschedule/${store.id.reschedule}`,
             method : 'PATCH',
             contentType : 'application/json',
             data : json,
@@ -158,7 +158,7 @@
                             icon : 'success'
                         });
                         close_model();
-                        state.admin_service_requests_table.ajax.reload();
+                        store.admin.table.service_requests.ajax.reload();
                     }
                     catch(e){
                         Swal.fire({

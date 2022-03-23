@@ -11,57 +11,25 @@
 	<!-- FONT-AWESOME -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- AOS -->
-	<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
 	<!-- CSS  -->
 	<link rel="stylesheet" href="<?= assets('assets/css/index.css'); ?>">
     <!-- DATATABLE -->
     <link rel="stylesheet" href="//cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
 	<!-- JQUERY -->
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-	<script> 
-		// 	BASE URL FOR GUIDE AJAX REQUEST...
-		let BASE_URL = `<?= BASE_URL; ?>`; 
-		// STORE THE GLOBAL DATA...
-		let state = {};
-	</script>
+	<!-- MOMENT -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+	<!-- GLOBAL DATA STORING -->
+	<?= component('store'); ?>
 </head>
 <body>
 
 	<!-- **********BACKLIGHT********** -->	
 	<div class="backlight_container"></div>
-	<?php 
-		$home_header_id = '';
-		$home_header_style = '';
-		$home_header_logo_style = '';
-		$home_focus_btn = '';
-		$active_link = ['contact' => '', 'prices' => '', 'guarantee' => '', 'blog'=> ''];
-		switch(page_url()){
-			case '/':
-				$home_header_id = 'home_navbar';
-				$home_header_style = 'background-color:transparent;height:130px';
-				$home_header_logo_style = 'width:175px; height:130px;';
-				$home_focus_btn = 'transparent';
-				break;
-			case '/service-provider/signup':
-				$home_header_id = 'home_navbar';
-				$home_header_style = 'background-color:transparent;height:130px';
-				$home_header_logo_style = 'width:175px; height:130px;';
-				$home_focus_btn = 'transparent';
-				break;			
-			case '/prices':
-				$active_link['prices'] = 'navbar_focus_btn transparent';
-				break;
-			case '/contact':
-				$active_link['contact'] = 'navbar_focus_btn transparent';
-				break;
-			case '/blog':
-				$active_link['blog'] = 'navbar_focus_btn transparent';
-				break;
-			case '/guarantee':
-				$active_link['guarantee'] = 'navbar_focus_btn transparent';
-				break;
-		}
-	?>
+
+	<!-- **********CONDITION FOR NAVBAR********** -->	
+	<?php require('header-style.php'); ?>
 
 	<!-- **********NAVBAR********** -->	
 	<nav class="navbar" id="<?= $home_header_id; ?>" style="<?= $home_header_style; ?>">
@@ -81,7 +49,7 @@
 			<?php } ?>
 			<a class="<?= $active_link['prices']; ?>" href="<?= url('/prices'); ?>">Prices</a>
 			<a class="<?= $active_link['guarantee']; ?>" href="<?= url('/guarantee'); ?>">Our Guarantee</a>
-			<a class="<?= $active_link['blog']; ?>" href="javascript:void(0);">Blog</a>
+			<a class="<?= $active_link['blog']; ?>" href="javascript:void(0)">Blog</a>
 			<a class="<?= $active_link['contact']; ?>" href="<?= url('/contact'); ?>">Contact Us</a>
 			<?php if(session('isLogged')){ ?>
 				<div class="dropdown border_left border_right">
@@ -107,7 +75,7 @@
 								<p>Cancellation! You have canceled the order, Service ID: 8503</p>
 								<p>30/12/2021 11:43</p>    
 							</div>
-							<a href="javascript:void(0);">Show All</a>
+							<a href="javascript:void(0)">Show All</a>
 						</div> -->
 					</div>
 				</div>
@@ -122,8 +90,8 @@
 							<p><?= session('userName'); ?></p>
 						</div>
 						<hr>
-						<a href="javascript:void(0);" onclick="go_to_dashboard();">To Overview</a>
-						<a href="javascript:void(0);" class="table_tab_btn" onclick="go_to_dashboard();">My Setting</a>
+						<a href="javascript:void(0)" onclick="go_to_dashboard()">To Overview</a>
+						<a href="javascript:void(0)" class="table_tab_btn" onclick="go_to_dashboard()">My Setting</a>
 						<a href="<?= url('/logout') ?>">Logout</a>
 					</div>
 				</div>
@@ -131,7 +99,7 @@
 				}
 				else{ 
 			?>
-				<a class="navbar_focus_btn <?= $home_focus_btn; ?>" href="javascript:void(0);" onclick="open_model('login')">Login</a>
+				<a class="navbar_focus_btn <?= $home_focus_btn; ?>" href="javascript:void(0)" onclick="open_model('login')">Login</a>
 				<a class="navbar_focus_btn <?= $home_focus_btn; ?>" href="<?= url('/service-provider/signup'); ?>">Become a Helper</a>
 			<?php } ?>
 		</div><!-- END NAV_MENU -->

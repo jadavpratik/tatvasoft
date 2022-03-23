@@ -26,10 +26,10 @@
         if(validation){
             let json = JSON.stringify({
                 reason : $('[name="cancel_service_reason"]').val(),
-                service_id : state.cancel_service_id
+                service_id : store.id.cancel
             });
             $.ajax({
-                url : `${BASE_URL}/customer/service/cancel/${state.cancel_service_id}`,
+                url : `${BASE_URL}/customer/service/cancel/${store.id.cancel}`,
                 method : 'PATCH',
                 contentType : 'application/json',
                 data : json,
@@ -42,8 +42,7 @@
                                 icon : 'success'
                             });
                             $('[name="cancel_service_reason"]').val('');
-                            // RELOAD CURRENT SERVICE REQUESTS TABLE...
-                            state.customer_dashboard_table.ajax.reload();
+                            store.customer.table.dashboard.ajax.reload();
                             close_model();
                         }
                         catch(e){

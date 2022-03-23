@@ -77,7 +77,7 @@
                             </tr>
                         </thead>
                         <tbody id="customer_address_tbody">
-                            <!-- ADDRESS WILL BE GENERATE DYNAMICALLY BY JAVASCRIPT -->
+                            <!-- GENERATE BY JAVASCRIPT -->
                         </tbody>
                     </table>
                     <button  onclick="open_model('add_address');" class="profile_save_btn">Add New Address</button>
@@ -222,6 +222,7 @@
             success : function(res){
                 if(res!=="" && res!==undefined){
                     const address = JSON.parse(res);
+                    store.customer.address = address;
                     let temp = ``;
                     for(result of address){
                         temp += `
@@ -234,8 +235,8 @@
                                 </td>
                                 <td>
                                     <div>
-                                        <button onclick="edit_address(${result.AddressId});"><i class="fas fa-edit"></i></button>
-                                        <button onclick="delete_address(${result.AddressId});"><i class="fas fa-trash-alt"></i></button>    
+                                        <button onclick="edit_address(${result.AddressId})"><i class="fas fa-edit"></i></button>
+                                        <button onclick="delete_address(${result.AddressId})"><i class="fas fa-trash-alt"></i></button>    
                                     </div>
                                 </td>
                             </tr>
@@ -261,8 +262,7 @@
                 if(res!=="" && res!==undefined){
                     try{
                         const result = JSON.parse(res);
-                        // SET VALUE IN POPUP_MODELS...
-                        $('[name="edit_address_id"]').val(result.AddressId);
+                        store.id.edit = result.AddressId;
                         $('[name="edit_address_street_name"]').val(result.AddressLine1);
                         $('[name="edit_address_house_number"]').val(result.AddressLine2);
                         $('[name="edit_address_postal_code"]').val(result.PostalCode);

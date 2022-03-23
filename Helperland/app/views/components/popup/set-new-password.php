@@ -48,7 +48,7 @@
 			const json = JSON.stringify({
 				password : $('[name="set_new_password"]').val(),
 				cpassword : $('[name="set_new_cpassword"]').val(),
-				email : state.forgot_password_email
+				email : store.email
 			})
 			$.ajax({
 				url : `${BASE_URL}/set-new-password`,
@@ -63,11 +63,8 @@
 								title : 'Good Job',
 								text : result.message,
 								icon : 'success'
-							}).then((res)=>{
-								if(res.isConfirmed){
-									close_model();
-								}
 							});
+							close_model();
 						}
 						catch(e){
 							console.log('Invalid Json Response!');

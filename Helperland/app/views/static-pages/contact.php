@@ -45,13 +45,13 @@
 		<form id="contact_us">
 			<div>
 				<div class="form_group">
-					<input class="input" type="text" placeholder="First Name" name="firstname" value="<?= isset($data->FirstName)? $data->FirstName : ''; ?>">
+					<input class="input" type="text" placeholder="First Name" name="firstname">
 					<div class="validation_message d_none">
 						<p>Validation Message</p>
 					</div>
 				</div>
 				<div class="form_group">
-					<input class="input" type="text" placeholder="Last Name" name="lastname" value="<?= isset($data->LastName)? $data->LastName : '' ; ?>">
+					<input class="input" type="text" placeholder="Last Name" name="lastname">
 					<div class="validation_message d_none">
 						<p>Validation Message</p>
 					</div>
@@ -61,14 +61,14 @@
 				<div class="form_group">
 					<div class="phone_number">
 						<label for="">+46</label>
-						<input type="text" placeholder="Phone Number" name="phone" value="<?= isset($data->Mobile)? $data->Mobile : '' ; ?>">
+						<input type="text" placeholder="Phone Number" name="phone">
 					</div>		
 					<div class="validation_message d_none">
 						<p>Validation Message</p>
 					</div>
 				</div>
 				<div class="form_group">
-					<input class="input" type="text" placeholder="Email Address" name="email" value="<?= isset($data->Email)? $data->Email : ''; ?>">
+					<input class="input" type="text" placeholder="Email Address" name="email">
 					<div class="validation_message d_none">
 						<p>Validation Message</p>
 					</div>
@@ -77,7 +77,7 @@
 			<div class="form_group">
 				<select class="select" name="subject" id="">
 					<option value=""></option>
-					<option value="General">General</option>
+					<option value="General" selected>General</option>
 					<option value="Inquiry">Inquiry</option>
 					<option value="Renewal">Renewal</option>
 					<option value="Revocation">Revocation</option>
@@ -104,7 +104,7 @@
 			</div>
 			<div>
 				<input type="checkbox" name="TermCheckBox">
-				<p>Our current ones apply <a href="javascript:void(0);">privacy policy</a> i hereby agree that my data entered into the contact form will be stored electronically and processed and used for the used for the purpose of establishing contact. the consent can be withdrawn at any time pursuant to art. 7(3) GDPR by informal notification (eg. by e-mail).</p>
+				<p>Our current ones apply <a href="javascript:void(0)">privacy policy</a> i hereby agree that my data entered into the contact form will be stored electronically and processed and used for the used for the purpose of establishing contact. the consent can be withdrawn at any time pursuant to art. 7(3) GDPR by informal notification (eg. by e-mail).</p>
 			</div>
 			<button class="form_btn" disabled>Submit</button>
 		</form>
@@ -120,6 +120,13 @@
 
 <!-- **********CONTACT-US-SCRIPTS********** -->
 <script>
+
+	<?php if(session('isLogged')){ ?>
+		$('[name="firstname"]').val(store.user.FirstName);
+		$('[name="lastname"]').val(store.user.LastName);
+		$('[name="email"]').val(store.user.Email);
+		$('[name="phone"]').val(store.user.Mobile);
+	<?php } ?>
 
 	$('[name="TermCheckBox"]').click(()=>{
 		if($('[name="TermCheckBox"]').prop('checked')==true){

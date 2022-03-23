@@ -26,8 +26,8 @@
         </div>
         <div>
             <div>
-                <p>Per Cleaning</p>	
-                <p id="service_per_price">₹0</p>
+                <p>Per Hour Cleaning</p>	
+                <p id="service_per_hour_price">₹0</p>
                 <!-- $ -->
             </div>
             <!-- NOT INCLUDED IN SRS... -->
@@ -60,23 +60,17 @@
 <script>
 
     function update_payment_summary(){
-        let serviceDateObj = new Date(service_request.date);
-        let serviceYear = serviceDateObj.getFullYear();
-        let serviceMonth = serviceDateObj.getMonth()+1;
-        let serviceDate = serviceDateObj.getDate();
-        serviceMonth = serviceMonth < 10 ? `0${serviceMonth}` : serviceMonth;
-        serviceDate  = serviceDate < 10 ? `0${serviceDate}` : serviceDate;
-        //  TOTAL PRICES = BASIC PRICE(3 SERVICE) + EXTRA SERVICE(DYNAMICS);
-        service_request.total_price = service_request.per_price*service_request.duration 
-                                    + (service_request.per_price/2)*service_request.extra.length;
+        let serviceDate = moment(store.book_service.date, 'YYYY-MM-DD').format('DD/MM/YYYY');
+        store.book_service.total_price = store.book_service.per_hour_price*store.book_service.duration 
+                                      + (store.book_service.per_hour_price/2)*store.book_service.extra.length;
 
-        $('#service_date').html(`${serviceDate}/${serviceMonth}/${serviceYear}`);
-        $('#service_time').html(service_request.time);
-        $('#service_duration').html(`${service_request.duration} Hours`);
-        $('#service_total_time').html(`${parseInt(service_request.duration) + parseInt(service_request.extra_time)} Hours`);
+        $('#service_date').html(serviceDate);
+        $('#service_time').html(store.book_service.time);
+        $('#service_duration').html(`${store.book_service.duration} Hours`);
+        $('#service_total_time').html(`${parseInt(store.book_service.duration) + parseInt(store.book_service.extra_time)} Hours`);
         $('#service_extra_container').html(extra_services_html());
-        $('#service_per_price').html(`₹${service_request.per_price}`);
-        $('#service_total_price').html(`₹${service_request.total_price}`);
+        $('#service_per_hour_price').html(`₹${store.book_service.per_hour_price}`);
+        $('#service_total_price').html(`₹${store.book_service.total_price}`);
 
         // EXTRA SERVICES HTML...
         function extra_services_html(){
@@ -86,16 +80,16 @@
             // 4 => 'Laundry'
             // 5 => 'Window'
             let extra_services = ``;
-            for(let i=0; i<service_request.extra.length; i++){
-                if(service_request.extra[i] == 1)
+            for(let i=0; i<store.book_service.extra.length; i++){
+                if(store.book_service.extra[i] == 1)
                     extra_services += `<div><p>Inside Cabinet (Extra)</p><p>30 Mins</p></div>`; 
-                else if(service_request.extra[i] == 2)
+                else if(store.book_service.extra[i] == 2)
                     extra_services += `<div><p>Inside Fridge (Extra)</p><p>30 Mins</p></div>`; 
-                else if(service_request.extra[i] == 3)
+                else if(store.book_service.extra[i] == 3)
                     extra_services += `<div><p>Inside Oven (Extra)</p><p>30 Mins</p></div>`; 
-                else if(service_request.extra[i] == 4)
+                else if(store.book_service.extra[i] == 4)
                     extra_services += `<div><p>Inside Laundry (Extra)</p><p>30 Mins</p></div>`; 
-                else if(service_request.extra[i] == 5)
+                else if(store.book_service.extra[i] == 5)
                     extra_services += `<div><p>Inside Window (Extra)</p><p>30 Mins</p></div>`; 
             }
             return extra_services;

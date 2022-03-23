@@ -10,15 +10,15 @@
             </tr>
         </thead>
         <tbody>
-            <!-- DYNAMIC GENERTED BY DATATABLE... -->
+            <!-- GENERTED BY DATATABLE -->
         </tbody>
     </table>
 </div>
 
 <!-- **********SP-MY-RATING********** -->
-<script>
+<script>    
     $(document).ready(function(){
-        state.sp_my_rating_table = $('#sp_my_rating_table').DataTable({
+        store.service_provider.table.rating = $('#sp_my_rating_table').DataTable({
             searching : false,
             serviceSide : true,
             autoWidth : false,
@@ -27,8 +27,7 @@
                 url : `${BASE_URL}/service-provider/rating-and-review`,
                 cache : true,
                 dataSrc : function(data){
-                    // STORE DATA GLOBALLY...
-                    state.sp_my_rating_data = data;
+                    store.service_provider.data.rating = data;
                     return data;
                 },
             },

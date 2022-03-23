@@ -37,7 +37,7 @@
 <script>
     function accept_service(){
         $.ajax({
-            url : `${BASE_URL}/service-provider/service/accept/${state.accept_service_id}`,
+            url : `${BASE_URL}/service-provider/service/accept/${store.id.accept}`,
             method : 'PATCH',
             success : function(res){
                 if(res!=="" && res!==undefined){
@@ -48,8 +48,7 @@
                             icon : 'success'
                         });
                         close_model();
-                        // RELOAD TABLE...
-                        state.sp_new_services_table.ajax.reload();
+                        store.service_provider.table.new_services.ajax.reload();
                     }
                     catch(e){
                         Swal.fire({

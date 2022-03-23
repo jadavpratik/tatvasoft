@@ -19,7 +19,7 @@
             <a href="<?= url('/guarantee'); ?>">Guarantee</a>
             <a href="<?= url('/blog'); ?>">Blog</a>
             <a href="<?= url('/contact'); ?>">Contact</a>
-            <a href="javascript:void(0);" onclick="open_model('login')">Login</a>
+            <a href="javascript:void(0)" onclick="open_model('login')">Login</a>
             <a href="<?= url('/service-provider/signup'); ?>">Become a Helper!</a>
         <?php } ?>
 
@@ -27,27 +27,27 @@
         <?php if(session('isLogged')==true){ ?>
             <!-- CUSTOMER -->
             <?php if(session('userRole')==1){ ?>
-                <!-- <a href="javascript:void(0);">Overview</a>
-                <a href="javascript:void(0);">Completed Service Orders</a>
-                <a href="javascript:void(0);">Calander view</a>
-                <a href="javascript:void(0);">My Favorites</a>
-                <a href="javascript:void(0);">Bills</a> -->
+                <!-- <a href="javascript:void(0)">Overview</a>
+                <a href="javascript:void(0)">Completed Service Orders</a>
+                <a href="javascript:void(0)">Calander view</a>
+                <a href="javascript:void(0)">My Favorites</a>
+                <a href="javascript:void(0)">Bills</a> -->
             <?php } ?>
 
             <!-- SERVICE_PROVIDER -->
             <?php if(session('userRole')==2){ ?>
-                <!-- <a href="javascript:void(0);">Overview</a>
-                <a href="javascript:void(0);">New Inquiries</a>
-                <a href="javascript:void(0);">Accepted Requests</a>
-                <a href="javascript:void(0);">Calander view</a>
-                <a href="javascript:void(0);">Completed Service Orders</a>
-                <a href="javascript:void(0);">My Reviews</a>
-                <a href="javascript:void(0);">Block Customer</a>
-                <a href="javascript:void(0);">Bills</a> -->
+                <!-- <a href="javascript:void(0)">Overview</a>
+                <a href="javascript:void(0)">New Inquiries</a>
+                <a href="javascript:void(0)">Accepted Requests</a>
+                <a href="javascript:void(0)">Calander view</a>
+                <a href="javascript:void(0)">Completed Service Orders</a>
+                <a href="javascript:void(0)">My Reviews</a>
+                <a href="javascript:void(0)">Block Customer</a>
+                <a href="javascript:void(0)">Bills</a> -->
             <?php } ?>
 
             <!-- COMMAN_LINKS FOR LOGGED_USER -->
-            <a href="javascript:void(0);" onclick="go_to_dashboard();">My Setting</a>
+            <a href="javascript:void(0)" onclick="go_to_dashboard()">My Setting</a>
             <a href="<?= url('/logout'); ?>">Logout</a>
 
         <?php } ?>
@@ -71,8 +71,8 @@
     <?php } ?>
 
     <div class="sidenav_footer">
-        <a href="javascript:void(0);"><i class="fab fa-facebook-f"></i></a>
-        <a href="javascript:void(0);"><i class="fab fa-instagram"></i></a>
+        <a href="javascript:void(0)"><i class="fab fa-facebook-f"></i></a>
+        <a href="javascript:void(0)"><i class="fab fa-instagram"></i></a>
     </div>
 
 </aside>

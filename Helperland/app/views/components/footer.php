@@ -30,19 +30,19 @@
 				<div class="footer_links">
 					<a href="<?= url('/'); ?>">HOME</a>
 					<a href="<?= url('/about'); ?>">ABOUT</a>
-					<a href="javascript:void(0);">TESTIMONIALS</a>
+					<a href="javascript:void(0)">TESTIMONIALS</a>
 					<a href="<?= url('/faqs'); ?>">FAQS</a>
-					<a href="javascript:void(0);">INSURANCE POLICY</a>
-					<a href="javascript:void(0);">IMPRESSUM</a>
+					<a href="javascript:void(0)">INSURANCE POLICY</a>
+					<a href="javascript:void(0)">IMPRESSUM</a>
 				</div>
 				<div class="social_media_links">
-					<a href="javascript:void(0);"><img src="<?= assets('assets/img/global/facebook.png'); ?>" alt=""></a>
-					<a href="javascript:void(0);"><img src="<?= assets('assets/img/global/instagram.png'); ?>" alt=""></a>
+					<a href="javascript:void(0)"><img src="<?= assets('assets/img/global/facebook.png'); ?>" alt=""></a>
+					<a href="javascript:void(0)"><img src="<?= assets('assets/img/global/instagram.png'); ?>" alt=""></a>
 				</div>
 			</div>
 			<!-- COPYRIGHT_SECTION -->
 			<div>
-				<p class="copyright_section">©2018 Helperland. All rights reserved. Terms and Conditions | <a href="javascript:void(0);">Privacy Policy</a></p>
+				<p class="copyright_section">©2018 Helperland. All rights reserved. Terms and Conditions | <a href="javascript:void(0)">Privacy Policy</a></p>
 			</div>
 		</div><!-- END_FOOTER_MAIN_DIV -->
 

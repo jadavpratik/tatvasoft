@@ -30,16 +30,8 @@ class View{
 
     // -----CONTACT-----
     public function contact(Request $req, Response $res){
-        if(session('isLogged')){
-            $user = new User();
-            $columns = ['FirstName', 'LastName', 'Email', 'Mobile'];
-            $data = $user->columns($columns)->where('UserId', '=', session('userId'))->read();
-            $res->render('static-pages/contact', ['data'=>$data[0]]);	
-        }
-        else{
-            $res->render('static-pages/contact');	
-        }
-	}
+        $res->render('static-pages/contact');	
+    }
 
     // -----ABOUT-----
 	public function about(Request $req, Response $res){

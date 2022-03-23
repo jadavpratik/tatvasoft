@@ -86,7 +86,7 @@
 
         if(validation){
             $.ajax({
-                url : `${BASE_URL}/customer/sp/rate/${state.rate_service_id}`,
+                url : `${BASE_URL}/customer/sp/rate/${store.id.rate_sp}`,
                 method : 'POST',
                 data : $('#rating_popup').serialize(),
                 success : function(res){
@@ -98,7 +98,7 @@
                                 icon : 'success'
                             });
                             $('#rating_popup').trigger('reset');
-                            state.customer_service_history_table.ajax.reload();
+                            store.customer.table.service_history.ajax.reload();
                             close_model();
                         }
                         catch(e){

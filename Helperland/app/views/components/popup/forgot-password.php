@@ -13,7 +13,7 @@
                 </div>
             </div>
             <button class="popup_btn" name="forgot_password_btn">Send</button>
-            <a href="javascript:void(0);" onclick="open_model('login')">Login Now</a>
+            <a href="javascript:void(0)" onclick="open_model('login')">Login Now</a>
         </form>
     </div>
 </div>
@@ -33,7 +33,7 @@
 
             const email = $('[name="forgot_password_email"]').val();
             // STORE EMAIL GLOBALLY...
-            state.forgot_password_email = email;
+            store.email = email;
             const json = JSON.stringify({email});
             $.ajax({
                 url : `${BASE_URL}/forgot-password`,

@@ -80,7 +80,7 @@ class Customer{
                     $serviceData[$i]->SPRated = true;
                 }
 
-                // **********AVERAGE RATING**********
+                // **********ALL OVER RATING**********
                 // $ratingData = $rating->where('RatingTo', '=', $serviceProviderId)->read();
                 // if(count($ratingData)>0){
                 //     // CHECK, BY CURRENT CUSTOMER RATING IS GIVEN OR NOT ?

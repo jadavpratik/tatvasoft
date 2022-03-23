@@ -33,7 +33,7 @@
                         try{
                             const result = JSON.parse(res);
                             // STORE POSTAL CODE...
-                            service_request.postal_code = parseInt(postal_code);
+                            store.book_service.postal_code = parseInt(postal_code);
                             change_book_service_tabs(1);
                         }
                         catch(e){
@@ -63,6 +63,6 @@
     // ON CHANGE POSTAL CODE STORE IN SERVICE REQUEST OBJECT...
     $('[name="setup_service_postal_code"]').focusout(function(){
         const postal_code = $('[name="setup_service_postal_code"]').val();
-        service_request.postal_code = parseInt(postal_code);
+        store.book_service.postal_code = parseInt(postal_code);
     });
 </script>

@@ -109,7 +109,7 @@
     <div>
         <div class="label_input">
             <label class="label" for="">Comments</label>
-            <textarea name="" class="textarea" name="comments"></textarea>
+            <textarea class="textarea" name="comments"></textarea>
         </div>
         <div>
             <input type="checkbox" name="has_pets" value="true">
@@ -143,18 +143,15 @@
             extra_services.filter((i, element) => {
                 extra.push(element.value);
             });
-
-            service_request.extra    = extra;
-            service_request.extra_time = extra.length!==0 ? (extra.length*30)/60 : 0;
-            service_request.date     = $('[name="schedule_date"]').val();
-            service_request.time     = $('[name="schedule_time"]').val(); // [INCOMING INPUT TIME IN 24HRS]...
-            service_request.duration = parseInt($('[name="duration"]').val());
-            service_request.comments = $('[name="comments"]').val();
-            service_request.has_pets = Boolean($('[name="has_pets"]:checked').val());
-
+            store.book_service.extra    = extra;
+            store.book_service.extra_time = extra.length!==0 ? (extra.length*30)/60 : 0;
+            store.book_service.date     = $('[name="schedule_date"]').val();
+            store.book_service.time     = $('[name="schedule_time"]').val(); // [INCOMING INPUT TIME IN 24HRS]...
+            store.book_service.duration = parseInt($('[name="duration"]').val());
+            store.book_service.comments = $('[name="comments"]').val();
+            store.book_service.has_pets = Boolean($('[name="has_pets"]:checked').val());
             update_payment_summary();
             change_book_service_tabs(2);
-
         }
         else{
             // SCROLL-UP PAGE WHEN ERROR COMES...
@@ -168,18 +165,22 @@
 <script>
     // ON DATE CHANGE UPDATE PAYMENT SUMMARY...
     $('[name="schedule_date"]').change(function(){
-        service_request.date = $('[name="schedule_date"]').val();
+        store.book_service.date = $('[name="schedule_date"]').val();
         update_payment_summary();
     });
 
     $('[name="schedule_time"]').change(function(){
-        service_request.time = $('[name="schedule_time"]').val();
+        store.book_service.time = $('[name="schedule_time"]').val();
         update_payment_summary();
     });
 
     $('[name="duration"]').change(function(){
-        service_request.duration = parseInt($('[name="duration"]').val());
+        store.book_service_duration = parseInt($('[name="duration"]').val());
         update_payment_summary();
+    });
+
+    $('[name="comments"]').keyup(function(){
+        store.book_service.comments = $('[name="comments"]').val();
     });
 
     $('[name="extra_services"]').change(function(){
@@ -188,8 +189,8 @@
         extra_services.filter((i, element) => {
             extra.push(element.value);
         });
-        service_request.extra    = extra;
-        service_request.extra_time = extra.length!==0 ? (extra.length*30)/60 : 0;
+        store.book_service.extra = extra;
+        store.book_service.extra_time = extra.length!==0 ? (extra.length*30)/60 : 0;;
         update_payment_summary();
     });
 

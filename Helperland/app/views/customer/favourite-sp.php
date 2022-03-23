@@ -4,7 +4,7 @@
 
 <!-- **********CUSTOMER-FAVORITE-SECTION-SCRIPTS********** -->
 <script>
-    function load_customer_favorite_section_data(){
+    function load_customer_sp_data(){
         $.ajax({
             url : `${BASE_URL}/customer/sp`,
             method : 'GET',
@@ -12,6 +12,8 @@
                 if(res!=="" && res!==undefined){
                     try{
                         const spList = JSON.parse(res);
+                        // STORE DATA GLOBALLY...
+                        store.customer.data.service_providers = spList;
                         let html = ``;    
                         for(sp of spList){
                             html += `<div class="favourite_pros_card">
@@ -50,16 +52,16 @@
                                             ${(function(){
                                                 let buttons = ``;
                                                 if(sp.IsFavorite==1){
-                                                    buttons += `<button class="remove_btn" onclick="action_on_sp(${sp.UserId}, 'remove');">Favorite</button>`;
+                                                    buttons += `<button class="remove_btn" onclick="action_on_sp(${sp.UserId}, 'remove')">Favorite</button>`;
                                                 }
                                                 else{
-                                                    buttons += `<button class="remove_btn" onclick="action_on_sp(${sp.UserId}, 'add');">Unfavorite</button>`;
+                                                    buttons += `<button class="remove_btn" onclick="action_on_sp(${sp.UserId}, 'add')">Unfavorite</button>`;
                                                 }
                                                 if(sp.IsBlocked==1){
-                                                    buttons += `<button class="block_btn" onclick="action_on_sp(${sp.UserId}, 'unblock');">Blocked</button>`;
+                                                    buttons += `<button class="block_btn" onclick="action_on_sp(${sp.UserId}, 'unblock')">Blocked</button>`;
                                                 }
                                                 else{
-                                                    buttons += `<button class="block_btn" onclick="action_on_sp(${sp.UserId}, 'block');">Block</button>`;
+                                                    buttons += `<button class="block_btn" onclick="action_on_sp(${sp.UserId}, 'block')">Block</button>`;
                                                 }
                                                 return buttons;
                                             })()}
@@ -88,7 +90,7 @@
             }
         });
     }
-    load_customer_favorite_section_data();
+    load_customer_sp_data();
 </script>
 
 
@@ -122,7 +124,7 @@
                                 title : result.message,
                                 icon : 'success'
                             });
-                            load_customer_favorite_section_data();
+                            load_customer_sp_data();
                         }
                         catch(e){
                             Swal.fire({

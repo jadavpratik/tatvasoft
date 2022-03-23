@@ -29,7 +29,7 @@
 <!-- **********NEW-SERVICE-REQUEST********** -->
 <script>
     $(document).ready(function(){
-        state.sp_new_services_table = $('#sp_new_services_table').DataTable({
+        store.service_provider.table.new_services = $('#sp_new_services_table').DataTable({
             searching : false,
             serviceSide : true,
             autoWidth : false,
@@ -38,8 +38,7 @@
                 url : `${BASE_URL}/service-provider/service/new`,
                 cache : true,
                 dataSrc : function(data){
-                    // STORE DATA GLOBALLY...
-                    state.sp_new_services_data = data;
+                    store.service_provider.data.new_services = data;
                     return data;
                 },
             },
@@ -80,16 +79,10 @@
                         return `<p class="payment_text" onclick="show_service_details(${row.ServiceRequestId})">₹<span>${row.TotalCost}</span></p>`;
                     }
                 },
-                // {
-                //     render : function(data, type, row){
-                //         // TIME CONFLICT...
-                //         return ``;
-                //     }
-                // },
                 {
                     render : function(data, type, row){
                         return `<div style="display:flex;">
-                                    <button class="accept_btn" onclick="accept_service_open_model(${row.ServiceRequestId});">Accept</button>
+                                    <button class="accept_btn" onclick="accept_service_open_model(${row.ServiceRequestId})">Accept</button>
                                 </div>`;
                     }
                 }
@@ -110,9 +103,10 @@
 <!-- **********ACCEPT-SERVICE********** -->
 <script>
     // SETUP HTML FOR ACCEPT SERVICE POPUP...
+    
     function accept_service_open_model(id){
         // $₹
-        let data = state.sp_new_services_data.filter((service)=>{
+        let data = store.service_provider.data.new_services.filter((service)=>{
             if(service.ServiceRequestId==id){
                 return service;
             }
@@ -120,7 +114,7 @@
         data = data[0];
 
         // FOR ACCEPT SERVICE ID STORE GLOBALLY...
-        state.accept_service_id = data.ServiceRequestId;
+        store.id.accept = data.ServiceRequestId;
 
         $('#accept_service_request_popup').html(`
             <p class="popup_title">Service Details</p>
@@ -168,7 +162,7 @@
                     <p>Conmments : <span>${data.Comments?data.Comments : ''}</span></p>
                 </div>
                 <div class="table_btn_container">
-                    <button class="accept_btn" onclick="accept_service();"><i class="fas fa-check"></i>Accept</button>
+                    <button class="accept_btn" onclick="accept_service()"><i class="fas fa-check"></i>Accept</button>
                 </div>		
             </div>
             <div><!-- SECOND DIV FOR MAP -->

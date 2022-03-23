@@ -14,12 +14,9 @@
         <div class="table_tab_left">
             <!-- TAB AND TABLE LIST -->
             <div class="table_tab_list">
-                <a href="javascript:void(0);" class="table_tab_btn" onclick="load_customer_dashboard_data()">Dashboard</a>
-                <a href="javascript:void(0);" class="table_tab_btn" onclick="load_customer_service_history_data()">Service History</a>
-                <!-- <a href="javascript:void(0);" class="table_tab_btn">Service Schedule</a> -->
-                <a href="javascript:void(0);" class="table_tab_btn" onclick="load_customer_favorite_section_data()">Favorite Service Provider</a>
-                <!-- <a href="javascript:void(0);" class="table_tab_btn">Invoices</a> -->
-                <!-- <a href="javascript:void(0);" class="table_tab_btn">Notifications</a>     -->
+                <a href="javascript:void(0)" class="table_tab_btn" onclick="load_customer_dashboard_data()">Dashboard</a>
+                <a href="javascript:void(0)" class="table_tab_btn" onclick="load_customer_service_history_data()">Service History</a>
+                <a href="javascript:void(0)" class="table_tab_btn" onclick="load_customer_sp_data()">Favorite Service Provider</a>
             </div>
         </div>
 
@@ -41,22 +38,10 @@
                 <?= component('customer/', 'service-history'); ?>
             </div><!-- END_TABLE_TAB_CONTENT -->
 
-            <!-- SERVICE SCHEDULE -->
-            <!-- <div class="table_tab_content d_none"> -->
-            <!-- </div>END_TABLE_TAB_CONTENT -->
-
             <!-- FAVOURITE PROS -->
             <div class="table_tab_content d_none">
                 <?= component('customer/', 'favourite-sp'); ?>
             </div><!-- END_TABLE_TAB_CONTENT -->
-
-            <!-- INVOICES -->
-            <!-- <div class="table_tab_content d_none"> -->
-            <!-- </div>END_TABLE_TAB_CONTENT -->
-
-            <!-- NORTIFICATIONS -->
-            <!-- <div class="table_tab_content d_none"> -->
-            <!-- </div>END_TABLE_TAB_CONTENT -->
 
         </div><!-- END_TABLE_TAB_RIGHT -->
     </div><!-- END_TABLE_TAB -->
@@ -67,22 +52,20 @@
 
     // LOAD CUSTOMER DASHBOARD DATA...
     function load_customer_dashboard_data(){
-        const table = state.customer_dashboard_table;
-        table.ajax.reload();
+        store.customer.table.dashboard.ajax.reload();
     }
 
-    // LOAD CUSTOMER HISTORY DATA...
+    // LOAD CUSTOMER SERVICE HISTORY DATA...
     function load_customer_service_history_data(){
-        const table = state.customer_service_history_table;
-        table.ajax.reload();
+        store.customer.table.service_history.ajax.reload();
     }
 
     // SHOW SERVICE DETAILS...
     function show_service_details(id){
 
-        let data = [...state.customer_service_history_data,
-                    ...state.load_customer_dashboard_data];
-        
+        let data = [...store.customer.data.current_services,
+                    ...store.customer.data.service_history];
+
         data = data.filter((service)=>{
             if(id===service.ServiceRequestId){
                 return service;
@@ -139,8 +122,8 @@
                 <p>Conmments : <span>${data.Comments? data.Comments:''}</span></p>
             </div>
             <div class="table_btn_container">
-                <button class="reschedule_btn" onclick="reschedule_service(${data.ServiceRequestId});"><i class="fas fa-redo-alt"></i> Reschdule</button>
-                <button class="cancel_btn" onclick="cancel_service(${data.ServiceRequestId});"><i class="fas fa-times"></i> Cancel</button>
+                <button class="reschedule_btn" onclick="reschedule_service(${data.ServiceRequestId})"><i class="fas fa-redo-alt"></i> Reschdule</button>
+                <button class="cancel_btn" onclick="cancel_service(${data.ServiceRequestId})"><i class="fas fa-times"></i> Cancel</button>
             </div>`
         );
 

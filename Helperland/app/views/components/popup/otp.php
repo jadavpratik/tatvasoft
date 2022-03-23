@@ -30,7 +30,7 @@
 
             const json = JSON.stringify({
                 otp:parseInt($('[name="otp"]').val()),
-                email:state.forgot_password_email
+                email:store.email
             });
 
             $.ajax({

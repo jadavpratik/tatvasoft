@@ -10,15 +10,12 @@
     <div class="table_tab">
         <div class="table_tab_left">
             <div class="table_tab_list">
-                <!-- <a href="javascript:void(0);" class="table_tab_btn">Dashboard</a> -->
-                <a href="javascript:void(0);" class="table_tab_btn" onclick="load_sp_new_services_data();">New Service Request</a>
-                <a href="javascript:void(0);" class="table_tab_btn" onclick="load_sp_upcoming_services_data();">Upcoming Services</a>
-                <a href="javascript:void(0);" class="table_tab_btn">Service Schedule</a>
-                <a href="javascript:void(0);" class="table_tab_btn" onclick="load_sp_service_history_data();">Service History</a>
-                <a href="javascript:void(0);" class="table_tab_btn" onclick="load_sp_my_rating_data();">My Rating</a>
-                <a href="javascript:void(0);" class="table_tab_btn" onclick="load_sp_my_customer_data();">Block Customer</a>
-                <!-- <a href="javascript:void(0);" class="table_tab_btn">Invoice</a> -->
-                <!-- <a href="javascript:void(0);" class="table_tab_btn">Notification</a> -->
+                <a href="javascript:void(0)" class="table_tab_btn" onclick="load_sp_new_services_data()">New Service Request</a>
+                <a href="javascript:void(0)" class="table_tab_btn" onclick="load_sp_upcoming_services_data()">Upcoming Services</a>
+                <a href="javascript:void(0)" class="table_tab_btn">Service Schedule</a>
+                <a href="javascript:void(0)" class="table_tab_btn" onclick="load_sp_service_history_data()">Service History</a>
+                <a href="javascript:void(0)" class="table_tab_btn" onclick="load_sp_rating_data()">My Rating</a>
+                <a href="javascript:void(0)" class="table_tab_btn" onclick="load_sp_customer_data()">Block Customer</a>
             </div>
         </div>
         <div class="table_tab_right">
@@ -27,9 +24,6 @@
             <div class="table_tab_content">
                 <?= component('service-provider/', 'profile'); ?>
             </div>
-
-            <!-- DASHBOARD -->
-            <!-- <div class="table_tab_content d_none"></div> -->
 
             <!-- NEW SERVICE REQUEST -->
             <div class="table_tab_content d_none">
@@ -59,45 +53,32 @@
                 <?= component('service-provider/', 'block-customer'); ?>
             </div>
 
-            <!-- INVOICES -->
-            <!-- <div class="table_tab_content d_none"></div> -->
-
-            <!-- NORTIFICATIONS -->
-            <!-- <div class="table_tab_content d_none"></div> -->
-
         </div><!-- END_TABLE_TAB_RIGHT -->
     </div><!-- END_TABLE_TAB -->
 </main><!-- END_MAIN -->
 
 <script>
-
     function load_sp_new_services_data(){
-        state.sp_new_services_table.ajax.reload();
+        store.service_provider.table.new_services.ajax.reload();
     }
 
     function load_sp_upcoming_services_data(){
-        state.sp_upcoming_services_table.ajax.reload();
+        store.service_provider.table.upcoming_services.ajax.reload();
     }
 
     function load_sp_service_history_data(){
-        state.sp_service_history_table.ajax.reload();
+        store.service_provider.table.service_history.ajax.reload();
     }
 
-    function load_sp_my_rating_data(){
-        state.sp_my_rating_table.ajax.reload();
+    function load_sp_rating_data(){
+        store.service_provider.table.rating.ajax.reload();
     }
 
-    function load_sp_my_customer_data(){
-        load_my_customers();
-    }
-
-    // SHOW SERVICE DETAILS...
-    //  THIS POPUP MODEL FOR SERVICE PROVIDER WHERE SP ACCEPT REJECT, AND COMPLETE THE SERVICE....
     function show_service_details(id){
         // MERGE ALL TABLE DATA... BY SPREAD OBJECT...
-        let data = [...state.sp_service_history_data,
-                    ...state.sp_new_services_data,
-                    ...state.sp_upcoming_services_data];
+        let data = [...store.service_provider.data.service_history,
+                    ...store.service_provider.data.new_services,
+                    ...store.service_provider.data.upcoming_services];
 
         data = data.filter((service)=>{
             if(id===service.ServiceRequestId){
@@ -158,7 +139,7 @@
                 // MEANS SERVICE IS EXPIRED AND STATUS IS PENDING (1)
                 if(data.IsExpired==1 && data.Status==1){
                     return `<div class="table_btn_container">
-                                <button class="accept_btn" onclick="complete_service(${id});">Complete</button>
+                                <button class="accept_btn" onclick="complete_service(${id})">Complete</button>
                             </div>`;
                 }
                 return ``;
@@ -167,9 +148,7 @@
         );
 
         open_model('service_details');
-    }
-
-    
+    }    
 </script>
 
 <!-- **********COMPLTE-SERVICE********** -->
@@ -187,7 +166,7 @@
                             text : result.message,
                             icon : 'success'
                         });
-                        state.sp_upcoming_services_table.ajax.reload();
+                        store.service_provider.table.upcoming_services.ajax.reload();
                     }
                     catch(e){
                         console.log('Invalid Json Response!!!');

@@ -33,7 +33,7 @@
             </div>
         </form>
         <div class="login_popup_footer">
-            <a href="javascript:void(0);" onclick="open_model('forgot_password')">Forgot Password?</a>
+            <a href="javascript:void(0)" onclick="open_model('forgot_password')">Forgot Password?</a>
             <p>Don't Have an Account? <a href="<?= url('/customer/signup') ?>">Create an Account</a></p>
         </div><!-- END_LOGIN_POPUP_FOOTER -->
     </div><!-- END_LOGIN_POPUP -->
