@@ -10,21 +10,10 @@ use core\Mail;
 
 use app\models\User;
 use app\models\OTP;
+use app\services\Functions;
 
 class Account{
 
-	// ----------SET USER ROLE_NAME----------
-	public function setUserRoleName($roleId){
-		switch($roleId){
-			case 1:
-				return 'customer';
-			case 2:
-				return 'service-provider';
-			case 3:
-				return 'admin';
-		}
-	}
-	
 	// ----------SIGNUP----------
 	public function signup(Request $req, Response $res){
 
@@ -105,22 +94,23 @@ class Account{
 
 				if(cookie('loginAttempts')<5){
 					if(Hash::verify($password, $userPassword)){
+						$fun = new Functions();
 						session('isLogged', true);
 						session('userId', $userId);
 						session('userRole', $userRole);
-						session('userRoleName', $this->setUserRoleName($userRole));
+						session('userRoleName', $fun->setUserRoleName($userRole));
 						session('userName', $userName);
 						$res->status(200)->json(['role'=>$userRole, 'message'=>"Login successfully."]);
 					}
 					else{
 						$attempts =  cookie('loginAttempts') + 1;
-						// SET COOKIE FOR 30 MINUTES...
-						cookie('loginAttempts', $attempts, time()+1800);
+						// SET COOKIE FOR 5 MINUTES...
+						cookie('loginAttempts', $attempts, time()+(5*60));
 						$res->status(401)->json(['message'=>"Password is not matched."]);
 					}	
 				}
 				else{
-					$res->status(401)->json(['message'=>"Try after 30 minutes!"]);
+					$res->status(401)->json(['message'=>"Try after 5 minutes!"]);
 				}
 			}
 			else{
@@ -221,8 +211,7 @@ class Account{
 	public function change_password(Request $req, Response $res){
 		/* 
 			**********BUG**********
-			CONFIRM-PASSWORD===PASSWORD 
-			CONFIRM-PASSWORD===PASSWORD
+			NEW-PASSWORD===CONFIRM-PASSWORD 
 			SO WE ADDED NEW KEY AS FLAG NEW-PASSWORD
 		*/
 		Validation::check($req->body, [

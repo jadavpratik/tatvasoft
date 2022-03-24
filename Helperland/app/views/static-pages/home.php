@@ -126,7 +126,7 @@
 				<span>January 28, 2019</span>
 				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed fermentum metus pulvinar aliquet.</p>
 			</div>
-			<a href="">Read the Post <img src="<?= assets('assets/img/buttons/arrow/arrow_right_black.png'); ?>" alt=""></a>
+			<a href="javascript:void(0)">Read the Post <img src="<?= assets('assets/img/buttons/arrow/arrow_right_black.png'); ?>" alt=""></a>
 		</div>
 		<div class="home_s3_card" data-aos="fade" data-aos-delay="102">
 			<img src="<?= assets('assets/img/static/home/section_3/blog_2.png'); ?>" alt="">
@@ -135,7 +135,7 @@
 				<span>January 28, 2019</span>
 				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed fermentum metus pulvinar aliquet.</p>
 			</div>
-			<a href="">Read the Post <img src="<?= assets('assets/img/buttons/arrow/arrow_right_black.png'); ?>" alt=""></a>
+			<a href="javascript:void(0)">Read the Post <img src="<?= assets('assets/img/buttons/arrow/arrow_right_black.png'); ?>" alt=""></a>
 		</div>
 		<div class="home_s3_card" data-aos="fade" data-aos-delay="103">
 			<img src="<?= assets('assets/img/static/home/section_3/blog_3.png'); ?>" alt="">
@@ -144,7 +144,7 @@
 				<span>January 28, 2019</span>
 				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed fermentum metus pulvinar aliquet.</p>
 			</div>
-			<a href="">Read the Post <img src="<?= assets('assets/img/buttons/arrow/arrow_right_black.png'); ?>" alt=""></a>
+			<a href="javascript:void(0)">Read the Post <img src="<?= assets('assets/img/buttons/arrow/arrow_right_black.png'); ?>" alt=""></a>
 		</div>
 	</div>
 
@@ -167,7 +167,7 @@
 			</div>
 			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed fermentum metus pulvinar aliquet consequat. Praesent nec malesuada nibh.</p>
 			<p> Nullam et metus congue, auctor augue sit amet, consectetur tortor.</p>
-			<a href="">Read More <img src="<?= assets('assets/img/buttons/arrow/arrow_right_black.png'); ?>" alt=""></a>
+			<a href="javascript:void(0)">Read More <img src="<?= assets('assets/img/buttons/arrow/arrow_right_black.png'); ?>" alt=""></a>
 		</div>			
 
 		<div class="home_s4_card" data-aos="fade" data-aos-delay="101">
@@ -178,7 +178,7 @@
 			</div>
 			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed fermentum metus pulvinar aliquet consequat. Praesent nec malesuada nibh.</p>
 			<p> Nullam et metus congue, auctor augue sit amet, consectetur tortor.</p>
-			<a href="">Read More <img src="<?= assets('assets/img/buttons/arrow/arrow_right_black.png'); ?>" alt=""></a>
+			<a href="javascript:void(0)">Read More <img src="<?= assets('assets/img/buttons/arrow/arrow_right_black.png'); ?>" alt=""></a>
 		</div>			
 
 		<div class="home_s4_card" data-aos="fade" data-aos-delay="102">
@@ -189,7 +189,7 @@
 			</div>
 			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed fermentum metus pulvinar aliquet consequat. Praesent nec malesuada nibh.</p>
 			<p> Nullam et metus congue, auctor augue sit amet, consectetur tortor.</p>
-			<a href="">Read More <img src="<?= assets('assets/img/buttons/arrow/arrow_right_black.png'); ?>" alt=""></a>
+			<a href="javascript:void(0)">Read More <img src="<?= assets('assets/img/buttons/arrow/arrow_right_black.png'); ?>" alt=""></a>
 		</div>			
 	</div>
 </div><!-- END_SECTION_4 -->

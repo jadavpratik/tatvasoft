@@ -2,15 +2,14 @@
 
 use core\Route;
 
-// MIDDLEWARE...
+// ----------MIDDLEWARE----------
 use app\middleware\Auth;
-
 $alreadyLogged = [new Auth(), 'alreadyLogged'];
 $isCustomer = [new Auth(), 'isCustomer'];
 $isServiceProvider = [new Auth(), 'isServiceProvider'];
 $isAdmin = [new Auth(), 'isAdmin'];
 
-// CONTROLLERS...
+// ----------CONTROLLERS----------
 use app\controllers\View;
 
 // ----------STATIC-PAGES----------

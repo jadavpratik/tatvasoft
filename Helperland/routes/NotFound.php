@@ -2,10 +2,10 @@
 
 use core\Route;
 
-// CONTROLLERS...
+// ----------CONTROLLERS----------
 use app\controllers\View;
 
-// -----------LAST-METHOD-----------------
+// ----------LAST-METHOD----------
 Route::get('/*', [new View(), 'not_found_page']);
 Route::post('/*', [new View(), 'not_found_json']);
 Route::put('/*', [new View(), 'not_found_json']);

@@ -2,9 +2,11 @@
 
 use core\Route;
 
+// ----------MIDDLWARE----------
 use app\middleware\Auth;
 $isCustomer = [new Auth(), 'isCustomer'];
 
+// ----------CONTROLLERS----------
 use app\controllers\Customer;
 
 Route::get('/customer/service/current', $isCustomer, [new Customer(), 'current_services']);

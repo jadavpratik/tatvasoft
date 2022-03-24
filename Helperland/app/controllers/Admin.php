@@ -4,11 +4,13 @@ namespace app\controllers;
 
 use core\Request;
 use core\Response;
+use core\Mail;
 
 use app\models\User;
 use app\models\Service;
 use app\models\ServiceAddress;
 use app\models\Rating;
+use app\services\Functions;
 
 class Admin{
 
@@ -130,6 +132,7 @@ class Admin{
 
         // UPDATE SERVICE
         $service->where('ServiceRequestId', '=', $serviceId)->update([
+            'Status' => $this->NEW_STATUS,
             'ServiceStartDate' => $serviceStartDate
         ]);
 
@@ -141,6 +144,15 @@ class Admin{
             'City' => $req->body->city
         ]);
         $res->status(200)->json(['message'=>'Service Rescheduled By Admin']);
+
+        // $fun = new Functions();
+        // $customerEmail = $fun->getCustomerEmailByServiceId($serviceId);
+        // $emailSubject = "Helperland";
+        // $emailBody = "You Service is Reschedule by Admin, Your service id {$serviceId}.";
+        // if(Mail::send($customerEmail, $emailSubject, $emailBody)){
+        //     $res->status(200)->json(['message'=>'Service Reschedule successfully.']);
+        // }
+
     }
 
     // --------CANCEL_SERVICE----------
@@ -151,6 +163,16 @@ class Admin{
             'Status' => $this->CANCELLED_STATUS
         ]);
         $res->status(200)->json(['message'=>'Service Canceled By Admin']);
+
+        // ----------MAIL----------
+        // $fun = new Functions();
+        // $customerEmail = $fun->getCustomerEmailByServiceId($serviceId);
+        // $emailSubject = "Helperland";
+        // $emailBody = "You Service is Canclled by Admin, Your service id {$serviceId}.";
+        // if(Mail::send($customerEmail, $emailSubject, $emailBody)){
+        //     $res->status(200)->json(['message'=>'Service cancelled successfully.']);
+        // }
+
     }
 
 

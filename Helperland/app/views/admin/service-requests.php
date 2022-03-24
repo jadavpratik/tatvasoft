@@ -169,11 +169,11 @@
                                             }
                                         })()}
                                         <!--
-                                        <a href="">Edit</a>
-                                        <a href="">Change SP</a>
-                                        <a href="">Escalate</a>
-                                        <a href="">History Log</a>
-                                        <a href="">Download Invoice</a>
+                                        <a href="javascript:void(0)">Edit</a>
+                                        <a href="javascript:void(0)">Change SP</a>
+                                        <a href="javascript:void(0)">Escalate</a>
+                                        <a href="javascript:void(0)">History Log</a>
+                                        <a href="javascript:void(0)">Download Invoice</a>
                                         -->
                                     </div>
                                 </div>`;                    

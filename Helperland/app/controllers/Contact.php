@@ -8,6 +8,7 @@ use core\Validation;
 use core\File;
 use core\Mail;
 
+use app\models\User;
 use app\models\Contact as ContactModel;
 
 class Contact{
@@ -40,7 +41,9 @@ class Contact{
             'CreatedOn' => date('Y-m-d H:i:s')
         ]);    
         $res->status(200)->json(['message'=>"Form submitted successfully."]);
-        // $recipient = 'ADMIN_EMAIL_ADDRESS';
+
+        // ----------ACTIVE MAIL----------
+        // $recipient = ADMIN_EMAIL;
         // $emailSubject = 'Helperland '.$req->body->subject;
         // $emailBody = " <b>Name</b> : {$req->body->firstname} {$req->body->lastname} <br>
         //                <b>Email</b> : {$req->body->email} <br>

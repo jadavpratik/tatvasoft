@@ -6,6 +6,7 @@ use core\Request;
 use core\Response;
 use core\Validation;
 use core\Database;
+use core\Mail;
 
 use app\models\UserAddress;
 use app\models\User;
@@ -13,6 +14,7 @@ use app\models\Service;
 use app\models\ServiceAddress;
 use app\models\ExtraService;
 use app\models\Favorite;
+use app\services\Functions;
 
 class BookNow{
 
@@ -52,9 +54,12 @@ class BookNow{
             'city' => ['text'],
             'phone' => ['phone', 'length:10']
         ]);
+
         $user = new User();
-        $data = $user->columns(['Email'])->where('UserId', '=', session('userId'))->read();
+        $fun = new Functions();
+        $email = $fun->getEmailByUserId(session('userId'));
         $userAddress = new UserAddress();
+
         $userAddress->create([
             'UserId' => session('userId'), 
             'AddressLine1' => $req->body->street_name,
@@ -62,7 +67,7 @@ class BookNow{
             'City' => $req->body->city,
             'State' => 'Gujarat',
             'PostalCode' => $req->body->postal_code,
-            'Email' => $data[0]->Email,
+            'Email' => $email,
             'Mobile' => $req->body->phone,
         ]);
         $res->status(200)->json(['message'=>'Address Add Successfully.']);
@@ -147,9 +152,60 @@ class BookNow{
                 ]);
             }    
         }
-        // SERVICE POOL [SEND MAIL TO ALL SP ACCORDING TO POSTAL CODE]
-        // DIRECT ASSIGNMENT OF USER BY SP ID...
-        $res->status(201)->json(['message'=>'Service Book Successfully.', 'id'=>$serviceId]);
+        // $res->status(201)->json(['message'=>'Service Book Successfully.', 'id'=>$serviceId]);
+
+
+        // ----------SEND MAIL----------
+        // SEND MAIL TO CUSTOMER WHO MADE A REQUEST (FOR THEIR CONFIRMATION)
+        $fun = new Functions();
+        $customer = $fun->getDetailsByUserId($customerId);
+        $emailSubject = 'Helperland Cleaning Service';
+        $emailBody = "You Service Booking is Succesfully Service Details mentioned below<br><br>
+                        <b>ServiceRequestId</b>: {$serviceId} <br>
+                        <b>Your Name</b>:{$customer->FirstName} {$customer->LastName}<br>
+                        <b>Your Email</b>:{$req->body->address->Email}<br>
+                        <b>Your Mobile</b>:{$req->body->address->Mobile}<br>
+                        <b>Your Service Address </b>:{$req->body->address->AddressLine1} 
+                                                {$req->body->address->AddressLine2}, 
+                                                {$req->body->address->City} 
+                                                {$req->body->address->PostalCode}<br>";
+        if(Mail::send($customer->Email, $emailSubject, $emailBody)){
+            // DIRECT ASSIGNMENT OF USER BY SP ID...
+            if($sp_id!=null){
+                $email = $fun->getEmailByUserId($sp_id);
+                $emailSubject = 'Helperland Cleaning Service';
+                $emailBody = "You are selected by Customer for service cleaning service details mentioned below<br><br>
+                                <b>ServiceRequestId</b>: {$serviceId} <br>
+                                <b>Customer Name</b>:{$customer->FirstName} {$customer->LastName}<br>
+                                <b>Customer Email</b>:{$req->body->address->Email}<br>
+                                <b>Customer Mobile</b>:{$req->body->address->Mobile}<br>
+                                <b>Service Address </b>:{$req->body->address->AddressLine1} 
+                                                        {$req->body->address->AddressLine2}, 
+                                                        {$req->body->address->City} 
+                                                        {$req->body->address->PostalCode}";
+                if(Mail::send($email, $emailSubject, $emailBody)){
+                    $res->status(201)->json(['message'=>'Service Book Successfully.', 'id'=>$serviceId]);
+                }
+            }
+            else{
+                // SERVICE POOL [SEND MAIL TO ALL SP ACCORDING TO POSTAL CODE]
+                $spEmails = $fun->getSPEmailsByPostalCode($postal_code);
+                $emailSubject = 'Helperland Cleaning Service';
+                $emailBody = "The Customer is booked a service of cleaning the details is mentioned below<br><br>
+                                <b>ServiceRequestId</b>: {$serviceId} <br>
+                                <b>Customer Name</b>:{$customer->FirstName} {$customer->LastName}<br>
+                                <b>Customer Email</b>:{$req->body->address->Email}<br>
+                                <b>Customer Mobile</b>:{$req->body->address->Mobile}<br>
+                                <b>Service Address </b>:{$req->body->address->AddressLine1} 
+                                                        {$req->body->address->AddressLine2}, 
+                                                        {$req->body->address->City} 
+                                                        {$req->body->address->PostalCode}";
+                if(Mail::send($spEmails[0], $emailSubject, $emailBody, $spEmails)){
+                    $res->status(201)->json(['message'=>'Service Book Successfully.', 'id'=>$serviceId]);
+                }
+            }
+        }
+
     }
 
     // ----------GET FAVORITE SP----------
@@ -181,5 +237,6 @@ class BookNow{
         // }
         // $res->status(200)->json($favoriteSP);
     }
+
 
 }

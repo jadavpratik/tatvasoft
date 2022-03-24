@@ -52,6 +52,7 @@
 			<a class="<?= $active_link['blog']; ?>" href="javascript:void(0)">Blog</a>
 			<a class="<?= $active_link['contact']; ?>" href="<?= url('/contact'); ?>">Contact Us</a>
 			<?php if(session('isLogged')){ ?>
+				<?php if(false){ ?>
 				<div class="dropdown border_left border_right">
 					<button class="dropdown_btn">
 						<!-- <span class="badge">10</span> -->
@@ -79,6 +80,7 @@
 						</div> -->
 					</div>
 				</div>
+				<?php } ?>
 				<div class="dropdown">
 					<button class="dropdown_btn" style="display:flex;justify-content:space-between">
 						<img src="<?= assets('assets/img/global/user.png'); ?>" alt="">
@@ -90,7 +92,7 @@
 							<p><?= session('userName'); ?></p>
 						</div>
 						<hr>
-						<a href="javascript:void(0)" onclick="go_to_dashboard()">To Overview</a>
+						<!-- <a href="javascript:void(0)" onclick="go_to_dashboard()">To Overview</a> -->
 						<a href="javascript:void(0)" class="table_tab_btn" onclick="go_to_dashboard()">My Setting</a>
 						<a href="<?= url('/logout') ?>">Logout</a>
 					</div>
@@ -125,6 +127,20 @@
 	<script>
 		function go_to_dashboard(){
 			const userRole = `<?= session('userRoleName'); ?>`;
-			window.location.replace(`${BASE_URL}/${userRole}/dashboard`);
+			if(window.location.href == `${BASE_URL}/${userRole}/dashboard`){
+				// IF WE ARE ON SAME TAB THEN NOT TO REFRESH PAGE AND OPEN TAB BY JAVASCRIPT
+				$('.table_tab_content').addClass('d_none');
+				table_tab_content[0].classList.remove('d_none');
+
+				// CLOSE SIDENAV ALSO...
+				$('.backlight_container').removeClass('backlight');
+				$('.sidenav').animate({'right':'-250px'}, 500);
+				$('.admin_tab_list').animate({'left':'-272px'}, 500);
+				$('body').css({'overflow-y':'auto'});
+			}
+			else{
+				// ON DASHBOARD BY DEFAULT THE MY SETTING TAB OPEN...
+				window.location.replace(`${BASE_URL}/${userRole}/dashboard`);
+			}
 		}
 	</script>

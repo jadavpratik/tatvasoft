@@ -9,7 +9,7 @@ use core\Response;
 
 class Mail{
 
-    public static function send($recipient, $subject, $body){
+    public static function send($receiver, $subject, $body, $recipients=false){
 
         $mail = new PHPMailer(true);
         try {
@@ -21,7 +21,15 @@ class Mail{
             $mail->Password   = EMAIL_PASSWORD;
             $mail->SMTPSecure = SMTP_SECURE;
             $mail->Port       = EMAIL_PORT;
-            $mail->addAddress($recipient);
+            $mail->addAddress($receiver);
+            // FOR SENDING A EMAIL TO MULTIPLE USERS... 
+            if($recipients!=false && count($recipients)>0){
+                foreach($recipients as $email){
+                    if($email!=$receiver){
+                        $mail->AddCC($email);
+                    }
+                }                
+            }
             $mail->isHTML(true);
             $mail->Subject = $subject;
             $mail->Body    = $body;
@@ -29,7 +37,7 @@ class Mail{
             return true;
         }
         catch (Exception $e) {
-            return false;
+            exit();
         }
 
     }

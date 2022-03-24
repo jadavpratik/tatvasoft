@@ -44,6 +44,7 @@
 
     // SECTION-4-BTN-CLICK...
     $('#confirm_booking_submit_btn').click(function(){
+        $('#confirm_booking_submit_btn').prop('disabled', true);
         $.ajax({
             url : `${BASE_URL}/book-service`,
             method : 'POST',

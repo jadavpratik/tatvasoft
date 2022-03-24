@@ -126,11 +126,11 @@
 		let validation = true;
 
 		const validationArr = [firstname_validation(),
-							lastname_validation(),
-							email_validation(),
-							phone_validation(),
-							password_validation(),
-							cpassword_validation()];
+								lastname_validation(),
+								email_validation(),
+								phone_validation(),
+								password_validation(),
+								cpassword_validation()];
 
 		for(let i=0; i<validationArr.length; i++){
 			if(validationArr[i]==false){
@@ -149,8 +149,8 @@
 						try{
 							const result = JSON.parse(res);
 							Swal.fire({
-								title : 'Good job!',
-								text : result.message,
+								title : result.message,
+								text : 'You need to active your account by admin',
 								icon : 'success'
 							});
 							$('#sp_signup').trigger('reset');

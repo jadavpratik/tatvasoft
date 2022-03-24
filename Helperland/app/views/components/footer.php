@@ -57,7 +57,7 @@
 
 	<!-- PRIVACY_POLICY -->
 	<!-- <div class="cookie">
-		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut feugiat nunc libero, ac malesuada ligula aliquam ac. <a href="">Privacy Policy</a></p>
+		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut feugiat nunc libero, ac malesuada ligula aliquam ac. <a href="javascript:void(0)">Privacy Policy</a></p>
 		<button id="cookie_submit_btn">OK!</button>
 	</div> -->
 

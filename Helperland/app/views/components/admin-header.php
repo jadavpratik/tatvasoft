@@ -32,7 +32,7 @@
     <nav class="admin_navbar">
 
         <div class="admin_logo">
-            <a href=""><img src="<?= assets('assets/img/global/admin-logo.png'); ?>" alt=""></a>
+            <a href="javascript:void(0)"><img src="<?= assets('assets/img/global/admin-logo.png'); ?>" alt=""></a>
         </div>
 
         <!-- NAV_BTN_RESPONSIVE -->

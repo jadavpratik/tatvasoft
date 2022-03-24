@@ -6,12 +6,14 @@ use core\Request;
 use core\Response;
 use core\Validation;
 use core\Database;
+use core\Mail;
 
 use app\models\Service;
 use app\models\ExtraService;
 use app\models\User;
 use app\models\Rating;
 use app\models\Favorite;
+use app\services\Functions;
 
 class Customer{
 
@@ -179,6 +181,16 @@ class Customer{
             'Status' => $this->CANCELLED_STATUS,
         ]);
         $res->status(200)->json(['message'=>'Service cancelled successfully.']);
+
+        // ----------MAIL----------
+        // $fun = new Functions();
+        // $customer = $fun->getDetailsByUserId(session('userId'));
+        // $receiver = $customer->Email;
+        // $emailSubject = "Helperland";
+        // $emailBody = "You Service is Canclled by you, Your service id {$serviceId}.";
+        // if(Mail::send($receiver, $emailSubject, $emailBody)){
+        //     $res->status(200)->json(['message'=>'Service cancelled successfully.']);
+        // }
     }
     
     // ----------RESCHEDULE SERVICE----------
@@ -202,6 +214,32 @@ class Customer{
         ]);
 
         $res->status(200)->json(['message'=>'Service has been reschedule successfully.']);
+
+        // ----------MAIL----------
+        // SEND MAIL TO CUSTOMER FOR THEIR CONFIRMATION...
+        // $fun = new Functions();
+        // $customer = $fun->getDetailsByUserId(session('userId'));
+        // $receiver = $customer->Email;
+        // $emailSubject = "Helperland";
+        // $emailBody = "You Service is Rescheule by you, your service id {$serviceId}.";
+        // if(Mail::send($receiver, $emailSubject, $emailBody)){
+        //     $emails = $fun->getSPEmailsByServiceId($serviceId);
+        //     if(count($emails)==1){
+        //         // SEND MAIL TO ASSIGNED SP 
+        //         $emailBody = "ServiceId={$serviceId} is Rescheduled by Customer";
+        //         if(Mail::send($emails[0], 'Helperland', $emailBody)){
+        //             $res->status(200)->json(['message'=>'Service has been reschedule successfully.', 'other'=>'1']);
+        //         }
+        //     }
+        //     else if(count($emails)>1){
+        //         // RESEND MAIL TO ALL SP BY POSTAL CODE
+        //         $emailBody = "ServiceId={$serviceId} is Rescheduled by Customer";
+        //         if(Mail::send($emails[0], 'Helperland', $emailBody, $emails)){
+        //             $res->status(200)->json(['message'=>'Service has been reschedule successfully.', 'other'=>'multi']);
+        //         }
+        //     }
+        // }
+
     }
 
     // ----------RATE SERVICE PROVIDER----------

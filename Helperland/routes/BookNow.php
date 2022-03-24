@@ -2,14 +2,14 @@
 
 use core\Route;
 
-// MIDDLEWARE....
+// ----------MIDDLEWARE----------
 use app\middleware\Auth;
 $isCustomer = [new Auth(), 'isCustomer'];
 
-// BOOKNOW CONTROLLERS...
+// ----------BOOKNOW CONTROLLERS----------
 use app\controllers\BookNow;
 
-// -------------SERVICE-BOOKING-ACTION-ROUTES--------------------
+// ----------SERVICE-BOOKING-ACTION-ROUTES----------
 Route::post('/book-service/check-postal-code', $isCustomer, [new BookNow(), 'check_postal_code']);
 Route::get('/book-service/customer/address', $isCustomer, [new BookNow(), 'get_address']);
 Route::post('/book-service/customer/address', $isCustomer, [new BookNow(), 'add_address']);

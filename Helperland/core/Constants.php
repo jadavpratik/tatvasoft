@@ -35,7 +35,8 @@
     define('EMAIL_PORT', 587);
     define('EMAIL_ADDRESS', '');
     define('EMAIL_PASSWORD', '');
-    
+    define('ADMIN_EMAIL', '');
+
     // SESSION CONFIG...
     define('SESSION_PATH', __DIR__.'/../public/sessions/');
     

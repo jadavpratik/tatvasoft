@@ -11,13 +11,13 @@ use app\models\UserAddress;
 
 class MyAddress{
 
-    // ----------GET SINGLE ADDRESS ADDRESS----------
+    // ----------GET SINGLE ADDRESS----------
     public function get_address(Request $req, Response $res){
         $userAddress = new UserAddress();
         $userId = session('userId');
         $where = "AddressId = {$req->params->id} AND UserId = {$userId}"; 
         $data = $userAddress->where($where)->read();
-        if(is_array($data) && count($data)>0){
+        if(count($data)>0){
             $res->status(200)->json($data[0]);
         }
         else{
@@ -25,7 +25,7 @@ class MyAddress{
         }
     }
 
-    // ----------GET ALL ADDRESS ADDRESS----------
+    // ----------GET ALL ADDRESS----------
     public function get_all_address(Request $req, Response $res){
         $userAddress = new UserAddress();
         $data = $userAddress->where('UserId', '=', session('userId'))->read();

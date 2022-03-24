@@ -1,9 +1,12 @@
 <?php
 
 use core\Route;
+
+// ----------MIDDLEWARE----------
 use app\middleware\Auth;
 $isServiceProvider = [new Auth(), 'isServiceProvider'];
 
+// ----------CONTROLLERS----------
 use app\controllers\ServiceProvider;
 
 Route::get('/service-provider/service/new', $isServiceProvider, [new ServiceProvider(), 'new_services']);

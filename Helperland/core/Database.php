@@ -79,7 +79,7 @@ class Database{
             }
         }
         catch(Exception $e){
-            $this->res->status(500)->json(['message'=>$e->getMessage()]);
+            $this->res->status(500)->json(['message'=>'Internal server error', 'errors'=>$e->getMessage()]);
             exit();
         }
     }
@@ -116,7 +116,7 @@ class Database{
             }
         }
         catch(Exception $e){
-            $this->res->status(500)->json(['message'=>$e->getMessage()]);
+            $this->res->status(500)->json(['message'=>'Internal server error', 'errors'=>$e->getMessage()]);
             exit();
         }
     }
@@ -148,7 +148,7 @@ class Database{
             }
         }
         catch(Exception $e){
-            $this->res->status(500)->json(['message'=>$e->getMessage()]);
+            $this->res->status(500)->json(['message'=>'Internal server error', 'errors'=>$e->getMessage()]);
             exit();
         }
     }
@@ -169,7 +169,7 @@ class Database{
             // RETURN ARRAY OF AN OBJECT...
         }
         catch(Exception $e){
-            $this->res->status(500)->json(['message'=>$e->getMessage()]);
+            $this->res->status(500)->json(['message'=>'Internal server error', 'errors'=>$e->getMessage()]);
             exit();
         }
     }
@@ -191,7 +191,7 @@ class Database{
             return $this->conn->exec($this->query);
         }
         catch(Exception $e){
-            $this->res->status(500)->json(['message'=>$e->getMessage()]);
+            $this->res->status(500)->json(['message'=>'Internal server error', 'errors'=>$e->getMessage()]);
             exit();
         }
     }
@@ -203,7 +203,7 @@ class Database{
             return $this->conn->exec($this->query);    
         }
         catch(Exception $e){
-            $this->res->status(500)->json(['message'=>$e->getMessage()]);
+            $this->res->status(500)->json(['message'=>'Internal server error', 'errors'=>$e->getMessage()]);
             exit();
         }
     }

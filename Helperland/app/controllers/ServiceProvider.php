@@ -4,12 +4,14 @@ namespace app\controllers;
 
 use core\Request;
 use core\Response;
+use core\Mail;
 
 use app\models\Service;
 use app\models\User;
 use app\models\UserAddress;
 use app\models\ExtraService;
 use app\models\Favorite;
+use app\services\Functions;
 
 class ServiceProvider{
 
@@ -299,6 +301,23 @@ class ServiceProvider{
                 'ModifiedDate' => date('Y-m-d H:i:s'),
             ]);
             $res->status(200)->json(['message'=>'Service accepted successfully.']);    
+
+            // ----------MAIL----------
+            // SEND EMAIL TO SP FOR THEIR CONFIRMATION...
+            // $fun = new Functions();
+            // $email = $fun->getEmailByUserId(session('userId'));
+            // if(Mail::send($email, 'Helperland', "You are accepted service <br> ServiceRequestId={$serviceId}")){
+            //     $customerEmail = $fun->getCustomerEmailByServiceId($serviceId);
+            //     $serviceProvider = $fun->getDetailsByUserId(session('userId'));
+            //     $emailBody = "Your service accepted by Service Provider, details is mentioned below...<br>
+            //                   <b>Service Id</b>: {$serviceId} <br> 
+            //                   <b>Service Provider Name </b>: {$serviceProvider->FirstName} {$serviceProvider->LastName} <br> 
+            //                   <b>Service Provider Email</b>: {$serviceProvider->Email} <br>
+            //                   <b>Service Provider Mobile</b>: {$serviceProvider->Mobile} ";
+            //     if(Mail::send($customerEmail, 'Helperland', $emailBody)){
+            //         $res->status(200)->json(['message'=>'Service accepted successfully.']);
+            //     }
+            // }
         }
         else{
             $res->status(400)->json(['message'=>'Service already assigned to another service provider!']);
@@ -323,6 +342,23 @@ class ServiceProvider{
                 'ModifiedDate' => date('Y-m-d H:i:s'),
             ]);
             $res->status(200)->json(['message'=>'Service Completed Successfully.']);    
+
+            // ----------MAIL----------
+            // SEND EMAIL TO SP FOR THEIR CONFIRMATION...
+            // $fun = new Functions();
+            // $email = $fun->getEmailByUserId(session('userId'));
+            // if(Mail::send($email, 'Helperland', "You are completed service <br> ServiceRequestId={$serviceId}")){
+            //     $customerEmail = $fun->getCustomerEmailByServiceId($serviceId);
+            //     $serviceProvider = $fun->getDetailsByUserId(session('userId'));
+            //     $emailBody = "Your service is completed by Service Provider, details is mentioned below...<br>
+            //                   <b>Service Id</b>: {$serviceId} <br> 
+            //                   <b>Service Provider Name </b>: {$serviceProvider->FirstName} {$serviceProvider->LastName} <br> 
+            //                   <b>Service Provider Email</b>: {$serviceProvider->Email} <br>
+            //                   <b>Service Provider Mobile</b>: {$serviceProvider->Mobile} ";
+            //     if(Mail::send($customerEmail, 'Helperland', $emailBody)){
+            //         $res->status(200)->json(['message'=>'Service Completed Successfully.']);    
+            //     }
+            // }
         }
         else{
             $res->status(401)->json(['message'=>'Service not able to completed']);
@@ -343,6 +379,22 @@ class ServiceProvider{
                 'ModifiedDate' => date('Y-m-d H:i:s'),
             ]);
             $res->status(200)->json(['message'=>'Service rejected successfully.']);
+
+            // $fun = new Functions();
+            // $email = $fun->getEmailByUserId(session('userId'));
+            // if(Mail::send($email, 'Helperland', "You are reject service <br> ServiceRequestId={$serviceId}")){
+            //     $customerEmail = $fun->getCustomerEmailByServiceId($serviceId);
+            //     $serviceProvider = $fun->getDetailsByUserId(session('userId'));
+            //     $emailBody = "Your service is rejected by Service Provider, details is mentioned below...<br>
+            //                   <b>Service Id</b>: {$serviceId} <br> 
+            //                   <b>Service Provider Name </b>: {$serviceProvider->FirstName} {$serviceProvider->LastName} <br> 
+            //                   <b>Service Provider Email</b>: {$serviceProvider->Email} <br>
+            //                   <b>Service Provider Mobile</b>: {$serviceProvider->Mobile} ";
+            //     if(Mail::send($customerEmail, 'Helperland', $emailBody)){
+            //         $res->status(200)->json(['message'=>'Service rejected Successfully.']);    
+            //     }
+            // }
+
         }
         else{
             $res->status(404)->json(['message'=>'No service available!']);    

@@ -43,9 +43,6 @@ class View{
         $res->render('static-pages/guarantee');
     }
 
-
-
-
     // ********************CUSTOMER********************
 
     // -----BOOK-NOW-----
@@ -63,9 +60,6 @@ class View{
         $res->render('customer/index');
     }
 
-
-
-
     // ********************SERVICE-PROVIDER********************
 
     // -----SP-SIGNUP-----
@@ -78,16 +72,11 @@ class View{
         $res->render('service-provider/index');
     }
 
-
-
-
     // ********************ADMIN********************
 
     public function admin_dashboard(Request $req, Response $res){
         $res->render('admin/index');
     }
-
-
 
 
     // ********************COMPONENTS********************
@@ -103,9 +92,6 @@ class View{
 		session('openForgotPasswordForm', true);
 		$res->redirect('/');
 	}
-
-
-
 
     // ********************NOT FOUND********************
 

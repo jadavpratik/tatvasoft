@@ -2,9 +2,12 @@
 
 use core\Route;
 
+// ----------MIDDLWARE----------
 use app\middleware\Auth;
-use app\controllers\Admin;
 $isAdmin = [new Auth(), 'isAdmin'];
+
+// ----------CONTROLLERS----------
+use app\controllers\Admin;
 
 Route::get('/admin/user-management', $isAdmin, [new Admin(), 'user_management']);
 Route::get('/admin/service-requests', $isAdmin, [new Admin(), 'service_requests']);
