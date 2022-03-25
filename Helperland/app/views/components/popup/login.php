@@ -70,13 +70,13 @@
                             $('.login_popup_form').trigger('reset');
                             switch(result.role){
                                 case 1:
-                                    window.location.replace(`${BASE_URL}/customer/dashboard/`);
+                                    window.location.replace(`${BASE_URL}/customer/dashboard`);
                                     break;
                                 case 2:
-                                    window.location.replace(`${BASE_URL}/service-provider/dashboard/`);
+                                    window.location.replace(`${BASE_URL}/service-provider/dashboard`);
                                     break;
                                 case 3:
-                                    window.location.replace(`${BASE_URL}/admin/dashboard/`);
+                                    window.location.replace(`${BASE_URL}/admin/dashboard`);
                                     break;
                             }
                         }

@@ -150,7 +150,7 @@
                 },
                 {
                     render : function(data, type, row){
-                        return `<p class="payment_text">₹${row.TotalCost}</p>`;
+                        return `<p class="payment_text">€${row.TotalCost}</p>`;
                     }
                 },
                 {

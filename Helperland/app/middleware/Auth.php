@@ -107,7 +107,7 @@ class Auth{
 
     // ----------OPEN LOGIN FORM----------
     public function openLoginForm(){
-        session('openLoginForm', true);
+        flash_session('openLoginForm', true);
         $base_url = BASE_URL;
         header("location:{$base_url}");
         exit();

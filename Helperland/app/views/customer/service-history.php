@@ -99,7 +99,7 @@
                 {
                     render : function(data, type, row){
                         // €
-                        return `<p class="payment_text" onclick="show_service_details(${row.ServiceRequestId})">₹<span>${row.TotalCost}</span></p>`;
+                        return `<p class="payment_text" onclick="show_service_details(${row.ServiceRequestId})">€<span>${row.TotalCost}</span></p>`;
                     }
                 },
                 {

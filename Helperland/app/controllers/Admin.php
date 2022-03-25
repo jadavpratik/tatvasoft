@@ -108,7 +108,20 @@ class Admin{
         $user->where('UserId', '=', $userId)->update([
             'IsActive' => 1
         ]);
-        $res->status(200)->json(['message'=>'User actived successfully.']);
+
+        // ----------SEND EMAIL----------
+        if(RES_WITH_MAIL){
+            $fun = new Functions();
+            $emailReceiver = $fun->getEmailByUserId($userId);
+            $emailSubject = 'Account Activated by Admin';
+            $emailBody = "Welcome to Helperland .<br>
+                          Congratulations! Your Account is Active Now.";
+            Mail::send($emailReceiver, $emailSubject, $emailBody);
+            $res->status(200)->json(['message'=>'User actived successfully.']);                
+        }
+        else{
+            $res->status(200)->json(['message'=>'User actived successfully.']);
+        }
     }
 
     // --------MAKE-USER-INSACTIVE----------
@@ -118,7 +131,23 @@ class Admin{
         $user->where('UserId', '=', $userId)->update([
             'IsActive' => 0
         ]);
-        $res->status(200)->json(['message'=>'User inactived successfully.']);
+
+        if(RES_WITH_MAIL){
+            // ----------SEND-MAIL----------
+            $fun = new Functions();
+            $contactUsLink = BASE_URL.'/contact';
+            $emailReceiver = $fun->getEmailByUserId($userId);
+            $emailSubject = 'Account Diactivated by Admin';
+            $emailBody = "Due to certain reason, Your Account is InActive Now.<br>
+                        For Reactive your Account Please Contact the admin via Contact Us Form<br>
+                        Contact Us Link : {$contactUsLink}";
+            Mail::send($emailReceiver, $emailSubject, $emailBody);
+            $res->status(200)->json(['message'=>'User actived successfully.']);
+        }
+        else{
+            $res->status(200)->json(['message'=>'User inactived successfully.']);
+        }
+
     }
 
     // --------RESCHEDULE_SERVICE----------
@@ -143,15 +172,20 @@ class Admin{
             'PostalCode' => $req->body->postal_code,
             'City' => $req->body->city
         ]);
-        $res->status(200)->json(['message'=>'Service Rescheduled By Admin']);
 
-        // $fun = new Functions();
-        // $customerEmail = $fun->getCustomerEmailByServiceId($serviceId);
-        // $emailSubject = "Helperland";
-        // $emailBody = "You Service is Reschedule by Admin, Your service id {$serviceId}.";
-        // if(Mail::send($customerEmail, $emailSubject, $emailBody)){
-        //     $res->status(200)->json(['message'=>'Service Reschedule successfully.']);
-        // }
+        if(RES_WITH_MAIL){
+            // ----------SEND-MAIL----------
+            $fun = new Functions();
+            $emailReceiver = $fun->getCustomerEmailByServiceId($serviceId);
+            $emailSubject = "Service Rescheduled By Admin";
+            $emailBody = "You Service is Reschedule by Admin<br>
+                        Your Service id = {$serviceId}.";
+            Mail::send($emailReceiver, $emailSubject, $emailBody);
+            $res->status(200)->json(['message'=>'Service Reschedule successfully.']);
+        }
+        else{
+            $res->status(200)->json(['message'=>'Service Rescheduled By Admin']);
+        }
 
     }
 
@@ -162,16 +196,20 @@ class Admin{
         $service->where('ServiceRequestId', '=', $serviceId)->update([
             'Status' => $this->CANCELLED_STATUS
         ]);
-        $res->status(200)->json(['message'=>'Service Canceled By Admin']);
 
-        // ----------MAIL----------
-        // $fun = new Functions();
-        // $customerEmail = $fun->getCustomerEmailByServiceId($serviceId);
-        // $emailSubject = "Helperland";
-        // $emailBody = "You Service is Canclled by Admin, Your service id {$serviceId}.";
-        // if(Mail::send($customerEmail, $emailSubject, $emailBody)){
-        //     $res->status(200)->json(['message'=>'Service cancelled successfully.']);
-        // }
+        if(RES_WITH_MAIL){
+            // ----------SEND-MAIL----------
+            $fun = new Functions();
+            $emailReceiver = $fun->getCustomerEmailByServiceId($serviceId);
+            $emailSubject = "Service Cancled by Admin";
+            $emailBody = "You Service is Canclled by Admin<br> 
+                          Your Service id = {$serviceId}.";
+            Mail::send($emailReceiver, $emailSubject, $emailBody);
+            $res->status(200)->json(['message'=>'Service cancelled successfully.']);
+        }
+        else{
+            $res->status(200)->json(['message'=>'Service Canceled By Admin']);
+        }
 
     }
 

@@ -9,6 +9,7 @@ use core\Validation;
 use core\Mail;
 
 use app\models\User;
+use app\models\Token;
 use app\models\OTP;
 use app\services\Functions;
 
@@ -37,7 +38,7 @@ class Account{
 			$role = (int) $req->body->role;
 			if($role==1 || $role==2 || $role==3){
 				$hash = Hash::create($req->body->password);	
-				$user->create([
+				$userId = $user->create([
 					'FirstName' => $req->body->firstname,
 					'LastName' => $req->body->lastname,
 					'Email' => $req->body->email,
@@ -45,11 +46,32 @@ class Account{
 					'Password'=> $hash,
 					'RoleId' => $role,
 					'UserProfilePicture' => 'car',
-					// SERVICE PROVIDER NEED TO ACTIVE ACCOUNT BY ADMIN
-					'IsActive' => $role==2? 0 : 1,
 					'CreatedDate' => date('Y-m-d H:i:s')
 				]);
-				$res->status(201)->json(['message'=>'Account is created successfully.']);
+
+				if(RES_WITH_MAIL){
+					// ----------SEND-MAIL (ONLY CUSTOMER)----------
+					if($role==1){
+						$fun = new Functions();
+						$verificationLink = $fun->getVerificationLinkByUserId($userId);
+						$emailReceiver = $req->body->email;
+						$emailSubject = 'Welcome to Helperland';
+						$emailBody = "Your Account Created Successfully.<br>
+									  Your Account Verification Link given below<br>
+  									  <b>Verification Link:</b> {$verificationLink}";
+						Mail::send($emailReceiver, $emailSubject, $emailBody);
+						$res->status(201)->json(['message'=>'Account is created successfully. Verification link sent on your email!']);
+					}
+					else{
+						$res->status(201)->json(['message'=>'Account is created successfully.']);
+					}	
+				}
+				else{
+					if($role==1){
+						$user->where('userId', '=', $userId)->update(['IsActive' => 1]);
+					}
+					$res->status(201)->json(['message'=>'Account is created successfully.']);
+				}
 			}
 			else{
 				$res->status(401)->json(['message'=>'Role id not matched!']);
@@ -58,6 +80,30 @@ class Account{
 		else{
 			$res->status(409)->json(['message'=>'Email or Mobile already exists in database']);
 		}		
+	}
+
+	// ----------VERIFY-USER----------
+	public function verify_user(Request $req, Response $res){
+
+		$userId = $req->params->id;
+		$_token = $req->params->token;
+
+		$token = new Token();
+		$user = new User();
+
+		$data = $token->where('userId', '=', $userId)->read();
+		if(count($data)>0){
+			$dbToken = $data[0]->token;
+			if($dbToken==$_token){
+				$user->where('userId', '=', $userId)->update(['IsActive' => 1]);
+				$token->where('userId', '=', $userId)->delete();
+				flash_session('accountVerified', true);
+				$res->redirect('/login');
+			}			
+		}	
+		else{
+			$res->status(404)->json(['message'=>'Token Verification failed!']);
+		}
 	}
 
 	// ----------LOGIN----------
@@ -126,7 +172,7 @@ class Account{
 	public function logout(Request $req, Response $res){
 		// DESTORY THE SESSION...
 		session_destroy();
-		session('logout', true);
+		flash_session('logout', true);
 		$res->redirect('/');
 	}
 
@@ -147,19 +193,20 @@ class Account{
 			}
 			// STORE OTP IN DATABASE...
 			$obj->create(['email'=> $email, 'otp' => $otp ]);
-			// ----------WITHOUT MAIL----------
-			$res->status(200)->json(['otp'=>$otp, 'message'=>'OTP sent on your email address']);
 
-			// ---------ACTIVE MAIL SYSTEM---------
-			// $subject = 'Helperland';
-			// $body = 'Your one time otp = '.$otp;
-			// $recipient = $email;
-			// if(Mail::send($recipient, $subject, $body)){
-			// 	$res->status(200)->json(['otp'=>'', 'message'=> 'OTP sent on your email address']);
-			// }
-			// else{
-			// 	$res->status(500)->json(['otp'=>'', 'message'=> "OTP can't sent on your email address!"]);
-			// }
+			if(RES_WITH_MAIL){
+				// ---------SEND MAIL---------
+				$emailReceiver = $email;
+				$emailSubject = 'Forgot Password';
+				$emailBody = 'Your one time otp = '.$otp.'<br>
+					   		  Not to share with anyone';
+				Mail::send($emailReceiver, $emailSubject, $emailBody);
+				$res->status(200)->json(['otp'=>'', 'message'=> 'OTP sent on your email address']);
+			}
+			else{
+				// ----------WITHOUT MAIL----------
+				$res->status(200)->json(['otp'=>$otp, 'message'=>'OTP sent on your email address']);
+			}
 		}
 		else{
 			$res->status(404)->json(['message'=>'User not exists in database.']);

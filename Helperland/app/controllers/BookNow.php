@@ -109,7 +109,7 @@ class BookNow{
                 $sp_id = $req->body->sp_id;
             }
         }
-        $hourly_rate = 70;
+        $hourly_rate = 20;
         $total_cost = $hourly_rate*$duration + ($hourly_rate/2)*count($extra);
         // ADD SERVICE_REQUEST IN DATABASE TABLE...
         $serviceId = $service->create([
@@ -152,60 +152,68 @@ class BookNow{
                 ]);
             }    
         }
-        // $res->status(201)->json(['message'=>'Service Book Successfully.', 'id'=>$serviceId]);
 
-
-        // ----------SEND MAIL----------
-        // SEND MAIL TO CUSTOMER WHO MADE A REQUEST (FOR THEIR CONFIRMATION)
-        $fun = new Functions();
-        $customer = $fun->getDetailsByUserId($customerId);
-        $emailSubject = 'Helperland Cleaning Service';
-        $emailBody = "You Service Booking is Succesfully Service Details mentioned below<br><br>
+        if(RES_WITH_MAIL){
+            // ----------SEND MAIL----------
+            // SEND MAIL TO CUSTOMER WHO MADE A REQUEST (FOR THEIR CONFIRMATION)
+            $fun = new Functions();
+            $customer = $fun->getDetailsByUserId($customerId);
+            $emailReceiver = $customer->Email;
+            $emailSubject = 'Service Booking';
+            $emailBody = "<h5>Congratulations!</h5> <br>
+                        <h6>Your Service has been Booked Successfully.</h6><br> 
+                        Service Details Mentioned below...<br><br>
                         <b>ServiceRequestId</b>: {$serviceId} <br>
                         <b>Your Name</b>:{$customer->FirstName} {$customer->LastName}<br>
                         <b>Your Email</b>:{$req->body->address->Email}<br>
                         <b>Your Mobile</b>:{$req->body->address->Mobile}<br>
                         <b>Your Service Address </b>:{$req->body->address->AddressLine1} 
-                                                {$req->body->address->AddressLine2}, 
-                                                {$req->body->address->City} 
-                                                {$req->body->address->PostalCode}<br>";
-        if(Mail::send($customer->Email, $emailSubject, $emailBody)){
-            // DIRECT ASSIGNMENT OF USER BY SP ID...
+                                                    {$req->body->address->AddressLine2}, 
+                                                    {$req->body->address->City} 
+                                                    {$req->body->address->PostalCode}<br>";
+
+            Mail::send($emailReceiver, $emailSubject, $emailBody);
+
+            // DIRECT ASSIGNMENT OF USER BY SERVICE PROVIDER ID...
             if($sp_id!=null){
-                $email = $fun->getEmailByUserId($sp_id);
-                $emailSubject = 'Helperland Cleaning Service';
-                $emailBody = "You are selected by Customer for service cleaning service details mentioned below<br><br>
-                                <b>ServiceRequestId</b>: {$serviceId} <br>
-                                <b>Customer Name</b>:{$customer->FirstName} {$customer->LastName}<br>
-                                <b>Customer Email</b>:{$req->body->address->Email}<br>
-                                <b>Customer Mobile</b>:{$req->body->address->Mobile}<br>
-                                <b>Service Address </b>:{$req->body->address->AddressLine1} 
-                                                        {$req->body->address->AddressLine2}, 
-                                                        {$req->body->address->City} 
-                                                        {$req->body->address->PostalCode}";
-                if(Mail::send($email, $emailSubject, $emailBody)){
+                if(!$fun->isUserBlockedByAnotherUser($sp_id)){
+                    $emailReceiver = $fun->getEmailByUserId($sp_id);
+                    $emailSubject = 'Assigned for Service Cleaning';
+                    $emailBody = "You are selected by Customer for service cleaning.<br> 
+                                    Service Details Mentioned below<br>
+                                    <b>ServiceRequestId</b>: {$serviceId} <br>
+                                    <b>Customer Name</b>:{$customer->FirstName} {$customer->LastName}<br>
+                                    <b>Customer Email</b>:{$req->body->address->Email}<br>
+                                    <b>Customer Mobile</b>:{$req->body->address->Mobile}<br>
+                                    <b>Customer ServiceAddress</b>:{$req->body->address->AddressLine1} 
+                                                                    {$req->body->address->AddressLine2}, 
+                                                                    {$req->body->address->City} 
+                                                                    {$req->body->address->PostalCode}";
+                    Mail::send($emailReceiver, $emailSubject, $emailBody);
                     $res->status(201)->json(['message'=>'Service Book Successfully.', 'id'=>$serviceId]);
                 }
             }
             else{
                 // SERVICE POOL [SEND MAIL TO ALL SP ACCORDING TO POSTAL CODE]
-                $spEmails = $fun->getSPEmailsByPostalCode($postal_code);
-                $emailSubject = 'Helperland Cleaning Service';
-                $emailBody = "The Customer is booked a service of cleaning the details is mentioned below<br><br>
+                $emailReceivers = $fun->getSPEmailsByPostalCode($postal_code);
+                $emailSubject = 'Service Booking';
+                $emailBody = "The Customer is booked a cleaning service.<br> 
+                                The Service Details is mentioned below<br>
                                 <b>ServiceRequestId</b>: {$serviceId} <br>
                                 <b>Customer Name</b>:{$customer->FirstName} {$customer->LastName}<br>
                                 <b>Customer Email</b>:{$req->body->address->Email}<br>
                                 <b>Customer Mobile</b>:{$req->body->address->Mobile}<br>
-                                <b>Service Address </b>:{$req->body->address->AddressLine1} 
+                                <b>Service Address</b>:{$req->body->address->AddressLine1} 
                                                         {$req->body->address->AddressLine2}, 
                                                         {$req->body->address->City} 
                                                         {$req->body->address->PostalCode}";
-                if(Mail::send($spEmails[0], $emailSubject, $emailBody, $spEmails)){
-                    $res->status(201)->json(['message'=>'Service Book Successfully.', 'id'=>$serviceId]);
-                }
+                Mail::send($emailReceivers[0], $emailSubject, $emailBody, $emailReceivers);
+                $res->status(201)->json(['message'=>'Service Book Successfully.', 'id'=>$serviceId]);
             }
         }
-
+        else{
+            $res->status(201)->json(['message'=>'Service Book Successfully.', 'id'=>$serviceId]);
+        }
     }
 
     // ----------GET FAVORITE SP----------
@@ -215,27 +223,13 @@ class BookNow{
         $sql = "SELECT u.* FROM user as u
                 INNER JOIN favoriteandblocked as f 
                 ON u.UserId = f.TargetUserId 
-                WHERE f.UserId = {$customerId} AND f.IsFavorite=1";
+                WHERE f.UserId = {$customerId} AND f.IsFavorite=1 AND f.IsBlocked=0";
         $data = $db->query($sql);
         foreach($data as $i){
-            unset($i->Password); // REMOVE PASSWORD FIELD...
+            // REMOVE PASSWORD FIELD...
+            unset($i->Password); 
         }
         $res->status(200)->json($data);
-
-        // $favorite = new Favorite();
-        // $user = new User();
-        // $data = $favorite->where('UserId', '=', $customerId)->read();
-        // $favoriteSP = [];
-        // for($i=0; $i<count($data); $i++){
-        //     if($data[$i]->IsFavorite==1){
-        //         $spId = $data[$i]->TargetUserId;
-        //         $spData = $user->where('UserId', '=', $spId)->read();
-        //         // REMOVE PASSWORD FIELD...
-        //         unset($spData[0]->Password);
-        //         $favoriteSP[] = $spData[0];
-        //     }
-        // }
-        // $res->status(200)->json($favoriteSP);
     }
 
 

@@ -36,6 +36,7 @@
     define('EMAIL_ADDRESS', '');
     define('EMAIL_PASSWORD', '');
     define('ADMIN_EMAIL', '');
+    define('RES_WITH_MAIL', false);
 
     // SESSION CONFIG...
     define('SESSION_PATH', __DIR__.'/../public/sessions/');

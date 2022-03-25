@@ -36,7 +36,7 @@ class ServiceProvider{
                 // SERVICES COMING ACCORDING TO POSTAL CODE...
                 $where = "ZipCode = {$zipCode} AND Status = {$this->NEW_STATUS}";
                 $serviceData = $service->join('ServiceRequestId', 'ServiceRequestId', 'servicerequestaddress')
-                                    ->where($where)->read();
+                                       ->where($where)->read();
 
                 function time_to_minutes($time){
                     $temp = explode(':', $time);
@@ -48,33 +48,40 @@ class ServiceProvider{
 
                 // MODIFY SERVICE DATA...
                 for($i=0; $i<count($serviceData); $i++){
-                    $serviceData[$i]->TotalCost   = (int) $serviceData[$i]->TotalCost;
-                    $serviceData[$i]->ServiceDate = date('d/m/Y', strtotime($serviceData[$i]->ServiceStartDate));
-                    $serviceData[$i]->StartTime   = date('H:i', strtotime($serviceData[$i]->ServiceStartDate));
-                    $serviceData[$i]->Duration    = $serviceData[$i]->ServiceHours 
-                                                    + $serviceData[$i]->ExtraHours;
-                    $serviceData[$i]->Duration    = date('H:i', mktime(0, $serviceData[$i]->Duration*60));
-                    $serviceData[$i]->EndTime     = time_to_minutes($serviceData[$i]->StartTime) 
-                                                    + time_to_minutes($serviceData[$i]->Duration);
-                    $serviceData[$i]->EndTime     = date('H:i', mktime(0, $serviceData[$i]->EndTime));
-
-                    // CHECK SERVICE EXPIRE OR NOT?...
-                    $serviceDate = strtotime($serviceData[$i]->ServiceStartDate);
-                    $todayDate = strtotime(date('Y-m-d H:i:s'));
-                    $serviceData[$i]->IsExpired = $serviceDate < $todayDate ? 1 : 0;
-
-                    // ADD CUSTOMER DETAILS...
-                    $customerId = $serviceData[$i]->UserId;
-                    $user = new User();
-                    $customerData = $user->columns(['FirstName', 'LastName'])->where('UserId', '=', $customerId)->read();
-                    $serviceData[$i]->CustomerName = $customerData[0]->FirstName.' '.$customerData[0]->LastName;
-
-                    // EXTRA SERVICE DETAILS...
-                    $extra = new ExtraService();
-                    $serviceId = $serviceData[$i]->ServiceRequestId;
-                    $temp = $extra->where('ServiceRequestId', '=', $serviceId)->read();
-                    for($j=0; $j<count($temp); $j++){
-                        $serviceData[$i]->ExtraService[] = $temp[$j]->ServiceExtraId;
+                    $fun = new Functions();
+                    // EXCLUDE THE BLOCKED USER DATA...
+                    if(!$fun->isUserBlockedByAnotherUser($serviceData[$i]->UserId)){
+                        $serviceData[$i]->TotalCost   = (int) $serviceData[$i]->TotalCost;
+                        $serviceData[$i]->ServiceDate = date('d/m/Y', strtotime($serviceData[$i]->ServiceStartDate));
+                        $serviceData[$i]->StartTime   = date('H:i', strtotime($serviceData[$i]->ServiceStartDate));
+                        $serviceData[$i]->Duration    = $serviceData[$i]->ServiceHours 
+                                                        + $serviceData[$i]->ExtraHours;
+                        $serviceData[$i]->Duration    = date('H:i', mktime(0, $serviceData[$i]->Duration*60));
+                        $serviceData[$i]->EndTime     = time_to_minutes($serviceData[$i]->StartTime) 
+                                                        + time_to_minutes($serviceData[$i]->Duration);
+                        $serviceData[$i]->EndTime     = date('H:i', mktime(0, $serviceData[$i]->EndTime));
+    
+                        // CHECK SERVICE EXPIRE OR NOT?...
+                        $serviceDate = strtotime($serviceData[$i]->ServiceStartDate);
+                        $todayDate = strtotime(date('Y-m-d H:i:s'));
+                        $serviceData[$i]->IsExpired = $serviceDate < $todayDate ? 1 : 0;
+    
+                        // ADD CUSTOMER DETAILS...
+                        $customerId = $serviceData[$i]->UserId;
+                        $user = new User();
+                        $customerData = $user->columns(['FirstName', 'LastName'])->where('UserId', '=', $customerId)->read();
+                        $serviceData[$i]->CustomerName = $customerData[0]->FirstName.' '.$customerData[0]->LastName;
+    
+                        // EXTRA SERVICE DETAILS...
+                        $extra = new ExtraService();
+                        $serviceId = $serviceData[$i]->ServiceRequestId;
+                        $temp = $extra->where('ServiceRequestId', '=', $serviceId)->read();
+                        for($j=0; $j<count($temp); $j++){
+                            $serviceData[$i]->ExtraService[] = $temp[$j]->ServiceExtraId;
+                        }    
+                    }
+                    else{
+                        unset($serviceData[$i]);
                     }
                 }
                 $res->status(200)->json($serviceData);            
@@ -108,34 +115,40 @@ class ServiceProvider{
 
         // MODIFY SERVICE DATA...
         for($i=0; $i<count($serviceData); $i++){
-            $serviceData[$i]->TotalCost   = (int) $serviceData[$i]->TotalCost;
-            $serviceData[$i]->ServiceDate = date('d/m/Y', strtotime($serviceData[$i]->ServiceStartDate));
-            $serviceData[$i]->StartTime   = date('H:i', strtotime($serviceData[$i]->ServiceStartDate));
-            $serviceData[$i]->Duration    = $serviceData[$i]->ServiceHours 
-                                          + $serviceData[$i]->ExtraHours;
-            $serviceData[$i]->Duration    = date('H:i', mktime(0, $serviceData[$i]->Duration*60));
-            $serviceData[$i]->EndTime     = time_to_minutes($serviceData[$i]->StartTime) 
-                                          + time_to_minutes($serviceData[$i]->Duration);
-            $serviceData[$i]->EndTime     = date('H:i', mktime(0, $serviceData[$i]->EndTime));
-
-            // CHECK SERVICE EXPIRE OR NOT?...
-            $serviceDate = strtotime($serviceData[$i]->ServiceStartDate);
-            $todayDate = strtotime(date('Y-m-d H:i:s'));
-            $serviceData[$i]->IsExpired = $serviceDate < $todayDate ? 1 : 0;
-
-            // ADD CUSTOMER DETAILS...
-            $customerId = $serviceData[$i]->UserId;
-            $customerData = $user->columns(['FirstName', 'LastName'])->where('UserId', '=', $customerId)->read();
-            $serviceData[$i]->CustomerName = $customerData[0]->FirstName.' '.$customerData[0]->LastName;
-
-            // EXTRA SERVICE DETAILS...
-            $extra = new ExtraService();
-            $serviceId = $serviceData[$i]->ServiceRequestId;
-            $temp = $extra->where('ServiceRequestId', '=', $serviceId)->read();
-            for($j=0; $j<count($temp); $j++){
-                $serviceData[$i]->ExtraService[] = $temp[$j]->ServiceExtraId;
+            $fun = new Functions();
+            // EXCLUDE THE BLOCKED USER DATA...
+            if(!$fun->isUserBlockedByAnotherUser($serviceData[$i]->UserId)){
+                $serviceData[$i]->TotalCost   = (int) $serviceData[$i]->TotalCost;
+                $serviceData[$i]->ServiceDate = date('d/m/Y', strtotime($serviceData[$i]->ServiceStartDate));
+                $serviceData[$i]->StartTime   = date('H:i', strtotime($serviceData[$i]->ServiceStartDate));
+                $serviceData[$i]->Duration    = $serviceData[$i]->ServiceHours 
+                                              + $serviceData[$i]->ExtraHours;
+                $serviceData[$i]->Duration    = date('H:i', mktime(0, $serviceData[$i]->Duration*60));
+                $serviceData[$i]->EndTime     = time_to_minutes($serviceData[$i]->StartTime) 
+                                              + time_to_minutes($serviceData[$i]->Duration);
+                $serviceData[$i]->EndTime     = date('H:i', mktime(0, $serviceData[$i]->EndTime));
+    
+                // CHECK SERVICE EXPIRE OR NOT?...
+                $serviceDate = strtotime($serviceData[$i]->ServiceStartDate);
+                $todayDate = strtotime(date('Y-m-d H:i:s'));
+                $serviceData[$i]->IsExpired = $serviceDate < $todayDate ? 1 : 0;
+    
+                // ADD CUSTOMER DETAILS...
+                $customerId = $serviceData[$i]->UserId;
+                $customerData = $user->columns(['FirstName', 'LastName'])->where('UserId', '=', $customerId)->read();
+                $serviceData[$i]->CustomerName = $customerData[0]->FirstName.' '.$customerData[0]->LastName;
+    
+                // EXTRA SERVICE DETAILS...
+                $extra = new ExtraService();
+                $serviceId = $serviceData[$i]->ServiceRequestId;
+                $temp = $extra->where('ServiceRequestId', '=', $serviceId)->read();
+                for($j=0; $j<count($temp); $j++){
+                    $serviceData[$i]->ExtraService[] = $temp[$j]->ServiceExtraId;
+                }    
             }
-            
+            else{
+                unset($serviceData[$i]);
+            }
         }
 
         $res->status(200)->json($serviceData);
@@ -300,27 +313,36 @@ class ServiceProvider{
                 'Status' => $this->ASSIGNED_STATUS,
                 'ModifiedDate' => date('Y-m-d H:i:s'),
             ]);
-            $res->status(200)->json(['message'=>'Service accepted successfully.']);    
 
-            // ----------MAIL----------
-            // SEND EMAIL TO SP FOR THEIR CONFIRMATION...
-            // $fun = new Functions();
-            // $email = $fun->getEmailByUserId(session('userId'));
-            // if(Mail::send($email, 'Helperland', "You are accepted service <br> ServiceRequestId={$serviceId}")){
-            //     $customerEmail = $fun->getCustomerEmailByServiceId($serviceId);
-            //     $serviceProvider = $fun->getDetailsByUserId(session('userId'));
-            //     $emailBody = "Your service accepted by Service Provider, details is mentioned below...<br>
-            //                   <b>Service Id</b>: {$serviceId} <br> 
-            //                   <b>Service Provider Name </b>: {$serviceProvider->FirstName} {$serviceProvider->LastName} <br> 
-            //                   <b>Service Provider Email</b>: {$serviceProvider->Email} <br>
-            //                   <b>Service Provider Mobile</b>: {$serviceProvider->Mobile} ";
-            //     if(Mail::send($customerEmail, 'Helperland', $emailBody)){
-            //         $res->status(200)->json(['message'=>'Service accepted successfully.']);
-            //     }
-            // }
+            if(RES_WITH_MAIL){
+                // ----------SEND-MAIL----------
+                // SEND EMAIL TO SP FOR THEIR CONFIRMATION...
+                $fun = new Functions();
+                $serviceProvider = $fun->getDetailsByUserId(session('userId'));
+                $emailReceiver = $serviceProvider->Email;
+                $emailSubject = 'Service Accept';
+                $emailBody = "You are accepted service.<br> 
+                              ServiceId={$serviceId}";
+                Mail::send($emailReceiver, $emailSubject, $emailBody);
+
+                // SEND MAIL TO CUSTOMER
+                $emailReceiver = $fun->getCustomerEmailByServiceId($serviceId);
+                $emailSubject = 'Service Accept';
+                $emailBody = "Your service accepted by Service Provider<br>
+                                Service Details is Mentioned below...<br>
+                                <b>Service Id</b>: {$serviceId} <br> 
+                                <b>Service Provider Name </b>: {$serviceProvider->FirstName} {$serviceProvider->LastName} <br> 
+                                <b>Service Provider Email</b>: {$serviceProvider->Email} <br>
+                                <b>Service Provider Mobile</b>: {$serviceProvider->Mobile} ";
+                Mail::send($emailReceiver, $emailSubject, $emailBody);
+                $res->status(200)->json(['message'=>'Service accepted successfully.']);
+            }
+            else{
+                $res->status(200)->json(['message'=>'Service accepted successfully.']);
+            }            
         }
         else{
-            $res->status(400)->json(['message'=>'Service already assigned to another service provider!']);
+            $res->status(400)->json(['message'=>'This Service is no more available!']);
         }
     }
 
@@ -341,24 +363,33 @@ class ServiceProvider{
                 'Status' => $this->COMPLETED_STATUS,
                 'ModifiedDate' => date('Y-m-d H:i:s'),
             ]);
-            $res->status(200)->json(['message'=>'Service Completed Successfully.']);    
 
-            // ----------MAIL----------
-            // SEND EMAIL TO SP FOR THEIR CONFIRMATION...
-            // $fun = new Functions();
-            // $email = $fun->getEmailByUserId(session('userId'));
-            // if(Mail::send($email, 'Helperland', "You are completed service <br> ServiceRequestId={$serviceId}")){
-            //     $customerEmail = $fun->getCustomerEmailByServiceId($serviceId);
-            //     $serviceProvider = $fun->getDetailsByUserId(session('userId'));
-            //     $emailBody = "Your service is completed by Service Provider, details is mentioned below...<br>
-            //                   <b>Service Id</b>: {$serviceId} <br> 
-            //                   <b>Service Provider Name </b>: {$serviceProvider->FirstName} {$serviceProvider->LastName} <br> 
-            //                   <b>Service Provider Email</b>: {$serviceProvider->Email} <br>
-            //                   <b>Service Provider Mobile</b>: {$serviceProvider->Mobile} ";
-            //     if(Mail::send($customerEmail, 'Helperland', $emailBody)){
-            //         $res->status(200)->json(['message'=>'Service Completed Successfully.']);    
-            //     }
-            // }
+            if(RES_WITH_MAIL){
+                // ----------MAIL----------
+                // SEND EMAIL TO SP FOR THEIR CONFIRMATION...
+                $fun = new Functions();
+                $emailReceiver = $fun->getEmailByUserId(session('userId'));
+                $emailSubject = 'Complete Service';
+                $emailBody = "You are completed service <br>
+                              ServiceRequestId={$serviceId}";
+                Mail::send($emailReceiver, $emailSubject, $emailBody);
+
+                $serviceProvider = $fun->getDetailsByUserId(session('userId'));
+                $emailReceiver = $fun->getCustomerEmailByServiceId($serviceId);
+                $emailSubject = 'Complete Service';
+                $emailBody = "Your service is completed by Service Provider<br>
+                                Service Details is mentioned below...<br>
+                                <b>Service Id</b>: {$serviceId} <br> 
+                                <b>Service Provider Name </b>: {$serviceProvider->FirstName} {$serviceProvider->LastName} <br> 
+                                <b>Service Provider Email</b>: {$serviceProvider->Email} <br>
+                                <b>Service Provider Mobile</b>: {$serviceProvider->Mobile} ";
+                Mail::send($emailReceiver, $emailSubject, $emailBody);
+                $res->status(200)->json(['message'=>'Service Completed Successfully.']);    
+
+            }
+            else{
+                $res->status(200)->json(['message'=>'Service Completed Successfully.']);    
+            }
         }
         else{
             $res->status(401)->json(['message'=>'Service not able to completed']);
@@ -378,23 +409,31 @@ class ServiceProvider{
                 'Status' => 3,
                 'ModifiedDate' => date('Y-m-d H:i:s'),
             ]);
-            $res->status(200)->json(['message'=>'Service rejected successfully.']);
 
-            // $fun = new Functions();
-            // $email = $fun->getEmailByUserId(session('userId'));
-            // if(Mail::send($email, 'Helperland', "You are reject service <br> ServiceRequestId={$serviceId}")){
-            //     $customerEmail = $fun->getCustomerEmailByServiceId($serviceId);
-            //     $serviceProvider = $fun->getDetailsByUserId(session('userId'));
-            //     $emailBody = "Your service is rejected by Service Provider, details is mentioned below...<br>
-            //                   <b>Service Id</b>: {$serviceId} <br> 
-            //                   <b>Service Provider Name </b>: {$serviceProvider->FirstName} {$serviceProvider->LastName} <br> 
-            //                   <b>Service Provider Email</b>: {$serviceProvider->Email} <br>
-            //                   <b>Service Provider Mobile</b>: {$serviceProvider->Mobile} ";
-            //     if(Mail::send($customerEmail, 'Helperland', $emailBody)){
-            //         $res->status(200)->json(['message'=>'Service rejected Successfully.']);    
-            //     }
-            // }
-
+            if(RES_WITH_MAIL){
+                // ----------SEND-EMAIL----------
+                $fun = new Functions();
+                $emailReceiver = $fun->getEmailByUserId(session('userId'));
+                $emailSubject = 'Service Reject';
+                $emailBody = "You are reject a service <br> 
+                              ServiceRequestId={$serviceId}";
+                Mail::send($emailReceiver, $emailSubject, $emailBody);
+    
+                $serviceProvider = $fun->getDetailsByUserId(session('userId'));
+                $emailReceiver = $fun->getCustomerEmailByServiceId($serviceId);
+                $emailSubject = 'Service Reject';
+                $emailBody = "Your service is rejected by Service Provider, 
+                                Details is Mentioned below...<br>
+                                <b>Service Id</b>: {$serviceId} <br> 
+                                <b>Service Provider Name </b>: {$serviceProvider->FirstName} {$serviceProvider->LastName} <br> 
+                                <b>Service Provider Email</b>: {$serviceProvider->Email} <br>
+                                <b>Service Provider Mobile</b>: {$serviceProvider->Mobile} ";
+                Mail::send($emailReceiver, $emailSubject, $emailBody);            
+                $res->status(200)->json(['message'=>'Service rejected Successfully.']);    
+            }
+            else{
+                $res->status(200)->json(['message'=>'Service rejected successfully.']);
+            }
         }
         else{
             $res->status(404)->json(['message'=>'No service available!']);    

@@ -42,16 +42,15 @@ class Contact{
         ]);    
         $res->status(200)->json(['message'=>"Form submitted successfully."]);
 
-        // ----------ACTIVE MAIL----------
-        // $recipient = ADMIN_EMAIL;
-        // $emailSubject = 'Helperland '.$req->body->subject;
+        // ----------SEND MAIL----------
+        // $emailReceiver = ADMIN_EMAIL;
+        // $emailSubject = 'Helperland';
         // $emailBody = " <b>Name</b> : {$req->body->firstname} {$req->body->lastname} <br>
         //                <b>Email</b> : {$req->body->email} <br>
         //                <b>Phone</b> : {$req->body->phone} <br>
         //                <b>Subject</b> : {$req->body->subject} <br>
         //                <b>Message</b> : {$req->body->message} <br>";
-        // if(Mail::send($recipient, $emailSubject, $emailBody)){
-        // 	$res->status(200)->json(['message'=>"Form Submitted Successfully."]);
-        // }
+        // Mail::send($emailReceiver, $emailSubject, $emailBody);
+        // $res->status(200)->json(['message'=>"Form Submitted Successfully."]);
     }    
 }

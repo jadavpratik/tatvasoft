@@ -1,11 +1,14 @@
 <?php
 
 use core\Route;
-use core\Mail;
+use app\services\Functions;
 
+// RANDOM STRING:bin2hex(random_bytes(16))
 Route::get('/test', function($req, $res){
-    // 
+    // $fun = new Functions();
+    // print_r($fun->getSPEmailByServiceId(3));
 });
+
 
 // ----------INCLUDE ALL ROUTES----------
 require_once __DIR__."/Account.php";

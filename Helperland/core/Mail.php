@@ -21,6 +21,8 @@ class Mail{
             $mail->Password   = EMAIL_PASSWORD;
             $mail->SMTPSecure = SMTP_SECURE;
             $mail->Port       = EMAIL_PORT;
+            $mail->From       = EMAIL_ADDRESS;
+            $mail->FromName   = 'Helperland';
             $mail->addAddress($receiver);
             // FOR SENDING A EMAIL TO MULTIPLE USERS... 
             if($recipients!=false && count($recipients)>0){
@@ -37,6 +39,8 @@ class Mail{
             return true;
         }
         catch (Exception $e) {
+            $res = new Response();
+            $res->status(500)->json(['message'=>'Internal Server Error']);            
             exit();
         }
 

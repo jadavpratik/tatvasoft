@@ -76,7 +76,7 @@
                 {
                     render : function(data, type, row){
                         // €
-                        return `<p class="payment_text" onclick="show_service_details(${row.ServiceRequestId})">₹<span>${row.TotalCost}</span></p>`;
+                        return `<p class="payment_text" onclick="show_service_details(${row.ServiceRequestId})">€<span>${row.TotalCost}</span></p>`;
                     }
                 },
                 {
@@ -105,7 +105,7 @@
     // SETUP HTML FOR ACCEPT SERVICE POPUP...
     
     function accept_service_open_model(id){
-        // $₹
+        // $€
         let data = store.service_provider.data.new_services.filter((service)=>{
             if(service.ServiceRequestId==id){
                 return service;
@@ -151,7 +151,7 @@
                             return extraService;                            
                         }
                     })()}
-                    <p>Total Amount : <span class="payment_text">₹${data.TotalCost}</span></p>
+                    <p>Total Amount : <span class="payment_text">€${data.TotalCost}</span></p>
                 </div>
                 <div>
                     <p>Customer Name : <span>${data.CustomerName}</span></p>

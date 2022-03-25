@@ -83,13 +83,13 @@ class View{
 
     // -----LOGIN-----
     public function login(Request $req, Response $res){
-		session('openLoginForm', true);
+		flash_session('openLoginForm', true);
 		$res->redirect('/');
 	}
 
     // -----FORGOT PASSWORD-----
 	public function forgot_password(Request $req, Response $res){
-		session('openForgotPasswordForm', true);
+		flash_session('openForgotPasswordForm', true);
 		$res->redirect('/');
 	}
 

@@ -5,7 +5,8 @@
     <!-- SERVICE_DETAILS -->
     <div  class="popup_main d_none" id="accept_service_request_popup">
         <p class="popup_title">Service Details</p>
-        <div class=""><!-- FIRST DIV -->
+        <!-- FIRST DIV -->
+        <div class="">
             <div>
                 <p>05/10/2021 | 08:00 - 11:30</p>
                 <p>Duration : <span>3.5Hours</span></p>
@@ -27,7 +28,8 @@
                 <button class="accept_btn"><i class="fas fa-check"></i>Accept</button>
             </div>		
         </div>
-        <div><!-- SECOND DIV FOR MAP -->
+        <!-- SECOND DIV FOR MAP -->
+        <div>
             <img src="<?= assets('assets/img/static/contact/section_2/map.png'); ?>" alt="">
         </div>
     </div>

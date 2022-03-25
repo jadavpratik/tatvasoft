@@ -27,7 +27,7 @@
         <div>
             <div>
                 <p>Per Hour Cleaning</p>	
-                <p id="service_per_hour_price">₹0</p>
+                <p id="service_per_hour_price">€0</p>
                 <!-- $ -->
             </div>
             <!-- NOT INCLUDED IN SRS... -->
@@ -39,7 +39,7 @@
         <div>
             <div>
                 <p>Total Payment</p>
-                <p id="service_total_price">₹0</p>	
+                <p id="service_total_price">€0</p>	
                 <!-- $ -->                
             </div>
             <!-- NOT INCLUDED IN SRS... -->
@@ -63,14 +63,13 @@
         let serviceDate = moment(store.book_service.date, 'YYYY-MM-DD').format('DD/MM/YYYY');
         store.book_service.total_price = store.book_service.per_hour_price*store.book_service.duration 
                                       + (store.book_service.per_hour_price/2)*store.book_service.extra.length;
-
         $('#service_date').html(serviceDate);
         $('#service_time').html(store.book_service.time);
         $('#service_duration').html(`${store.book_service.duration} Hours`);
         $('#service_total_time').html(`${parseInt(store.book_service.duration) + parseInt(store.book_service.extra_time)} Hours`);
         $('#service_extra_container').html(extra_services_html());
-        $('#service_per_hour_price').html(`₹${store.book_service.per_hour_price}`);
-        $('#service_total_price').html(`₹${store.book_service.total_price}`);
+        $('#service_per_hour_price').html(`€${store.book_service.per_hour_price}`);
+        $('#service_total_price').html(`€${store.book_service.total_price}`);
 
         // EXTRA SERVICES HTML...
         function extra_services_html(){

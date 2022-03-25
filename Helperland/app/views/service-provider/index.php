@@ -89,7 +89,7 @@
         // SERVICE DATA...
         data = data[0];
 
-        // SETUP HTML... $ ₹
+        // SETUP HTML... $ €
         $('#service_details_popup').html(`
             <p class="popup_title">Service Details</p>
             <div>
@@ -124,7 +124,7 @@
                         return extraService;
                     }
                 })()}
-                <p>Net Amout : <span class="price_text">${data.TotalCost} ₹</span></p>
+                <p>Net Amout : <span class="price_text">${data.TotalCost} €</span></p>
             </div>
             <div>
                 <p>Service Address : <span>${data.AddressLine1} ${data.AddressLine2}, ${data.PostalCode} ${data.City} </span></p>			

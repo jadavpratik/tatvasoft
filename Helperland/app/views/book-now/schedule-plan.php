@@ -175,7 +175,7 @@
     });
 
     $('[name="duration"]').change(function(){
-        store.book_service_duration = parseInt($('[name="duration"]').val());
+        store.book_service.duration = parseInt($('[name="duration"]').val());
         update_payment_summary();
     });
 

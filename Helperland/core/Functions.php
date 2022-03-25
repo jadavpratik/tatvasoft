@@ -68,6 +68,21 @@
 		}
 	}
 
+	// FLASH SESSION...
+	function flash_session($key, $value=false){
+		if($value!=false){
+			$_SESSION[$key] = $value;
+		}
+		else if(isset($_SESSION[$key])){
+			$sessionVal = $_SESSION[$key];
+			unset($_SESSION[$key]);
+			return $sessionVal;
+		}
+		else{
+			return false;
+		}
+	}
+
 	// COOKIE FUNCTION...
 	function cookie($key, $value=false, $time=false){
 		if($value!=false){

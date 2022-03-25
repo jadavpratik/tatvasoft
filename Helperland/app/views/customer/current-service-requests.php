@@ -97,14 +97,13 @@
                 },
                 {
                     render : function(data, type, row){
-                    // €₹
-                    return `<p class="payment_text" onclick="show_service_details(${row.ServiceRequestId})">₹<span>${row.TotalCost}</span></p>`;
+                    return `<p class="payment_text" onclick="show_service_details(${row.ServiceRequestId})">€<span>${row.TotalCost}</span></p>`;
                     }
                 },
                 {
                     render : function(data, type, row){
                         return `<div class="table_btn_container">
-                                    <button class="reschedule_btn" onclick='reschedule_service_open_model(${row.ServiceRequestId});'>Reschedule</button>
+                                    <button class="reschedule_btn" onclick='reschedule_service_open_model(${row.ServiceRequestId})'>Reschedule</button>
                                     <button class="cancel_btn" onclick='cancel_service_open_model(${row.ServiceRequestId});'>Cancel</button>    
                                 </div>`;
                     }

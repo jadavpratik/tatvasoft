@@ -1,18 +1,20 @@
-<?php if(session('openLoginForm')){ ?>
-	<!-- **********OPEN_LOGIN_FORM********** -->
+<?php if(flash_session('openLoginForm')){ ?>
+	<!-- ----------OPEN_LOGIN_FORM---------- -->
 	<script> open_model('login'); </script>
-	<?php unset($_SESSION['openLoginForm']); ?>
 <?php } ?>
 
-<?php if(session('openForgotPasswordForm')){ ?>
-	<!-- **********OPEN_FORGOT_PASSWORD********** -->
+<?php if(flash_session('openForgotPasswordForm')){ ?>
+	<!-- ----------OPEN_FORGOT_PASSWORD---------- -->
 	<script> open_model('forgot_password'); </script>
-	<?php unset($_SESSION['openForgotPasswordForm']); ?>
 <?php } ?>
 
-<?php if(session('logout')){ ?>
-	<!-- **********LOGOUT********** -->
+<?php if(flash_session('logout')){ ?>
+	<!-- ----------LOGOUT---------- -->
 	<script> Swal.fire({ title : `Logout Successfully`, icon : 'success' }); </script>
-	<?php unset($_SESSION['logout']); ?>
+<?php } ?>
+
+<?php if(flash_session('accountVerified')){ ?>
+	<!-- ----------ACCOUNT VERIFYED STATUS---------- -->
+	<script> Swal.fire({ title : `Account Verified Successfully.`, icon : 'success' }); </script>
 <?php } ?>
 

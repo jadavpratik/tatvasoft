@@ -5,6 +5,7 @@ namespace app\services;
 use app\models\User;
 use app\models\Favorite;
 use app\models\Service;
+use app\models\Token;
 
 class Functions{
 
@@ -19,6 +20,15 @@ class Functions{
 				return 'admin';
 		}
 	}
+
+    // ----------GET TOKEN BY USERID----------
+    public function getVerificationLinkByUserId($userId){
+        $_token = bin2hex(random_bytes(16));
+        $token = new Token();
+        $token->create(['userId' => $userId, 'token' => $_token]);
+        $link = BASE_URL."/user/verify/{$_token}/{$userId}";
+        return $link;
+    }
     
     // ----------GET EMAIL BY USERID----------
     public function getEmailByUserId($id){
@@ -44,7 +54,7 @@ class Functions{
         }
     }
 
-    // ----------GET SP_EMAILS BY POSTALCODE----------
+    // ----------GET SP EMAILS BY POSTAL CODE----------
     public function getSPEmailsByPostalCode($postal_code){
         $user = new User();
         $where = "PostalCode = {$postal_code} AND RoleId = 2";
@@ -52,7 +62,7 @@ class Functions{
         if(count($data)>0){
             $emails  = [];
             foreach($data as $i){
-                if(!$this->isSPBlockedByCustomer($i->UserId)){
+                if(!$this->isUserBlockedByAnotherUser($i->UserId)){
                     $emails[] = $i->Email;
                 }
             }
@@ -61,49 +71,6 @@ class Functions{
         else{
             return false;
         }
-    }
-
-    // ----------GET SP_EMAILS FOR RESCHEDULE SERVICE BY SERVICE ID----------
-    public function getSPEmailsByServiceId($id){
-        $serviceId = $id;
-        $service = new Service();
-        $data = $service->where('servicerequest.ServiceRequestId', '=', $serviceId)
-                        ->join('ServiceRequestId', 'ServiceRequestId', 'servicerequestaddress')->read();
-        
-        if($data[0]->ServiceProviderId!=0){
-            // ALREADY ASSIGNED SP EMAIL
-            $serviceProviderId = $data[0]->ServiceProviderId;
-            if(!$this->isSPBlockedByCustomer($serviceProviderId)){
-                $user = new User();
-                $data = $user->where('UserId', '=', $serviceProviderId)->read();
-                return [$data[0]->Email];    
-            }
-            else{
-                exit();
-            }
-        }
-        else{
-            // NEW REQUEST FURTHER RESCHEDULE SO THAT EMAILS BY POSTAL CODE
-            $postal_code = $data[0]->PostalCode;
-            $user = new User();
-            $where = "useraddress.PostalCode = {$postal_code} AND user.RoleId = 2";
-            $data = $user->join('UserId', 'UserId', 'useraddress')
-                         ->where($where)
-                         ->read();
-            $emails = [];
-            foreach($data as $i){
-                if(!$this->isSPBlockedByCustomer($i->UserId)){
-                    $emails[] = $i->Email;
-                }
-            }
-            if(count($emails)>0){
-                return $emails;
-            }
-            else{
-                exit();
-            }
-        }
-
     }
 
     // ----------GET CUSTOMER EMAIL BY SERVICE ID----------
@@ -119,16 +86,41 @@ class Functions{
         }
     }
 
-    // ----------CHECK THE SP IS BLOCKED BY CUSTOMER----------
-    public function isSPBlockedByCustomer($id){
-        $customerId = session('userId');
-        $serviceProviderId = $id;
+    // ----------GET SP EMAIL BY SERVICE ID----------
+    public function getSPEmailByServiceId($id){
+        $serviceId = $id;
+        $service = new Service();
+        $data = $service->join('ServiceProviderId', 'UserId', 'user')->where('servicerequest.ServiceRequestId', '=', $serviceId)->read();
+        if(count($data)==1){
+            return $data[0]->Email;
+        }
+        else{
+            return null;
+        }
+    }
+
+    // ----------CHECK USER BLOCKED ANOTHER USER----------
+    public function isUserBlockedByAnotherUser($id){
+        $user1 = session('userId');
+        $user2 = $id;
         $favorite = new Favorite();
-        $where = "UserId = {$customerId} AND TargetUserId = {$serviceProviderId}";
-        $data = $favorite->where($where)->read();
-        if(count($data)>0){
-            if($data[0]->IsBlocked==1){
-                return true;
+
+        $where1 = "(UserId = {$user2} AND TargetUserId = {$user1})";
+        $data1 = $favorite->where($where1)->read();
+
+        $where2 = "(UserId = {$user1} AND TargetUserId = {$user2})";
+        $data2 = $favorite->where($where2)->read();
+        
+        if(count($data1)>0 || count($data2)>0){
+            if(isset($data1[0]->IsBlocked)){
+                if($data1[0]->IsBlocked==1){
+                    return true;
+                }
+            }
+            if(isset($data2[0]->IsBlocked)){
+                if($data2[0]->IsBlocked==1){
+                    return true;
+                }
             }
             else{
                 return false;
@@ -138,26 +130,5 @@ class Functions{
             return false;
         }
     }
-
-    // ----------CHECK THE CUSTOMER IS BLOCKED BY SP----------
-    public function isCustomerBlockedBySP($id){
-        $serviceProviderId = session('userId');
-        $customerId = $id;
-        $favorite = new Favorite();
-        $where = "UserId = {$serviceProviderId} AND TargetUserId = {$customerId}";
-        $data = $favorite->where($where)->read();
-        if(count($data)>0){
-            if($data[0]->IsBlocked==1){
-                return true;
-            }
-            else{
-                return false;
-            }
-        }
-        else{
-            return false;
-        }
-    }
-
 
 }

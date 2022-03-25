@@ -25,7 +25,7 @@
         extra : [],
         extra_time : 0,
         sp_id : null,
-        per_hour_price : 70,
+        per_hour_price : 20,
         total_price : 0,
         address : {},
     };

@@ -70,6 +70,8 @@
                 }
             },
             error : function(obj){
+                $('#confirm_booking_submit_btn').prop('disabled', false);
+                console.log(obj);
                 if(obj!==undefined){
                     const {status, responseText} = obj;
                     const error = JSON.parse(responseText);
