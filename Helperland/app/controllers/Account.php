@@ -55,10 +55,10 @@ class Account{
 						$fun = new Functions();
 						$verificationLink = $fun->getVerificationLinkByUserId($userId);
 						$emailReceiver = $req->body->email;
-						$emailSubject = 'Welcome to Helperland';
-						$emailBody = "Your Account Created Successfully.<br>
-									  Your Account Verification Link given below<br>
-  									  <b>Verification Link:</b> {$verificationLink}";
+						$emailSubject = 'Verify Your Account';
+						$emailData = ['$verificationLink'=>$verificationLink,
+									  '$contactLink' => BASE_URL.'/contact'];
+						$emailBody = $res->template('verify-account', $emailData);
 						Mail::send($emailReceiver, $emailSubject, $emailBody);
 						$res->status(201)->json(['message'=>'Account is created successfully. Verification link sent on your email!']);
 					}
@@ -198,8 +198,8 @@ class Account{
 				// ---------SEND MAIL---------
 				$emailReceiver = $email;
 				$emailSubject = 'Forgot Password';
-				$emailBody = 'Your one time otp = '.$otp.'<br>
-					   		  Not to share with anyone';
+				$emailData = ['$otp'=>$otp];
+				$emailBody = $res->template('/forgot-password', $emailData);
 				Mail::send($emailReceiver, $emailSubject, $emailBody);
 				$res->status(200)->json(['otp'=>'', 'message'=> 'OTP sent on your email address']);
 			}

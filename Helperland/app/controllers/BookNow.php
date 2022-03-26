@@ -57,7 +57,7 @@ class BookNow{
 
         $user = new User();
         $fun = new Functions();
-        $email = $fun->getEmailByUserId(session('userId'));
+        $email = $fun->getUserEmailByUserId(session('userId'));
         $userAddress = new UserAddress();
 
         $userAddress->create([
@@ -157,38 +157,24 @@ class BookNow{
             // ----------SEND MAIL----------
             // SEND MAIL TO CUSTOMER WHO MADE A REQUEST (FOR THEIR CONFIRMATION)
             $fun = new Functions();
-            $customer = $fun->getDetailsByUserId($customerId);
+            $customer = $fun->getUserDetailsByUserId($customerId);
             $emailReceiver = $customer->Email;
             $emailSubject = 'Service Booking';
-            $emailBody = "<h5>Congratulations!</h5> <br>
-                        <h6>Your Service has been Booked Successfully.</h6><br> 
-                        Service Details Mentioned below...<br><br>
-                        <b>ServiceRequestId</b>: {$serviceId} <br>
-                        <b>Your Name</b>:{$customer->FirstName} {$customer->LastName}<br>
-                        <b>Your Email</b>:{$req->body->address->Email}<br>
-                        <b>Your Mobile</b>:{$req->body->address->Mobile}<br>
-                        <b>Your Service Address </b>:{$req->body->address->AddressLine1} 
-                                                    {$req->body->address->AddressLine2}, 
-                                                    {$req->body->address->City} 
-                                                    {$req->body->address->PostalCode}<br>";
+            $temp = $fun->getServiceDetailsByServiceId($serviceId);
+            $emailData = [];
+            foreach($temp as $key => $value){
+                $emailData['$'.$key] = $value;
+            }
+            $emailBody = $res->template('/book-service/customer', $emailData);
 
             Mail::send($emailReceiver, $emailSubject, $emailBody);
 
             // DIRECT ASSIGNMENT OF USER BY SERVICE PROVIDER ID...
             if($sp_id!=null){
                 if(!$fun->isUserBlockedByAnotherUser($sp_id)){
-                    $emailReceiver = $fun->getEmailByUserId($sp_id);
+                    $emailReceiver = $fun->getUserEmailByUserId($sp_id);
                     $emailSubject = 'Assigned for Service Cleaning';
-                    $emailBody = "You are selected by Customer for service cleaning.<br> 
-                                    Service Details Mentioned below<br>
-                                    <b>ServiceRequestId</b>: {$serviceId} <br>
-                                    <b>Customer Name</b>:{$customer->FirstName} {$customer->LastName}<br>
-                                    <b>Customer Email</b>:{$req->body->address->Email}<br>
-                                    <b>Customer Mobile</b>:{$req->body->address->Mobile}<br>
-                                    <b>Customer ServiceAddress</b>:{$req->body->address->AddressLine1} 
-                                                                    {$req->body->address->AddressLine2}, 
-                                                                    {$req->body->address->City} 
-                                                                    {$req->body->address->PostalCode}";
+                    $emailBody = $res->template('book-service/single-sp', $emailData); 
                     Mail::send($emailReceiver, $emailSubject, $emailBody);
                     $res->status(201)->json(['message'=>'Service Book Successfully.', 'id'=>$serviceId]);
                 }
@@ -196,17 +182,8 @@ class BookNow{
             else{
                 // SERVICE POOL [SEND MAIL TO ALL SP ACCORDING TO POSTAL CODE]
                 $emailReceivers = $fun->getSPEmailsByPostalCode($postal_code);
-                $emailSubject = 'Service Booking';
-                $emailBody = "The Customer is booked a cleaning service.<br> 
-                                The Service Details is mentioned below<br>
-                                <b>ServiceRequestId</b>: {$serviceId} <br>
-                                <b>Customer Name</b>:{$customer->FirstName} {$customer->LastName}<br>
-                                <b>Customer Email</b>:{$req->body->address->Email}<br>
-                                <b>Customer Mobile</b>:{$req->body->address->Mobile}<br>
-                                <b>Service Address</b>:{$req->body->address->AddressLine1} 
-                                                        {$req->body->address->AddressLine2}, 
-                                                        {$req->body->address->City} 
-                                                        {$req->body->address->PostalCode}";
+                $emailSubject = 'Service Booked In Your Area';
+                $emailBody = $res->template('/book-service/multiple-sp', $emailData);
                 Mail::send($emailReceivers[0], $emailSubject, $emailBody, $emailReceivers);
                 $res->status(201)->json(['message'=>'Service Book Successfully.', 'id'=>$serviceId]);
             }

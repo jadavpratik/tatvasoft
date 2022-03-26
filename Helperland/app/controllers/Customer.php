@@ -75,7 +75,7 @@ class Customer{
                 $serviceProviderId = $serviceData[$i]->ServiceProviderId;
 
                 // **********CUSTOMER'S RATING**********
-                $where = "RatingTo = {$serviceProviderId} AND RatingFrom = {$customerId}";
+                $where = "ServiceRequestId = {$serviceData[$i]->ServiceRequestId}";
                 $ratingData = $rating->where($where)->read();
                 if(count($ratingData)>0){
                     $serviceData[$i]->Rating = $ratingData[0]->Ratings;
@@ -184,11 +184,14 @@ class Customer{
         if(RES_WITH_MAIL){
             // ----------MAIL----------
             $fun = new Functions();
-            $customer = $fun->getDetailsByUserId(session('userId'));
-            $emailReceiver = $customer->Email;
+            $temp = $fun->getServiceDetailsByServiceId($serviceId);
+            $emailReceiver = $temp->Email;
             $emailSubject = "Service Cancel";
-            $emailBody = "Your Service is Canclled by you<br> 
-                          Your service id {$serviceId}.";
+            $emailData = [];
+            foreach($temp as $key => $value){
+                $emailData['$'.$key] = $value;
+            }
+            $emailBody = $res->template('customer/cancel-service-to-customer', $emailData);
             Mail::send($emailReceiver, $emailSubject, $emailBody);
 
             $spEmail = $fun->getSPEmailByServiceId($serviceId);
@@ -196,8 +199,7 @@ class Customer{
                 // SEND EMAIL TO SP IF SP IS ACCEPTED SERVICE.
                 $emailReceiver = $spEmail;
                 $emailSubject = "Service Cancel";
-                $emailBody = "Your Service is Canclled by Customer<br> 
-                              Your service id {$serviceId}.";
+                $emailBody = $res->template('customer/cancel-service-to-sp', $emailData);
                 Mail::send($emailReceiver, $emailSubject, $emailBody);
             }
             $res->status(200)->json(['message'=>'Service cancelled successfully.']);
@@ -232,18 +234,21 @@ class Customer{
             // ----------SEND-MAIL----------
             // SEND MAIL TO CUSTOMER FOR THEIR CONFIRMATION...
             $fun = new Functions();
-            $customer = $fun->getDetailsByUserId(session('userId'));
-            $emailReceiver = $customer->Email;
+            $temp = $fun->getServiceDetailsByServiceId($serviceId);
+            $emailReceiver = $temp->Email;
             $emailSubject = "Service Reschedule";
-            $emailBody = "Your Service is Rescheule by you.<br>
-                        Your service id = {$serviceId}.";
+            $emailData = [];
+            foreach($temp as $key => $value){
+                $emailData['$'.$key] = $value;
+            }
+            $emailBody = $res->template('/customer/reschedule-service-to-customer', $emailData);
             Mail::send($emailReceiver, $emailSubject, $emailBody);
             $spEmail = $fun->getSPEmailByServiceId($serviceId);
             if($spEmail!=null){
                 // SEND MAIL TO ASSIGNED SP 
                 $emailReceiver = $spEmail;
                 $emailSubject = 'Service Reschedule';
-                $emailBody = "ServiceId={$serviceId} is Rescheduled by Customer";
+                $emailBody = $res->template('/customer/reschedule-service-to-sp', $emailData);
                 Mail::send($emailReceiver, $emailSubject, $emailBody);
                 $res->status(200)->json(['message'=>'Service has been reschedule successfully.']);
             }

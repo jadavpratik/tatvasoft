@@ -4,6 +4,20 @@ namespace core;
 
 class Response{
 
+	public function template($view, $arr=false){
+		// FOR REPLACE VARIABLE (KEY NAME ALSO START WITH $SYMBOL)
+		$view = ltrim($view, '/');
+		$view = rtrim($view, '/');
+		$view_path = __DIR__.'/../app/views/template/'.$view.'.php';
+		$fileContent = file_get_contents($view_path);
+		if($arr!=false){
+			foreach ($arr as $key => $value){
+				$fileContent = str_replace($key, $value, $fileContent);
+			}	
+		}
+		return $fileContent;
+	}
+
 	public function render($view, $arr=false){
 		if(!empty($arr))
 			extract($arr);

@@ -318,22 +318,23 @@ class ServiceProvider{
                 // ----------SEND-MAIL----------
                 // SEND EMAIL TO SP FOR THEIR CONFIRMATION...
                 $fun = new Functions();
-                $serviceProvider = $fun->getDetailsByUserId(session('userId'));
+                $serviceProvider = $fun->getUserDetailsByUserId(session('userId'));
+                $temp = $fun->getServiceDetailsByServiceId($serviceId);
                 $emailReceiver = $serviceProvider->Email;
                 $emailSubject = 'Service Accept';
-                $emailBody = "You are accepted service.<br> 
-                              ServiceId={$serviceId}";
+                $emailData = [];
+                $emailData['$ServiceProviderName'] = $serviceProvider->FirstName.''.$serviceProvider->LastName;
+                $emailData['$ServiceProviderEmail'] = $serviceProvider->Email;
+                $emailData['$ServiceProviderMobile'] = $serviceProvider->Mobile;
+                foreach($temp as $key => $value){
+                    $emailData['$'.$key] = $value;
+                }
+                $emailBody = $res->template('service-provider/accept-service-to-sp', $emailData);
                 Mail::send($emailReceiver, $emailSubject, $emailBody);
-
                 // SEND MAIL TO CUSTOMER
-                $emailReceiver = $fun->getCustomerEmailByServiceId($serviceId);
+                $emailReceiver = $temp->Email;
                 $emailSubject = 'Service Accept';
-                $emailBody = "Your service accepted by Service Provider<br>
-                                Service Details is Mentioned below...<br>
-                                <b>Service Id</b>: {$serviceId} <br> 
-                                <b>Service Provider Name </b>: {$serviceProvider->FirstName} {$serviceProvider->LastName} <br> 
-                                <b>Service Provider Email</b>: {$serviceProvider->Email} <br>
-                                <b>Service Provider Mobile</b>: {$serviceProvider->Mobile} ";
+                $emailBody = $res->template('service-provider/accept-service-to-customer', $emailData);
                 Mail::send($emailReceiver, $emailSubject, $emailBody);
                 $res->status(200)->json(['message'=>'Service accepted successfully.']);
             }
@@ -368,21 +369,23 @@ class ServiceProvider{
                 // ----------MAIL----------
                 // SEND EMAIL TO SP FOR THEIR CONFIRMATION...
                 $fun = new Functions();
-                $emailReceiver = $fun->getEmailByUserId(session('userId'));
+                $serviceProvider = $fun->getUserDetailsByUserId(session('userId'));
+                $temp = $fun->getServiceDetailsByServiceId($serviceId);
+                $emailReceiver = $serviceProvider->Email;
                 $emailSubject = 'Complete Service';
-                $emailBody = "You are completed service <br>
-                              ServiceRequestId={$serviceId}";
+                $emailData = [];
+                $emailData['$ServiceProviderName'] = $serviceProvider->FirstName.''.$serviceProvider->LastName;
+                $emailData['$ServiceProviderEmail'] = $serviceProvider->Email;
+                $emailData['$ServiceProviderMobile'] = $serviceProvider->Mobile;
+                foreach($temp as $key => $value){
+                    $emailData['$'.$key] = $value;
+                }
+                $emailBody = $res->template('/service-provider/complete-service-to-sp', $emailData);
                 Mail::send($emailReceiver, $emailSubject, $emailBody);
 
-                $serviceProvider = $fun->getDetailsByUserId(session('userId'));
-                $emailReceiver = $fun->getCustomerEmailByServiceId($serviceId);
+                $emailReceiver = $temp->Email;//CUSTOMER EMAIL
                 $emailSubject = 'Complete Service';
-                $emailBody = "Your service is completed by Service Provider<br>
-                                Service Details is mentioned below...<br>
-                                <b>Service Id</b>: {$serviceId} <br> 
-                                <b>Service Provider Name </b>: {$serviceProvider->FirstName} {$serviceProvider->LastName} <br> 
-                                <b>Service Provider Email</b>: {$serviceProvider->Email} <br>
-                                <b>Service Provider Mobile</b>: {$serviceProvider->Mobile} ";
+                $emailBody = $res->template('/service-provider/complete-service-to-customer', $emailData);
                 Mail::send($emailReceiver, $emailSubject, $emailBody);
                 $res->status(200)->json(['message'=>'Service Completed Successfully.']);    
 
@@ -413,21 +416,22 @@ class ServiceProvider{
             if(RES_WITH_MAIL){
                 // ----------SEND-EMAIL----------
                 $fun = new Functions();
-                $emailReceiver = $fun->getEmailByUserId(session('userId'));
+                $serviceProvider = $fun->getUserDetailsByUserId(session('userId'));
+                $temp = $fun->getServiceDetailsByServiceId($serviceId);
+                $emailReceiver = $serviceProvider->Email;
                 $emailSubject = 'Service Reject';
-                $emailBody = "You are reject a service <br> 
-                              ServiceRequestId={$serviceId}";
+                $emailData = [];
+                $emailData['$ServiceProviderName'] = $serviceProvider->FirstName.''.$serviceProvider->LastName;
+                $emailData['$ServiceProviderEmail'] = $serviceProvider->Email;
+                $emailData['$ServiceProviderMobile'] = $serviceProvider->Mobile;
+                foreach($temp as $key => $value){
+                    $emailData['$'.$key] = $value;
+                }
+                $emailBody = $res->template('/service-provider/reject-service-to-sp', $emailData);
                 Mail::send($emailReceiver, $emailSubject, $emailBody);
-    
-                $serviceProvider = $fun->getDetailsByUserId(session('userId'));
-                $emailReceiver = $fun->getCustomerEmailByServiceId($serviceId);
+                $emailReceiver = $temp->Email;// CUSTOMER EMAIL...
                 $emailSubject = 'Service Reject';
-                $emailBody = "Your service is rejected by Service Provider, 
-                                Details is Mentioned below...<br>
-                                <b>Service Id</b>: {$serviceId} <br> 
-                                <b>Service Provider Name </b>: {$serviceProvider->FirstName} {$serviceProvider->LastName} <br> 
-                                <b>Service Provider Email</b>: {$serviceProvider->Email} <br>
-                                <b>Service Provider Mobile</b>: {$serviceProvider->Mobile} ";
+                $emailBody = $res->template('/service-provider/reject-service-to-customer', $emailData);
                 Mail::send($emailReceiver, $emailSubject, $emailBody);            
                 $res->status(200)->json(['message'=>'Service rejected Successfully.']);    
             }

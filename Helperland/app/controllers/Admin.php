@@ -112,10 +112,9 @@ class Admin{
         // ----------SEND EMAIL----------
         if(RES_WITH_MAIL){
             $fun = new Functions();
-            $emailReceiver = $fun->getEmailByUserId($userId);
+            $emailReceiver = $fun->getUserEmailByUserId($userId);
             $emailSubject = 'Account Activated by Admin';
-            $emailBody = "Welcome to Helperland .<br>
-                          Congratulations! Your Account is Active Now.";
+            $emailBody = $res->template('admin/active-user',  ['$contactLink'=> BASE_URL.'/contact', '$loginLink' => BASE_URL.'/login']);
             Mail::send($emailReceiver, $emailSubject, $emailBody);
             $res->status(200)->json(['message'=>'User actived successfully.']);                
         }
@@ -136,11 +135,9 @@ class Admin{
             // ----------SEND-MAIL----------
             $fun = new Functions();
             $contactUsLink = BASE_URL.'/contact';
-            $emailReceiver = $fun->getEmailByUserId($userId);
+            $emailReceiver = $fun->getUserEmailByUserId($userId);
             $emailSubject = 'Account Diactivated by Admin';
-            $emailBody = "Due to certain reason, Your Account is InActive Now.<br>
-                        For Reactive your Account Please Contact the admin via Contact Us Form<br>
-                        Contact Us Link : {$contactUsLink}";
+            $emailBody = $res->template('admin/inactive-user', ['$contactLink'=> BASE_URL.'/contact']);
             Mail::send($emailReceiver, $emailSubject, $emailBody);
             $res->status(200)->json(['message'=>'User actived successfully.']);
         }
