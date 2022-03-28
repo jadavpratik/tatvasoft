@@ -5,7 +5,6 @@ use core\Mail;
 use app\services\Functions;
 use app\models\Service;
 
-
 Route::get('/test', function($req, $res){
     // RANDOM STRING:bin2hex(random_bytes(16))
 });

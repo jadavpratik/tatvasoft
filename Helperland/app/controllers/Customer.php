@@ -282,7 +282,7 @@ class Customer{
         $serviceProviderId = $data[0]->ServiceProviderId;
 
         $rating = new Rating();
-        $where = "RatingFrom = {$customerId} AND RatingTo = {$serviceProviderId}";
+        $where = "RatingFrom = {$customerId} AND RatingTo = {$serviceProviderId} AND ServiceRequestId = {$serviceId}";
         if(!$rating->where($where)->exists()){
             $rating->create([
                 'ServiceRequestId' => $serviceId,

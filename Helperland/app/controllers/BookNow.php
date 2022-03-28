@@ -197,17 +197,22 @@ class BookNow{
     public function get_favorite_sp(Request $req, Response $res){
         $customerId = session('userId');
         $db = new Database();
+        $fun = new Functions();
         $sql = "SELECT u.* FROM user as u
                 INNER JOIN favoriteandblocked as f 
                 ON u.UserId = f.TargetUserId 
-                WHERE f.UserId = {$customerId} AND f.IsFavorite=1 AND f.IsBlocked=0";
-        $data = $db->query($sql);
+                WHERE f.UserId = {$customerId} AND f.IsFavorite=1";
+        $data = $db->query($sql); // WE GET ALL SP DATA...
+
+        $favoriteSP = [];
         foreach($data as $i){
             // REMOVE PASSWORD FIELD...
             unset($i->Password); 
+            if(!$fun->isUserBlockedByAnotherUser($i->UserId)){
+                $favoriteSP[] = $i;
+            }
         }
-        $res->status(200)->json($data);
+        $res->status(200)->json($favoriteSP);
     }
-
 
 }

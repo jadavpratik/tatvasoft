@@ -1,84 +1,15 @@
-contact US
-forgotpassword
-singup reset link
-
-----------Customer:----------
-Book : Congratulations! Your Service has been successfully booked. 
-       Service Details are Mentioned Below...
-       Service Id:
-       Your Name:
-       Your Email:
-       Your Mobile:
-       Your Service Address:
-ASSIGNED SP : You have been successfully assigned service. 
-       Service Details are Mentioned Below...
-       Service Id:
-       Customer Name:
-       Customer Email:
-       Customer Mobile:
-       Customer Service Address:
-       link : http:localhost:8000/service-provider/dashboard
-
-POSTAL CODE SP : There is a Service Request in your area.
-       Kindly accept if you are availabe 
-       Service Details are Mentioned Below...
-       Service Id:
-       Customer Name:
-       Customer Email:
-       Customer Mobile:
-       Customer Service Address:
-       link : http:localhost:8000/service-provider/dashboard
-Cancel : 'Your Service has been successfully cancled.
-       Service Details are Mentioned Below...
-       Service Id:
-       Customer Name:
-       Customer Email:
-       Customer Mobile:
-       Customer Service Address:
-       link : http:localhost:8000/service-provider/dashboard
-       
-
-Reshcedule
-       Service Details are Mentioned Below...
-       Service Id:
-       Customer Name:
-       Customer Email:
-       Customer Mobile:
-       Customer Service Address:
-       link : http:localhost:8000/service-provider/dashboard
-
-----------SP----------
-Reject
-Accept
-Complete
-----------ADMIN----------
-INACTIVE
-ACITVE
-RESCHEDULE
-Cancel
-
-
-
-SP E CUSTOMER NEE BLOCK KARYOU HOY TO CUSOTMERE NA FAVORITE LIST MA NA DEKHAVO JOIEN...
-
 ----------ICONS----------
 ✔️ COMPLETED, 
 ❌ NOT IMPLEMENTED, 
 🛠️ TESTING OR FIXING, 
 🤔 CONFUSION
-IF SERVICE IS ASSIGNED TO SERVICE PROVIDER AND CUSTOMER CANCEL THEN SEND MAIL TO SP OTHER WISE NOT
-ACCEPT KARTI VAKHTE J CANCEL KARRE CUSTOMER OR RESCHEDULE KARE TO?
 
 ----------REMAIN----------
-WRITE PROFESSIONAL COMMENT
-REMOVE UNNECESSARY THINGS AND COMMENTS AND MAKE CODE CLEAN
-SET LOADER WHILE SENDING A MESSAGE OF DOING SOMTHING 
-RUPEE TO EURO
-FROM DATE TO DATE BETWEEN DATA...
-
 🤔SERVICE RESCHEDULE VAKHATE PAISA KAPAY KE NAI?
 🤔SERVICE CANCEL NA PAISA REFUNCT THASHE KE NAI?
-🤔SERVICE PROVIDER E CUSTOMER NE BLOCK KARYO HOY ANE REQUEST JATI RE TO PAISA KAPAI JAY ANE ENE LAGE SERVICE PROVIDER AVSHE
+🤔SP NA SERVICE ACCEPT KARVANA TIME EJ CUSTOMER SERVICE CANCEL OR RESCHEDULE KARE TO?
+❌HOW TO SHOW BACKEND VALIDATION ERROR IN FRONTEND?
+❌MAIL ON CHANGE PASSWORD, SET NEW PASSWORD,
 
 ----------TESTING----------
 ✔️SINGUP
@@ -107,5 +38,4 @@ FROM DATE TO DATE BETWEEN DATA...
 ✔️SERVICE PROVIDER COMPLETE SERVICE (NOT TO VALIDATE TIME WITH END TIME OF SERVICE BECAUSE OF IF SERVICE PROVIDER COMPLETE SERVICE BEFORE THE END TIME WHAT?)
 ✔️ADMIN CANCEL SERVICE 
 ✔️ADMIN RESCHEDULE SERVICE
-🛠️ADMIN ACITVE OR INACTIVE USER
-❌MAIL ON CHANGE PASSWORD, SET NEW PASSWORD,
+✔️ADMIN ACITVE OR INACTIVE USER
