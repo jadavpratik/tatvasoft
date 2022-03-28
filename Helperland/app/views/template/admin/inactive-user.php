@@ -15,7 +15,7 @@
 </head>
 <body>
     <div style="padding:40px 15px 10px;border-radius:4px;border:0.5px solid lightgray;">
-        <p style="padding:4px 0;text-align:center;font-size:14px;font-weight:bold;color:#4f4f4f">Your account has been diactived by admin.</p>
+        <p style="padding:4px 0;text-align:center;font-size:14px;font-weight:bold;color:#4f4f4f">Your account has been diactivated by admin.</p>
         <br>
         <p style="padding:4px 0;font-size:12px;color:#4f4f4f">Due to Unusual Activities done from your account, your account has been deactivated for certain period, Don't worry, all your data is safe with us. If our servers notice more of it, your account will be deleted forever.</p>
         <br>

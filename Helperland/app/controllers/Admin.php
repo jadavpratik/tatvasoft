@@ -22,7 +22,7 @@ class Admin{
     // ----------USER-MANAGEMENT----------
     public function user_management(Request $req, Response $res){
         $user = new User();
-        $data = $user->read();
+        $data = $user->join('UserId', 'UserId', 'useraddress')->read();
         foreach($data as $key){
             // REMOVE PASSWORD FIELD
             $key->CreatedDate = date('d/m/Y', strtotime($key->CreatedDate));
@@ -173,10 +173,14 @@ class Admin{
         if(RES_WITH_MAIL){
             // ----------SEND-MAIL----------
             $fun = new Functions();
-            $emailReceiver = $fun->getCustomerEmailByServiceId($serviceId);
+            $temp = $fun->getServiceDetailsByServiceId($serviceId);
+            $emailReceiver = $temp->Email;
+            $emailData = [];
+            foreach($temp as $key => $value){
+                $emailData['$'.$key] = $value;
+            }
             $emailSubject = "Service Rescheduled By Admin";
-            $emailBody = "You Service is Reschedule by Admin<br>
-                        Your Service id = {$serviceId}.";
+            $emailBody = $res->template('/admin/reschedule-service', $emailData);
             Mail::send($emailReceiver, $emailSubject, $emailBody);
             $res->status(200)->json(['message'=>'Service Reschedule successfully.']);
         }
@@ -197,10 +201,14 @@ class Admin{
         if(RES_WITH_MAIL){
             // ----------SEND-MAIL----------
             $fun = new Functions();
-            $emailReceiver = $fun->getCustomerEmailByServiceId($serviceId);
+            $temp = $fun->getServiceDetailsByServiceId($serviceId);
+            $emailData = [];
+            $emailReceiver = $temp->Email;
             $emailSubject = "Service Cancled by Admin";
-            $emailBody = "You Service is Canclled by Admin<br> 
-                          Your Service id = {$serviceId}.";
+            foreach($temp as $key => $value){
+                $emailData['$'.$key] = $value;
+            }
+            $emailBody = $res->template('/admin/cancel-service', $emailData);
             Mail::send($emailReceiver, $emailSubject, $emailBody);
             $res->status(200)->json(['message'=>'Service cancelled successfully.']);
         }

@@ -15,8 +15,8 @@
 </head>
 <body>
     <div style="padding:10px 15px;border-radius:4px;border:0.5px solid lightgray;">
-        <p style='font-size:20px; text-align:center; font-weight:bold;color:#1D7A8C'>Congratulations!</p>
-        <p style="padding:8px 0; text-align:center; font-size:14px;font-weight:bold;color:#4f4f4f">Your service has been booked successfully.</p>
+        <p style="padding:4px 0 8px; text-align:center; font-size:14px;font-weight:bold;color:#4f4f4f">Your service request has been sent successfully.</p>
+        <p style="padding:4px 0 8px; text-align:center; font-size:14px;font-weight:bold;color:#4f4f4f">if someone accept your service we will let you know.</p>
         <!-- CUSTOMER INFO -->
         <p style="padding:4px 0; font-size:12px">
             <span style="font-weight:bold;color:#4f4f4f">Name : </span>

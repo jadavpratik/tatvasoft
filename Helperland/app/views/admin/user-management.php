@@ -94,8 +94,8 @@
                 },
                 {
                     render : function(data, type, row){
-                        if(row.ZipCode!=null)
-                            return `${row.ZipCode}`;
+                        if(row.PostalCode!=null)
+                            return `${row.PostalCode}`;
                         else
                             return ``;
                     }
@@ -171,6 +171,14 @@
         $.ajax({
             url : `${BASE_URL}/admin/user/${type}/${id}`,
             method : 'PATCH',
+            beforeSend : function(){
+                // SET LOADER...
+                open_loader();
+            },
+            complete : function(){
+                // REMOVE LOADER...
+                close_loader();
+            },
             success : function(res){
                 if(res!=="" && res!==undefined){
                     try{

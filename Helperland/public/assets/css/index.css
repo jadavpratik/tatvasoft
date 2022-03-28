@@ -376,6 +376,7 @@ input[type="text"]:read-only {
   border-radius: 34px;
   color: white;
   background-color: #1D7A8C;
+  font-size: 12px;
 }
 
 .remove_btn i {
@@ -395,6 +396,7 @@ input[type="text"]:read-only {
   border-radius: 34px;
   color: white;
   background-color: #ff6b6b;
+  font-size: 12px;
 }
 
 .block_btn i {
@@ -675,6 +677,26 @@ input[type="text"]:read-only {
 
 .page_not_found a:hover {
   background-color: #6EABEF;
+}
+
+.loader {
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  z-index: 6;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.loader::before {
+  content: 'Please waiting...';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  color: white;
+  font-size: 40px;
+  font-weight: bold;
 }
 
 .d_none {

@@ -41,6 +41,15 @@
         $.ajax({
             url : `${BASE_URL}/service-provider/service/accept/${store.id.accept}`,
             method : 'PATCH',
+            beforeSend : function(){
+                // SET LOADER...
+                open_loader();
+                close_model();
+            },
+            complete : function(){
+                // REMOVE LOADER...
+                close_loader();
+            },
             success : function(res){
                 if(res!=="" && res!==undefined){
                     try{
@@ -49,7 +58,6 @@
                             title : result.message,
                             icon : 'success'
                         });
-                        close_model();
                         store.service_provider.table.new_services.ajax.reload();
                     }
                     catch(e){

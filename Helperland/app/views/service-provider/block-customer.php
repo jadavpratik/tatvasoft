@@ -65,6 +65,14 @@
         $.ajax({
             url : url,
             method : 'PATCH',
+            beforeSend : function(){
+                // SET LOADER...
+                open_loader();
+            },
+            complete : function(){
+                // REMOVE LOADER...
+                close_loader();
+            },
             success : function(res){
                 if(res!==undefined && res!==""){
                     try{

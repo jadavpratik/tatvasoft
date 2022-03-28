@@ -72,6 +72,14 @@
                 url : `${BASE_URL}/user/address`,
                 method : 'POST',
                 data : $('#add_address_popup').serialize(),
+                beforeSend : function(){
+                    // SET LOADER...
+                    open_loader();
+                },
+                complete : function(){
+                    // REMOVE LOADER...
+                    close_loader();
+                },
                 success : function(res){
                     if(res!=="" && res!==undefined){
                         try{

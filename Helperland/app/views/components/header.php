@@ -20,6 +20,9 @@
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<!-- MOMENT -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+	<!-- FULL CALENDAR -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.2/main.css">
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.2/main.js"></script>
 	<!-- GLOBAL DATA STORING -->
 	<?= component('store'); ?>
 </head>

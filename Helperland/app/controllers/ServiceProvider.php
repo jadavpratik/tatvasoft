@@ -20,7 +20,7 @@ class ServiceProvider{
     private $COMPLETED_STATUS = 2;
     private $CANCELLED_STATUS = 3;
     
-    // -------------NEW-SERVICES [NEW REQUESTS ONLY BY SP ZIPCODE]-------------
+    // ----------NEW-SERVICES [NEW REQUESTS ONLY BY SP ZIPCODE]----------
     public function new_services(Request $req, Response $res){
         $service = new Service();
         $userAddress = new UserAddress();
@@ -94,7 +94,7 @@ class ServiceProvider{
         }
     }
 
-    // -------------UPCOMING-SERVICES[ALREADY ASSIGNED TO SP]-------------
+    // ----------UPCOMING-SERVICES[ALREADY ASSIGNED TO SP]----------
     public function upcoming_services(Request $req, Response $res){
         $service = new Service();
         $user = new User();
@@ -154,7 +154,7 @@ class ServiceProvider{
         $res->status(200)->json($serviceData);
     }
 
-    // -------------SERVICE_HISTORY(CANCELLED OR COMPLETED)-------------
+    // ----------SERVICE_HISTORY(CANCELLED OR COMPLETED)----------
     public function service_history(Request $req, Response $res){
         $service = new Service();
         $user = new User();
@@ -208,7 +208,7 @@ class ServiceProvider{
         $res->status(200)->json($serviceData);
     }
 
-    // -------------MY-RATING-------------
+    // ----------MY-RATING----------
     public function my_rating(Request $req, Response $res){
         $service = new Service();
         $user = new User();
@@ -267,7 +267,7 @@ class ServiceProvider{
 
     }
 
-    // -------------SERVICE-PROVIDER'S CUSTOMER LIST-------------
+    // ----------SERVICE-PROVIDER'S CUSTOMER LIST----------
     public function my_customer(Request $req, Response $res){
         $service = new Service();
         $user = new User();
@@ -301,7 +301,43 @@ class ServiceProvider{
 
     }    
 
-    // -------------ACCEPT-SERVICE-------------
+    // ----------SERVICE SCHEDULE----------
+    public function service_schedule(Request $req, Response $res){
+        $serviceProviderId = session('userId');
+        $service = new Service();
+        $data = $service->columns(['servicerequest.ServiceHours', 'servicerequest.ExtraHours', 'ServiceStartDate', 'user.FirstName', 'user.LastName'])
+                        ->join('UserId', 'UserId', 'user')
+                        ->where('ServiceProviderId', '=', $serviceProviderId)
+                        ->read();
+
+        function time_to_minutes($time){
+            $temp = explode(':', $time);
+            $hours = (int) $temp[0];
+            $minutes = (int) $temp[1];
+            $totalMinutes = $hours*60 + $minutes;
+            return $totalMinutes;
+        }
+
+        // ADD AND MODIFY DATA...
+        for($i=0; $i<count($data); $i++){
+            $data[$i]->CustomerName = $data[$i]->FirstName.' '.$data[$i]->LastName;
+            $data[$i]->ServiceDate = date('Y-m-d', strtotime($data[$i]->ServiceStartDate));
+            $data[$i]->StartTime = date('H:i', strtotime($data[$i]->ServiceStartDate));
+            $data[$i]->Duration = (float) $data[$i]->ServiceHours + (float) $data[$i]->ExtraHours;
+            $data[$i]->Duration = $data[$i]->Duration*60;
+            $data[$i]->Duration = date('H:i', mktime($data[$i]->Duration));
+            $data[$i]->EndTime = time_to_minutes($data[$i]->Duration) + time_to_minutes($data[$i]->StartTime);
+            $data[$i]->EndTime = date('H:i', mktime($data[$i]->EndTime));
+            unset($data[$i]->ServiceStartDate);
+            unset($data[$i]->FirstName);
+            unset($data[$i]->LastName);
+            unset($data[$i]->Duration);
+        }
+
+        $res->json($data);
+    }
+
+    // ----------ACCEPT-SERVICE----------
     public function accept_service(Request $req, Response $res){
         $serviceId = $req->params->id;
         $service = new Service();
@@ -347,7 +383,7 @@ class ServiceProvider{
         }
     }
 
-    // -------------COMPLETE-SERVICE-------------
+    // ----------COMPLETE-SERVICE----------
     public function complete_service(Request $req, Response $res){
         $serviceId = $req->params->id;
         $service = new Service();
@@ -400,7 +436,7 @@ class ServiceProvider{
 
     }
    
-    // -------------CANCEL-OR-REJECT-SERVICE-------------
+    // ----------CANCEL-OR-REJECT-SERVICE----------
     public function reject_service(Request $req, Response $res){
         $serviceId = $req->params->id;
         $service = new Service();
@@ -444,7 +480,7 @@ class ServiceProvider{
         }
     }
 
-    // -------------BLOCK-CUSTOMER-------------
+    // ----------BLOCK-CUSTOMER----------
     public function block_customer(Request $req, Response $res){
         $customerId = $req->params->id;
         $serviceProviderId = session('userId');
@@ -466,7 +502,7 @@ class ServiceProvider{
         $res->status(200)->json(['message'=>'Block Customer Successfully.']);
     }
 
-    // -------------UNBLOCK-CUSTOMER-------------
+    // ----------UNBLOCK-CUSTOMER----------
     public function unblock_customer(Request $req, Response $res){
         $customerId = $req->params->id;
         $serviceProviderId = session('userId');

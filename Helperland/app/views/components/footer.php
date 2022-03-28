@@ -42,7 +42,7 @@
 			</div>
 			<!-- COPYRIGHT_SECTION -->
 			<div>
-				<p class="copyright_section">©2018 Helperland. All rights reserved. Terms and Conditions | <a href="javascript:void(0)">Privacy Policy</a></p>
+				<p class="copyright_section">©2022 Helperland. All rights reserved. Terms and Conditions | <a href="javascript:void(0)">Privacy Policy</a></p>
 			</div>
 		</div><!-- END_FOOTER_MAIN_DIV -->
 
@@ -85,6 +85,7 @@
 	<script src="<?= assets('assets/js/sidenav.js'); ?>"></script>
 	<script src="<?= assets('assets/js/tabletab.js'); ?>"></script>
 	<script src="<?= assets('assets/js/validation.js'); ?>"></script>
+	<script src="<?= assets('assets/js/loader.js'); ?>"></script>
 	<script>
 		AOS.init();
 		$('.home_s3_intro > img').tilt({

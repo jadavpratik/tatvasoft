@@ -61,7 +61,7 @@
     }
 
     // SHOW SERVICE DETAILS...
-    function show_service_details(id){
+    function show_service_details(id, userAction){
 
         let data = [...store.customer.data.current_services,
                     ...store.customer.data.service_history];
@@ -121,15 +121,20 @@
             <div>
                 <p>Conmments : <span>${data.Comments? data.Comments:''}</span></p>
             </div>
-            <div class="table_btn_container">
-                <button class="reschedule_btn" onclick="reschedule_service(${data.ServiceRequestId})"><i class="fas fa-redo-alt"></i> Reschdule</button>
-                <button class="cancel_btn" onclick="cancel_service(${data.ServiceRequestId})"><i class="fas fa-times"></i> Cancel</button>
-            </div>`
+            ${(function(){
+                if(userAction!==false){
+                    return `<div class="table_btn_container">
+                                <button class="reschedule_btn" onclick="reschedule_service_open_model(${data.ServiceRequestId})"><i class="fas fa-redo-alt"></i> Reschdule</button>
+                                <button class="cancel_btn" onclick="cancel_service_open_model(${data.ServiceRequestId})"><i class="fas fa-times"></i> Cancel</button>
+                            </div>`;
+                }
+                else {
+                    return ``;
+                }
+            })()}`
         );
-
         open_model('service_details');
     }
-
 </script>
 
 <?= component('footer'); ?>

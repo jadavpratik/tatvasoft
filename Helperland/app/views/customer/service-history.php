@@ -45,7 +45,7 @@
             columns :[
                 {
                     render : function(data, type, row){
-                        return`<div class="service_details" onclick="show_service_details(${row.ServiceRequestId})">
+                        return`<div class="service_details" onclick="show_service_details(${row.ServiceRequestId}, false)">
                                     <div>
                                         <img src="<?= assets('assets/img/table/calendar_black.png'); ?>" alt="">
                                         <p>${row.ServiceDate}</p>
@@ -61,7 +61,7 @@
                     render : function(data, type, row){
                         if(row.ServiceProvider!==undefined){
                             return `
-                                <div class="service_provider" onclick="show_service_details(${row.ServiceRequestId})">
+                                <div class="service_provider" onclick="show_service_details(${row.ServiceRequestId}, false)">
                                     <img class="hat_style" src="${BASE_URL}/assets/img/avatar/${row.ServiceProvider.UserProfilePicture}.png" alt="">
                                     <div>
                                         <p>${row.ServiceProvider.FirstName} ${row.ServiceProvider.LastName}</p>    
@@ -92,23 +92,23 @@
                             `;
                         }
                         else{
-                            return `<p onclick="show_service_details(${row.ServiceRequestId})">No SP</p>`;
+                            return `<p onclick="show_service_details(${row.ServiceRequestId}, false)">No SP</p>`;
                         }
                     }
                 },
                 {
                     render : function(data, type, row){
                         // €
-                        return `<p class="payment_text" onclick="show_service_details(${row.ServiceRequestId})">€<span>${row.TotalCost}</span></p>`;
+                        return `<p class="payment_text" onclick="show_service_details(${row.ServiceRequestId}, false)">€<span>${row.TotalCost}</span></p>`;
                     }
                 },
                 {
                     render : function(data, type, row){
                         switch(row.Status){
                             case 2:
-                                return `<p class="completed_status" onclick="show_service_details(${row.ServiceRequestId})">Completed</p>`;
+                                return `<p class="completed_status" onclick="show_service_details(${row.ServiceRequestId}, false)">Completed</p>`;
                             case 3:
-                                return `<p class="cancelled_status" onclick="show_service_details(${row.ServiceRequestId})">Cancelled</p>`;
+                                return `<p class="cancelled_status" onclick="show_service_details(${row.ServiceRequestId}, false)">Cancelled</p>`;
                         }
                     }
                 },

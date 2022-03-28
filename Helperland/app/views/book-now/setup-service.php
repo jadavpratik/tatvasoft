@@ -28,6 +28,14 @@
                 method : 'POST',
                 contentType : 'application/json',
                 data : json,
+                beforeSend : function(){
+                    // SET LOADER...
+                    open_loader();
+                },
+                complete : function(){
+                    // REMOVE LOADER...
+                    close_loader();
+                },
                 success : function(res){
                     if(res!=="" && res!==undefined){
                         try{

@@ -36,7 +36,9 @@
             </div>
 
             <!-- SERVICE SCHEDULE -->
-            <div class="table_tab_content d_none"></div>
+            <div class="table_tab_content d_none">
+                <?= component('service-provider/', 'service-schedule') ?>
+            </div>
 
             <!-- SERVICE HISTORY -->
             <div class="table_tab_content d_none">
@@ -157,6 +159,14 @@
         $.ajax({
             url : `${BASE_URL}/service-provider/service/complete/${id}`,
             method : 'PATCH',
+            beforeSend : function(){
+                // SET LOADER...
+                open_loader();
+            },
+            complete : function(){
+                // REMOVE LOADER...
+                close_loader();
+            },
             success : function(res){
                 if(res!==undefined && res!==""){
                     try{

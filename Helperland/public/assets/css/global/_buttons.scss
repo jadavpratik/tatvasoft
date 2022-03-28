@@ -110,11 +110,13 @@
 .remove_btn{
     @include table_btn;
     background-color: $remove_btn;
+    font-size: 12px;
 }
 
 .block_btn{
     @include table_btn;
     background-color: $block_btn;
+    font-size: 12px;
 }
 
 .accept_btn{

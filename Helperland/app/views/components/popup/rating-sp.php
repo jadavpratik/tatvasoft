@@ -89,6 +89,14 @@
                 url : `${BASE_URL}/customer/sp/rate/${store.id.rate_sp}`,
                 method : 'POST',
                 data : $('#rating_popup').serialize(),
+                beforeSend : function(){
+                    // SET LOADER...
+                    open_loader();
+                },
+                complete : function(){
+                    // REMOVE LOADER...
+                    close_loader();
+                },
                 success : function(res){
                     if(res!=="" && res!==undefined){
                         try{

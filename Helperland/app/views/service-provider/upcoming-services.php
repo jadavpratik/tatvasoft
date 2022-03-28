@@ -107,6 +107,14 @@
                 $.ajax({
                     url : `${BASE_URL}/service-provider/service/reject/${id}`,
                     method : 'PATCH',
+                    beforeSend : function(){
+                        // SET LOADER...
+                        open_loader();
+                    },
+                    complete : function(){
+                        // REMOVE LOADER...
+                        close_loader();
+                    },
                     success : function(res){
                         if(res!=="" && res!==undefined){
                             try{

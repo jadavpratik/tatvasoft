@@ -63,6 +63,14 @@
                 url : `${BASE_URL}/login`,
                 method : 'POST',
                 data : $('.login_popup_form').serialize(),
+                beforeSend : function(){
+                    // SET LOADER...
+                    open_loader();
+                },
+                complete : function(){
+                    // REMOVE LOADER...
+                    close_loader();
+                },
                 success : function(res){
                     if(res!=="" && res!==undefined){
                         try{

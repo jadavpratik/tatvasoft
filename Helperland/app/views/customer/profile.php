@@ -179,6 +179,14 @@
                 method : 'PATCH',
                 contentType : 'application/json',
                 data : json,
+                beforeSend : function(){
+                    // SET LOADER...
+                    open_loader();
+                },
+                complete : function(){
+                    // REMOVE LOADER...
+                    close_loader();
+                },
                 success : function(res){
                     if(res!=="" && res!==undefined){
                         try{
@@ -258,6 +266,14 @@
         $.ajax({
             url : `${BASE_URL}/user/address/${id}`,
             method : 'GET',
+            beforeSend : function(){
+                // SET LOADER...
+                open_loader();
+            },
+            complete : function(){
+                // REMOVE LOADER...
+                close_loader();
+            },
             success : function(res){
                 if(res!=="" && res!==undefined){
                     try{
@@ -304,6 +320,14 @@
                 $.ajax({
                     url : `${BASE_URL}/user/address/${id}`,
                     method : 'DELETE',
+                    beforeSend : function(){
+                        // SET LOADER...
+                        open_loader();
+                    },
+                    complete : function(){
+                        // REMOVE LOADER...
+                        close_loader();
+                    },
                     success : function(res){
                         if(res!=="" && res!==undefined){
                             try{
@@ -368,6 +392,14 @@
                 method : 'PATCH',
                 contentType : 'application/json',
                 data : json,
+                beforeSend : function(){
+                    // SET LOADER...
+                    open_loader();
+                },
+                complete : function(){
+                    // REMOVE LOADER...
+                    close_loader();
+                },
                 success : function(res){
                     if(res!=="" && res!==undefined){
                         try{

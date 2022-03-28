@@ -22,7 +22,7 @@
 
         <!-- ----------ADMIN FOOTER---------- -->
         <div class="admin_copyright_line">
-            <p>©2018 Helperland. All rights reserved.</p>
+            <p>©2022 Helperland. All rights reserved.</p>
         </div><!-- END_FOOTER -->        
     </div><!-- END_ADMIN_RIGHT -->
 </main><!-- END_ADMIN_PANEL -->
@@ -50,6 +50,7 @@
 <script src="<?= assets('assets/js/sidenav.js'); ?>"></script>
 <script src="<?= assets('assets/js/tabletab.js'); ?>"></script>
 <script src="<?= assets('assets/js/validation.js'); ?>"></script>
+<script src="<?= assets('assets/js/loader.js'); ?>"></script>
 
 <script>
     // (CALL EACH TIME WHEN THE CHANGES IN DATATABLE)

@@ -55,13 +55,13 @@
                                                     buttons += `<button class="remove_btn" onclick="action_on_sp(${sp.UserId}, 'remove')">Favorite</button>`;
                                                 }
                                                 else{
-                                                    buttons += `<button class="remove_btn" onclick="action_on_sp(${sp.UserId}, 'add')">Unfavorite</button>`;
+                                                    buttons += `<button class="remove_btn" onclick="action_on_sp(${sp.UserId}, 'add')">Add Favorite</button>`;
                                                 }
                                                 if(sp.IsBlocked==1){
                                                     buttons += `<button class="block_btn" onclick="action_on_sp(${sp.UserId}, 'unblock')">Blocked</button>`;
                                                 }
                                                 else{
-                                                    buttons += `<button class="block_btn" onclick="action_on_sp(${sp.UserId}, 'block')">Block</button>`;
+                                                    buttons += `<button class="block_btn" onclick="action_on_sp(${sp.UserId}, 'block')">Block Customer</button>`;
                                                 }
                                                 return buttons;
                                             })()}
@@ -116,6 +116,14 @@
             $.ajax({
                 url : url,
                 method : 'PATCH',
+                beforeSend : function(){
+                    // SET LOADER...
+                    open_loader();
+                },
+                complete : function(){
+                    // REMOVE LOADER...
+                    close_loader();
+                },
                 success : function(res){
                     if(res!=="" && res!==undefined){
                         try{

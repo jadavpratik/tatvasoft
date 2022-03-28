@@ -13,6 +13,8 @@ Route::get('/service-provider/service/new', $isServiceProvider, [new ServiceProv
 Route::get('/service-provider/service/upcoming', $isServiceProvider, [new ServiceProvider(), 'upcoming_services']);
 Route::get('/service-provider/service/history', $isServiceProvider, [new ServiceProvider(), 'service_history']);
 Route::get('/service-provider/rating-and-review', $isServiceProvider, [new ServiceProvider(), 'my_rating']);
+Route::get('/service-provider/service/schedule', $isServiceProvider, [new ServiceProvider(), 'service_schedule']);
+
 
 Route::patch('/service-provider/service/accept/:id', $isServiceProvider, [new ServiceProvider(), 'accept_service']);     // id = serviceId
 Route::patch('/service-provider/service/reject/:id', $isServiceProvider, [new ServiceProvider(), 'reject_service']);     // id = serviceId

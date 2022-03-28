@@ -13,7 +13,7 @@ use app\controllers\MyAddress;
 
 // ----------MY-ACCOUNT----------
 Route::post('/signup', [new Account(), 'signup']);
-Route::get('/user/verify/:token/:id', [new Account(), 'verify_user']);
+Route::get('/user/verify/:id/:token', [new Account(), 'verify_user']);
 Route::post('/login', [new Account(), 'login']);
 Route::post('/forgot-password', [new Account(), 'forgot_password']);
 Route::post('/verify-otp', [new Account(), 'verify_otp']);

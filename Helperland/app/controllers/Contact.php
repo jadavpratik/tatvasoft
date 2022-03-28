@@ -40,17 +40,22 @@ class Contact{
             'UploadFileName' => $filePath,
             'CreatedOn' => date('Y-m-d H:i:s')
         ]);    
-        $res->status(200)->json(['message'=>"Form submitted successfully."]);
 
-        // ----------SEND MAIL----------
-        // $emailReceiver = ADMIN_EMAIL;
-        // $emailSubject = 'Helperland';
-        // $emailBody = " <b>Name</b> : {$req->body->firstname} {$req->body->lastname} <br>
-        //                <b>Email</b> : {$req->body->email} <br>
-        //                <b>Phone</b> : {$req->body->phone} <br>
-        //                <b>Subject</b> : {$req->body->subject} <br>
-        //                <b>Message</b> : {$req->body->message} <br>";
-        // Mail::send($emailReceiver, $emailSubject, $emailBody);
-        // $res->status(200)->json(['message'=>"Form Submitted Successfully."]);
+        if(RES_WITH_MAIL){
+            // ----------SEND MAIL----------
+            $emailReceiver = ADMIN_EMAIL;
+            $emailSubject = 'User Feedback or Query';
+            $emailData = ['$Name' => $req->body->firstname.' '.$req->body->lastname,
+                          '$Email' => $req->body->email,
+                          '$Phone' => $req->body->phone,
+                          '$Subject' => $req->body->subject,
+                          '$Message' => $req->body->message];
+            $emailBody = $res->template('contact', $emailData);
+            Mail::send($emailReceiver, $emailSubject, $emailBody);
+            $res->status(200)->json(['message'=>"Form Submitted Successfully."]);
+        }
+        else{
+            $res->status(200)->json(['message'=>"Form submitted successfully."]);
+        }
     }    
 }

@@ -11,8 +11,8 @@
     </div>
     <div class="label_input">
         <div>
-            <input type="text" placeholder="XXXX-XXXX-XXXX-XXXX" value="1111-1111-1111-1111">
-            <input type="text" placeholder="MM/YY" value="11/24">
+            <input type="text" placeholder="XXXX-XXXX-XXXX-XXXX" value="1234-1234-1234-1234">
+            <input type="text" placeholder="MM/YY" value="12/24">
             <input type="text" placeholder="CVV/CVC" value="123">
         </div>
         <div>
@@ -50,6 +50,14 @@
             method : 'POST',
             contentType : 'application/json',
             data : JSON.stringify(store.book_service),
+            beforeSend : function(){
+                // SET LOADER...
+                open_loader();
+            },
+            complete : function(){
+                // REMOVE LOADER...
+                close_loader();
+            },
             success : function(res){
                 if(res!=="" && res!==undefined){
                     try{

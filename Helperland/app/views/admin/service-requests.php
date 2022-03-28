@@ -217,10 +217,12 @@
     }
 
     function search_by_from_date(val){
+        console.log('fromDate',val);
         store.admin.table.service_requests.column(3).search(val).draw();
     }
 
     function search_by_to_date(val){
+        console.log('toDate',val);
         store.admin.table.service_requests.column(3).search(val).draw();
     }
 
@@ -267,6 +269,14 @@
                 $.ajax({
                     url : `${BASE_URL}/admin/service/cancel/${id}`,
                     method : 'PATCH',
+                    beforeSend : function(){
+                        // SET LOADER...
+                        open_loader();
+                    },
+                    complete : function(){
+                        // REMOVE LOADER...
+                        close_loader();
+                    },
                     success : function(res){
                         if(res!=="" && res!==undefined){
                             try{

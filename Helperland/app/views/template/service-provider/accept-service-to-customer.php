@@ -15,8 +15,8 @@
 </head>
 <body>
     <div style="padding:10px 15px;border-radius:4px;border:0.5px solid lightgray;">
+        <p style='font-size:20px; text-align:center; font-weight:bold;color:#1D7A8C'>Congratulations!</p>
         <p style="padding:8px 0; text-align:center; font-size:14px;font-weight:bold;color:#4f4f4f">Service has been accepted by a Service Provider</p>
-        <p style="padding:8px 0; text-align:center; font-size:14px;font-weight:bold;color:#4f4f4f">Details has been mentioned below</p>
         <!-- SERVICE PROVIDER -->
         <p style="padding:4px 0; font-size:12px">
             <span style="font-weight:bold;color:#4f4f4f">Service Provider Name : </span>

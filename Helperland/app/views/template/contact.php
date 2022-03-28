@@ -15,14 +15,14 @@
 </head>
 <body>
     <div style="padding:40px 15px 10px;border-radius:4px;border:0.5px solid lightgray;">
-        <p style="padding:4px 0;text-align:center;font-size:14px;font-weight:bold;color:#4f4f4f">Thank you for your patience, your account has been activated by admin.</p>
+        <p style="font-weight:bold; font-size:16px;color:#4f4f4f; text-align:center;">User want's to contact via contact form.</p><br>
+        <b style="color:#4f4f4f">Name</b> : $Name<br>
+        <b style="color:#4f4f4f">Email</b> : $Email <br>
+        <b style="color:#4f4f4f">Phone</b> : $Phone <br>
+        <b style="color:#4f4f4f">Subject</b> : $Subject <br>
+        <b style="color:#4f4f4f">Message</b> : $Message <br>
         <br>
-        <p style="padding:4px 0;font-size:12px;color:#4f4f4f">Now you can able to login in your account</p>
-        <a href="$loginLink">$loginLink</a>
         <br>
-        <br>
-        <p style="padding:4px 0;font-size:12px;color:#4f4f4f">Don't hesitate to contact us with your feedback</p>
-        <a href="$contactLink">$contactLink</a>
         <p style="padding:10px 0 0;font-size:12px;color:gray;">Thanks,</p>
         <p style="padding:5px 0;font-size:12px;color:gray;">Helperland Team</p>
     </div>

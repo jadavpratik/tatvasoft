@@ -27,7 +27,7 @@ class Functions{
         $_token = bin2hex(random_bytes(16));
         $token = new Token();
         $token->create(['userId' => $userId, 'token' => $_token]);
-        $link = BASE_URL."/user/verify/{$_token}/{$userId}";
+        $link = BASE_URL."/user/verify/{$userId}/{$_token}";
         return $link;
     }
     
