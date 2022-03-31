@@ -12,31 +12,19 @@
     define('URL_TRIM_PART', str_replace('http://localhost', '', $DIR_PATH));
     
     // CONFIG OF DATABASE...
-    define('DB_TYPE', 'mysql');
-    define('DB_HOST', 'localhost');
-    define('DB_NAME', 'helperland');
-    define('DB_USER', 'root');
-    define('DB_PASSWORD', '');
+    define('DB_TYPE', $_ENV['DB_TYPE']);
+    define('DB_HOST', $_ENV['DB_HOST']);
+    define('DB_NAME', $_ENV['DB_NAME']);
+    define('DB_USER', $_ENV['DB_USER']);
+    define('DB_PASSWORD', $_ENV['DB_PASSWORD']);
 
-    // CONFIG OF MAIL...
-
-    /**
-     *  smtp.gmail.com
-     *  587
-     *  tls
-     * 
-     *  stmp.mail.yahoo.com
-     *  456, 587
-     *  ssl, tls
-     */
-
-    define('SMTP_HOST', 'smtp.gmail.com');
-    define('SMTP_SECURE', 'tls');
-    define('EMAIL_PORT', 587);
-    define('EMAIL_ADDRESS', 'typeee29@gmail.com');
-    define('EMAIL_PASSWORD', 'jpewoellpkdfquab');
-    define('ADMIN_EMAIL', 'pratikjadav29@gmail.com');
-    define('RES_WITH_MAIL', true);
+    define('SMTP_HOST', $_ENV['SMTP_HOST']);
+    define('SMTP_SECURE', $_ENV['SMTP_SECURE']);
+    define('EMAIL_PORT', $_ENV['EMAIL_PORT']);
+    define('EMAIL_ADDRESS', $_ENV['EMAIL_ADDRESS']);
+    define('EMAIL_PASSWORD', $_ENV['EMAIL_PASSWORD']);
+    define('ADMIN_EMAIL', $_ENV['ADMIN_EMAIL']);
+    define('RES_WITH_MAIL', $_ENV['RES_WITH_MAIL']);
     
     // SESSION CONFIG...
     define('SESSION_PATH', __DIR__.'/../public/sessions/');
