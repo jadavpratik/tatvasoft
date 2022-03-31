@@ -22,15 +22,25 @@ class Admin{
     // ----------USER-MANAGEMENT----------
     public function user_management(Request $req, Response $res){
         $user = new User();
-        $data = $user->columns(['useraddress.PostalCode', 'user.*'])->join('UserId', 'UserId', 'useraddress')->read();
+        $columns = [
+            'user.UserId',
+            'user.FirstName',
+            'user.LastName',
+            'user.CreatedDate',
+            'user.RoleId',
+            'user.Mobile',
+            'useraddress.PostalCode',
+            'user.IsActive'
+        ];
+        $data = $user->columns($columns)->join('UserId', 'UserId', 'useraddress', 'LEFT')->read();
         foreach($data as $key){
             // REMOVE PASSWORD FIELD
             $key->CreatedDate = date('d/m/Y', strtotime($key->CreatedDate));
             unset($key->Password);
         }
-        // // REMOVE REPEATED OBJECT FROM ARRAY...
-        // $temp = array_unique(array_column($data, 'UserId'));
-        // $data = array_values(array_intersect_key($data, $temp));
+        // REMOVE REPEATED OBJECT FROM ARRAY...
+        $temp = array_unique(array_column($data, 'UserId'));
+        $data = array_values(array_intersect_key($data, $temp));
         
         $res->json($data);
     }

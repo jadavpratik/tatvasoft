@@ -1,7 +1,7 @@
 <?php
 
     // LOAD ENVIRONMENT VARIABLE...
-    require_once __DIR__."/../ENV/ENV.php";
+    require_once __DIR__."/../env/ENV.php";
 
     // LOAD REQUIRED FILES...
     require_once __DIR__."/../core/Autoload.php";

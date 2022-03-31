@@ -4,10 +4,13 @@ use core\Route;
 use core\Mail;
 use app\services\Functions;
 use app\models\Service;
+use core\Database;
 
 Route::get('/test', function($req, $res){
     echo '<pre>';
-    print_r($_ENV);
+    $db = new Database();
+    $data = $db->query('SELECT * FROM user LEFT JOIN useraddress ON user.UserId=useraddress.UserId');
+    print_r($data);    
     // RANDOM STRING:bin2hex(random_bytes(16))
 });
 
