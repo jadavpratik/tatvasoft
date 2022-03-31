@@ -157,10 +157,7 @@
         store.admin.table.user_management.column(4).search(val).draw();
     }
 
-    function clear_all_value(){
-        $('input').val('').keyup();
-        $('[name="userRoleSelect"]').val('').change();
-    }
+    // function clear_all_value() ALREADY DEFINED IN SERVICE_REQUESTs page...
 
 </script>
 

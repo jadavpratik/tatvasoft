@@ -33,12 +33,11 @@
     define('SMTP_HOST', 'smtp.gmail.com');
     define('SMTP_SECURE', 'tls');
     define('EMAIL_PORT', 587);
-    define('EMAIL_ADDRESS', '');
-    define('EMAIL_PASSWORD', '');
-    define('ADMIN_EMAIL', '');
-    define('RES_WITH_MAIL', false);
+    define('EMAIL_ADDRESS', 'typeee29@gmail.com');
+    define('EMAIL_PASSWORD', 'jpewoellpkdfquab');
+    define('ADMIN_EMAIL', 'pratikjadav29@gmail.com');
+    define('RES_WITH_MAIL', true);
     
-
     // SESSION CONFIG...
     define('SESSION_PATH', __DIR__.'/../public/sessions/');
     

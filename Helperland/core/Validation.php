@@ -54,7 +54,7 @@ class Validation{
 		// PASS RESPONSE ACCORDING TO VALIDATION...
 		if(count(self::$error)>0){
 			$res = new Response();
-			$res->status(400)->json(['errors'=>self::$error]);
+			$res->status(400)->json(['message'=>'Validation Error', 'errors'=>self::$error]);
 			exit();
 		}
 	}

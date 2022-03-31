@@ -217,18 +217,51 @@
     }
 
     function search_by_from_date(val){
-        console.log('fromDate',val);
-        store.admin.table.service_requests.column(3).search(val).draw();
+        let fromDate = new Date(val);
+        let filter = [];
+        const data = store.admin.data.service_requests;
+        for(let i=0; i<data.length; i++){
+            let serviceDate = new Date(moment(data[i].ServiceStartDate, 'YYYY-MM-DD').format('YYYY-MM-DD'));
+            if(serviceDate.getTime() >= fromDate.getTime()){ 
+                filter.push(data[i]);
+            }
+        }
+        store.admin.table.service_requests
+        .clear()
+        .rows.add(filter)
+        .draw();
     }
 
     function search_by_to_date(val){
-        console.log('toDate',val);
-        store.admin.table.service_requests.column(3).search(val).draw();
+        let toDate = new Date(val);
+        let filter = [];
+        const data = store.admin.data.service_requests;
+        for(let i=0; i<data.length; i++){
+            let serviceDate = new Date(moment(data[i].ServiceStartDate, 'YYYY-MM-DD').format('YYYY-MM-DD'));
+            if(serviceDate.getTime() <= toDate.getTime()){ 
+                filter.push(data[i]);
+            }
+        }
+        store.admin.table.service_requests
+        .clear()
+        .rows.add(filter)
+        .draw();
     }
 
     function clear_all_value(){
         $('input').val('').keyup();
+        $('[name="userRoleSelect"]').val('').change();
         $('[name="serviceStatusSelect"]').val('').change();
+
+        store.admin.table.service_requests
+        .clear()
+        .rows.add(store.admin.data.service_requests)
+        .draw();
+
+        store.admin.table.user_management
+        .clear()
+        .rows.add(store.admin.data.user_management)
+        .draw();
     }
 
 </script>
