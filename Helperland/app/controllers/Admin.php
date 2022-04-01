@@ -34,10 +34,9 @@ class Admin{
         ];
         $data = $user->columns($columns)
                      ->join('UserId', 'UserId', 'useraddress', 'LEFT')
-                    //  ->where('user.RoleId != 3')
+                     ->where('user.RoleId != 3')
                      ->read();
         foreach($data as $key){
-            // REMOVE PASSWORD FIELD
             $key->CreatedDate = date('d/m/Y', strtotime($key->CreatedDate));
         }
         // REMOVE REPEATED OBJECT FROM ARRAY...

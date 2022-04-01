@@ -68,7 +68,7 @@ class Account{
 				}
 				else{
 					if($role==1){
-						$user->where('userId', '=', $userId)->update(['IsActive' => 1]);
+						$user->where('UserId', '=', $userId)->update(['IsActive' => 1]);
 					}
 					$res->status(201)->json(['message'=>'Account is created successfully.']);
 				}
