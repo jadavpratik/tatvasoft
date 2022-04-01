@@ -1,8 +1,10 @@
 # Helperland
+  <pre>  
+  ( <b>Project Folder</b> =>  Helperland )<br/>
+  ( <b>Constants.php</b>  =>  Helperland/core/Constants.php )<br/>
+  ( <b>ENV.php</b>        =>  Helperland/env/ENV.php )<br/>
+  </pre>
   
-  ( Constants.php    =>  Helperland/core/Constants.php )<br/>
-  ( ENV.php          =>  Helperland/env/ENV.php )<br/>
-
   <b>1. BASE_URL</b><br/>
     -> Change the BASE_URL according to where you put the project folder<br/>
     -> Inside Constants.php file Change BASE_URL.
