@@ -9,9 +9,9 @@
     $_ENV['SMTP_HOST'] = 'smtp.gmail.com';
     $_ENV['SMTP_SECURE'] = 'tls';
     $_ENV['EMAIL_PORT'] = 587;
-    $_ENV['EMAIL_ADDRESS'] = 'typeee29@gmail.com';
+    $_ENV['EMAIL_ADDRESS'] = '';
     $_ENV['EMAIL_PASSWORD'] = '';
-    $_ENV['ADMIN_EMAIL'] = 'pratikjadav29@gmail.com';
+    $_ENV['ADMIN_EMAIL'] = '';
     $_ENV['RES_WITH_MAIL'] = false;
 
     // CONFIG OF MAIL...
