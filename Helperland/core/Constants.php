@@ -1,11 +1,17 @@
 <?php
 
     // PORT NUMBER...
-    $PORT = $_SERVER['SERVER_PORT'];
+    $PORT      = $_SERVER['SERVER_PORT'];
 
-    $DIR_PATH   = 'http://localhost/tatvasoft/helperland';
-    $PORT_PATH  = "http://localhost:".$PORT;
-    $BASE_URL   = $PORT==80? $DIR_PATH : $PORT_PATH ;
+    // ROOT PATH TO LOCALHOST PATH...
+    $ROOT_PATH = strtolower($_SERVER['SCRIPT_FILENAME']);
+    $ROOT_PATH = str_replace('c:/xampp/htdocs/', 'http://localhost/', $ROOT_PATH);   
+    $ROOT_PATH = str_replace('/public/index.php', '', $ROOT_PATH);
+
+    $DIR_PATH  = $ROOT_PATH;
+    $PORT_PATH = "http://localhost:".$PORT;
+
+    $BASE_URL  = $PORT==80? $DIR_PATH : $PORT_PATH ;
 
     // SET THE BASE_URL
     define('BASE_URL', $BASE_URL);
