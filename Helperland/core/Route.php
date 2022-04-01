@@ -20,10 +20,8 @@ class Route{
 		$url = filter_var($url, FILTER_SANITIZE_URL);
 		$url = strtolower($url);
 		$url = rtrim($url, '/');
-		if($_SERVER['SERVER_PORT']==80 && $_SERVER['HTTP_HOST']=='localhost'){
-			if(str_contains($url, URL_TRIM_PART)){
-				$url = str_replace(URL_TRIM_PART, '', $url);
-			}
+		if(str_contains($url, LOCAL_PATH)){
+			$url = str_replace(LOCAL_PATH, '', $url);
 		}
 		$url = $url==""? '/' : $url;
 		return $url;
@@ -53,10 +51,10 @@ class Route{
 			return true;
 		}
 		// FOR PARAMS URL...
+		// FOR QUERY STRING URL NOT SUPPORTED LIKE ?token=j3ljadslfjljdks523
 		else if(str_contains(self::$route_url, ':')){
 			page_url(self::$browser_url);
 			if(count(self::$params_key) == count(self::$params_value)){
-
 				for($i=0; $i<count(self::$params_key); $i++){
 					if(!str_contains(self::$params_key[$i], ':')){
 						if(self::$params_key[$i] != self::$params_value[$i]){
@@ -67,15 +65,6 @@ class Route{
 				self::$req = new Request([self::$params_key, self::$params_value]);
 				self::$res = new Response();		
 				return true;
-
-				// ERROR WHEN WE USE ROUTE LIKE /USER/CART/ITEMS/:ID
-				// if(self::$params_key[1]==self::$params_value[1]){
-				// 	// ON INDEX 1 OF ARRAY URL PRESENT...
-				// 	self::$req = new Request([self::$params_key, self::$params_value]);
-				// 	self::$res = new Response();		
-				// 	return true;
-				// }
-
 			}
 		}
 		// PAGE_NOT_FOUND...

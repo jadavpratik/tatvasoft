@@ -24,9 +24,9 @@ class Database{
         $dbUser     = DB_USER;
         $dbPassword = DB_PASSWORD;
         $dbName     = DB_NAME;
-        $dbString   = "{$dbType}:host={$dbHost};dbname={$dbName}";
+        $dsn        = "{$dbType}:host={$dbHost};dbname={$dbName}";
         try{
-            $this->conn = new PDO($dbString, $dbUser, $dbPassword);
+            $this->conn = new PDO($dsn, $dbUser, $dbPassword);
             $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } 
         catch(Exception $e){

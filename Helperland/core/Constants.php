@@ -1,15 +1,15 @@
 <?php
 
-    // DIRECTORY PATH
-    $DIR_PATH = 'http://localhost/tatvasoft/helperland';
-    // PORT PATH
-    $PORT_PATH = "http://localhost:".$_SERVER['SERVER_PORT'];
-    // BASE_URL
-    $BASE_URL = ($_SERVER['SERVER_PORT']==80 && $_SERVER['HTTP_HOST']=='localhost')? $DIR_PATH : $PORT_PATH ;
+    // PORT NUMBER...
+    $PORT = $_SERVER['SERVER_PORT'];
+
+    $DIR_PATH   = 'http://localhost/tatvasoft/helperland';
+    $PORT_PATH  = "http://localhost:".$PORT;
+    $BASE_URL   = $PORT==80? $DIR_PATH : $PORT_PATH ;
 
     // SET THE BASE_URL
     define('BASE_URL', $BASE_URL);
-    define('URL_TRIM_PART', str_replace('http://localhost', '', $DIR_PATH));
+    define('LOCAL_PATH', str_replace('http://localhost', '', $DIR_PATH));
     
     // CONFIG OF DATABASE...
     define('DB_TYPE', $_ENV['DB_TYPE']);
@@ -18,6 +18,7 @@
     define('DB_USER', $_ENV['DB_USER']);
     define('DB_PASSWORD', $_ENV['DB_PASSWORD']);
 
+    // CONFIG OF MAIL...
     define('SMTP_HOST', $_ENV['SMTP_HOST']);
     define('SMTP_SECURE', $_ENV['SMTP_SECURE']);
     define('EMAIL_PORT', $_ENV['EMAIL_PORT']);

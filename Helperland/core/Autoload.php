@@ -1,14 +1,5 @@
 <?php
 
-    // CONSTANT...
-    require_once __DIR__.'/Constants.php';
-
-    // CONFIG...
-    require_once __DIR__.'/Config.php';
-    
-    // GLOBAL FUNCTIONS...
-    require_once __DIR__.'/Functions.php';
-
     spl_autoload_register(function($class){
         $class = str_replace('\\', '/', $class);
         $classPath = '';
