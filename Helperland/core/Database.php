@@ -155,7 +155,7 @@ class Database{
     
     // -----------------JOIN-------------------
     public function join($pk, $fk, $table, $joinType=false){
-        $joinType = $joinType==false ? '' : $joinType;
+        $joinType = $joinType==false ? 'INNER' : $joinType;
         $this->join = "{$joinType} JOIN {$table} ON {$this->table}.{$pk}={$table}.{$fk}";
         return $this;
     }
