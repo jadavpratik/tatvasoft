@@ -32,11 +32,13 @@ class Admin{
             'useraddress.PostalCode',
             'user.IsActive'
         ];
-        $data = $user->columns($columns)->join('UserId', 'UserId', 'useraddress', 'LEFT')->read();
+        $data = $user->columns($columns)
+                     ->join('UserId', 'UserId', 'useraddress', 'LEFT')
+                    //  ->where('user.RoleId != 3')
+                     ->read();
         foreach($data as $key){
             // REMOVE PASSWORD FIELD
             $key->CreatedDate = date('d/m/Y', strtotime($key->CreatedDate));
-            unset($key->Password);
         }
         // REMOVE REPEATED OBJECT FROM ARRAY...
         $temp = array_unique(array_column($data, 'UserId'));
