@@ -45,36 +45,36 @@
             columns :[
                 {
                     render : function(data, type, row){
-                        return`<div class="service_details" onclick="show_service_details(${row.ServiceRequestId}, false)">
+                        return`<div class="service_details" onclick="show_service_details(${row.Service.Id}, false)">
                                     <div>
                                         <img src="<?= assets('assets/img/table/calendar_black.png'); ?>" alt="">
-                                        <p>${row.ServiceDate}</p>
+                                        <p>${row.Service.ServiceDate}</p>
                                     </div>
                                     <div>
                                         <i class="far fa-clock"></i>
-                                        <p>${row.StartTime} - ${row.EndTime}</p>
+                                        <p>${row.Service.StartTime} - ${row.Service.EndTime}</p>
                                     </div>
                                 </div>`;
                     },
                 },
                 {
                     render : function(data, type, row){
-                        if(row.ServiceProvider!==undefined){
+                        if(row.ServiceProvider.Id!==0){
                             return `
-                                <div class="service_provider" onclick="show_service_details(${row.ServiceRequestId}, false)">
-                                    <img class="hat_style" src="${BASE_URL}/assets/img/avatar/${row.ServiceProvider.UserProfilePicture}.png" alt="">
+                                <div class="service_provider" onclick="show_service_details(${row.Service.Id}, false)">
+                                    <img class="hat_style" src="${BASE_URL}/assets/img/avatar/${row.ServiceProvider.ProfilePicture}.png" alt="">
                                     <div>
-                                        <p>${row.ServiceProvider.FirstName} ${row.ServiceProvider.LastName}</p>    
+                                        <p>${row.ServiceProvider.Name}</p>    
                                         <div>
                                             ${(function(){
                                                 let rating_html = ``;
-                                                if(row.Rating!==undefined){
+                                                if(row.ServiceProvider.Ratings!==null){
                                                     // FOR RATED STAR...
-                                                    for(let i=0; i<parseInt(row.Rating); i++){
+                                                    for(let i=0; i<parseInt(row.ServiceProvider.Ratings); i++){
                                                         rating_html +=`<i class="fas fa-star rated_star"></i>`;
                                                     }
                                                     // FOR UNRATED STAR...
-                                                    for(let i=0; i<(5-parseInt(row.Rating)); i++){
+                                                    for(let i=0; i<(5-parseInt(row.ServiceProvider.Ratings)); i++){
                                                         rating_html +=`<i class="fas fa-star unrated_star"></i>`;
                                                     }
                                                 }
@@ -85,30 +85,30 @@
                                                 }
                                                 return rating_html;
                                             })()}
-                                            <span>${row.Rating!==undefined?parseFloat(row.Rating):''}</span>
+                                            <span>${row.ServiceProvider.Ratings!==null?parseFloat(row.ServiceProvider.Ratings):''}</span>
                                         </div>
                                     </div>
                                 </div>
                             `;
                         }
                         else{
-                            return `<p onclick="show_service_details(${row.ServiceRequestId}, false)">No SP</p>`;
+                            return `<p onclick="show_service_details(${row.Service.Id}, false)">No SP</p>`;
                         }
                     }
                 },
                 {
                     render : function(data, type, row){
                         // €
-                        return `<p class="payment_text" onclick="show_service_details(${row.ServiceRequestId}, false)">€<span>${row.TotalCost}</span></p>`;
+                        return `<p class="payment_text" onclick="show_service_details(${row.Service.Id}, false)">€<span>${row.Service.TotalCost}</span></p>`;
                     }
                 },
                 {
                     render : function(data, type, row){
-                        switch(row.Status){
+                        switch(row.Service.Status){
                             case 2:
-                                return `<p class="completed_status" onclick="show_service_details(${row.ServiceRequestId}, false)">Completed</p>`;
+                                return `<p class="completed_status" onclick="show_service_details(${row.Service.Id}, false)">Completed</p>`;
                             case 3:
-                                return `<p class="cancelled_status" onclick="show_service_details(${row.ServiceRequestId}, false)">Cancelled</p>`;
+                                return `<p class="cancelled_status" onclick="show_service_details(${row.Service.Id}, false)">Cancelled</p>`;
                         }
                     }
                 },
@@ -118,8 +118,8 @@
                         // 1    : PENDING
                         // 2    : COMPLETED
                         // 3    : CANCALLED
-                        if(row.Status==2){
-                            return `<button class="rate_sp_btn" onclick="rate_sp_open_model(${row.ServiceRequestId})">Rate SP</button>`;
+                        if(row.Service.Status==2){
+                            return `<button class="rate_sp_btn" onclick="rate_sp_open_model(${row.Service.Id})">Rate SP</button>`;
                         }
                         else{
                             return `<button class="rate_sp_btn" disabled>Rate SP</button>`;
@@ -145,10 +145,11 @@
 
     function rate_sp_open_model(id){
         store.id.rate_sp = id;
+        console.log(store.id.rate_sp, id);
         let data = store.customer.data.service_history;
-        data = data.filter((service)=>{
-            if(service.ServiceRequestId==id){
-                return service;
+        data = data.filter((i)=>{
+            if(i.Service.Id==id){
+                return i;
             }
         });
 
@@ -158,19 +159,19 @@
         $('#rating_popup').html(`
             <!-- ON RATE SERVICE PROVIDER  -->
             <div class="service_provider">
-                <img class="hat_style" src="${BASE_URL}/assets/img/avatar/${data.ServiceProvider.UserProfilePicture}.png" alt="">
+                <img class="hat_style" src="${BASE_URL}/assets/img/avatar/${data.ServiceProvider.ProfilePicture}.png" alt="">
                 <div>
-                    <p>${data.ServiceProvider.FirstName} ${data.ServiceProvider.LastName}</p>
+                    <p>${data.ServiceProvider.Name}</p>
                     <div>
                         ${(function(){
                             let rating_html = ``;
-                            if(data.Rating!==undefined){
+                            if(data.ServiceProvider.Ratings!==undefined){
                                 // FOR RATED STAR...
-                                for(let i=0; i<parseInt(data.Rating); i++){
+                                for(let i=0; i<parseInt(data.ServiceProvider.Ratings); i++){
                                     rating_html +=`<i class="fas fa-star rated_star"></i>`;
                                 }
                                 // FOR UNRATED STAR...
-                                for(let i=0; i<(5-parseInt(data.Rating)); i++){
+                                for(let i=0; i<(5-parseInt(data.ServiceProvider.Ratings)); i++){
                                     rating_html +=`<i class="fas fa-star unrated_star"></i>`;
                                 }
                             }
@@ -181,7 +182,7 @@
                             }
                             return rating_html;
                         })()}
-                        <span>${data.Rating!==undefined?parseInt(data.Rating) : ''}</span>
+                        <span>${data.ServiceProvider.Ratings!==null?parseInt(data.ServiceProvider.Ratings) : ''}</span>
                     </div>
                 </div>
             </div><!-- END-SERVICE-PROVIDER -->

@@ -67,7 +67,7 @@
             columns : [
                 {
                     render : function(data, type, row){
-                        return `${row.ServiceRequestId}`;
+                        return `${row.Service.Id}`;
                     }
                 },
                 {
@@ -75,11 +75,11 @@
                         return `<div class="service_date">
                                     <div>
                                         <img src="<?= assets('assets/img/table/calendar.png'); ?>" alt="">
-                                        <p>${row.ServiceDate}</p>
+                                        <p>${row.Service.ServiceDate}</p>
                                     </div>
                                     <div>
                                         <img src="<?= assets('assets/img/table/time.png'); ?>" alt="">
-                                        <p>${row.StartTime} - ${row.EndTime}</p>
+                                        <p>${row.Service.StartTime} - ${row.Service.EndTime}</p>
                                     </div>    
                                 </div>`;
                     }
@@ -87,32 +87,32 @@
                 {
                     render : function(data, type, row){
                         return `<div class="customer_details">
-                                    <p>${row.Customer.FirstName} ${row.Customer.LastName}</p>
+                                    <p>${row.Customer.Name}</p>
                                     <div>
                                         <img src="<?= assets('assets/img/table/home.png'); ?>" alt="">
-                                        <p>${row.AddressLine1} ${row.AddressLine2}, ${row.PostalCode} ${row.City}</p>
+                                        <p>${row.ServiceAddress.AddressLine1} ${row.ServiceAddress.AddressLine2}, ${row.ServiceAddress.PostalCode} ${row.ServiceAddress.City}</p>
                                     </div>
                                 </div>`;
                     }
                 },
                 {
                     render : function(data, type, row){
-                        if(row.ServiceProvider!==undefined){
+                        if(row.ServiceProvider.Id!==0){
                             return `
-                                <div class="service_provider" onclick="show_service_details(${row.ServiceRequestId})">
-                                    <img class="hat_style" src="${BASE_URL}/assets/img/avatar/${row.ServiceProvider.UserProfilePicture}.png" alt="">
+                                <div class="service_provider" onclick="show_service_details(${row.Service.Id})">
+                                    <img class="hat_style" src="${BASE_URL}/assets/img/avatar/${row.ServiceProvider.ProfilePicture}.png" alt="">
                                     <div>
-                                        <p>${row.ServiceProvider.FirstName} ${row.ServiceProvider.LastName}</p>    
+                                        <p>${row.ServiceProvider.Name}</p>    
                                         <div>
                                             ${(function(){
                                                 let rating_html = ``;
-                                                if(row.ServiceProvider.Rating!==undefined){
+                                                if(row.ServiceProvider.Ratings!==null){
                                                     // FOR RATED STAR...
-                                                    for(let i=0; i<parseInt(row.ServiceProvider.Rating); i++){
+                                                    for(let i=0; i<parseInt(row.ServiceProvider.Ratings); i++){
                                                         rating_html +=`<i class="fas fa-star rated_star"></i>`;
                                                     }
                                                     // FOR UNRATED STAR...
-                                                    for(let i=0; i<(5-parseInt(row.ServiceProvider.Rating)); i++){
+                                                    for(let i=0; i<(5-parseInt(row.ServiceProvider.Ratings)); i++){
                                                         rating_html +=`<i class="fas fa-star unrated_star"></i>`;
                                                     }
                                                 }
@@ -123,7 +123,7 @@
                                                 }
                                                 return rating_html;
                                             })()}
-                                            <span>${row.ServiceProvider.Rating!==undefined?parseFloat(row.ServiceProvider.Rating):''}</span>
+                                            <span>${row.ServiceProvider.Ratings!==null?parseFloat(row.ServiceProvider.Ratings):''}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -136,7 +136,7 @@
                 },
                 {
                     render : function(data, type, row){
-                        switch(row.Status){
+                        switch(row.Service.Status){
                             case 0:
                                 return `<p class="new_status">New</p>`;
                             case 1:
@@ -150,7 +150,7 @@
                 },
                 {
                     render : function(data, type, row){
-                        return `<p class="payment_text">€${row.TotalCost}</p>`;
+                        return `<p class="payment_text">€${row.Service.TotalCost}</p>`;
                     }
                 },
                 {
@@ -158,11 +158,11 @@
                         return `<div class="dropdown">
                                     <button class="dropdown_btn"><i class="fas fa-ellipsis-v"></i></button>
                                     <div class="dropdown_menu d_none">
-                                        <a href="javascript:void(0)" onclick="open_edit_service_model(${row.ServiceRequestId})">Edit & Reschedule</a>
+                                        <a href="javascript:void(0)" onclick="open_edit_service_model(${row.Service.Id})">Edit & Reschedule</a>
                                         ${(function(){
                                             // MEANS NEW AND ASSIGNED REQUEST ONLY ALLOWED TO CANCEL
-                                            if(row.Status==0 || row.Status==1){
-                                                return `<a href="javascript:void(0)" onclick="cancel_service(${row.ServiceRequestId})">Cancel</a>`;
+                                            if(row.Service.Status==0 || row.Service.Status==1){
+                                                return `<a href="javascript:void(0)" onclick="cancel_service(${row.Service.Id})">Cancel</a>`;
                                             }
                                             else{
                                                 return ``;
@@ -195,6 +195,10 @@
         });
     });
 
+    let dateFilter = {
+        fromData : [],
+        toData : []
+    };
 
     function search_by_service_id(val){        
         store.admin.table.service_requests.column(0).search(val).draw();
@@ -218,14 +222,21 @@
 
     function search_by_from_date(val){
         let fromDate = new Date(val);
+        let data = [];
         let filter = [];
-        const data = store.admin.data.service_requests;
+        if(dateFilter.toData.length==0){
+            data = store.admin.data.service_requests;
+        }
+        else{
+            data = dateFilter.toData;
+        }
         for(let i=0; i<data.length; i++){
-            let serviceDate = new Date(moment(data[i].ServiceStartDate, 'YYYY-MM-DD').format('YYYY-MM-DD'));
+            let serviceDate = new Date(moment(data[i].Service.ServiceStartDate, 'YYYY-MM-DD').format('YYYY-MM-DD'));
             if(serviceDate.getTime() >= fromDate.getTime()){ 
                 filter.push(data[i]);
             }
         }
+        dateFilter.fromData = filter;
         store.admin.table.service_requests
         .clear()
         .rows.add(filter)
@@ -234,14 +245,21 @@
 
     function search_by_to_date(val){
         let toDate = new Date(val);
+        let data = [];
         let filter = [];
-        const data = store.admin.data.service_requests;
+        if(dateFilter.fromData.length==0){
+            data = store.admin.data.service_requests;
+        }
+        else{
+            data = dateFilter.fromData;
+        }
         for(let i=0; i<data.length; i++){
-            let serviceDate = new Date(moment(data[i].ServiceStartDate, 'YYYY-MM-DD').format('YYYY-MM-DD'));
+            let serviceDate = new Date(moment(data[i].Service.ServiceStartDate, 'YYYY-MM-DD').format('YYYY-MM-DD'));
             if(serviceDate.getTime() <= toDate.getTime()){ 
                 filter.push(data[i]);
             }
         }
+        dateFilter.toData = filter;
         store.admin.table.service_requests
         .clear()
         .rows.add(filter)
@@ -252,6 +270,10 @@
         $('input').val('').keyup();
         $('[name="userRoleSelect"]').val('').change();
         $('[name="serviceStatusSelect"]').val('').change();
+
+        // REMOVE FILTERED DATA...
+        dateFilter.fromData = [];
+        dateFilter.toData = [];
 
         store.admin.table.service_requests
         .clear()
@@ -270,24 +292,24 @@
 
     function open_edit_service_model(id){        
         let filterData = store.admin.data.service_requests.filter((i)=>{
-            if(i.ServiceRequestId == id){
+            if(i.Service.Id == id){
                 return i;
             }
         });
         filterData = filterData[0];
-        store.id.reschedule = filterData.ServiceRequestId;
+        store.id.reschedule = filterData.Service.Id;
         // ---------- DATE ----------
-        const serviceDate = moment(filterData.ServiceStartDate, 'YYYY-MM-DD').format('YYYY-MM-DD');
+        const serviceDate = moment(filterData.Service.ServiceStartDate, 'YYYY-MM-DD').format('YYYY-MM-DD');
         $('[name="edit_service_date"]').val(serviceDate);
-        $('[name="edit_service_time"]').val(filterData.StartTime);
-        $('[name="edit_service_street_name"]').val(filterData.AddressLine1);
-        $('[name="edit_service_street_name_readonly"]').val(filterData.AddressLine1);
-        $('[name="edit_service_house_number"]').val(filterData.AddressLine2);
-        $('[name="edit_service_house_number_readonly"]').val(filterData.AddressLine2);
-        $('[name="edit_service_city"]').val(filterData.City);
-        $('[name="edit_service_city_readonly"]').val(filterData.City);
-        $('[name="edit_service_postal_code"]').val(filterData.PostalCode);
-        $('[name="edit_service_postal_code_readonly"]').val(filterData.PostalCode);
+        $('[name="edit_service_time"]').val(filterData.Service.StartTime);
+        $('[name="edit_service_street_name"]').val(filterData.ServiceAddress.AddressLine1);
+        $('[name="edit_service_street_name_readonly"]').val(filterData.ServiceAddress.AddressLine1);
+        $('[name="edit_service_house_number"]').val(filterData.ServiceAddress.AddressLine2);
+        $('[name="edit_service_house_number_readonly"]').val(filterData.ServiceAddress.AddressLine2);
+        $('[name="edit_service_city"]').val(filterData.ServiceAddress.City);
+        $('[name="edit_service_city_readonly"]').val(filterData.ServiceAddress.City);
+        $('[name="edit_service_postal_code"]').val(filterData.ServiceAddress.PostalCode);
+        $('[name="edit_service_postal_code_readonly"]').val(filterData.ServiceAddress.PostalCode);
         open_model('edit_service_request');
     }
 

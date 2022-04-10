@@ -2,6 +2,8 @@
 
 namespace app\services;
 
+use core\Database;
+
 use app\models\User;
 use app\models\Favorite;
 use app\models\Service;
@@ -57,15 +59,24 @@ class Functions{
 
     // ----------GET SP EMAILS BY POSTAL CODE----------
     public function getSPEmailsByPostalCode($postal_code){
-        $user = new User();
-        $where = "PostalCode = {$postal_code} AND RoleId = 2";
-        $data = $user->columns(['user.Email', 'user.UserId'])->join('UserId', 'UserId', 'useraddress')->where($where)->read();
+        $db = new Database();
+        $sql = "SELECT user.Email,
+                       user.UserId
+                FROM user
+                LEFT JOIN useraddress AS address
+                    ON user.UserId = address.UserId
+                WHERE address.PostalCode = {$postal_code} AND user.RoleId = 2
+                HAVING  ( 
+                            SELECT COUNT(*) FROM favoriteandblocked WHERE 
+                            ( UserId = 2 AND TargetUserId = user.UserId AND IsBlocked = 1) OR 
+                            (TargetUserId = 2 AND UserId = user.UserId  AND IsBlocked = 1) 
+                        )=0";
+        $data = $db->query($sql);
+    
         if(count($data)>0){
             $emails  = [];
             foreach($data as $i){
-                if(!$this->isUserBlockedByAnotherUser($i->UserId)){
-                    $emails[] = $i->Email;
-                }
+                $emails[] = $i->Email;
             }
             return $emails;
         }
@@ -103,61 +114,76 @@ class Functions{
     // ----------GET SP EMAIL BY SERVICE ID----------
     public function getServiceDetailsByServiceId($id){
         $serviceId = $id;
-        $service = new Service();
-        $serviceData = $service->join('ServiceRequestId', 'ServiceRequestId', 'servicerequestaddress')
-                        ->where('servicerequest.ServiceRequestId', '=', $serviceId)->read();
-
-        function time_to_minutes($time){
-            $temp = explode(':', $time);
-            $hours = (int) $temp[0];
-            $minutes = (int) $temp[1];
-            $totalMinutes = $hours*60 + $minutes;
-            return $totalMinutes;
+        $db = new Database();
+        $sql = "SELECT service.ServiceRequestId,
+                       service.UserId AS CustomerId,
+                       service.ServiceProviderId,
+                       service.ServiceStartDate,
+                       service.TotalCost,
+                       service.ExtraHours + service.ServiceHours AS Duration,
+                       service.Comments,
+                       service.HasPets,
+                       service.Status,
+                       address.AddressLine1,
+                       address.AddressLine2,
+                       address.PostalCode,
+                       address.City,
+                       address.Mobile,
+                       address.Email,
+                       rating.Ratings,
+                       CONCAT(customer.FirstName,' ',customer.LastName) AS CustomerName,
+                       CONCAT(serviceProvider.FirstName,' ',serviceProvider.LastName) AS ServiceProviderName,
+                       serviceProvider.UserProfilePicture AS ServiceProviderProfilePicture,
+                       GROUP_CONCAT(extraService.ServiceExtraId) AS ExtraService
+                FROM servicerequest AS service
+                INNER JOIN servicerequestaddress AS address
+                    ON service.ServiceRequestId = address.ServiceRequestId
+                LEFT JOIN servicerequestextra AS extraService
+                    ON service.ServiceRequestId = extraService.ServiceRequestId
+                INNER JOIN user AS customer
+                    ON service.UserId = customer.UserId
+                LEFT JOIN user AS serviceProvider
+                    ON service.ServiceProviderId = serviceProvider.UserId
+                LEFT JOIN rating
+                    ON service.ServiceRequestId = rating.ServiceRequestId
+                WHERE service.ServiceRequestId = {$serviceId}
+                GROUP BY extraService.ServiceRequestId
+                ORDER BY service.ServiceRequestId";
+    
+        $data = $db->query($sql);
+    
+        $data[0]->TotalCost = (int) $data[0]->TotalCost;
+        $data[0]->ServiceDate = date('d/m/Y', strtotime($data[0]->ServiceStartDate));
+        $data[0]->StartTime = date('H:i', strtotime($data[0]->ServiceStartDate));
+        $data[0]->EndTime = date('H:i', strtotime("+".($data[0]->Duration*60)." minutes", strtotime($data[0]->ServiceStartDate)));
+        $data[0]->Duration = date('H:i', mktime(0, $data[0]->Duration*60) );
+        if($data[0]->ExtraService!=null){
+            $data[0]->ExtraService = array_map('intval', explode(',', $data[0]->ExtraService));
+            $temp = '';
+            for($j=0; $j<count($data[0]->ExtraService); $j++){
+                if($data[0]->ExtraService[$j]==1){
+                    $temp .= 'Cabinets, ';
+                }
+                else if($data[0]->ExtraService[$j]==2){
+                    $temp .= 'Fridge, ';
+                }
+                else if($data[0]->ExtraService[$j]==3){
+                    $temp .= 'Oven, ';
+                }
+                else if($data[0]->ExtraService[$j]==4){
+                    $temp .= 'Laundry Wash, ';
+                }
+                else if($data[0]->ExtraService[$j]==5){
+                    $temp .= 'Interior Windows, ';
+                }
+            }
+            $data[0]->ExtraService = rtrim($temp, ', ');
+        }
+        else{
+            $data[0]->ExtraService = '';
         }
 
-        // ADD CUSTOMER NAME AND EMAIL...
-        $user = new User();
-        $userData = $user->where('UserId', '=', $serviceData[0]->UserId)->read();
-        $serviceData[0]->CustomerName = $userData[0]->FirstName.' '.$userData[0]->LastName;
-
-        // MODIFY DATA...
-        $serviceData[0]->TotalCost   = (int) $serviceData[0]->TotalCost;
-        $serviceData[0]->ServiceDate = date('d/m/Y', strtotime($serviceData[0]->ServiceStartDate));
-        $serviceData[0]->StartTime   = date('H:i', strtotime($serviceData[0]->ServiceStartDate));
-        $serviceData[0]->Duration    = $serviceData[0]->ServiceHours 
-                                        + $serviceData[0]->ExtraHours;
-        $serviceData[0]->Duration    = date('H:i', mktime(0, $serviceData[0]->Duration*60));
-        $serviceData[0]->EndTime     = time_to_minutes($serviceData[0]->StartTime) 
-                                        + time_to_minutes($serviceData[0]->Duration);
-        $serviceData[0]->EndTime     = date('H:i', mktime(0, $serviceData[0]->EndTime));
-        $serviceData[0]->HasPets     = $serviceData[0]->HasPets==0? 'No' : 'Yes';
-
-        // ADD EXTRA SERVICE DETAILS...
-        $extra = new ExtraService();
-        $extraServiceData = $extra->where('ServiceRequestId', '=', $serviceId)->read();
-        if(count($extraServiceData)>0){
-            $serviceData[0]->ExtraService = '';
-            for($j=0; $j<count($extraServiceData); $j++){
-                if($extraServiceData[$j]->ServiceExtraId==1){
-                    $serviceData[0]->ExtraService .= 'Cabinets, ';
-                }
-                else if($extraServiceData[$j]->ServiceExtraId==2){
-                    $serviceData[0]->ExtraService .= 'Fridge, ';
-                }
-                else if($extraServiceData[$j]->ServiceExtraId==3){
-                    $serviceData[0]->ExtraService .= 'Oven, ';
-                }
-                else if($extraServiceData[$j]->ServiceExtraId==4){
-                    $serviceData[0]->ExtraService .= 'Laundry Wash, ';
-                }
-                else if($extraServiceData[$j]->ServiceExtraId==5){
-                    $serviceData[0]->ExtraService .= 'Interior Windows, ';
-                }
-            }    
-            $serviceData[0]->ExtraService = rtrim($serviceData[0]->ExtraService, ', ');
-        }
-                
-        return $serviceData[0];
+        return $data[0];
     }
 
     // ----------CHECK USER BLOCKED ANOTHER USER----------
@@ -166,26 +192,12 @@ class Functions{
         $user2 = $id;
         $favorite = new Favorite();
 
-        $where1 = "(UserId = {$user2} AND TargetUserId = {$user1})";
-        $data1 = $favorite->where($where1)->read();
-
-        $where2 = "(UserId = {$user1} AND TargetUserId = {$user2})";
-        $data2 = $favorite->where($where2)->read();
+        $where = " (UserId = {$user2} AND TargetUserId = {$user1} AND IsBlocked=1) OR 
+                   (UserId = {$user1} AND TargetUserId = {$user2} AND IsBlocked=1)";
+        $data = $favorite->where($where)->read();
         
-        if(count($data1)>0 || count($data2)>0){
-            if(isset($data1[0]->IsBlocked)){
-                if($data1[0]->IsBlocked==1){
-                    return true;
-                }
-            }
-            if(isset($data2[0]->IsBlocked)){
-                if($data2[0]->IsBlocked==1){
-                    return true;
-                }
-            }
-            else{
-                return false;
-            }
+        if(count($data)>0){
+            return true;
         }
         else{
             return false;

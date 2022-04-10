@@ -34,7 +34,7 @@
             columns :[
                 {
                     render : function(data, type, row){
-                        return`<p class="service_id">${row.ServiceRequestId}</p>`;
+                        return`<p class="service_id">${row.Service.Id}</p>`;
                     },
                 },
                 {
@@ -42,18 +42,18 @@
                         return `<div class="service_date">
                                     <div>
                                         <img src="<?= assets('assets/img/table/calendar.png'); ?>" alt="">
-                                        <p>${row.ServiceDate}</p>
+                                        <p>${row.Service.ServiceDate}</p>
                                     </div>
                                     <div>
                                         <img src="<?= assets('assets/img/table/time.png'); ?>" alt="">
-                                        <p>${row.StartTime} to ${row.EndTime}</p>
+                                        <p>${row.Service.StartTime} to ${row.Service.EndTime}</p>
                                     </div>
                                 </div>`;
                     }
                 },
                 {
                     render : function(data, type, row){
-                        return `<p class="customer_name">${row.CustomerName}</p>`;
+                        return `<p class="customer_name">${row.Customer.Name}</p>`;
                     }
                 },
                 {
@@ -62,24 +62,32 @@
                                     <div>
                                         ${(function(){
                                             let html = ``;
-                                            // FOR RATED STAR...
-                                            for(let i=0; i<parseInt(row.Ratings); i++){
-                                                html += `<i class="fas fa-star rated_star"></i>`;
+                                            if(row.ServiceProvider.Rating.Ratings!==null){
+                                                // FOR RATED STAR...
+                                                for(let i=0; i<parseInt(row.ServiceProvider.Rating.Ratings); i++){
+                                                    html += `<i class="fas fa-star rated_star"></i>`;
+                                                }
+                                                // FOR UNRATED STAR....
+                                                for(let i=0; i<5-parseInt(row.ServiceProvider.Rating.Ratings); i++){
+                                                    html += `<i class="fas fa-star unrated_star"></i>`;
+                                                }
+                                                return html;
                                             }
-                                            // FOR UNRATED STAR....
-                                            for(let i=0; i<5-parseInt(row.Ratings); i++){
-                                                html += `<i class="fas fa-star unrated_star"></i>`;
+                                            else{
+                                                for(let i=0; i<5; i++){
+                                                    html += `<i class="fas fa-star unrated_star"></i>`;
+                                                }
+                                                return html;
                                             }
-                                            return html;
                                         })()}
                                     </div>
-                                    <p>${row.HighestRating}</p>
+                                    <p>${row.ServiceProvider.Rating.HighestRating}</p>
                                 </div>`;
                     }
                 },
                 {
                     render : function(data, type, row){
-                        return `<p>${row.Comments}</p>`;
+                        return `<p>${row.ServiceProvider.Rating.Feedback!==null? row.ServiceProvider.Rating.Feedback : ''}</p>`;
                     }
                 }
             ],

@@ -8,8 +8,8 @@ use core\Validation;
 use core\Database;
 use core\Mail;
 
-use app\models\UserAddress;
 use app\models\User;
+use app\models\UserAddress;
 use app\models\Service;
 use app\models\ServiceAddress;
 use app\models\ExtraService;
@@ -144,13 +144,14 @@ class BookNow{
 
         // ADD EXTRA SERVICES IN DATABASE IF USER WANT'S...
         if(count($extra)>0){
-            $extra_service_obj = new ExtraService();
+            $temp = '';
             for($i=0; $i<count($extra); $i++){
-                $extra_service_obj->create([
-                    'ServiceRequestId' => $serviceId,
-                    'ServiceExtraId' => (int) $extra[$i],
-                ]);
+                $temp .= "( {$serviceId}, {$extra[$i]} ), ";
             }    
+            $temp = rtrim($temp, ', ');
+            $sql = "INSERT INTO servicerequestextra (ServiceRequestId, ServiceExtraId) VALUES {$temp}";
+            $db = new Database();
+            $db->query($sql);        
         }
 
         if(RES_WITH_MAIL){
@@ -197,22 +198,20 @@ class BookNow{
     public function get_favorite_sp(Request $req, Response $res){
         $customerId = session('userId');
         $db = new Database();
-        $fun = new Functions();
-        $sql = "SELECT u.* FROM user as u
-                INNER JOIN favoriteandblocked as f 
-                ON u.UserId = f.TargetUserId 
-                WHERE f.UserId = {$customerId} AND f.IsFavorite=1";
-        $data = $db->query($sql); // WE GET ALL SP DATA...
-
-        $favoriteSP = [];
-        foreach($data as $i){
-            // REMOVE PASSWORD FIELD...
-            unset($i->Password); 
-            if(!$fun->isUserBlockedByAnotherUser($i->UserId)){
-                $favoriteSP[] = $i;
-            }
-        }
-        $res->status(200)->json($favoriteSP);
+        $sql = "SELECT user.UserId,
+                       user.FirstName,
+                       user.LastName,
+                       user.UserProfilePicture
+                FROM user
+                INNER JOIN favoriteandblocked AS favorite ON user.UserId = favorite.TargetUserId 
+                WHERE favorite.UserId = {$customerId} AND favorite.IsFavorite=1
+                HAVING (
+                         SELECT COUNT(*) FROM favoriteandblocked WHERE
+                         (UserId = {$customerId} AND TargetUserId = user.UserId AND IsBlocked = 1 ) OR
+                         (TargetUserId = {$customerId} AND UserId = user.UserId AND IsBlocked = 1)
+                        )=0";
+        $data = $db->query($sql);
+        $res->status(200)->json($data);
     }
 
 }

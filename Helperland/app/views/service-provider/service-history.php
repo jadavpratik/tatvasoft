@@ -50,41 +50,41 @@
             columns :[
                 {
                     render : function(data, type, row){
-                        return`<p class="service_id" onclick="show_service_details(${row.ServiceRequestId})">${row.ServiceRequestId}</p>`;
+                        return`<p class="service_id" onclick="show_service_details(${row.Service.Id})">${row.Service.Id}</p>`;
                     },
                 },
                 {
                     render : function(data, type, row){
-                        return `<div class="service_date" onclick="show_service_details(${row.ServiceRequestId})">
+                        return `<div class="service_date" onclick="show_service_details(${row.Service.Id})">
                                     <div>
                                         <img src="<?= assets('assets/img/table/calendar.png'); ?>" alt="">
-                                        <p>${row.ServiceDate}</p>
+                                        <p>${row.Service.ServiceDate}</p>
                                     </div>
                                     <div>
                                         <img src="<?= assets('assets/img/table/time.png'); ?>" alt="">
-                                        <p>${row.StartTime} to ${row.EndTime}</p>
+                                        <p>${row.Service.StartTime} to ${row.Service.EndTime}</p>
                                     </div>
                                 </div>`;
                     }
                 },
                 {
                     render : function(data, type, row){
-                        return `<div class="customer_details" onclick="show_service_details(${row.ServiceRequestId})"> 
-                                    <p>${row.CustomerName}</p>
+                        return `<div class="customer_details" onclick="show_service_details(${row.Service.Id})"> 
+                                    <p>${row.Customer.Name}</p>
                                     <div>
                                         <img src="<?= assets('assets/img/table/home.png'); ?>" alt="">
-                                        <p>${row.AddressLine1} ${row.AddressLine2}, ${row.PostalCode} ${row.City}</p>
+                                        <p>${row.ServiceAddress.AddressLine1} ${row.ServiceAddress.AddressLine2}, ${row.ServiceAddress.PostalCode} ${row.ServiceAddress.City}</p>
                                     </div>
                                 </div>`;
                     }
                 },
                 {
                     render : function(data, type, row){
-                        switch(row.Status){
+                        switch(row.Service.Status){
                             case 2:
-                                return `<p class="completed_status" onclick="show_service_details(${row.ServiceRequestId})">Completed</p>`;
+                                return `<p class="completed_status" onclick="show_service_details(${row.Service.Id})">Completed</p>`;
                             case 3:
-                                return `<p class="cancelled_status" onclick="show_service_details(${row.ServiceRequestId})">Cancelled</p>`;
+                                return `<p class="cancelled_status" onclick="show_service_details(${row.Service.Id})">Cancelled</p>`;
                         }
                     }
                 },

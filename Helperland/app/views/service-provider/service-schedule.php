@@ -4,7 +4,7 @@
 
 <script>
     async function fetchSchedules(){
-        const response = await fetch('/service-provider/service/schedule/');
+        const response = await fetch(`${BASE_URL}/service-provider/service/schedule/`);
         const data = await response.json();
         let spScheduleDates = [];
         for(let i=0; i<data.length; i++){
@@ -14,6 +14,7 @@
                 end : `${data[i].ServiceDate} ${data[i].EndTime}`,
             })
         }
+        console.log(spScheduleDates);
         return spScheduleDates;
     }
 

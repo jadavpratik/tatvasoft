@@ -45,12 +45,12 @@ class Auth{
                 exit();
             }
         }
-        else if($_SERVER['REQUEST_METHOD']!='GET'){
-            $this->res->status(401)->json(['message'=>'You need to login!']);
-            exit();
+        else if($_SERVER['REQUEST_METHOD']=='GET'){
+            $this->openLoginForm();
         }
         else{
-            $this->openLoginForm();
+            $this->res->status(401)->json(['message'=>'You need to login!']);
+            exit();
         }
     }
 

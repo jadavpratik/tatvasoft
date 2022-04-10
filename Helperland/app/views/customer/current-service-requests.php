@@ -39,41 +39,41 @@
             columns :[
                 {
                     render : function(data, type, row){
-                        return`<p class="service_id" onclick="show_service_details(${row.ServiceRequestId})">${row.ServiceRequestId}</p>`;
+                        return`<p class="service_id" onclick="show_service_details(${row.Service.Id})">${row.Service.Id}</p>`;
                     },
                 },
                 {
                     render : function(data, type, row){
-                        return` <div class="service_date" onclick="show_service_details(${row.ServiceRequestId})">
+                        return` <div class="service_date" onclick="show_service_details(${row.Service.Id})">
                                     <div>
                                         <img src="<?= assets('assets/img/table/calendar.png'); ?>" alt="">
-                                        <p>${row.ServiceDate}</p>
+                                        <p>${row.Service.ServiceDate}</p>
                                     </div>
                                     <div>
                                         <img src="<?= assets('assets/img/table/time.png'); ?>" alt="">
-                                        <p><span>${row.StartTime}</span> - <span>${row.EndTime}</span></p>
+                                        <p><span>${row.Service.StartTime}</span> - <span>${row.Service.EndTime}</span></p>
                                     </div>
                                 </div>`;
                     }
                 },
                 {
                     render : function(data, type, row){
-                        if(row.ServiceProvider!==undefined){
+                        if(row.ServiceProvider.Id!==0){
                             return `
-                                <div class="service_provider" onclick="show_service_details(${row.ServiceRequestId})">
-                                    <img class="hat_style" src="${BASE_URL}/assets/img/avatar/${row.ServiceProvider.UserProfilePicture}.png" alt="">
+                                <div class="service_provider" onclick="show_service_details(${row.Service.Id})">
+                                    <img class="hat_style" src="${BASE_URL}/assets/img/avatar/${row.ServiceProvider.ProfilePicture}.png" alt="">
                                     <div>
-                                        <p>${row.ServiceProvider.FirstName} ${row.ServiceProvider.LastName}</p>    
+                                        <p>${row.ServiceProvider.Name}</p>    
                                         <div>
                                             ${(function(){
                                                 let rating_html = ``;
-                                                if(row.Rating!==undefined){
+                                                if(row.ServiceProvider.Ratings!==undefined){
                                                     // FOR RATED STAR...
-                                                    for(let i=0; i<parseInt(row.Rating); i++){
+                                                    for(let i=0; i<parseInt(row.ServiceProvider.Ratings); i++){
                                                         rating_html +=`<i class="fas fa-star rated_star"></i>`;
                                                     }
                                                     // FOR UNRATED STAR...
-                                                    for(let i=0; i<(5-parseInt(row.Rating)); i++){
+                                                    for(let i=0; i<(5-parseInt(row.ServiceProvider.Ratings)); i++){
                                                         rating_html +=`<i class="fas fa-star unrated_star"></i>`;
                                                     }
                                                 }
@@ -84,27 +84,27 @@
                                                 }
                                                 return rating_html;
                                             })()}
-                                            <span>${row.Rating!==undefined?parseFloat(row.Rating):''}</span>
+                                            <span>${row.ServiceProvider.Ratings!==null?parseFloat(row.ServiceProvider.Ratings):''}</span>
                                         </div>
                                     </div>
                                 </div>
                             `;
                         }
                         else{
-                            return `<p onclick="show_service_details(${row.ServiceRequestId})">No SP</p>`;
+                            return `<p onclick="show_service_details(${row.Service.Id})">No SP</p>`;
                         }
                     }
                 },
                 {
                     render : function(data, type, row){
-                    return `<p class="payment_text" onclick="show_service_details(${row.ServiceRequestId})">€<span>${row.TotalCost}</span></p>`;
+                        return `<p class="payment_text" onclick="show_service_details(${row.Service.Id})">€<span>${row.Service.TotalCost}</span></p>`;
                     }
                 },
                 {
                     render : function(data, type, row){
                         return `<div class="table_btn_container">
-                                    <button class="reschedule_btn" onclick='reschedule_service_open_model(${row.ServiceRequestId})'>Reschedule</button>
-                                    <button class="cancel_btn" onclick='cancel_service_open_model(${row.ServiceRequestId});'>Cancel</button>    
+                                    <button class="reschedule_btn" onclick='reschedule_service_open_model(${row.Service.Id})'>Reschedule</button>
+                                    <button class="cancel_btn" onclick='cancel_service_open_model(${row.Service.Id});'>Cancel</button>    
                                 </div>`;
                     }
                 }

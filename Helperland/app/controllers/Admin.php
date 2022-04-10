@@ -5,6 +5,7 @@ namespace app\controllers;
 use core\Request;
 use core\Response;
 use core\Mail;
+use core\Database;
 
 use app\models\User;
 use app\models\Service;
@@ -21,98 +22,102 @@ class Admin{
 
     // ----------USER-MANAGEMENT----------
     public function user_management(Request $req, Response $res){
-        $user = new User();
-        $columns = [
-            'user.UserId',
-            'user.FirstName',
-            'user.LastName',
-            'user.CreatedDate',
-            'user.RoleId',
-            'user.Mobile',
-            'useraddress.PostalCode',
-            'user.IsActive'
-        ];
-        $data = $user->columns($columns)
-                     ->join('UserId', 'UserId', 'useraddress', 'LEFT')
-                     ->where('user.RoleId != 3')
-                     ->read();
+        $db = new Database();
+        $sql = "SELECT user.UserId,
+                       CONCAT(user.FirstName,' ',user.LastName) AS UserName,
+                       user.CreatedDate,
+                       user.RoleId,
+                       user.Mobile,
+                       user.IsActive,
+                       address.PostalCode
+                FROM user
+                LEFT JOIN useraddress AS address ON user.UserId = address.UserId
+                WHERE user.RoleId != 3
+                GROUP BY user.UserId";
+        $data = $db->query($sql);
         foreach($data as $key){
             $key->CreatedDate = date('d/m/Y', strtotime($key->CreatedDate));
         }
-        // REMOVE REPEATED OBJECT FROM ARRAY...
-        $temp = array_unique(array_column($data, 'UserId'));
-        $data = array_values(array_intersect_key($data, $temp));
-        
         $res->json($data);
     }
 
     // --------SERVICE-REQUEST----------
     public function service_requests(Request $req, Response $res){
-        $service = new Service();
-        $user = new User();
-        $data = $service->join('ServiceRequestId', 'ServiceRequestId', 'servicerequestaddress')->read();
-
-        function time_to_minutes($time){
-            $temp = explode(':', $time);
-            $hours = (int) $temp[0];
-            $minutes = (int) $temp[1];
-            $totalMinutes = $hours*60 + $minutes;
-            return $totalMinutes;
-        }
-
-        // ADD CUSTOMER AND SP DETAILS...
+        $db = new Database();
+        $sql = "SELECT service.ServiceRequestId,
+                       service.UserId AS CustomerId,
+                       service.ServiceProviderId,
+                       service.ServiceStartDate, 
+                       service.TotalCost,
+                       service.ExtraHours + service.ServiceHours AS Duration,
+                       service.Comments,
+                       service.HasPets,
+                       service.Status,
+                       address.AddressLine1,
+                       address.AddressLine2,
+                       address.PostalCode,
+                       address.City,
+                       address.Mobile,
+                       address.Email,
+                       rating.Ratings,
+                       CONCAT(customer.FirstName,' ',customer.LastName) AS CustomerName,
+                       CONCAT(serviceProvider.FirstName,' ',serviceProvider.LastName) AS ServiceProviderName,
+                       serviceProvider.UserProfilePicture AS ServiceProviderProfilePicture,
+                       GROUP_CONCAT(extraService.ServiceExtraId) AS ExtraService
+                FROM servicerequest AS service
+                INNER JOIN servicerequestaddress AS address ON service.ServiceRequestId = address.ServiceRequestId
+                LEFT JOIN servicerequestextra AS extraService ON service.ServiceRequestId = extraService.ServiceRequestId
+                INNER JOIN user AS customer ON service.UserId = customer.UserId
+                LEFT JOIN user AS serviceProvider ON service.ServiceProviderId = serviceProvider.UserId
+                LEFT JOIN rating ON service.ServiceRequestId = rating.ServiceRequestId
+                GROUP BY extraService.ServiceRequestId
+                ORDER BY service.ServiceRequestId";
+    
+        $data = $db->query($sql);
+    
         for($i=0; $i<count($data); $i++){
-
-            $data[$i]->TotalCost   = (int) $data[$i]->TotalCost;
+            $data[$i]->TotalCost = (int) $data[$i]->TotalCost;
             $data[$i]->ServiceDate = date('d/m/Y', strtotime($data[$i]->ServiceStartDate));
-            $data[$i]->StartTime   = date('H:i', strtotime($data[$i]->ServiceStartDate));
-            $data[$i]->Duration    = $data[$i]->ServiceHours 
-                                          + $data[$i]->ExtraHours;
-            $data[$i]->Duration    = date('H:i', mktime(0, $data[$i]->Duration*60));
-            $data[$i]->EndTime     = time_to_minutes($data[$i]->StartTime) 
-                                   + time_to_minutes($data[$i]->Duration);
-            $data[$i]->EndTime     = date('H:i', mktime(0, $data[$i]->EndTime));
-            
-            $customerId = $data[$i]->UserId;
-            $customerData = $user->where('UserId', '=', $customerId)->read();
-            unset($customerData[0]->Password);
-            $data[$i]->Customer = $customerData[0];
-
-            if($data[$i]->ServiceProviderId!=0 || $data[$i]->ServiceProviderId!=null){
-                $serviceProviderId = $data[$i]->ServiceProviderId;
-                $serviceProviderData = $user->where('UserId', '=', $serviceProviderId)->read();
-                unset($serviceProviderData[0]->Password);
-                $data[$i]->ServiceProvider = $serviceProviderData[0];
-
-                // SPECIFIC RATING OF CUSTOMER TO SP
-                $rating = new Rating();
-                $where = "RatingFrom = {$customerId} AND RatingTo = {$serviceProviderId}";
-                $ratingData = $rating->where($where)->read();
-                $tempRating = 0;
-                if(count($ratingData)>0){
-                    for($j=0; $j<count($ratingData); $j++){
-                        $tempRating += (float) $ratingData[$j]->Ratings;
-                    }
-                    $tempRating /= count($ratingData); 
-                }
-                $data[$i]->ServiceProvider->Rating = $tempRating;
-
-                // STORE RATING ALL OVER RATING...
-                // $rating = new Rating();
-                // $ratingData = $rating->where('RatingTo', '=', $serviceProviderId)->read();
-                // $tempRating = 0;
-                // if(count($ratingData)>0){
-                //     for($j=0; $j<count($ratingData); $j++){
-                //         $tempRating += (float) $ratingData[$j]->Ratings;
-                //     }
-                //     $tempRating /= count($ratingData); 
-                // }
-                // $data[$i]->ServiceProvider->Rating = $tempRating;
-            }
-            
-            
+            $data[$i]->StartTime = date('H:i', strtotime($data[$i]->ServiceStartDate));
+            $data[$i]->EndTime = date('H:i', strtotime("+".($data[$i]->Duration*60)." minutes", strtotime($data[$i]->ServiceStartDate)));
+            $data[$i]->Duration = date('H:i', mktime(0, $data[$i]->Duration*60) );
+            if($data[$i]->ExtraService!=null){
+                $data[$i]->ExtraService = array_map('intval', explode(',', $data[$i]->ExtraService));
+            }            
+            // ----------FOR MAKING DATA AS NESTED OBJECT----------
+            $data[$i] = [
+                'Service' => [
+                    'Id' => $data[$i]->ServiceRequestId,
+                    'ServiceStartDate' => $data[$i]->ServiceStartDate,
+                    'ServiceDate' => $data[$i]->ServiceDate,
+                    'StartTime' => $data[$i]->StartTime,
+                    'EndTime' => $data[$i]->EndTime,
+                    'Duration' => $data[$i]->Duration,
+                    'TotalCost' => $data[$i]->TotalCost,
+                    'Comments' => $data[$i]->Comments,
+                    'HasPets' => $data[$i]->HasPets,
+                    'Status' => $data[$i]->Status,
+                    'ExtraService' => $data[$i]->ExtraService
+                ],
+                'ServiceAddress' => [
+                    'AddressLine1' => $data[$i]->AddressLine1,
+                    'AddressLine2' => $data[$i]->AddressLine2,
+                    'City' => $data[$i]->City,
+                    'PostalCode' => $data[$i]->PostalCode
+                ],
+                'Customer' => [
+                    'Id' => $data[$i]->CustomerId,
+                    'Name' => $data[$i]->CustomerName,
+                ],
+                'ServiceProvider' => [
+                    'Id' => $data[$i]->ServiceProviderId,
+                    'Name' => $data[$i]->ServiceProviderName,
+                    'ProfilePicture' => $data[$i]->ServiceProviderProfilePicture,
+                    'Ratings' => $data[$i]->Ratings
+                ],
+            ];
         }
-
+    
         $res->status(200)->json($data);
     }
 

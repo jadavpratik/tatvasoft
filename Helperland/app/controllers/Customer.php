@@ -24,153 +24,168 @@ class Customer{
 
     // ----------SERVICES HISTORY (COMPLETED & CANCELLED)----------
     public function service_history(Request $req, Response $res){
-
         $customerId = session('userId');
-        $service = new Service();
-        $where = "UserId = {$customerId} AND (Status = {$this->COMPLETED_STATUS} OR Status = {$this->CANCELLED_STATUS})";
-        $serviceData = $service->join('ServiceRequestId', 'ServiceRequestId', 'servicerequestaddress')
-                               ->where($where)->read();
-       
-        function time_to_minutes($time){
-            $temp = explode(':', $time);
-            $hours = (int) $temp[0];
-            $minutes = (int) $temp[1];
-            $totalMinutes = $hours*60 + $minutes;
-            return $totalMinutes;
+        $db = new Database();
+        $sql = "SELECT service.ServiceRequestId,
+                       service.UserId AS CustomerId,
+                       service.ServiceProviderId,
+                       service.ServiceStartDate, 
+                       service.TotalCost,
+                       service.ExtraHours + service.ServiceHours AS Duration,
+                       service.Comments,
+                       service.HasPets,
+                       service.Status,
+                       address.AddressLine1,
+                       address.AddressLine2,
+                       address.PostalCode,
+                       address.City,
+                       address.Mobile,
+                       address.Email,
+                       rating.Ratings,
+                       CONCAT(customer.FirstName,' ',customer.LastName) AS CustomerName,
+                       CONCAT(serviceProvider.FirstName,' ',serviceProvider.LastName) AS ServiceProviderName,
+                       serviceProvider.UserProfilePicture AS ServiceProviderProfilePicture,
+                       GROUP_CONCAT(extraService.ServiceExtraId) AS ExtraService
+                FROM servicerequest AS service
+                INNER JOIN servicerequestaddress AS address ON service.ServiceRequestId = address.ServiceRequestId
+                LEFT JOIN servicerequestextra AS extraService ON service.ServiceRequestId = extraService.ServiceRequestId
+                INNER JOIN user AS customer ON service.UserId = customer.UserId
+                LEFT JOIN user AS serviceProvider ON service.ServiceProviderId = serviceProvider.UserId
+                LEFT JOIN rating ON service.ServiceRequestId = rating.ServiceRequestId
+                WHERE service.UserId = {$customerId} AND (service.Status = {$this->COMPLETED_STATUS} OR service.Status = {$this->CANCELLED_STATUS})
+                GROUP BY extraService.ServiceRequestId
+                ORDER BY service.ServiceRequestId";
+    
+        $data = $db->query($sql);
+    
+        for($i=0; $i<count($data); $i++){
+            $data[$i]->TotalCost = (int) $data[$i]->TotalCost;
+            $data[$i]->ServiceDate = date('d/m/Y', strtotime($data[$i]->ServiceStartDate));
+            $data[$i]->StartTime = date('H:i', strtotime($data[$i]->ServiceStartDate));
+            $data[$i]->EndTime = date('H:i', strtotime("+".($data[$i]->Duration*60)." minutes", strtotime($data[$i]->ServiceStartDate)));
+            $data[$i]->Duration = date('H:i', mktime(0, $data[$i]->Duration*60) );
+            if($data[$i]->ExtraService!=null){
+                $data[$i]->ExtraService = array_map('intval', explode(',', $data[$i]->ExtraService));
+            }            
+            // ----------FOR MAKING DATA AS NESTED OBJECT----------
+            $data[$i] = [
+                'Service' => [
+                    'Id' => $data[$i]->ServiceRequestId,
+                    'ServiceDate' => $data[$i]->ServiceDate,
+                    'StartTime' => $data[$i]->StartTime,
+                    'EndTime' => $data[$i]->EndTime,
+                    'Duration' => $data[$i]->Duration,
+                    'TotalCost' => $data[$i]->TotalCost,
+                    'Comments' => $data[$i]->Comments,
+                    'HasPets' => $data[$i]->HasPets,
+                    'Status' => $data[$i]->Status,
+                    'ExtraService' => $data[$i]->ExtraService
+                ],
+                'ServiceAddress' => [
+                    'AddressLine1' => $data[$i]->AddressLine1,
+                    'AddressLine2' => $data[$i]->AddressLine2,
+                    'City' => $data[$i]->City,
+                    'PostalCode' => $data[$i]->PostalCode,
+                    'Mobile' => $data[$i]->Mobile,
+                    'Email' => $data[$i]->Email
+                ],
+                'Customer' => [
+                    'Id' => $data[$i]->CustomerId,
+                    'Name' => $data[$i]->CustomerName,
+                ],
+                'ServiceProvider' => [
+                    'Id' => $data[$i]->ServiceProviderId,
+                    'Name' => $data[$i]->ServiceProviderName,
+                    'ProfilePicture' => $data[$i]->ServiceProviderProfilePicture,
+                    'Ratings' => $data[$i]->Ratings
+                ],
+            ];
         }
-
-        // MODIFY DATA...
-        for($i=0; $i<count($serviceData); $i++){
-            $serviceData[$i]->TotalCost   = (int) $serviceData[$i]->TotalCost;
-            $serviceData[$i]->ServiceDate = date('d/m/Y', strtotime($serviceData[$i]->ServiceStartDate));
-            $serviceData[$i]->StartTime   = date('H:i', strtotime($serviceData[$i]->ServiceStartDate));
-            $serviceData[$i]->Duration    = $serviceData[$i]->ServiceHours 
-                                          + $serviceData[$i]->ExtraHours;
-            $serviceData[$i]->Duration    = date('H:i', mktime(0, $serviceData[$i]->Duration*60));
-            $serviceData[$i]->EndTime     = time_to_minutes($serviceData[$i]->StartTime) 
-                                          + time_to_minutes($serviceData[$i]->Duration);
-            $serviceData[$i]->EndTime     = date('H:i', mktime(0, $serviceData[$i]->EndTime));
-
-            // ADD EXTRA SERVICE DETAILS...
-            $extra = new ExtraService();
-            $serviceId = $serviceData[$i]->ServiceRequestId;
-            $extraServiceData = $extra->where('ServiceRequestId', '=', $serviceId)->read();
-            for($j=0; $j<count($extraServiceData); $j++){
-                $serviceData[$i]->ExtraService[] = $extraServiceData[$j]->ServiceExtraId;                
-            }
-
-            // ADD SERVICE PROVIDER DETAILS...
-            if($serviceData[$i]->ServiceProviderId!=null){
-                $user = new User();
-                $serviceProviderId = $serviceData[$i]->ServiceProviderId;
-                $spData = $user->where('UserId', '=', $serviceProviderId)->read();
-                // REMOVE PASSWORD FIELD...
-                unset($spData[0]->Password);
-                $serviceData[$i]->ServiceProvider = $spData[0];
-            }
-
-            // ADD RATTING DETAILS...
-            if(isset($serviceData[$i]->ServiceProvider)){
-                $rating = new Rating();
-                $serviceProviderId = $serviceData[$i]->ServiceProviderId;
-
-                // **********CUSTOMER'S RATING**********
-                $where = "ServiceRequestId = {$serviceData[$i]->ServiceRequestId}";
-                $ratingData = $rating->where($where)->read();
-                if(count($ratingData)>0){
-                    $serviceData[$i]->Rating = $ratingData[0]->Ratings;
-                    $serviceData[$i]->SPRated = true;
-                }
-
-                // **********ALL OVER RATING**********
-                // $ratingData = $rating->where('RatingTo', '=', $serviceProviderId)->read();
-                // if(count($ratingData)>0){
-                //     // CHECK, BY CURRENT CUSTOMER RATING IS GIVEN OR NOT ?
-                //     foreach($ratingData as $chunk){
-                //         if($chunk->RatingFrom == $customerId){
-                //             $serviceData[$i]->SPRated = true;
-                //         }
-                //     }
-                //     $tempRating = 0;
-                //     for($j=0; $j<count($ratingData); $j++){
-                //         $tempRating += (float) $ratingData[$j]->Ratings;                        
-                //     }
-                //     $tempRating /= count($ratingData);
-                //     $serviceData[$i]->Rating = $tempRating;
-                // }                
-            }
-        }
-        $res->status(200)->json($serviceData);
+    
+        $res->status(200)->json($data);
     }
 
     // ----------CURRENT SERVICES----------
     public function current_services(Request $req, Response $res){
-
         $customerId = session('userId');
-        $service = new Service();
-        $where = "UserId = {$customerId} AND (Status = {$this->ASSIGNED_STATUS} OR Status = {$this->NEW_STATUS})";
-        $serviceData = $service->join('ServiceRequestId', 'ServiceRequestId', 'servicerequestaddress')
-                               ->where($where)->read();
-
-        function time_to_minutes($time){
-            $temp = explode(':', $time);
-            $hours = (int) $temp[0];
-            $minutes = (int) $temp[1];
-            $totalMinutes = $hours*60 + $minutes;
-            return $totalMinutes;
+        $db = new Database();
+        $sql = "SELECT service.ServiceRequestId,
+                       service.UserId AS CustomerId,
+                       service.ServiceProviderId,
+                       service.ServiceStartDate, 
+                       service.TotalCost,
+                       service.ExtraHours + service.ServiceHours AS Duration,
+                       service.Comments,
+                       service.HasPets,
+                       service.Status,
+                       address.AddressLine1,
+                       address.AddressLine2,
+                       address.PostalCode,
+                       address.City,
+                       address.Mobile,
+                       address.Email,
+                       CONCAT(customer.FirstName,' ',customer.LastName) AS CustomerName,
+                       CONCAT(serviceProvider.FirstName,' ',serviceProvider.LastName) AS ServiceProviderName,
+                       serviceProvider.UserProfilePicture AS ServiceProviderProfilePicture,
+                       (SELECT ROUND(AVG(Ratings), 2) FROM rating WHERE RatingTo = service.ServiceProviderId) AS Ratings,
+                       GROUP_CONCAT(extraService.ServiceExtraId) AS ExtraService
+                FROM servicerequest AS service
+                INNER JOIN servicerequestaddress AS address ON service.ServiceRequestId = address.ServiceRequestId
+                LEFT JOIN servicerequestextra AS extraService ON service.ServiceRequestId = extraService.ServiceRequestId
+                INNER JOIN user AS customer ON service.UserId = customer.UserId
+                LEFT JOIN user AS serviceProvider ON service.ServiceProviderId = serviceProvider.UserId
+                LEFT JOIN rating ON service.ServiceRequestId = rating.ServiceRequestId
+                WHERE service.UserId = {$customerId} AND (service.Status = {$this->ASSIGNED_STATUS} OR service.Status = {$this->NEW_STATUS})
+                GROUP BY service.ServiceRequestId
+                ORDER BY service.ServiceRequestId";
+    
+        $data = $db->query($sql);
+    
+        for($i=0; $i<count($data); $i++){
+            $data[$i]->TotalCost = (int) $data[$i]->TotalCost;
+            $data[$i]->ServiceDate = date('d/m/Y', strtotime($data[$i]->ServiceStartDate));
+            $data[$i]->StartTime = date('H:i', strtotime($data[$i]->ServiceStartDate));
+            $data[$i]->EndTime = date('H:i', strtotime("+".($data[$i]->Duration*60)." minutes", strtotime($data[$i]->ServiceStartDate)));
+            $data[$i]->Duration = date('H:i', mktime(0, $data[$i]->Duration*60) );
+            if($data[$i]->ExtraService!=null){
+                $data[$i]->ExtraService = array_map('intval', explode(',', $data[$i]->ExtraService));
+            }            
+            // ----------FOR MAKING DATA AS NESTED OBJECT----------
+            $data[$i] = [
+                'Service' => [
+                    'Id' => $data[$i]->ServiceRequestId,
+                    'ServiceDate' => $data[$i]->ServiceDate,
+                    'StartTime' => $data[$i]->StartTime,
+                    'EndTime' => $data[$i]->EndTime,
+                    'Duration' => $data[$i]->Duration,
+                    'TotalCost' => $data[$i]->TotalCost,
+                    'Comments' => $data[$i]->Comments,
+                    'HasPets' => $data[$i]->HasPets,
+                    'Status' => $data[$i]->Status,
+                    'ExtraService' => $data[$i]->ExtraService
+                ],
+                'ServiceAddress' => [
+                    'AddressLine1' => $data[$i]->AddressLine1,
+                    'AddressLine2' => $data[$i]->AddressLine2,
+                    'City' => $data[$i]->City,
+                    'PostalCode' => $data[$i]->PostalCode,
+                    'Mobile' => $data[$i]->Mobile,
+                    'Email' => $data[$i]->Email
+                ],
+                'Customer' => [
+                    'Id' => $data[$i]->CustomerId,
+                    'Name' => $data[$i]->CustomerName,
+                ],
+                'ServiceProvider' => [
+                    'Id' => $data[$i]->ServiceProviderId,
+                    'Name' => $data[$i]->ServiceProviderName,
+                    'ProfilePicture' => $data[$i]->ServiceProviderProfilePicture,
+                    'Ratings' => $data[$i]->Ratings
+                ],
+            ];
         }
-
-        // MODIFY DATA...
-        for($i=0; $i<count($serviceData); $i++){
-            $serviceData[$i]->TotalCost   = (int) $serviceData[$i]->TotalCost;
-            $serviceData[$i]->ServiceDate = date('d/m/Y', strtotime($serviceData[$i]->ServiceStartDate));
-            $serviceData[$i]->StartTime   = date('H:i', strtotime($serviceData[$i]->ServiceStartDate));
-            $serviceData[$i]->Duration    = $serviceData[$i]->ServiceHours + $serviceData[$i]->ExtraHours;
-            $serviceData[$i]->Duration    = date('H:i', mktime(0, $serviceData[$i]->Duration*60));
-            $serviceData[$i]->EndTime     = time_to_minutes($serviceData[$i]->StartTime) 
-                                          + time_to_minutes($serviceData[$i]->Duration);
-            $serviceData[$i]->EndTime     = date('H:i', mktime(0, $serviceData[$i]->EndTime));
-
-            // ADD EXTRA SERVICE DETAILS...
-            $extra = new ExtraService();
-            $serviceId = $serviceData[$i]->ServiceRequestId;
-            $extraServiceData = $extra->where('ServiceRequestId', '=', $serviceId)->read();
-            for($j=0; $j<count($extraServiceData); $j++){
-                $serviceData[$i]->ExtraService[] = $extraServiceData[$j]->ServiceExtraId;                
-            }
-
-            // ADD SERVICE PROVIDER DETAILS...
-            if($serviceData[$i]->ServiceProviderId!=null){
-                $user = new User();
-                $serviceProviderId = $serviceData[$i]->ServiceProviderId;
-                $spData = $user->where('UserId', '=', $serviceProviderId)->read();
-                // REMOVE PASSWORD FIELD...
-                unset($spData[0]->Password);
-                $serviceData[$i]->ServiceProvider = $spData[0];
-            }
-
-            // ADD RATTING DETAILS...(AVERAGE RATING...)
-            if(isset($serviceData[$i]->ServiceProvider)){
-                $rating = new Rating();
-                $serviceProviderId = $serviceData[$i]->ServiceProviderId;
-                $ratingData = $rating->where('RatingTo', '=', $serviceProviderId)->read();
-                if(count($ratingData)>0){
-                    // CHECK, BY CURRENT CUSTOMER RATING IS GIVEN OR NOT ?
-                    // foreach($ratingData as $chunk){
-                    //     if($chunk->RatingFrom == $customerId){
-                    //         $serviceData[$i]->SPRated = true;
-                    //     }
-                    // }
-                    $tempRating = 0;
-                    for($j=0; $j<count($ratingData); $j++){
-                        $tempRating += (float) $ratingData[$j]->Ratings;                        
-                    }
-                    $tempRating /= count($ratingData);
-                    $serviceData[$i]->Rating = $tempRating;
-                }                
-            }
-        }
-        $res->status(200)->json($serviceData);
+    
+        $res->status(200)->json($data);
     }
 
     // ----------CANCEL SERVICE----------
@@ -282,8 +297,7 @@ class Customer{
         $serviceProviderId = $data[0]->ServiceProviderId;
 
         $rating = new Rating();
-        $where = "RatingFrom = {$customerId} AND RatingTo = {$serviceProviderId} AND ServiceRequestId = {$serviceId}";
-        if(!$rating->where($where)->exists()){
+        if(!$rating->where('ServiceRequestId', '=', $serviceId)->exists()){
             $rating->create([
                 'ServiceRequestId' => $serviceId,
                 'RatingFrom' => $customerId,
@@ -298,7 +312,8 @@ class Customer{
             $res->status(200)->json(['message'=>'Thanks for feedback Us.']);    
         }
         else{
-            // // UPDATE OR EDIT RATING OR REVIEW...
+            // ----------FOR MODIFY RATING----------
+            // UPDATE OR EDIT RATING OR REVIEW...
             // $where = "ServiceRequestId = {$serviceId}";
             // $rating->where($where)->update([
             //     'Ratings' => $averageRating,
@@ -314,50 +329,24 @@ class Customer{
     }
 
     // ----------CUSTOMER SP LIST---------- 
-    // (WHO PROVIDED SERVICE TO CUSTOMER IN PAST...)
     public function my_service_provider(Request $req, Response $res){
-
+        // (SP WHO COMPLETED CUSTOMER'S SERVICE SUCCESSFULLY IN PAST...)
         $customerId = session('userId');
-        $service = new Service();
-        $where = "UserId = {$customerId} AND Status = 2";
-        $data = $service->columns(['ServiceProviderId'])->where($where)->read();
-
-        $serviceProviders = [];
-        for($i=0; $i<count($data); $i++){
-            $serviceProviderId = $data[$i]->ServiceProviderId;
-
-            // STORE FIRSTNAME AND LASTNAME OF SERVICE PROVIDER...
-            $user = new User();
-            $temp1 = $user->columns(['UserId, FirstName', 'LastName', 'UserProfilePicture'])
-                          ->where('UserId', '=', $serviceProviderId)->read();
-    
-            // STORE FAVORITE AND BLOCKED DATA...
-            $fav = new Favorite();
-            $where = "UserId = {$customerId} AND TargetUserId = {$serviceProviderId}";
-            $temp2 = $fav->columns(['UserId', 'IsFavorite', 'IsBlocked'])->where($where)->read();            
-            if(count($temp2)>0){
-                $temp1[0]->IsBlocked = $temp2[0]->IsBlocked;
-                $temp1[0]->IsFavorite = $temp2[0]->IsFavorite;
-            }
-
-            // STORE RATING...
-            $rating = new Rating();
-            $temp3 = $rating->where('RatingTo', '=', $serviceProviderId)->read();
-            if(count($temp3)>0){
-                $tempRating = 0;
-                for($j=0; $j<count($temp3); $j++){
-                    $tempRating += (float) $temp3[$j]->Ratings;
-                }
-                $tempRating /= count($temp3); 
-                $temp1[0]->Rating = $tempRating;
-            }
-            $serviceProviders[] = (array) $temp1[0];
-
-        }    
-        // REMOVE REPEATED OBJECT FROM ARRAY...
-        $temp = array_unique(array_column($serviceProviders, 'UserId'));
-        $serviceProviders = array_values(array_intersect_key($serviceProviders, $temp));
-        $res->json($serviceProviders);    
+        $db = new Database();
+        $sql = "SELECT service.ServiceProviderId AS Id,
+                       CONCAT(serviceProvider.FirstName, ' ', serviceProvider.LastName) AS Name,
+                       serviceProvider.UserProfilePicture AS ProfilePicture,
+                       favorite_and_blocked.IsBlocked,
+                       favorite_and_blocked.IsFavorite,
+                       ROUND(AVG(rating.Ratings), 2) AS Ratings
+                FROM servicerequest AS service
+                LEFT JOIN user AS serviceProvider ON service.ServiceProviderId = serviceProvider.UserId
+                LEFT JOIN rating ON service.ServiceProviderId = rating.RatingTo
+                LEFT JOIN favoriteandblocked AS favorite_and_blocked ON service.ServiceProviderId = favorite_and_blocked.TargetUserId
+                WHERE service.UserId = {$customerId} AND service.Status = {$this->COMPLETED_STATUS}
+                GROUP BY service.ServiceProviderId";
+        $data = $db->query($sql);
+        $res->status(200)->json($data);
     }
 
     // ----------ADD TO FAVORITE LIST----------

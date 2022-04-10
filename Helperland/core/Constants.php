@@ -9,6 +9,11 @@
     $ROOT_PATH = str_replace('/public/index.php', '', $ROOT_PATH);
 
     $DIR_PATH  = $ROOT_PATH;
+    // $DIR_PATH  = 'http://localhost/tatvasoft/helperland';
+    /**
+     * $ROOT_PATH IS A AUTO GENERATED PATH ACCORDING TO WHERE YOU PUT THE PROJECT FOLDER
+     * OR YOU CAN MANUALLY WRITE THE PATH LIKE COMMENTED DIR_PATH
+     */    
     $PORT_PATH = "http://localhost:".$PORT;
 
     $BASE_URL  = $PORT==80? $DIR_PATH : $PORT_PATH ;

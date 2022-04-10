@@ -67,7 +67,7 @@
             columns : [
                 {
                     render : function(data, type, row){
-                        return `${row.FirstName} ${row.LastName}`;
+                        return `${row.UserName}`;
                     }
                 },
                 {

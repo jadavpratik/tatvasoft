@@ -18,17 +18,17 @@
                         for(sp of spList){
                             html += `<div class="favourite_pros_card">
                                         <div class="service_provider">
-                                            <img class="hat_style" src="${BASE_URL}/assets/img/avatar/${sp.UserProfilePicture}.png" alt="">
+                                            <img class="hat_style" src="${BASE_URL}/assets/img/avatar/${sp.ProfilePicture}.png" alt="">
                                             <div>
-                                                <p>${sp.FirstName} ${sp.LastName}</p>    
+                                                <p>${sp.Name}</p>    
                                                 <div>
                                                     ${(function(){
                                                         let html = ``;
-                                                        if(sp.Rating!==undefined && sp.Rating!==""){
-                                                            for(let i=0; i<parseInt(sp.Rating); i++){
+                                                        if(sp.Ratings!==null){
+                                                            for(let i=0; i<parseInt(sp.Ratings); i++){
                                                                 html += `<i class="fas fa-star rated_star"></i>`;
                                                             }
-                                                            for(let i=0; i<5-parseInt(sp.Rating); i++){
+                                                            for(let i=0; i<5-parseInt(sp.Ratings); i++){
                                                                 html += `<i class="fas fa-star unrated_star"></i>`;
                                                             }
                                                         }
@@ -41,7 +41,7 @@
                                                         }
                                                         return html;
                                                     })()}
-                                                    <span>${sp.Rating!==undefined?parseFloat(sp.Rating):''}</span>
+                                                    <span>${sp.Ratings!==null?parseFloat(sp.Ratings):''}</span>
                                                 </div>
                                             </div>
                                         </div><!-- END SERVICE PROVIDER -->
@@ -52,16 +52,16 @@
                                             ${(function(){
                                                 let buttons = ``;
                                                 if(sp.IsFavorite==1){
-                                                    buttons += `<button class="remove_btn" onclick="action_on_sp(${sp.UserId}, 'remove')">Favorite</button>`;
+                                                    buttons += `<button class="remove_btn" onclick="action_on_sp(${sp.Id}, 'remove')">Favorite</button>`;
                                                 }
                                                 else{
-                                                    buttons += `<button class="remove_btn" onclick="action_on_sp(${sp.UserId}, 'add')">Add Favorite</button>`;
+                                                    buttons += `<button class="remove_btn" onclick="action_on_sp(${sp.Id}, 'add')">Add Favorite</button>`;
                                                 }
                                                 if(sp.IsBlocked==1){
-                                                    buttons += `<button class="block_btn" onclick="action_on_sp(${sp.UserId}, 'unblock')">Blocked</button>`;
+                                                    buttons += `<button class="block_btn" onclick="action_on_sp(${sp.Id}, 'unblock')">Blocked</button>`;
                                                 }
                                                 else{
-                                                    buttons += `<button class="block_btn" onclick="action_on_sp(${sp.UserId}, 'block')">Block Customer</button>`;
+                                                    buttons += `<button class="block_btn" onclick="action_on_sp(${sp.Id}, 'block')">Block Customer</button>`;
                                                 }
                                                 return buttons;
                                             })()}

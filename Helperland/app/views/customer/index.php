@@ -62,45 +62,43 @@
 
     // SHOW SERVICE DETAILS...
     function show_service_details(id, userAction){
-
         let data = [...store.customer.data.current_services,
                     ...store.customer.data.service_history];
 
-        data = data.filter((service)=>{
-            if(id===service.ServiceRequestId){
-                return service;
+        data = data.filter((i)=>{
+            if(id===i.Service.Id){
+                return i;
             }
         });
 
         // SERVICE DATA...
         data = data[0];
-
         // SETUP HTML... $ €
         $('#service_details_popup').html(`
             <p class="popup_title">Service Details</p>
             <div>
-                <p>${data.ServiceDate} | ${data.StartTime} - ${data.EndTime}</p>
-                <p>Duration : <span>${data.Duration} Hours</span></p>
+                <p>${data.Service.ServiceDate} | ${data.Service.StartTime} - ${data.Service.EndTime}</p>
+                <p>Duration : <span>${data.Service.Duration} Hours</span></p>
             </div>
             <div>
-                <p>Service Id : <span>${data.ServiceRequestId}</span></p>
+                <p>Service Id : <span>${data.Service.Id}</span></p>
                 ${(function(){
                     let extraService = ``;
-                    if(data.ExtraService!==undefined){
-                        for(let i=0; i<data.ExtraService.length; i++){
-                            if(data.ExtraService[i]==1){
+                    if(data.Service.ExtraService!==null){
+                        for(let i=0; i<data.Service.ExtraService.length; i++){
+                            if(data.Service.ExtraService[i]==1){
                                 extraService += `<p>Extras : <span>Inside Cabinet</span></p>`;
                             }
-                            else if(data.ExtraService[i]==2){
+                            else if(data.Service.ExtraService[i]==2){
                                 extraService += `<p>Extras : <span>Inside Fridge</span></p>`;
                             }
-                            else if(data.ExtraService[i]==3){
+                            else if(data.Service.ExtraService[i]==3){
                                 extraService += `<p>Extras : <span>Inside Oven</span></p>`;
                             }
-                            else if(data.ExtraService[i]==4){
+                            else if(data.Service.ExtraService[i]==4){
                                 extraService += `<p>Extras : <span>Inside Laundry</span></p>`;
                             }
-                            else if(data.ExtraService[i]==5){
+                            else if(data.Service.ExtraService[i]==5){
                                 extraService += `<p>Extras : <span>Inside Window</span></p>`;
                             }
                         }
@@ -110,22 +108,22 @@
                         return extraService;
                     }
                 })()}
-                <p>Net Amout : <span class="price_text">${data.TotalCost} €</span></p>
+                <p>Net Amout : <span class="price_text">${data.Service.TotalCost} €</span></p>
             </div>
             <div>
-                <p>Service Address : <span>${data.AddressLine1} ${data.AddressLine2}, ${data.PostalCode} ${data.City} </span></p>			
+                <p>Service Address : <span>${data.ServiceAddress.AddressLine1} ${data.ServiceAddress.AddressLine2}, ${data.ServiceAddress.PostalCode} ${data.ServiceAddress.City} </span></p>
                 <p>Billing Address : <span>Same as Cleaning Address</span></p>
-                <p>Phone : <span>+49 ${data.Mobile}</span></p>
-                <p>Email : <span>${data.Email}</span></p>
+                <p>Phone : <span>+49 ${data.ServiceAddress.Mobile}</span></p>
+                <p>Email : <span>${data.ServiceAddress.Email}</span></p>
             </div>
             <div>
-                <p>Conmments : <span>${data.Comments? data.Comments:''}</span></p>
+                <p>Conmments : <span>${data.Service.Comments? data.Service.Comments:''}</span></p>
             </div>
             ${(function(){
                 if(userAction!==false){
                     return `<div class="table_btn_container">
-                                <button class="reschedule_btn" onclick="reschedule_service_open_model(${data.ServiceRequestId})"><i class="fas fa-redo-alt"></i> Reschdule</button>
-                                <button class="cancel_btn" onclick="cancel_service_open_model(${data.ServiceRequestId})"><i class="fas fa-times"></i> Cancel</button>
+                                <button class="reschedule_btn" onclick="reschedule_service_open_model(${data.Service.Id})"><i class="fas fa-redo-alt"></i> Reschdule</button>
+                                <button class="cancel_btn" onclick="cancel_service_open_model(${data.Service.Id})"><i class="fas fa-times"></i> Cancel</button>
                             </div>`;
                 }
                 else {

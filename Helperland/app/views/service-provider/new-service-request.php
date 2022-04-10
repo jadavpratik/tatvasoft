@@ -45,30 +45,30 @@
             columns :[
                 {
                     render : function(data, type, row){
-                        return`<p class="service_id" onclick="show_service_details(${row.ServiceRequestId})">${row.ServiceRequestId}</p>`;
+                        return`<p class="service_id" onclick="show_service_details(${row.Service.Id})">${row.Service.Id}</p>`;
                     },
                 },
                 {
                     render : function(data, type, row){
-                        return `<div class="service_date" onclick="show_service_details(${row.ServiceRequestId})">
+                        return `<div class="service_date" onclick="show_service_details(${row.Service.Id})">
                                     <div>
                                         <img src="<?= assets('assets/img/table/calendar.png'); ?>" alt="">
-                                        <p>${row.ServiceDate}</p>
+                                        <p>${row.Service.ServiceDate}</p>
                                     </div>
                                     <div>
                                         <img src="<?= assets('assets/img/table/time.png'); ?>" alt="">
-                                        <p>${row.StartTime} to ${row.EndTime}</p>
+                                        <p>${row.Service.StartTime} to ${row.Service.EndTime}</p>
                                     </div>
                                 </div>`;
                     }
                 },
                 {
                     render : function(data, type, row){
-                        return `<div class="customer_details" onclick="show_service_details(${row.ServiceRequestId})"> 
-                                    <p>${row.CustomerName}</p>
+                        return `<div class="customer_details" onclick="show_service_details(${row.Service.Id})"> 
+                                    <p>${row.Customer.Name}</p>
                                     <div>
                                         <img src="<?= assets('assets/img/table/home.png'); ?>" alt="">
-                                        <p>${row.AddressLine1} ${row.AddressLine2}, ${row.PostalCode} ${row.City}</p>
+                                        <p>${row.ServiceAddress.AddressLine1} ${row.ServiceAddress.AddressLine2}, ${row.ServiceAddress.PostalCode} ${row.ServiceAddress.City}</p>
                                     </div>
                                 </div>`;
                     }
@@ -76,13 +76,13 @@
                 {
                     render : function(data, type, row){
                         // €
-                        return `<p class="payment_text" onclick="show_service_details(${row.ServiceRequestId})">€<span>${row.TotalCost}</span></p>`;
+                        return `<p class="payment_text" onclick="show_service_details(${row.Service.Id})">€<span>${row.Service.TotalCost}</span></p>`;
                     }
                 },
                 {
                     render : function(data, type, row){
                         return `<div style="display:flex;">
-                                    <button class="accept_btn" onclick="accept_service_open_model(${row.ServiceRequestId})">Accept</button>
+                                    <button class="accept_btn" onclick="accept_service_open_model(${row.Service.Id})">Accept</button>
                                 </div>`;
                     }
                 }
@@ -106,42 +106,42 @@
     
     function accept_service_open_model(id){
         // $€
-        let data = store.service_provider.data.new_services.filter((service)=>{
-            if(service.ServiceRequestId==id){
-                return service;
+        let data = store.service_provider.data.new_services.filter((i)=>{
+            if(i.Service.Id==id){
+                return i;
             }
         });
         data = data[0];
 
         // FOR ACCEPT SERVICE ID STORE GLOBALLY...
-        store.id.accept = data.ServiceRequestId;
+        store.id.accept = data.Service.Id;
 
         $('#accept_service_request_popup').html(`
             <p class="popup_title">Service Details</p>
             <div class=""><!-- FIRST DIV -->
                 <div>
-                    <p>${data.ServiceDate} | ${data.StartTime} - ${data.EndTime}</p>
-                    <p>Duration : <span>${data.Duration} Hours</span></p>
+                    <p>${data.Service.ServiceDate} | ${data.Service.StartTime} - ${data.Service.EndTime}</p>
+                    <p>Duration : <span>${data.Service.Duration} Hours</span></p>
                 </div>
                 <div>
-                    <p>Service Id : <span>${data.ServiceRequestId}</span></p>
+                    <p>Service Id : <span>${data.Service.Id}</span></p>
                     ${(function(){
                         let extraService = ``;
-                        if(data.ExtraService!==undefined){
-                            for(let i=0; i<data.ExtraService.length; i++){
-                                if(data.ExtraService[i]==1){
+                        if(data.Service.ExtraService!==null){
+                            for(let i=0; i<data.Service.ExtraService.length; i++){
+                                if(data.Service.ExtraService[i]==1){
                                     extraService += `<p>Extras : <span>Inside Cabinet</span></p>`;
                                 }
-                                else if(data.ExtraService[i]==2){
+                                else if(data.Service.ExtraService[i]==2){
                                     extraService += `<p>Extras : <span>Inside Fridge</span></p>`;
                                 }
-                                else if(data.ExtraService[i]==3){
+                                else if(data.Service.ExtraService[i]==3){
                                     extraService += `<p>Extras : <span>Inside Oven</span></p>`;
                                 }
-                                else if(data.ExtraService[i]==4){
+                                else if(data.Service.ExtraService[i]==4){
                                     extraService += `<p>Extras : <span>Inside Laundry</span></p>`;
                                 }
-                                else if(data.ExtraService[i]==5){
+                                else if(data.Service.ExtraService[i]==5){
                                     extraService += `<p>Extras : <span>Inside Window</span></p>`;
                                 }
                             }
@@ -151,15 +151,15 @@
                             return extraService;                            
                         }
                     })()}
-                    <p>Total Amount : <span class="payment_text">€${data.TotalCost}</span></p>
+                    <p>Total Amount : <span class="payment_text">€${data.Service.TotalCost}</span></p>
                 </div>
                 <div>
-                    <p>Customer Name : <span>${data.CustomerName}</span></p>
-                    <p>Service Address : <span>${data.AddressLine1} ${data.AddressLine2}, ${data.PostalCode} ${data.City} </span></p>			
+                    <p>Customer Name : <span>${data.Customer.Name}</span></p>
+                    <p>Service Address : <span>${data.ServiceAddress.AddressLine1} ${data.ServiceAddress.AddressLine2}, ${data.ServiceAddress.PostalCode} ${data.ServiceAddress.City} </span></p>
                     <!-- <p>Distance : <span>296km</span></p>-->
                 </div>
                 <div>
-                    <p>Conmments : <span>${data.Comments?data.Comments : ''}</span></p>
+                    <p>Conmments : <span>${data.Service.Comments?data.Service.Comments : ''}</span></p>
                 </div>
                 <div class="table_btn_container">
                     <button class="accept_btn" onclick="accept_service()"><i class="fas fa-check"></i>Accept</button>

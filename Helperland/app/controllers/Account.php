@@ -256,14 +256,9 @@ class Account{
 
 	// ----------CHANGE-PASSWORD----------
 	public function change_password(Request $req, Response $res){
-		/* 
-			**********BUG**********
-			NEW-PASSWORD===CONFIRM-PASSWORD 
-			SO WE ADDED NEW KEY AS FLAG NEW-PASSWORD
-		*/
 		Validation::check($req->body, [
 			'change_password_old' => ['required'],
-			'change_password_new' => ['password', 'new-password'],
+			'change_password_new' => ['password'],
 			'change_password_confirm' => ['confirm-password']
 		]);
 

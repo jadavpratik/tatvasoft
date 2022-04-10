@@ -19,13 +19,13 @@
                                         <div>
                                             <img src="<?= assets('assets/img/table/hat.png'); ?>" alt="">
                                         </div>
-                                        <p>${result[i].FirstName} ${result[i].LastName}</p>
+                                        <p>${result[i].Name}</p>
                                         ${(function(){
                                             if(result[i].IsBlocked!==undefined && result[i].IsBlocked==1){
-                                                return `<button class="block_btn" onclick="action_on_customer(${result[i].UserId}, 'unblock')">Unblock</button>`;
+                                                return `<button class="block_btn" onclick="action_on_customer(${result[i].Id}, 'unblock')">Blocked</button>`;
                                             }
                                             else{
-                                                return `<button class="block_btn" onclick="action_on_customer(${result[i].UserId}, 'block')">Block</button>`;
+                                                return `<button class="block_btn" onclick="action_on_customer(${result[i].Id}, 'block')">Block to Customer</button>`;
                                             }
                                         })()}
                                     </div>`;

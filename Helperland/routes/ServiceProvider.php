@@ -15,7 +15,6 @@ Route::get('/service-provider/service/history', $isServiceProvider, [new Service
 Route::get('/service-provider/rating-and-review', $isServiceProvider, [new ServiceProvider(), 'my_rating']);
 Route::get('/service-provider/service/schedule', $isServiceProvider, [new ServiceProvider(), 'service_schedule']);
 
-
 Route::patch('/service-provider/service/accept/:id', $isServiceProvider, [new ServiceProvider(), 'accept_service']);     // id = serviceId
 Route::patch('/service-provider/service/reject/:id', $isServiceProvider, [new ServiceProvider(), 'reject_service']);     // id = serviceId
 Route::patch('/service-provider/service/complete/:id', $isServiceProvider, [new ServiceProvider(), 'complete_service']); // id = serviceId

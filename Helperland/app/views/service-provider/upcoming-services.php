@@ -33,30 +33,30 @@
             columns :[
                 {
                     render : function(data, type, row){
-                        return`<p class="service_id" onclick="show_service_details(${row.ServiceRequestId})">${row.ServiceRequestId}</p>`;
+                        return`<p class="service_id" onclick="show_service_details(${row.Service.Id})">${row.Service.Id}</p>`;
                     },
                 },
                 {
                     render : function(data, type, row){
-                        return `<div class="service_date" onclick="show_service_details(${row.ServiceRequestId})">
+                        return `<div class="service_date" onclick="show_service_details(${row.Service.Id})">
                                     <div>
                                         <img src="<?= assets('assets/img/table/calendar.png'); ?>" alt="">
-                                        <p>${row.ServiceDate}</p>
+                                        <p>${row.Service.ServiceDate}</p>
                                     </div>
                                     <div>
                                         <img src="<?= assets('assets/img/table/time.png'); ?>" alt="">
-                                        <p>${row.StartTime} - ${row.EndTime}</p>                            
+                                        <p>${row.Service.StartTime} - ${row.Service.EndTime}</p>
                                     </div>    
                                 </div>`;
                     }
                 },
                 {
                     render : function(data, type, row){
-                        return `<div class="customer_details" onclick="show_service_details(${row.ServiceRequestId})">
-                                    <p>${row.CustomerName}</p>
+                        return `<div class="customer_details" onclick="show_service_details(${row.Service.Id})">
+                                    <p>${row.Customer.Name}</p>
                                     <div>
                                         <img src="<?= assets('assets/img/table/home.png'); ?>" alt="">
-                                        <p>${row.AddressLine1} ${row.AddressLine2}, ${row.PostalCode} ${row.City}</p>
+                                        <p>${row.ServiceAddress.AddressLine1} ${row.ServiceAddress.AddressLine2}, ${row.ServiceAddress.PostalCode} ${row.ServiceAddress.City}</p>
                                     </div>
                                 </div>`;
                     }
@@ -68,15 +68,15 @@
                 },
                 {
                     render : function(data, type, row){
-                        if(row.IsExpired==1 && row.Status==1){
+                        if(row.Service.IsExpired==1 && row.Service.Status==1){
                             return `<div class="table_btn_container">
-                                        <button class="accept_btn" onclick="complete_service(${row.ServiceRequestId})">Complete</button>
-                                        <button class="cancel_btn" onclick="reject_service_by_sp(${row.ServiceRequestId})">Cancel</button>
+                                        <button class="accept_btn" onclick="complete_service(${row.Service.Id})">Complete</button>
+                                        <button class="cancel_btn" onclick="reject_service_by_sp(${row.Service.Id})">Cancel</button>
                                     </div>`;
                         }
                         else{
                             return `<div class="table_btn_container">
-                                        <button class="cancel_btn" onclick="reject_service_by_sp(${row.ServiceRequestId})">Cancel</button>
+                                        <button class="cancel_btn" onclick="reject_service_by_sp(${row.Service.Id})">Cancel</button>
                                     </div>`;
                         }
                     }
