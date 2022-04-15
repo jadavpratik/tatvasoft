@@ -1,4 +1,30 @@
 <script>
+    let CSRF_TOKEN = ``;
+
+    // ----------SET-CSRF-TOKEN----------
+    function set_csrf_token(){
+        let cookie = document.cookie.split(';');
+        cookie = cookie.map((i)=> {
+            arr = [];
+            key = i.split('=')[0].trim();
+            value = i.split('=')[1].trim();
+            arr[key]=value;
+            return arr;
+        });
+        let filtered = cookie.filter((i)=> {
+            return i['CSRF-TOKEN'];
+        } );
+        CSRF_TOKEN = filtered[0]['CSRF-TOKEN'];
+    }
+    
+    $.ajaxSetup({
+        headers : {
+            'CSRF-TOKEN' : CSRF_TOKEN
+        }
+    });
+</script>
+
+<script>
     let BASE_URL = `<?= BASE_URL; ?>`; 
     let store = {};
 
@@ -72,10 +98,11 @@
             user_management : []
         }
     };
+
 </script>
 
 
-<script>
+<script>    
     // IF USER IS LOGGED THEN FETCH THEIR DATA AND STORE IT...
     <?php if(session('isLogged')){ ?>    
         $.ajax({

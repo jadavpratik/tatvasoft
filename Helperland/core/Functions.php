@@ -99,3 +99,18 @@
 			return false;
 		}
 	}
+
+	// CSRF_TOKEN...
+	function csrf_token(){
+		$token = bin2hex(random_bytes(16));
+		setcookie('CSRF-TOKEN', $token, time()+(60*60*24*0.5), '/', '', false, false);
+		$_SESSION['CSRF-TOKEN'] = $token;
+		/**
+		 * For Getting $_COOKIE value we need to refresh the page
+		 * setcookie('KEY','VALUE') & $_COOKIE['KEY'] both are not working on same page.
+		 * $_COOKIE['KEY'] NOT REFLECTED IMIDIATLY THAT'S WHY WE USE $_SESSION['KEY']
+		 */
+		return $token;
+		
+	}
+

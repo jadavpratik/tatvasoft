@@ -67,6 +67,12 @@ class Route{
 				return true;
 			}
 		}
+		else if(str_contains(self::$browser_url, '?')){
+			// IMPLEMENT QUERY STRING ROUTE SOON...
+			self::$res = new Response();		
+			self::$res->status(400)->json(['error'=>'Query String URL Not Supported!']);
+			exit();
+		}
 		// PAGE_NOT_FOUND...
 		else if(self::$route_url!==self::$browser_url && self::$route_url=='/*'){			
 			page_url('/*');	

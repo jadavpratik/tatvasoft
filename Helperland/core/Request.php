@@ -7,6 +7,8 @@
 // header('Content-Type:application/json');		
 
 namespace core;
+use core\Response;
+
 
 class Request{
 
@@ -20,8 +22,25 @@ class Request{
 		$this->body   = array();
 		$this->files  = array();		
 
-		$headers = apache_request_headers();
+		$headers = getallheaders();
 		$contentType = isset($headers['Content-Type'])? $headers['Content-Type'] : '';
+
+		// ----------CHECK-CSRF-TOKEN----------
+		// if($_SERVER['REQUEST_METHOD']!='GET'){
+		// 	$res = new Response();
+		// 	if(isset($headers['CSRF-TOKEN'])){
+		// 		if($headers['CSRF-TOKEN']==$_SESSION['CSRF-TOKEN']){
+		// 			csrf_token();
+		// 		}
+		// 		else{
+		// 			$errors = ['session'=>$_SESSION['CSRF-TOKEN'], 'req_header'=>$headers['CSRF-TOKEN']];
+		// 			$res->status(401)->json(['message'=>'CSRF token is not matched!!!', 'errors'=>$errors]);
+		// 		}
+		// 	}
+		// 	else{
+		// 		$res->status(400)->json(['message'=>'CSRF Token is required!!!']);
+		// 	}	
+		// }
 
 		if(!empty($params)){
 			$this->setParams($params);

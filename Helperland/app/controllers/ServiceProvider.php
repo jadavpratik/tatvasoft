@@ -49,7 +49,7 @@ class ServiceProvider{
                 INNER JOIN user AS customer ON service.UserId = customer.UserId
                 LEFT JOIN user AS serviceProvider ON service.ServiceProviderId = serviceProvider.UserId
                 WHERE service.Status = {$this->NEW_STATUS} 
-                GROUP BY extraService.ServiceRequestId
+                GROUP BY service.ServiceRequestId
                 HAVING  (   
                             SELECT count(*) FROM user AS sp 
                             LEFT JOIN useraddress AS spAddress ON sp.UserId = spAddress.UserId 
@@ -142,7 +142,7 @@ class ServiceProvider{
                 INNER JOIN user AS customer ON service.UserId = customer.UserId
                 LEFT JOIN user AS serviceProvider ON service.ServiceProviderId = serviceProvider.UserId
                 WHERE service.Status = {$this->ASSIGNED_STATUS} AND service.ServiceProviderId = {$serviceProviderId}
-                GROUP BY extraService.ServiceRequestId
+                GROUP BY service.ServiceRequestId
                 HAVING (
                             SELECT COUNT(*) FROM favoriteandblocked WHERE 
                             (UserId = service.UserId AND TargetUserId = service.ServiceProviderId AND IsBlocked=1) OR 
@@ -285,7 +285,7 @@ class ServiceProvider{
                 INNER JOIN user AS customer ON service.UserId = customer.UserId
                 LEFT JOIN user AS serviceProvider ON service.ServiceProviderId = serviceProvider.UserId
                 WHERE (service.Status = {$this->COMPLETED_STATUS} OR service.Status = {$this->CANCELLED_STATUS}) AND service.ServiceProviderId = {$serviceProviderId}
-                GROUP BY extraService.ServiceRequestId
+                GROUP BY service.ServiceRequestId
                 ORDER BY service.ServiceRequestId";
     
         $data = $db->query($sql);
@@ -355,21 +355,22 @@ class ServiceProvider{
                 ORDER BY service.ServiceRequestId";
     
         $data = $db->query($sql);
-    
+
+        $services = [];
         for($i=0; $i<count($data); $i++){
-            $data[$i]->ServiceDate = date('d/m/Y', strtotime($data[$i]->ServiceStartDate));
+            $data[$i]->ServiceDate = date('Y-m-d', strtotime($data[$i]->ServiceStartDate));
             $data[$i]->StartTime = date('H:i', strtotime($data[$i]->ServiceStartDate));
             $data[$i]->EndTime = date('H:i', strtotime("+".($data[$i]->Duration*60)." minutes", strtotime($data[$i]->ServiceStartDate)));
             $data[$i]->Duration = date('H:i', mktime(0, $data[$i]->Duration*60) );
             $data[$i]->IsExpired = strtotime($data[$i]->ServiceStartDate) < strtotime(date('Y-m-d H:i:s'))
                                     ? 1 
                                     : 0;
-            if($data[$i]->IsExpired){
-                unset($data[$i]);
+            if(!$data[$i]->IsExpired){
+                $services[] = $data[$i];
             }    
             // ----------FOR MAKING DATA AS NESTED OBJECT----------
         }
-        $res->json($data);
+        $res->json($services);
     }
 
     // ----------MY-RATING----------
@@ -406,7 +407,7 @@ class ServiceProvider{
                 LEFT JOIN user AS serviceProvider ON service.ServiceProviderId = serviceProvider.UserId
                 LEFT JOIN rating ON rating.ServiceRequestId = service.ServiceRequestId
                 WHERE (service.Status = {$this->COMPLETED_STATUS} OR service.Status = {$this->CANCELLED_STATUS}) AND service.ServiceProviderId = {$serviceProviderId}
-                GROUP BY extraService.ServiceRequestId
+                GROUP BY service.ServiceRequestId
                 ORDER BY service.ServiceRequestId";
     
         $data = $db->query($sql);

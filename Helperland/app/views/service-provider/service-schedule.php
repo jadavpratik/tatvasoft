@@ -14,7 +14,6 @@
                 end : `${data[i].ServiceDate} ${data[i].EndTime}`,
             })
         }
-        console.log(spScheduleDates);
         return spScheduleDates;
     }
 

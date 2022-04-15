@@ -19,7 +19,9 @@
 	</div>
 
 	<!-- LET'S BOOKS A CLEANER -->
-	<a class="home_s1_main_btn" href="<?= url('/book-now'); ?>" data-aos="fade-up">Let's Book a Cleaner</a>
+	<?php if(session('userRole')!=3 && session('userRole')!=2){ ?>
+		<a class="home_s1_main_btn" href="<?= url('/book-now'); ?>" data-aos="fade-up">Let's Book a Cleaner</a>
+	<?php } ?>
 
 	<!-- SECTION_1_CARD_CONTAINER -->
 	<div class="home_s1_card_container">

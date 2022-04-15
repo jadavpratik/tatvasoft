@@ -53,7 +53,7 @@ class Customer{
                 LEFT JOIN user AS serviceProvider ON service.ServiceProviderId = serviceProvider.UserId
                 LEFT JOIN rating ON service.ServiceRequestId = rating.ServiceRequestId
                 WHERE service.UserId = {$customerId} AND (service.Status = {$this->COMPLETED_STATUS} OR service.Status = {$this->CANCELLED_STATUS})
-                GROUP BY extraService.ServiceRequestId
+                GROUP BY service.ServiceRequestId
                 ORDER BY service.ServiceRequestId";
     
         $data = $db->query($sql);
@@ -239,10 +239,10 @@ class Customer{
         $time = $req->body->new_service_time;
         $serviceDate = date('Y-m-d H:i:s', strtotime($date.' '.$time));
         $service = new Service();
-
+        $serviceData = $service->where('ServiceRequestId', '=', $serviceId)->read();
         $service->where('ServiceRequestId', '=', $serviceId)->update([
             'ServiceStartDate' => $serviceDate,
-            'Status' => $this->NEW_STATUS
+            'Status' => $serviceData[0]->ServiceProviderId==0? $this->NEW_STATUS : $this->ASSIGNED_STATUS
         ]);
 
         if(RES_WITH_MAIL){

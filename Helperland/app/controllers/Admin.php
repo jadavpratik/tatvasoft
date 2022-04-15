@@ -70,7 +70,7 @@ class Admin{
                 INNER JOIN user AS customer ON service.UserId = customer.UserId
                 LEFT JOIN user AS serviceProvider ON service.ServiceProviderId = serviceProvider.UserId
                 LEFT JOIN rating ON service.ServiceRequestId = rating.ServiceRequestId
-                GROUP BY extraService.ServiceRequestId
+                GROUP BY service.ServiceRequestId
                 ORDER BY service.ServiceRequestId";
     
         $data = $db->query($sql);
@@ -175,10 +175,10 @@ class Admin{
         $serviceAddress = new ServiceAddress();
         $serviceStartDate = $req->body->date.' '.$req->body->time;
         $serviceStartDate = date('y-m-d h:i:s', strtotime($serviceStartDate));
-
+        $serviceData = $service->where('ServiceRequestId', '=', $serviceId)->read();
         // UPDATE SERVICE
         $service->where('ServiceRequestId', '=', $serviceId)->update([
-            'Status' => $this->NEW_STATUS,
+            'Status' => $serviceData[0]->ServiceProviderId==0? $this->NEW_STATUS : $this->ASSIGNED_STATUS,
             'ServiceStartDate' => $serviceStartDate
         ]);
 
@@ -191,6 +191,7 @@ class Admin{
         ]);
 
         if(RES_WITH_MAIL){
+            // (CUSTOMER EMAIL)
             // ----------SEND-MAIL----------
             $fun = new Functions();
             $temp = $fun->getServiceDetailsByServiceId($serviceId);
@@ -219,6 +220,7 @@ class Admin{
         ]);
 
         if(RES_WITH_MAIL){
+            // (CUSTOMER EMAIL)
             // ----------SEND-MAIL----------
             $fun = new Functions();
             $temp = $fun->getServiceDetailsByServiceId($serviceId);
