@@ -17,7 +17,7 @@ class Database{
     private $join    = '';
     protected $table = '';
 
-    // -----------------CONNECT-------------------
+    // ----------CONNECT------------
     public function connect(){
         $dbType     = DB_TYPE;
         $dbHost     = DB_HOST;
@@ -40,13 +40,13 @@ class Database{
         $this->connect();
     }
 
-    // -----------------TABLE-------------------
+    // ----------TABLE------------
     public function table($name){
         $this->table = $name;
         return $this;
     }
 
-    // -----------------CREATE-------------------
+    // ----------CREATE------------
     public function create($arr){
         $keys = '(';
         $values = '(';
@@ -84,7 +84,7 @@ class Database{
         }
     }
 
-    // -----------------WHERE-------------------
+    // ----------WHERE------------
     public function where($key, $operator=false, $value=false){
         if($operator!=false && $value!=false){
             // IF WE PASS ALL THREE PARAMETERS... [KEY, OPERATOR, VALUE]
@@ -102,7 +102,7 @@ class Database{
         return $this;
     }
 
-    // -----------------EXISTS-------------------
+    // ----------EXISTS------------
     public function exists(){
         $this->query = "SELECT * FROM {$this->table} {$this->where}";
         try{
@@ -121,7 +121,7 @@ class Database{
         }
     }
 
-    // -----------------COLUMN-------------------
+    // ----------COLUMN------------
     public function columns($columns){
         if(isset($columns) && !empty($columns)){
             // FIRST REMOVE THE ALL COLUMNS...
@@ -134,7 +134,7 @@ class Database{
         return $this;
     }
 
-    // -----------------QUERY-------------------
+    // ----------QUERY------------
     public function query($sql){
         try{
             if(str_contains($sql, 'SELECT')){
@@ -153,14 +153,14 @@ class Database{
         }
     }
     
-    // -----------------JOIN-------------------
+    // ----------JOIN------------
     public function join($pk, $fk, $table, $joinType=false){
         $joinType = $joinType==false ? 'INNER' : $joinType;
         $this->join = "{$joinType} JOIN {$table} ON {$this->table}.{$pk}={$table}.{$fk}";
         return $this;
     }
 
-    // -----------------READ-------------------
+    // ----------READ------------
     public function read(){
         try{
             $this->query = "SELECT {$this->columns} FROM {$this->table} {$this->join} {$this->where}";
@@ -175,7 +175,7 @@ class Database{
         }
     }
 
-    // -----------------UPDATE-------------------
+    // ----------UPDATE------------
     public function update($arr){
         $updateString = '';
         foreach($arr as $key => $value){
@@ -197,7 +197,7 @@ class Database{
         }
     }
 
-    // -----------------DELETE-------------------
+    // ----------DELETE------------
     public function delete(){
         try{
             $this->query = "DELETE FROM {$this->table} {$this->where}";

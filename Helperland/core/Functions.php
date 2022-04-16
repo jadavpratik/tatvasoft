@@ -15,8 +15,7 @@
 
 	// FOR ANCHOR TAG... [CONCAT URL WITH BASE_URL]
 	function url($path){
-		$path = ltrim($path, '/');
-		$path = rtrim($path, '/');
+		$path = trim($path, '/');
 		return BASE_URL.'/'.$path;
 	}
 
@@ -34,11 +33,9 @@
 			// WE CAN CHANGE THE COMPONENT PATH IN VIEWS Directory...
 			$path = $parameter1;
 			$name = $parameter2;
-			$path = ltrim($path, '/');
-			$path = rtrim($path, '/');
-			$name = ltrim($name, '/');
-			$name = rtrim($name, '/');
-			$component_path = __DIR__.'/../app/views/'.$path.'/'.$name.'.php';
+			$path = trim($path, '/');
+			$name = trim($name, '/');
+			$component_path = __DIR__.'/../views/'.$path.'/'.$name.'.php';
 			if(file_exists($component_path)){
 				require_once $component_path;							
 			}
@@ -46,9 +43,8 @@
 		else{
 			// BY DEFAULT ALL COMPOENTS LOADED FROM VIEWS/COMPONENTS/...
 			$name = $parameter1;
-			$name = ltrim($name, '/');
-			$name = rtrim($name, '/');
-			$component_path = __DIR__.'/../app/views/components/'.$name.'.php';
+			$name = trim($name, '/');
+			$component_path = __DIR__.'/../views/components/'.$name.'.php';
 			if(file_exists($component_path)){
 				require_once $component_path;							
 			}
@@ -105,12 +101,12 @@
 		$token = bin2hex(random_bytes(16));
 		setcookie('CSRF-TOKEN', $token, time()+(60*60*24*0.5), '/', '', false, false);
 		$_SESSION['CSRF-TOKEN'] = $token;
-		/**
-		 * For Getting $_COOKIE value we need to refresh the page
-		 * setcookie('KEY','VALUE') & $_COOKIE['KEY'] both are not working on same page.
-		 * $_COOKIE['KEY'] NOT REFLECTED IMIDIATLY THAT'S WHY WE USE $_SESSION['KEY']
-		 */
-		return $token;
-		
+		return $token;		
 	}
+	/**
+	 * For Getting $_COOKIE value we need to refresh the page
+	 * setcookie('KEY','VALUE') & $_COOKIE['KEY'] both are not working on same page.
+	 * $_COOKIE['KEY'] NOT REFLECTED IMIDIATLY THAT'S WHY WE USE $_SESSION['KEY']
+	 */
+
 

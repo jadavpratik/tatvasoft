@@ -7,8 +7,7 @@ class File{
 
 	public static function upload($file, $path){		
 
-		$path = ltrim($path, '/');
-		$path = rtrim($path, '/');
+		$path = trim($path, '/');
 
 		$uploadPath = STORAGE_PATH.$path;
 

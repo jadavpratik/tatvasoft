@@ -20,7 +20,8 @@
     $.ajaxSetup({
         headers : {
             'CSRF-TOKEN' : CSRF_TOKEN
-        }
+        },
+        
     });
 </script>
 
