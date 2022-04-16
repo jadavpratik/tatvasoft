@@ -1,16 +1,5 @@
 <!-- ----------GLOBAL FUNCTIONS---------- -->
 <script>
-    // ----------CLOSE-POPUP----------
-    function close_popup(){
-        $('.backlight_container').removeClass('backlight');
-        $('.model').removeClass('active_model');
-        $('.popup_main').addClass('d_none');
-        if($(window).width() <= 1280){
-            $('.book_service_right').addClass('d_none');
-        }
-        $('body').css({'overflow-y':'auto'});
-    }
-
     // ----------SET LOADER----------
     function open_loader(){
         $('.backlight_container').addClass('loader');
@@ -22,44 +11,25 @@
         $('.backlight_container').removeClass('loader');
         $('body').css({'overflow-y':'auto'});
     }
-
-    // ----------SET-CSRF-TOKEN----------
-    function set_csrf_token(){
-        let cookie = document.cookie.split(';');
-        cookie = cookie.map((i)=> {
-            arr = [];
-            key = i.split('=')[0].trim();
-            value = i.split('=')[1].trim();
-            arr[key]=value;
-            return arr;
-        });
-        let filtered = cookie.filter((i)=> {
-            return i['CSRF-TOKEN'];
-        } );
-        CSRF_TOKEN = filtered[0]['CSRF-TOKEN'];
-    }
 </script>
 
 <!-- ----------AJAX-PRE-SETUP---------- -->
 <script>
-    let CSRF_TOKEN = ``;
+    let ajaxMethod = `GET`;
 
     $.ajaxSetup({
-        headers : {
-            'CSRF-TOKEN' : CSRF_TOKEN
-        },
+        contentType : 'application/json',
         beforeSend : function(xhr, req){
+            ajaxMethod = req.type;
             if(req.type!=='GET'){
                 open_loader();
             }
-            close_popup();
-            set_csrf_token();
         },
         complete : function(){
             close_loader();
         },
         error : function(obj){
-            if(obj!==undefined && obj!==""){
+            if(ajaxMethod!=='GET'){
                 const {responseText} = obj;
                 const error = JSON.parse(responseText);
                 Swal.fire({
@@ -67,6 +37,13 @@
                     icon : 'error'
                 });
             }
+            else{
+                console.log('Ajax Get Request Error', obj);
+            }
+            // DISABLED BUTTON...
+            $('[name="forgot_password_btn"]').prop('disabled', false);
+            $('.form_btn').prop('disabled', false);
+            $('#confirm_booking_submit_btn').prop('disabled', false);
         }        
     });
 </script>
@@ -81,7 +58,7 @@
         accept:null,
         reject:null,
         cancel:null,
-        rate_sp:null,
+        rateSp:null,
         complete:null,
         reschedule:null,
         update:null,
@@ -89,18 +66,18 @@
     };
 
     // ----------BOOK SERVICE----------
-    store.book_service = {            
-        postal_code : '',
+    store.bookService = {            
+        postalCode : '',
         date : moment().format('DD/MM/YYYY'),
         time : moment().format('H:m'),
         duration : 3,
         comments : '',
-        has_pets : false,
-        extra : [],
-        extra_time : 0,
-        sp_id : null,
-        per_hour_price : 20,
-        total_price : 0,
+        hasPets : false,
+        extraService : [],
+        extraTime : 0,
+        serviceProviderId : null,
+        perHourPrice : 20,
+        totalPrice : 0,
         address : {},
     };
 
@@ -158,7 +135,7 @@
             success : function(res){
                 if(res!==undefined || res!==undefined){
                     const result = JSON.parse(res);
-                    store.user = result; 
+                    store.loggedUserDetails = result; 
                 }
             }
         });

@@ -9,7 +9,7 @@
                     'guarantee' => '', 
                     'blog'=> ''];
 
-    switch(page_url()){
+    switch(pageUrl()){
         case '/':
             $home_header_id = 'home_navbar';
             $home_header_style = 'background-color:transparent;height:130px';

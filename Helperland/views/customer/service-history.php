@@ -144,8 +144,7 @@
 <script>
 
     function rate_sp_open_model(id){
-        store.id.rate_sp = id;
-        console.log(store.id.rate_sp, id);
+        store.id.rateSp = id;
         let data = store.customer.data.service_history;
         data = data.filter((i)=>{
             if(i.Service.Id==id){

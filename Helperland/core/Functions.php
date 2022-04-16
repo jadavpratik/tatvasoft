@@ -1,32 +1,32 @@
 <?php
 
-	$page_url = '/';
+	$pageUrl = '/';
 
-	// RETURN & STORE CURRENT URL...
-	function page_url($url=false){
-		global $page_url;
+	// ----------STORE & RETURN CURRENT URL----------
+	function pageUrl($url=false){
+		global $pageUrl;
 		if($url!=false){
-			$page_url = $url;
+			$pageUrl = $url;
 		}
 		else{
-			return $page_url;
+			return $pageUrl;
 		}
 	}
 
-	// FOR ANCHOR TAG... [CONCAT URL WITH BASE_URL]
+	// ----------ANCHOR TAG----------
 	function url($path){
 		$path = trim($path, '/');
 		return BASE_URL.'/'.$path;
 	}
 
-	// FOR PUBLIC FOLDER ACCESS...
+	// ----------PUBLIC FOLDER as ASSETS----------
 	function assets($path){
 		$path = ltrim($path, '/');
 		return BASE_URL.'/'.$path.'?'.time();
 		//APPEND TIME END OF FILE, BECAUSE FILE NOT REFLECTING AFTER CHANGING IN IT
 	}
 
-	// RETURN COMPONENTS LIKE HEADER, FOOTER, MODELS ETC...
+	// ----------COMPONENTS----------
 	function component($parameter1, $parameter2=false){
 
 		if($parameter2!=false){
@@ -51,7 +51,7 @@
 		}
 	}
 
-	// SESSION FUNCTION...
+	// ----------SESSION FUNCTION----------
 	function session($key, $value=false){
 		if($value!=false){
 			$_SESSION[$key] = $value;
@@ -64,8 +64,8 @@
 		}
 	}
 
-	// FLASH SESSION...
-	function flash_session($key, $value=false){
+	// ----------FLASH SESSION----------
+	function flashSession($key, $value=false){
 		if($value!=false){
 			$_SESSION[$key] = $value;
 		}
@@ -79,7 +79,7 @@
 		}
 	}
 
-	// COOKIE FUNCTION...
+	// ----------COOKIE----------
 	function cookie($key, $value=false, $time=false){
 		if($value!=false){
 			// 5 DAYS TIME...
@@ -96,17 +96,17 @@
 		}
 	}
 
-	// CSRF_TOKEN...
-	function csrf_token(){
+	// ----------CSRF_TOKEN----------
+	function csrfToken(){
 		$token = bin2hex(random_bytes(16));
 		setcookie('CSRF-TOKEN', $token, time()+(60*60*24*0.5), '/', '', false, false);
 		$_SESSION['CSRF-TOKEN'] = $token;
 		return $token;		
+		/**
+		 * For Getting $_COOKIE value we need to refresh the page
+		 * setcookie('KEY','VALUE') & $_COOKIE['KEY'] both are not working on same page.
+		 * $_COOKIE['KEY'] NOT REFLECTED IMIDIATLY THAT'S WHY WE USE $_SESSION['KEY']
+		 */
 	}
-	/**
-	 * For Getting $_COOKIE value we need to refresh the page
-	 * setcookie('KEY','VALUE') & $_COOKIE['KEY'] both are not working on same page.
-	 * $_COOKIE['KEY'] NOT REFLECTED IMIDIATLY THAT'S WHY WE USE $_SESSION['KEY']
-	 */
 
 

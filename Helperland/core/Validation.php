@@ -72,40 +72,40 @@ class Validation{
 		}
 		else{
 			switch($i){
-				case 'text'            :
+				case 'text':
 					self::textValidation($key, $value);
 					break;
-				case 'string'          :
+				case 'string':
 					self::stringValidation($key, $value);
 					break;
-				case 'integer'         :
+				case 'integer':
 					self::integerValidation($key, $value);
 					break;
-				case 'number'          :
+				case 'number':
 					self::integerValidation($key, $value);
 					break;
-				case 'array'           :
+				case 'array':
 					self::arrayValidation($key, $value);
 					break;
-				case 'object'          :
+				case 'object':
 					self::objectValidation($key, $value);
 					break;
-				case 'email'           :
+				case 'email':
 					self::emailValidation($key, $value);
 					break;
-				case 'phone'           :
+				case 'phone':
 					self::phoneValidation($key, $value);
 					break;
-				case 'mobile'          :
+				case 'mobile':
 					self::phoneValidation($key, $value);
 					break;
-				case 'password'        :
+				case 'password':
 					self::passwordValidation($key, $value);
 					break;
 				case 'confirm-password':
 					self::confirmPasswordValidation($key, $value);
 					break;
-				case 'postal-code'     :
+				case 'postal-code':
 					self::postalCodeValidation($key, $value);
 					break;	
 			}	

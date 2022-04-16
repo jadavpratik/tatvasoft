@@ -15,7 +15,7 @@ class Route{
 	public static $res;
 	public static $method = 'GET';
 
-	// CLEAN URL...
+	// ----------CLEAN_URL------------
 	public static function cleanUrl($url){
 		$url = filter_var($url, FILTER_SANITIZE_URL);
 		$url = strtolower($url);
@@ -27,33 +27,28 @@ class Route{
 		return $url;
 	}
 
-	// SPLIT URL...
+	// ----------SPLIT_URL------------
 	public static function splitUrl($route_arr){
 
 		self::$route_url = self::cleanUrl($route_arr);
 		self::$browser_url = self::cleanUrl($_SERVER['REQUEST_URI']);
-
-		// SET ROUTE_URL AS PARAMS_KEY
 		self::$params_key = explode('/', self::$route_url);
-		// SET BROWSER_URL AS PARAMS_VALUE
 		self::$params_value = explode('/', self::$browser_url);
 
-		/*
-		 	*******MOST IMPORTANT********
-			WHEN ROUTE MATCH THEN ONLY CREATE REQ, RES OBJECT
-		*/
+		/**
+		 * SET ROUTE_URL AS PARAMS_KEY
+		 * SET BROWSER_URL AS PARAMS_VALUE
+		 * WHEN ROUTE MATCH THEN ONLY CREATE REQ, RES OBJECT
+		 */
 		
-		// MATCH FOUNDED PAGE...
 		if(self::$route_url==self::$browser_url){
-			page_url(self::$browser_url);
+			pageUrl(self::$browser_url);
 			self::$req = new Request();
 			self::$res = new Response();	
 			return true;
 		}
-		// FOR PARAMS URL...
-		// FOR QUERY STRING URL NOT SUPPORTED LIKE ?token=j3ljadslfjljdks523
 		else if(str_contains(self::$route_url, ':')){
-			page_url(self::$browser_url);
+			pageUrl(self::$browser_url);
 			if(count(self::$params_key) == count(self::$params_value)){
 				for($i=0; $i<count(self::$params_key); $i++){
 					if(!str_contains(self::$params_key[$i], ':')){
@@ -68,14 +63,12 @@ class Route{
 			}
 		}
 		else if(str_contains(self::$browser_url, '?')){
-			// IMPLEMENT QUERY STRING ROUTE SOON...
 			self::$res = new Response();		
 			self::$res->status(400)->json(['error'=>'Query String URL Not Supported!']);
 			exit();
 		}
-		// PAGE_NOT_FOUND...
-		else if(self::$route_url!==self::$browser_url && self::$route_url=='/*'){			
-			page_url('/*');	
+		else if(self::$route_url!==self::$browser_url && self::$route_url=='/*'){
+			pageUrl('/*');	
 			self::$req = new Request();
 			self::$res = new Response();	
 			return true;
@@ -83,48 +76,48 @@ class Route{
 
 	}
 
-	// SET METHOD...
+	// ----------SET-METHOD------------
 	public static function setMethod(){
 		self::$method = $_SERVER['REQUEST_METHOD'];
 		return self::$method;
 	}
 
-	// GET METHOD...
+	// ----------GET------------
 	public static function get($route_arr, $callback1, $callback2=false){
 		if(self::setMethod() == 'GET'){
 			self::run($route_arr, $callback1, $callback2);
 		}
 	}
 
-	// POST METHOD...
+	// ----------POST------------
 	public static function post($route_arr, $callback1, $callback2=false){
 		if(self::setMethod() == 'POST'){
 			self::run($route_arr, $callback1, $callback2);
 		}
 	}
 
-	// PATCH METHOD...
+	// ----------PATCH------------
 	public static function patch($route_arr, $callback1, $callback2=false){
 		if(self::setMethod() == 'PATCH'){
 			self::run($route_arr, $callback1, $callback2);
 		}
 	}
 
-	// // PUT METHOD...
+	// ----------PUT------------
 	public static function put($route_arr, $callback1, $callback2=false){
 		if(self::setMethod() == 'PUT'){
 			self::run($route_arr, $callback1, $callback2);
 		}
 	}
 	
-	// DELETE METHOD...
+	// ----------DELETE------------
 	public static function delete($route_arr, $callback1, $callback2=false){
 		if(self::setMethod() == 'DELETE'){
 			self::run($route_arr, $callback1, $callback2);
 		}
 	}
 
-	// RUN METHOD [FOR CALL A CONTROLLER & MIDDLEWARE]...
+	// ----------RUN METHOD (CALL A CONTROLLER & MIDDLEWARE)------------
 	public static function run($route_arr, $callback1, $callback2){
 		if(self::splitUrl($route_arr)){
 			if($callback2!=false){

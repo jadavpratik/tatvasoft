@@ -30,7 +30,6 @@
         let validation = forgot_password_email_validation();
 
         if(validation){
-
             const email = $('[name="forgot_password_email"]').val();
             // STORE EMAIL GLOBALLY...
             store.email = email;
@@ -67,9 +66,6 @@
                             });
                         }                 
                     }
-                },
-                error : function(obj){
-                    $('[name="forgot_password_btn"]').prop('disabled', false);
                 }
             });
         }

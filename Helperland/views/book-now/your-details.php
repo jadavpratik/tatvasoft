@@ -70,13 +70,12 @@
 <script>
     function load_user_address(){
         $.ajax({
-            url : `${BASE_URL}/book-service/customer/address`,
+            url : `${BASE_URL}/user/address`,
             method : 'GET',
             success : function(res){
                 if(res!=="" && res!==undefined){
                     try{
-                        const result = JSON.parse(res);
-                        store.customer.address = result.address;
+                        store.customer.address = JSON.parse(res);
                         $('#user_radio_address_container').html(`${(function(){    
                             let html = '';
                             store.customer.address.forEach((i)=>{
@@ -110,10 +109,10 @@
 
     // ON CHANGE STORE ADDRESS ON GLOBAL OBJECT...
     $('[name="service_booking_address"]').change(function(){
-        address_id = parseInt($('[name="service_booking_address"]:checked').val());
-        store.book_service.address.filter((obj)=>{
-            if(obj.AddressId==address_id){
-                store.book_service.address = obj;
+        addressId = parseInt($('[name="service_booking_address"]:checked').val());
+        store.bookService.address.filter((obj)=>{
+            if(obj.AddressId==addressId){
+                store.bookService.address = obj;
             }
         });
     });
@@ -148,13 +147,6 @@
                         console.log('Invalid JSON Response!');
                     }
                 }
-            },
-            error : function(obj){
-                if(obj!==undefined){
-                    const {status, responseText} = obj;
-                    const error = JSON.parse(responseText);
-                    console.log(error.message);
-                }
             }
         });
     }
@@ -162,7 +154,7 @@
 
     // ON CHANGE STORE FAVORITE SP ON GLOBAL OBJECT...
     $('[name="favourite_sp"]').change(function(){
-        store.book_service.sp_id = parseInt($('[name="favourite_sp"]:checked').val());
+        store.bookService.serviceProviderId = parseInt($('[name="favourite_sp"]:checked').val());
     });
 
 </script>
@@ -189,26 +181,18 @@
         if(validation){
 
             const json = JSON.stringify({
-                street_name : $('[name="address_form_street_name"]').val(),
-                house_number : $('[name="address_form_house_number"]').val(),
-                postal_code : $('[name="address_form_postal_code"]').val(),
+                streetName : $('[name="address_form_street_name"]').val(),
+                houseNumber : $('[name="address_form_house_number"]').val(),
+                postalCode : $('[name="address_form_postal_code"]').val(),
                 city : $('[name="address_form_city"]').val(),
                 phone : $('[name="address_form_phone"]').val(),
             });
 
             $.ajax({
-                url : `${BASE_URL}/book-service/customer/address`,
+                url : `${BASE_URL}/user/address`,
                 method : 'POST',
                 contentType : 'application/json',
                 data : json,
-                beforeSend : function(){
-                    // SET LOADER...
-                    open_loader();
-                },
-                complete : function(){
-                    // REMOVE LOADER...
-                    close_loader();
-                },
                 success : function(res){
                     if(res!==""){
                         $('#address_form').trigger('reset');
@@ -220,16 +204,6 @@
                             'icon':'success'
                         });
                     }
-                },
-                error : function(obj){
-                    if(obj!==undefined || obj!==""){
-                        const {status, responseText} = obj;
-                        const error = JSON.parse(responseText);
-                        Swal.fire({
-                            'title':error.message,
-                            'icon':'error'
-                        });
-                    }
                 }
             });
         }
@@ -237,8 +211,8 @@
 
     // [postalcode, mobile] BEFORE OPENING ADDRESS FORM PRE SET VALUE...
     $('#open_address_form_btn').click(function(){
-        $('[name="address_form_postal_code"]').val(store.book_service.postal_code).prop('readonly', true);
-        $('[name="address_form_phone"]').val(store.user.Mobile).prop('readonly', true);
+        $('[name="address_form_postal_code"]').val(store.bookService.postalCode).prop('readonly', true);
+        $('[name="address_form_phone"]').val(store.loggedUserDetails.Mobile).prop('readonly', true);
     })
 
 </script>
@@ -250,19 +224,19 @@
         // SERVICE BOOKING ADDRESS...
         let validation = book_service_address_validation();
         if(validation){
-            address_id = parseInt($('[name="service_booking_address"]:checked').val());
+            addressId = parseInt($('[name="service_booking_address"]:checked').val());
             store.customer.address.filter((obj)=>{
-                if(obj.AddressId==address_id){
-                    store.book_service.address = obj;
+                if(obj.AddressId==addressId){
+                    store.bookService.address = obj;
                 }
             });
             
             // DIRECT ASSSIGNMENT TO THE SERVICE PROVIDER...
             if($('[name="favourite_sp"]:checked').val()!==""){
-                store.book_service.sp_id = parseInt($('[name="favourite_sp"]:checked').val());
+                store.bookService.serviceProviderId = parseInt($('[name="favourite_sp"]:checked').val());
             }
             else{
-                store.book_service.sp_id = null;
+                store.bookService.serviceProviderId = null;
             }
             change_book_service_tabs(3);
         }

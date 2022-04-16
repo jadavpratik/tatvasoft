@@ -19,13 +19,13 @@ class Account{
 	public function signup(Request $req, Response $res){
 
 		Validation::check($req->body, [
-			'firstname' => ['text', 'min:3', 'max:20'],
-			'lastname' => ['text', 'min:3', 'max:20'],
+			'firstName' => ['text', 'min:3', 'max:20'],
+			'lastName' => ['text', 'min:3', 'max:20'],
 			'email' => ['email'],
 			'phone' => ['phone'],
 			'role' => ['required'],
 			'password' => ['password'],
-			'cpassword' => ['confirm-password'],
+			'confirmPassword' => ['confirm-password'],
 		]);
 
 		$user = new User();
@@ -39,8 +39,8 @@ class Account{
 			if($role==1 || $role==2 || $role==3){
 				$hash = Hash::create($req->body->password);	
 				$userId = $user->create([
-					'FirstName' => $req->body->firstname,
-					'LastName' => $req->body->lastname,
+					'FirstName' => $req->body->firstName,
+					'LastName' => $req->body->lastName,
 					'Email' => $req->body->email,
 					'Mobile' => $req->body->phone,
 					'Password'=> $hash,
@@ -83,7 +83,7 @@ class Account{
 	}
 
 	// ----------VERIFY-USER----------
-	public function verify_user(Request $req, Response $res){
+	public function verifyUser(Request $req, Response $res){
 
 		$userId = $req->params->id;
 		$_token = $req->params->token;
@@ -97,7 +97,7 @@ class Account{
 			if($dbToken==$_token){
 				$user->where('userId', '=', $userId)->update(['IsActive' => 1]);
 				$token->where('userId', '=', $userId)->delete();
-				flash_session('accountVerified', true);
+				flashSession('accountVerified', true);
 				$res->redirect('/login');
 			}			
 		}	
@@ -110,12 +110,12 @@ class Account{
 	public function login(Request $req, Response $res){
 
 		Validation::check($req->body, [
-			'login_email' => ['email'],
-			'login_password' => ['password']
+			'email' => ['email'],
+			'password' => ['password']
 		]);
 
-		$email = $req->body->login_email;
-		$password = $req->body->login_password;
+		$email = $req->body->email;
+		$password = $req->body->password;
 
 		// REMEMBER ME...
 		if(isset($req->body->remember)){
@@ -172,12 +172,12 @@ class Account{
 	public function logout(Request $req, Response $res){
 		// DESTORY THE SESSION...
 		session_destroy();
-		flash_session('logout', true);
+		flashSession('logout', true);
 		$res->redirect('/');
 	}
 
 	// ----------FORGOT-PASSWORD----------
-	public function forgot_password(Request $req, Response $res){
+	public function forgotPassword(Request $req, Response $res){
 
 		Validation::check($req->body, [
 			'email' => ['email']
@@ -214,7 +214,7 @@ class Account{
 	}
 
 	// ----------VERIFY-OTP----------
-	public function verify_otp(Request $req, Response $res){
+	public function verifyOtp(Request $req, Response $res){
 
 		Validation::check($req->body, [
 			'otp' => ['integer', 'length:4'],
@@ -236,11 +236,11 @@ class Account{
 	}
 
 	// ----------SET-NEW-PASSWORD----------
-	public function set_new_password(Request $req, Response $res){
+	public function setNewPassword(Request $req, Response $res){
 
 		Validation::check($req->body, [
 			'password' => ['password'],
-			'cpassword' => ['confirm-password'],
+			'confirmPassword' => ['confirm-password'],
 			'email' => ['email'],
 		]);
 
@@ -255,11 +255,11 @@ class Account{
 	}    
 
 	// ----------CHANGE-PASSWORD----------
-	public function change_password(Request $req, Response $res){
+	public function changePassword(Request $req, Response $res){
 		Validation::check($req->body, [
-			'change_password_old' => ['required'],
-			'change_password_new' => ['password'],
-			'change_password_confirm' => ['confirm-password']
+			'oldPassword' => ['required'],
+			'newPassword' => ['password'],
+			'confirmPassword' => ['confirm-password']
 		]);
 
 		$userId = session('userId');
@@ -269,9 +269,9 @@ class Account{
 
 		// ALL PASSWORD...
 		$dbPassword = $data[0]->Password;
-		$oldPassword = $req->body->change_password_old;
-		$newPassword = $req->body->change_password_new;
-		$confirmPassword = $req->body->change_password_confirm;
+		$oldPassword = $req->body->oldPassword;
+		$newPassword = $req->body->newPassword;
+		$confirmPassword = $req->body->confirmPassword;
 		$hash = Hash::create($confirmPassword);
 
 		if(Hash::verify($oldPassword, $dbPassword)){
@@ -280,7 +280,7 @@ class Account{
 				'Password' => $hash,
 				'ModifiedDate' => date('Y-m-d H:i:s'),
 			]);	
-			$res->status(200)->json(['message'=>'Password change successfully.']);	
+			$res->status(200)->json(['message'=>'Password change successfully.']);
 		}
 		else{
 			$res->status(401)->json(['message'=>'Old password is wrong!']);

@@ -22,7 +22,7 @@ class ServiceProvider{
     private $CANCELLED_STATUS = 3;
     
     // ----------NEW-SERVICES [NEW REQUESTS ONLY BY SP ZIPCODE]----------
-    public function new_services(Request $req, Response $res){
+    public function newServices(Request $req, Response $res){
         $serviceProviderId = session('userId');
         $db = new Database();
         $sql = "SELECT service.ServiceRequestId,
@@ -57,8 +57,8 @@ class ServiceProvider{
                         )>0 AND 
                         (
                             SELECT COUNT(*) FROM favoriteandblocked WHERE 
-                            (UserId = service.UserId AND TargetUserId = service.ServiceProviderId AND IsBlocked=1) OR 
-                            (TargetUserId = service.UserId AND UserId = service.ServiceProviderId AND IsBlocked=1)
+                            (UserId = service.UserId AND TargetUserId = {$serviceProviderId} AND IsBlocked=1) OR 
+                            (TargetUserId = service.UserId AND UserId = {$serviceProviderId} AND IsBlocked=1)
                         )=0
                 ORDER BY service.ServiceRequestId";
     
@@ -115,7 +115,7 @@ class ServiceProvider{
     }
 
     // ----------UPCOMING-SERVICES[ALREADY ASSIGNED TO SP]----------
-    public function upcoming_services(Request $req, Response $res){
+    public function upcomingServices(Request $req, Response $res){
         $serviceProviderId = session('userId');
         $db = new Database();
         $sql = "SELECT service.ServiceRequestId,
@@ -198,67 +198,10 @@ class ServiceProvider{
             ];
         }
         $res->json($data);
-    
-        // $service = new Service();
-        // $user = new User();
-        // $serviceProviderId = session('userId');
-
-        // // SERVICES COMING ACCORDING TO POSTAL CODE...
-        // $where = "ServiceProviderId = {$serviceProviderId} AND Status = {$this->ASSIGNED_STATUS}";
-        // $serviceData = $service->join('ServiceRequestId', 'ServiceRequestId', 'servicerequestaddress')
-        //                        ->where($where)->read();
-
-        // function time_to_minutes($time){
-        //     $temp = explode(':', $time);
-        //     $hours = (int) $temp[0];
-        //     $minutes = (int) $temp[1];
-        //     $totalMinutes = $hours*60 + $minutes;
-        //     return $totalMinutes;
-        // }
-
-        // // MODIFY SERVICE DATA...
-        // for($i=0; $i<count($serviceData); $i++){
-        //     $fun = new Functions();
-        //     // EXCLUDE THE BLOCKED USER DATA...
-        //     if(!$fun->isUserBlockedByAnotherUser($serviceData[$i]->UserId)){
-        //         $serviceData[$i]->TotalCost   = (int) $serviceData[$i]->TotalCost;
-        //         $serviceData[$i]->ServiceDate = date('d/m/Y', strtotime($serviceData[$i]->ServiceStartDate));
-        //         $serviceData[$i]->StartTime   = date('H:i', strtotime($serviceData[$i]->ServiceStartDate));
-        //         $serviceData[$i]->Duration    = $serviceData[$i]->ServiceHours 
-        //                                       + $serviceData[$i]->ExtraHours;
-        //         $serviceData[$i]->Duration    = date('H:i', mktime(0, $serviceData[$i]->Duration*60));
-        //         $serviceData[$i]->EndTime     = time_to_minutes($serviceData[$i]->StartTime) 
-        //                                       + time_to_minutes($serviceData[$i]->Duration);
-        //         $serviceData[$i]->EndTime     = date('H:i', mktime(0, $serviceData[$i]->EndTime));
-    
-        //         // CHECK SERVICE EXPIRE OR NOT?...
-        //         $serviceDate = strtotime($serviceData[$i]->ServiceStartDate);
-        //         $todayDate = strtotime(date('Y-m-d H:i:s'));
-        //         $serviceData[$i]->IsExpired = $serviceDate < $todayDate ? 1 : 0;
-    
-        //         // ADD CUSTOMER DETAILS...
-        //         $customerId = $serviceData[$i]->UserId;
-        //         $customerData = $user->columns(['FirstName', 'LastName'])->where('UserId', '=', $customerId)->read();
-        //         $serviceData[$i]->CustomerName = $customerData[0]->FirstName.' '.$customerData[0]->LastName;
-    
-        //         // EXTRA SERVICE DETAILS...
-        //         $extra = new ExtraService();
-        //         $serviceId = $serviceData[$i]->ServiceRequestId;
-        //         $temp = $extra->where('ServiceRequestId', '=', $serviceId)->read();
-        //         for($j=0; $j<count($temp); $j++){
-        //             $serviceData[$i]->ExtraService[] = $temp[$j]->ServiceExtraId;
-        //         }    
-        //     }
-        //     else{
-        //         unset($serviceData[$i]);
-        //     }
-        // }
-
-        // $res->status(200)->json($serviceData);
     }
 
     // ----------SERVICE_HISTORY(CANCELLED OR COMPLETED)----------
-    public function service_history(Request $req, Response $res){
+    public function serviceHistory(Request $req, Response $res){
         $serviceProviderId = session('userId');
         $db = new Database();
         $sql = "SELECT service.ServiceRequestId,
@@ -339,7 +282,7 @@ class ServiceProvider{
     }
 
     // ----------SERVICE SCHEDULE----------
-    public function service_schedule(Request $req, Response $res){
+    public function serviceSchedule(Request $req, Response $res){
         $serviceProviderId = session('userId');
         $db = new Database();
         $sql = "SELECT service.ServiceRequestId,
@@ -374,7 +317,7 @@ class ServiceProvider{
     }
 
     // ----------MY-RATING----------
-    public function my_rating(Request $req, Response $res){
+    public function myRating(Request $req, Response $res){
         $serviceProviderId = session('userId');
         $db = new Database();
         $sql = "SELECT service.ServiceRequestId,
@@ -411,7 +354,7 @@ class ServiceProvider{
                 ORDER BY service.ServiceRequestId";
     
         $data = $db->query($sql);
-    
+        $temp = [];
         if(count($data)>0){
             for($i=0; $i<count($data); $i++){
                 $data[$i]->TotalCost = (int) $data[$i]->TotalCost;
@@ -446,7 +389,7 @@ class ServiceProvider{
                             $data[$i]->HighestRating = null;
                     }
                     // ----------FOR MAKING DATA AS NESTED OBJECT----------
-                    $data[$i] = [
+                    $temp[] = [
                         'Service' => [
                             'Id' => $data[$i]->ServiceRequestId,
                             'ServiceDate' => $data[$i]->ServiceDate,
@@ -482,18 +425,15 @@ class ServiceProvider{
                             ]
                         ],
                     ];    
-                }
-                else{
-                    unset($data[$i]);
-                }
-            }    
+                }    
+        }    
         }
-        $res->json($data);
+        $res->json($temp);
 
     }
 
     // ----------SERVICE-PROVIDER'S CUSTOMER LIST----------
-    public function my_customer(Request $req, Response $res){
+    public function myCustomer(Request $req, Response $res){
         $serviceProviderId = session('userId');
         $db = new Database();
         $sql = "SELECT service.UserId AS Id,
@@ -511,7 +451,7 @@ class ServiceProvider{
     }    
 
     // ----------ACCEPT-SERVICE----------
-    public function accept_service(Request $req, Response $res){
+    public function acceptService(Request $req, Response $res){
         $serviceId = $req->params->id;
         $service = new Service();
         $where = "Status = {$this->ASSIGNED_STATUS} AND ServiceRequestId = {$serviceId}";
@@ -557,7 +497,7 @@ class ServiceProvider{
     }
 
     // ----------COMPLETE-SERVICE----------
-    public function complete_service(Request $req, Response $res){
+    public function completeService(Request $req, Response $res){
         $serviceId = $req->params->id;
         $service = new Service();
 
@@ -610,7 +550,7 @@ class ServiceProvider{
     }
    
     // ----------CANCEL-OR-REJECT-SERVICE----------
-    public function reject_service(Request $req, Response $res){
+    public function rejectService(Request $req, Response $res){
         $serviceId = $req->params->id;
         $service = new Service();
         $where = "ServiceRequestId = {$serviceId} AND Status = {$this->ASSIGNED_STATUS}";
@@ -654,7 +594,7 @@ class ServiceProvider{
     }
 
     // ----------BLOCK-CUSTOMER----------
-    public function block_customer(Request $req, Response $res){
+    public function blockCustomer(Request $req, Response $res){
         $customerId = $req->params->id;
         $serviceProviderId = session('userId');
         $fav = new Favorite();
@@ -676,7 +616,7 @@ class ServiceProvider{
     }
 
     // ----------UNBLOCK-CUSTOMER----------
-    public function unblock_customer(Request $req, Response $res){
+    public function unblockCustomer(Request $req, Response $res){
         $customerId = $req->params->id;
         $serviceProviderId = session('userId');
         $fav = new Favorite();

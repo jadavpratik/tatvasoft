@@ -11,7 +11,7 @@ use app\models\UserAddress;
 
 class View{
 
-    // ********************STATIC-PAGES********************
+    // **********STATIC-PAGES**********
 
     // -----HOME-----
     public function home(Request $req, Response $res){
@@ -43,65 +43,65 @@ class View{
         $res->render('static-pages/guarantee');
     }
 
-    // ********************CUSTOMER********************
+    // **********CUSTOMER**********
 
     // -----BOOK-NOW-----
-    public function booknow(Request $req, Response $res){
+    public function bookNow(Request $req, Response $res){
         $res->render('book-now/index');
     }
 
     // -----CUSTOMER-SIGNUP-----
-    public function customer_signup(Request $req, Response $res){
+    public function customerSignup(Request $req, Response $res){
 		$res->render('customer/signup');
 	}
 
     // -----CUSTOMER-DASHBOARD-----
-    public function customer_dashboard(Request $req, Response $res){
+    public function customerDashboard(Request $req, Response $res){
         $res->render('customer/index');
     }
 
-    // ********************SERVICE-PROVIDER********************
+    // **********SERVICE-PROVIDER**********
 
     // -----SP-SIGNUP-----
-    public function sp_signup(Request $req, Response $res){
+    public function serviceProviderSignup(Request $req, Response $res){
         $res->render('service-provider/signup');
     }
 
     // -----SP-DASHBOARD-----
-    public function sp_dashboard(Request $req, Response $res){
+    public function serviceProviderDashboard(Request $req, Response $res){
         $res->render('service-provider/index');
     }
 
-    // ********************ADMIN********************
+    // **********ADMIN**********
 
-    public function admin_dashboard(Request $req, Response $res){
+    public function adminDashboard(Request $req, Response $res){
         $res->render('admin/index');
     }
 
 
-    // ********************COMPONENTS********************
+    // **********COMPONENTS**********
 
     // -----LOGIN-----
     public function login(Request $req, Response $res){
-		flash_session('openLoginForm', true);
+		flashSession('openLoginForm', true);
 		$res->redirect('/');
 	}
 
     // -----FORGOT PASSWORD-----
-	public function forgot_password(Request $req, Response $res){
-		flash_session('openForgotPasswordForm', true);
+	public function forgotPassword(Request $req, Response $res){
+		flashSession('openForgotPasswordForm', true);
 		$res->redirect('/');
 	}
 
-    // ********************NOT FOUND********************
+    // **********NOT FOUND**********
 
     // -----PAGE-NOT-FOUND-----
-	public function not_found_page(Request $req, Response $res){
+	public function notFoundPage(Request $req, Response $res){
 		$res->render('static-pages/page-not-found');
 	}
 
     // -----PAGE-NOT-FOUND-JSON-----
-	public function not_found_json(Request $req, Response $res){
+	public function notFoundJson(Request $req, Response $res){
 		$res->status(404)->json(['message'=>'No route availabe!']);
 	}
 

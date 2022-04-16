@@ -1,6 +1,6 @@
 	<?php 
 		$home_footer_bg = '';
-		if(page_url()=='/'){
+		if(pageUrl()=='/'){
 			$home_footer_bg = 'background-color:#F4F5F8;';
 		}
 	?>

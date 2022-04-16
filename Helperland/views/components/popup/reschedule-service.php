@@ -28,9 +28,8 @@
         let validation = reschedule_service_validation();
         if(validation){
             let json = JSON.stringify({
-                new_service_date : $('[name="reschedule_service_date"]').val(),
-                new_service_time : $('[name="reschedule_service_time"]').val(),
-                service_id : store.id.reschedule,
+                date : $('[name="reschedule_service_date"]').val(),
+                time : $('[name="reschedule_service_time"]').val(),
             });
 
             $.ajax({

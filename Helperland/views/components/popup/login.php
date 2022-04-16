@@ -58,11 +58,18 @@
             }	
         }
 
+        let json = JSON.stringify({
+            email : $('[name="login_email"]').val(),
+            password : $('[name="login_password"]').val(),
+            remember : $('[name="remember"]').prop('checked')? true : false
+        })
+
         if(validation){
             $.ajax({
                 url : `${BASE_URL}/login`,
                 method : 'POST',
-                data : $('.login_popup_form').serialize(),
+                contentType : 'application/json',
+                data : json,
                 success : function(res){
                     if(res!=="" && res!==undefined){
                         try{

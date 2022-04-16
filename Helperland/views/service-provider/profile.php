@@ -212,13 +212,6 @@
                     $(`[name="avatar"][value="${result.UserProfilePicture}"]`).prop('checked', true);
                     $('.avatar').attr('src', `${BASE_URL}/assets/img/avatar/${result.UserProfilePicture}.png`);
                 }
-            },
-            error : function(obj){
-                if(obj!==undefined && obj!==""){
-                    const {responseText} = obj;
-                    const error = JSON.parse(responseText);
-                    console.log(error.message);
-                }
             }
         })
     }
@@ -238,13 +231,6 @@
                     $('[name="house_number"]').val(result.AddressLine2);
                     $('[name="postal_code"]').val(result.PostalCode);
                     $('[name="city"]').val(result.City);
-                }
-            },
-            error : function(obj){
-                if(obj!==undefined && obj!==""){
-                    const {responseText} = obj;
-                    const error = JSON.parse(responseText);
-                    console.log(error.message);
                 }
             }
         });
@@ -287,11 +273,11 @@
         // UPDATE SP-DETAILS....
         function update_sp_details(){
             let json = JSON.stringify({
-                firstname : $('[name="firstname"]').val(),
-                lastname : $('[name="lastname"]').val(),
+                firstName : $('[name="firstname"]').val(),
+                lastName : $('[name="lastname"]').val(),
                 email : $('[name="email"]').val(),
                 phone : $('[name="phone"]').val(),
-                dob : $('[name="dob"]').val(),
+                dateOfBirth : $('[name="dob"]').val(),
                 language : parseInt($('[name="language"]').val()),
                 gender : $('[name="gender"]:checked').val(),
                 avatar : $('[name="avatar"]:checked').val(),
@@ -326,11 +312,11 @@
             let url = `${BASE_URL}/user/address`;
             let method = 'POST';
             let json = JSON.stringify({
-                add_address_phone : $('[name="phone"]').val(),
-                add_address_street_name : $('[name="street_name"]').val(),
-                add_address_house_number : $('[name="house_number"]').val(),
-                add_address_postal_code : $('[name="postal_code"]').val(),
-                add_address_city : $('[name="city"]').val(),
+                phone : $('[name="phone"]').val(),
+                streetName : $('[name="street_name"]').val(),
+                houseNumber : $('[name="house_number"]').val(),
+                postalCode : $('[name="postal_code"]').val(),
+                city : $('[name="city"]').val(),
             });
 
             // IF ADDRESS AVAILABE THEN UPDATE...
@@ -338,13 +324,6 @@
                 let id = $('[name="sp_address_id"]').val();
                 url = `${BASE_URL}/user/address/${id}`;
                 method = 'PATCH';
-                json = JSON.stringify({
-                    edit_address_phone : $('[name="phone"]').val(),
-                    edit_address_street_name : $('[name="street_name"]').val(),
-                    edit_address_house_number : $('[name="house_number"]').val(),
-                    edit_address_postal_code : $('[name="postal_code"]').val(),
-                    edit_address_city : $('[name="city"]').val(),
-                });
             }
 
             $.ajax({
@@ -399,9 +378,9 @@
         if(validation){
 
             let json = JSON.stringify({
-                change_password_old : $('[name="change_password_old"]').val(),
-                change_password_new : $('[name="change_password_new"]').val(),
-                change_password_confirm : $('[name="change_password_confirm"]').val()
+                oldPassword : $('[name="change_password_old"]').val(),
+                newPassword : $('[name="change_password_new"]').val(),
+                confirmPassword : $('[name="change_password_confirm"]').val()
             });
 
             $.ajax({

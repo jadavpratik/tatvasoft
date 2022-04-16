@@ -16,8 +16,8 @@ class Contact{
     // ----------CONTACT SUBMIT----------
     public function submit(Request $req, Response $res){
         Validation::check($req->body, [
-            'firstname' => ['text', 'min:3', 'max:10'],
-            'lastname' => ['text', 'min:3', 'max:10'],
+            'firstName' => ['text', 'min:3', 'max:10'],
+            'lastName' => ['text', 'min:3', 'max:10'],
             'phone' => ['phone', 'length:10'],
             'email' => ['email'],
             'message' => ['text'],
@@ -32,7 +32,7 @@ class Contact{
         }
         $contact = new ContactModel();
         $contact->create([
-            'Name' => $req->body->firstname.' '.$req->body->lastname,
+            'Name' => $req->body->firstName.' '.$req->body->lastName,
             'Email' => $req->body->email,
             'PhoneNumber' => $req->body->phone,
             'Subject' => $req->body->subject,
@@ -45,7 +45,7 @@ class Contact{
             // ----------SEND MAIL----------
             $emailReceiver = ADMIN_EMAIL;
             $emailSubject = 'User Feedback or Query';
-            $emailData = ['$Name' => $req->body->firstname.' '.$req->body->lastname,
+            $emailData = ['$Name' => $req->body->firstName.' '.$req->body->lastName,
                           '$Email' => $req->body->email,
                           '$Phone' => $req->body->phone,
                           '$Subject' => $req->body->subject,

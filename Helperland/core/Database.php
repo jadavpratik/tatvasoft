@@ -17,6 +17,11 @@ class Database{
     private $join    = '';
     protected $table = '';
 
+    public function __construct(){
+        $this->res = new Response();
+        $this->connect();
+    }
+
     // ----------CONNECT------------
     public function connect(){
         $dbType     = DB_TYPE;
@@ -33,11 +38,6 @@ class Database{
             $this->res->status(500)->json(['message'=>'Database connection issue!']);
             exit();
         }
-    }
-
-    public function __construct(){
-        $this->res = new Response();
-        $this->connect();
     }
 
     // ----------TABLE------------
@@ -207,6 +207,11 @@ class Database{
             $this->res->status(500)->json(['message'=>'Internal server error', 'errors'=>$e->getMessage()]);
             exit();
         }
+    }
+
+    // ----------SEARCH------------
+    public function search(){
+        // SOON
     }
 
     public function __destruct(){

@@ -19,14 +19,14 @@ use app\services\Functions;
 class BookNow{
 
     // ----------CHECK POSTAL CODE---------- 
-    public function check_postal_code(Request $req, Response $res){
+    public function checkPostalCode(Request $req, Response $res){
 
         Validation::check($req->body, [
-            'postal_code' => ['postal-code']
+            'postalCode' => ['postal-code']
         ]);
 
         $user = new User();
-        $where = "RoleId = 2 AND PostalCode = {$req->body->postal_code}";
+        $where = "RoleId = 2 AND PostalCode = {$req->body->postalCode}";
         $users = $user->join('UserId', 'UserId', 'useraddress')->where($where)->read();
         if(count($users)>0){
             $res->status(200)->json(['message'=>'User availabe']);
@@ -37,101 +37,65 @@ class BookNow{
 
     }
 
-    // ----------GET CUSTOMER ADDRESS----------
-    public function get_address(Request $req, Response $res){
-        $userAddress = new UserAddress();
-        $customerId = session('userId');
-        $result = $userAddress->where('UserId', '=', $customerId)->read();
-        $res->status(200)->json(['address'=>$result]);
-    }
-
-    // ----------ADD ADDRESS----------
-    public function add_address(Request $req, Response $res){
-        Validation::check($req->body, [
-            'street_name' => ['text'],
-            'house_number' => ['required'],
-            'postal_code' => ['postal-code'], 
-            'city' => ['text'],
-            'phone' => ['phone', 'length:10']
-        ]);
-
-        $user = new User();
-        $fun = new Functions();
-        $email = $fun->getUserEmailByUserId(session('userId'));
-        $userAddress = new UserAddress();
-
-        $userAddress->create([
-            'UserId' => session('userId'), 
-            'AddressLine1' => $req->body->street_name,
-            'AddressLine2' => $req->body->house_number,
-            'City' => $req->body->city,
-            'State' => 'Gujarat',
-            'PostalCode' => $req->body->postal_code,
-            'Email' => $email,
-            'Mobile' => $req->body->phone,
-        ]);
-        $res->status(200)->json(['message'=>'Address Add Successfully.']);
-    }
-
     // ----------BOOK SERVICE----------
-    public function book_service(Request $req, Response $res){
+    public function bookService(Request $req, Response $res){
 
         Validation::check($req->body, [
-            'postal_code' => ['postal-code'],
+            'postalCode' => ['postal-code'],
             'date' => ['required'],
             'time' => ['required'],
             'duration' => ['number'],
-            'extra' => ['optional'],
-            'extra_time' => ['optional'],
+            'extraService' => ['optional'],
+            'extraTime' => ['optional'],
             'comments' => ['optional'],
-            'has_pets' => ['optional'],
-            'sp_id' => ['optional'],
+            'hasPets' => ['optional'],
+            'serviceProviderId' => ['optional'],
             'address' => ['object'],
         ]);
 
         // INITIALIZE REQUIRED VARIABLE...
         $service = new Service();
-        $service_address = new ServiceAddress();
+        $serviceAddress = new ServiceAddress();
 
         $customerId = session('userId');
-        $postal_code = $req->body->postal_code;
+        $postalCode = $req->body->postalCode;
         $date = strtotime($req->body->date.' '.$req->body->time);
         $date = date('Y-m-d H:i:s', $date);
         $duration = (int) $req->body->duration;
         // OPTIONAL PARAMERTERS...
-        $extra =  isset($req->body->extra)? $req->body->extra : [];
-        $extra_time = isset($req->body->extra_time)? $req->body->extra_time : null;
+        $extraService =  isset($req->body->extraService)? $req->body->extraService : [];
+        $extraTime = isset($req->body->extraTime)? $req->body->extraTime : null;
         $comments = isset($req->body->comments)? $req->body->comments : null;
-        $has_pets = (isset($req->body->has_pets) && $req->body->has_pets==true)? 1 : null;
-        $sp_id = null;
-        if(isset($req->body->sp_id)){
-            if($req->body->sp_id!=null && $req->body->sp_id!=''){
-                $sp_id = $req->body->sp_id;
+        $hasPets = (isset($req->body->hasPets) && $req->body->hasPets==true)? 1 : null;
+        $serviceProviderId = null;
+        if(isset($req->body->serviceProviderId)){
+            if($req->body->serviceProviderId!=null && $req->body->serviceProviderId!=''){
+                $serviceProviderId = $req->body->serviceProviderId;
             }
         }
-        $hourly_rate = 20;
-        $total_cost = $hourly_rate*$duration + ($hourly_rate/2)*count($extra);
+        $hourlyRate = 20;
+        $totalCost = $hourlyRate*$duration + ($hourlyRate/2)*count($extraService);
         // ADD SERVICE_REQUEST IN DATABASE TABLE...
         $serviceId = $service->create([
             'UserId' => $customerId,
             'ServiceStartDate' => $date,
-            'ZipCode' => $postal_code,
-            'ServiceHourlyRate' => $hourly_rate,
+            'ZipCode' => $postalCode,
+            'ServiceHourlyRate' => $hourlyRate,
             'ServiceHours' => $duration,
-            'ExtraHours' => $extra_time,
-            'SubTotal' => $total_cost,
-            'TotalCost' => $total_cost,
+            'ExtraHours' => $extraTime,
+            'SubTotal' => $totalCost,
+            'TotalCost' => $totalCost,
             'Comments' => $comments,
-            'ServiceProviderId' => $sp_id,
-            'HasPets' => $has_pets,
-            'Status' => $sp_id!=null? 1 : 0, //STATUS ZERO MEANS NEW REQUEST...
-            'SPAcceptedDate' => $sp_id!=null? date('Y-m-d H:i:s') : null,
+            'ServiceProviderId' => $serviceProviderId,
+            'HasPets' => $hasPets,
+            'Status' => $serviceProviderId!=null? 1 : 0, //STATUS ZERO MEANS NEW REQUEST...
+            'SPAcceptedDate' => $serviceProviderId!=null? date('Y-m-d H:i:s') : null,
             'CreatedDate' => date('Y-m-d H:i:s'),
             'ModifiedDate' => date('Y-m-d H:i:s')
         ]);
 
         // ADD SERVICE_REQUEST_ADDRESS IN DATABASE TABLE...
-        $service_address->create([
+        $serviceAddress->create([
             'ServiceRequestId' => $serviceId,
             'AddressLine1' => $req->body->address->AddressLine1,
             'AddressLine2' => $req->body->address->AddressLine2,
@@ -143,10 +107,10 @@ class BookNow{
         ]);
 
         // ADD EXTRA SERVICES IN DATABASE IF USER WANT'S...
-        if(count($extra)>0){
+        if(count($extraService)>0){
             $temp = '';
-            for($i=0; $i<count($extra); $i++){
-                $temp .= "( {$serviceId}, {$extra[$i]} ), ";
+            for($i=0; $i<count($extraService); $i++){
+                $temp .= "( {$serviceId}, {$extraService[$i]} ), ";
             }    
             $temp = rtrim($temp, ', ');
             $sql = "INSERT INTO servicerequestextra (ServiceRequestId, ServiceExtraId) VALUES {$temp}";
@@ -171,9 +135,9 @@ class BookNow{
             Mail::send($emailReceiver, $emailSubject, $emailBody);
 
             // DIRECT ASSIGNMENT OF USER BY SERVICE PROVIDER ID...
-            if($sp_id!=null){
-                if(!$fun->isUserBlockedByAnotherUser($sp_id)){
-                    $emailReceiver = $fun->getUserEmailByUserId($sp_id);
+            if($serviceProviderId!=null){
+                if(!$fun->isUserBlockedByAnotherUser($serviceProviderId)){
+                    $emailReceiver = $fun->getUserEmailByUserId($serviceProviderId);
                     $emailSubject = 'Assigned for Service Cleaning';
                     $emailBody = $res->template('book-service/single-sp', $emailData); 
                     Mail::send($emailReceiver, $emailSubject, $emailBody);
@@ -182,7 +146,7 @@ class BookNow{
             }
             else{
                 // SERVICE POOL [SEND MAIL TO ALL SP ACCORDING TO POSTAL CODE]
-                $emailReceivers = $fun->getSPEmailsByPostalCode($postal_code);
+                $emailReceivers = $fun->getSPEmailsByPostalCode($postalCode);
                 $emailSubject = 'Service Booked In Your Area';
                 $emailBody = $res->template('/book-service/multiple-sp', $emailData);
                 Mail::send($emailReceivers[0], $emailSubject, $emailBody, $emailReceivers);
@@ -195,7 +159,7 @@ class BookNow{
     }
 
     // ----------GET FAVORITE SP----------
-    public function get_favorite_sp(Request $req, Response $res){
+    public function getFavoriteServiceProvider(Request $req, Response $res){
         $customerId = session('userId');
         $db = new Database();
         $sql = "SELECT user.UserId,

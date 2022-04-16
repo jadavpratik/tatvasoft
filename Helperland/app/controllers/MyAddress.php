@@ -8,15 +8,15 @@ use core\Validation;
 
 use app\models\User;
 use app\models\UserAddress;
+use app\services\Functions;
 
 class MyAddress{
 
     // ----------GET SINGLE ADDRESS----------
-    public function get_address(Request $req, Response $res){
+    public function getSingleAddress(Request $req, Response $res){
+        $addressId = $req->params->id;
         $userAddress = new UserAddress();
-        $userId = session('userId');
-        $where = "AddressId = {$req->params->id} AND UserId = {$userId}"; 
-        $data = $userAddress->where($where)->read();
+        $data = $userAddress->where('AddressId', '=', $addressId)->read();
         if(count($data)>0){
             $res->status(200)->json($data[0]);
         }
@@ -26,43 +26,45 @@ class MyAddress{
     }
 
     // ----------GET ALL ADDRESS----------
-    public function get_all_address(Request $req, Response $res){
+    public function getAllAddress(Request $req, Response $res){
+        $userId = session('userId');
         $userAddress = new UserAddress();
-        $data = $userAddress->where('UserId', '=', session('userId'))->read();
+        $data = $userAddress->where('UserId', '=', $userId)->read();
         if(count($data)>0){
             $res->status(200)->json($data);
         }
         else{
-            $res->status(404)->json(['message'=>'No address available!']);
+            $res->status(200)->json([]);
         }
     }    
 
     // ----------ADD ADDRESS----------
-    public function add_address(Request $req, Response $res){
+    public function addAddress(Request $req, Response $res){
 
         Validation::check($req->body, [
-            'add_address_street_name' => ['text'],
-            'add_address_house_number' => ['string'],
-            'add_address_postal_code' => ['postal-code'],
-            'add_address_city' => ['text', 'min:3', 'max:20'],
-            'add_address_phone' => ['phone']
+            'streetName' => ['text'],
+            'houseNumber' => ['string'],
+            'postalCode' => ['postal-code'],
+            'city' => ['text', 'min:3', 'max:20'],
+            'phone' => ['phone']
         ]);
 
         $userId = session('userId');
 
         $user = new User();
-        $details = $user->columns(['Email'])->where('UserId', '=', $userId)->read();
+        $fun = new Functions();
+        $email = $fun->getUserEmailByUserId($userId);
 
         $userAddress = new UserAddress();
         $userAddress->create([
             'UserId' => $userId,
-            'AddressLine1' => $req->body->add_address_street_name,
-            'AddressLine2' => $req->body->add_address_house_number,
-            'City' => $req->body->add_address_city,
-            'PostalCode' => $req->body->add_address_postal_code,
-            'Mobile' => $req->body->add_address_phone,
+            'AddressLine1' => $req->body->streetName,
+            'AddressLine2' => $req->body->houseNumber,
+            'City' => $req->body->city,
+            'PostalCode' => $req->body->postalCode,
+            'Mobile' => $req->body->phone,
             'State' => 'Gujarat',
-            'Email' => $details[0]->Email
+            'Email' => $email
         ]);
 
         $res->status(200)->json(['message'=>'Address added successfully.']);
@@ -70,31 +72,32 @@ class MyAddress{
     }
 
     // ----------UPDATE ADDRESS----------
-    public function update_address(Request $req, Response $res){
+    public function updateAddress(Request $req, Response $res){
 
         Validation::check($req->body, [
-            'edit_address_street_name' => ['text'],
-            'edit_address_house_number' => ['string'],
-            'edit_address_postal_code' => ['postal-code'],
-            'edit_address_city' => ['text', 'min:3', 'max:20'],
-            'edit_address_phone' => ['phone']
+            'streetName' => ['text'],
+            'houseNumber' => ['string'],
+            'postalCode' => ['postal-code'],
+            'city' => ['text', 'min:3', 'max:20'],
+            'phone' => ['phone']
         ]);
 
         $userId = session('userId');
         $addressId = $req->params->id;
  
         $user = new User();
-        $userAddress = new UserAddress();
- 
-        $details = $user->columns(['Email'])->where('UserId', '=', $userId)->read();
-        $userAddress->where("AddressId = {$addressId} AND UserId = {$userId}")->update([
-            'AddressLine1' => $req->body->edit_address_street_name,
-            'AddressLine2' => $req->body->edit_address_house_number,
-            'City' => $req->body->edit_address_city,
-            'PostalCode' => $req->body->edit_address_postal_code,
-            'Mobile' => $req->body->edit_address_phone,
+        $userAddress = new UserAddress(); 
+        $fun = new Functions();
+        $email = $fun->getUserEmailByUserId($userId);
+
+        $userAddress->where('AddressId', '=', $addressId)->update([
+            'AddressLine1' => $req->body->streetName,
+            'AddressLine2' => $req->body->houseNumber,
+            'City' => $req->body->city,
+            'PostalCode' => $req->body->postalCode,
+            'Mobile' => $req->body->phone,
             'State' => 'Gujarat',
-            'Email' => $details[0]->Email
+            'Email' => $email
         ]);
 
         $res->status(200)->json(['message'=>'Address updated successfully.']);
@@ -102,12 +105,10 @@ class MyAddress{
     } 
 
     // ----------DELETE ADDRESS----------
-    public function delete_address(Request $req, Response $res){
-        $userId = session('userId');
-        $id = $req->params->id;
-        $where = "UserId = {$userId} AND AddressId = {$id}";
+    public function deleteAddress(Request $req, Response $res){
+        $addressId = $req->params->id;
         $userAddress = new UserAddress();
-        $userAddress->where($where)->delete();
+        $userAddress->where('AddressId', '=', $addressId)->delete();
         $res->status(200)->json(['message'=>'Address deleted successfully.']);
     }
 

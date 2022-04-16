@@ -139,11 +139,22 @@
 			}	
 		}
 
+		let json = JSON.stringify({
+			firstName : $('[name="firstname"]').val(),
+			lastName : $('[name="lastname"]').val(),
+			email : $('[name="email"]').val(),
+			phone : $('[name="phone"]').val(),
+			password : $('[name="password"]').val(),
+			confirmPassword : $('[name="cpassword"]').val(),
+			role : $('[name="role"]').val()	
+		})
+
 		if(validation){
 			$.ajax({
 				url : `${BASE_URL}/signup`,
 				method : 'POST',
-				data : $('#sp_signup').serialize(),
+				contentType : 'application/json',
+				data : json,
 				success : function(res){
 					if(res!==undefined && res!==""){
 						try{

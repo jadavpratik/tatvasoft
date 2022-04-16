@@ -22,16 +22,16 @@ Route::get('/guarantee', [new View(), 'guarantee']);
 
 // ----------COMPONENTS----------
 Route::get('/login', $alreadyLogged,[new View(), 'login']);
-Route::get('/forgot-password', $alreadyLogged, [new View(), 'forgot_password']);
+Route::get('/forgot-password', $alreadyLogged, [new View(), 'forgotPassword']);
 
 // ----------CUSTOMER----------
-Route::get('/book-now', $isCustomer, [new View(), 'booknow']);
-Route::get('/customer/signup', $alreadyLogged, [new View(), 'customer_signup']);
-Route::get('/customer/dashboard', $isCustomer, [new View(), 'customer_dashboard']);
+Route::get('/book-now', $isCustomer, [new View(), 'bookNow']);
+Route::get('/customer/signup', $alreadyLogged, [new View(), 'customerSignup']);
+Route::get('/customer/dashboard', $isCustomer, [new View(), 'customerDashboard']);
 
 // ----------SERVICE-PROVDER----------
-Route::get('/service-provider/signup', $alreadyLogged, [new View(), 'sp_signup']);
-Route::get('/service-provider/dashboard', $isServiceProvider, [new View(), 'sp_dashboard']);
+Route::get('/service-provider/signup', $alreadyLogged, [new View(), 'serviceProviderSignup']);
+Route::get('/service-provider/dashboard', $isServiceProvider, [new View(), 'serviceProviderDashboard']);
 
 // ----------ADMIN----------
-Route::get('/admin/dashboard', $isAdmin, [new View(), 'admin_dashboard']);
+Route::get('/admin/dashboard', $isAdmin, [new View(), 'adminDashboard']);

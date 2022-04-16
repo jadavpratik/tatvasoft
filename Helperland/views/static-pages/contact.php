@@ -122,10 +122,10 @@
 <script>
 
 	<?php if(session('isLogged')){ ?>
-		$('[name="firstname"]').val(store.user.FirstName);
-		$('[name="lastname"]').val(store.user.LastName);
-		$('[name="email"]').val(store.user.Email);
-		$('[name="phone"]').val(store.user.Mobile);
+		$('[name="firstname"]').val(store.loggedUserDetails.FirstName);
+		$('[name="lastname"]').val(store.loggedUserDetails.LastName);
+		$('[name="email"]').val(store.loggedUserDetails.Email);
+		$('[name="phone"]').val(store.loggedUserDetails.Mobile);
 	<?php } ?>
 
 	$('[name="TermCheckBox"]').click(()=>{
@@ -157,7 +157,14 @@
 		}
 
 		// FORM DATA FOR FILE UPLOAD...
-		const data = new FormData($('#contact_us')[0]);
+		const data = new FormData();
+		data.append('firstName', $('[name="firstname"]').val());
+		data.append('lastName', $('[name="lastname"]').val());
+		data.append('phone', $('[name="phone"]').val());
+		data.append('email', $('[name="email"]').val());
+		data.append('message', $('[name="message"]').val());
+		data.append('subject', $('[name="subject"]').val());
+		data.append('attachment', $('[name="attachment"]').prop('files')[0]);
 
 		if(validation){
 			$.ajax({
@@ -187,10 +194,7 @@
 							$('.form_btn').prop('disabled', false);
 						}
 					}
-				},
-				error : function(obj){
-					$('.form_btn').prop('disabled', false);
-				},
+				}
 			});
 		}
 	});

@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- CSRF-TOKEN -->
-	<?php csrf_token(); ?>
+	<?php csrfToken(); ?>
 	<!-- TITLE -->
 	<?php component('title'); ?>
 	<title><?= title(); ?></title>

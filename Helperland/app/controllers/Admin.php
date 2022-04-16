@@ -21,7 +21,7 @@ class Admin{
     private $CANCELLED_STATUS = 3;
 
     // ----------USER-MANAGEMENT----------
-    public function user_management(Request $req, Response $res){
+    public function userManagement(Request $req, Response $res){
         $db = new Database();
         $sql = "SELECT user.UserId,
                        CONCAT(user.FirstName,' ',user.LastName) AS UserName,
@@ -42,7 +42,7 @@ class Admin{
     }
 
     // --------SERVICE-REQUEST----------
-    public function service_requests(Request $req, Response $res){
+    public function serviceRequests(Request $req, Response $res){
         $db = new Database();
         $sql = "SELECT service.ServiceRequestId,
                        service.UserId AS CustomerId,
@@ -122,7 +122,7 @@ class Admin{
     }
 
     // --------MAKE-USER-ACTIVE----------
-    public function make_user_active(Request $req, Response $res){
+    public function makeUserActive(Request $req, Response $res){
         $userId = $req->params->id;
         $user = new User();
         $user->where('UserId', '=', $userId)->update([
@@ -144,7 +144,7 @@ class Admin{
     }
 
     // --------MAKE-USER-INSACTIVE----------
-    public function make_user_inactive(Request $req, Response $res){
+    public function makeUserInactive(Request $req, Response $res){
         $userId = $req->params->id;
         $user = new User();
         $user->where('UserId', '=', $userId)->update([
@@ -168,7 +168,7 @@ class Admin{
     }
 
     // --------RESCHEDULE_SERVICE----------
-    public function reschedule_service(Request $req, Response $res){
+    public function rescheduleService(Request $req, Response $res){
         // REQUIRED VALIDATION PENDING...
         $serviceId = $req->params->id;
         $service = new Service();
@@ -212,7 +212,7 @@ class Admin{
     }
 
     // --------CANCEL_SERVICE----------
-    public function cancel_service(Request $req, Response $res){
+    public function cancelService(Request $req, Response $res){
         $serviceId = $req->params->id;
         $service = new Service();
         $service->where('ServiceRequestId', '=', $serviceId)->update([

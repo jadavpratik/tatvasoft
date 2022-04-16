@@ -60,16 +60,16 @@
 <script>
 
     function update_payment_summary(){
-        let serviceDate = moment(store.book_service.date, 'YYYY-MM-DD').format('DD/MM/YYYY');
-        store.book_service.total_price = store.book_service.per_hour_price*store.book_service.duration 
-                                      + (store.book_service.per_hour_price/2)*store.book_service.extra.length;
+        let serviceDate = moment(store.bookService.date, 'YYYY-MM-DD').format('DD/MM/YYYY');
+        store.bookService.totalPrice = store.bookService.perHourPrice*store.bookService.duration 
+                                      + (store.bookService.perHourPrice/2)*store.bookService.extraService.length;
         $('#service_date').html(serviceDate);
-        $('#service_time').html(store.book_service.time);
-        $('#service_duration').html(`${store.book_service.duration} Hours`);
-        $('#service_total_time').html(`${parseInt(store.book_service.duration) + parseInt(store.book_service.extra_time)} Hours`);
+        $('#service_time').html(store.bookService.time);
+        $('#service_duration').html(`${store.bookService.duration} Hours`);
+        $('#service_total_time').html(`${parseInt(store.bookService.duration) + parseInt(store.bookService.extraTime)} Hours`);
         $('#service_extra_container').html(extra_services_html());
-        $('#service_per_hour_price').html(`€${store.book_service.per_hour_price}`);
-        $('#service_total_price').html(`€${store.book_service.total_price}`);
+        $('#service_per_hour_price').html(`€${store.bookService.perHourPrice}`);
+        $('#service_total_price').html(`€${store.bookService.totalPrice}`);
 
         // EXTRA SERVICES HTML...
         function extra_services_html(){
@@ -78,20 +78,20 @@
             // 3 => 'Oven'
             // 4 => 'Laundry'
             // 5 => 'Window'
-            let extra_services = ``;
-            for(let i=0; i<store.book_service.extra.length; i++){
-                if(store.book_service.extra[i] == 1)
-                    extra_services += `<div><p>Inside Cabinet (Extra)</p><p>30 Mins</p></div>`; 
-                else if(store.book_service.extra[i] == 2)
-                    extra_services += `<div><p>Inside Fridge (Extra)</p><p>30 Mins</p></div>`; 
-                else if(store.book_service.extra[i] == 3)
-                    extra_services += `<div><p>Inside Oven (Extra)</p><p>30 Mins</p></div>`; 
-                else if(store.book_service.extra[i] == 4)
-                    extra_services += `<div><p>Inside Laundry (Extra)</p><p>30 Mins</p></div>`; 
-                else if(store.book_service.extra[i] == 5)
-                    extra_services += `<div><p>Inside Window (Extra)</p><p>30 Mins</p></div>`; 
+            let extraServices = ``;
+            for(let i=0; i<store.bookService.extraService.length; i++){
+                if(store.bookService.extraService[i] == 1)
+                    extraServices += `<div><p>Inside Cabinet (Extra)</p><p>30 Mins</p></div>`; 
+                else if(store.bookService.extraService[i] == 2)
+                    extraServices += `<div><p>Inside Fridge (Extra)</p><p>30 Mins</p></div>`; 
+                else if(store.bookService.extraService[i] == 3)
+                    extraServices += `<div><p>Inside Oven (Extra)</p><p>30 Mins</p></div>`; 
+                else if(store.bookService.extraService[i] == 4)
+                    extraServices += `<div><p>Inside Laundry (Extra)</p><p>30 Mins</p></div>`; 
+                else if(store.bookService.extraService[i] == 5)
+                    extraServices += `<div><p>Inside Window (Extra)</p><p>30 Mins</p></div>`; 
             }
-            return extra_services;
+            return extraServices;
         }
     }
 

@@ -6,8 +6,8 @@ use core\Route;
 use app\controllers\View;
 
 // ----------LAST-METHOD----------
-Route::get('/*', [new View(), 'not_found_page']);
-Route::post('/*', [new View(), 'not_found_json']);
-Route::put('/*', [new View(), 'not_found_json']);
-Route::delete('/*', [new View(), 'not_found_json']);
-Route::patch('/*', [new View(), 'not_found_json']);
+Route::get('/*', [new View(), 'notFoundPage']);
+Route::post('/*', [new View(), 'notFoundJson']);
+Route::put('/*', [new View(), 'notFoundJson']);
+Route::delete('/*', [new View(), 'notFoundJson']);
+Route::patch('/*', [new View(), 'notFoundJson']);

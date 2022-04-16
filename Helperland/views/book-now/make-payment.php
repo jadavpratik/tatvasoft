@@ -49,15 +49,7 @@
             url : `${BASE_URL}/book-service`,
             method : 'POST',
             contentType : 'application/json',
-            data : JSON.stringify(store.book_service),
-            beforeSend : function(){
-                // SET LOADER...
-                open_loader();
-            },
-            complete : function(){
-                // REMOVE LOADER...
-                close_loader();
-            },
+            data : JSON.stringify(store.bookService),
             success : function(res){
                 if(res!=="" && res!==undefined){
                     try{
@@ -75,19 +67,6 @@
                             icon : 'error'
                         });
                     }
-                }
-            },
-            error : function(obj){
-                $('#confirm_booking_submit_btn').prop('disabled', false);
-                console.log(obj);
-                if(obj!==undefined){
-                    const {status, responseText} = obj;
-                    const error = JSON.parse(responseText);
-                    Swal.fire({
-                        title : 'Error',
-                        text : error.message,
-                        icon : 'error'
-                    })
                 }
             }
         });

@@ -2,7 +2,7 @@
 
 	function title(){
 		$title = 'Helperland';
-		switch(page_url()){
+		switch(pageUrl()){
 			case '/' :
 				$title = 'Helperland'; 
 				break;

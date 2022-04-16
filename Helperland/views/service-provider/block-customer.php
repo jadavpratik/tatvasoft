@@ -36,13 +36,6 @@
                         console.log('Invalid JSON Response!');
                     }
                 }
-            },
-            error : function(obj){
-                if(obj!==undefined){
-                    const {responseText} = obj;
-                    const error = JSON.parse(responseText);
-                    console.log(error.message);
-                }
             }
         });
     }

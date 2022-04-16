@@ -68,12 +68,11 @@
 
         if(validation){
             let json = JSON.stringify({
-                edit_address_phone : $('[name="edit_address_phone"]').val(),
-                edit_address_street_name : $('[name="edit_address_street_name"]').val(),
-                edit_address_house_number : $('[name="edit_address_house_number"]').val(),
-                edit_address_city : $('[name="edit_address_city"]').val(),
-                edit_address_postal_code : $('[name="edit_address_postal_code"]').val(),
-                edit_address_id : store.id.edit
+                streetName : $('[name="edit_address_street_name"]').val(),
+                houseNumber : $('[name="edit_address_house_number"]').val(),
+                phone : $('[name="edit_address_phone"]').val(),
+                city : $('[name="edit_address_city"]').val(),
+                postalCode : $('[name="edit_address_postal_code"]').val(),
             });
 
             $.ajax({

@@ -15,7 +15,7 @@ class MyDetails{
     const FEMALE_ID = 2;
 
     // ----------GET-DETAILS----------
-    public function get_details(Request $req, Response $res){
+    public function getDetails(Request $req, Response $res){
         $userId = session('userId');
         $user = new User();
         $details = $user->where('UserId', '=', $userId)->read();
@@ -25,19 +25,19 @@ class MyDetails{
             $res->status(200)->json($details[0]);
         }
         else{
-            $res->status(404)->json(['message'=> 'No details available!']);            
+            $res->status(404)->json(['message'=> 'No details available!']);
         }
     }
 
     // ----------UPDATE-DETAILS----------
-    public function update_details(Request $req, Response $res){
+    public function updateDetails(Request $req, Response $res){
 
         Validation::check($req->body, [
-            'firstname' => ['text', 'min:3', 'max:20'],
-            'lastname' => ['text', 'min:3', 'max:20'],
+            'firstName' => ['text', 'min:3', 'max:20'],
+            'lastName' => ['text', 'min:3', 'max:20'],
             'phone' => ['phone'],
             'language' => ['integer'],
-            'dob' => ['required'],
+            'dateOfBirth' => ['required'],
             'gender' => ['optional'],
             'avatar' => ['optional'],
         ]);
@@ -51,11 +51,11 @@ class MyDetails{
 
         if(!$user->where($where)->exists()){
             $user->where('UserId', '=', $userId)->update([
-                'FirstName' => $req->body->firstname,
-                'LastName' => $req->body->lastname,
+                'FirstName' => $req->body->firstName,
+                'LastName' => $req->body->lastName,
                 'Mobile' => $req->body->phone,
                 'LanguageId' => $req->body->language,
-                'DateOfBirth' => $req->body->dob,
+                'DateOfBirth' => $req->body->dateOfBirth,
                 'Gender' => $gender,
                 'UserProfilePicture' => $avatar,
                 'ModifiedDate'=> date('Y-m-d H:i:s')

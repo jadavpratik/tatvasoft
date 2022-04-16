@@ -21,27 +21,21 @@
         let validation = setup_service_postal_code_validation();
         
         if(validation){
-            const postal_code = $('[name="setup_service_postal_code"]').val();
-            let json = JSON.stringify({postal_code});
+            const postalCode = $('[name="setup_service_postal_code"]').val();
+
+            let json = JSON.stringify({postalCode});
+
             $.ajax({
                 url :  `${BASE_URL}/book-service/check-postal-code`,
                 method : 'POST',
                 contentType : 'application/json',
                 data : json,
-                beforeSend : function(){
-                    // SET LOADER...
-                    open_loader();
-                },
-                complete : function(){
-                    // REMOVE LOADER...
-                    close_loader();
-                },
                 success : function(res){
                     if(res!=="" && res!==undefined){
                         try{
                             const result = JSON.parse(res);
                             // STORE POSTAL CODE...
-                            store.book_service.postal_code = parseInt(postal_code);
+                            store.bookService.postalCode = parseInt(postalCode);
                             change_book_service_tabs(1);
                         }
                         catch(e){
@@ -50,16 +44,6 @@
                                 icon : 'error'
                             });
                         }
-                    }
-                },
-                error : function(obj){
-                    if(obj!==undefined){
-                        const {responseText, status} = obj;
-                        const error = JSON.parse(responseText);
-                        Swal.fire({
-                            title : error.message,
-                            icon : 'error'
-                        });
                     }
                 }
             });
@@ -70,7 +54,7 @@
 <script>
     // ON CHANGE POSTAL CODE STORE IN SERVICE REQUEST OBJECT...
     $('[name="setup_service_postal_code"]').focusout(function(){
-        const postal_code = $('[name="setup_service_postal_code"]').val();
-        store.book_service.postal_code = parseInt(postal_code);
+        const postalCode = $('[name="setup_service_postal_code"]').val();
+        store.bookService.postalCode = parseInt(postalCode);
     });
 </script>

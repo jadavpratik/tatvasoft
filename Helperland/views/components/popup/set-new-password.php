@@ -47,7 +47,7 @@
 		if(validation){
 			const json = JSON.stringify({
 				password : $('[name="set_new_password"]').val(),
-				cpassword : $('[name="set_new_cpassword"]').val(),
+				confirmPassword : $('[name="set_new_cpassword"]').val(),
 				email : store.email
 			})
 			$.ajax({

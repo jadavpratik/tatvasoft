@@ -85,10 +85,19 @@
         let validation = rating_feedback_validation();        
 
         if(validation){
+
+            let json = JSON.stringify({
+                friendlyRating : $('[name="friendly_rating"]').val(),
+                arrivalRating : $('[name="arrival_rating"]').val(),
+                qualityRating : $('[name="quality_rating"]').val(),
+                ratingFeedback : $('[name="rating_feedback"]').val(),
+            });
+
             $.ajax({
-                url : `${BASE_URL}/customer/sp/rate/${store.id.rate_sp}`,
+                url : `${BASE_URL}/customer/sp/rate/${store.id.rateSp}`,
                 method : 'POST',
-                data : $('#rating_popup').serialize(),
+                contentType : 'application/json',
+                data : json,
                 success : function(res){
                     if(res!=="" && res!==undefined){
                         try{

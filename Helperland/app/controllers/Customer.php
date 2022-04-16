@@ -23,7 +23,7 @@ class Customer{
     private $CANCELLED_STATUS = 3;
 
     // ----------SERVICES HISTORY (COMPLETED & CANCELLED)----------
-    public function service_history(Request $req, Response $res){
+    public function serviceHistory(Request $req, Response $res){
         $customerId = session('userId');
         $db = new Database();
         $sql = "SELECT service.ServiceRequestId,
@@ -106,7 +106,7 @@ class Customer{
     }
 
     // ----------CURRENT SERVICES----------
-    public function current_services(Request $req, Response $res){
+    public function currentServices(Request $req, Response $res){
         $customerId = session('userId');
         $db = new Database();
         $sql = "SELECT service.ServiceRequestId,
@@ -189,7 +189,7 @@ class Customer{
     }
 
     // ----------CANCEL SERVICE----------
-    public function cancel_service(Request $req, Response $res){
+    public function cancelService(Request $req, Response $res){
         $serviceId = $req->params->id;
         $service = new Service();
         $service->where('ServiceRequestId', '=', $serviceId)->update([
@@ -226,17 +226,17 @@ class Customer{
     }
     
     // ----------RESCHEDULE SERVICE----------
-    public function reschedule_service(Request $req, Response $res){
+    public function rescheduleService(Request $req, Response $res){
 
         // DATE & TIME PROPER VALIDATION PENDING...
         Validation::check($req->body, [
-            'new_service_date' => ['required'],
-            'new_service_time' => ['required']
+            'date' => ['required'],
+            'time' => ['required']
         ]);
 
         $serviceId = $req->params->id;
-        $date = $req->body->new_service_date;
-        $time = $req->body->new_service_time;
+        $date = $req->body->date;
+        $time = $req->body->time;
         $serviceDate = date('Y-m-d H:i:s', strtotime($date.' '.$time));
         $service = new Service();
         $serviceData = $service->where('ServiceRequestId', '=', $serviceId)->read();
@@ -267,6 +267,7 @@ class Customer{
                 Mail::send($emailReceiver, $emailSubject, $emailBody);
                 $res->status(200)->json(['message'=>'Service has been reschedule successfully.']);
             }
+            $res->status(200)->json(['message'=>'Service has been reschedule successfully.']);
         }
         else{
             $res->status(200)->json(['message'=>'Service has been reschedule successfully.']);
@@ -275,21 +276,21 @@ class Customer{
     }
 
     // ----------RATE SERVICE PROVIDER----------
-    public function rate_sp(Request $req, Response $res){
+    public function rateServiceProvider(Request $req, Response $res){
 
         Validation::check($req->body, [
-            'arrival_rating' => ['required'],
-            'friendly_rating' => ['required'],
-            'quality_rating' => ['required'],
-            'rating_feedback' => ['required'],
+            'arrivalRating' => ['required'],
+            'friendlyRating' => ['required'],
+            'qualityRating' => ['required'],
+            'ratingFeedback' => ['required'],
         ]);
 
         $serviceId = $req->params->id;
-        $arrival_rating = (int) $req->body->arrival_rating;
-        $quality_rating = (int) $req->body->quality_rating;
-        $friendly_rating = (int) $req->body->friendly_rating;
-        $rating_feedback = $req->body->rating_feedback;
-        $averageRating =  (float) ($arrival_rating + $quality_rating + $friendly_rating )/3;
+        $arrivalRating = (int) $req->body->arrivalRating;
+        $qualityRating = (int) $req->body->qualityRating;
+        $friendlyRating = (int) $req->body->friendlyRating;
+        $ratingFeedback = $req->body->ratingFeedback;
+        $averageRating =  (float) ($arrivalRating + $qualityRating + $friendlyRating )/3;
 
         $service = new Service();
         $data = $service->where('ServiceRequestId', '=', $serviceId)->read();
@@ -303,33 +304,21 @@ class Customer{
                 'RatingFrom' => $customerId,
                 'RatingTo' => $serviceProviderId,
                 'Ratings' => $averageRating,
-                'Comments' => $rating_feedback,
+                'Comments' => $ratingFeedback,
                 'RatingDate' => date('Y-m-d H:i:s'),
-                'OnTimeArrival' => $arrival_rating,
-                'Friendly' => $friendly_rating,
-                'QualityOfService' => $quality_rating,
+                'OnTimeArrival' => $arrivalRating,
+                'Friendly' => $friendlyRating,
+                'QualityOfService' => $qualityRating,
             ]);            
             $res->status(200)->json(['message'=>'Thanks for feedback Us.']);    
         }
         else{
-            // ----------FOR MODIFY RATING----------
-            // UPDATE OR EDIT RATING OR REVIEW...
-            // $where = "ServiceRequestId = {$serviceId}";
-            // $rating->where($where)->update([
-            //     'Ratings' => $averageRating,
-            //     'Comments' => $rating_feedback,
-            //     'RatingDate' => date('Y-m-d H:i:s'),
-            //     'OnTimeArrival' => $arrival_rating,
-            //     'Friendly' => $friendly_rating,
-            //     'QualityOfService' => $quality_rating,
-            // ]);            
-            // $res->status(200)->json(['message'=>'Thanks for feedback Us.']);    
-            $res->status(400)->json(['message'=>'You already given feedback!']);    
+            $res->status(400)->json(['message'=>'You already given feedback!']);
         }
     }
 
     // ----------CUSTOMER SP LIST---------- 
-    public function my_service_provider(Request $req, Response $res){
+    public function myServiceProvider(Request $req, Response $res){
         // (SP WHO COMPLETED CUSTOMER'S SERVICE SUCCESSFULLY IN PAST...)
         $customerId = session('userId');
         $db = new Database();
@@ -350,7 +339,7 @@ class Customer{
     }
 
     // ----------ADD TO FAVORITE LIST----------
-    public function add_to_favorite(Request $req, Response $res){
+    public function addToFavorite(Request $req, Response $res){
         $customerId = session('userId');
         $serviceProviderId = $req->params->id;   
         $fav = new Favorite();
@@ -372,7 +361,7 @@ class Customer{
     }
 
     // ----------REMOVE FROM FAVORITE LIST----------
-    public function remove_from_favorite(Request $req, Response $res){
+    public function removeFromFavorite(Request $req, Response $res){
         $customerId = session('userId');
         $serviceProviderId = $req->params->id;   
         $fav = new Favorite();
@@ -386,7 +375,7 @@ class Customer{
     }
 
     // ----------BLOCK SP----------
-    public function block_sp(Request $req, Response $res){
+    public function blockServiceProvider(Request $req, Response $res){
         $customerId = session('userId');
         $serviceProviderId = $req->params->id;   
         $fav = new Favorite();
@@ -408,7 +397,7 @@ class Customer{
     }
 
     // ----------UNBLOCK SP----------
-    public function unblock_sp(Request $req, Response $res){
+    public function unblockServiceProvider(Request $req, Response $res){
         $customerId = session('userId');
         $serviceProviderId = $req->params->id;   
         $fav = new Favorite();

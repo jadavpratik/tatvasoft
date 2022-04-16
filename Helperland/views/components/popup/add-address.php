@@ -47,7 +47,6 @@
     </form>
 </div>
 
-
 <!-- **********ADD ADDRESS SCRIPT********** -->
 <script>
     $('#add_address_popup').submit((e)=>{
@@ -67,11 +66,20 @@
             }
         }
 
+        let json = JSON.stringify({
+            streetName : $('[name="add_address_street_name"]').val(),
+            houseNumber : $('[name="add_address_house_number"]').val(),
+            postalCode :  $('[name="add_address_postal_code"]').val(),
+            city :  $('[name="add_address_city"]').val(),
+            phone : $('[name="add_address_phone"]').val()
+        });
+
         if(validation){
             $.ajax({
                 url : `${BASE_URL}/user/address`,
                 method : 'POST',
-                data : $('#add_address_popup').serialize(),
+                contentType : 'application/json',
+                data : json,
                 success : function(res){
                     if(res!=="" && res!==undefined){
                         try{

@@ -135,13 +135,6 @@
                     $('[name="language"]').val(result.LanguageId);
                     $('[name="dob"]').val(result.DateOfBirth);
                 }
-            },
-            error : function(obj){
-                if(obj!==undefined && obj!==""){
-                    const {responseText} = obj;
-                    const error = JSON.parse(responseText);
-                    console.log(error.message);
-                }
             }
         })
     }
@@ -167,12 +160,12 @@
         if(validation){
             // CONVERTING A FORM DATA INTO JSON DATA....
             let json = JSON.stringify({
-                firstname : $('[name="firstname"]').val(),
-                lastname : $('[name="lastname"]').val(),
+                firstName : $('[name="firstname"]').val(),
+                lastName : $('[name="lastname"]').val(),
                 email : $('[name="email"]').val(),
                 phone : $('[name="phone"]').val(),
                 language : parseInt($('[name="language"]').val()),
-                dob : $('[name="dob"]').val()
+                dateOfBirth : $('[name="dob"]').val()
             });
             $.ajax({
                 url :  `${BASE_URL}/user/details`,
@@ -234,9 +227,6 @@
                     $('#customer_address_tbody').html(``);
                     $('#customer_address_tbody').html(temp);
                 }
-            },
-            error : function(obj){
-                console.log(obj);
             }
         });
     }
@@ -327,9 +317,9 @@
         if(validation){
 
             let json = JSON.stringify({
-                change_password_old : $('[name="change_password_old"]').val(),
-                change_password_new : $('[name="change_password_new"]').val(),
-                change_password_confirm : $('[name="change_password_confirm"]').val()
+                oldPassword : $('[name="change_password_old"]').val(),
+                newPassword : $('[name="change_password_new"]').val(),
+                confirmPassword : $('[name="change_password_confirm"]').val()
             });
 
             $.ajax({
