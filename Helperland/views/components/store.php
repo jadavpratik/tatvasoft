@@ -1,5 +1,27 @@
+<!-- ----------GLOBAL FUNCTIONS---------- -->
 <script>
-    let CSRF_TOKEN = ``;
+    // ----------CLOSE-POPUP----------
+    function close_popup(){
+        $('.backlight_container').removeClass('backlight');
+        $('.model').removeClass('active_model');
+        $('.popup_main').addClass('d_none');
+        if($(window).width() <= 1280){
+            $('.book_service_right').addClass('d_none');
+        }
+        $('body').css({'overflow-y':'auto'});
+    }
+
+    // ----------SET LOADER----------
+    function open_loader(){
+        $('.backlight_container').addClass('loader');
+        $('body').css({'overflow-y':'hidden'});
+    }
+
+    // ----------CLOSE LOADER----------
+    function close_loader(){
+        $('.backlight_container').removeClass('loader');
+        $('body').css({'overflow-y':'auto'});
+    }
 
     // ----------SET-CSRF-TOKEN----------
     function set_csrf_token(){
@@ -16,15 +38,40 @@
         } );
         CSRF_TOKEN = filtered[0]['CSRF-TOKEN'];
     }
-    
+</script>
+
+<!-- ----------AJAX-PRE-SETUP---------- -->
+<script>
+    let CSRF_TOKEN = ``;
+
     $.ajaxSetup({
         headers : {
             'CSRF-TOKEN' : CSRF_TOKEN
         },
-        
+        beforeSend : function(xhr, req){
+            if(req.type!=='GET'){
+                open_loader();
+            }
+            close_popup();
+            set_csrf_token();
+        },
+        complete : function(){
+            close_loader();
+        },
+        error : function(obj){
+            if(obj!==undefined && obj!==""){
+                const {responseText} = obj;
+                const error = JSON.parse(responseText);
+                Swal.fire({
+                    title : error.message,
+                    icon : 'error'
+                });
+            }
+        }        
     });
 </script>
 
+<!-- STORE OBJECT FOR GLOBAL DATA STORING -->
 <script>
     let BASE_URL = `<?= BASE_URL; ?>`; 
     let store = {};
@@ -102,9 +149,8 @@
 
 </script>
 
-
+<!-- LOGGED-USER-DETAILS -->
 <script>    
-    // IF USER IS LOGGED THEN FETCH THEIR DATA AND STORE IT...
     <?php if(session('isLogged')){ ?>    
         $.ajax({
             url : `${BASE_URL}/user/details`,
@@ -113,12 +159,6 @@
                 if(res!==undefined || res!==undefined){
                     const result = JSON.parse(res);
                     store.user = result; 
-                }
-            },
-            error : function(obj){
-                if(obj!==undefined){
-                    const error = JSON.parse(res);
-                    console.log(error.message);
                 }
             }
         });

@@ -28,18 +28,18 @@ class Request{
 		// ----------CHECK-CSRF-TOKEN----------
 		// if($_SERVER['REQUEST_METHOD']!='GET'){
 		// 	$res = new Response();
+		// 	$errors = ['session'=>$_SESSION['CSRF-TOKEN'], 'req_header'=>$headers['CSRF-TOKEN']];
 		// 	if(isset($headers['CSRF-TOKEN'])){
 		// 		if($headers['CSRF-TOKEN']==$_SESSION['CSRF-TOKEN']){
 		// 			csrf_token();
 		// 		}
 		// 		else{
-		// 			$errors = ['session'=>$_SESSION['CSRF-TOKEN'], 'req_header'=>$headers['CSRF-TOKEN']];
 		// 			$res->status(401)->json(['message'=>'CSRF token is not matched!!!', 'errors'=>$errors]);
 		// 		}
 		// 	}
 		// 	else{
-		// 		$res->status(400)->json(['message'=>'CSRF Token is required!!!']);
-		// 	}	
+		// 		$res->status(400)->json(['message'=>'CSRF Token is required!!!', 'errors'=>$errors]);
+		// 	}		
 		// }
 
 		if(!empty($params)){

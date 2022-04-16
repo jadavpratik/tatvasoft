@@ -144,14 +144,6 @@
 				url : `${BASE_URL}/signup`,
 				method : 'POST',
 				data : $('#sp_signup').serialize(),
-				beforeSend : function(){
-					// SET LOADER...
-					open_loader();
-				},
-				complete : function(){
-					// REMOVE LOADER...
-					close_loader();
-				},
 				success : function(res){
 					if(res!==undefined && res!==""){
 						try{
@@ -172,16 +164,6 @@
 								icon : 'error'
 							});
 						}
-					}
-				},
-				error : function(obj){
-					if(obj!==undefined){
-						const {responseText, status} = obj;
-						const error = JSON.parse(responseText);
-						Swal.fire({
-							text : error.message,
-							icon : 'error'
-						});
 					}
 				}
 			});

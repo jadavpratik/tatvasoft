@@ -63,14 +63,6 @@
                 url : `${BASE_URL}/login`,
                 method : 'POST',
                 data : $('.login_popup_form').serialize(),
-                beforeSend : function(){
-                    // SET LOADER...
-                    open_loader();
-                },
-                complete : function(){
-                    // REMOVE LOADER...
-                    close_loader();
-                },
                 success : function(res){
                     if(res!=="" && res!==undefined){
                         try{
@@ -95,16 +87,6 @@
                                 icon : 'error'
                             });
                         }
-                    }
-                },
-                error : function(obj){
-                    if(obj!==undefined){
-                        const {responseText} = obj;
-                        const error = JSON.parse(responseText);
-                        Swal.fire({
-                            title : error.message,
-                            icon : 'error'
-                        });
                     }
                 }
             });

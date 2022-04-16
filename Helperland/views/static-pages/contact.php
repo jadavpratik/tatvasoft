@@ -166,14 +166,6 @@
 				data : data,
 				processData : false,
 				contentType : false,
-				beforeSend : function(){
-					// SET LOADER...
-					open_loader();
-				},
-				complete : function(){
-					// REMOVE LOADER...
-					close_loader();
-				},
 				success : function(res){
 					if(res!=="" && res!==undefined){
 						try{
@@ -197,15 +189,6 @@
 					}
 				},
 				error : function(obj){
-					if(obj!==undefined || obj!==""){
-						const {status, responseText} = obj;
-						const error = JSON.parse(responseText);
-						Swal.fire({
-							title : 'Error',
-							text : error.message,
-							icon : 'error'
-						});
-					}
 					$('.form_btn').prop('disabled', false);
 				},
 			});

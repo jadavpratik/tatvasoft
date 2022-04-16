@@ -136,18 +136,13 @@ class Functions{
                        serviceProvider.UserProfilePicture AS ServiceProviderProfilePicture,
                        GROUP_CONCAT(extraService.ServiceExtraId) AS ExtraService
                 FROM servicerequest AS service
-                INNER JOIN servicerequestaddress AS address
-                    ON service.ServiceRequestId = address.ServiceRequestId
-                LEFT JOIN servicerequestextra AS extraService
-                    ON service.ServiceRequestId = extraService.ServiceRequestId
-                INNER JOIN user AS customer
-                    ON service.UserId = customer.UserId
-                LEFT JOIN user AS serviceProvider
-                    ON service.ServiceProviderId = serviceProvider.UserId
-                LEFT JOIN rating
-                    ON service.ServiceRequestId = rating.ServiceRequestId
+                INNER JOIN servicerequestaddress AS address ON service.ServiceRequestId = address.ServiceRequestId
+                LEFT JOIN servicerequestextra AS extraService ON service.ServiceRequestId = extraService.ServiceRequestId
+                INNER JOIN user AS customer ON service.UserId = customer.UserId
+                LEFT JOIN user AS serviceProvider ON service.ServiceProviderId = serviceProvider.UserId
+                LEFT JOIN rating ON service.ServiceRequestId = rating.ServiceRequestId
                 WHERE service.ServiceRequestId = {$serviceId}
-                GROUP BY extraService.ServiceRequestId
+                GROUP BY service.ServiceRequestId
                 ORDER BY service.ServiceRequestId";
     
         $data = $db->query($sql);

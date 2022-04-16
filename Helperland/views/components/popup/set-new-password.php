@@ -55,14 +55,6 @@
 				method : 'PATCH',
 				contentType : 'application/json',
 				data : json,
-				beforeSend : function(){
-                    // SET LOADER...
-                    open_loader();
-                },
-                complete : function(){
-                    // REMOVE LOADER...
-                    close_loader();
-                },
 				success : function(res){
 					if(res!=undefined && res!=""){
 						try{
@@ -83,14 +75,6 @@
 							});
 						}
 					}
-				},
-				error : function(obj){
-					const {responseText, status} = obj;
-					const error = JSON.parse(responseText);
-					Swal.fire({
-						text:error.message,
-						icon:'error',
-					})
 				}
 			});
 		}

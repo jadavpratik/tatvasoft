@@ -179,14 +179,6 @@
                 method : 'PATCH',
                 contentType : 'application/json',
                 data : json,
-                beforeSend : function(){
-                    // SET LOADER...
-                    open_loader();
-                },
-                complete : function(){
-                    // REMOVE LOADER...
-                    close_loader();
-                },
                 success : function(res){
                     if(res!=="" && res!==undefined){
                         try{
@@ -203,17 +195,6 @@
                                 icon : 'error'
                             })
                         }
-                    }
-                },
-                error : function(obj){
-                    if(obj!==undefined && obj!==""){
-                        const {responseText} = obj;
-                        const error = JSON.parse(responseText);
-                        console.log(error.message);
-                        Swal.fire({
-                            title : `${error.message}`,
-                            icon : 'error'
-                        });
                     }
                 }
             });
@@ -266,14 +247,6 @@
         $.ajax({
             url : `${BASE_URL}/user/address/${id}`,
             method : 'GET',
-            beforeSend : function(){
-                // SET LOADER...
-                open_loader();
-            },
-            complete : function(){
-                // REMOVE LOADER...
-                close_loader();
-            },
             success : function(res){
                 if(res!=="" && res!==undefined){
                     try{
@@ -293,16 +266,6 @@
                         })
                     }
                 }
-            },
-            error : function(obj){
-                if(obj!==undefined && obj!==""){
-                    const {responseText} = obj;
-                    const error = JSON.parse(responseText);
-                    Swal.fire({
-                        title : `${error.message}`,
-                        icon : 'error'
-                    });
-                }
             }
         });
     }
@@ -320,14 +283,6 @@
                 $.ajax({
                     url : `${BASE_URL}/user/address/${id}`,
                     method : 'DELETE',
-                    beforeSend : function(){
-                        // SET LOADER...
-                        open_loader();
-                    },
-                    complete : function(){
-                        // REMOVE LOADER...
-                        close_loader();
-                    },
                     success : function(res){
                         if(res!=="" && res!==undefined){
                             try{
@@ -344,16 +299,6 @@
                                     icon : 'error'
                                 });
                             }
-                        }
-                    },
-                    error : function(obj){
-                        if(obj!==undefined && obj!==""){
-                            const {responseText} = obj;
-                            const error = JSON.parse(responseText);
-                            Swal.fire({
-                                title : error.message,
-                                icon : 'error'
-                            });
                         }
                     }
                 })
@@ -392,14 +337,6 @@
                 method : 'PATCH',
                 contentType : 'application/json',
                 data : json,
-                beforeSend : function(){
-                    // SET LOADER...
-                    open_loader();
-                },
-                complete : function(){
-                    // REMOVE LOADER...
-                    close_loader();
-                },
                 success : function(res){
                     if(res!=="" && res!==undefined){
                         try{
@@ -417,16 +354,6 @@
                                 icon : 'error'
                             })
                         }
-                    }
-                },
-                error : function(obj){
-                    if(obj!==undefined && obj!==""){
-                        const {responseText} = obj;
-                        const error = JSON.parse(responseText);
-                        Swal.fire({
-                            title : `${error.message}`,
-                            icon : 'error'
-                        });
                     }
                 }
             })

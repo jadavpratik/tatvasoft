@@ -38,14 +38,6 @@
                 method : 'POST',
                 contentType : 'application/json',
                 data : json,
-                beforeSend : function(){
-                    // SET LOADER...
-                    open_loader();
-                },
-                complete : function(){
-                    // REMOVE LOADER...
-                    close_loader();
-                },
                 success : function(res){
                     if(res!==undefined && res!==""){
                         try{
@@ -62,16 +54,6 @@
                                 icon : 'error'
                             });
                         }
-                    }
-                },
-                error : function(obj){
-                    if(obj!==undefined){
-                        const {responseText, status} = obj;
-                        const error = JSON.parse(responseText);
-                        Swal.fire({
-                            title : error.message,
-                            icon : 'error',
-                        });
                     }
                 }
             });

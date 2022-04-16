@@ -3,6 +3,8 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- CSRF-TOKEN -->
+	<?php csrf_token(); ?>
 	<!-- TITLE -->
 	<?php component('title'); ?>
 	<title><?= title(); ?></title>

@@ -77,16 +77,6 @@
                         })
                     }
                 }
-            },
-            error : function(obj){
-                if(obj!==undefined && obj!==""){
-                    const {responseText} = obj;
-                    const error = JSON.parse(responseText);
-                    Swal.fire({
-                        title : error.message,
-                        icon : 'error'
-                    });
-                }
             }
         });
     }
@@ -116,14 +106,6 @@
             $.ajax({
                 url : url,
                 method : 'PATCH',
-                beforeSend : function(){
-                    // SET LOADER...
-                    open_loader();
-                },
-                complete : function(){
-                    // REMOVE LOADER...
-                    close_loader();
-                },
                 success : function(res){
                     if(res!=="" && res!==undefined){
                         try{
@@ -140,16 +122,6 @@
                                 icon : 'error'
                             })
                         }
-                    }
-                },
-                error : function(obj){
-                    if(obj!==undefined && obj!==""){
-                        const {responseText} = obj;
-                        const error = JSON.parse(responseText);
-                        Swal.fire({
-                            title : error.message,
-                            icon : 'error'
-                        });
                     }
                 }
             });

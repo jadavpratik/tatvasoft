@@ -85,7 +85,6 @@
 	<script src="<?= assets('assets/js/sidenav.js'); ?>"></script>
 	<script src="<?= assets('assets/js/tabletab.js'); ?>"></script>
 	<script src="<?= assets('assets/js/validation.js'); ?>"></script>
-	<script src="<?= assets('assets/js/loader.js'); ?>"></script>
 	<script>
 		AOS.init();
 		$('.home_s3_intro > img').tilt({
