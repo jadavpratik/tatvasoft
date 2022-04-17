@@ -161,6 +161,13 @@
 
 <!-- **********ADD ADDRESS********** -->
 <script>
+    // [postalcode, mobile] BEFORE OPENING ADDRESS FORM PRE SET VALUE...
+    $('#open_address_form_btn').click(function(){
+        $('[name="address_form_postal_code"]').val(store.bookService.postalCode);
+        if(store.loggedUserDetails.Mobile!==null){
+            $('[name="address_form_phone"]').val(store.loggedUserDetails.Mobile);
+        }
+    })
 
     $('#address_form').submit((e)=>{
         e.preventDefault();
@@ -208,12 +215,6 @@
             });
         }
     });
-
-    // [postalcode, mobile] BEFORE OPENING ADDRESS FORM PRE SET VALUE...
-    $('#open_address_form_btn').click(function(){
-        $('[name="address_form_postal_code"]').val(store.bookService.postalCode).prop('readonly', true);
-        $('[name="address_form_phone"]').val(store.loggedUserDetails.Mobile).prop('readonly', true);
-    })
 
 </script>
 

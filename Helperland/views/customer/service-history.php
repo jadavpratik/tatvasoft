@@ -118,7 +118,7 @@
                         // 1    : PENDING
                         // 2    : COMPLETED
                         // 3    : CANCALLED
-                        if(row.Service.Status==2){
+                        if(row.Service.Status==2 && row.ServiceProvider.Ratings==null){
                             return `<button class="rate_sp_btn" onclick="rate_sp_open_model(${row.Service.Id})">Rate SP</button>`;
                         }
                         else{

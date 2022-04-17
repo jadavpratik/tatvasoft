@@ -15,7 +15,7 @@ class Request{
 		$this->body   = array();
 		$this->files  = array();		
 
-		// $this->checkCSRFToken();
+		$this->checkCSRFToken();
 		$this->setParams($params);
 		$this->checkContentType();
 	}
@@ -41,9 +41,9 @@ class Request{
 		$headers = getallheaders();
 		if($_SERVER['REQUEST_METHOD']!='GET'){
 			$res = new Response();
-			$errors = ['session'=>$_SESSION['CSRF-TOKEN'], 'req_header'=>$headers['CSRF-TOKEN']];
-			if(isset($headers['CSRF-TOKEN'])){
-				if($headers['CSRF-TOKEN']==$_SESSION['CSRF-TOKEN']){
+			$errors = ['session'=>$_SESSION['X-CSRF-TOKEN'], 'req_header'=>$headers['X-CSRF-TOKEN']];
+			if(isset($headers['X-CSRF-TOKEN'])){
+				if($headers['X-CSRF-TOKEN']==$_SESSION['X-CSRF-TOKEN']){
 					csrfToken();
 				}
 				else{

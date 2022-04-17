@@ -99,8 +99,8 @@
 	// ----------CSRF_TOKEN----------
 	function csrfToken(){
 		$token = bin2hex(random_bytes(16));
-		setcookie('CSRF-TOKEN', $token, time()+(60*60*24*0.5), '/', '', false, false);
-		$_SESSION['CSRF-TOKEN'] = $token;
+		setcookie('X-CSRF-TOKEN', $token, time()+(60*60*24*0.5), '/', '', false, false);
+		$_SESSION['X-CSRF-TOKEN'] = $token;
 		return $token;		
 		/**
 		 * For Getting $_COOKIE value we need to refresh the page

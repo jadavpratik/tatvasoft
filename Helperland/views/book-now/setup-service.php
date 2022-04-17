@@ -15,6 +15,17 @@
 
 <!-- **********BOOK-SERVICE-S1-SCRIPTS********** -->
 <script>
+    <?php if(session('userRole')==1){ ?>
+        if(store.loggedUserAddress){
+            if(store.loggedUserAddress.PostalCode!==null){
+                $('[name="setup_service_postal_code"]').val(store.loggedUserAddress.PostalCode);
+            }
+        }
+        if(store.loggedUserDetails.Mobile!==null){
+            $('[name="add_address_phone"]').val(store.loggedUserDetails.Mobile);
+        }
+    <?php } ?>
+
 
     $('#setup_service_submit_btn').click(function(){
 

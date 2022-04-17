@@ -10,7 +10,7 @@
     <div class="table_tab">
         <div class="table_tab_left">
             <div class="table_tab_list">
-                <a href="javascript:void(0)" class="table_tab_btn" onclick="load_sp_new_services_data()">New Service Request</a>
+                <a href="javascript:void(0)" class="table_tab_btn active_table_tab" onclick="load_sp_new_services_data()">New Service Request</a>
                 <a href="javascript:void(0)" class="table_tab_btn" onclick="load_sp_upcoming_services_data()">Upcoming Services</a>
                 <a href="javascript:void(0)" class="table_tab_btn">Service Schedule</a>
                 <a href="javascript:void(0)" class="table_tab_btn" onclick="load_sp_service_history_data()">Service History</a>
@@ -21,12 +21,12 @@
         <div class="table_tab_right">
 
             <!-- PROFILE -->
-            <div class="table_tab_content">
+            <div class="table_tab_content d_none">
                 <?= component('service-provider/', 'profile'); ?>
             </div>
 
             <!-- NEW SERVICE REQUEST -->
-            <div class="table_tab_content d_none">
+            <div class="table_tab_content">
                 <?= component('service-provider/', 'new-service-request'); ?>
             </div>
 
@@ -58,6 +58,17 @@
         </div><!-- END_TABLE_TAB_RIGHT -->
     </div><!-- END_TABLE_TAB -->
 </main><!-- END_MAIN -->
+
+<script>
+    // FOR OPEN MY SETTING OUTSIDE THE SERVICE PROVIDER PAGE...
+    if(localStorage.getItem('openMySetting')){
+        localStorage.removeItem('openMySetting');
+        // OPEN MY SETTING CODE...
+        $('.table_tab_btn').removeClass('active_table_tab');
+        $('.table_tab_content').addClass('d_none');        
+        document.getElementsByClassName('table_tab_content')[0].classList.remove('d_none');
+    }
+</script>
 
 <script>
     function load_sp_new_services_data(){

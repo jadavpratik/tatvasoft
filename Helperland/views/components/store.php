@@ -11,6 +11,23 @@
         $('.backlight_container').removeClass('loader');
         $('body').css({'overflow-y':'auto'});
     }
+
+    // ----------GET-TOKEN----------
+    function getToken(){
+        let cookie = document.cookie.split(';');
+        let arr = [];
+        cookie = cookie.map((i)=> {
+            arr = [];
+            key = i.split('=')[0].trim();
+            value = i.split('=')[1].trim();
+            arr[key]=value;
+            return arr;
+        });
+        let filtered = cookie.filter((i)=> {
+            return i['X-CSRF-TOKEN'];
+        } );
+        return filtered[0]['X-CSRF-TOKEN'];
+    }
 </script>
 
 <!-- ----------AJAX-PRE-SETUP---------- -->
@@ -20,10 +37,9 @@
     $.ajaxSetup({
         contentType : 'application/json',
         beforeSend : function(xhr, req){
+            xhr.setRequestHeader('X-CSRF-TOKEN', getToken());
             ajaxMethod = req.type;
-            if(req.type!=='GET'){
-                open_loader();
-            }
+            ajaxMethod!=='GET' && open_loader();
         },
         complete : function(){
             close_loader();
@@ -38,7 +54,7 @@
                 });
             }
             else{
-                console.log('Ajax Get Request Error', obj);
+                console.log('Getting Ajax Error', obj);
             }
             // DISABLED BUTTON...
             $('[name="forgot_password_btn"]').prop('disabled', false);
@@ -127,18 +143,30 @@
 </script>
 
 <!-- LOGGED-USER-DETAILS -->
-<script>    
-    <?php if(session('isLogged')){ ?>    
+<script>
+    <?php if(session('userRole')==1){ ?>
+        // ----------USER-DETAILS----------
         $.ajax({
             url : `${BASE_URL}/user/details`,
             method : 'GET',
             success : function(res){
-                if(res!==undefined || res!==undefined){
-                    const result = JSON.parse(res);
-                    store.loggedUserDetails = result; 
+                const result = JSON.parse(res);
+                store.loggedUserDetails = result;
+            }
+        });
+        // ----------USER-ADDRESS----------
+        $.ajax({
+            url : `${BASE_URL}/user/address`,
+            method : 'GET',
+            success : function(res){
+                const result = JSON.parse(res);
+                if(result.length>0){
+                    store.loggedUserAddress = result[0];
+                }
+                else{
+                    store.loggedUserAddress = [];
                 }
             }
         });
     <?php } ?>
 </script>
-

@@ -47,7 +47,10 @@
             <?php } ?>
 
             <!-- COMMAN_LINKS FOR LOGGED_USER -->
-            <a href="javascript:void(0)" onclick="go_to_dashboard()">My Setting</a>
+            <?php if(session('userRole')!==3){ ?>
+                <a href="javascript:void(0)" onclick="dropdownDashboard()">Dashboard</a>
+                <a href="javascript:void(0)" onclick="dropdownMySetting()">My Setting</a>
+            <?php } ?>
             <a href="<?= url('/logout'); ?>">Logout</a>
 
         <?php } ?>

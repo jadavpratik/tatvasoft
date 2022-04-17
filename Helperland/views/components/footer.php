@@ -94,5 +94,6 @@
 	</script>
 	
 	<?= component('session-scripts'); ?>
+	
 </body>
 </html>

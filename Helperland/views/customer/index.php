@@ -14,7 +14,7 @@
         <div class="table_tab_left">
             <!-- TAB AND TABLE LIST -->
             <div class="table_tab_list">
-                <a href="javascript:void(0)" class="table_tab_btn" onclick="load_customer_dashboard_data()">Dashboard</a>
+                <a href="javascript:void(0)" class="table_tab_btn active_table_tab" onclick="load_customer_dashboard_data()">Dashboard</a>
                 <a href="javascript:void(0)" class="table_tab_btn" onclick="load_customer_service_history_data()">Service History</a>
                 <a href="javascript:void(0)" class="table_tab_btn" onclick="load_customer_sp_data()">Favorite Service Provider</a>
             </div>
@@ -24,12 +24,12 @@
         <div class="table_tab_right">
 
             <!-- PROFILE -->
-            <div class="table_tab_content">
+            <div class="table_tab_content d_none">
                 <?= component('customer/', 'profile'); ?>
             </div>
             
             <!-- CUSTOMER_SERVICE_REQUESTS -->
-            <div class="table_tab_content d_none">
+            <div class="table_tab_content">
                 <?= component('customer/', 'current-service-requests'); ?>
             </div>
 
@@ -46,6 +46,17 @@
         </div><!-- END_TABLE_TAB_RIGHT -->
     </div><!-- END_TABLE_TAB -->
 </main><!-- END_MAIN -->
+
+<script>
+    // FOR OPEN MY SETTING OUTSIDE THE SERVICE PROVIDER PAGE...
+    if(localStorage.getItem('openMySetting')){
+        localStorage.removeItem('openMySetting');
+        // OPEN MY SETTING CODE...
+        $('.table_tab_btn').removeClass('active_table_tab');
+        $('.table_tab_content').addClass('d_none');        
+        document.getElementsByClassName('table_tab_content')[0].classList.remove('d_none');
+    }
+</script>
 
 <!-- **********CUSTOMER-SECTIONS-RELOAD-SCRIPTS**********s -->
 <script>

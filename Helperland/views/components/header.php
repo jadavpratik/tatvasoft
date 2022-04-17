@@ -97,8 +97,8 @@
 							<p><?= session('userName'); ?></p>
 						</div>
 						<hr>
-						<!-- <a href="javascript:void(0)" onclick="go_to_dashboard()">To Overview</a> -->
-						<a href="javascript:void(0)" class="table_tab_btn" onclick="go_to_dashboard()">My Setting</a>
+						<a href="javascript:void(0)" onclick="dropdownDashboard()">Dashboard</a>
+						<a href="javascript:void(0)" class="table_tab_btn" onclick="dropdownMySetting()">My Setting</a>
 						<a href="<?= url('/logout') ?>">Logout</a>
 					</div>
 				</div>
@@ -130,10 +130,34 @@
 
 	<!-- **********DROPDOWN-TO-DASHBOARD********** -->
 	<script>
-		function go_to_dashboard(){
+		function dropdownDashboard(){
 			const userRole = `<?= session('userRoleName'); ?>`;
 			if(window.location.href == `${BASE_URL}/${userRole}/dashboard`){
-				// IF WE ARE ON SAME TAB THEN NOT TO REFRESH PAGE AND OPEN TAB BY JAVASCRIPT
+				// IF WE ARE ON SAME PAGE THEN NOT TO REFRESH PAGE AND OPEN TAB BY JAVASCRIPT
+				$('.table_tab_btn').removeClass('active_table_tab');
+				table_tab_btn[1].classList.add('active_table_tab');
+
+				$('.table_tab_content').addClass('d_none');
+				table_tab_content[1].classList.remove('d_none');
+
+				// CLOSE SIDENAV ALSO...
+				$('.backlight_container').removeClass('backlight');
+				$('.sidenav').animate({'right':'-250px'}, 500);
+				$('.admin_tab_list').animate({'left':'-272px'}, 500);
+				$('body').css({'overflow-y':'auto'});
+			}
+			else{
+				// ON DASHBOARD BY DEFAULT THE MY SETTING TAB OPEN...
+				window.location.replace(`${BASE_URL}/${userRole}/dashboard`);
+			}
+		}
+		function dropdownMySetting(){
+			const userRole = `<?= session('userRoleName'); ?>`;
+			if(window.location.href == `${BASE_URL}/${userRole}/dashboard`){
+				// IF WE ARE ON SAME PAGE THEN NOT TO REFRESH PAGE AND OPEN TAB BY JAVASCRIPT
+
+				// OPEN MY SETTING CODE...
+				$('.table_tab_btn').removeClass('active_table_tab');
 				$('.table_tab_content').addClass('d_none');
 				table_tab_content[0].classList.remove('d_none');
 
@@ -145,6 +169,7 @@
 			}
 			else{
 				// ON DASHBOARD BY DEFAULT THE MY SETTING TAB OPEN...
+				localStorage.setItem('openMySetting', true);
 				window.location.replace(`${BASE_URL}/${userRole}/dashboard`);
 			}
 		}

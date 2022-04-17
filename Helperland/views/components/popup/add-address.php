@@ -49,6 +49,15 @@
 
 <!-- **********ADD ADDRESS SCRIPT********** -->
 <script>
+
+    $('[name="add_address_phone"]').focus(()=>{
+        $('[name="add_address_phone"]').val(store.loggedUserDetails.Mobile);
+    });
+
+    $('[name="add_address_postal_code"]').focus(()=>{
+        $('[name="add_address_postal_code"]').val(store.loggedUserAddress.PostalCode);
+    })
+
     $('#add_address_popup').submit((e)=>{
         e.preventDefault();
         let validation = true;
